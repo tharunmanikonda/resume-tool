@@ -82,6 +82,34 @@ button, input, textarea, select {
   gap: 10px;
 }
 
+.identity-strip {
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  padding: 10px 18px 12px;
+}
+
+.identity-strip-label {
+  color: var(--muted);
+  flex: 0 0 auto;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.identity-pill-list {
+  display: flex;
+  gap: 10px;
+  padding-bottom: 2px;
+}
+
+.identity-pill {
+  min-width: 120px;
+}
+
 .icon-button,
 .toggle-button,
 .secondary-button,
@@ -615,8 +643,15 @@ select:focus {
   align-items: center;
   border-bottom: 1px solid var(--border);
   display: flex;
-  gap: 8px;
+  gap: 12px;
+  justify-content: space-between;
   padding: 12px 14px;
+}
+
+.tabs-left {
+  align-items: center;
+  display: flex;
+  gap: 8px;
 }
 
 .preview-toolbar {
@@ -663,6 +698,20 @@ select:focus {
 .tab-button.active {
   background: var(--panel-3);
   color: var(--text);
+}
+
+.experience-pill-row {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.experience-pill {
+  font-size: 0.82rem;
+  min-height: 30px;
+  padding: 0 10px;
 }
 
 .panel-body {
@@ -820,10 +869,10 @@ select:focus {
   border-radius: 12px;
   font-size: 0.9rem;
   line-height: 1.5;
-  min-height: 0;
+  min-height: 520px;
   overflow: auto;
   padding: 10px 12px;
-  resize: none;
+  resize: vertical;
   width: 100%;
 }
 
@@ -957,6 +1006,73 @@ select:focus {
   display: grid;
   gap: 12px;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.profile-experience-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.profile-experience-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.profile-experience-card {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px;
+}
+
+.profile-experience-card-title {
+  color: var(--text);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.profile-experience-card-header {
+  align-items: center;
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+}
+
+.preview-edit-shell {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 14px;
+  min-height: 0;
+}
+
+.experience-inline-editor {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.experience-inline-input {
+  border-radius: 10px;
+  min-height: 36px;
+  min-width: 180px;
+  padding: 8px 10px;
+  width: min(240px, 100%);
+}
+
+@media (max-width: 1080px) {
+  .tabs {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .experience-pill-row {
+    justify-content: flex-start;
+  }
 }
 
 .drawer-shell {
@@ -1214,7 +1330,22 @@ select:focus {
 
 @media (max-width: 720px) {
   .topbar {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
     padding: 12px;
+  }
+
+  .topbar-actions,
+  .identity-strip,
+  .identity-pill-list {
+    width: 100%;
+  }
+
+  .identity-strip {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 10px 12px 12px;
   }
 
   .workspace {

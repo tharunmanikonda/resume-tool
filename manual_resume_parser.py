@@ -4,25 +4,28 @@ import copy
 import re
 from typing import Any
 
-# Hardcoded company data - company name, location, and dates never change
-# Titles and bullets will be parsed from user input
+# Fixed experience order. Titles and bullets are parsed from user input.
 COMPANIES = [
     {
+        "key": "mckinsey",
         "company": "McKinsey & Company",
         "location": "CA, USA",
         "dates": "May 2025 – Present",
     },
     {
+        "key": "uber",
         "company": "Uber",
         "location": "CA, USA",
         "dates": "February 2024 – May 2025",
     },
     {
+        "key": "kpmg",
         "company": "KPMG",
         "location": "India",
         "dates": "September 2021 – July 2022",
     },
     {
+        "key": "trigent",
         "company": "Trigent Software",
         "location": "India",
         "dates": "March 2020 – August 2021",
@@ -127,84 +130,75 @@ def _clean_title(title: str) -> str:
     return title.strip()
 
 
-def _parse_experience_titles_and_bullets(text: str) -> dict[str, dict[str, Any]]:
+def _looks_like_company_header(line: str) -> bool:
+    cleaned = line.strip()
+    if not cleaned or "|" not in cleaned:
+        return False
+    parts = [part.strip() for part in cleaned.split("|")]
+    if len(parts) < 2:
+        return False
+    left, right = parts[0], parts[1]
+    if not left or not right:
+        return False
+    if re.search(r"\d{4}", left):
+        return False
+    location_signals = {",", "usa", "india", "canada", "remote", "uk", "ca", "tx", "nc", "ny"}
+    lower_right = right.lower()
+    return any(signal in lower_right for signal in location_signals)
+
+
+def _parse_experience_titles_and_bullets(text: str) -> list[dict[str, Any]]:
     """
-    Search for each company name in text and extract title and bullets after it.
-    Returns dict mapping company name -> {title, bullets}.
+    Parse experience sections in order rather than by exact company name.
+    Returns one entry per fixed experience slot.
     """
-    result: dict[str, dict[str, Any]] = {}
+    lines = text.split("\n")
+    sections: list[list[str]] = []
+    current_section: list[str] = []
 
-    for i, company_info in enumerate(COMPANIES):
-        company_name = company_info["company"]
+    for raw_line in lines:
+        cleaned = raw_line.strip()
+        if _looks_like_company_header(cleaned):
+            if current_section:
+                sections.append(current_section)
+            current_section = [cleaned]
+            continue
+        if current_section:
+            current_section.append(raw_line)
 
-        # Search for company name at start of line (flexible - allows pipes after)
-        # Matches: "Company Name" or "Company Name | Title | Dates"
-        pattern = r'(?:^|\n)\s*' + re.escape(company_name) + r'(?:\s|$|[\|\-])'
-        match = re.search(pattern, text, re.IGNORECASE)
+    if current_section:
+        sections.append(current_section)
 
-        if not match:
-            # Company not mentioned in user input
-            result[company_name] = {"title": "", "bullets": []}
+    parsed: list[dict[str, Any]] = []
+    for index in range(len(COMPANIES)):
+        if index >= len(sections):
+            parsed.append({"title": "", "bullets": []})
             continue
 
-        idx = match.start()
-        # Find where this company's section ends
-        section_start = match.end() - 1  # Back up one char to include the matched separator
-        next_company_idx = len(text)  # Default to end of text
-
-        # Find the next company mention (also at start of line)
-        for other_company in COMPANIES[i + 1 :]:
-            other_pattern = r'(?:^|\n)\s*' + re.escape(other_company["company"]) + r'(?:\s|$|[\|\-])'
-            other_match = re.search(other_pattern, text[section_start:], re.IGNORECASE)
-            if other_match:
-                next_company_idx = min(next_company_idx, section_start + other_match.start())
-
-        # Extract this company's section
-        section = text[section_start:next_company_idx].strip()
-
-        # Parse title and bullets from section
-        lines = section.split("\n")
+        section = sections[index]
         title = ""
-        bullets = []
-        first_line = True
+        bullets: list[str] = []
+        company_line_consumed = False
 
-        for line_idx, line in enumerate(lines):
+        for line in section:
             cleaned = _clean_bullet(line)
-
-            # Skip empty lines and separators
             if not cleaned or _is_separator(cleaned):
                 continue
-
-            # First non-empty line - could be title OR "Company | Title | Dates" format
-            if not title and first_line:
-                first_line = False
-                # Check if this line has pipes (Format B: "Company | Title | Dates")
+            if not company_line_consumed and _looks_like_company_header(cleaned):
+                company_line_consumed = True
+                continue
+            if not title:
                 if "|" in cleaned:
-                    parts = [part.strip() for part in cleaned.split("|")]
-                    non_empty_parts = [part for part in parts if part]
-                    if not parts[0]:
-                        # After matching the company name, the remainder can be either
-                        # "| Location" or "| Title | Dates". Treat two or more non-empty
-                        # segments as a title/date line; otherwise keep scanning.
-                        if len(non_empty_parts) >= 2:
-                            title_part = non_empty_parts[0]
-                        else:
-                            first_line = True
-                            continue
-                    else:
-                        # Extract title from either "Company | Title | Dates" or "Title | Dates".
-                        title_part = parts[1] if len(parts) >= 3 else parts[0]
-                    title = _clean_title(title_part)
+                    parts = [part.strip() for part in cleaned.split("|") if part.strip()]
+                    title = _clean_title(parts[0] if parts else cleaned)
                 else:
-                    # Format A: just a title, no pipes
                     title = _clean_title(cleaned)
-            else:
-                # Everything else is a bullet
-                bullets.append(cleaned)
+                continue
+            bullets.append(cleaned)
 
-        result[company_name] = {"title": title, "bullets": bullets}
+        parsed.append({"title": title, "bullets": bullets})
 
-    return result
+    return parsed
 
 
 def parse_updated_content_to_resume(updated_text: str, base_resume: dict) -> dict:
@@ -241,7 +235,7 @@ def parse_updated_content_to_resume(updated_text: str, base_resume: dict) -> dic
 
     # Parse sections
     skills = _parse_skills(skills_text) if skills_text else []
-    company_data = _parse_experience_titles_and_bullets(exp_text) if exp_text else {}
+    company_data = _parse_experience_titles_and_bullets(exp_text) if exp_text else []
 
     # Update resume
     if title:
@@ -259,16 +253,16 @@ def parse_updated_content_to_resume(updated_text: str, base_resume: dict) -> dic
             exp_entry["title"] = ""
             exp_entry["bullets"] = []
 
-    # Keep company name, location, dates hardcoded
+    # Keep slot order stable; titles and bullets come from parsed content.
     if company_data:
-        for exp_entry in resume.get("experience", []):
-            company_name = exp_entry["company"]
-            if company_name in company_data:
-                data = company_data[company_name]
-                if data["title"]:
-                    exp_entry["title"] = data["title"]
-                if data["bullets"]:
-                    exp_entry["bullets"] = data["bullets"]
+        for index, exp_entry in enumerate(resume.get("experience", [])):
+            if index >= len(company_data):
+                continue
+            data = company_data[index]
+            if data["title"]:
+                exp_entry["title"] = data["title"]
+            if data["bullets"]:
+                exp_entry["bullets"] = data["bullets"]
 
     return resume
 

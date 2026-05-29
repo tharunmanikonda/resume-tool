@@ -1,17 +1,14 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 
-const gmailPreset = {
-  location: "Dallas, TX",
-  phone: "(469)963-5323",
-  email: "tmanikonda.1@gmail.com",
-};
-
 const emptyProfile = {
   name: "",
   contact: { location: "", phone: "", email: "" },
   certifications: [],
   projects: [],
+  experience_history: [],
 };
+
+const experienceKeys = ["mckinsey", "uber", "kpmg", "trigent"];
 
 function fetchJson(url, options = {}) {
   return fetch(url, options).then(async (response) => {
@@ -146,6 +143,58 @@ function ParsedPreview({ preview, loadingExperience }) {
   );
 }
 
+function normalizeExperienceHistory(history = []) {
+  return Array.isArray(history)
+    ? history.map((item) => ({
+        key: item?.key || "",
+        company: item?.company || "",
+        location: item?.location || "",
+        title: item?.title || "",
+        dates: item?.dates || "",
+      }))
+    : [];
+}
+
+function normalizeInlineExperienceHistory(history = []) {
+  return Array.isArray(history)
+    ? history.map((item, index) => ({
+        key: item?.key || experienceKeys[index] || `role-${index + 1}`,
+        company: item?.company || "",
+        location: item?.location || "",
+        title: item?.title || "",
+        dates: item?.dates || "",
+      }))
+    : [];
+}
+
+function allEnabledExperienceKeys(history = []) {
+  return normalizeInlineExperienceHistory(history).map((item) => item.key).filter(Boolean);
+}
+
+function normalizeIdentityProfiles(identities = []) {
+  return Array.isArray(identities)
+    ? identities.map((item, index) => ({
+        id: item?.id || `identity-${index + 1}`,
+        label: item?.label || `Identity ${index + 1}`,
+        location: item?.location || "",
+        phone: item?.phone || "",
+        email: item?.email || "",
+        format_profile: item?.format_profile || "outlook",
+      }))
+    : [];
+}
+
+function createEmptyIdentity() {
+  return {
+    id: `identity-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
+    label: "New identity",
+    location: "",
+    phone: "",
+    email: "",
+    format_profile: "outlook",
+  };
+}
+
 function Modal({ open, title, onClose, children, footer }) {
   if (!open) return null;
   return (
@@ -159,22 +208,6 @@ function Modal({ open, title, onClose, children, footer }) {
         <div className="modal-body">{children}</div>
         {footer ? <div className="modal-footer">{footer}</div> : null}
       </div>
-    </div>
-  );
-}
-
-function SideDrawer({ open, title, onClose, children }) {
-  if (!open) return null;
-  return (
-    <div className="drawer-shell" role="dialog" aria-modal="true">
-      <button className="drawer-backdrop" onClick={onClose} aria-label="Close drawer" />
-      <aside className="drawer-panel">
-        <div className="drawer-header">
-          <h2>{title}</h2>
-          <button className="icon-button" onClick={onClose}>✕</button>
-        </div>
-        <div className="drawer-body">{children}</div>
-      </aside>
     </div>
   );
 }
@@ -331,12 +364,14 @@ function TrackerTable({ applications, statuses, onStatusChange }) {
 export default function App() {
   const [profile, setProfile] = useState(emptyProfile);
   const [profileDraft, setProfileDraft] = useState(emptyProfile);
-  const [settings, setSettings] = useState({ output_directory: "" });
-  const [settingsDraft, setSettingsDraft] = useState("");
+  const [settings, setSettings] = useState({ output_directory: "", identities: [] });
+  const [settingsDraft, setSettingsDraft] = useState({ output_directory: "", identities: [] });
   const [pdfStatus, setPdfStatus] = useState({ ready: false, message: "Checking..." });
   const [aiStatus, setAiStatus] = useState({ ready: false, message: "Checking...", model: "gpt-5-mini", memory_limit: 2 });
-  const [identity, setIdentity] = useState("outlook");
+  const [identity, setIdentity] = useState("");
   const [contact, setContact] = useState({ location: "", phone: "", email: "" });
+  const [editableExperienceHistory, setEditableExperienceHistory] = useState([]);
+  const [enabledExperienceKeys, setEnabledExperienceKeys] = useState([]);
   const [companyName, setCompanyName] = useState("");
   const [composerInput, setComposerInput] = useState("");
   const [generatedContent, setGeneratedContent] = useState("");
@@ -366,7 +401,6 @@ export default function App() {
     instructions: false,
     settings: false,
     profile: false,
-    controls: false,
     tracker: false,
     trackApply: false,
   });
@@ -395,8 +429,9 @@ export default function App() {
   useEffect(() => {
     fetchJson("/api/settings")
       .then((data) => {
-        setSettings(data);
-        setSettingsDraft(data.output_directory || "");
+        const identities = normalizeIdentityProfiles(data.identities || []);
+        setSettings({ ...data, identities });
+        setSettingsDraft({ output_directory: data.output_directory || "", identities });
         setPdfStatus({
           ready: !!data.pdf_conversion_ready,
           message: data.pdf_conversion_status || "Unknown",
@@ -407,9 +442,13 @@ export default function App() {
     fetchJson("/api/profile")
       .then((data) => {
         setProfile(data);
+        const history = normalizeExperienceHistory(data.experience_history || []);
+        setEditableExperienceHistory(history);
+        setEnabledExperienceKeys(allEnabledExperienceKeys(history));
         setProfileDraft({
           ...data,
           contact: { ...(data.contact || emptyProfile.contact) },
+          experience_history: history,
         });
         setContact(data.contact || emptyProfile.contact);
       })
@@ -423,6 +462,25 @@ export default function App() {
 
     loadTracker();
   }, []);
+
+  useEffect(() => {
+    const identities = normalizeIdentityProfiles(settings.identities || []);
+    if (!identities.length) {
+      setIdentity("");
+      setContact(emptyProfile.contact);
+      return;
+    }
+
+    const activeIdentity = identities.find((item) => item.id === identity) || identities[0];
+    if (activeIdentity.id !== identity) {
+      setIdentity(activeIdentity.id);
+    }
+    setContact({
+      location: activeIdentity.location || "",
+      phone: activeIdentity.phone || "",
+      email: activeIdentity.email || "",
+    });
+  }, [settings.identities]);
 
   useEffect(() => {
     if (!generatedContent.trim()) {
@@ -439,6 +497,8 @@ export default function App() {
           content: generatedContent,
           contact_override: contact,
           identity,
+          experience_history_override: editableExperienceHistory,
+          enabled_experience_keys: enabledExperienceKeys,
         }),
       })
         .then((data) => {
@@ -451,7 +511,7 @@ export default function App() {
     }, 250);
 
     return () => window.clearTimeout(timeoutId);
-  }, [generatedContent, contact, identity]);
+  }, [generatedContent, contact, identity, profile, editableExperienceHistory, enabledExperienceKeys]);
 
   useEffect(() => {
     if (pdfState.mode !== "polling" || !pdfState.statusPath) return undefined;
@@ -492,23 +552,13 @@ export default function App() {
     return () => window.clearInterval(timer);
   }, [pdfState.mode, pdfState.statusPath]);
 
-  const charCount = generatedContent.length;
   const pdfPreviewUrl = pdfState.pdfPath
     ? `/api/download?path=${encodeURIComponent(pdfState.pdfPath)}&preview=true`
     : "";
 
   const canGeneratePdf = validation.valid && generatedContent.trim().length > 0;
-
-  const contactForIdentity = useMemo(
-    () => ({
-      outlook: profile.contact || emptyProfile.contact,
-      gmail: gmailPreset,
-    }),
-    [profile.contact],
-  );
-
-  const statusBadgeClass = aiStatus.ready ? "badge status-ok" : "badge status-error";
-  const jdModeLabel = showGeneratedArea ? "Current JD active" : "Waiting for new JD";
+  const orderedDraftExperience = normalizeInlineExperienceHistory(editableExperienceHistory);
+  const visibleDraftExperience = orderedDraftExperience.filter((item) => enabledExperienceKeys.includes(item.key));
   const filteredTrackerApplications = useMemo(() => {
     const query = trackerFilters.query.trim().toLowerCase();
     const from = trackerFilters.applied_from;
@@ -530,15 +580,18 @@ export default function App() {
   function openModal(name) {
     if (name === "settings") {
       fetchJson("/api/settings").then((data) => {
-        setSettings(data);
-        setSettingsDraft(data.output_directory || "");
+        const identities = normalizeIdentityProfiles(data.identities || []);
+        setSettings({ ...data, identities });
+        setSettingsDraft({ output_directory: data.output_directory || "", identities });
       }).catch(() => {});
     }
     if (name === "profile") {
       fetchJson("/api/profile").then((data) => {
+        const history = normalizeExperienceHistory(data.experience_history || []);
         setProfileDraft({
           ...data,
           contact: { ...(data.contact || emptyProfile.contact) },
+          experience_history: history,
           certificationsText: (data.certifications || []).join("\n"),
           projectsText: formatProjects(data.projects || []),
         });
@@ -565,6 +618,7 @@ export default function App() {
     setLatestAnalysis(null);
     setGeneratedContent("");
     setAiStage("");
+    setEnabledExperienceKeys(allEnabledExperienceKeys(editableExperienceHistory));
     if (clearJd) setComposerInput("");
 
     if (sessionId) {
@@ -617,6 +671,9 @@ export default function App() {
           output_dir: pdfState.outputDir,
           contact_override: contact,
           identity,
+          experience_history_override: editableExperienceHistory,
+          enabled_experience_keys: enabledExperienceKeys,
+          resume_snapshot_override: preview,
         }),
       });
       setTrackerData((current) => ({
@@ -776,6 +833,7 @@ export default function App() {
         setValidation({ valid: false, errors: [] });
       }
       setCompanyName("");
+      setEnabledExperienceKeys(allEnabledExperienceKeys(editableExperienceHistory));
     }
 
     try {
@@ -788,6 +846,7 @@ export default function App() {
           current_resume_content: generatedContent,
           session_id: aiSessionId,
           reset_memory: isNewJd,
+          enabled_experience_keys: enabledExperienceKeys,
         }),
       });
 
@@ -809,12 +868,12 @@ export default function App() {
         fetchJson("/api/ai/generate-title-summary", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ session_id: nextSessionId }),
+          body: JSON.stringify({ session_id: nextSessionId, enabled_experience_keys: enabledExperienceKeys }),
         }),
         fetchJson("/api/ai/generate-skills", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ session_id: nextSessionId }),
+          body: JSON.stringify({ session_id: nextSessionId, enabled_experience_keys: enabledExperienceKeys }),
         }),
       ]);
 
@@ -837,12 +896,12 @@ export default function App() {
         fetchJson("/api/ai/generate-experience-recent", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ session_id: sessionAfterCore }),
+          body: JSON.stringify({ session_id: sessionAfterCore, enabled_experience_keys: enabledExperienceKeys }),
         }),
         fetchJson("/api/ai/generate-experience-older", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ session_id: sessionAfterCore }),
+          body: JSON.stringify({ session_id: sessionAfterCore, enabled_experience_keys: enabledExperienceKeys }),
         }),
       ]);
 
@@ -857,7 +916,7 @@ export default function App() {
       const reviewedCoreData = await fetchJson("/api/ai/review-core", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ session_id: sessionAfterExperience }),
+        body: JSON.stringify({ session_id: sessionAfterExperience, enabled_experience_keys: enabledExperienceKeys }),
       });
 
       const sessionAfterReview = reviewedCoreData.session_id || sessionAfterExperience;
@@ -944,6 +1003,9 @@ export default function App() {
         company_name: companyName,
         contact_override: contact,
         identity,
+        experience_history_override: editableExperienceHistory,
+        enabled_experience_keys: enabledExperienceKeys,
+        resume_override: preview,
       }),
     })
       .then((data) => {
@@ -972,10 +1034,15 @@ export default function App() {
     fetchJson("/api/settings", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ output_directory: settingsDraft }),
+      body: JSON.stringify({
+        output_directory: settingsDraft.output_directory,
+        identities: normalizeIdentityProfiles(settingsDraft.identities || []),
+      }),
     })
       .then((data) => {
-        setSettings((current) => ({ ...current, output_directory: data.output_directory }));
+        const identities = normalizeIdentityProfiles(data.identities || []);
+        setSettings((current) => ({ ...current, output_directory: data.output_directory, identities }));
+        setSettingsDraft({ output_directory: data.output_directory || "", identities });
         closeModal("settings");
       })
       .catch((error) => window.alert(error.message));
@@ -990,6 +1057,7 @@ export default function App() {
         .map((line) => line.trim())
         .filter(Boolean),
       projects: parseProjects(profileDraft.projectsText || ""),
+      experience_history: normalizeExperienceHistory(profileDraft.experience_history || []),
     };
 
     fetchJson("/api/profile", {
@@ -999,16 +1067,86 @@ export default function App() {
     })
       .then((data) => {
         setProfile(data.profile);
-        setContact(data.profile.contact || emptyProfile.contact);
+        const history = normalizeExperienceHistory(data.profile.experience_history || []);
+        setEditableExperienceHistory(history);
+        setEnabledExperienceKeys(allEnabledExperienceKeys(history));
+        const selected = normalizeIdentityProfiles(settings.identities || []).find((item) => item.id === identity);
+        setContact(selected ? {
+          location: selected.location || "",
+          phone: selected.phone || "",
+          email: selected.email || "",
+        } : (data.profile.contact || emptyProfile.contact));
         closeModal("profile");
       })
       .catch((error) => window.alert(error.message));
   }
 
-  function selectIdentity(nextIdentity) {
-    setIdentity(nextIdentity);
-    setContact(contactForIdentity[nextIdentity] || emptyProfile.contact);
+  function updateExperienceHistory(index, field, value) {
+    setProfileDraft((current) => {
+      const history = normalizeExperienceHistory(current.experience_history || []);
+      const nextHistory = history.map((item, itemIndex) => (
+        itemIndex === index ? { ...item, [field]: value } : item
+      ));
+      return { ...current, experience_history: nextHistory };
+    });
   }
+
+  function updateEditableExperienceHistory(index, field, value) {
+    setEditableExperienceHistory((current) => normalizeInlineExperienceHistory(current).map((item, itemIndex) => (
+      itemIndex === index ? { ...item, [field]: value } : item
+    )));
+  }
+
+  function toggleExperienceKey(key) {
+    setEnabledExperienceKeys((current) => {
+      const exists = current.includes(key);
+      if (exists) {
+        const next = current.filter((item) => item !== key);
+        return next.length ? next : current;
+      }
+      const orderedKeys = allEnabledExperienceKeys(editableExperienceHistory);
+      const nextSet = new Set([...current, key]);
+      return orderedKeys.filter((item) => nextSet.has(item));
+    });
+  }
+
+  function selectIdentity(nextIdentity) {
+    const selected = normalizeIdentityProfiles(settings.identities || []).find((item) => item.id === nextIdentity);
+    setIdentity(nextIdentity);
+    setContact(selected ? {
+      location: selected.location || "",
+      phone: selected.phone || "",
+      email: selected.email || "",
+    } : emptyProfile.contact);
+  }
+
+  function updateSettingsIdentity(index, field, value) {
+    setSettingsDraft((current) => ({
+      ...current,
+      identities: normalizeIdentityProfiles(current.identities || []).map((item, itemIndex) => (
+        itemIndex === index ? { ...item, [field]: value } : item
+      )),
+    }));
+  }
+
+  function addSettingsIdentity() {
+    setSettingsDraft((current) => ({
+      ...current,
+      identities: [...normalizeIdentityProfiles(current.identities || []), createEmptyIdentity()],
+    }));
+  }
+
+  function removeSettingsIdentity(index) {
+    setSettingsDraft((current) => {
+      const identities = normalizeIdentityProfiles(current.identities || []);
+      if (identities.length <= 1) return current;
+      return {
+        ...current,
+        identities: identities.filter((_, itemIndex) => itemIndex !== index),
+      };
+    });
+  }
+
 
   function handleComposerKeyDown(event) {
     if (event.key === "Enter" && !event.shiftKey) {
@@ -1066,7 +1204,7 @@ export default function App() {
           <div className="brand">Resume Generator</div>
         </div>
         <div className="topbar-actions">
-          <button className="icon-button" onClick={() => openModal("controls")}>ID</button>
+          <button className="icon-button" onClick={() => openModal("profile")}>Profile</button>
           <button className="icon-button" onClick={() => openModal("tracker")}>Tracker</button>
           <button className="icon-button" onClick={() => openModal("instructions")}>?</button>
           <button className="icon-button" onClick={() => openModal("settings")}>⚙</button>
@@ -1075,6 +1213,21 @@ export default function App() {
           </span>
         </div>
       </header>
+
+      <div className="identity-strip">
+        <div className="identity-strip-label">Contact identities</div>
+        <div className="identity-pill-list">
+          {normalizeIdentityProfiles(settings.identities || []).map((item) => (
+            <button
+              key={item.id}
+              className={`toggle-button identity-pill ${identity === item.id ? "active" : ""}`}
+              onClick={() => selectIdentity(item.id)}
+            >
+              <span>{item.label}</span>
+            </button>
+          ))}
+        </div>
+      </div>
 
       <main className="workspace chatgpt-shell">
         <section className="chat-surface">
@@ -1231,8 +1384,24 @@ export default function App() {
             </div>
           </div>
           <div className="tabs">
-            <button className={`tab-button ${tab === "parsed" ? "active" : ""}`} onClick={() => setTab("parsed")}>Parsed Preview</button>
-            <button className={`tab-button ${tab === "pdf" ? "active" : ""}`} onClick={() => setTab("pdf")}>PDF Preview</button>
+            <div className="tabs-left">
+              <button className={`tab-button ${tab === "parsed" ? "active" : ""}`} onClick={() => setTab("parsed")}>Parsed Preview</button>
+              <button className={`tab-button ${tab === "pdf" ? "active" : ""}`} onClick={() => setTab("pdf")}>PDF Preview</button>
+            </div>
+            {orderedDraftExperience.length ? (
+              <div className="experience-pill-row" aria-label="Experience visibility">
+                {orderedDraftExperience.map((item) => (
+                  <button
+                    key={item.key}
+                    className={`toggle-button experience-pill ${enabledExperienceKeys.includes(item.key) ? "active" : ""}`}
+                    onClick={() => toggleExperienceKey(item.key)}
+                    title={enabledExperienceKeys.includes(item.key) ? "Included in this draft" : "Hidden from this draft"}
+                  >
+                    {item.company || "Untitled company"}
+                  </button>
+                ))}
+              </div>
+            ) : null}
           </div>
           <div className="panel-body preview-body">
             {tab === "parsed" ? (
@@ -1243,11 +1412,29 @@ export default function App() {
                   </div>
                 ) : null}
                 {previewEditMode ? (
-                  <textarea
-                    className="preview-editor"
-                    value={generatedContent}
-                    onChange={(e) => setGeneratedContent(e.target.value)}
-                  />
+                  <div className="preview-edit-shell">
+                    {visibleDraftExperience.length ? (
+                      <div className="experience-inline-editor">
+                        {visibleDraftExperience.map((item) => {
+                          const index = orderedDraftExperience.findIndex((entry) => entry.key === item.key);
+                          return (
+                            <input
+                              key={item.key || index}
+                              className="experience-inline-input"
+                              value={item.company || ""}
+                              onChange={(e) => updateEditableExperienceHistory(index, "company", e.target.value)}
+                              placeholder="Company name"
+                            />
+                          );
+                        })}
+                      </div>
+                    ) : null}
+                    <textarea
+                      className="preview-editor"
+                      value={generatedContent}
+                      onChange={(e) => setGeneratedContent(e.target.value)}
+                    />
+                  </div>
                 ) : (
                   <ParsedPreview
                     preview={preview}
@@ -1307,8 +1494,53 @@ export default function App() {
       >
         <label className="field">
           Output Directory
-          <input value={settingsDraft} onChange={(e) => setSettingsDraft(e.target.value)} />
+          <input value={settingsDraft.output_directory || ""} onChange={(e) => setSettingsDraft((current) => ({ ...current, output_directory: e.target.value }))} />
         </label>
+        <div className="profile-experience-section">
+          <div className="section-label">Contact identities</div>
+          <div className="profile-experience-list">
+            {(settingsDraft.identities || []).map((item, index) => (
+              <div key={item.id || index} className="profile-experience-card">
+                <div className="profile-experience-card-header">
+                  <div className="profile-experience-card-title">Identity {index + 1}</div>
+                  <button
+                    className="secondary-button"
+                    disabled={(settingsDraft.identities || []).length <= 1}
+                    onClick={() => removeSettingsIdentity(index)}
+                  >
+                    Remove
+                  </button>
+                </div>
+                <div className="profile-grid">
+                  <label className="field">
+                    Label
+                    <input value={item.label || ""} onChange={(e) => updateSettingsIdentity(index, "label", e.target.value)} />
+                  </label>
+                  <label className="field">
+                    Format
+                    <select value={item.format_profile || "outlook"} onChange={(e) => updateSettingsIdentity(index, "format_profile", e.target.value)}>
+                      <option value="outlook">Outlook</option>
+                      <option value="gmail">Gmail</option>
+                    </select>
+                  </label>
+                  <label className="field">
+                    Email
+                    <input value={item.email || ""} onChange={(e) => updateSettingsIdentity(index, "email", e.target.value)} />
+                  </label>
+                  <label className="field">
+                    Phone
+                    <input value={item.phone || ""} onChange={(e) => updateSettingsIdentity(index, "phone", e.target.value)} />
+                  </label>
+                  <label className="field">
+                    Location
+                    <input value={item.location || ""} onChange={(e) => updateSettingsIdentity(index, "location", e.target.value)} />
+                  </label>
+                </div>
+              </div>
+            ))}
+          </div>
+          <button className="secondary-button" onClick={addSettingsIdentity}>Add identity</button>
+        </div>
       </Modal>
 
       <Modal
@@ -1348,42 +1580,35 @@ export default function App() {
           Projects
           <textarea value={profileDraft.projectsText || formatProjects(profileDraft.projects || [])} onChange={(e) => setProfileDraft((current) => ({ ...current, projectsText: e.target.value }))} />
         </label>
+        <div className="profile-experience-section">
+          <div className="section-label">Experience History</div>
+          <div className="profile-experience-list">
+            {(profileDraft.experience_history || []).map((item, index) => (
+              <div key={item.key || index} className="profile-experience-card">
+                <div className="profile-experience-card-title">Role {index + 1}</div>
+                <div className="profile-grid">
+                  <label className="field">
+                    Company
+                    <input value={item.company || ""} onChange={(e) => updateExperienceHistory(index, "company", e.target.value)} />
+                  </label>
+                  <label className="field">
+                    Location
+                    <input value={item.location || ""} onChange={(e) => updateExperienceHistory(index, "location", e.target.value)} />
+                  </label>
+                  <label className="field">
+                    Default Title
+                    <input value={item.title || ""} onChange={(e) => updateExperienceHistory(index, "title", e.target.value)} />
+                  </label>
+                  <label className="field">
+                    Dates
+                    <input value={item.dates || ""} onChange={(e) => updateExperienceHistory(index, "dates", e.target.value)} />
+                  </label>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </Modal>
-
-      <SideDrawer
-        open={modals.controls}
-        title="Resume Controls"
-        onClose={() => closeModal("controls")}
-      >
-        <div className="drawer-section">
-          <div className="sidebar-label">Identity</div>
-          <div className="identity-group">
-            <button className={`toggle-button ${identity === "outlook" ? "active" : ""}`} onClick={() => selectIdentity("outlook")}>Outlook</button>
-            <button className={`toggle-button ${identity === "gmail" ? "active" : ""}`} onClick={() => selectIdentity("gmail")}>Gmail</button>
-          </div>
-        </div>
-
-        <div className="drawer-section">
-          <div className="sidebar-label">Contact</div>
-          <div className="sidebar-fields">
-            <input value={contact.location} onChange={(e) => setContact((current) => ({ ...current, location: e.target.value }))} placeholder="Location" />
-            <input value={contact.phone} onChange={(e) => setContact((current) => ({ ...current, phone: e.target.value }))} placeholder="Phone" />
-            <input value={contact.email} onChange={(e) => setContact((current) => ({ ...current, email: e.target.value }))} placeholder="Email" />
-          </div>
-        </div>
-
-        <div className="drawer-section">
-          <div className="sidebar-label">Output</div>
-          <span className="badge">PDF controls moved to preview</span>
-        </div>
-
-        <div className="drawer-section drawer-meta">
-          <span className={statusBadgeClass}>{aiStatus.ready ? "AI Ready" : "AI Error"}</span>
-          <span className="badge">{charCount} chars</span>
-          <span className="badge">{jdModeLabel}</span>
-          {memoryCount > 0 ? <span className="badge">Memory {memoryCount}/{aiStatus.memory_limit || 2}</span> : null}
-        </div>
-      </SideDrawer>
 
       <Modal
         open={modals.trackApply}

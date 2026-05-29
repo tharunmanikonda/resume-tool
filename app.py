@@ -47,12 +47,22 @@ OUTPUT_ROOT = os.getenv("OUTPUT_ROOT", DEFAULT_OUTPUT_ROOT)
 SETTINGS_FILE = settings_path()
 TRACKER_FILE = resource_path("config", "application_tracker.json")
 
+GMAIL_IDENTITY_DEFAULT = {
+    "id": "gmail",
+    "label": "Gmail",
+    "location": "Dallas, TX",
+    "phone": "(469)963-5323",
+    "email": "tmanikonda.1@gmail.com",
+    "format_profile": "gmail",
+}
+
 def load_settings():
     """Load settings from config/settings.json, fall back to env var if missing."""
     loaded_settings = load_json_file(Path(SETTINGS_FILE), {"output_directory": OUTPUT_ROOT})
     loaded_settings.setdefault("output_directory", OUTPUT_ROOT)
     loaded_settings.setdefault("keep_docx", True)
     loaded_settings.setdefault("profile", {})
+    loaded_settings.setdefault("identities", [])
     return loaded_settings
 
 def save_settings(settings_dict):
@@ -115,6 +125,9 @@ EXPERIENCE_BLUEPRINTS = [
         "anchor": "frontend engineering, UI migration, responsive web delivery, QA-oriented implementation",
     },
 ]
+
+EXPERIENCE_BLUEPRINTS_BY_KEY = {blueprint["key"]: blueprint for blueprint in EXPERIENCE_BLUEPRINTS}
+EXPERIENCE_BLUEPRINT_KEYS = [blueprint["key"] for blueprint in EXPERIENCE_BLUEPRINTS]
 
 TITLE_WORD_MIN = 2
 TITLE_WORD_MAX = 8
@@ -495,6 +508,9 @@ FORBIDDEN_TERMS_BY_COMPANY = {
         "pinecone", "vector", "vectors", "semantic search", "retrieval",
     },
 }
+FORBIDDEN_TERMS_BY_BLUEPRINT_KEY = {
+    "trigent": FORBIDDEN_TERMS_BY_COMPANY["Trigent Software"],
+}
 
 ai_sessions: dict[str, dict] = {}
 _whisper_model = None
@@ -540,10 +556,18 @@ def file_created_iso(path: Path) -> str:
     return iso_from_timestamp(created_ts)
 
 
-def parse_resume_snapshot(content: str, contact_override: dict | None = None, identity: str = "outlook") -> dict:
+def parse_resume_snapshot(
+    content: str,
+    contact_override: dict | None = None,
+    identity: str = "outlook",
+    experience_history_override: list[dict] | None = None,
+    enabled_experience_keys: list[str] | None = None,
+) -> dict:
     base_resume = load_base_resume()
     merged_resume = parse_updated_content_to_resume(str(content or "").strip(), base_resume)
     merged_resume = apply_profile_overrides(merged_resume)
+    merged_resume = apply_experience_history_override(merged_resume, experience_history_override)
+    merged_resume = apply_enabled_experience_filter(merged_resume, enabled_experience_keys)
     if isinstance(contact_override, dict):
         merged_resume["contact"] = {
             **merged_resume.get("contact", {}),
@@ -571,8 +595,17 @@ def build_tracker_application_record(
     output_dir: str = "",
     contact_override: dict | None = None,
     identity: str = "outlook",
+    experience_history_override: list[dict] | None = None,
+    enabled_experience_keys: list[str] | None = None,
+    parsed_resume_override: dict | None = None,
 ) -> dict:
-    parsed_resume = parse_resume_snapshot(resume_content, contact_override, identity)
+    parsed_resume = parsed_resume_override if isinstance(parsed_resume_override, dict) and parsed_resume_override else parse_resume_snapshot(
+        resume_content,
+        contact_override,
+        identity,
+        experience_history_override,
+        enabled_experience_keys,
+    )
     normalized_status = normalize_tracker_status(status)
     company = str(company_name or "").strip() or str((analysis_payload or {}).get("company_name", "")).strip() or "Unknown Company"
     role_title = str(parsed_resume.get("title", "")).strip() or str((analysis_payload or {}).get("target_role", "")).strip() or "Untitled Role"
@@ -1241,7 +1274,8 @@ def build_ai_analysis_prompt() -> str:
 
 def build_ai_resume_prompt() -> str:
     blueprint_lines = []
-    for blueprint in EXPERIENCE_BLUEPRINTS:
+    enabled_keys = resume.get("_enabled_experience_keys")
+    for blueprint in filter_blueprints_by_enabled_keys(current_experience_blueprints(), enabled_keys):
         bullet_rule = f"{blueprint['bullet_min']}" if blueprint["bullet_min"] == blueprint["bullet_max"] else f"{blueprint['bullet_min']}-{blueprint['bullet_max']}"
         blueprint_lines.append(
             f"- {blueprint['company']} | {blueprint['location']} | {blueprint['dates']} | bullets: {bullet_rule} | anchor: {blueprint['anchor']}"
@@ -1703,7 +1737,7 @@ def build_ai_resume_skills_prompt(prompt_family_key: str = "software_engineering
 
 def build_ai_resume_experience_prompt(prompt_family_key: str = "software_engineering") -> str:
     blueprint_lines = []
-    for blueprint in EXPERIENCE_BLUEPRINTS:
+    for blueprint in current_experience_blueprints():
         bullet_rule = f"{blueprint['bullet_min']}" if blueprint["bullet_min"] == blueprint["bullet_max"] else f"{blueprint['bullet_min']}-{blueprint['bullet_max']}"
         blueprint_lines.append(
             f"- {blueprint['company']} | {blueprint['location']} | {blueprint['dates']} | bullets: {bullet_rule} | anchor: {blueprint['anchor']}"
@@ -2036,7 +2070,7 @@ def ai_resume_schema() -> dict:
     }
     experience_properties = {}
     required_experience_keys = []
-    for blueprint in EXPERIENCE_BLUEPRINTS:
+    for blueprint in current_experience_blueprints():
         experience_properties[blueprint["key"]] = {
             "type": "object",
             "additionalProperties": False,
@@ -2165,10 +2199,11 @@ def ai_skills_schema(allowed_skill_categories: list[str] | None = None) -> dict:
     }
 
 
-def ai_experience_schema() -> dict:
+def ai_experience_schema(blueprints: list[dict] | None = None) -> dict:
+    blueprints = blueprints or current_experience_blueprints()
     experience_properties = {}
     required_experience_keys = []
-    for blueprint in EXPERIENCE_BLUEPRINTS:
+    for blueprint in blueprints:
         experience_properties[blueprint["key"]] = {
             "type": "object",
             "additionalProperties": False,
@@ -2420,7 +2455,7 @@ def collect_invalid_experience_titles(experience_payload: dict, blueprints: list
 
 def resolve_experience_title(raw_title: str, blueprint: dict, analysis_payload: dict | None = None) -> tuple[str, str | None]:
     prompt_family_key = infer_prompt_family_key((analysis_payload or {}).get("role_family", ""))
-    fallback_title = default_role_title_for_analysis(blueprint["key"], analysis_payload)
+    fallback_title = str(blueprint.get("default_title", "")).strip() or default_role_title_for_analysis(blueprint["key"], analysis_payload)
     title = (raw_title or "").strip()
     invalid_reason = invalid_experience_title_reason(title, blueprint)
     if invalid_reason == "missing title":
@@ -2489,7 +2524,8 @@ def format_generated_resume_text(resume_payload: dict) -> str:
 
     experience = resume_payload.get("experience", {})
     analysis_payload = resume_payload.get("_analysis") or {}
-    for blueprint in EXPERIENCE_BLUEPRINTS:
+    enabled_keys = resume_payload.get("_enabled_experience_keys")
+    for blueprint in filter_blueprints_by_enabled_keys(current_experience_blueprints(), enabled_keys):
         entry = experience.get(blueprint["key"], {})
         title, _ = resolve_experience_title(entry.get("title") or "", blueprint, analysis_payload)
         bullets = [bullet.strip() for bullet in entry.get("bullets", []) if bullet.strip()]
@@ -2562,13 +2598,17 @@ def merge_resume_payloads(core_payload: dict, experience_payload: dict) -> dict:
         "updated_skills": normalize_updated_skills(core_payload.get("updated_skills", [])),
         "experience": experience_payload.get("experience", {}),
         "_analysis": core_payload.get("_analysis", {}),
+        "_enabled_experience_keys": experience_payload.get("_enabled_experience_keys")
+        or core_payload.get("_enabled_experience_keys")
+        or list(EXPERIENCE_BLUEPRINT_KEYS),
     }
 
 
 def collect_experience_title_warnings(experience_payload: dict, analysis_payload: dict | None = None) -> list[str]:
     warnings: list[str] = []
     experience = experience_payload.get("experience") or {}
-    for blueprint in EXPERIENCE_BLUEPRINTS:
+    enabled_keys = experience_payload.get("_enabled_experience_keys")
+    for blueprint in filter_blueprints_by_enabled_keys(current_experience_blueprints(), enabled_keys):
         entry = experience.get(blueprint["key"]) or {}
         _, warning = resolve_experience_title(entry.get("title") or "", blueprint, analysis_payload)
         if warning:
@@ -2762,6 +2802,8 @@ GTM_EXPLICIT_TOOL_TERMS = {
     "warmly",
 }
 
+GTM_AMBIGUOUS_COMMON_NOUN_TOOLS = {"outreach"}
+
 ANALYST_TOOL_GENERIC_REPLACEMENTS = {
     "excel": "reporting tools",
     "power bi": "dashboard tools",
@@ -2869,7 +2911,7 @@ def sanitize_experience_payload_for_prompt_family(experience_payload: dict, anal
     for entry in experience.values():
         bullets = [str(bullet).strip() for bullet in entry.get("bullets", []) if str(bullet).strip()]
         entry["bullets"] = [sanitize_unsupported_analyst_tools_in_text(bullet, analysis_payload) for bullet in bullets]
-    return sanitize_experience_payload_for_prompt_family(experience_payload, analysis_payload)
+    return experience_payload
 
 
 def gtm_tool_not_in_jd(item: str, analysis_payload: dict) -> str | None:
@@ -2878,10 +2920,14 @@ def gtm_tool_not_in_jd(item: str, analysis_payload: dict) -> str | None:
         return None
     jd_terms = [normalize_skill_dedupe_key(term) for term in (analysis_payload.get("skills_mentioned") or [])]
     for tool in GTM_EXPLICIT_TOOL_TERMS:
-        if tool in lowered_item:
-            if any(tool in jd_term for jd_term in jd_terms):
-                return None
-            return tool
+        if tool in GTM_AMBIGUOUS_COMMON_NOUN_TOOLS:
+            if not re.search(rf"\b{re.escape(tool)}\b", lowered_item):
+                continue
+        elif tool not in lowered_item:
+            continue
+        if any(tool in jd_term for jd_term in jd_terms):
+            return None
+        return tool
     return None
 
 
@@ -2892,7 +2938,12 @@ def gtm_tool_mentions_not_in_jd(text: str, analysis_payload: dict) -> list[str]:
     jd_terms = [normalize_skill_dedupe_key(term) for term in (analysis_payload.get("skills_mentioned") or [])]
     unsupported: list[str] = []
     for tool in sorted(GTM_EXPLICIT_TOOL_TERMS):
-        if tool in lowered_text and not any(tool in jd_term for jd_term in jd_terms):
+        if tool in GTM_AMBIGUOUS_COMMON_NOUN_TOOLS:
+            if not re.search(rf"\b{re.escape(tool)}\b", lowered_text):
+                continue
+        elif tool not in lowered_text:
+            continue
+        if not any(tool in jd_term for jd_term in jd_terms):
             unsupported.append(tool)
     return unsupported
 
@@ -2964,7 +3015,7 @@ def validate_model_payload(model_payload: dict) -> list[str]:
     if not analysis.get("target_role"):
         issues.append("Analysis is missing target_role.")
 
-    for blueprint in EXPERIENCE_BLUEPRINTS:
+    for blueprint in current_experience_blueprints():
         entry = experience.get(blueprint["key"]) or {}
         role_title = str(entry.get("title", "")).strip()
         bullets = [str(bullet).strip() for bullet in entry.get("bullets", []) if str(bullet).strip()]
@@ -3016,7 +3067,7 @@ def validate_model_payload(model_payload: dict) -> list[str]:
                         f"{blueprint['company']} bullet {index} introduces GTM tools not named in the JD: {', '.join(sorted(set(unsupported_tools)))}."
                     )
 
-            forbidden_terms = FORBIDDEN_TERMS_BY_COMPANY.get(blueprint["company"], set())
+            forbidden_terms = FORBIDDEN_TERMS_BY_BLUEPRINT_KEY.get(blueprint["key"], set())
             if forbidden_terms and any(term in lower_bullet for term in forbidden_terms):
                 issues.append(f"{blueprint['company']} bullet {index} uses technology outside the allowed timeline.")
 
@@ -3535,6 +3586,7 @@ def generate_resume_experience_from_analysis(
     revision_request: str = "",
     current_resume_content: str = "",
     memory_block: str = "",
+    enabled_experience_keys: list[str] | None = None,
 ) -> dict:
     compact_analysis = compact_analysis_for_generation(analysis_payload)
     prompt_family_key = str(analysis_payload.get("prompt_family_key", "")).strip() or infer_prompt_family_key(
@@ -3560,6 +3612,8 @@ def generate_resume_experience_from_analysis(
     if memory_block:
         user_parts.append(f"Previous session memory (maximum two turns):\n{memory_block}")
 
+    blueprints = filter_blueprints_by_enabled_keys(current_experience_blueprints(), enabled_experience_keys)
+
     def run_generation(extra_instruction: str = "") -> dict:
         prompt_parts = list(user_parts)
         if extra_instruction:
@@ -3571,14 +3625,14 @@ def generate_resume_experience_from_analysis(
             developer_prompt=build_ai_resume_experience_prompt(prompt_family_key),
             user_prompt="\n\n".join(prompt_parts),
             schema_name="resume_experience_generation",
-            schema=ai_experience_schema(),
+            schema=ai_experience_schema(blueprints),
             max_output_tokens=with_output_headroom(5600, LARGE_OUTPUT_HEADROOM),
             request_timeout_seconds=OPENAI_RESUME_TIMEOUT_SECONDS,
             reasoning_effort="low",
         )
 
     experience_payload = run_generation()
-    invalid_titles = collect_invalid_experience_titles(experience_payload, EXPERIENCE_BLUEPRINTS)
+    invalid_titles = collect_invalid_experience_titles(experience_payload, blueprints)
     if invalid_titles:
         retry_lines = [
             "Previous attempt failed because one or more experience title fields were invalid.",
@@ -3595,7 +3649,7 @@ def generate_resume_experience_from_analysis(
 
     validation_issues = validate_experience_subset_payload_with_analysis(
         experience_payload,
-        EXPERIENCE_BLUEPRINTS,
+        blueprints,
         analysis_payload,
     )
     unsupported_tool_issues = [
@@ -3613,7 +3667,9 @@ def generate_resume_experience_from_analysis(
         ]
         experience_payload = run_generation("\n".join(retry_lines))
 
-    return sanitize_experience_payload_for_prompt_family(experience_payload, analysis_payload)
+    experience_payload = sanitize_experience_payload_for_prompt_family(experience_payload, analysis_payload)
+    experience_payload["_enabled_experience_keys"] = [blueprint["key"] for blueprint in blueprints]
+    return experience_payload
 
 
 def generate_experience_subset_from_analysis(
@@ -3641,6 +3697,8 @@ def generate_experience_subset_from_analysis(
         json.dumps(compact_core, ensure_ascii=False, separators=(",", ":")),
     ]
     def run_generation(extra_instruction: str = "") -> dict:
+        if not blueprints:
+            return {"experience": {}, "_enabled_experience_keys": []}
         prompt_parts = list(user_parts)
         if extra_instruction:
             prompt_parts.append(extra_instruction)
@@ -3692,6 +3750,7 @@ def generate_experience_subset_from_analysis(
             *[f"- {issue}" for issue in unsupported_tool_issues],
         ]
         experience_payload = run_generation("\n".join(retry_lines))
+    experience_payload["_enabled_experience_keys"] = [blueprint["key"] for blueprint in blueprints]
     return experience_payload
 
 
@@ -3818,6 +3877,129 @@ def load_base_resume():
         return json.load(f)
 
 
+def profile_experience_history_from_resume(resume: dict) -> list[dict]:
+    experience_entries = resume.get("experience") if isinstance(resume.get("experience"), list) else []
+    history: list[dict] = []
+    for index, blueprint in enumerate(EXPERIENCE_BLUEPRINTS):
+        resume_entry = experience_entries[index] if index < len(experience_entries) and isinstance(experience_entries[index], dict) else {}
+        history.append(
+            {
+                "key": blueprint["key"],
+                "company": str(resume_entry.get("company", blueprint["company"])).strip() or blueprint["company"],
+                "location": str(resume_entry.get("location", blueprint["location"])).strip() or blueprint["location"],
+                "title": str(resume_entry.get("title", "")).strip(),
+                "dates": str(resume_entry.get("dates", blueprint["dates"])).strip() or blueprint["dates"],
+            }
+        )
+    return history
+
+
+def current_experience_blueprints() -> list[dict]:
+    saved_profile = settings.get("profile") or {}
+    saved_history = saved_profile.get("experience_history") if isinstance(saved_profile.get("experience_history"), list) else []
+    saved_history_by_key = {
+        str(entry.get("key", "")).strip(): entry
+        for entry in saved_history
+        if isinstance(entry, dict) and str(entry.get("key", "")).strip()
+    }
+
+    blueprints: list[dict] = []
+    for blueprint in EXPERIENCE_BLUEPRINTS:
+        override = saved_history_by_key.get(blueprint["key"], {})
+        merged = dict(blueprint)
+        merged["company"] = str(override.get("company", blueprint["company"])).strip() or blueprint["company"]
+        merged["location"] = str(override.get("location", blueprint["location"])).strip() or blueprint["location"]
+        merged["dates"] = str(override.get("dates", blueprint["dates"])).strip() or blueprint["dates"]
+        merged["default_title"] = str(override.get("title", "")).strip()
+        blueprints.append(merged)
+    return blueprints
+
+
+def normalize_enabled_experience_keys(payload: list[str] | None) -> list[str]:
+    requested = [str(item).strip() for item in (payload or []) if str(item).strip()]
+    if not requested:
+        return list(EXPERIENCE_BLUEPRINT_KEYS)
+    requested_set = set(requested)
+    return [key for key in EXPERIENCE_BLUEPRINT_KEYS if key in requested_set]
+
+
+def filter_blueprints_by_enabled_keys(blueprints: list[dict], enabled_experience_keys: list[str] | None = None) -> list[dict]:
+    enabled_keys = set(normalize_enabled_experience_keys(enabled_experience_keys))
+    return [blueprint for blueprint in blueprints if blueprint["key"] in enabled_keys]
+
+
+def normalize_experience_history_override(payload: list[dict] | None) -> list[dict]:
+    raw_items = payload if isinstance(payload, list) else []
+    raw_by_key = {
+        str(item.get("key", "")).strip(): item
+        for item in raw_items
+        if isinstance(item, dict) and str(item.get("key", "")).strip()
+    }
+
+    normalized: list[dict] = []
+    for blueprint in current_experience_blueprints():
+        raw_item = raw_by_key.get(blueprint["key"], {})
+        normalized.append(
+            {
+                "key": blueprint["key"],
+                "company": str(raw_item.get("company", blueprint["company"])).strip() or blueprint["company"],
+                "location": str(raw_item.get("location", blueprint["location"])).strip() or blueprint["location"],
+                "title": str(raw_item.get("title", blueprint.get("default_title", ""))).strip(),
+                "dates": str(raw_item.get("dates", blueprint["dates"])).strip() or blueprint["dates"],
+            }
+        )
+    return normalized
+
+
+def apply_experience_history_override(resume: dict, experience_history_override: list[dict] | None = None) -> dict:
+    overrides = normalize_experience_history_override(experience_history_override)
+    if not overrides or not isinstance(resume.get("experience"), list):
+        return resume
+
+    override_by_key = {entry["key"]: entry for entry in overrides}
+    for index, entry in enumerate(resume["experience"]):
+        if not isinstance(entry, dict) or index >= len(EXPERIENCE_BLUEPRINT_KEYS):
+            continue
+        override = override_by_key.get(EXPERIENCE_BLUEPRINT_KEYS[index], {})
+        for field in ("company", "location", "title", "dates"):
+            value = str(override.get(field, "")).strip()
+            if value:
+                entry[field] = value
+    return resume
+
+
+def apply_enabled_experience_filter(resume: dict, enabled_experience_keys: list[str] | None = None) -> dict:
+    normalized_enabled_keys = normalize_enabled_experience_keys(enabled_experience_keys)
+    enabled_keys = set(normalized_enabled_keys)
+    if not isinstance(resume.get("experience"), list):
+        return resume
+
+    experience_entries = list(resume["experience"])
+    raw_resume_keys = [
+        str(item).strip()
+        for item in (resume.get("_enabled_experience_keys") or [])
+        if str(item).strip()
+    ]
+
+    filtered: list[dict] = []
+    if len(experience_entries) == len(EXPERIENCE_BLUEPRINT_KEYS):
+        for index, entry in enumerate(experience_entries):
+            if EXPERIENCE_BLUEPRINT_KEYS[index] in enabled_keys:
+                filtered.append(entry)
+    elif raw_resume_keys and len(raw_resume_keys) == len(experience_entries):
+        by_key = {key: entry for key, entry in zip(raw_resume_keys, experience_entries)}
+        filtered = [by_key[key] for key in normalized_enabled_keys if key in by_key]
+    elif all(isinstance(entry, dict) and str(entry.get("key", "")).strip() for entry in experience_entries):
+        by_key = {str(entry.get("key", "")).strip(): entry for entry in experience_entries}
+        filtered = [by_key[key] for key in normalized_enabled_keys if key in by_key]
+    else:
+        filtered = experience_entries
+
+    resume["experience"] = filtered
+    resume["_enabled_experience_keys"] = normalized_enabled_keys
+    return resume
+
+
 def safe_folder_name(title: str, output_root: str = None) -> str:
     """Create safe folder name from title, avoiding duplicates."""
     if output_root is None:
@@ -3901,6 +4083,7 @@ def profile_from_resume(resume: dict) -> dict:
         },
         "projects": resume.get("projects", []),
         "certifications": resume.get("certifications", []),
+        "experience_history": profile_experience_history_from_resume(resume),
     }
 
 
@@ -3920,7 +4103,101 @@ def current_profile() -> dict:
     if isinstance(saved_profile.get("certifications"), list):
         profile["certifications"] = saved_profile["certifications"]
 
+    if isinstance(saved_profile.get("experience_history"), list):
+        saved_history_by_key = {
+            str(entry.get("key", "")).strip(): entry
+            for entry in saved_profile["experience_history"]
+            if isinstance(entry, dict) and str(entry.get("key", "")).strip()
+        }
+        merged_history = []
+        for entry in profile.get("experience_history", []):
+            override = saved_history_by_key.get(entry["key"], {})
+            merged_history.append(
+                {
+                    "key": entry["key"],
+                    "company": str(override.get("company", entry["company"])).strip() or entry["company"],
+                    "location": str(override.get("location", entry["location"])).strip() or entry["location"],
+                    "title": str(override.get("title", entry.get("title", ""))).strip(),
+                    "dates": str(override.get("dates", entry["dates"])).strip() or entry["dates"],
+                }
+            )
+        profile["experience_history"] = merged_history
+
     return profile
+
+
+def _identity_id(value: str) -> str:
+    normalized = re.sub(r"[^a-z0-9]+", "-", str(value or "").strip().lower()).strip("-")
+    return normalized or uuid.uuid4().hex[:8]
+
+
+def default_identity_profiles() -> list[dict]:
+    profile_contact = (current_profile().get("contact") or {})
+    return [
+        {
+            "id": "outlook",
+            "label": "Outlook",
+            "location": str(profile_contact.get("location", "")).strip(),
+            "phone": str(profile_contact.get("phone", "")).strip(),
+            "email": str(profile_contact.get("email", "")).strip(),
+            "format_profile": "outlook",
+        },
+        dict(GMAIL_IDENTITY_DEFAULT),
+    ]
+
+
+def normalize_identity_profiles(payload: list[dict] | None) -> list[dict]:
+    defaults = default_identity_profiles()
+    default_by_id = {item["id"]: item for item in defaults}
+    raw_items = payload if isinstance(payload, list) else []
+    normalized: list[dict] = []
+    seen_ids: set[str] = set()
+
+    for index, raw_item in enumerate(raw_items):
+        if not isinstance(raw_item, dict):
+            continue
+        fallback = defaults[index] if index < len(defaults) else {}
+        label = str(raw_item.get("label", fallback.get("label", ""))).strip() or str(fallback.get("label", "")).strip() or f"Identity {len(normalized) + 1}"
+        identity_id = _identity_id(raw_item.get("id") or label)
+        if identity_id in seen_ids:
+            identity_id = f"{identity_id}-{len(normalized) + 1}"
+        seen_ids.add(identity_id)
+        format_profile = str(raw_item.get("format_profile", fallback.get("format_profile", "outlook"))).strip().lower()
+        if format_profile not in {"outlook", "gmail"}:
+            format_profile = "outlook"
+        normalized.append(
+            {
+                "id": identity_id,
+                "label": label,
+                "location": str(raw_item.get("location", fallback.get("location", ""))).strip(),
+                "phone": str(raw_item.get("phone", fallback.get("phone", ""))).strip(),
+                "email": str(raw_item.get("email", fallback.get("email", ""))).strip(),
+                "format_profile": format_profile,
+            }
+        )
+
+    if not normalized:
+        return defaults
+
+    for default in defaults:
+        if default["id"] in seen_ids:
+            continue
+        normalized.append(default)
+    return normalized
+
+
+def current_identity_profiles() -> list[dict]:
+    return normalize_identity_profiles(settings.get("identities"))
+
+
+def identity_profile_by_id(identity_id: str) -> dict:
+    normalized_id = str(identity_id or "").strip().lower()
+    identities = current_identity_profiles()
+    if normalized_id:
+        for item in identities:
+            if item["id"] == normalized_id:
+                return item
+    return identities[0] if identities else default_identity_profiles()[0]
 
 
 def apply_profile_overrides(resume: dict) -> dict:
@@ -3932,6 +4209,21 @@ def apply_profile_overrides(resume: dict) -> dict:
     }
     resume["projects"] = profile.get("projects", resume.get("projects", []))
     resume["certifications"] = profile.get("certifications", resume.get("certifications", []))
+    profile_history = profile.get("experience_history") if isinstance(profile.get("experience_history"), list) else []
+    if isinstance(resume.get("experience"), list) and profile_history:
+        history_by_key = {
+            str(entry.get("key", "")).strip(): entry
+            for entry in profile_history
+            if isinstance(entry, dict) and str(entry.get("key", "")).strip()
+        }
+        for index, entry in enumerate(resume["experience"]):
+            if not isinstance(entry, dict) or index >= len(EXPERIENCE_BLUEPRINT_KEYS):
+                continue
+            override = history_by_key.get(EXPERIENCE_BLUEPRINT_KEYS[index], {})
+            for field in ("company", "location", "title", "dates"):
+                value = str(override.get(field, "")).strip()
+                if value:
+                    entry[field] = value
     return resume
 
 
@@ -3939,6 +4231,7 @@ def normalize_profile(payload: dict) -> dict:
     contact = payload.get("contact") or {}
     projects = payload.get("projects") if isinstance(payload.get("projects"), list) else []
     certifications = payload.get("certifications") if isinstance(payload.get("certifications"), list) else []
+    experience_history = payload.get("experience_history") if isinstance(payload.get("experience_history"), list) else []
 
     normalized_projects = []
     for project in projects:
@@ -3949,6 +4242,25 @@ def normalize_profile(payload: dict) -> dict:
         if name:
             normalized_projects.append({"name": name, "bullets": bullets})
 
+    normalized_history: list[dict] = []
+    for blueprint in EXPERIENCE_BLUEPRINTS:
+        raw_entry = next(
+            (
+                item for item in experience_history
+                if isinstance(item, dict) and str(item.get("key", "")).strip() == blueprint["key"]
+            ),
+            {},
+        )
+        normalized_history.append(
+            {
+                "key": blueprint["key"],
+                "company": str(raw_entry.get("company", blueprint["company"])).strip() or blueprint["company"],
+                "location": str(raw_entry.get("location", blueprint["location"])).strip() or blueprint["location"],
+                "title": str(raw_entry.get("title", "")).strip(),
+                "dates": str(raw_entry.get("dates", blueprint["dates"])).strip() or blueprint["dates"],
+            }
+        )
+
     return {
         "name": str(payload.get("name", "")).strip(),
         "contact": {
@@ -3958,6 +4270,7 @@ def normalize_profile(payload: dict) -> dict:
         },
         "projects": normalized_projects,
         "certifications": [str(item).strip() for item in certifications if str(item).strip()],
+        "experience_history": normalized_history,
     }
 
 
@@ -4010,9 +4323,8 @@ def preview():
     try:
         data = request.get_json() or {}
         content = str(data.get("content", "")).strip()
-        identity = str(data.get("identity", "outlook")).strip().lower()
-        if identity not in {"outlook", "gmail"}:
-            identity = "outlook"
+        identity = identity_profile_by_id(data.get("identity", "")).get("id", "outlook")
+        enabled_experience_keys = normalize_enabled_experience_keys(data.get("enabled_experience_keys"))
 
         if not content:
             return jsonify({
@@ -4023,6 +4335,9 @@ def preview():
         base_resume = load_base_resume()
         merged_resume = parse_updated_content_to_resume(content, base_resume)
         merged_resume = apply_profile_overrides(merged_resume)
+        merged_resume = apply_experience_history_override(merged_resume, data.get("experience_history_override"))
+        merged_resume = apply_enabled_experience_filter(merged_resume, enabled_experience_keys)
+        merged_resume["_enabled_experience_keys"] = enabled_experience_keys
 
         contact_override = data.get("contact_override") or {}
         if isinstance(contact_override, dict):
@@ -4063,6 +4378,7 @@ def get_settings():
     ai_ok, ai_msg = is_ai_generation_ready()
     return jsonify({
         **settings,
+        "identities": current_identity_profiles(),
         "settings_file": str(SETTINGS_FILE),
         "pdf_conversion_ready": ok,
         "pdf_conversion_status": msg,
@@ -4081,6 +4397,7 @@ def update_settings():
     try:
         data = request.get_json()
         output_directory = data.get("output_directory", "").strip()
+        identities = normalize_identity_profiles(data.get("identities"))
 
         if not output_directory:
             return jsonify({
@@ -4111,12 +4428,14 @@ def update_settings():
         # Update in-memory settings and save to file
         settings["output_directory"] = output_directory
         settings["keep_docx"] = bool(data.get("keep_docx", settings.get("keep_docx", True)))
+        settings["identities"] = identities
         save_settings(settings)
 
         return jsonify({
             "success": True,
             "message": "Settings saved successfully",
-            "output_directory": output_directory
+            "output_directory": output_directory,
+            "identities": identities,
         })
     except Exception as e:
         return jsonify({
@@ -4209,6 +4528,9 @@ def create_tracker_application():
             output_dir=target_output_dir,
             contact_override=data.get("contact_override") or {},
             identity=str(data.get("identity", "outlook")),
+            experience_history_override=data.get("experience_history_override"),
+            enabled_experience_keys=data.get("enabled_experience_keys"),
+            parsed_resume_override=data.get("resume_snapshot_override"),
         )
         if existing:
             history = list(existing.get("history") or [])
@@ -4332,6 +4654,8 @@ def analyze_ai_content():
         current_resume_content = str(data.get("current_resume_content", "")).strip()
         session_id = str(data.get("session_id", "")).strip() or None
         reset_memory = bool(data.get("reset_memory", False))
+        enabled_experience_keys = normalize_enabled_experience_keys(data.get("enabled_experience_keys"))
+        enabled_experience_keys = normalize_enabled_experience_keys(data.get("enabled_experience_keys"))
 
         if not job_description:
             return jsonify({"success": False, "error": "Job description is required"}), 400
@@ -4421,6 +4745,7 @@ def generate_ai_content():
             return jsonify({"success": False, "error": "Job description is too long"}), 400
 
         session_id, session = get_ai_session(session_id, job_description, reset_memory)
+        session["enabled_experience_keys"] = enabled_experience_keys
         memory_turns = session.get("turns", [])[-AI_MEMORY_LIMIT:]
         cached_analysis = session.get("analysis")
 
@@ -4433,6 +4758,7 @@ def generate_ai_content():
         )
         resume_payload = model_payload["resume"]
         analysis_payload = model_payload["analysis"]
+        resume_payload["_enabled_experience_keys"] = enabled_experience_keys
         resume_text = format_generated_resume_text(resume_payload)
         timing = model_payload.get("timing", {})
 
@@ -4476,6 +4802,7 @@ def generate_ai_core():
             return jsonify({"success": False, "error": "Job description is required"}), 400
 
         session_id, session = get_ai_session(session_id, job_description, reset_memory)
+        session["enabled_experience_keys"] = enabled_experience_keys
         analysis_payload = session.get("analysis")
         if not analysis_payload:
             raise AIStageError("analysis", "JD analysis is required before core generation.")
@@ -4508,6 +4835,7 @@ def generate_ai_core():
             )
 
         core_content = format_core_resume_text(core_payload)
+        core_payload["_enabled_experience_keys"] = enabled_experience_keys
         session["core_resume"] = core_payload
         session["updated_at"] = time.time()
 
@@ -4542,10 +4870,12 @@ def generate_ai_title_summary():
     try:
         data = request.get_json() or {}
         session_id = str(data.get("session_id", "")).strip() or None
+        enabled_experience_keys = normalize_enabled_experience_keys(data.get("enabled_experience_keys"))
         if not session_id or session_id not in ai_sessions:
             return jsonify({"success": False, "error": "An active JD session is required."}), 400
 
         session = ai_sessions[session_id]
+        session["enabled_experience_keys"] = enabled_experience_keys
         analysis_payload = session.get("analysis")
         if not analysis_payload:
             raise AIStageError("analysis", "JD analysis is required before title and summary generation.")
@@ -4587,10 +4917,12 @@ def generate_ai_skills():
     try:
         data = request.get_json() or {}
         session_id = str(data.get("session_id", "")).strip() or None
+        enabled_experience_keys = normalize_enabled_experience_keys(data.get("enabled_experience_keys"))
         if not session_id or session_id not in ai_sessions:
             return jsonify({"success": False, "error": "An active JD session is required."}), 400
 
         session = ai_sessions[session_id]
+        session["enabled_experience_keys"] = enabled_experience_keys
         analysis_payload = session.get("analysis")
         if not analysis_payload:
             raise AIStageError("analysis", "JD analysis is required before skills generation.")
@@ -4633,10 +4965,12 @@ def review_ai_core():
     try:
         data = request.get_json() or {}
         session_id = str(data.get("session_id", "")).strip() or None
+        enabled_experience_keys = normalize_enabled_experience_keys(data.get("enabled_experience_keys"))
         if not session_id or session_id not in ai_sessions:
             return jsonify({"success": False, "error": "An active JD session is required."}), 400
 
         session = ai_sessions[session_id]
+        session["enabled_experience_keys"] = enabled_experience_keys
         analysis_payload = session.get("analysis")
         title_summary = session.get("title_summary")
         skills_payload = session.get("skills")
@@ -4686,6 +5020,7 @@ def review_ai_core():
         session["skills"] = corrected_skills
         session["core_resume"] = merge_core_sections(session["title_summary"], session["skills"])
         session["core_resume"]["_analysis"] = analysis_payload
+        session["core_resume"]["_enabled_experience_keys"] = enabled_experience_keys
         session["updated_at"] = time.time()
         timing["total_ms"] = timing["core_refinement_ms"]
 
@@ -4724,11 +5059,13 @@ def generate_ai_experience():
         current_resume_content = str(data.get("current_resume_content", "")).strip()
         session_id = str(data.get("session_id", "")).strip() or None
         reset_memory = bool(data.get("reset_memory", False))
+        enabled_experience_keys = normalize_enabled_experience_keys(data.get("enabled_experience_keys"))
 
         if not job_description:
             return jsonify({"success": False, "error": "Job description is required"}), 400
 
         session_id, session = get_ai_session(session_id, job_description, reset_memory)
+        session["enabled_experience_keys"] = enabled_experience_keys
         analysis_payload = session.get("analysis")
         core_payload = session.get("core_resume")
         if not analysis_payload:
@@ -4749,6 +5086,7 @@ def generate_ai_experience():
                 revision_request=revision_request,
                 current_resume_content=current_resume_content,
                 memory_block=memory_block,
+                enabled_experience_keys=enabled_experience_keys,
             )
         except Exception as exc:
             raise AIStageError("experience_generation", f"Experience generation failed: {exc}", analysis=analysis_payload) from exc
@@ -4812,10 +5150,12 @@ def _generate_ai_experience_subset(*, recent: bool):
     try:
         data = request.get_json() or {}
         session_id = str(data.get("session_id", "")).strip() or None
+        enabled_experience_keys = normalize_enabled_experience_keys(data.get("enabled_experience_keys"))
         if not session_id or session_id not in ai_sessions:
             return jsonify({"success": False, "error": "An active JD session is required."}), 400
 
         session = ai_sessions[session_id]
+        session["enabled_experience_keys"] = enabled_experience_keys
         analysis_payload = session.get("analysis")
         title_summary = session.get("title_summary")
         skills_payload = session.get("skills")
@@ -4826,7 +5166,10 @@ def _generate_ai_experience_subset(*, recent: bool):
 
         core_payload = merge_core_sections(title_summary, skills_payload)
         core_payload["_analysis"] = analysis_payload
-        blueprints = EXPERIENCE_BLUEPRINTS[:2] if recent else EXPERIENCE_BLUEPRINTS[2:]
+        core_payload["_enabled_experience_keys"] = enabled_experience_keys
+        all_blueprints = filter_blueprints_by_enabled_keys(current_experience_blueprints(), enabled_experience_keys)
+        recent_keys = set(EXPERIENCE_BLUEPRINT_KEYS[:2])
+        blueprints = [blueprint for blueprint in all_blueprints if (blueprint["key"] in recent_keys) == recent]
         model = RESUME_MODEL
         timeout_seconds = OPENAI_RESUME_TIMEOUT_SECONDS
 
@@ -4971,6 +5314,7 @@ def generate():
     try:
         data = request.get_json()
         content = data.get("content", "").strip()
+        resume_override = data.get("resume_override") if isinstance(data.get("resume_override"), dict) else None
 
         # Validate
         errors, warnings = validate_updated_content(content)
@@ -4981,12 +5325,17 @@ def generate():
             }), 400
 
         # Parse content
-        base_resume = load_base_resume()
-        merged_resume = parse_updated_content_to_resume(content, base_resume)
-        merged_resume = apply_profile_overrides(merged_resume)
-        identity = str(data.get("identity", "outlook")).strip().lower()
-        if identity not in {"outlook", "gmail"}:
-            identity = "outlook"
+        if resume_override:
+            merged_resume = apply_enabled_experience_filter(dict(resume_override), data.get("enabled_experience_keys"))
+        else:
+            base_resume = load_base_resume()
+            merged_resume = parse_updated_content_to_resume(content, base_resume)
+            merged_resume = apply_profile_overrides(merged_resume)
+            merged_resume = apply_experience_history_override(merged_resume, data.get("experience_history_override"))
+            merged_resume = apply_enabled_experience_filter(merged_resume, data.get("enabled_experience_keys"))
+        selected_identity = identity_profile_by_id(data.get("identity", ""))
+        identity = selected_identity.get("id", "outlook")
+        format_profile = selected_identity.get("format_profile", "outlook")
 
         contact_override = data.get("contact_override") or {}
         if isinstance(contact_override, dict):
@@ -5011,7 +5360,7 @@ def generate():
 
         # Build DOCX
         docx_path = out_dir / "tharun manikonda resume.docx"
-        build_resume_docx(merged_resume, str(docx_path), format_profile=identity)
+        build_resume_docx(merged_resume, str(docx_path), format_profile=format_profile)
 
         # Start background PDF conversion
         pdf_path = out_dir / "tharun manikonda resume.pdf"
