@@ -75,3 +75,7 @@ CLEANUP_SUMMARY.md
 
 # Backup files
 *.backup
+
+# Local profile documents
+config/user_profile.json
+config/session_profile.json

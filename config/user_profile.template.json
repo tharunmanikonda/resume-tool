@@ -1,0 +1,44 @@
+{
+  "name": "",
+  "contact": {
+    "location": "",
+    "phone": "",
+    "email": ""
+  },
+  "projects": [],
+  "certifications": [],
+  "experience_history": [
+    {
+      "key": "mckinsey",
+      "company": "",
+      "location": "",
+      "title": "",
+      "dates": "",
+      "enabled": false
+    },
+    {
+      "key": "uber",
+      "company": "",
+      "location": "",
+      "title": "",
+      "dates": "",
+      "enabled": false
+    },
+    {
+      "key": "kpmg",
+      "company": "",
+      "location": "",
+      "title": "",
+      "dates": "",
+      "enabled": false
+    },
+    {
+      "key": "trigent",
+      "company": "",
+      "location": "",
+      "title": "",
+      "dates": "",
+      "enabled": false
+    }
+  ]
+}

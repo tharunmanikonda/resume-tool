@@ -46,6 +46,9 @@ DEFAULT_OUTPUT_ROOT = str(default_output_dir())
 OUTPUT_ROOT = os.getenv("OUTPUT_ROOT", DEFAULT_OUTPUT_ROOT)
 SETTINGS_FILE = settings_path()
 TRACKER_FILE = resource_path("config", "application_tracker.json")
+PERMANENT_PROFILE_FILE = resource_path("config", "user_profile.json")
+SESSION_PROFILE_FILE = resource_path("config", "session_profile.json")
+PROFILE_TEMPLATE_FILE = resource_path("config", "user_profile.template.json")
 
 GMAIL_IDENTITY_DEFAULT = {
     "id": "gmail",
@@ -61,7 +64,6 @@ def load_settings():
     loaded_settings = load_json_file(Path(SETTINGS_FILE), {"output_directory": OUTPUT_ROOT})
     loaded_settings.setdefault("output_directory", OUTPUT_ROOT)
     loaded_settings.setdefault("keep_docx", True)
-    loaded_settings.setdefault("profile", {})
     loaded_settings.setdefault("identities", [])
     return loaded_settings
 
@@ -839,6 +841,48 @@ def sorted_tracker_applications(applications: list[dict], *, sort_key: str = "ap
     return sorted(applications, key=key_fn, reverse=descending)
 
 
+def normalize_company_lookup(company_name: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "", str(company_name or "").strip().lower())
+
+
+def tracker_company_history(company_name: str) -> dict:
+    normalized = normalize_company_lookup(company_name)
+    if not normalized:
+        return {"company_name": str(company_name or "").strip(), "count": 0, "applications": []}
+
+    store = load_tracker_store()
+    applications = merge_tracker_applications(store)
+    matches = [
+        item for item in applications
+        if normalize_company_lookup(item.get("company_name", "")) == normalized
+    ]
+    matches = sorted_tracker_applications(matches, sort_key="applied_date", descending=True)
+    summarized = []
+    for item in matches:
+        summarized.append({
+            "id": item.get("id", ""),
+            "company_name": item.get("company_name", ""),
+            "applied_date": item.get("applied_date", ""),
+            "status": normalize_tracker_status(item.get("status", "")),
+            "role_title": item.get("role_title", ""),
+            "resume_title": str((item.get("resume_snapshot") or {}).get("title", "")).strip() or item.get("role_title", ""),
+            "folder_group": item.get("folder_group", ""),
+            "output_dir": item.get("output_dir", ""),
+            "job_url": item.get("job_url", ""),
+        })
+    return {
+        "company_name": matches[0].get("company_name", company_name) if matches else str(company_name or "").strip(),
+        "count": len(matches),
+        "applications": summarized,
+    }
+
+
+def tracker_application_by_id(application_id: str) -> dict | None:
+    store = load_tracker_store()
+    applications = merge_tracker_applications(store)
+    return next((item for item in applications if str(item.get("id", "")) == str(application_id)), None)
+
+
 class AIStageError(RuntimeError):
     def __init__(self, stage: str, message: str, *, analysis: dict | None = None, timing: dict | None = None):
         super().__init__(message)
@@ -1253,17 +1297,21 @@ def build_ai_analysis_prompt() -> str:
             "Do not mirror the JD or invent unsupported domain expertise.",
             "Infer the company context, role family, problem, system, skills and technologies mentioned, and behavioral signals.",
             "Role family must describe the actual job shape, not a generic software-engineer label.",
-            "Prefer precise role-family labels such as: full-stack product engineering, backend application engineering, data engineering, analytics engineering, platform engineering, distributed systems engineering, cloud infrastructure engineering, solutions engineering, implementation engineering, AI application engineering, data analyst, business analyst, marketing analyst, product analyst, operations analyst, or GTM engineering.",
-            "Choose exactly one skill_category_order_key from this fixed set: fullstack_product, backend_application, data_engineering, platform_distributed, embedded_systems, ai_application, solutions_engineering, analyst_data, analyst_business, analyst_marketing, gtm_engineering.",
+            "Prefer precise role-family labels such as: full-stack product engineering, backend application engineering, data engineering, analytics engineering, data science, machine learning engineering, platform engineering, distributed systems engineering, cloud infrastructure engineering, security engineering, application security engineering, cloud security engineering, solutions engineering, implementation engineering, AI application engineering, agentic AI engineering, AI agent engineering, data analyst, business analyst, marketing analyst, product analyst, operations analyst, or GTM engineering.",
+            "Choose exactly one skill_category_order_key from this fixed set: fullstack_product, backend_application, data_engineering, data_science, platform_distributed, embedded_systems, ai_application, agentic_ai_engineering, security_engineering, solutions_engineering, analyst_data, analyst_business, analyst_marketing, gtm_engineering.",
             "Pick the skill_category_order_key that best fits the role family and technical center of the JD.",
-            "Choose exactly one prompt_family_key from this fixed set: software_engineering, data_engineering, platform_systems, analyst_data, analyst_business, analyst_marketing, solutions_customer, gtm_engineering.",
+            "Choose exactly one prompt_family_key from this fixed set: software_engineering, data_engineering, data_science, platform_systems, agentic_ai_engineering, security_engineering, analyst_data, analyst_business, analyst_marketing, solutions_customer, gtm_engineering.",
             "Pick the prompt_family_key that best matches the role family and what the later prompts should optimize for.",
             "If the JD centers on SQL, PySpark, Snowflake, ETL, orchestration, dashboards, or data quality, classify it as data engineering or analytics engineering rather than generic software engineering.",
+            "If the JD centers on machine learning, statistical modeling, experimentation, forecasting, recommendation systems, NLP, computer vision, model training, feature engineering, model evaluation, or ML platforms, classify it as data science or machine learning engineering rather than data engineering.",
+            "If the JD centers on SQL analysis, dashboards, reporting, BI tools, Excel, stakeholder insights, KPI tracking, funnel metrics, or ad hoc analysis without building pipelines or ML models, classify it as data analyst rather than data engineering.",
             "If the JD centers on Rust, Linux, concurrency, networking, security platforms, or low-level services, classify it as platform engineering or distributed systems engineering rather than generic full-stack work.",
+            "If the JD centers on AI agents, agent orchestration, agent-to-agent communication, autonomous agents, tool calling, function calling, MCP, Model Context Protocol, agent governance, programmable policy for agents, LLM APIs, OpenAI, Anthropic, LangChain, LangGraph, or agent frameworks, classify it as agentic AI engineering rather than distributed systems or backend engineering.",
             "If the JD centers on reporting, dashboards, SQL analysis, business insights, stakeholder support, campaign measurement, attribution, funnel metrics, requirements gathering, or KPI analysis, classify it as an analyst family rather than software engineering.",
             "If the JD is about building internal or product-side integrations across APIs, cloud services, microservices, authentication, event-driven systems, CI/CD, DevOps, or backend services, classify it as backend application engineering or cloud integration engineering rather than solutions engineering.",
             "Reserve solutions engineering and implementation engineering for clearly customer-facing roles such as demos, onboarding, external implementations, technical account support, pre-sales, sales engineering, or customer adoption work.",
             "If the JD centers on CRM systems, revops, lead routing, enrichment, outbound tooling, lifecycle automation, sequencing, GTM workflows, pipeline reporting, or sales/marketing system automation, classify it as GTM engineering rather than software engineering or generic analyst work.",
+            "If the JD centers on vulnerability management, application security, cloud security, identity and access management, threat detection, incident response, compliance, GRC, SOC workflows, SIEM, secrets management, encryption, OWASP, NIST, ISO 27001, SOC 2, HIPAA, PCI, or security tooling, classify it as security engineering rather than backend or platform engineering.",
             "If the JD mentions Excel, Power BI, Tableau, Looker, Jira, Confluence, Salesforce, SAP, Oracle, Workday, PeopleSoft, Banner, WMS, Manhattan SCALE, Manhattan Active, Blue Yonder, ERP, SCM, or CRM platforms, preserve those as important analyst or systems signals rather than treating them like minor supporting tools.",
             "If the JD mentions Clay, Salesforce, HubSpot, Outreach, Apollo, Marketo, 6sense, Gong, Customer.io, ZoomInfo, Smartlead, Instantly, HeyReach, Nooks, Warmly, lead routing, enrichment, outbound sequencing, or GTM automation, preserve those as important GTM systems and workflow signals.",
             "Return one unified skills_mentioned list containing all important skills, tools, frameworks, platforms, and technologies explicitly mentioned anywhere in the JD, including required, preferred, and nice-to-have items.",
@@ -1580,9 +1628,24 @@ def build_ai_resume_title_summary_prompt(prompt_family_key: str = "software_engi
             "- mention frontend work only as supporting capability for data users when relevant",
             "- keep the summary focused on data systems and operational outcomes rather than generic software engineering language",
         ],
+        "data_science": [
+            "- emphasize modeling, experimentation, feature work, model evaluation, ML platforms, and measurable decision or product impact",
+            "- mention concrete ML and data tools when grounded in the JD, such as Python, SQL, pandas, scikit-learn, PyTorch, TensorFlow, MLflow, Databricks, SageMaker, or Vertex AI",
+            "- do not frame data science roles as data engineering unless pipelines are clearly central to the JD",
+        ],
+        "agentic_ai_engineering": [
+            "- emphasize AI-agent infrastructure, agent orchestration, tool protocols, LLM APIs, governance, policy controls, and production reliability",
+            "- surface MCP, tool calling, function calling, OpenAI, Anthropic, LangChain, LangGraph, vector stores, evals, tracing, and policy tools when grounded in the JD",
+            "- frame the role as agentic AI infrastructure rather than generic distributed systems or backend engineering",
+        ],
         "platform_systems": [
             "- emphasize scale, reliability, APIs, observability, and system performance",
             "- prioritize platform constraints, architecture tradeoffs, and resilient delivery over product UI language",
+        ],
+        "security_engineering": [
+            "- emphasize security engineering, identity, cloud security, application security, compliance, detection, incident response, and risk reduction",
+            "- mention security tools, frameworks, and standards when they are grounded in the JD",
+            "- do not frame the role as backend engineering unless backend work is clearly central to the JD",
         ],
         "analyst_data": [
             "- emphasize SQL, dashboards, reporting, insights, metrics, and stakeholder decision support",
@@ -1653,16 +1716,43 @@ def build_ai_resume_title_summary_prompt(prompt_family_key: str = "software_engi
 def build_ai_resume_skills_prompt(prompt_family_key: str = "software_engineering") -> str:
     family_rules = {
         "software_engineering": [
+            "- prioritize named languages, frameworks, databases, cloud services, CI/CD tools, monitoring tools, and enterprise platforms",
             "- keep JD-mentioned languages, frameworks, platforms, and tools visible when they fit the category",
-            "- balance concrete technologies with practical engineering capabilities",
+            "- do not add abstract engineering concepts unless they are named directly in the JD or clearly required to make the category readable",
         ],
         "data_engineering": [
-            "- prioritize SQL, warehousing, pipelines, orchestration, data quality, and data modeling terms",
+            "- prioritize named data tools, databases, warehouses, orchestration tools, BI tools, SQL, Python, PySpark, and cloud data services",
+            "- Data Engineering should include concrete orchestration or transformation tools when relevant: Airflow, Dagster, Prefect, dbt, AWS Glue, Azure Data Factory, Databricks, Spark, PySpark",
+            "- Data & Storage should include concrete warehouses or databases when relevant: Snowflake, BigQuery, Redshift, Databricks, PostgreSQL, SQL Server, Oracle, S3, ADLS",
             "- keep frontend or API tools secondary unless the JD clearly makes them central",
+            "- keep generic data capabilities out of skills unless they are named directly in the JD or already supported by the selected skills",
+        ],
+        "data_science": [
+            "- prioritize ML and statistical tools, languages, notebooks, model platforms, data stores, and experiment tracking tools",
+            "- Machine Learning & Statistics should include concrete items when relevant: scikit-learn, pandas, NumPy, SciPy, PyTorch, TensorFlow, XGBoost, LightGBM, statsmodels, MLflow, SageMaker, Vertex AI, Databricks ML",
+            "- Data & Storage should include concrete databases, warehouses, or lakehouse tools when relevant: Snowflake, BigQuery, Databricks, Redshift, PostgreSQL, MongoDB, S3",
+            "- avoid generic phrases such as predictive modeling, feature engineering, statistical analysis, machine learning workflows, or model evaluation unless the exact phrase appears in the JD",
+        ],
+        "agentic_ai_engineering": [
+            "- prioritize agent infrastructure and LLM stack tools such as MCP, Model Context Protocol, tool calling, function calling, OpenAI API, Anthropic API, LangChain, LangGraph, AutoGen, CrewAI, Semantic Kernel, LlamaIndex, or Agents SDK when they fit the JD",
+            "- include enterprise agent governance and observability tools when relevant: Open Policy Agent, Guardrails, LangSmith, Langfuse, Helicone, OpenTelemetry, MLflow, or Weights & Biases",
+            "- Data & Storage should include agent memory and vector-store databases when relevant: Pinecone, Weaviate, Chroma, FAISS, pgvector, Milvus, Qdrant, Redis, PostgreSQL, MongoDB, or BigQuery",
+            "- for agent orchestration or RAG-style roles, include at least one concrete vector or memory store in Data & Storage when it fits the JD context",
+            "- include communication and orchestration infrastructure when relevant: Kafka, RabbitMQ, Temporal, gRPC, WebSockets, or Kubernetes",
+            "- replace placeholder phrases with concrete tools when the JD supports them",
+            "- never output placeholder skills such as Workflow engines, Automated pipelines, Distributed systems, Multi-agent systems, Programmable governance logic, Governance frameworks, Agent orchestration, or Communication standards",
         ],
         "platform_systems": [
             "- prioritize platform, reliability, observability, distributed-systems, and infrastructure terms",
+            "- prioritize named infrastructure, observability, security, networking, operating-system, cloud, and deployment tools",
             "- prefer concrete systems tools and capabilities over product-oriented frontend language",
+            "- do not use broad concepts like distributed systems, reliability, performance, or software design unless the JD names them directly or the selected skills make them clearly necessary",
+        ],
+        "security_engineering": [
+            "- prioritize security tools, IAM platforms, auth protocols, SIEM and detection tools, vulnerability scanners, secrets-management tools, cloud-security services, endpoint tools, and compliance frameworks",
+            "- Security & Auth should include concrete enterprise auth protocols and platforms when relevant: OAuth 2.0, OpenID Connect, SAML, JWT, SSO, MFA, RBAC, ABAC, Okta, Auth0, Microsoft Entra ID, Azure AD, Amazon Cognito, Ping Identity, Duo, HashiCorp Vault, or AWS KMS",
+            "- include security standards and frameworks such as OWASP, NIST, ISO 27001, SOC 2, HIPAA, PCI DSS, CIS Benchmarks, and MITRE ATT&CK when they appear in the JD",
+            "- keep Backend Engineering and frontend frameworks out of security skills unless the JD explicitly names them",
         ],
         "analyst_data": [
             "- prioritize SQL, querying, dashboards, reporting, data visualization, metrics, and experimentation terms",
@@ -1715,20 +1805,23 @@ def build_ai_resume_skills_prompt(prompt_family_key: str = "software_engineering
             "SKILLS:",
             "- use only the provided categories",
             "- do not invent new categories",
-            "- each item must be one short skill name or capability name",
+            "- each item must be one concrete tool, platform, language, framework, database, cloud service, enterprise system, or concise capability name",
             "- no explanations, no qualifier text, no mini-sentences",
-            "- prefer concrete technologies and concise capability names",
+            "- prefer exact product and technology names over abstract wording whenever the JD supports them",
+            "- include tools explicitly named in the JD first",
+            "- include closely related enterprise tools only when they fit the JD's domain, category, and role family",
             "- do not use vague filler like 'data-driven solutions', 'deployment strategies', or 'technical discussions'",
+            "- do not add broad software concepts such as software design, system design, event-driven systems, debugging, or stakeholder communication unless the exact phrase appears in the JD or it is clearly needed as a standard skill label",
             "- do not repeat the same concept across categories",
             "- skip a category only if it is truly irrelevant; otherwise fill it with 2-5 strong items",
-            "- each item must read like a real resume skill, not a broken fragment or half sentence",
-            "- if an item looks truncated, awkward, or too descriptive, rewrite it into a clean recruiter-scan term",
+            "- each item must read like a real recruiter-searchable skill, not a broken fragment or half sentence",
+            "- if an item looks truncated, awkward, abstract, or too descriptive, rewrite it into a clean recruiter-scan term or remove it",
             "- for analyst families, prefer JD-grounded tools first; if the JD does not name tools, use generic capability labels instead of common vendor names",
             *selected_rules,
             "- expected style:",
             "  - Programming Languages: TypeScript, JavaScript, Python",
-            "  - Backend Engineering: Node.js, GraphQL, REST API design",
-            "  - Data & Storage: MongoDB, BigQuery, SQL",
+            "  - Backend Engineering: Node.js, GraphQL, Spring Boot",
+            "  - Data & Storage: MongoDB, BigQuery, PostgreSQL",
             "",
             "Return only the final result matching the schema.",
         ]
@@ -1751,8 +1844,24 @@ def build_ai_resume_experience_prompt(prompt_family_key: str = "software_enginee
             "- recent roles should highlight pipelines, warehousing, orchestration, data quality, reporting data flows, and measurable operational improvement",
             "- describe systems and workflows in data terms rather than generic product-engineering language",
         ],
+        "data_science": [
+            "- recent roles should highlight model development, experimentation, feature work, evaluation, deployment support, and measurable business or product impact",
+            "- describe systems and outcomes in ML or data-science terms rather than pipeline-engineering terms unless pipelines are central to the JD",
+            "- do not introduce ML libraries or model platforms unless they appear in the JD or selected skills",
+        ],
+        "agentic_ai_engineering": [
+            "- recent roles should highlight agent orchestration, LLM API integration, tool execution, governance controls, retrieval or memory, evals, tracing, and production reliability",
+            "- use agentic AI infrastructure framing rather than generic backend or distributed-systems framing",
+            "- do not introduce MCP, agent frameworks, vector databases, or governance tools unless they appear in the JD or selected skills",
+        ],
         "platform_systems": [
             "- recent roles should highlight scale, observability, reliability, infrastructure, and performance tradeoffs",
+        ],
+        "security_engineering": [
+            "- recent roles should highlight security controls, identity and access, vulnerability remediation, cloud security, compliance evidence, detection, and incident response",
+            "- use security-engineering framing rather than backend feature-delivery framing",
+            "- mention compliance frameworks only when they are present in the JD or selected skills",
+            "- do not introduce backend frameworks unless they already appear in the JD or selected skills",
         ],
         "analyst_data": [
             "- recent roles should highlight SQL analysis, dashboards, reporting, experimentation, insight delivery, and decision support",
@@ -1859,8 +1968,24 @@ def build_ai_resume_experience_subset_prompt(blueprints: list[dict], prompt_fami
             "- selected skills should guide the stack used in bullets; prioritize SQL, pipelines, warehousing, orchestration, and data-quality workflows",
             "- describe systems and impacts in data workflow terms",
         ],
+        "data_science": [
+            "- selected skills should guide the stack used in bullets; prioritize model development, experimentation, feature work, evaluation, ML platforms, and measurable decision or product impact",
+            "- use ML or data-science framing rather than pipeline-engineering framing unless pipelines are central to the JD",
+            "- do not introduce ML libraries or model platforms unless they appear in the JD or selected skills",
+        ],
+        "agentic_ai_engineering": [
+            "- selected skills should guide the stack used in bullets; prioritize agent orchestration, LLM APIs, MCP or tool protocols, governance controls, retrieval or memory, evals, tracing, and production reliability",
+            "- use agentic AI infrastructure framing rather than generic backend or distributed-systems framing",
+            "- do not introduce MCP, agent frameworks, vector databases, or governance tools unless they appear in the JD or selected skills",
+        ],
         "platform_systems": [
             "- selected skills should guide the stack used in bullets; prioritize infrastructure, reliability, observability, scale, and system tradeoffs",
+        ],
+        "security_engineering": [
+            "- selected skills should guide the stack used in bullets; prioritize security controls, IAM, vulnerability management, cloud security, SIEM or detection, compliance, and incident response",
+            "- use security-engineering framing rather than backend feature-delivery framing",
+            "- do not introduce backend frameworks unless they already appear in the JD or selected skills",
+            "- do not introduce compliance frameworks unless they already appear in the JD or selected skills",
         ],
         "analyst_data": [
             "- selected skills should guide the stack used in bullets; prioritize reporting, SQL analysis, dashboards, experimentation, and insight delivery",
@@ -1981,10 +2106,11 @@ def build_ai_core_review_prompt() -> str:
             "Judge whether the current summary and skills are ready to keep or should be revised.",
             "Focus on three risks:",
             "- summary that sounds copied from company or JD wording, too generic, or mis-emphasized for the role",
-            "- skills that are too vague, too copied, missing obvious concrete stack, or awkwardly categorized",
+            "- skills that include broad capabilities instead of named tools, miss obvious JD tools, or are awkwardly categorized",
             "- wording that sounds stiff, overpacked, truncated, or visibly AI-generated instead of natural resume writing",
             "Flag summaries that stack too many tools, systems, or clauses into one sentence.",
-            "Flag skills that read like broken fragments instead of clean recruiter-scan terms.",
+            "Flag skills that read like broken fragments, process phrases, or abstract concepts instead of named recruiter-searchable tools.",
+            "Do not flag a skills section just because it could include more adjacent tools; refinement must not broaden the stack.",
             "Do not review professional experience.",
             "Be concise and practical.",
             "Return only the final result matching the schema.",
@@ -3489,13 +3615,44 @@ def generate_skills_from_analysis(
         issue for issue in skill_issues
         if "introduces analyst tool" in issue or "introduces GTM tool" in issue
     ]
-    if unsupported_tool_issues:
+    generic_skill_issues = [
+        issue for issue in skill_issues
+        if "is too generic; use a named JD tool or related enterprise tool instead" in issue
+    ]
+    category_skill_issues = [
+        issue for issue in skill_issues
+        if "belongs under" in issue
+    ]
+    agentic_data_issues = [
+        issue for issue in skill_issues
+        if "vector store or embedding store" in issue
+    ]
+    data_role_issues = [
+        issue for issue in skill_issues
+        if issue.startswith("Data engineering skills should")
+        or issue.startswith("Data science skills should")
+        or issue.startswith("Data analyst skills should")
+    ]
+    retryable_skill_issues = (
+        unsupported_tool_issues
+        + generic_skill_issues
+        + category_skill_issues
+        + agentic_data_issues
+        + data_role_issues
+    )
+    if retryable_skill_issues:
         retry_lines = [
-            "Previous attempt used named tools that are not supported by the JD.",
-            "Replace unsupported vendor names with JD-grounded tools or generic capability labels.",
-            "If the JD does not mention a named tool for Tools & Platforms, use generic items instead of vendor names.",
+            "Previous attempt used unsupported tools, generic skill phrases, or weak category placement.",
+            "Replace unsupported vendor names with JD-grounded tools or closely related enterprise tools when the JD clearly supports them.",
+            "If the JD does not mention a named tool for Tools & Platforms, use strong generic items only for analyst or GTM roles where vendor names would be invented.",
+            "Replace abstract, generic, or process-style skill phrases with concrete named tools, platforms, languages, frameworks, databases, cloud services, or enterprise systems.",
+            "Fix category placement issues by moving the item to the right category or replacing it with a concrete tool that fits the current category.",
+            "For agentic AI roles, include a concrete vector or memory store in Data & Storage when the JD supports it.",
+            "For data engineering roles, include concrete warehouses, databases, and orchestration or transformation tools when the JD supports them.",
+            "For data science roles, include concrete ML or statistics tools and model platforms when the JD supports them.",
+            "For data analyst roles, include concrete query and BI tools when the JD supports them.",
             "Fix these exact issues:",
-            *[f"- {issue}" for issue in unsupported_tool_issues],
+            *[f"- {issue}" for issue in retryable_skill_issues],
         ]
         skills_payload = run_generation("\n".join(retry_lines))
     return skills_payload
@@ -3877,6 +4034,81 @@ def load_base_resume():
         return json.load(f)
 
 
+def load_profile_template() -> dict:
+    fallback = {
+        "name": "",
+        "contact": {"location": "", "phone": "", "email": ""},
+        "projects": [],
+        "certifications": [],
+        "experience_history": [
+            {
+                "key": blueprint["key"],
+                "company": "",
+                "location": "",
+                "title": "",
+                "dates": "",
+                "enabled": False,
+            }
+            for blueprint in EXPERIENCE_BLUEPRINTS
+        ],
+    }
+    return load_json_file(Path(PROFILE_TEMPLATE_FILE), fallback)
+
+
+def load_permanent_profile_doc() -> dict | None:
+    if not Path(PERMANENT_PROFILE_FILE).exists():
+        return None
+    return load_json_file(Path(PERMANENT_PROFILE_FILE), load_profile_template())
+
+
+def load_session_profile_doc() -> dict | None:
+    if not Path(SESSION_PROFILE_FILE).exists():
+        return None
+    return load_json_file(Path(SESSION_PROFILE_FILE), {})
+
+
+def save_permanent_profile_doc(profile: dict) -> None:
+    write_json_file(Path(PERMANENT_PROFILE_FILE), profile)
+
+
+def save_session_profile_doc(profile: dict) -> None:
+    write_json_file(Path(SESSION_PROFILE_FILE), profile)
+
+
+def clear_session_profile_doc() -> None:
+    try:
+        Path(SESSION_PROFILE_FILE).unlink(missing_ok=True)
+    except Exception:
+        pass
+
+
+def has_permanent_profile_doc() -> bool:
+    return Path(PERMANENT_PROFILE_FILE).exists()
+
+
+def merge_profile_docs(base: dict, override: dict | None) -> dict:
+    merged = json.loads(json.dumps(base))
+    if not isinstance(override, dict):
+        return merged
+
+    for field in ("name",):
+        if field in override:
+            merged[field] = override.get(field, "")
+
+    override_contact = override.get("contact")
+    if isinstance(override_contact, dict):
+        merged["contact"] = {
+            **(merged.get("contact") or {}),
+            **override_contact,
+        }
+
+    for field in ("projects", "certifications", "experience_history"):
+        if field in override and isinstance(override.get(field), list):
+            merged[field] = override.get(field)
+
+    return merged
+
+
 def profile_experience_history_from_resume(resume: dict) -> list[dict]:
     experience_entries = resume.get("experience") if isinstance(resume.get("experience"), list) else []
     history: list[dict] = []
@@ -3889,14 +4121,23 @@ def profile_experience_history_from_resume(resume: dict) -> list[dict]:
                 "location": str(resume_entry.get("location", blueprint["location"])).strip() or blueprint["location"],
                 "title": str(resume_entry.get("title", "")).strip(),
                 "dates": str(resume_entry.get("dates", blueprint["dates"])).strip() or blueprint["dates"],
+                "enabled": True,
             }
         )
     return history
 
 
+def is_experience_history_entry_complete(entry: dict) -> bool:
+    return all(str(entry.get(field, "")).strip() for field in ("company", "location", "title", "dates"))
+
+
+def is_experience_history_entry_enabled(entry: dict) -> bool:
+    return entry.get("enabled", True) is not False and is_experience_history_entry_complete(entry)
+
+
 def current_experience_blueprints() -> list[dict]:
-    saved_profile = settings.get("profile") or {}
-    saved_history = saved_profile.get("experience_history") if isinstance(saved_profile.get("experience_history"), list) else []
+    active_profile = current_profile()
+    saved_history = active_profile.get("experience_history") if isinstance(active_profile.get("experience_history"), list) else []
     saved_history_by_key = {
         str(entry.get("key", "")).strip(): entry
         for entry in saved_history
@@ -3916,9 +4157,9 @@ def current_experience_blueprints() -> list[dict]:
 
 
 def normalize_enabled_experience_keys(payload: list[str] | None) -> list[str]:
-    requested = [str(item).strip() for item in (payload or []) if str(item).strip()]
-    if not requested:
+    if payload is None:
         return list(EXPERIENCE_BLUEPRINT_KEYS)
+    requested = [str(item).strip() for item in payload if str(item).strip()]
     requested_set = set(requested)
     return [key for key in EXPERIENCE_BLUEPRINT_KEYS if key in requested_set]
 
@@ -3946,6 +4187,7 @@ def normalize_experience_history_override(payload: list[dict] | None) -> list[di
                 "location": str(raw_item.get("location", blueprint["location"])).strip() or blueprint["location"],
                 "title": str(raw_item.get("title", blueprint.get("default_title", ""))).strip(),
                 "dates": str(raw_item.get("dates", blueprint["dates"])).strip() or blueprint["dates"],
+                "enabled": bool(raw_item.get("enabled", True)),
             }
         )
     return normalized
@@ -3961,10 +4203,16 @@ def apply_experience_history_override(resume: dict, experience_history_override:
         if not isinstance(entry, dict) or index >= len(EXPERIENCE_BLUEPRINT_KEYS):
             continue
         override = override_by_key.get(EXPERIENCE_BLUEPRINT_KEYS[index], {})
-        for field in ("company", "location", "title", "dates"):
+        if not is_experience_history_entry_enabled(override):
+            continue
+        for field in ("company", "location", "dates"):
             value = str(override.get(field, "")).strip()
             if value:
                 entry[field] = value
+        override_title = str(override.get("title", "")).strip()
+        current_title = str(entry.get("title", "")).strip()
+        if override_title and not current_title:
+            entry["title"] = override_title
     return resume
 
 
@@ -4088,42 +4336,11 @@ def profile_from_resume(resume: dict) -> dict:
 
 
 def current_profile() -> dict:
-    profile = profile_from_resume(load_base_resume())
-    saved_profile = settings.get("profile") or {}
-
-    if saved_profile.get("name"):
-        profile["name"] = saved_profile["name"]
-
-    saved_contact = saved_profile.get("contact") or {}
-    profile["contact"].update({k: v for k, v in saved_contact.items() if v})
-
-    if isinstance(saved_profile.get("projects"), list):
-        profile["projects"] = saved_profile["projects"]
-
-    if isinstance(saved_profile.get("certifications"), list):
-        profile["certifications"] = saved_profile["certifications"]
-
-    if isinstance(saved_profile.get("experience_history"), list):
-        saved_history_by_key = {
-            str(entry.get("key", "")).strip(): entry
-            for entry in saved_profile["experience_history"]
-            if isinstance(entry, dict) and str(entry.get("key", "")).strip()
-        }
-        merged_history = []
-        for entry in profile.get("experience_history", []):
-            override = saved_history_by_key.get(entry["key"], {})
-            merged_history.append(
-                {
-                    "key": entry["key"],
-                    "company": str(override.get("company", entry["company"])).strip() or entry["company"],
-                    "location": str(override.get("location", entry["location"])).strip() or entry["location"],
-                    "title": str(override.get("title", entry.get("title", ""))).strip(),
-                    "dates": str(override.get("dates", entry["dates"])).strip() or entry["dates"],
-                }
-            )
-        profile["experience_history"] = merged_history
-
-    return profile
+    template = normalize_profile(load_profile_template())
+    permanent = normalize_profile(load_permanent_profile_doc() or template)
+    session_doc = load_session_profile_doc()
+    session = normalize_profile(session_doc) if session_doc else None
+    return normalize_profile(merge_profile_docs(permanent, session))
 
 
 def _identity_id(value: str) -> str:
@@ -4220,10 +4437,15 @@ def apply_profile_overrides(resume: dict) -> dict:
             if not isinstance(entry, dict) or index >= len(EXPERIENCE_BLUEPRINT_KEYS):
                 continue
             override = history_by_key.get(EXPERIENCE_BLUEPRINT_KEYS[index], {})
-            for field in ("company", "location", "title", "dates"):
-                value = str(override.get(field, "")).strip()
-                if value:
-                    entry[field] = value
+            if is_experience_history_entry_enabled(override):
+                for field in ("company", "location", "dates"):
+                    value = str(override.get(field, "")).strip()
+                    if value:
+                        entry[field] = value
+            override_title = str(override.get("title", "")).strip()
+            current_title = str(entry.get("title", "")).strip()
+            if override_title and not current_title:
+                entry["title"] = override_title
     return resume
 
 
@@ -4254,10 +4476,11 @@ def normalize_profile(payload: dict) -> dict:
         normalized_history.append(
             {
                 "key": blueprint["key"],
-                "company": str(raw_entry.get("company", blueprint["company"])).strip() or blueprint["company"],
-                "location": str(raw_entry.get("location", blueprint["location"])).strip() or blueprint["location"],
+                "company": str(raw_entry.get("company", "")).strip(),
+                "location": str(raw_entry.get("location", "")).strip(),
                 "title": str(raw_entry.get("title", "")).strip(),
-                "dates": str(raw_entry.get("dates", blueprint["dates"])).strip() or blueprint["dates"],
+                "dates": str(raw_entry.get("dates", "")).strip(),
+                "enabled": bool(raw_entry.get("enabled", True)),
             }
         )
 
@@ -4272,6 +4495,59 @@ def normalize_profile(payload: dict) -> dict:
         "certifications": [str(item).strip() for item in certifications if str(item).strip()],
         "experience_history": normalized_history,
     }
+
+
+def validate_profile_payload(profile: dict) -> list[str]:
+    issues: list[str] = []
+    if not str(profile.get("name", "")).strip():
+        issues.append("Name is required.")
+
+    contact = profile.get("contact") or {}
+    for field, label in (("location", "Location"), ("phone", "Phone"), ("email", "Email")):
+        if not str(contact.get(field, "")).strip():
+            issues.append(f"{label} is required.")
+
+    projects = profile.get("projects") if isinstance(profile.get("projects"), list) else []
+    certifications = profile.get("certifications") if isinstance(profile.get("certifications"), list) else []
+    experience_history = profile.get("experience_history") if isinstance(profile.get("experience_history"), list) else []
+
+    if len(projects) < 1:
+        issues.append("At least one project is required.")
+    if len(certifications) < 1:
+        issues.append("At least one certification is required.")
+    if not any(is_experience_history_entry_enabled(entry) for entry in experience_history if isinstance(entry, dict)):
+        issues.append("At least one enabled work experience role with all fields filled is required.")
+
+    return issues
+
+
+def profile_response_payload() -> dict:
+    profile = current_profile()
+    return {
+        "profile": profile,
+        "onboarding_required": not has_permanent_profile_doc(),
+        "has_permanent_profile": has_permanent_profile_doc(),
+        "session_active": Path(SESSION_PROFILE_FILE).exists(),
+        "permanent_profile_file": str(PERMANENT_PROFILE_FILE),
+        "session_profile_file": str(SESSION_PROFILE_FILE),
+    }
+
+
+def migrate_legacy_profile_if_needed() -> None:
+    legacy_profile = settings.get("profile")
+    if has_permanent_profile_doc() or not isinstance(legacy_profile, dict) or not legacy_profile:
+        settings.pop("profile", None)
+        save_settings(settings)
+        return
+
+    normalized_legacy = normalize_profile(legacy_profile)
+    save_permanent_profile_doc(normalized_legacy)
+    settings.pop("profile", None)
+    save_settings(settings)
+
+
+clear_session_profile_doc()
+migrate_legacy_profile_if_needed()
 
 
 def get_conversion_status(status_path: str) -> dict:
@@ -4446,19 +4722,31 @@ def update_settings():
 
 @app.route("/api/profile", methods=["GET"])
 def get_profile():
-    """Get editable profile defaults used for every generated resume."""
-    return jsonify(current_profile())
+    """Get the effective profile plus onboarding/session metadata."""
+    return jsonify(profile_response_payload())
 
 
 @app.route("/api/profile", methods=["POST"])
 def update_profile():
-    """Save editable profile defaults without changing the paste/generate flow."""
+    """Save profile data to the permanent or session profile document."""
     try:
         data = request.get_json() or {}
+        save_target = str(data.get("save_target", "session")).strip().lower()
+        if save_target not in {"session", "permanent"}:
+            return jsonify({"success": False, "error": "Invalid save target."}), 400
+
         profile = normalize_profile(data)
-        settings["profile"] = profile
-        save_settings(settings)
-        return jsonify({"success": True, "profile": current_profile()})
+        issues = validate_profile_payload(profile)
+        if issues:
+            return jsonify({"success": False, "error": issues[0], "issues": issues}), 400
+
+        if save_target == "permanent":
+            save_permanent_profile_doc(profile)
+            clear_session_profile_doc()
+        else:
+            save_session_profile_doc(profile)
+
+        return jsonify({"success": True, **profile_response_payload()})
     except AIStageError as e:
         response = {
             "success": False,
@@ -4489,6 +4777,16 @@ def get_tracker():
             "summary": summarize_tracker({"applications": applications}),
             "statuses": TRACKER_STATUSES,
         })
+    except Exception as e:
+        return jsonify({"success": False, "error": str(e)}), 500
+
+
+@app.route("/api/tracker/company-history", methods=["GET"])
+def get_tracker_company_history():
+    try:
+        company_name = str(request.args.get("company", "")).strip()
+        history = tracker_company_history(company_name)
+        return jsonify({"success": True, **history})
     except Exception as e:
         return jsonify({"success": False, "error": str(e)}), 500
 
@@ -4619,6 +4917,30 @@ def update_tracker_application_status(application_id: str):
             "application": updated_record,
             "summary": summarize_tracker({"applications": merged_applications}),
         })
+    except Exception as e:
+        return jsonify({"success": False, "error": str(e)}), 500
+
+
+@app.route("/api/tracker/applications/<application_id>/open-file", methods=["POST"])
+def open_tracker_application_file(application_id: str):
+    try:
+        record = tracker_application_by_id(application_id)
+        if not record:
+            return jsonify({"success": False, "error": "Application not found."}), 404
+
+        output_dir = str(record.get("output_dir", "")).strip()
+        pdf_path = str(record.get("pdf_path", "")).strip()
+        target_path = None
+        if output_dir:
+            target_path = Path(output_dir).expanduser()
+        elif pdf_path:
+            target_path = Path(pdf_path).expanduser()
+
+        if target_path is None or not target_path.exists():
+            return jsonify({"success": False, "error": "Saved resume path is not available."}), 404
+
+        open_path(target_path)
+        return jsonify({"success": True, "opened_path": str(target_path)})
     except Exception as e:
         return jsonify({"success": False, "error": str(e)}), 500
 

@@ -1014,6 +1014,11 @@ select:focus {
   gap: 10px;
 }
 
+.profile-experience-note {
+  color: var(--muted);
+  font-size: 0.84rem;
+}
+
 .profile-experience-list {
   display: flex;
   flex-direction: column;
@@ -1040,6 +1045,23 @@ select:focus {
   display: flex;
   gap: 12px;
   justify-content: space-between;
+}
+
+.profile-experience-toggle {
+  align-items: center;
+  color: var(--muted);
+  display: inline-flex;
+  gap: 8px;
+  font-size: 0.88rem;
+}
+
+.profile-experience-toggle input {
+  accent-color: var(--accent);
+}
+
+.profile-experience-warning {
+  color: #f0c98e;
+  font-size: 0.84rem;
 }
 
 .preview-edit-shell {
@@ -1180,6 +1202,30 @@ select:focus {
   line-height: 1.5;
 }
 
+.prior-applications-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.prior-application-card {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px;
+}
+
+.prior-application-title {
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.prior-application-meta {
+  color: var(--muted);
+  font-size: 0.84rem;
+  line-height: 1.45;
+}
+
 .tracker-board {
   display: grid;
   gap: 12px;
@@ -1247,9 +1293,20 @@ select:focus {
   gap: 4px;
 }
 
+.tracker-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
 .tracker-card-actions select {
   min-height: 38px;
   width: 100%;
+}
+
+.tracker-action-button {
+  min-height: 34px;
+  padding: 0 10px;
 }
 
 .tracker-empty-column,
@@ -1297,10 +1354,28 @@ select:focus {
   font-weight: 700;
 }
 
+.tracker-table-actions {
+  display: flex;
+  gap: 8px;
+}
+
 .tracker-table-subtle {
   color: var(--muted);
   font-size: 0.78rem;
   margin-top: 4px;
+}
+
+.tracker-preview-shell {
+  display: flex;
+  min-height: 70vh;
+}
+
+.tracker-preview-frame {
+  min-height: 70vh;
+}
+
+.tracker-preview-scroll {
+  max-height: 70vh;
 }
 
 @media (max-width: 1200px) {
