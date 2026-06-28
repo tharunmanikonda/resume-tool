@@ -4336,8 +4336,9 @@ def profile_from_resume(resume: dict) -> dict:
 
 
 def current_profile() -> dict:
-    template = normalize_profile(load_profile_template())
-    permanent = normalize_profile(load_permanent_profile_doc() or template)
+    base_profile = normalize_profile(profile_from_resume(load_base_resume()))
+    permanent_doc = load_permanent_profile_doc()
+    permanent = normalize_profile(merge_profile_docs(base_profile, permanent_doc)) if permanent_doc else base_profile
     session_doc = load_session_profile_doc()
     session = normalize_profile(session_doc) if session_doc else None
     return normalize_profile(merge_profile_docs(permanent, session))
