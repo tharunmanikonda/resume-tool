@@ -185,6 +185,15 @@ function allEnabledExperienceKeys(history = []) {
     .filter(Boolean);
 }
 
+function sanitizeEnabledExperienceKeys(history = [], selectedKeys = []) {
+  const orderedEnabledKeys = allEnabledExperienceKeys(history);
+  if (!orderedEnabledKeys.length) return [];
+
+  const selectedSet = new Set((selectedKeys || []).filter(Boolean));
+  const filteredKeys = orderedEnabledKeys.filter((key) => selectedSet.has(key));
+  return filteredKeys.length ? filteredKeys : orderedEnabledKeys;
+}
+
 function deriveExperienceHistoryFromContent(content, history = []) {
   const normalizedHistory = normalizeInlineExperienceHistory(history);
   const text = String(content || "");
@@ -656,7 +665,7 @@ export default function App() {
         contact_override: contact,
         identity,
         experience_history_override: draftExperienceHistory,
-        enabled_experience_keys: enabledExperienceKeys,
+        enabled_experience_keys: sanitizedEnabledExperienceKeys,
       }),
     })
       .then((data) => {
@@ -743,7 +752,9 @@ export default function App() {
   const profileReady = !onboardingRequired;
   const canGeneratePdf = validation.valid && generatedContent.trim().length > 0;
   const orderedDraftExperience = normalizeInlineExperienceHistory(editableExperienceHistory);
-  const visibleDraftExperience = orderedDraftExperience.filter((item) => enabledExperienceKeys.includes(item.key));
+  const selectableDraftExperience = orderedDraftExperience.filter((item) => isExperienceHistoryComplete(item));
+  const sanitizedEnabledExperienceKeys = sanitizeEnabledExperienceKeys(orderedDraftExperience, enabledExperienceKeys);
+  const visibleDraftExperience = selectableDraftExperience.filter((item) => sanitizedEnabledExperienceKeys.includes(item.key));
   const filteredTrackerApplications = useMemo(() => {
     const query = trackerFilters.query.trim().toLowerCase();
     const from = trackerFilters.applied_from;
@@ -761,6 +772,14 @@ export default function App() {
       return true;
     });
   }, [trackerData.applications, trackerFilters]);
+
+  useEffect(() => {
+    const nextKeys = sanitizeEnabledExperienceKeys(editableExperienceHistory, enabledExperienceKeys);
+    if (nextKeys.length === enabledExperienceKeys.length && nextKeys.every((key, index) => key === enabledExperienceKeys[index])) {
+      return;
+    }
+    setEnabledExperienceKeys(nextKeys);
+  }, [editableExperienceHistory, enabledExperienceKeys]);
 
   function openModal(name) {
     if (name === "settings") {
@@ -860,7 +879,7 @@ export default function App() {
           contact_override: contact,
           identity,
           experience_history_override: editableExperienceHistory,
-          enabled_experience_keys: enabledExperienceKeys,
+          enabled_experience_keys: sanitizedEnabledExperienceKeys,
           resume_snapshot_override: preview,
         }),
       });
@@ -1141,7 +1160,7 @@ export default function App() {
           current_resume_content: generatedContent,
           session_id: aiSessionId,
           reset_memory: isNewJd,
-          enabled_experience_keys: enabledExperienceKeys,
+          enabled_experience_keys: sanitizedEnabledExperienceKeys,
         }),
       });
 
@@ -1167,7 +1186,7 @@ export default function App() {
             pending: {
               sessionId: nextSessionId,
               baseThread: [...baseThread, soulThreadEntry(analyzeData.analysis)],
-              enabledKeys: enabledExperienceKeys,
+              enabledKeys: sanitizedEnabledExperienceKeys,
             },
           });
           setGeneratingAi(false);
@@ -1179,7 +1198,7 @@ export default function App() {
       await continueAiGenerationFromAnalysis({
         sessionId: nextSessionId,
         baseThread: [...baseThread, soulThreadEntry(analyzeData.analysis)],
-        enabledKeys: enabledExperienceKeys,
+        enabledKeys: sanitizedEnabledExperienceKeys,
       });
     } catch (error) {
       const payload = error.data || {};
@@ -1282,7 +1301,7 @@ export default function App() {
           contact_override: contact,
           identity,
           experience_history_override: latestHistory,
-          enabled_experience_keys: enabledExperienceKeys,
+          enabled_experience_keys: sanitizedEnabledExperienceKeys,
           resume_override: latestPreview,
         }),
       });
@@ -1407,14 +1426,17 @@ export default function App() {
 
   function toggleExperienceKey(key) {
     setEnabledExperienceKeys((current) => {
+      const allowedKeys = allEnabledExperienceKeys(editableExperienceHistory);
+      if (!allowedKeys.includes(key)) {
+        return current;
+      }
       const exists = current.includes(key);
       if (exists) {
         const next = current.filter((item) => item !== key);
         return next.length ? next : current;
       }
-      const orderedKeys = allEnabledExperienceKeys(editableExperienceHistory);
       const nextSet = new Set([...current, key]);
-      return orderedKeys.filter((item) => nextSet.has(item));
+      return allowedKeys.filter((item) => nextSet.has(item));
     });
   }
 
@@ -1690,16 +1712,16 @@ export default function App() {
               <button className={`tab-button ${tab === "parsed" ? "active" : ""}`} onClick={() => setTab("parsed")}>Parsed Preview</button>
               <button className={`tab-button ${tab === "pdf" ? "active" : ""}`} onClick={() => setTab("pdf")}>PDF Preview</button>
             </div>
-            {orderedDraftExperience.length ? (
+            {selectableDraftExperience.length ? (
               <div className="experience-pill-row" aria-label="Experience visibility">
-                {orderedDraftExperience.map((item) => (
+                {selectableDraftExperience.map((item) => (
                   <button
                     key={item.key}
-                    className={`toggle-button experience-pill ${enabledExperienceKeys.includes(item.key) ? "active" : ""}`}
+                    className={`toggle-button experience-pill ${sanitizedEnabledExperienceKeys.includes(item.key) ? "active" : ""}`}
                     onClick={() => toggleExperienceKey(item.key)}
-                    title={enabledExperienceKeys.includes(item.key) ? "Included in this draft" : "Hidden from this draft"}
+                    title={sanitizedEnabledExperienceKeys.includes(item.key) ? "Included in this draft" : "Hidden from this draft"}
                   >
-                    {item.company || "Untitled company"}
+                    {item.company}
                   </button>
                 ))}
               </div>

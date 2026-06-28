@@ -4055,10 +4055,14 @@ def load_profile_template() -> dict:
     return load_json_file(Path(PROFILE_TEMPLATE_FILE), fallback)
 
 
+def default_profile_doc() -> dict:
+    return normalize_profile(load_profile_template())
+
+
 def load_permanent_profile_doc() -> dict | None:
     if not Path(PERMANENT_PROFILE_FILE).exists():
         return None
-    return load_json_file(Path(PERMANENT_PROFILE_FILE), load_profile_template())
+    return load_json_file(Path(PERMANENT_PROFILE_FILE), default_profile_doc())
 
 
 def load_session_profile_doc() -> dict | None:
@@ -4086,6 +4090,51 @@ def has_permanent_profile_doc() -> bool:
     return Path(PERMANENT_PROFILE_FILE).exists()
 
 
+def merge_experience_history_lists(base_history: list[dict] | None, override_history: list[dict] | None) -> list[dict]:
+    base_entries = base_history if isinstance(base_history, list) else []
+    raw_entries = override_history if isinstance(override_history, list) else []
+
+    overrides_by_key: dict[str, dict] = {}
+    positional_overrides: list[dict] = []
+    for index, item in enumerate(raw_entries):
+        if not isinstance(item, dict):
+            continue
+        key = str(item.get("key", "")).strip()
+        if not key and index < len(EXPERIENCE_BLUEPRINTS):
+            key = EXPERIENCE_BLUEPRINTS[index]["key"]
+        if key and key not in overrides_by_key:
+            overrides_by_key[key] = item
+        positional_overrides.append(item)
+
+    merged_history: list[dict] = []
+    for index, blueprint in enumerate(EXPERIENCE_BLUEPRINTS):
+        base_entry = base_entries[index] if index < len(base_entries) and isinstance(base_entries[index], dict) else {}
+        raw_entry = overrides_by_key.get(blueprint["key"])
+        if not isinstance(raw_entry, dict) and index < len(positional_overrides):
+            candidate = positional_overrides[index]
+            if isinstance(candidate, dict):
+                raw_entry = candidate
+
+        merged_entry = {
+            "key": blueprint["key"],
+            "company": str(base_entry.get("company", "")).strip(),
+            "location": str(base_entry.get("location", "")).strip(),
+            "title": str(base_entry.get("title", "")).strip(),
+            "dates": str(base_entry.get("dates", "")).strip(),
+            "enabled": bool(base_entry.get("enabled", True)),
+        }
+        if isinstance(raw_entry, dict):
+            for field in ("company", "location", "title", "dates"):
+                if field in raw_entry:
+                    merged_entry[field] = str(raw_entry.get(field, "")).strip()
+            if "enabled" in raw_entry:
+                merged_entry["enabled"] = bool(raw_entry.get("enabled", True))
+
+        merged_history.append(merged_entry)
+
+    return merged_history
+
+
 def merge_profile_docs(base: dict, override: dict | None) -> dict:
     merged = json.loads(json.dumps(base))
     if not isinstance(override, dict):
@@ -4102,9 +4151,15 @@ def merge_profile_docs(base: dict, override: dict | None) -> dict:
             **override_contact,
         }
 
-    for field in ("projects", "certifications", "experience_history"):
+    for field in ("projects", "certifications"):
         if field in override and isinstance(override.get(field), list):
             merged[field] = override.get(field)
+
+    if "experience_history" in override and isinstance(override.get("experience_history"), list):
+        merged["experience_history"] = merge_experience_history_lists(
+            merged.get("experience_history"),
+            override.get("experience_history"),
+        )
 
     return merged
 
@@ -4336,9 +4391,9 @@ def profile_from_resume(resume: dict) -> dict:
 
 
 def current_profile() -> dict:
-    base_profile = normalize_profile(profile_from_resume(load_base_resume()))
+    default_profile = default_profile_doc()
     permanent_doc = load_permanent_profile_doc()
-    permanent = normalize_profile(merge_profile_docs(base_profile, permanent_doc)) if permanent_doc else base_profile
+    permanent = normalize_profile(merge_profile_docs(default_profile, permanent_doc)) if permanent_doc else default_profile
     session_doc = load_session_profile_doc()
     session = normalize_profile(session_doc) if session_doc else None
     return normalize_profile(merge_profile_docs(permanent, session))
@@ -4465,25 +4520,7 @@ def normalize_profile(payload: dict) -> dict:
         if name:
             normalized_projects.append({"name": name, "bullets": bullets})
 
-    normalized_history: list[dict] = []
-    for blueprint in EXPERIENCE_BLUEPRINTS:
-        raw_entry = next(
-            (
-                item for item in experience_history
-                if isinstance(item, dict) and str(item.get("key", "")).strip() == blueprint["key"]
-            ),
-            {},
-        )
-        normalized_history.append(
-            {
-                "key": blueprint["key"],
-                "company": str(raw_entry.get("company", "")).strip(),
-                "location": str(raw_entry.get("location", "")).strip(),
-                "title": str(raw_entry.get("title", "")).strip(),
-                "dates": str(raw_entry.get("dates", "")).strip(),
-                "enabled": bool(raw_entry.get("enabled", True)),
-            }
-        )
+    normalized_history = merge_experience_history_lists([], experience_history)
 
     return {
         "name": str(payload.get("name", "")).strip(),
@@ -4534,6 +4571,20 @@ def profile_response_payload() -> dict:
     }
 
 
+def profile_doc_needs_normalization(profile_doc: dict | None) -> bool:
+    if not isinstance(profile_doc, dict):
+        return False
+    experience_history = profile_doc.get("experience_history")
+    if not isinstance(experience_history, list):
+        return False
+    if len(experience_history) != len(EXPERIENCE_BLUEPRINTS):
+        return True
+    return any(
+        not isinstance(item, dict) or not str(item.get("key", "")).strip()
+        for item in experience_history
+    )
+
+
 def migrate_legacy_profile_if_needed() -> None:
     legacy_profile = settings.get("profile")
     if has_permanent_profile_doc() or not isinstance(legacy_profile, dict) or not legacy_profile:
@@ -4547,8 +4598,19 @@ def migrate_legacy_profile_if_needed() -> None:
     save_settings(settings)
 
 
+def normalize_profile_documents_if_needed() -> None:
+    permanent_doc = load_permanent_profile_doc()
+    if profile_doc_needs_normalization(permanent_doc):
+        save_permanent_profile_doc(normalize_profile(permanent_doc))
+
+    session_doc = load_session_profile_doc()
+    if profile_doc_needs_normalization(session_doc):
+        save_session_profile_doc(normalize_profile(session_doc))
+
+
 clear_session_profile_doc()
 migrate_legacy_profile_if_needed()
+normalize_profile_documents_if_needed()
 
 
 def get_conversion_status(status_path: str) -> dict:
