@@ -1117,6 +1117,29 @@ def extract_reachout_resume_snapshot(current_resume_content: str) -> dict:
     return {"title": title, "summary": summary}
 
 
+def extract_text_from_pdf(pdf_path: str) -> str:
+    resolved_path = require_within_output(pdf_path)
+    if resolved_path.suffix.lower() != ".pdf":
+        raise ValueError("A PDF file is required.")
+
+    try:
+        import pdfplumber  # type: ignore
+    except Exception as exc:
+        raise RuntimeError("pdfplumber is required to read generated resumes.") from exc
+
+    fragments: list[str] = []
+    with pdfplumber.open(str(resolved_path)) as pdf:
+        for page in pdf.pages:
+            text = page.extract_text() or ""
+            if text.strip():
+                fragments.append(text.strip())
+
+    combined = "\n\n".join(fragments).strip()
+    if not combined:
+        raise RuntimeError("Could not read text from the generated PDF.")
+    return combined
+
+
 def normalize_skill_item_text(item: str) -> str:
     text = re.sub(r"\s+", " ", str(item or "").strip())
     text = re.sub(r"[\[\]\(\)]", "", text)
@@ -1909,6 +1932,7 @@ def build_ai_resume_experience_prompt(prompt_family_key: str = "software_enginee
             "- Valid title example: 'Integration Engineer'",
             "- Preserve natural title phrasing",
             "- Do not rewrite historical titles to imitate the target role family",
+            "- Keep experience titles coherent with the overall career lane, but allow JD-aligned retitling when the bullets credibly support it",
             "- Bullet count per company must match exactly",
             "- Each bullet must be 25-30 words",
             "- Recent and relevant roles should do more of the selling",
@@ -2033,6 +2057,7 @@ def build_ai_resume_experience_subset_prompt(blueprints: list[dict], prompt_fami
             "- invalid title example: 'McKinsey & Company | CA, USA | May 2025 – Present'",
             "- valid title example: 'Integration Engineer'",
             "- do not rewrite titles to imitate the target role",
+            "- keep experience titles coherent with the overall career lane, but allow JD-aligned retitling when the bullets credibly support it",
             "- recent roles should sell harder than older roles",
             "- each bullet must be 25-30 words",
             "",
@@ -2098,6 +2123,67 @@ def build_ai_reachout_prompt() -> str:
     )
 
 
+def build_ai_followup_prompt() -> str:
+    return "\n".join(
+        [
+            "You answer application follow-up questions as the candidate in first person.",
+            "Base every answer on the job description, the resume text, and the question.",
+            "Do not invent experience that is not supported by the resume.",
+            "If something is new or only partially supported, say that honestly and explain how the candidate approached learning or solving it.",
+            "Keep the answer concise.",
+            "Target roughly 60 to 110 words.",
+            "If the question is very simple, a shorter answer is better.",
+            "Do not go beyond 130 words.",
+            "",
+            "COMMUNICATION STYLE:",
+            "- use simple, everyday English",
+            "- keep sentences short and easy to say out loud",
+            "- avoid difficult words, corporate jargon, buzzwords, and textbook language",
+            "- sound natural, human, and easy to talk to",
+            "",
+            "TONE:",
+            "- calm",
+            "- friendly",
+            "- confident without sounding overconfident",
+            "- thoughtful and genuine",
+            "",
+            "HOW TO ANSWER:",
+            "- acknowledge the question naturally",
+            "- answer the main point first",
+            "- explain the reasoning using a real experience or simple example when helpful",
+            "- finish naturally and stop when the answer is complete",
+            "- do not add extra points after the answer is already complete",
+            "",
+            "STORYTELLING:",
+            "- explain experience like talking to a coworker",
+            "- do not force STAR or any formal interview framework",
+            "- focus on what happened, how it was approached, and what came out of it",
+            "",
+            "CONVERSATION RULES:",
+            "- it should feel like a discussion, not a presentation",
+            "- do not sound rehearsed or overly polished",
+            "- natural phrases like 'I think', 'Honestly', 'Usually', 'From my experience', 'At that point', 'That's what we did', 'That's how it worked', 'So after that', and 'One thing I noticed' are fine when they fit naturally",
+            "",
+            "MINDSET:",
+            "- do not pretend to know everything",
+            "- focus on solving problems instead of showing off knowledge",
+            "- explain the reasoning behind decisions before talking about tools or technologies",
+            "- prefer real situations over abstract claims",
+            "",
+            "AVOID:",
+            "- corporate buzzwords",
+            "- interview clichés",
+            "- long complicated sentences",
+            "- over-explaining",
+            "- generic motivational statements",
+            "- repeating the question in the answer",
+            "- talking longer than needed",
+            "",
+            "Return only the final answer text.",
+        ]
+    )
+
+
 def build_ai_core_review_prompt() -> str:
     return "\n".join(
         [
@@ -2121,21 +2207,24 @@ def build_ai_core_review_prompt() -> str:
 def build_ai_core_correction_prompt() -> str:
     return "\n".join(
         [
-            "You refine only the resume summary and skills section for a tailored target-fit resume.",
+            "You refine the final resume title system, summary, and skills for a tailored target-fit resume.",
             "Use the analysis object and current draft as the source of truth.",
-            "Keep the title unchanged outside the schema; only return Updated Summary and Updated Skills.",
-            "Inspect the current summary and skills, improve them only if needed, and otherwise keep them close to the draft.",
+            "Inspect the current top title, summary, skills, and experience titles. Improve them only if needed, and otherwise keep them close to the draft.",
             "Follow the role family and the JD facts from the analysis object.",
             "Use the skills_mentioned list, responsibilities, and workflows to keep the strongest role match visible.",
             "Use only the provided skill categories and keep them in the provided order.",
-            "Focus on sharper role emphasis, cleaner summary phrasing, and more concrete, believable skills.",
+            "Focus on sharper role emphasis, cleaner summary phrasing, more concrete believable skills, and coherent market-standard titles.",
             "Do not let the refinement smooth a data, platform, AI application, or solutions role back into generic software-engineering language.",
             "Do not replace strong concrete stack or workflow terms with broader wording just because it sounds cleaner.",
             "If the summary mentions years of experience at all, it must say 4+ years and never anything higher.",
             "Do not copy JD wording directly.",
             "Make the writing sound human and recruiter-natural, not optimized or assembled.",
             "Break up dense phrasing, remove stacked jargon, and rewrite truncated skill items into clean terms.",
-            "Do not touch professional experience.",
+            "Review experience titles together as one career story.",
+            "Experience titles may differ, but they must stay in the same semantic lane for the detected role family.",
+            "Avoid abrupt lane switching across companies unless the bullet context clearly forces it.",
+            "Top resume title and experience titles should support the same overall career narrative.",
+            "Do not rewrite experience bullets, company names, locations, or dates.",
             "Return only the final result matching the schema.",
         ]
     )
@@ -2422,18 +2511,25 @@ def ai_core_review_schema() -> dict:
     }
 
 
-def ai_core_correction_schema(allowed_skill_categories: list[str] | None = None) -> dict:
+def ai_core_correction_schema(allowed_skill_categories: list[str] | None = None, blueprints: list[dict] | None = None) -> dict:
     allowed_skill_categories = allowed_skill_categories or sorted(ALLOWED_SKILL_CATEGORIES)
+    blueprints = blueprints or []
     skill_item_schema = {
         "type": "string",
         "minLength": 2,
         "maxLength": 48,
         "pattern": r"^[A-Za-z0-9+#.&' -]+$",
     }
+    title_properties = {
+        blueprint["key"]: {"type": "string"}
+        for blueprint in blueprints
+    }
+    required_title_keys = [blueprint["key"] for blueprint in blueprints]
     return {
         "type": "object",
         "additionalProperties": False,
         "properties": {
+            "updated_title": {"type": "string"},
             "updated_summary": {"type": "string"},
             "updated_skills": {
                 "type": "array",
@@ -2448,8 +2544,14 @@ def ai_core_correction_schema(allowed_skill_categories: list[str] | None = None)
                     "required": ["category", "items"],
                 },
             },
+            "experience_titles": {
+                "type": "object",
+                "additionalProperties": False,
+                "properties": title_properties,
+                "required": required_title_keys,
+            },
         },
-        "required": ["updated_summary", "updated_skills"],
+        "required": ["updated_title", "updated_summary", "updated_skills", "experience_titles"],
     }
 
 
@@ -2519,7 +2621,6 @@ ENGINEERING_TITLE_MARKERS = {
     "backend",
     "applied ai",
 }
-
 
 def default_role_title_for_prompt_family(blueprint_key: str, prompt_family_key: str) -> str:
     family_defaults = DEFAULT_ROLE_TITLES_BY_PROMPT_FAMILY.get(
@@ -2728,6 +2829,17 @@ def merge_resume_payloads(core_payload: dict, experience_payload: dict) -> dict:
         or core_payload.get("_enabled_experience_keys")
         or list(EXPERIENCE_BLUEPRINT_KEYS),
     }
+
+
+def apply_reviewed_titles_to_experience_payload(experience_payload: dict, title_review_payload: dict) -> dict:
+    merged_payload = json.loads(json.dumps(experience_payload or {}))
+    experience = merged_payload.get("experience") or {}
+    reviewed_titles = title_review_payload.get("experience_titles") or {}
+    for key, title in reviewed_titles.items():
+        if key in experience and isinstance(experience.get(key), dict):
+            experience[key]["title"] = str(title or "").strip()
+    merged_payload["experience"] = experience
+    return merged_payload
 
 
 def collect_experience_title_warnings(experience_payload: dict, analysis_payload: dict | None = None) -> list[str]:
@@ -3405,13 +3517,37 @@ def validate_reachout_payload(reachout_payload: dict) -> list[str]:
 
     if "\n\n" in message:
         issues.append("Reachout message should stay compact.")
-    if len(message) > 300:
-        issues.append(f"Reachout message must be 300 characters or fewer; got {len(message)}.")
     if isinstance(char_count, int) and char_count != len(message):
         issues.append("Reachout character count does not match the message length.")
     if re.search(r"[•#\"“”]", message):
         issues.append("Reachout message contains unsupported formatting.")
 
+    return issues
+
+
+def validate_experience_title_review_payload(
+    title_review_payload: dict,
+    blueprints: list[dict],
+    analysis_payload: dict,
+) -> list[str]:
+    issues: list[str] = []
+    reviewed_titles = title_review_payload.get("experience_titles") or {}
+    for blueprint in blueprints:
+        title = str(reviewed_titles.get(blueprint["key"], "")).strip()
+        invalid_reason = invalid_experience_title_reason(title, blueprint)
+        if invalid_reason == "missing title":
+            issues.append(f"{blueprint['company']} is missing a reviewed title.")
+            continue
+        if invalid_reason == "metadata echo":
+            issues.append(f"{blueprint['company']} reviewed title is metadata instead of a role title: '{title}'.")
+            continue
+
+        normalized_title = title.lower()
+        prompt_family_key = infer_prompt_family_key((analysis_payload or {}).get("role_family", ""))
+        if prompt_family_key.startswith("analyst_") and any(marker in normalized_title for marker in ENGINEERING_TITLE_MARKERS):
+            issues.append(f"{blueprint['company']} reviewed title '{title}' conflicts with the analyst role family.")
+        if prompt_family_key == "gtm_engineering" and "gtm engineer" not in normalized_title and any(marker in normalized_title for marker in ENGINEERING_TITLE_MARKERS):
+            issues.append(f"{blueprint['company']} reviewed title '{title}' conflicts with the GTM role family.")
     return issues
 
 
@@ -3702,6 +3838,7 @@ def refine_core_sections(
     analysis_payload: dict,
     title_summary_payload: dict,
     skills_payload: dict,
+    experience_payload: dict | None = None,
 ) -> dict:
     compact_analysis = compact_analysis_for_generation(analysis_payload)
     current_core = merge_core_sections(title_summary_payload, skills_payload)
@@ -3709,6 +3846,25 @@ def refine_core_sections(
         analysis_payload.get("role_family", "")
     )
     ordered_categories = skill_category_order_for_key(order_key)
+    blueprints = filter_blueprints_by_enabled_keys(
+        current_experience_blueprints(),
+        (experience_payload or {}).get("_enabled_experience_keys"),
+    )
+    title_context = []
+    experience = (experience_payload or {}).get("experience") or {}
+    for blueprint in blueprints:
+        entry = experience.get(blueprint["key"]) or {}
+        bullets = [str(bullet).strip() for bullet in entry.get("bullets", []) if str(bullet).strip()]
+        title_context.append(
+            {
+                "key": blueprint["key"],
+                "company": blueprint["company"],
+                "location": blueprint["location"],
+                "dates": blueprint["dates"],
+                "current_title": str(entry.get("title", "")).strip(),
+                "bullets": bullets,
+            }
+        )
     user_parts = [
         "Analysis:",
         json.dumps(compact_analysis, ensure_ascii=False, separators=(",", ":")),
@@ -3719,6 +3875,8 @@ def refine_core_sections(
         "Candidate experience framing: 4+ years. If the summary mentions years of experience at all, use 4+ years and never anything higher.",
         "Current core:",
         json.dumps(current_core, ensure_ascii=False, separators=(",", ":")),
+        "Current experience title context:",
+        json.dumps(title_context, ensure_ascii=False, separators=(",", ":")),
     ]
     return call_openai_structured_output(
         api_key=api_key,
@@ -3727,7 +3885,7 @@ def refine_core_sections(
         developer_prompt=build_ai_core_correction_prompt(),
         user_prompt="\n\n".join(user_parts),
         schema_name="resume_core_correction",
-        schema=ai_core_correction_schema(ordered_categories),
+        schema=ai_core_correction_schema(ordered_categories, blueprints),
         max_output_tokens=with_output_headroom(2600, MEDIUM_OUTPUT_HEADROOM),
         request_timeout_seconds=OPENAI_RESUME_TIMEOUT_SECONDS,
         reasoning_effort="low",
@@ -3959,11 +4117,42 @@ def generate_reachout_message(
     )
     message = str(message).strip().replace("\r\n", "\n").replace("\r", "\n")
     message = "\n".join(line.strip() for line in message.split("\n") if line.strip())
-    if len(message) > 300:
-        message = message[:300].rstrip()
-        if " " in message:
-            message = message.rsplit(" ", 1)[0].rstrip(" ,.;")
     return {"message": message, "char_count": len(message)}
+
+
+def generate_followup_answer(
+    *,
+    api_key: str,
+    job_description: str,
+    analysis_payload: dict,
+    question: str,
+    resume_pdf_text: str,
+) -> dict:
+    compact_analysis = compact_analysis_for_generation(analysis_payload)
+    user_parts = [
+        f"Job description:\n{job_description.strip()}",
+        "JD analysis:",
+        json.dumps(compact_analysis, ensure_ascii=False, separators=(",", ":")),
+        f"Candidate resume from final PDF:\n{resume_pdf_text.strip()}",
+        f"Follow-up question:\n{question.strip()}",
+        "Answer as the candidate in first person.",
+    ]
+
+    answer = call_openai_text_output(
+        api_key=api_key,
+        model=RESUME_MODEL,
+        temperature=RESUME_TEMPERATURE,
+        developer_prompt=build_ai_followup_prompt(),
+        user_prompt="\n\n".join(user_parts),
+        max_output_tokens=with_output_headroom(1800, MEDIUM_OUTPUT_HEADROOM),
+        request_timeout_seconds=OPENAI_RESUME_TIMEOUT_SECONDS,
+        reasoning_effort="low",
+    ).strip()
+
+    if not answer:
+        raise RuntimeError("Follow-up answer generation returned an empty answer.")
+
+    return {"answer": answer}
 
 
 def call_openai_resume_engine(
@@ -5369,17 +5558,24 @@ def review_ai_core():
             analysis_payload.get("role_family", "")
         )
         ordered_categories = skill_category_order_for_key(order_key)
+        experience_payload = None
+        if session.get("experience_recent") and session.get("experience_older"):
+            experience_payload = {"experience": {}}
+            experience_payload["experience"].update(session["experience_recent"].get("experience", {}))
+            experience_payload["experience"].update(session["experience_older"].get("experience", {}))
+            experience_payload["_enabled_experience_keys"] = enabled_experience_keys
         started = time.perf_counter()
         corrected_payload = refine_core_sections(
             api_key=api_key,
             analysis_payload=analysis_payload,
             title_summary_payload=title_summary,
             skills_payload=skills_payload,
+            experience_payload=experience_payload,
         )
         timing = {"core_refinement_ms": int((time.perf_counter() - started) * 1000)}
 
         corrected_title_summary = {
-            "updated_title": str(title_summary.get("updated_title", "")).strip(),
+            "updated_title": str(corrected_payload.get("updated_title", "")).strip() or str(title_summary.get("updated_title", "")).strip(),
             "updated_summary": str(corrected_payload.get("updated_summary", "")).strip(),
         }
         corrected_skills = normalize_skills_for_order(
@@ -5389,16 +5585,30 @@ def review_ai_core():
 
         summary_issues = validate_title_summary_payload(corrected_title_summary, analysis_payload, summary_max_buffer=10)
         skills_issues = validate_skills_only_payload(corrected_skills, analysis_payload)
-        issues = summary_issues + skills_issues
+        title_review_issues = []
+        if experience_payload:
+            blueprints = filter_blueprints_by_enabled_keys(current_experience_blueprints(), enabled_experience_keys)
+            title_review_issues = validate_experience_title_review_payload(corrected_payload, blueprints, analysis_payload)
+        issues = summary_issues + skills_issues + title_review_issues
         if issues:
             corrected_title_summary = title_summary
             corrected_skills = skills_payload
             revised = False
         else:
             revised = (
+                corrected_title_summary.get("updated_title", "").strip() != str(title_summary.get("updated_title", "")).strip()
+                or
                 corrected_title_summary.get("updated_summary", "").strip() != str(title_summary.get("updated_summary", "")).strip()
                 or normalize_updated_skills(corrected_skills.get("updated_skills", []))
                 != normalize_updated_skills(skills_payload.get("updated_skills", []))
+                or (
+                    experience_payload is not None
+                    and any(
+                        str(((corrected_payload.get("experience_titles") or {}).get(key, "")).strip())
+                        != str((((experience_payload.get("experience") or {}).get(key) or {}).get("title", "")).strip())
+                        for key in (corrected_payload.get("experience_titles") or {}).keys()
+                    )
+                )
             )
 
         session["title_summary"] = corrected_title_summary
@@ -5406,16 +5616,21 @@ def review_ai_core():
         session["core_resume"] = merge_core_sections(session["title_summary"], session["skills"])
         session["core_resume"]["_analysis"] = analysis_payload
         session["core_resume"]["_enabled_experience_keys"] = enabled_experience_keys
+        if experience_payload:
+            reviewed_recent = apply_reviewed_titles_to_experience_payload(session["experience_recent"], corrected_payload)
+            reviewed_older = apply_reviewed_titles_to_experience_payload(session["experience_older"], corrected_payload)
+            session["experience_recent"] = reviewed_recent
+            session["experience_older"] = reviewed_older
         session["updated_at"] = time.time()
         timing["total_ms"] = timing["core_refinement_ms"]
 
         response_content = format_core_resume_text(session["core_resume"])
-        experience_payload = None
         title_warnings: list[str] = []
-        if session.get("experience_recent") and session.get("experience_older"):
+        if experience_payload:
             experience_payload = {"experience": {}}
             experience_payload["experience"].update(session["experience_recent"].get("experience", {}))
             experience_payload["experience"].update(session["experience_older"].get("experience", {}))
+            experience_payload["_enabled_experience_keys"] = enabled_experience_keys
             response_content = format_generated_resume_text(merge_resume_payloads(session["core_resume"], experience_payload))
             title_warnings = collect_experience_title_warnings(experience_payload, analysis_payload)
 
@@ -5688,6 +5903,69 @@ def generate_ai_reachout():
             "analysis": e.analysis,
             "timing": e.timing,
             "session_id": session_id if 'session_id' in locals() else None,
+        }), 500
+    except Exception as e:
+        return jsonify({"success": False, "error": str(e)}), 500
+
+
+@app.route("/api/ai/generate-followup", methods=["POST"])
+def generate_ai_followup():
+    try:
+        data = request.get_json() or {}
+        job_description = str(data.get("job_description", "")).strip()
+        question = str(data.get("question", "")).strip()
+        pdf_path = str(data.get("pdf_path", "")).strip()
+        session_id = str(data.get("session_id", "")).strip() or None
+
+        if not job_description:
+            return jsonify({"success": False, "error": "Job description is required"}), 400
+        if not question:
+            return jsonify({"success": False, "error": "A follow-up question is required."}), 400
+        if not pdf_path:
+            return jsonify({"success": False, "error": "Generate the final PDF first before answering follow-up questions."}), 400
+        if not session_id or session_id not in ai_sessions:
+            return jsonify({"success": False, "error": "An active JD session is required before answering follow-up questions."}), 400
+
+        session = ai_sessions[session_id]
+        analysis_payload = session.get("analysis")
+        if not analysis_payload:
+            return jsonify({"success": False, "error": "JD analysis is required before answering follow-up questions."}), 400
+
+        api_key = os.getenv("OPENAI_API_KEY", "").strip()
+        if not api_key:
+            return jsonify({"success": False, "error": "OPENAI_API_KEY is not configured"}), 500
+
+        resume_pdf_text = extract_text_from_pdf(pdf_path)
+
+        started = time.perf_counter()
+        try:
+            followup_payload = generate_followup_answer(
+                api_key=api_key,
+                job_description=job_description,
+                analysis_payload=analysis_payload,
+                question=question,
+                resume_pdf_text=resume_pdf_text,
+            )
+        except Exception as exc:
+            raise AIStageError("followup_generation", f"Follow-up answer generation failed: {exc}", analysis=analysis_payload) from exc
+
+        timing = {"followup_ms": int((time.perf_counter() - started) * 1000)}
+        timing["total_ms"] = timing["followup_ms"]
+        session["updated_at"] = time.time()
+
+        return jsonify({
+            "success": True,
+            "session_id": session_id,
+            "followup": followup_payload,
+            "timing": timing,
+        })
+    except AIStageError as e:
+        return jsonify({
+            "success": False,
+            "error": str(e),
+            "stage": e.stage,
+            "analysis": e.analysis,
+            "timing": e.timing,
         }), 500
     except Exception as e:
         return jsonify({"success": False, "error": str(e)}), 500

@@ -539,6 +539,7 @@ export default function App() {
   const [latestAnalysis, setLatestAnalysis] = useState(null);
   const [generatingAi, setGeneratingAi] = useState(false);
   const [reachoutLoading, setReachoutLoading] = useState(false);
+  const [followupLoading, setFollowupLoading] = useState(false);
   const [aiStage, setAiStage] = useState("");
   const [previewEditMode, setPreviewEditMode] = useState(false);
   const [pdfState, setPdfState] = useState({
@@ -1481,7 +1482,7 @@ export default function App() {
   function handleComposerKeyDown(event) {
     if (event.key === "Enter" && !event.shiftKey) {
       event.preventDefault();
-      if (!generatingAi && !reachoutLoading) {
+      if (!generatingAi && !reachoutLoading && !followupLoading) {
         submitAiGeneration();
       }
     }
@@ -1523,6 +1524,60 @@ export default function App() {
       setAiError(error.message || "Reachout generation failed.");
     } finally {
       setReachoutLoading(false);
+    }
+  }
+
+  async function submitFollowupAnswer() {
+    const question = composerInput.trim();
+    if (!question) {
+      setAiError("Type the follow-up question first.");
+      return;
+    }
+
+    if (!lastGeneratedJd.trim() || !aiSessionId) {
+      setAiError("Generate a resume first before answering follow-up questions.");
+      return;
+    }
+
+    if (!pdfState.pdfPath) {
+      setAiError("Generate the final PDF first before answering follow-up questions.");
+      return;
+    }
+
+    setFollowupLoading(true);
+    setAiError("");
+
+    try {
+      const data = await fetchJson("/api/ai/generate-followup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          job_description: lastGeneratedJd,
+          question,
+          pdf_path: pdfState.pdfPath,
+          session_id: aiSessionId,
+        }),
+      });
+
+      const answer = (data.followup?.answer || "").trim();
+      setComposerInput("");
+      setAiThread((current) => [
+        ...current,
+        {
+          kind: "user",
+          title: "Follow-up Question",
+          lines: [question],
+        },
+        {
+          kind: "assistant",
+          title: "Follow-up Answer",
+          lines: [answer],
+        },
+      ]);
+    } catch (error) {
+      setAiError(error.message || "Follow-up answer generation failed.");
+    } finally {
+      setFollowupLoading(false);
     }
   }
 
@@ -1622,6 +1677,20 @@ export default function App() {
               </div>
             ) : null}
 
+            {followupLoading ? (
+              <div className="loading-card" aria-live="polite">
+                <div className="loading-card-header">Resume Engine</div>
+                <div className="loading-card-body">
+                  <div className="loading-dots">
+                    <span />
+                    <span />
+                    <span />
+                  </div>
+                  <div className="loading-copy">Writing a follow-up answer from the final PDF...</div>
+                </div>
+              </div>
+            ) : null}
+
                 {showGeneratedArea ? (
                   <div className="chat-block">
                     <div className="message-label">
@@ -1645,10 +1714,17 @@ export default function App() {
                   <button className="composer-pill" onClick={() => resetAiSession(true)}>New JD</button>
                   <button
                     className="composer-pill"
-                    disabled={!profileReady || !showGeneratedArea || !generatedContent.trim() || generatingAi || reachoutLoading}
+                    disabled={!profileReady || !showGeneratedArea || !generatedContent.trim() || generatingAi || reachoutLoading || followupLoading}
                     onClick={submitReachoutMessage}
                   >
                     {reachoutLoading ? "Writing..." : "Reachout"}
+                  </button>
+                  <button
+                    className="composer-pill"
+                    disabled={!profileReady || !showGeneratedArea || !pdfState.pdfPath || generatingAi || reachoutLoading || followupLoading}
+                    onClick={submitFollowupAnswer}
+                  >
+                    {followupLoading ? "Writing..." : "Follow-up"}
                   </button>
                 </div>
                 <div className="composer-toolbar-right">
@@ -1657,6 +1733,7 @@ export default function App() {
                   </span>
                   <button
                     className={`composer-icon-button ${recordingTarget === (showGeneratedArea ? "refinement" : "jd") ? "recording" : ""}`}
+                    disabled={generatingAi || reachoutLoading || followupLoading}
                     onClick={() => startVoiceInput(showGeneratedArea ? "refinement" : "jd", setComposerInput)}
                     aria-label={recordingTarget === (showGeneratedArea ? "refinement" : "jd") ? "Stop voice input" : "Start voice input"}
                   >
@@ -1664,7 +1741,7 @@ export default function App() {
                   </button>
                   <button
                     className="composer-send-button"
-                    disabled={!profileReady || generatingAi || reachoutLoading}
+                    disabled={!profileReady || generatingAi || reachoutLoading || followupLoading}
                     onClick={submitAiGeneration}
                     aria-label={showGeneratedArea ? "Update draft" : "Generate content"}
                   >
