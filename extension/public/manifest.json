@@ -1,0 +1,82 @@
+{
+  "manifest_version": 3,
+  "name": "Resume Generator Companion",
+  "version": "1.2.1",
+  "description": "Generate tailored resumes and fill job applications from one persistent browser panel.",
+  "permissions": ["sidePanel", "storage", "tabs", "webNavigation", "scripting", "activeTab", "clipboardWrite"],
+  "host_permissions": [
+    "https://www.linkedin.com/*",
+    "*://jobs.lever.co/*",
+    "*://*.lever.co/*",
+    "*://boards.greenhouse.io/*",
+    "*://*.greenhouse.io/*",
+    "*://*.workday.com/*",
+    "*://*.myworkdayjobs.com/*",
+    "*://*.myworkdaysite.com/*",
+    "*://*.ashbyhq.com/*",
+    "*://*.ashby.com/*",
+    "*://*.icims.com/*",
+    "*://*.taleo.net/*",
+    "*://*.oraclecloud.com/*",
+    "*://*.smartrecruiters.com/*",
+    "*://*.jobvite.com/*",
+    "*://*.avature.net/*",
+    "*://*.successfactors.com/*",
+    "*://*.phenompeople.com/*",
+    "*://careers.phenom.com/*",
+    "*://careers.google.com/*",
+    "*://www.google.com/*",
+    "http://127.0.0.1/*",
+    "http://localhost/*"
+  ],
+  "background": {
+    "service_worker": "service-worker.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "exclude_matches": ["https://www.linkedin.com/jobs/*"],
+      "js": ["panel-host.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["https://www.linkedin.com/jobs/*"],
+      "js": ["content-script.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "*://jobs.lever.co/*", "*://*.lever.co/*",
+        "*://boards.greenhouse.io/*", "*://*.greenhouse.io/*",
+        "*://*.workday.com/*", "*://*.myworkdayjobs.com/*", "*://*.myworkdaysite.com/*",
+        "*://*.linkedin.com/*", "*://*.ashbyhq.com/*", "*://*.ashby.com/*",
+        "*://*.icims.com/*", "*://*.taleo.net/*", "*://*.oraclecloud.com/*",
+        "*://*.smartrecruiters.com/*", "*://*.jobvite.com/*", "*://*.avature.net/*",
+        "*://*.successfactors.com/*", "*://*.phenompeople.com/*", "*://careers.phenom.com/*",
+        "*://careers.google.com/*", "*://www.google.com/*"
+      ],
+      "js": ["autofill-config.js", "autofill-matcher.js", "autofill-content.js"],
+      "all_frames": true,
+      "match_about_blank": true,
+      "run_at": "document_idle"
+    }
+  ],
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  },
+  "action": {
+    "default_title": "Open Resume Generator",
+    "default_popup": "launcher.html"
+  },
+  "options_page": "options.html",
+  "web_accessible_resources": [
+    {
+      "resources": ["sidepanel.html", "assets/*"],
+      "matches": ["http://*/*", "https://*/*"]
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'; frame-src http://127.0.0.1:* http://localhost:* blob:"
+  }
+}

@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resume Generator Settings</title>
+  </head>
+  <body>
+    <main class="options-shell">
+      <h1>Resume Generator connection</h1>
+      <p>The extension connects only to your local resume server.</p>
+      <form id="server-form">
+        <label for="server-url">Local server URL</label>
+        <input id="server-url" type="url" required />
+        <button type="submit">Save</button>
+        <span id="status" role="status"></span>
+      </form>
+    </main>
+    <script type="module" src="/src/options.js"></script>
+  </body>
+</html>

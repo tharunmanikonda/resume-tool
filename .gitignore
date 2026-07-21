@@ -79,3 +79,11 @@ CLEANUP_SUMMARY.md
 # Local profile documents
 config/user_profile.json
 config/session_profile.json
+
+# Local application state
+config/application_tracker.json
+config/resume_tool.db
+
+# Local agent/plugin installation artifacts
+.agents/
+*.tgz

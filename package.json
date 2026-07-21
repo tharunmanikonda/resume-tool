@@ -1,7 +1,10 @@
 {
   "scripts": {
-    "build": "vite build",
-    "dev": "vite"
+    "build": "npm run build:app && npm run build:extension",
+    "build:app": "vite build",
+    "build:extension": "vite build --config vite.extension.config.js",
+    "dev": "vite",
+    "dev:extension": "vite build --config vite.extension.config.js --watch"
   },
   "dependencies": {
     "react": "^19.2.5",
@@ -9,6 +12,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^5.1.0",
+    "playwright": "^1.61.1",
     "vite": "^8.0.10"
   }
 }

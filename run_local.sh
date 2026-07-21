@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-ROOT_DIR="/Users/tharun/resume-tool"
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$ROOT_DIR"
 
 if [ ! -x ".venv/bin/python" ]; then
@@ -18,7 +18,5 @@ fi
 echo "Building frontend assets..."
 npm run build
 
-export FLASK_PORT="${FLASK_PORT:-5001}"
-
-echo "Starting app at http://127.0.0.1:${FLASK_PORT}"
+echo "Starting app (FLASK_PORT from the environment or .env; default 5001)"
 exec .venv/bin/python app.py

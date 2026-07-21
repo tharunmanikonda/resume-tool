@@ -1,43 +1,30 @@
 {
   "output_directory": "/Users/tharun/Documents/tharun-resume",
   "keep_docx": true,
-  "profile": {
-    "name": "MANIKONDA THARUN",
-    "contact": {
+  "identities": [
+    {
+      "id": "outlook",
+      "label": "Outlook",
       "location": "California, USA",
       "phone": "(205)259-8634",
-      "email": "tharun.manikonda1@outlook.com"
+      "email": "tharun.manikonda1@outlook.com",
+      "format_profile": "outlook"
     },
-    "projects": [
-      {
-        "name": "Enterprise AI Document Assistant (RAG System)",
-        "bullets": [
-          "Architected a Retrieval-Augmented Generation (RAG) system using Python and LangChain to automate information extraction across 5,000+ enterprise documents, achieving 92% retrieval precision.",
-          "Implemented a vector search pipeline using Pinecone with tuned chunking strategies (512-token segments with overlap), delivering semantic search responses in under 500ms.",
-          "Leveraged GitHub Copilot and Cursor to develop FastAPI endpoints and React.js dashboards, reducing the end-to-end development cycle by 40%.",
-          "Integrated AWS S3 for document storage, enabling semantic search results in under 500ms for complex queries."
-        ]
-      },
-      {
-        "name": "NotchSafe \u2014 macOS Productivity Utility",
-        "bullets": [
-          "Engineered a native macOS utility using Swift and SwiftUI that transforms the MacBook notch into an interactive hub for encrypted storage and clipboard management.",
-          "Integrated AES-256-GCM encryption and Touch ID biometric authentication, ensuring secure file handling with zero external dependencies.",
-          "Designed a persistent clipboard monitoring system using NSEvent, resulting in a lightweight footprint (<5MB binary) and minimal system memory usage."
-        ]
-      },
-      {
-        "name": "SmartHealth iOS: AI-Driven Wellness Tracker",
-        "bullets": [
-          "Developed a native iOS application using Swift and CoreML to provide real-time wellness insights based on user activity and behavioral data.",
-          "Integrated a local NLP model for automated journaling and sentiment analysis of daily health logs."
-        ]
-      }
-    ],
-    "certifications": [
-      "AWS Certified Solutions Architect \u2013 Associate",
-      "Certified MERN Developer \u2013 Namaste Dev",
-      "Node.js Certified Developer \u2013 Coursera"
-    ]
-  }
+    {
+      "id": "gmail",
+      "label": "Gmail",
+      "location": "Dallas, TX",
+      "phone": "(469)963-5323",
+      "email": "tmanikonda.1@gmail.com",
+      "format_profile": "gmail"
+    },
+    {
+      "id": "identity-1780184456728-5ieyx",
+      "label": "9381 email",
+      "location": "Dallas, TX",
+      "phone": "(205)413-5995",
+      "email": "tharunmanikonda9381@gmail.com",
+      "format_profile": "gmail"
+    }
+  ]
 }

@@ -512,6 +512,10 @@ function PriorApplicationsList({ history }) {
 }
 
 export default function App() {
+  const [extensionDraftId] = useState(() => new URLSearchParams(window.location.search).get("draft") || "");
+  const [extensionDraftLocked, setExtensionDraftLocked] = useState(false);
+  const [extensionDraftSaveState, setExtensionDraftSaveState] = useState("");
+  const [profileLoaded, setProfileLoaded] = useState(false);
   const [profile, setProfile] = useState(emptyProfile);
   const [profileDraft, setProfileDraft] = useState(emptyProfile);
   const [onboardingRequired, setOnboardingRequired] = useState(false);
@@ -526,6 +530,7 @@ export default function App() {
   const [enabledExperienceKeys, setEnabledExperienceKeys] = useState([]);
   const [companyName, setCompanyName] = useState("");
   const [composerInput, setComposerInput] = useState("");
+  const [resumeJobContext, setResumeJobContext] = useState(null);
   const [generatedContent, setGeneratedContent] = useState("");
   const [preview, setPreview] = useState(null);
   const [validation, setValidation] = useState({ valid: false, errors: [] });
@@ -584,6 +589,8 @@ export default function App() {
   const mediaChunksRef = useRef([]);
   const streamRef = useRef(null);
   const previewRequestSeqRef = useRef(0);
+  const extensionDraftHydratedRef = useRef(false);
+  const extensionDraftLastSavedRef = useRef("");
   const [recordingTarget, setRecordingTarget] = useState("");
 
   useEffect(() => {
@@ -618,7 +625,8 @@ export default function App() {
           setModals((current) => ({ ...current, profile: true }));
         }
       })
-      .catch(() => {});
+      .catch(() => {})
+      .finally(() => setProfileLoaded(true));
 
     fetchJson("/api/ai/status")
       .then((data) => setAiStatus(data))
@@ -628,6 +636,70 @@ export default function App() {
 
     loadTracker();
   }, []);
+
+  useEffect(() => {
+    if (!extensionDraftId || !profileLoaded || extensionDraftHydratedRef.current) return;
+    extensionDraftHydratedRef.current = true;
+    fetchJson(`/api/extension/drafts/${encodeURIComponent(extensionDraftId)}/editor-session`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({}),
+    })
+      .then((data) => {
+        const draft = data.draft;
+        const history = normalizeExperienceHistory(draft.experience_history_snapshot || []);
+        setAiSessionId(data.session_id || null);
+        setLastGeneratedJd(draft.job_description || "");
+        setLatestAnalysis(draft.analysis || null);
+        setGeneratedContent(draft.resume_content || "");
+        setCompanyName(draft.company_name || "");
+        setIdentity(draft.identity_id || "");
+        setContact({
+          location: draft.contact_snapshot?.location || "",
+          phone: draft.contact_snapshot?.phone || "",
+          email: draft.contact_snapshot?.email || "",
+        });
+        setEditableExperienceHistory(history);
+        setEnabledExperienceKeys(draft.enabled_experience_keys || allEnabledExperienceKeys(history));
+        setResumeJobContext({
+          id: "",
+          draft_id: draft.id,
+          title: draft.role_title || "",
+          company_name: draft.company_name || "",
+          job_url: draft.canonical_url || "",
+        });
+        setPreview(draft.preview || draft.resume_snapshot || null);
+        setShowGeneratedArea(!!draft.resume_content);
+        setExtensionDraftLocked(!!draft.locked);
+        setTab(draft.status === "pdf_ready" ? "pdf" : "parsed");
+        setPdfState(draft.pdf_path ? {
+          mode: draft.status === "pdf_ready" ? "ready" : (draft.status === "pdf_generating" ? "polling" : "idle"),
+          error: "",
+          statusPath: draft.pdf_status_path || "",
+          pdfPath: draft.pdf_path || "",
+          outputDir: draft.output_dir || "",
+          statusLabel: draft.status === "pdf_ready" ? "PDF ready" : "Generating PDF...",
+        } : {
+          mode: "idle", error: "", statusPath: "", pdfPath: "", outputDir: "", statusLabel: "",
+        });
+        setAiThread([{
+          kind: "assistant",
+          title: draft.locked ? "Applied Resume" : "LinkedIn Draft Loaded",
+          lines: [draft.locked ? "This applied resume is locked." : "Edits in this page save back to the LinkedIn side-panel draft."],
+        }]);
+        extensionDraftLastSavedRef.current = JSON.stringify({
+          content: draft.resume_content || "",
+          company: draft.company_name || "",
+          identity: draft.identity_id || "",
+          enabled: draft.enabled_experience_keys || [],
+          history,
+        });
+      })
+      .catch((error) => {
+        extensionDraftHydratedRef.current = false;
+        setAiError(error.message || "Could not load the LinkedIn resume draft.");
+      });
+  }, [extensionDraftId, profileLoaded]);
 
   useEffect(() => {
     const identities = normalizeIdentityProfiles(settings.identities || []);
@@ -706,6 +778,45 @@ export default function App() {
       setEditableExperienceHistory(derivedHistory);
     }
   }, [generatedContent]);
+
+  useEffect(() => {
+    if (!extensionDraftId || !extensionDraftHydratedRef.current || extensionDraftLocked || !generatedContent.trim() || generatingAi) return undefined;
+    const fingerprint = JSON.stringify({
+      content: generatedContent,
+      company: companyName,
+      identity,
+      enabled: sanitizedEnabledExperienceKeys,
+      history: editableExperienceHistory,
+    });
+    if (fingerprint === extensionDraftLastSavedRef.current) return undefined;
+    setExtensionDraftSaveState("Saving draft...");
+    const timer = window.setTimeout(() => {
+      extensionDraftLastSavedRef.current = fingerprint;
+      fetchJson(`/api/extension/drafts/${encodeURIComponent(extensionDraftId)}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          resume_content: generatedContent,
+          company_name: companyName,
+          identity_id: identity,
+          enabled_experience_keys: sanitizedEnabledExperienceKeys,
+          experience_history: editableExperienceHistory,
+        }),
+      })
+        .then((data) => {
+          setPreview(data.draft?.preview || preview);
+          setExtensionDraftSaveState("Draft saved");
+          if (data.draft?.pdf_stale) {
+            setPdfState({ mode: "idle", error: "", statusPath: "", pdfPath: "", outputDir: "", statusLabel: "" });
+          }
+        })
+        .catch((error) => {
+          extensionDraftLastSavedRef.current = "";
+          setExtensionDraftSaveState(error.message || "Draft save failed");
+        });
+    }, 800);
+    return () => window.clearTimeout(timer);
+  }, [extensionDraftId, extensionDraftLocked, generatedContent, companyName, identity, enabledExperienceKeys, editableExperienceHistory, generatingAi]);
 
   useEffect(() => {
     if (pdfState.mode !== "polling" || !pdfState.statusPath) return undefined;
@@ -826,6 +937,7 @@ export default function App() {
     setLatestAnalysis(null);
     setGeneratedContent("");
     setAiStage("");
+    setResumeJobContext(null);
     setEnabledExperienceKeys(allEnabledExperienceKeys(editableExperienceHistory));
     if (clearJd) setComposerInput("");
 
@@ -875,6 +987,7 @@ export default function App() {
           source: trackApplyDraft.source,
           job_url: trackApplyDraft.job_url,
           notes: trackApplyDraft.notes,
+          job_id: resumeJobContext?.id || "",
           pdf_path: pdfState.pdfPath,
           output_dir: pdfState.outputDir,
           contact_override: contact,
@@ -1148,6 +1261,7 @@ export default function App() {
         setValidation({ valid: false, errors: [] });
       }
       setCompanyName("");
+      if (!resumeJobContext?.id) setResumeJobContext(null);
       setEnabledExperienceKeys(allEnabledExperienceKeys(editableExperienceHistory));
     }
 
@@ -1289,6 +1403,35 @@ export default function App() {
     setTab("pdf");
 
     try {
+      if (extensionDraftId) {
+        const latestHistory = deriveExperienceHistoryFromContent(generatedContent, editableExperienceHistory);
+        await fetchJson(`/api/extension/drafts/${encodeURIComponent(extensionDraftId)}`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            resume_content: generatedContent,
+            company_name: companyName,
+            identity_id: identity,
+            enabled_experience_keys: sanitizedEnabledExperienceKeys,
+            experience_history: latestHistory,
+          }),
+        });
+        const result = await fetchJson(`/api/extension/drafts/${encodeURIComponent(extensionDraftId)}/pdf`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({}),
+        });
+        const savedDraft = result.draft;
+        setPdfState({
+          mode: "polling",
+          error: "",
+          statusPath: savedDraft.pdf_status_path,
+          pdfPath: savedDraft.pdf_path,
+          outputDir: savedDraft.output_dir,
+          statusLabel: "Generating PDF...",
+        });
+        return;
+      }
       const previewData = await requestPreview(generatedContent);
       const latestPreview = previewData?.preview || preview;
       const latestHistory = deriveExperienceHistoryFromContent(generatedContent, editableExperienceHistory);
@@ -1299,6 +1442,7 @@ export default function App() {
         body: JSON.stringify({
           content: generatedContent,
           company_name: companyName,
+          job_id: resumeJobContext?.id || "",
           contact_override: contact,
           identity,
           experience_history_override: latestHistory,
@@ -1606,6 +1750,7 @@ export default function App() {
             <button
               key={item.id}
               className={`toggle-button identity-pill ${identity === item.id ? "active" : ""}`}
+              disabled={extensionDraftLocked}
               onClick={() => selectIdentity(item.id)}
             >
               <span>{item.label}</span>
@@ -1705,7 +1850,11 @@ export default function App() {
               <textarea
                 className="composer-textarea"
                 value={composerInput}
-                onChange={(e) => setComposerInput(e.target.value)}
+                disabled={extensionDraftLocked}
+                onChange={(e) => {
+                  setComposerInput(e.target.value);
+                  setResumeJobContext(null);
+                }}
                 onKeyDown={handleComposerKeyDown}
                 placeholder={showGeneratedArea ? "Ask for changes for this JD only" : "Paste the full job description here"}
               />
@@ -1741,7 +1890,7 @@ export default function App() {
                   </button>
                   <button
                     className="composer-send-button"
-                    disabled={!profileReady || generatingAi || reachoutLoading || followupLoading}
+                    disabled={!profileReady || extensionDraftLocked || generatingAi || reachoutLoading || followupLoading}
                     onClick={submitAiGeneration}
                     aria-label={showGeneratedArea ? "Update draft" : "Generate content"}
                   >
@@ -1757,16 +1906,18 @@ export default function App() {
           <div className="preview-toolbar">
             <div className="preview-toolbar-left">
               <div className="panel-eyebrow">Output</div>
+              {extensionDraftId && extensionDraftSaveState ? <div className="extension-draft-save-state">{extensionDraftSaveState}</div> : null}
               <div className="preview-toolbar-actions">
                 <input
                   className="preview-company-input"
                   value={companyName}
+                  disabled={extensionDraftLocked}
                   onChange={(e) => setCompanyName(e.target.value)}
                   placeholder="Company name (required)"
                 />
                 <button
                   className="primary-button"
-                  disabled={!profileReady || !canGeneratePdf || !companyName.trim() || pdfState.mode === "loading" || pdfState.mode === "polling"}
+                  disabled={!profileReady || extensionDraftLocked || !canGeneratePdf || !companyName.trim() || pdfState.mode === "loading" || pdfState.mode === "polling"}
                   onClick={submitPdfGeneration}
                 >
                   Generate PDF
@@ -1774,7 +1925,7 @@ export default function App() {
               </div>
             </div>
             <div className="preview-toolbar-right">
-              {tab === "parsed" && preview ? (
+              {tab === "parsed" && preview && !extensionDraftLocked ? (
                 <button
                   className="secondary-button"
                   onClick={togglePreviewEditMode}
@@ -1795,6 +1946,7 @@ export default function App() {
                   <button
                     key={item.key}
                     className={`toggle-button experience-pill ${sanitizedEnabledExperienceKeys.includes(item.key) ? "active" : ""}`}
+                    disabled={extensionDraftLocked}
                     onClick={() => toggleExperienceKey(item.key)}
                     title={sanitizedEnabledExperienceKeys.includes(item.key) ? "Included in this draft" : "Hidden from this draft"}
                   >
@@ -1833,6 +1985,7 @@ export default function App() {
                     <textarea
                       className="preview-editor"
                       value={generatedContent}
+                      disabled={extensionDraftLocked}
                       onChange={(e) => setGeneratedContent(e.target.value)}
                     />
                   </div>

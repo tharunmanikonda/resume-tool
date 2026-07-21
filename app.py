@@ -17,10 +17,15 @@ import urllib.error
 import urllib.request
 import uuid
 import tempfile
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from datetime import datetime, timezone
 
 from dotenv import load_dotenv
+
+# Environment-backed database configuration must be loaded before database modules.
+load_dotenv()
+
 from flask import Flask, render_template, request, jsonify, send_file, Response
 from desktop_runtime import (
     default_output_dir,
@@ -32,10 +37,8 @@ from desktop_runtime import (
 )
 from manual_resume_parser import parse_updated_content_to_resume, validate_updated_content
 from pdf_builder import build_resume_docx, is_pdf_conversion_ready
-
-# Load environment variables from .env file
-load_dotenv()
-
+from extension_drafts import ExtensionDraftStore, normalize_context, validate_context
+from database import init_db
 
 # Configuration
 app = Flask(__name__)
@@ -72,6 +75,8 @@ def save_settings(settings_dict):
     write_json_file(Path(SETTINGS_FILE), settings_dict)
 
 settings = load_settings()
+init_db()
+extension_drafts = ExtensionDraftStore()
 
 TRACKER_STATUSES = ["Applied", "Updated", "Converted", "Ghosted", "Rejected"]
 
@@ -845,42 +850,86 @@ def normalize_company_lookup(company_name: str) -> str:
     return re.sub(r"[^a-z0-9]+", "", str(company_name or "").strip().lower())
 
 
+def list_tracker_applications() -> list[dict]:
+    return merge_tracker_applications(load_tracker_store())
+
+
 def tracker_company_history(company_name: str) -> dict:
     normalized = normalize_company_lookup(company_name)
-    if not normalized:
-        return {"company_name": str(company_name or "").strip(), "count": 0, "applications": []}
-
-    store = load_tracker_store()
-    applications = merge_tracker_applications(store)
-    matches = [
-        item for item in applications
+    applications = [
+        item
+        for item in list_tracker_applications()
         if normalize_company_lookup(item.get("company_name", "")) == normalized
     ]
-    matches = sorted_tracker_applications(matches, sort_key="applied_date", descending=True)
-    summarized = []
-    for item in matches:
-        summarized.append({
-            "id": item.get("id", ""),
-            "company_name": item.get("company_name", ""),
-            "applied_date": item.get("applied_date", ""),
-            "status": normalize_tracker_status(item.get("status", "")),
-            "role_title": item.get("role_title", ""),
-            "resume_title": str((item.get("resume_snapshot") or {}).get("title", "")).strip() or item.get("role_title", ""),
-            "folder_group": item.get("folder_group", ""),
-            "output_dir": item.get("output_dir", ""),
-            "job_url": item.get("job_url", ""),
-        })
+    applications = sorted_tracker_applications(applications, sort_key="applied_date")
     return {
-        "company_name": matches[0].get("company_name", company_name) if matches else str(company_name or "").strip(),
-        "count": len(matches),
-        "applications": summarized,
+        "company_name": company_name,
+        "normalized_company": normalized,
+        "count": len(applications),
+        "applications": applications,
+        "latest": applications[0] if applications else None,
     }
 
 
 def tracker_application_by_id(application_id: str) -> dict | None:
+    wanted = str(application_id or "").strip()
+    if not wanted:
+        return None
+    return next((item for item in list_tracker_applications() if str(item.get("id", "")).strip() == wanted), None)
+
+
+def upsert_tracker_application(application: dict) -> dict:
     store = load_tracker_store()
-    applications = merge_tracker_applications(store)
-    return next((item for item in applications if str(item.get("id", "")) == str(application_id)), None)
+    applications = list(store.get("applications", []))
+    incoming_id = str(application.get("id", "")).strip()
+    incoming_output = str(application.get("output_dir", "")).strip()
+    match_index = None
+    for index, item in enumerate(applications):
+        item_id = str(item.get("id", "")).strip()
+        item_output = str(item.get("output_dir", "")).strip()
+        if incoming_id and item_id == incoming_id:
+            match_index = index
+            break
+        if incoming_output and item_output == incoming_output:
+            match_index = index
+            break
+    if match_index is None:
+        saved = {**application, "id": incoming_id or f"app-{uuid.uuid4().hex}"}
+        applications.append(saved)
+    else:
+        saved = {**applications[match_index], **application, "id": applications[match_index].get("id") or incoming_id or f"app-{uuid.uuid4().hex}"}
+        applications[match_index] = saved
+    store["applications"] = applications
+    save_tracker_store(store)
+    return saved
+
+
+def update_tracker_status_record(application_id: str, status: str, note: str, effective_date: str) -> dict:
+    store = load_tracker_store()
+    applications = list(store.get("applications", []))
+    wanted = str(application_id or "").strip()
+    changed_at = datetime.now(timezone.utc).isoformat()
+    for index, item in enumerate(applications):
+        if str(item.get("id", "")).strip() != wanted:
+            continue
+        history = list(item.get("history") or [])
+        updated = {
+            **item,
+            "status": status,
+            "last_updated_date": changed_at,
+            "status_updated_date": effective_date,
+            "history": history + [{
+                "status": status,
+                "changed_at": changed_at,
+                "effective_date": effective_date,
+                "note": note,
+            }],
+        }
+        applications[index] = updated
+        store["applications"] = applications
+        save_tracker_store(store)
+        return updated
+    raise KeyError("Application not found.")
 
 
 class AIStageError(RuntimeError):
@@ -1030,6 +1079,10 @@ def compact_analysis_for_generation(analysis_payload: dict) -> dict:
         "core_problem": str(analysis_payload.get("core_problem", "")).strip(),
         "hire_problem": str(analysis_payload.get("hire_problem", "")).strip(),
         "desired_outcomes": compact_list(analysis_payload.get("desired_outcomes", []), 4),
+        "top_requirements": compact_list(analysis_payload.get("top_requirements", []), 4),
+        "secondary_requirements": compact_list(analysis_payload.get("secondary_requirements", []), 5),
+        "evidence_terms": compact_list(analysis_payload.get("evidence_terms", []), 8),
+        "domain_terms": compact_list(analysis_payload.get("domain_terms", []), 8),
         "system_description": str(analysis_payload.get("system_description", "")).strip(),
         "responsibilities": compact_list(analysis_payload.get("responsibilities", []), 5),
         "workflows": compact_list(analysis_payload.get("workflows", []), 5),
@@ -1318,6 +1371,7 @@ def build_ai_analysis_prompt() -> str:
             "Assume the candidate has 4+ years of experience.",
             "Analyze the JD and return a compact role model for downstream resume generation.",
             "Do not mirror the JD or invent unsupported domain expertise.",
+            "Rank the job requirements instead of trying to preserve everything equally.",
             "Infer the company context, role family, problem, system, skills and technologies mentioned, and behavioral signals.",
             "Role family must describe the actual job shape, not a generic software-engineer label.",
             "Prefer precise role-family labels such as: full-stack product engineering, backend application engineering, data engineering, analytics engineering, data science, machine learning engineering, platform engineering, distributed systems engineering, cloud infrastructure engineering, security engineering, application security engineering, cloud security engineering, solutions engineering, implementation engineering, AI application engineering, agentic AI engineering, AI agent engineering, data analyst, business analyst, marketing analyst, product analyst, operations analyst, or GTM engineering.",
@@ -1338,6 +1392,11 @@ def build_ai_analysis_prompt() -> str:
             "If the JD mentions Excel, Power BI, Tableau, Looker, Jira, Confluence, Salesforce, SAP, Oracle, Workday, PeopleSoft, Banner, WMS, Manhattan SCALE, Manhattan Active, Blue Yonder, ERP, SCM, or CRM platforms, preserve those as important analyst or systems signals rather than treating them like minor supporting tools.",
             "If the JD mentions Clay, Salesforce, HubSpot, Outreach, Apollo, Marketo, 6sense, Gong, Customer.io, ZoomInfo, Smartlead, Instantly, HeyReach, Nooks, Warmly, lead routing, enrichment, outbound sequencing, or GTM automation, preserve those as important GTM systems and workflow signals.",
             "Return one unified skills_mentioned list containing all important skills, tools, frameworks, platforms, and technologies explicitly mentioned anywhere in the JD, including required, preferred, and nice-to-have items.",
+            "Return top_requirements as the 3-4 requirements that should win the resume first scan.",
+            "Return secondary_requirements as the next most useful supporting requirements.",
+            "Return evidence_terms as the important terms that are safe to use only when later bullets or summary wording clearly prove them with an action, workflow, system, or measurable result.",
+            "Return domain_terms as the niche product, domain, or industry terms that should be used carefully and only when the later resume content can support them honestly.",
+            "Prefer recruiter-scan priorities over exhaustive JD coverage.",
             "Return only structured analysis matching the schema.",
         ]
     )
@@ -1365,6 +1424,8 @@ def build_ai_resume_prompt() -> str:
             "- Map capabilities from real engineering systems, not keywords",
             "- Never copy or mirror job description language",
             "- Never invent unrealistic tools or fake expertise",
+            "- Prioritize the top_requirements first instead of trying to cover the whole JD",
+            "- Use domain_terms only when the resume content can support them honestly",
             "- Ensure every bullet reflects explainable, production-level work",
             "- Optimize for recruiter first-scan clarity before deeper reading",
             "",
@@ -1722,11 +1783,16 @@ def build_ai_resume_title_summary_prompt(prompt_family_key: str = "software_engi
             "SUMMARY:",
             f"- {SUMMARY_WORD_MIN}-{SUMMARY_WORD_MAX} words",
             "- build from the company problem, hire problem, target system, and strongest transferable evidence",
+            "- prioritize the top_requirements first; do not try to cover the whole JD",
+            "- surface at most the 3-4 most important requirements prominently and naturally",
             "- include systems, technologies, and problems solved",
             "- do not state an explicit years-of-experience count unless it is clearly safe and helpful",
             "- align to the company's domain without overclaiming direct domain expertise",
+            "- use domain_terms only when the wording is supported by real or adjacent evidence",
+            "- every important JD term used in the summary must feel provable from the candidate story, not borrowed from the posting",
             "- do not echo company marketing language, product slogans, or copied business phrasing from the JD",
             "- prefer transferable product and workflow framing over company-specific wording when the domain match is only adjacent",
+            "- optimize for credible fit, not exhaustive keyword coverage",
             "- keep the phrasing natural and easy to read aloud; avoid dense stacked clauses and resume-speak",
             "- prefer one clear central idea over a list-like sentence full of tools and workflows",
             *selected_rules,
@@ -1823,15 +1889,17 @@ def build_ai_resume_skills_prompt(prompt_family_key: str = "software_engineering
             "You will receive an exact ordered list of allowed skill categories.",
             "Fill only those categories and keep them in the same order.",
             "Use the role family, responsibilities, workflows, and unified skills_mentioned list from the analysis object.",
-            "Treat all important JD-mentioned skills and technologies as valid signals for the final section.",
+            "Let top_requirements influence ordering and emphasis, not invention.",
             "",
             "SKILLS:",
             "- use only the provided categories",
             "- do not invent new categories",
             "- each item must be one concrete tool, platform, language, framework, database, cloud service, enterprise system, or concise capability name",
             "- no explanations, no qualifier text, no mini-sentences",
+            "- derive skills from demonstrated work and believable transferable evidence, not just JD wording",
             "- prefer exact product and technology names over abstract wording whenever the JD supports them",
             "- include tools explicitly named in the JD first",
+            "- only keep a JD term when it would still look honest if a recruiter asked where it shows up in the experience",
             "- include closely related enterprise tools only when they fit the JD's domain, category, and role family",
             "- do not use vague filler like 'data-driven solutions', 'deployment strategies', or 'technical discussions'",
             "- do not add broad software concepts such as software design, system design, event-driven systems, debugging, or stakeholder communication unless the exact phrase appears in the JD or it is clearly needed as a standard skill label",
@@ -1839,6 +1907,7 @@ def build_ai_resume_skills_prompt(prompt_family_key: str = "software_engineering
             "- skip a category only if it is truly irrelevant; otherwise fill it with 2-5 strong items",
             "- each item must read like a real recruiter-searchable skill, not a broken fragment or half sentence",
             "- if an item looks truncated, awkward, abstract, or too descriptive, rewrite it into a clean recruiter-scan term or remove it",
+            "- if a domain-specific term is not supported by the candidate story, leave it out instead of forcing coverage",
             "- for analyst families, prefer JD-grounded tools first; if the JD does not name tools, use generic capability labels instead of common vendor names",
             *selected_rules,
             "- expected style:",
@@ -1936,6 +2005,8 @@ def build_ai_resume_experience_prompt(prompt_family_key: str = "software_enginee
             "- Bullet count per company must match exactly",
             "- Each bullet must be 25-30 words",
             "- Recent and relevant roles should do more of the selling",
+            "- Focus on the top_requirements first; do not try to force all JD requirements into the section",
+            "- Use domain_terms only when the bullet can support them honestly through a system, workflow, action, or measurable result",
             *family_rules.get(prompt_family_key, family_rules["software_engineering"]),
             "",
             "BULLET FORMULA:",
@@ -1949,6 +2020,7 @@ def build_ai_resume_experience_prompt(prompt_family_key: str = "software_enginee
             "- active language showing what changed because of the work",
             "- one main accomplishment per bullet",
             "- natural sentence flow instead of visibly templated clause stacking",
+            "- every important JD term used in a bullet must be backed by the bullet itself, not just implied by the role",
             "",
             "ORIGINALITY AND GROUNDING RULES:",
             "- Preserve originality",
@@ -1957,6 +2029,7 @@ def build_ai_resume_experience_prompt(prompt_family_key: str = "software_enginee
             "- Do not introduce named platforms, products, or vendors that are missing from the JD or selected skills just because they are common for the role family",
             "- If a bullet sounds like benchmark distributed-systems copy, simplify it into more natural resume language",
             "- Tailor by emphasis and detail selection, not by rewriting history",
+            "- Prefer proving a smaller number of important requirements over weakly name-checking many requirements",
             "- If the target role is FAE, solutions engineering, sales engineering, or technical pre-sales, preserve believable engineering titles and shift the bullets toward demos, integrations, troubleshooting, customer communication, and adoption support only where that remains grounded",
             "- Keep each company aligned to its own realistic role family and time period instead of forcing perfect JD symmetry across all roles",
             "- Prefer believable metrics over suspiciously polished precision when both communicate the same impact",
@@ -1964,7 +2037,8 @@ def build_ai_resume_experience_prompt(prompt_family_key: str = "software_enginee
             "",
             "PROJECT STORY RULE:",
             "- Each company must read as one coherent project story",
-            "- Early bullets establish system and problem",
+            "- Early bullets establish role scope and the strongest top-requirement overlap",
+            "- The first two bullets of relevant recent roles should carry the strongest evidence for the most important JD requirements",
             "- Middle bullets show implementation and decisions",
             "- Later bullets show validation, reliability, scale, or impact",
             "",
@@ -2060,6 +2134,7 @@ def build_ai_resume_experience_subset_prompt(blueprints: list[dict], prompt_fami
             "- keep experience titles coherent with the overall career lane, but allow JD-aligned retitling when the bullets credibly support it",
             "- recent roles should sell harder than older roles",
             "- each bullet must be 25-30 words",
+            "- prioritize the top_requirements first instead of trying to mention the whole JD",
             "",
             "BULLET DESIGN:",
             "- the first bullet under each company is a simple summary bullet in plain language",
@@ -2067,6 +2142,7 @@ def build_ai_resume_experience_subset_prompt(blueprints: list[dict], prompt_fami
             "- the first bullet should describe the role and scope clearly without becoming dense",
             "- do not make the first bullet shorter than 25 words",
             "- do not treat the first bullet like a compact fragment; write it as a full accomplishment sentence",
+            "- for recent relevant roles, the first two bullets should carry the strongest evidence for the most important JD requirements",
             "- all later bullets should follow:",
             "  - What: the skill, keyword, or qualification",
             "  - How: how it was used",
@@ -2081,6 +2157,7 @@ def build_ai_resume_experience_subset_prompt(blueprints: list[dict], prompt_fami
             "- a constraint or engineering decision",
             "- a measurable metric",
             "- one main accomplishment per bullet",
+            "- if a JD term appears, the bullet itself must prove it with an action, workflow, system, or measurable result",
             *family_rules.get(prompt_family_key, family_rules["software_engineering"]),
             "- older roles should use the lighter, earlier-career portion of the selected skills instead of inheriting the most modern or specialized parts of the stack",
             "- keep KPMG and Trigent technology choices believable for 2020-2022, their company anchors, and normal exposure progression",
@@ -2088,6 +2165,7 @@ def build_ai_resume_experience_subset_prompt(blueprints: list[dict], prompt_fami
             "- if a bullet wants to mention a named platform that is not already in the JD or selected skills, replace it with a generic workflow phrase instead",
             "- prefer simpler wording over dense clause chains when both communicate the same accomplishment",
             "- avoid bullets that read like a rigid template; vary rhythm and sentence structure naturally",
+            "- prefer proving fewer important requirements strongly over loosely name-checking many requirements",
             "",
             "Keep each company as one coherent project story.",
             "Prefer believable metrics over suspicious precision.",
@@ -2190,12 +2268,17 @@ def build_ai_core_review_prompt() -> str:
             "You review only the resume summary and skills section for a tailored target-fit resume.",
             "Use the analysis object as the source of truth.",
             "Judge whether the current summary and skills are ready to keep or should be revised.",
+            "Use top_requirements as the primary scoring lens, not the whole JD.",
+            "Use domain_terms carefully; flag them when the wording sounds like unsupported domain ownership instead of credible adjacent evidence.",
             "Focus on three risks:",
             "- summary that sounds copied from company or JD wording, too generic, or mis-emphasized for the role",
             "- skills that include broad capabilities instead of named tools, miss obvious JD tools, or are awkwardly categorized",
             "- wording that sounds stiff, overpacked, truncated, or visibly AI-generated instead of natural resume writing",
+            "Also flag summaries or skills that weakly name-check too many requirements instead of proving the most important ones.",
             "Flag summaries that stack too many tools, systems, or clauses into one sentence.",
+            "Flag summaries that mention important JD terms without making them feel provable from the candidate story.",
             "Flag skills that read like broken fragments, process phrases, or abstract concepts instead of named recruiter-searchable tools.",
+            "Flag skills that look like they were pulled from the JD but do not seem grounded in the candidate's likely experience.",
             "Do not flag a skills section just because it could include more adjacent tools; refinement must not broaden the stack.",
             "Do not review professional experience.",
             "Be concise and practical.",
@@ -2211,12 +2294,17 @@ def build_ai_core_correction_prompt() -> str:
             "Use the analysis object and current draft as the source of truth.",
             "Inspect the current top title, summary, skills, and experience titles. Improve them only if needed, and otherwise keep them close to the draft.",
             "Follow the role family and the JD facts from the analysis object.",
+            "Use top_requirements as the primary priorities, and use secondary_requirements only as support.",
             "Use the skills_mentioned list, responsibilities, and workflows to keep the strongest role match visible.",
             "Use only the provided skill categories and keep them in the provided order.",
             "Focus on sharper role emphasis, cleaner summary phrasing, more concrete believable skills, and coherent market-standard titles.",
             "Do not let the refinement smooth a data, platform, AI application, or solutions role back into generic software-engineering language.",
             "Do not replace strong concrete stack or workflow terms with broader wording just because it sounds cleaner.",
             "If the summary mentions years of experience at all, it must say 4+ years and never anything higher.",
+            "Do not try to cover the whole JD. Prove the top requirements clearly instead.",
+            "Every important JD term kept in the summary or skills must feel provable from the candidate story.",
+            "Use domain_terms only when the wording is honestly supported; otherwise prefer adjacent workflow language.",
+            "Remove weak JD mirroring, unsupported domain claims, and broad filler before adding anything new.",
             "Do not copy JD wording directly.",
             "Make the writing sound human and recruiter-natural, not optimized or assembled.",
             "Break up dense phrasing, remove stacked jargon, and rewrite truncated skill items into clean terms.",
@@ -2242,10 +2330,14 @@ def ai_analysis_schema() -> dict:
             "target_role": {"type": "string"},
             "role_family": {"type": "string"},
             "skill_category_order_key": {"type": "string", "enum": sorted(SKILL_CATEGORY_ORDER_TEMPLATES.keys())},
-            "prompt_family_key": {"type": "string", "enum": ["software_engineering", "data_engineering", "platform_systems", "analyst_data", "analyst_business", "analyst_marketing", "solutions_customer", "gtm_engineering"]},
+            "prompt_family_key": {"type": "string", "enum": ["software_engineering", "data_engineering", "data_science", "platform_systems", "agentic_ai_engineering", "security_engineering", "analyst_data", "analyst_business", "analyst_marketing", "solutions_customer", "gtm_engineering"]},
             "core_problem": {"type": "string"},
             "hire_problem": {"type": "string"},
             "desired_outcomes": {"type": "array", "items": {"type": "string"}},
+            "top_requirements": {"type": "array", "items": {"type": "string"}},
+            "secondary_requirements": {"type": "array", "items": {"type": "string"}},
+            "evidence_terms": {"type": "array", "items": {"type": "string"}},
+            "domain_terms": {"type": "array", "items": {"type": "string"}},
             "system_description": {"type": "string"},
             "responsibilities": {"type": "array", "items": {"type": "string"}},
             "workflows": {"type": "array", "items": {"type": "string"}},
@@ -2265,6 +2357,10 @@ def ai_analysis_schema() -> dict:
             "core_problem",
             "hire_problem",
             "desired_outcomes",
+            "top_requirements",
+            "secondary_requirements",
+            "evidence_terms",
+            "domain_terms",
             "system_description",
             "responsibilities",
             "workflows",
@@ -2729,7 +2825,7 @@ def resolve_experience_title(raw_title: str, blueprint: dict, analysis_payload: 
     return cleaned or fallback_title, None
 
 
-def format_generated_resume_text(resume_payload: dict) -> str:
+def format_generated_resume_text(resume_payload: dict, experience_blueprints: list[dict] | None = None) -> str:
     normalized_skills = normalize_updated_skills(resume_payload.get("updated_skills", []))
     lines = [
         "Updated Title",
@@ -2752,7 +2848,8 @@ def format_generated_resume_text(resume_payload: dict) -> str:
     experience = resume_payload.get("experience", {})
     analysis_payload = resume_payload.get("_analysis") or {}
     enabled_keys = resume_payload.get("_enabled_experience_keys")
-    for blueprint in filter_blueprints_by_enabled_keys(current_experience_blueprints(), enabled_keys):
+    blueprint_source = experience_blueprints if experience_blueprints is not None else current_experience_blueprints()
+    for blueprint in filter_blueprints_by_enabled_keys(blueprint_source, enabled_keys):
         entry = experience.get(blueprint["key"], {})
         title, _ = resolve_experience_title(entry.get("title") or "", blueprint, analysis_payload)
         bullets = [bullet.strip() for bullet in entry.get("bullets", []) if bullet.strip()]
@@ -4075,24 +4172,31 @@ def generate_reachout_message(
     job_description: str,
     analysis_payload: dict,
     current_resume_content: str = "",
+    recipient_name: str = "",
+    target_company: str = "",
+    target_role: str = "",
 ) -> dict:
     compact_analysis = compact_analysis_for_reachout(analysis_payload)
     resume_snapshot = extract_reachout_resume_snapshot(current_resume_content)
-    target_company = ""
-    company_match = re.search(r"^\s*([A-Z][A-Za-z0-9&.,' -]{1,80})\s+is\s+", job_description.strip())
-    if company_match:
-        target_company = company_match.group(1).strip()
+    resolved_company = str(target_company or "").strip()
+    if not resolved_company:
+        company_match = re.search(r"^\s*([A-Z][A-Za-z0-9&.,' -]{1,80})\s+is\s+", job_description.strip())
+        if company_match:
+            resolved_company = company_match.group(1).strip()
+    resolved_role = str(target_role or compact_analysis.get("target_role", "")).strip()
+    greeting_name = str(recipient_name or "").strip() or "there"
 
     user_parts = [
         "Write one LinkedIn reachout message for a recruiter or hiring manager.",
         "Keep it under 300 characters total.",
         "Match this shape exactly:",
-        "Hey <name>, keeping this short:",
-        "I'm a full-stack engineer working across React, Node.js, Python, and Postgres.",
-        "I'm especially interested in this role because it fits customer-driven product work and AI workflow delivery.",
-        "What can I do to get an interview? Thanks for your time!",
-        f"Target company: {target_company or 'unknown'}",
-        f"Target role: {compact_analysis.get('target_role', '')}",
+        f"Hey {greeting_name}, keeping this short:",
+        "I'm a <grounded candidate role> with experience in <2-3 grounded skills>.",
+        "I'm interested in this role because <one specific, grounded fit reason>.",
+        "Would you be open to a quick conversation? Thanks for your time!",
+        f"Recipient name: {greeting_name}",
+        f"Target company: {resolved_company or 'unknown'}",
+        f"Target role: {resolved_role}",
         f"Core problem: {compact_analysis.get('core_problem', '')}",
         "Skills mentioned: " + ", ".join(compact_analysis.get("skills_mentioned", [])[:3]),
     ]
@@ -4127,6 +4231,7 @@ def generate_followup_answer(
     analysis_payload: dict,
     question: str,
     resume_pdf_text: str,
+    max_characters: int = 0,
 ) -> dict:
     compact_analysis = compact_analysis_for_generation(analysis_payload)
     user_parts = [
@@ -4137,6 +4242,11 @@ def generate_followup_answer(
         f"Follow-up question:\n{question.strip()}",
         "Answer as the candidate in first person.",
     ]
+    if max_characters > 0:
+        user_parts.append(
+            f"The application field allows at most {max_characters} characters. "
+            "Keep the complete answer naturally within that limit."
+        )
 
     answer = call_openai_text_output(
         api_key=api_key,
@@ -4152,7 +4262,7 @@ def generate_followup_answer(
     if not answer:
         raise RuntimeError("Follow-up answer generation returned an empty answer.")
 
-    return {"answer": answer}
+    return {"answer": answer, "char_count": len(answer), "max_characters": max_characters or None}
 
 
 def call_openai_resume_engine(
@@ -4227,6 +4337,7 @@ def load_profile_template() -> dict:
     fallback = {
         "name": "",
         "contact": {"location": "", "phone": "", "email": ""},
+        "application": {},
         "projects": [],
         "certifications": [],
         "experience_history": [
@@ -4338,6 +4449,13 @@ def merge_profile_docs(base: dict, override: dict | None) -> dict:
         merged["contact"] = {
             **(merged.get("contact") or {}),
             **override_contact,
+        }
+
+    override_application = override.get("application")
+    if isinstance(override_application, dict):
+        merged["application"] = {
+            **(merged.get("application") or {}),
+            **override_application,
         }
 
     for field in ("projects", "certifications"):
@@ -4573,6 +4691,7 @@ def profile_from_resume(resume: dict) -> dict:
             "phone": contact.get("phone", ""),
             "email": contact.get("email", ""),
         },
+        "application": {},
         "projects": resume.get("projects", []),
         "certifications": resume.get("certifications", []),
         "experience_history": profile_experience_history_from_resume(resume),
@@ -4696,6 +4815,7 @@ def apply_profile_overrides(resume: dict) -> dict:
 
 def normalize_profile(payload: dict) -> dict:
     contact = payload.get("contact") or {}
+    application = normalize_application_profile(payload.get("application"))
     projects = payload.get("projects") if isinstance(payload.get("projects"), list) else []
     certifications = payload.get("certifications") if isinstance(payload.get("certifications"), list) else []
     experience_history = payload.get("experience_history") if isinstance(payload.get("experience_history"), list) else []
@@ -4718,9 +4838,62 @@ def normalize_profile(payload: dict) -> dict:
             "phone": str(contact.get("phone", "")).strip(),
             "email": str(contact.get("email", "")).strip(),
         },
+        "application": application,
         "projects": normalized_projects,
         "certifications": [str(item).strip() for item in certifications if str(item).strip()],
         "experience_history": normalized_history,
+    }
+
+
+APPLICATION_PROFILE_FIELDS = (
+    "firstName", "middleName", "lastName", "addressLine1", "addressLine2", "city", "state",
+    "postalCode", "country", "linkedinUrl", "githubUrl", "portfolioUrl", "websiteUrl",
+    "yearsOfExperience", "currentTitle", "currentCompany", "highestDegree", "graduationYear",
+    "salaryExpectation", "noticePeriod", "relocationWilling", "workAuthorization",
+    "sponsorshipRequired", "workAuthExpiration", "j1Visa",
+)
+
+
+def normalize_application_profile(payload: dict | None) -> dict:
+    raw = payload if isinstance(payload, dict) else {}
+    normalized = {field: str(raw.get(field, "")).strip() for field in APPLICATION_PROFILE_FIELDS}
+    normalized["autoFillEnabled"] = raw.get("autoFillEnabled", True) is not False
+    custom_answers = raw.get("customAnswers") if isinstance(raw.get("customAnswers"), dict) else {}
+    normalized["customAnswers"] = {
+        str(question).strip(): str(answer).strip()
+        for question, answer in custom_answers.items()
+        if str(question).strip() and str(answer).strip()
+    }
+    return normalized
+
+
+def autofill_profile_data(identity_id: str = "") -> dict:
+    profile = current_profile()
+    application = normalize_application_profile(profile.get("application"))
+    identity = identity_profile_by_id(identity_id)
+    name_parts = str(profile.get("name", "")).strip().split()
+    first_name = application.get("firstName") or (name_parts[0] if name_parts else "")
+    last_name = application.get("lastName") or (name_parts[-1] if len(name_parts) > 1 else "")
+    middle_name = application.get("middleName") or (" ".join(name_parts[1:-1]) if len(name_parts) > 2 else "")
+
+    history = [
+        item for item in profile.get("experience_history", [])
+        if isinstance(item, dict) and is_experience_history_entry_enabled(item)
+    ]
+    latest = history[0] if history else {}
+    return {
+        **application,
+        "fullName": str(profile.get("name", "")).strip(),
+        "firstName": first_name,
+        "middleName": middle_name,
+        "lastName": last_name,
+        "email": str(identity.get("email", "")).strip(),
+        "phone": str(identity.get("phone", "")).strip(),
+        "currentLocation": str(identity.get("location", "")).strip() or str((profile.get("contact") or {}).get("location", "")).strip(),
+        "currentTitle": application.get("currentTitle") or str(latest.get("title", "")).strip(),
+        "currentCompany": application.get("currentCompany") or str(latest.get("company", "")).strip(),
+        "identityId": identity.get("id", ""),
+        "identityLabel": identity.get("label", ""),
     }
 
 
@@ -4800,6 +4973,381 @@ def normalize_profile_documents_if_needed() -> None:
 clear_session_profile_doc()
 migrate_legacy_profile_if_needed()
 normalize_profile_documents_if_needed()
+
+
+EXTENSION_GENERATING_STATUSES = {"queued", "analyzing", "generating_core", "generating_experience", "reviewing"}
+extension_worker_event = threading.Event()
+extension_worker_started = False
+extension_worker_lock = threading.Lock()
+
+
+def experience_blueprints_from_snapshot(draft: dict) -> list[dict]:
+    history = draft.get("experience_history_snapshot") if isinstance(draft.get("experience_history_snapshot"), list) else []
+    by_key = {
+        str(item.get("key", "")).strip(): item
+        for item in history
+        if isinstance(item, dict) and str(item.get("key", "")).strip()
+    }
+    blueprints: list[dict] = []
+    for blueprint in EXPERIENCE_BLUEPRINTS:
+        saved = by_key.get(blueprint["key"], {})
+        merged = dict(blueprint)
+        merged["company"] = str(saved.get("company", blueprint["company"])).strip() or blueprint["company"]
+        merged["location"] = str(saved.get("location", blueprint["location"])).strip() or blueprint["location"]
+        merged["dates"] = str(saved.get("dates", blueprint["dates"])).strip() or blueprint["dates"]
+        merged["default_title"] = str(saved.get("title", "")).strip()
+        blueprints.append(merged)
+    return blueprints
+
+
+def draft_resume_snapshot(draft: dict) -> dict:
+    content = str(draft.get("resume_content", "")).strip()
+    resume = parse_updated_content_to_resume(content, load_base_resume())
+    enabled_keys = normalize_enabled_experience_keys(draft.get("enabled_experience_keys"))
+    if len(enabled_keys) != len(EXPERIENCE_BLUEPRINT_KEYS) and isinstance(resume.get("experience"), list):
+        parsed_active_entries = list(resume["experience"][:len(enabled_keys)])
+        active_by_key = {key: parsed_active_entries[index] for index, key in enumerate(enabled_keys) if index < len(parsed_active_entries)}
+        resume["experience"] = [
+            active_by_key.get(blueprint["key"], {
+                "company": blueprint["company"],
+                "location": blueprint["location"],
+                "dates": blueprint["dates"],
+                "title": "",
+                "bullets": [],
+            })
+            for blueprint in EXPERIENCE_BLUEPRINTS
+        ]
+    profile = draft.get("profile_snapshot") if isinstance(draft.get("profile_snapshot"), dict) else {}
+    resume["name"] = str(profile.get("name", resume.get("name", ""))).strip()
+    resume["projects"] = profile.get("projects") if isinstance(profile.get("projects"), list) else resume.get("projects", [])
+    resume["certifications"] = profile.get("certifications") if isinstance(profile.get("certifications"), list) else resume.get("certifications", [])
+
+    contact = draft.get("contact_snapshot") if isinstance(draft.get("contact_snapshot"), dict) else {}
+    profile_contact = profile.get("contact") if isinstance(profile.get("contact"), dict) else {}
+    resume["contact"] = {
+        **(resume.get("contact") or {}),
+        **{
+            key: str(contact.get(key, profile_contact.get(key, ""))).strip()
+            for key in ("location", "phone", "email")
+            if str(contact.get(key, profile_contact.get(key, ""))).strip()
+        },
+    }
+
+    history = draft.get("experience_history_snapshot") if isinstance(draft.get("experience_history_snapshot"), list) else []
+    history_by_key = {
+        str(item.get("key", "")).strip(): item
+        for item in history
+        if isinstance(item, dict) and str(item.get("key", "")).strip()
+    }
+    for index, entry in enumerate(resume.get("experience", [])):
+        if index >= len(EXPERIENCE_BLUEPRINT_KEYS) or not isinstance(entry, dict):
+            continue
+        saved = history_by_key.get(EXPERIENCE_BLUEPRINT_KEYS[index], {})
+        for field in ("company", "location", "dates"):
+            value = str(saved.get(field, "")).strip()
+            if value:
+                entry[field] = value
+        if not str(entry.get("title", "")).strip() and str(saved.get("title", "")).strip():
+            entry["title"] = str(saved["title"]).strip()
+
+    return apply_enabled_experience_filter(resume, enabled_keys)
+
+
+def extension_draft_payload(draft: dict | None) -> dict | None:
+    if not draft:
+        return None
+    refreshed = dict(draft)
+    status_path = str(refreshed.get("pdf_status_path", "")).strip()
+    if refreshed.get("status") == "pdf_generating" and status_path:
+        try:
+            pdf_status = get_conversion_status(status_path)
+            state = str(pdf_status.get("state", "")).lower()
+            if state in {"completed", "success"}:
+                revision_matches = int(refreshed.get("pdf_revision") or 0) == int(refreshed.get("resume_revision") or 1)
+                finished_at = pdf_status.get("finished_at")
+                generated_at = datetime.fromtimestamp(float(finished_at), timezone.utc) if finished_at else datetime.now(timezone.utc)
+                refreshed = extension_drafts.update(
+                    refreshed["id"],
+                    {
+                        "status": "pdf_ready" if revision_matches else "ready",
+                        "stage": "complete",
+                        "pdf_path": str(pdf_status.get("pdf", "")).strip() or refreshed.get("pdf_path", ""),
+                        "pdf_stale": not revision_matches,
+                        "pdf_generated_at": generated_at,
+                    },
+                )
+            elif state in {"failed", "error"}:
+                refreshed = extension_drafts.update(
+                    refreshed["id"],
+                    {
+                        "status": "failed",
+                        "error_stage": "pdf_generation",
+                        "error_message": str(pdf_status.get("error", "PDF conversion failed.")),
+                    },
+                )
+        except Exception:
+            pass
+    if str(refreshed.get("resume_content", "")).strip():
+        try:
+            refreshed["preview"] = draft_resume_snapshot(refreshed)
+        except Exception as exc:
+            refreshed["preview_error"] = str(exc)
+    return refreshed
+
+
+def wait_for_extension_queue_gate() -> None:
+    while extension_drafts.has_duplicate_review():
+        extension_worker_event.wait(timeout=1.0)
+        extension_worker_event.clear()
+
+
+def run_extension_generation_task(task: dict) -> None:
+    task_id = task["task_id"]
+    draft = task["draft"]
+    draft_id = draft["id"]
+    stage = "analysis"
+    try:
+        api_key = os.getenv("OPENAI_API_KEY", "").strip()
+        if not api_key:
+            raise AIStageError("analysis", "OPENAI_API_KEY is not configured")
+
+        enabled_keys = normalize_enabled_experience_keys(draft.get("enabled_experience_keys"))
+        blueprints = filter_blueprints_by_enabled_keys(experience_blueprints_from_snapshot(draft), enabled_keys)
+
+        wait_for_extension_queue_gate()
+        analysis_payload = draft.get("analysis") or {}
+        if not analysis_payload:
+            extension_drafts.checkpoint(task_id, draft_id, "analysis", {"status": "analyzing"})
+            analysis_payload = analyze_job_description(api_key=api_key, job_description=draft["job_description"])
+            analysis_payload = normalize_analysis_payload(analysis_payload)
+            draft = extension_drafts.checkpoint(task_id, draft_id, "core", {
+                "analysis": analysis_payload,
+                "status": "generating_core",
+            })
+
+        wait_for_extension_queue_gate()
+        stage = "core_generation"
+        title_summary = draft.get("title_summary") or {}
+        skills_payload = draft.get("skills") or {}
+        with ThreadPoolExecutor(max_workers=2) as executor:
+            title_future = None if title_summary else executor.submit(
+                generate_title_summary_from_analysis,
+                api_key=api_key,
+                analysis_payload=analysis_payload,
+            )
+            skills_future = None if skills_payload else executor.submit(
+                generate_skills_from_analysis,
+                api_key=api_key,
+                analysis_payload=analysis_payload,
+            )
+            if title_future:
+                title_summary = title_future.result()
+            if skills_future:
+                skills_payload = skills_future.result()
+
+        skills_payload["updated_skills"] = normalize_updated_skills(skills_payload.get("updated_skills", []))
+        core_issues = validate_title_summary_payload(title_summary, analysis_payload) + validate_skills_only_payload(skills_payload, analysis_payload)
+        if core_issues:
+            raise AIStageError("core_generation", "Core resume generation failed validation: " + " | ".join(core_issues[:3]))
+        core_payload = merge_core_sections(title_summary, skills_payload)
+        core_payload["_analysis"] = analysis_payload
+        core_payload["_enabled_experience_keys"] = enabled_keys
+        draft = extension_drafts.checkpoint(task_id, draft_id, "experience", {
+            "title_summary": title_summary,
+            "skills": skills_payload,
+            "resume_content": format_core_resume_text(core_payload),
+            "status": "generating_experience",
+        })
+
+        wait_for_extension_queue_gate()
+        stage = "experience_generation"
+        recent_keys = set(EXPERIENCE_BLUEPRINT_KEYS[:2])
+        recent_blueprints = [item for item in blueprints if item["key"] in recent_keys]
+        older_blueprints = [item for item in blueprints if item["key"] not in recent_keys]
+        recent_payload = draft.get("experience_recent") or {}
+        older_payload = draft.get("experience_older") or {}
+
+        def generate_subset(subset_blueprints: list[dict]) -> dict:
+            if not subset_blueprints:
+                return {"experience": {}}
+            return generate_experience_subset_from_analysis(
+                api_key=api_key,
+                analysis_payload=analysis_payload,
+                core_payload=core_payload,
+                blueprints=subset_blueprints,
+                model=RESUME_MODEL,
+                timeout_seconds=OPENAI_RESUME_TIMEOUT_SECONDS,
+            )
+
+        with ThreadPoolExecutor(max_workers=2) as executor:
+            recent_future = None if recent_payload else executor.submit(generate_subset, recent_blueprints)
+            older_future = None if older_payload else executor.submit(generate_subset, older_blueprints)
+            if recent_future:
+                recent_payload = recent_future.result()
+            if older_future:
+                older_payload = older_future.result()
+
+        experience_issues = (
+            validate_experience_subset_payload_with_analysis(recent_payload, recent_blueprints, analysis_payload)
+            + validate_experience_subset_payload_with_analysis(older_payload, older_blueprints, analysis_payload)
+        )
+        if experience_issues:
+            raise AIStageError("experience_generation", "Experience generation failed validation: " + " | ".join(experience_issues[:3]))
+        combined_experience = {"experience": {}}
+        combined_experience["experience"].update(recent_payload.get("experience", {}))
+        combined_experience["experience"].update(older_payload.get("experience", {}))
+        combined_experience["_enabled_experience_keys"] = enabled_keys
+        full_content = format_generated_resume_text(merge_resume_payloads(core_payload, combined_experience), blueprints)
+        draft = extension_drafts.checkpoint(task_id, draft_id, "review", {
+            "experience_recent": recent_payload,
+            "experience_older": older_payload,
+            "resume_content": full_content,
+            "status": "reviewing",
+        })
+
+        wait_for_extension_queue_gate()
+        stage = "core_review"
+        reviewed = refine_core_sections(
+            api_key=api_key,
+            analysis_payload=analysis_payload,
+            title_summary_payload=title_summary,
+            skills_payload=skills_payload,
+            experience_payload=combined_experience,
+        )
+        reviewed_title_summary = {
+            "updated_title": str(reviewed.get("updated_title", "")).strip() or str(title_summary.get("updated_title", "")).strip(),
+            "updated_summary": str(reviewed.get("updated_summary", "")).strip(),
+        }
+        order_key = str(analysis_payload.get("skill_category_order_key", "")).strip() or infer_skill_category_order_key(analysis_payload.get("role_family", ""))
+        reviewed_skills = normalize_skills_for_order(
+            {"updated_skills": reviewed.get("updated_skills", [])},
+            skill_category_order_for_key(order_key),
+        )
+        review_issues = (
+            validate_title_summary_payload(reviewed_title_summary, analysis_payload, summary_max_buffer=10)
+            + validate_skills_only_payload(reviewed_skills, analysis_payload)
+            + validate_experience_title_review_payload(reviewed, blueprints, analysis_payload)
+        )
+        if review_issues:
+            reviewed_title_summary = title_summary
+            reviewed_skills = skills_payload
+        else:
+            recent_payload = apply_reviewed_titles_to_experience_payload(recent_payload, reviewed)
+            older_payload = apply_reviewed_titles_to_experience_payload(older_payload, reviewed)
+
+        reviewed_core = merge_core_sections(reviewed_title_summary, reviewed_skills)
+        reviewed_core["_analysis"] = analysis_payload
+        reviewed_core["_enabled_experience_keys"] = enabled_keys
+        reviewed_experience = {"experience": {}}
+        reviewed_experience["experience"].update(recent_payload.get("experience", {}))
+        reviewed_experience["experience"].update(older_payload.get("experience", {}))
+        reviewed_experience["_enabled_experience_keys"] = enabled_keys
+        final_content = format_generated_resume_text(merge_resume_payloads(reviewed_core, reviewed_experience), blueprints)
+        final_draft = {
+            **draft,
+            "resume_content": final_content,
+            "title_summary": reviewed_title_summary,
+            "skills": reviewed_skills,
+            "experience_recent": recent_payload,
+            "experience_older": older_payload,
+        }
+        preview = draft_resume_snapshot(final_draft)
+        extension_drafts.complete_task(task_id, draft_id, {
+            "title_summary": reviewed_title_summary,
+            "skills": reviewed_skills,
+            "experience_recent": recent_payload,
+            "experience_older": older_payload,
+            "resume_content": final_content,
+            "resume_snapshot": preview,
+            "pdf_stale": False,
+        })
+    except Exception as exc:
+        error_stage = exc.stage if isinstance(exc, AIStageError) else stage
+        extension_drafts.fail_task(task_id, draft_id, error_stage, str(exc))
+
+
+def extension_worker_loop() -> None:
+    extension_drafts.recover_interrupted()
+    while True:
+        try:
+            if extension_drafts.has_duplicate_review():
+                extension_worker_event.wait(timeout=1.0)
+                extension_worker_event.clear()
+                continue
+            task = extension_drafts.next_task()
+            if task:
+                run_extension_generation_task(task)
+                continue
+        except Exception as exc:
+            print(f"Extension draft worker error: {exc}")
+        extension_worker_event.wait(timeout=1.0)
+        extension_worker_event.clear()
+
+
+def ensure_extension_worker_started() -> None:
+    global extension_worker_started
+    with extension_worker_lock:
+        if extension_worker_started:
+            return
+        threading.Thread(target=extension_worker_loop, name="resume-draft-worker", daemon=True).start()
+        extension_worker_started = True
+
+
+def extension_profile_snapshot(identity_id: str, enabled_keys_payload) -> dict:
+    profile = current_profile()
+    identity = identity_profile_by_id(identity_id)
+    complete_keys = [
+        str(item.get("key", "")).strip()
+        for item in profile.get("experience_history", [])
+        if isinstance(item, dict) and is_experience_history_entry_enabled(item)
+    ]
+    requested = normalize_enabled_experience_keys(enabled_keys_payload) if enabled_keys_payload is not None else complete_keys
+    enabled_keys = [key for key in requested if key in complete_keys]
+    if not enabled_keys:
+        raise ValueError("Enable at least one complete experience role in Profile.")
+    return {
+        "identity_id": identity.get("id", ""),
+        "enabled_experience_keys": enabled_keys,
+        "profile_snapshot": profile,
+        "contact_snapshot": identity,
+        "experience_history_snapshot": profile.get("experience_history", []),
+    }
+
+
+def generate_extension_pdf(draft: dict) -> dict:
+    if draft.get("status") not in {"ready", "pdf_ready"}:
+        raise ValueError("The resume must finish generating before creating a PDF.")
+    if not str(draft.get("resume_content", "")).strip():
+        raise ValueError("Resume content is required.")
+    resume = draft_resume_snapshot(draft)
+    errors, _warnings = validate_updated_content(draft["resume_content"])
+    if errors:
+        raise ValueError(f"Validation failed: {errors[0]}")
+    identity = draft.get("contact_snapshot") if isinstance(draft.get("contact_snapshot"), dict) else {}
+    format_profile = str(identity.get("format_profile", "outlook")).strip() or "outlook"
+    title = str(resume.get("title", "Resume")).strip() or "Resume"
+    folder_name = safe_folder_name(display_folder_name(draft.get("company_name", ""), title, ""), settings["output_directory"])
+    out_dir = Path(settings["output_directory"]) / folder_name
+    out_dir.mkdir(parents=True, exist_ok=True)
+    docx_path = out_dir / "tharun manikonda resume.docx"
+    pdf_path = out_dir / "tharun manikonda resume.pdf"
+    status_path = out_dir / "pdf_status.json"
+    build_resume_docx(resume, str(docx_path), format_profile=format_profile)
+    start_pdf_conversion(docx_path, pdf_path, status_path)
+    return extension_drafts.update(draft["id"], {
+        "status": "pdf_generating",
+        "stage": "pdf_generation",
+        "resume_snapshot": resume,
+        "docx_path": str(docx_path),
+        "pdf_path": str(pdf_path),
+        "output_dir": str(out_dir),
+        "pdf_status_path": str(status_path),
+        "pdf_stale": False,
+        "pdf_revision": int(draft.get("resume_revision") or 1),
+        "pdf_generated_at": None,
+        "error_stage": "",
+        "error_message": "",
+    })
 
 
 def get_conversion_status(status_path: str) -> dict:
@@ -4987,6 +5535,8 @@ def update_profile():
         if save_target not in {"session", "permanent"}:
             return jsonify({"success": False, "error": "Invalid save target."}), 400
 
+        if not isinstance(data.get("application"), dict):
+            data["application"] = current_profile().get("application", {})
         profile = normalize_profile(data)
         issues = validate_profile_payload(profile)
         if issues:
@@ -5017,12 +5567,646 @@ def update_profile():
         return jsonify({"success": False, "error": str(e)}), 500
 
 
+def parse_extension_skills_text(value: str) -> list[dict]:
+    skills: list[dict] = []
+    for raw_line in str(value or "").splitlines():
+        line = raw_line.strip()
+        if not line or ":" not in line:
+            continue
+        category, raw_items = line.split(":", 1)
+        items = [item.strip().rstrip(".") for item in raw_items.split(",") if item.strip().rstrip(".")]
+        if category.strip() and items:
+            skills.append({"category": category.strip(), "items": items})
+    return normalize_updated_skills(skills)
+
+
+def parse_extension_bullets(value) -> list[str]:
+    raw_items = value if isinstance(value, list) else str(value or "").splitlines()
+    return [
+        re.sub(r"^[\s\u2022\-*]+", "", str(item)).strip()
+        for item in raw_items
+        if re.sub(r"^[\s\u2022\-*]+", "", str(item)).strip()
+    ]
+
+
+def apply_extension_experience_edits(draft: dict, edits: list, enabled_keys: list[str]) -> dict:
+    if not isinstance(edits, list):
+        raise ValueError("Work experience edits must be a list.")
+    enabled_set = set(enabled_keys)
+    recent = {
+        **(draft.get("experience_recent") or {}),
+        "experience": {
+            key: dict(value) for key, value in ((draft.get("experience_recent") or {}).get("experience") or {}).items()
+        },
+    }
+    older = {
+        **(draft.get("experience_older") or {}),
+        "experience": {
+            key: dict(value) for key, value in ((draft.get("experience_older") or {}).get("experience") or {}).items()
+        },
+    }
+    history = [dict(item) for item in (draft.get("experience_history_snapshot") or []) if isinstance(item, dict)]
+    history_by_key = {str(item.get("key", "")).strip(): item for item in history}
+    seen: set[str] = set()
+
+    for raw_entry in edits:
+        if not isinstance(raw_entry, dict):
+            raise ValueError("Each work experience edit must be an object.")
+        key = str(raw_entry.get("key", "")).strip()
+        if not key or key not in enabled_set:
+            raise ValueError("Work experience edits must reference an enabled role.")
+        if key in seen:
+            raise ValueError(f"Work experience role '{key}' was submitted more than once.")
+        seen.add(key)
+        target = recent["experience"].get(key) or older["experience"].get(key)
+        if target is None:
+            raise ValueError(f"Regenerate the resume before editing role '{key}'.")
+
+        title = str(raw_entry.get("title", target.get("title", ""))).strip()
+        bullets = parse_extension_bullets(raw_entry.get("bullets_text", raw_entry.get("bullets", target.get("bullets", []))))
+        if not title:
+            raise ValueError("Every enabled work experience requires a role title.")
+        target.update({"title": title, "bullets": bullets})
+
+        history_entry = history_by_key.get(key)
+        if history_entry is None:
+            raise ValueError(f"Profile history is missing work experience role '{key}'.")
+        for field in ("company", "location", "dates"):
+            value = str(raw_entry.get(field, history_entry.get(field, ""))).strip()
+            if not value:
+                raise ValueError(f"Every enabled work experience requires {field}.")
+            history_entry[field] = value
+
+    merged_draft = {
+        **draft,
+        "experience_recent": recent,
+        "experience_older": older,
+        "experience_history_snapshot": history,
+    }
+    blueprints = filter_blueprints_by_enabled_keys(experience_blueprints_from_snapshot(merged_draft), enabled_keys)
+    recent_keys = set(EXPERIENCE_BLUEPRINT_KEYS[:2])
+    recent_blueprints = [item for item in blueprints if item["key"] in recent_keys]
+    older_blueprints = [item for item in blueprints if item["key"] not in recent_keys]
+    issues = validate_experience_subset_payload(recent, recent_blueprints)
+    issues += validate_experience_subset_payload(older, older_blueprints)
+    if issues:
+        raise ValueError(" | ".join(issues[:3]))
+    return {
+        "experience_recent": recent,
+        "experience_older": older,
+        "experience_history_snapshot": history,
+    }
+
+
+def rebuild_extension_draft_content(draft: dict, title_summary: dict, skills_payload: dict, enabled_keys: list[str]) -> str:
+    core = merge_core_sections(title_summary, skills_payload)
+    core["_analysis"] = draft.get("analysis") or {}
+    core["_enabled_experience_keys"] = enabled_keys
+    experience = {"experience": {}}
+    experience["experience"].update((draft.get("experience_recent") or {}).get("experience", {}))
+    experience["experience"].update((draft.get("experience_older") or {}).get("experience", {}))
+    experience["_enabled_experience_keys"] = enabled_keys
+    missing = [key for key in enabled_keys if key not in experience["experience"]]
+    if missing:
+        raise ValueError("Regenerate the resume to add experience roles that were not generated in this draft.")
+    return format_generated_resume_text(merge_resume_payloads(core, experience), experience_blueprints_from_snapshot(draft))
+
+
+def extension_payloads_from_content(content: str, draft: dict, enabled_keys: list[str]) -> dict:
+    parsed = parse_updated_content_to_resume(content, load_base_resume())
+    parsed_skills = []
+    for item in parsed.get("technical_skills", []):
+        if not isinstance(item, dict):
+            continue
+        raw_items = item.get("items", "")
+        items = raw_items if isinstance(raw_items, list) else [part.strip() for part in str(raw_items).split(",") if part.strip()]
+        parsed_skills.append({"category": str(item.get("category", "")).strip(), "items": items})
+    skills_payload = {"updated_skills": normalize_updated_skills(parsed_skills)}
+    title_summary = {
+        "updated_title": str(parsed.get("title", "")).strip(),
+        "updated_summary": str(parsed.get("summary", "")).strip(),
+    }
+    experience_by_key: dict[str, dict] = {}
+    parsed_experience = parsed.get("experience") if isinstance(parsed.get("experience"), list) else []
+    for index, key in enumerate(enabled_keys):
+        entry = parsed_experience[index] if index < len(parsed_experience) and isinstance(parsed_experience[index], dict) else {}
+        experience_by_key[key] = {
+            "title": str(entry.get("title", "")).strip(),
+            "bullets": [str(item).strip() for item in entry.get("bullets", []) if str(item).strip()],
+        }
+    recent_keys = set(EXPERIENCE_BLUEPRINT_KEYS[:2])
+    return {
+        "title_summary": title_summary,
+        "skills": skills_payload,
+        "experience_recent": {"experience": {key: value for key, value in experience_by_key.items() if key in recent_keys}},
+        "experience_older": {"experience": {key: value for key, value in experience_by_key.items() if key not in recent_keys}},
+    }
+
+
+@app.route("/api/extension/status", methods=["GET"])
+def extension_status():
+    pdf_ok, pdf_message = get_pdf_conversion_status()
+    ai_ok, ai_message = is_ai_generation_ready()
+    profile = current_profile()
+    return jsonify({
+        "success": True,
+        "server_ready": True,
+        "ai_ready": ai_ok,
+        "ai_message": ai_message,
+        "pdf_ready": pdf_ok,
+        "pdf_message": pdf_message,
+        "onboarding_required": not has_permanent_profile_doc(),
+        "queue_paused": extension_drafts.has_duplicate_review(),
+        "identities": current_identity_profiles(),
+        "experience_history": profile.get("experience_history", []),
+        "autofill_ready": bool(profile.get("name")) and bool(current_identity_profiles()),
+    })
+
+
+@app.route("/api/extension/autofill-profile", methods=["GET", "POST"])
+def extension_autofill_profile():
+    """Return or update the application profile used by ATS content scripts."""
+    if request.method == "GET":
+        identity_id = str(request.args.get("identity_id", "")).strip()
+        return jsonify({
+            "success": True,
+            "profile": autofill_profile_data(identity_id),
+            "application": current_profile().get("application", {}),
+        })
+
+    try:
+        data = request.get_json() or {}
+        save_target = str(data.get("save_target", "permanent")).strip().lower()
+        if save_target not in {"session", "permanent"}:
+            return jsonify({"success": False, "error": "Invalid save target."}), 400
+
+        effective = current_profile()
+        application_payload = data.get("application") if isinstance(data.get("application"), dict) else data
+        effective["application"] = normalize_application_profile(application_payload)
+        if "fullName" in data or "name" in data:
+            effective["name"] = str(data.get("fullName", data.get("name", ""))).strip()
+        normalized = normalize_profile(effective)
+
+        if save_target == "permanent":
+            save_permanent_profile_doc(normalized)
+            clear_session_profile_doc()
+        else:
+            save_session_profile_doc(normalized)
+
+        identity_id = str(data.get("identity_id", "")).strip()
+        return jsonify({
+            "success": True,
+            "profile": autofill_profile_data(identity_id),
+            "application": current_profile().get("application", {}),
+        })
+    except Exception as exc:
+        return jsonify({"success": False, "error": str(exc)}), 500
+
+
+@app.route("/api/extension/contexts/resolve", methods=["POST"])
+def resolve_extension_context():
+    try:
+        context, draft = extension_drafts.resolve(request.get_json() or {})
+        issues = validate_context(context)
+        history = tracker_company_history(context.get("company_name", "")) if context.get("company_name") else {"count": 0, "applications": []}
+        return jsonify({
+            "success": True,
+            "context": context,
+            "complete": not issues,
+            "issues": issues,
+            "history": history,
+            "draft": extension_draft_payload(draft),
+        })
+    except Exception as exc:
+        return jsonify({"success": False, "error": str(exc)}), 500
+
+
+@app.route("/api/extension/drafts", methods=["POST"])
+def create_extension_draft():
+    try:
+        if not has_permanent_profile_doc():
+            return jsonify({"success": False, "error": "Complete Profile setup before generating a resume.", "onboarding_required": True}), 409
+        data = request.get_json() or {}
+        context = normalize_context(data.get("context") or data)
+        issues = validate_context(context)
+        if issues:
+            return jsonify({"success": False, "error": " ".join(issues), "issues": issues}), 400
+        history = tracker_company_history(context["company_name"])
+        snapshot = extension_profile_snapshot(str(data.get("identity_id", "")), data.get("enabled_experience_keys"))
+        draft = extension_drafts.create(context, snapshot, int(history.get("count", 0)))
+        extension_worker_event.set()
+        return jsonify({
+            "success": True,
+            "draft": extension_draft_payload(draft),
+            "history": history,
+            "queue_paused": extension_drafts.has_duplicate_review(),
+        })
+    except ValueError as exc:
+        return jsonify({"success": False, "error": str(exc)}), 400
+    except Exception as exc:
+        return jsonify({"success": False, "error": str(exc)}), 500
+
+
+@app.route("/api/extension/drafts", methods=["GET"])
+def list_extension_drafts():
+    try:
+        limit = int(request.args.get("limit", "12"))
+        drafts = [extension_draft_payload(draft) for draft in extension_drafts.list(limit)]
+        return jsonify({
+            "success": True,
+            "drafts": drafts,
+            "queue_paused": extension_drafts.has_duplicate_review(),
+        })
+    except Exception as exc:
+        return jsonify({"success": False, "error": str(exc)}), 500
+
+
+@app.route("/api/extension/drafts/<draft_id>", methods=["GET"])
+def get_extension_draft(draft_id: str):
+    draft = extension_drafts.get(draft_id)
+    if not draft:
+        return jsonify({"success": False, "error": "Resume draft not found."}), 404
+    return jsonify({"success": True, "draft": extension_draft_payload(draft)})
+
+
+@app.route("/api/extension/drafts/<draft_id>", methods=["PATCH"])
+def update_extension_draft(draft_id: str):
+    try:
+        draft = extension_drafts.get(draft_id)
+        if not draft:
+            return jsonify({"success": False, "error": "Resume draft not found."}), 404
+        if draft.get("locked"):
+            return jsonify({"success": False, "error": "Applied resume drafts are locked."}), 409
+        data = request.get_json() or {}
+        values: dict = {}
+        invalidate_pdf = False
+        if "company_name" in data:
+            values["company_name"] = str(data.get("company_name", "")).strip()
+        if "role_title" in data:
+            values["role_title"] = str(data.get("role_title", "")).strip()
+        if "identity_id" in data:
+            identity = identity_profile_by_id(str(data.get("identity_id", "")))
+            values.update({"identity_id": identity.get("id", ""), "contact_snapshot": identity})
+            invalidate_pdf = True
+        if "experience_history" in data and isinstance(data.get("experience_history"), list):
+            history = merge_experience_history_lists([], data.get("experience_history"))
+            values["experience_history_snapshot"] = history
+            invalidate_pdf = True
+
+        enabled_keys = draft.get("enabled_experience_keys") or []
+        if "enabled_experience_keys" in data:
+            requested = normalize_enabled_experience_keys(data.get("enabled_experience_keys"))
+            complete = {
+                str(item.get("key", "")).strip()
+                for item in draft.get("experience_history_snapshot", [])
+                if isinstance(item, dict) and is_experience_history_entry_enabled(item)
+            }
+            enabled_keys = [key for key in requested if key in complete]
+            if not enabled_keys:
+                raise ValueError("Keep at least one complete experience role enabled.")
+            values["enabled_experience_keys"] = enabled_keys
+            invalidate_pdf = True
+
+        title_summary = dict(draft.get("title_summary") or {})
+        skills_payload = dict(draft.get("skills") or {})
+        quick_edits = data.get("quick_edits") if isinstance(data.get("quick_edits"), dict) else None
+        if quick_edits is not None:
+            if "title" in quick_edits:
+                title_summary["updated_title"] = str(quick_edits.get("title", "")).strip()
+            if "summary" in quick_edits:
+                title_summary["updated_summary"] = str(quick_edits.get("summary", "")).strip()
+            if "skills_text" in quick_edits:
+                parsed_skills = parse_extension_skills_text(quick_edits.get("skills_text", ""))
+                if not parsed_skills:
+                    raise ValueError("Use one skills category per line in 'Category: item, item' format.")
+                skills_payload["updated_skills"] = parsed_skills
+            if "experience" in quick_edits:
+                values.update(apply_extension_experience_edits(draft, quick_edits.get("experience"), enabled_keys))
+            issues = validate_title_summary_payload(title_summary, draft.get("analysis") or {}, summary_max_buffer=20)
+            issues += validate_skills_only_payload(skills_payload, draft.get("analysis") or {})
+            if issues:
+                raise ValueError(" | ".join(issues[:3]))
+            values.update({"title_summary": title_summary, "skills": skills_payload})
+            invalidate_pdf = True
+
+        if quick_edits is not None or "enabled_experience_keys" in data:
+            values["resume_content"] = rebuild_extension_draft_content({**draft, **values}, title_summary, skills_payload, enabled_keys)
+        if "resume_content" in data:
+            content = str(data.get("resume_content", "")).strip()
+            errors, _warnings = validate_updated_content(content)
+            if errors:
+                raise ValueError(errors[0])
+            values["resume_content"] = content
+            values.update(extension_payloads_from_content(content, {**draft, **values}, enabled_keys))
+            invalidate_pdf = True
+
+        next_draft = {**draft, **values}
+        if values.get("resume_content"):
+            values["resume_snapshot"] = draft_resume_snapshot(next_draft)
+        updated = extension_drafts.update(draft_id, values, invalidate_pdf=invalidate_pdf)
+        return jsonify({"success": True, "draft": extension_draft_payload(updated)})
+    except KeyError as exc:
+        return jsonify({"success": False, "error": str(exc)}), 404
+    except ValueError as exc:
+        return jsonify({"success": False, "error": str(exc)}), 400
+    except Exception as exc:
+        return jsonify({"success": False, "error": str(exc)}), 500
+
+
+@app.route("/api/extension/drafts/<draft_id>", methods=["DELETE"])
+def delete_extension_draft(draft_id: str):
+    try:
+        extension_drafts.delete(draft_id)
+        return jsonify({"success": True})
+    except KeyError as exc:
+        return jsonify({"success": False, "error": str(exc)}), 404
+    except ValueError as exc:
+        return jsonify({"success": False, "error": str(exc)}), 409
+
+
+@app.route("/api/extension/drafts/<draft_id>/generate", methods=["POST"])
+def queue_extension_draft(draft_id: str):
+    try:
+        draft = extension_drafts.queue(draft_id)
+        extension_worker_event.set()
+        return jsonify({"success": True, "draft": extension_draft_payload(draft)})
+    except (KeyError, ValueError) as exc:
+        return jsonify({"success": False, "error": str(exc)}), 400
+
+
+@app.route("/api/extension/drafts/<draft_id>/duplicate-decision", methods=["POST"])
+def decide_extension_duplicate(draft_id: str):
+    try:
+        draft = extension_drafts.decide_duplicate(draft_id, str((request.get_json() or {}).get("decision", "")))
+        extension_worker_event.set()
+        return jsonify({"success": True, "draft": extension_draft_payload(draft), "queue_paused": extension_drafts.has_duplicate_review()})
+    except (KeyError, ValueError) as exc:
+        return jsonify({"success": False, "error": str(exc)}), 400
+
+
+@app.route("/api/extension/drafts/<draft_id>/retry", methods=["POST"])
+def retry_extension_draft(draft_id: str):
+    try:
+        draft = extension_drafts.retry(draft_id)
+        extension_worker_event.set()
+        return jsonify({"success": True, "draft": extension_draft_payload(draft)})
+    except (KeyError, ValueError) as exc:
+        return jsonify({"success": False, "error": str(exc)}), 400
+
+
+@app.route("/api/extension/drafts/<draft_id>/regenerate", methods=["POST"])
+def regenerate_extension_draft(draft_id: str):
+    try:
+        data = request.get_json() or {}
+        current = extension_drafts.get(draft_id)
+        if current and current.get("locked"):
+            context = data.get("context") or {
+                "source": current.get("source"),
+                "external_job_id": current.get("external_job_id"),
+                "url": current.get("canonical_url"),
+                "company_name": current.get("company_name"),
+                "role_title": current.get("role_title"),
+                "location": current.get("location"),
+                "job_description": data.get("job_description") or current.get("job_description"),
+            }
+            snapshot = extension_profile_snapshot(current.get("identity_id", ""), current.get("enabled_experience_keys"))
+            draft = extension_drafts.create(context, snapshot, 0)
+        else:
+            draft = extension_drafts.regenerate(draft_id, data.get("context"))
+        extension_worker_event.set()
+        return jsonify({"success": True, "draft": extension_draft_payload(draft)})
+    except (KeyError, ValueError) as exc:
+        return jsonify({"success": False, "error": str(exc)}), 400
+
+
+@app.route("/api/extension/drafts/<draft_id>/pdf", methods=["POST"])
+def create_extension_pdf(draft_id: str):
+    try:
+        draft = extension_drafts.get(draft_id)
+        if not draft:
+            return jsonify({"success": False, "error": "Resume draft not found."}), 404
+        return jsonify({"success": True, "draft": extension_draft_payload(generate_extension_pdf(draft))})
+    except ValueError as exc:
+        return jsonify({"success": False, "error": str(exc)}), 400
+    except Exception as exc:
+        return jsonify({"success": False, "error": str(exc)}), 500
+
+
+@app.route("/api/extension/drafts/<draft_id>/mark-applied", methods=["POST"])
+def mark_extension_draft_applied(draft_id: str):
+    try:
+        draft = extension_draft_payload(extension_drafts.get(draft_id))
+        if not draft:
+            return jsonify({"success": False, "error": "Resume draft not found."}), 404
+        if draft.get("status") != "pdf_ready" or draft.get("pdf_stale") or not Path(draft.get("pdf_path", "")).exists():
+            raise ValueError("Generate the latest PDF before marking this application as applied.")
+        data = request.get_json() or {}
+        application = build_tracker_application_record(
+            company_name=draft.get("company_name", ""),
+            job_description=draft.get("job_description", ""),
+            resume_content=draft.get("resume_content", ""),
+            analysis_payload=draft.get("analysis") or {},
+            applied_date=str(data.get("applied_date", "")).strip() or today_iso_date(),
+            status=str(data.get("status", "Applied")),
+            source=str(data.get("source", "LinkedIn")),
+            job_url=draft.get("canonical_url", ""),
+            notes=str(data.get("notes", "")),
+            pdf_path=draft.get("pdf_path", ""),
+            output_dir=draft.get("output_dir", ""),
+            contact_override=draft.get("contact_snapshot") or {},
+            identity=draft.get("identity_id", ""),
+            experience_history_override=draft.get("experience_history_snapshot") or [],
+            enabled_experience_keys=draft.get("enabled_experience_keys") or [],
+            parsed_resume_override=draft.get("preview") or draft.get("resume_snapshot") or {},
+        )
+        saved_application = upsert_tracker_application(application)
+        updated = extension_drafts.update(draft_id, {"application_id": saved_application.get("id", ""), "status": "applied", "stage": "complete"})
+        applications = list_tracker_applications()
+        return jsonify({
+            "success": True,
+            "draft": extension_draft_payload(updated),
+            "application": saved_application,
+            "summary": summarize_tracker({"applications": applications}),
+        })
+    except ValueError as exc:
+        return jsonify({"success": False, "error": str(exc)}), 400
+    except Exception as exc:
+        return jsonify({"success": False, "error": str(exc)}), 500
+
+
+@app.route("/api/extension/drafts/<draft_id>/editor-session", methods=["POST"])
+def create_extension_editor_session(draft_id: str):
+    draft = extension_draft_payload(extension_drafts.get(draft_id))
+    if not draft:
+        return jsonify({"success": False, "error": "Resume draft not found."}), 404
+    session_id = uuid.uuid4().hex
+    ai_sessions[session_id] = {
+        "job_description": draft.get("job_description", ""),
+        "turns": ([{"revision_request": "", "analysis": draft.get("analysis") or {}, "resume_text": draft.get("resume_content", ""), "created_at": datetime.now(timezone.utc).isoformat()}] if draft.get("resume_content") else []),
+        "analysis": draft.get("analysis") or None,
+        "title_summary": draft.get("title_summary") or None,
+        "skills": draft.get("skills") or None,
+        "core_resume": (merge_core_sections(draft.get("title_summary") or {}, draft.get("skills") or {}) if draft.get("title_summary") and draft.get("skills") else None),
+        "experience_recent": draft.get("experience_recent") or None,
+        "experience_older": draft.get("experience_older") or None,
+        "enabled_experience_keys": draft.get("enabled_experience_keys") or [],
+        "created_at": time.time(),
+        "updated_at": time.time(),
+    }
+    return jsonify({"success": True, "session_id": session_id, "draft": draft})
+
+
+@app.route("/api/extension/drafts/<draft_id>/reachout", methods=["POST"])
+def generate_extension_reachout(draft_id: str):
+    try:
+        draft = extension_draft_payload(extension_drafts.get(draft_id))
+        if not draft:
+            return jsonify({"success": False, "error": "Resume draft not found."}), 404
+        if not str(draft.get("resume_content", "")).strip() or not draft.get("analysis"):
+            raise ValueError("Generate the resume before creating a reachout message.")
+
+        api_key = os.getenv("OPENAI_API_KEY", "").strip()
+        if not api_key:
+            return jsonify({"success": False, "error": "OPENAI_API_KEY is not configured"}), 500
+
+        data = request.get_json() or {}
+        started = time.perf_counter()
+        reachout_payload = generate_reachout_message(
+            api_key=api_key,
+            job_description=draft.get("job_description", ""),
+            analysis_payload=draft.get("analysis") or {},
+            current_resume_content=draft.get("resume_content", ""),
+            recipient_name=str(data.get("recipient_name", "")),
+            target_company=draft.get("company_name", ""),
+            target_role=draft.get("role_title", ""),
+        )
+        issues = validate_reachout_payload(reachout_payload)
+        if issues:
+            raise ValueError("Reachout generation failed validation: " + " | ".join(issues[:3]))
+        return jsonify({
+            "success": True,
+            "reachout": reachout_payload,
+            "timing": {"reachout_ms": int((time.perf_counter() - started) * 1000)},
+        })
+    except ValueError as exc:
+        return jsonify({"success": False, "error": str(exc)}), 400
+    except Exception as exc:
+        return jsonify({"success": False, "error": f"Reachout generation failed: {exc}"}), 500
+
+
+@app.route("/api/extension/drafts/<draft_id>/followup", methods=["POST"])
+def generate_extension_followup(draft_id: str):
+    try:
+        draft = extension_draft_payload(extension_drafts.get(draft_id))
+        if not draft:
+            return jsonify({"success": False, "error": "Resume draft not found."}), 404
+        data = request.get_json() or {}
+        question = str(data.get("question", "")).strip()
+        if not question:
+            raise ValueError("Enter a follow-up question.")
+        pdf_path = str(draft.get("pdf_path", "")).strip()
+        if (
+            draft.get("pdf_stale")
+            or int(draft.get("pdf_revision") or 0) != int(draft.get("resume_revision") or 1)
+            or not pdf_path
+            or not Path(pdf_path).exists()
+        ):
+            raise ValueError("Generate the latest PDF before answering follow-up questions.")
+        if not draft.get("analysis"):
+            raise ValueError("Generate the resume before answering follow-up questions.")
+
+        api_key = os.getenv("OPENAI_API_KEY", "").strip()
+        if not api_key:
+            return jsonify({"success": False, "error": "OPENAI_API_KEY is not configured"}), 500
+
+        started = time.perf_counter()
+        followup_payload = generate_followup_answer(
+            api_key=api_key,
+            job_description=draft.get("job_description", ""),
+            analysis_payload=draft.get("analysis") or {},
+            question=question,
+            resume_pdf_text=extract_text_from_pdf(pdf_path),
+        )
+        return jsonify({
+            "success": True,
+            "followup": followup_payload,
+            "timing": {"followup_ms": int((time.perf_counter() - started) * 1000)},
+        })
+    except ValueError as exc:
+        return jsonify({"success": False, "error": str(exc)}), 400
+    except Exception as exc:
+        return jsonify({"success": False, "error": f"Follow-up generation failed: {exc}"}), 500
+
+
+SENSITIVE_APPLICATION_QUESTION_RE = re.compile(
+    r"\b(work authorization|authorized to work|sponsor|sponsorship|visa|salary|compensation|pay range|"
+    r"desired pay|start date|available to start|availability|security clearance|criminal|felony|conviction|"
+    r"disability|veteran|race|ethnicity|gender|sexual orientation|demographic|eeo|equal employment)\b",
+    re.IGNORECASE,
+)
+
+
+@app.route("/api/extension/drafts/<draft_id>/application-answer", methods=["POST"])
+def generate_extension_application_answer(draft_id: str):
+    try:
+        draft = extension_draft_payload(extension_drafts.get(draft_id))
+        if not draft:
+            return jsonify({"success": False, "error": "Resume draft not found."}), 404
+        data = request.get_json() or {}
+        question = str(data.get("question", "")).strip()
+        if not question:
+            raise ValueError("Select an application question first.")
+        if SENSITIVE_APPLICATION_QUESTION_RE.search(question):
+            raise ValueError("Answer this question manually because it requires personal or legal confirmation.")
+        pdf_path = str(draft.get("pdf_path", "")).strip()
+        if (
+            draft.get("status") != "pdf_ready"
+            or draft.get("pdf_stale")
+            or int(draft.get("pdf_revision") or 0) != int(draft.get("resume_revision") or 1)
+            or not pdf_path
+            or not Path(pdf_path).exists()
+        ):
+            raise ValueError("Select a current PDF generated within the last 24 hours.")
+        generated_at_text = str(draft.get("pdf_generated_at", "")).strip()
+        generated_at = datetime.fromisoformat(generated_at_text.replace("Z", "+00:00")) if generated_at_text else None
+        if not generated_at:
+            raise ValueError("The selected PDF does not have a generation timestamp.")
+        if generated_at.tzinfo is None:
+            generated_at = generated_at.replace(tzinfo=timezone.utc)
+        if (datetime.now(timezone.utc) - generated_at).total_seconds() > 24 * 60 * 60:
+            raise ValueError("Select a PDF generated within the last 24 hours.")
+        if not draft.get("analysis"):
+            raise ValueError("The selected resume does not have its job analysis.")
+        max_characters = max(0, min(int(data.get("max_characters") or 0), 5000))
+        api_key = os.getenv("OPENAI_API_KEY", "").strip()
+        if not api_key:
+            return jsonify({"success": False, "error": "OPENAI_API_KEY is not configured"}), 500
+
+        started = time.perf_counter()
+        answer = generate_followup_answer(
+            api_key=api_key,
+            job_description=draft.get("job_description", ""),
+            analysis_payload=draft.get("analysis") or {},
+            question=question,
+            resume_pdf_text=extract_text_from_pdf(pdf_path),
+            max_characters=max_characters,
+        )
+        return jsonify({
+            "success": True,
+            "answer": answer,
+            "timing": {"application_answer_ms": int((time.perf_counter() - started) * 1000)},
+        })
+    except ValueError as exc:
+        return jsonify({"success": False, "error": str(exc)}), 400
+    except Exception as exc:
+        return jsonify({"success": False, "error": f"Application answer generation failed: {exc}"}), 500
+
+
 @app.route("/api/tracker", methods=["GET"])
 def get_tracker():
     try:
         sort_key = str(request.args.get("sort", "applied_date")).strip()
-        store = load_tracker_store()
-        applications = sorted_tracker_applications(merge_tracker_applications(store), sort_key=sort_key)
+        applications = sorted_tracker_applications(list_tracker_applications(), sort_key=sort_key)
         return jsonify({
             "success": True,
             "applications": applications,
@@ -5056,14 +6240,7 @@ def create_tracker_application():
         if not company_name and not str((data.get("analysis") or {}).get("company_name", "")).strip():
             return jsonify({"success": False, "error": "Company name is required"}), 400
 
-        store = load_tracker_store()
         target_output_dir = str(data.get("output_dir", "")).strip()
-        existing = None
-        if target_output_dir:
-            existing = next((item for item in store["applications"] if str(item.get("output_dir", "")).strip() == target_output_dir), None)
-        if not existing and target_output_dir:
-            existing = next((item for item in scan_output_tracker_applications() if str(item.get("output_dir", "")).strip() == target_output_dir), None)
-
         application = build_tracker_application_record(
             company_name=company_name,
             job_description=job_description,
@@ -5082,45 +6259,10 @@ def create_tracker_application():
             enabled_experience_keys=data.get("enabled_experience_keys"),
             parsed_resume_override=data.get("resume_snapshot_override"),
         )
-        if existing:
-            history = list(existing.get("history") or [])
-            if not history:
-                history = application.get("history", [])
-            application["id"] = str(existing.get("id", application["id"]))
-            application["created_at"] = str(existing.get("created_at", application["created_at"]))
-            application["history"] = history
-            application["status"] = normalize_tracker_status(data.get("status", existing.get("status", "Applied")))
-            application["status_updated_date"] = applied_date if application["status"] != existing.get("status") else str(existing.get("status_updated_date", applied_date))
-            application["last_updated_date"] = datetime.now().isoformat(timespec="seconds")
-            application["notes"] = str(data.get("notes", "")).strip() or str(existing.get("notes", "")).strip()
-            if application["status"] != existing.get("status"):
-                application["history"] = history + [{
-                    "status": application["status"],
-                    "changed_at": application["last_updated_date"],
-                    "effective_date": application["status_updated_date"],
-                    "note": application["notes"],
-                }]
-
-            replaced = False
-            for index, item in enumerate(store["applications"]):
-                if str(item.get("id", "")) == application["id"] or str(item.get("output_dir", "")).strip() == target_output_dir:
-                    store["applications"][index] = application
-                    replaced = True
-                    break
-            if not replaced:
-                store["applications"].append(application)
-        else:
-            store["applications"].append(application)
-        save_tracker_store(store)
-        merged_applications = merge_tracker_applications(store)
-        response_application = next(
-            (
-                item for item in merged_applications
-                if str(item.get("id", "")) == str(application.get("id", ""))
-                or (target_output_dir and str(item.get("output_dir", "")).strip() == target_output_dir)
-            ),
-            application,
-        )
+        if data.get("job_id"):
+            application["job_id"] = str(data.get("job_id", "")).strip()
+        response_application = upsert_tracker_application(application)
+        merged_applications = list_tracker_applications()
         return jsonify({
             "success": True,
             "application": response_application,
@@ -5137,33 +6279,8 @@ def update_tracker_application_status(application_id: str):
         new_status = normalize_tracker_status(data.get("status", ""))
         note = str(data.get("note", "")).strip()
         effective_date = str(data.get("effective_date", "")).strip() or today_iso_date()
-        store = load_tracker_store()
-        applications = store.get("applications", [])
-        record = next((item for item in applications if item.get("id") == application_id), None)
-        if not record:
-            discovered = next((item for item in scan_output_tracker_applications() if item.get("id") == application_id), None)
-            if not discovered:
-                return jsonify({"success": False, "error": "Application not found"}), 404
-            record = {**discovered}
-            applications.append(record)
-
-        now_iso = datetime.now().isoformat(timespec="seconds")
-        record["status"] = new_status
-        record["last_updated_date"] = now_iso
-        record["status_updated_date"] = effective_date
-        if note:
-            record["notes"] = note
-        history = record.get("history") or []
-        history.append({
-            "status": new_status,
-            "changed_at": now_iso,
-            "effective_date": effective_date,
-            "note": note,
-        })
-        record["history"] = history
-        save_tracker_store(store)
-        merged_applications = merge_tracker_applications(store)
-        updated_record = next((item for item in merged_applications if item.get("id") == application_id), record)
+        updated_record = update_tracker_status_record(application_id, new_status, note, effective_date)
+        merged_applications = list_tracker_applications()
         return jsonify({
             "success": True,
             "application": updated_record,
@@ -5871,6 +6988,9 @@ def generate_ai_reachout():
                 job_description=job_description,
                 analysis_payload=analysis_payload,
                 current_resume_content=current_resume_content,
+                recipient_name=str(data.get("recipient_name", "")),
+                target_company=str(data.get("company_name", "")),
+                target_role=str(data.get("role_title", "")),
             )
         except Exception as exc:
             raise AIStageError("reachout_generation", f"Reachout generation failed: {exc}", analysis=analysis_payload) from exc
@@ -6029,6 +7149,7 @@ def generate():
         pdf_path = out_dir / "tharun manikonda resume.pdf"
         status_path = out_dir / "pdf_status.json"
         metadata = {
+            "job_id": str(data.get("job_id", "")).strip(),
             "folder": folder_name,
             "company_name": company_name,
             "identity": identity,
@@ -6042,7 +7163,6 @@ def generate():
 
         # Launch background PDF conversion.
         start_pdf_conversion(docx_path, pdf_path, status_path)
-
         return jsonify({
             "success": True,
             "folder": folder_name,
@@ -6237,6 +7357,9 @@ def add_caching_headers(response):
         response.cache_control.max_age = 604800  # 1 week
         response.cache_control.public = True
     return response
+
+
+ensure_extension_worker_started()
 
 
 if __name__ == "__main__":
