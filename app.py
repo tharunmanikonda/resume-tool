@@ -5580,6 +5580,34 @@ def parse_extension_skills_text(value: str) -> list[dict]:
     return normalize_updated_skills(skills)
 
 
+def validate_extension_manual_core(title_summary: dict, skills_payload: dict) -> list[str]:
+    """Validate editable resume structure without reapplying AI generation policy."""
+    issues: list[str] = []
+    if not str(title_summary.get("updated_title", "")).strip():
+        issues.append("Resume title is required.")
+    if not str(title_summary.get("updated_summary", "")).strip():
+        issues.append("Summary is required.")
+
+    skills = normalize_updated_skills(skills_payload.get("updated_skills") or [])
+    if not skills:
+        issues.append("Add at least one technical skills category.")
+        return issues
+    seen_categories: set[str] = set()
+    for entry in skills:
+        category = str(entry.get("category", "")).strip()
+        items = expand_skill_items(entry.get("items", []))
+        normalized_category = category.casefold()
+        if not category:
+            issues.append("A technical skills category is empty.")
+        elif normalized_category in seen_categories:
+            issues.append(f"Duplicate skills category: {category}.")
+        else:
+            seen_categories.add(normalized_category)
+        if not items:
+            issues.append(f"Skills category '{category or 'Untitled'}' needs at least one skill.")
+    return issues
+
+
 def parse_extension_bullets(value) -> list[str]:
     raw_items = value if isinstance(value, list) else str(value or "").splitlines()
     return [
@@ -5626,6 +5654,8 @@ def apply_extension_experience_edits(draft: dict, edits: list, enabled_keys: lis
         bullets = parse_extension_bullets(raw_entry.get("bullets_text", raw_entry.get("bullets", target.get("bullets", []))))
         if not title:
             raise ValueError("Every enabled work experience requires a role title.")
+        if not bullets:
+            raise ValueError("Every enabled work experience requires at least one bullet.")
         target.update({"title": title, "bullets": bullets})
 
         history_entry = history_by_key.get(key)
@@ -5637,20 +5667,6 @@ def apply_extension_experience_edits(draft: dict, edits: list, enabled_keys: lis
                 raise ValueError(f"Every enabled work experience requires {field}.")
             history_entry[field] = value
 
-    merged_draft = {
-        **draft,
-        "experience_recent": recent,
-        "experience_older": older,
-        "experience_history_snapshot": history,
-    }
-    blueprints = filter_blueprints_by_enabled_keys(experience_blueprints_from_snapshot(merged_draft), enabled_keys)
-    recent_keys = set(EXPERIENCE_BLUEPRINT_KEYS[:2])
-    recent_blueprints = [item for item in blueprints if item["key"] in recent_keys]
-    older_blueprints = [item for item in blueprints if item["key"] not in recent_keys]
-    issues = validate_experience_subset_payload(recent, recent_blueprints)
-    issues += validate_experience_subset_payload(older, older_blueprints)
-    if issues:
-        raise ValueError(" | ".join(issues[:3]))
     return {
         "experience_recent": recent,
         "experience_older": older,
@@ -5876,14 +5892,25 @@ def update_extension_draft(draft_id: str):
             if "summary" in quick_edits:
                 title_summary["updated_summary"] = str(quick_edits.get("summary", "")).strip()
             if "skills_text" in quick_edits:
-                parsed_skills = parse_extension_skills_text(quick_edits.get("skills_text", ""))
+                skills_text_value = str(quick_edits.get("skills_text", ""))
+                malformed_lines = [
+                    line.strip()
+                    for line in skills_text_value.splitlines()
+                    if line.strip() and (
+                        ":" not in line
+                        or not line.split(":", 1)[0].strip()
+                        or not line.split(":", 1)[1].strip()
+                    )
+                ]
+                if malformed_lines:
+                    raise ValueError("Use one skills category per line in 'Category: item, item' format.")
+                parsed_skills = parse_extension_skills_text(skills_text_value)
                 if not parsed_skills:
                     raise ValueError("Use one skills category per line in 'Category: item, item' format.")
                 skills_payload["updated_skills"] = parsed_skills
             if "experience" in quick_edits:
                 values.update(apply_extension_experience_edits(draft, quick_edits.get("experience"), enabled_keys))
-            issues = validate_title_summary_payload(title_summary, draft.get("analysis") or {}, summary_max_buffer=20)
-            issues += validate_skills_only_payload(skills_payload, draft.get("analysis") or {})
+            issues = validate_extension_manual_core(title_summary, skills_payload)
             if issues:
                 raise ValueError(" | ".join(issues[:3]))
             values.update({"title_summary": title_summary, "skills": skills_payload})
@@ -6094,6 +6121,41 @@ def generate_extension_reachout(draft_id: str):
         return jsonify({"success": False, "error": f"Reachout generation failed: {exc}"}), 500
 
 
+def answer_pdf_path(
+    draft: dict,
+    *,
+    max_age_hours: int | None = None,
+    now: datetime | None = None,
+) -> Path:
+    """Return the current draft PDF or raise a user-facing eligibility error."""
+    pdf_path = str(draft.get("pdf_path", "")).strip()
+    if (
+        draft.get("pdf_stale")
+        or int(draft.get("pdf_revision") or 0) != int(draft.get("resume_revision") or 1)
+        or not pdf_path
+        or not Path(pdf_path).exists()
+    ):
+        raise ValueError("Generate the latest PDF before generating answers.")
+
+    if max_age_hours is not None:
+        generated_at_text = str(draft.get("pdf_generated_at", "")).strip()
+        if not generated_at_text:
+            raise ValueError("The selected PDF does not have a generation timestamp. Generate it again.")
+        try:
+            generated_at = datetime.fromisoformat(generated_at_text.replace("Z", "+00:00"))
+        except ValueError as exc:
+            raise ValueError("The selected PDF has an invalid generation timestamp. Generate it again.") from exc
+        if generated_at.tzinfo is None:
+            generated_at = generated_at.replace(tzinfo=timezone.utc)
+        current_time = now or datetime.now(timezone.utc)
+        if current_time.tzinfo is None:
+            current_time = current_time.replace(tzinfo=timezone.utc)
+        if (current_time - generated_at.astimezone(timezone.utc)).total_seconds() > max_age_hours * 60 * 60:
+            raise ValueError(f"The selected PDF is older than {max_age_hours} hours. Generate a new PDF to answer this application.")
+
+    return Path(pdf_path)
+
+
 @app.route("/api/extension/drafts/<draft_id>/followup", methods=["POST"])
 def generate_extension_followup(draft_id: str):
     try:
@@ -6104,14 +6166,7 @@ def generate_extension_followup(draft_id: str):
         question = str(data.get("question", "")).strip()
         if not question:
             raise ValueError("Enter a follow-up question.")
-        pdf_path = str(draft.get("pdf_path", "")).strip()
-        if (
-            draft.get("pdf_stale")
-            or int(draft.get("pdf_revision") or 0) != int(draft.get("resume_revision") or 1)
-            or not pdf_path
-            or not Path(pdf_path).exists()
-        ):
-            raise ValueError("Generate the latest PDF before answering follow-up questions.")
+        pdf_path = answer_pdf_path(draft)
         if not draft.get("analysis"):
             raise ValueError("Generate the resume before answering follow-up questions.")
 
@@ -6125,7 +6180,7 @@ def generate_extension_followup(draft_id: str):
             job_description=draft.get("job_description", ""),
             analysis_payload=draft.get("analysis") or {},
             question=question,
-            resume_pdf_text=extract_text_from_pdf(pdf_path),
+            resume_pdf_text=extract_text_from_pdf(str(pdf_path)),
         )
         return jsonify({
             "success": True,
@@ -6158,23 +6213,7 @@ def generate_extension_application_answer(draft_id: str):
             raise ValueError("Select an application question first.")
         if SENSITIVE_APPLICATION_QUESTION_RE.search(question):
             raise ValueError("Answer this question manually because it requires personal or legal confirmation.")
-        pdf_path = str(draft.get("pdf_path", "")).strip()
-        if (
-            draft.get("status") != "pdf_ready"
-            or draft.get("pdf_stale")
-            or int(draft.get("pdf_revision") or 0) != int(draft.get("resume_revision") or 1)
-            or not pdf_path
-            or not Path(pdf_path).exists()
-        ):
-            raise ValueError("Select a current PDF generated within the last 24 hours.")
-        generated_at_text = str(draft.get("pdf_generated_at", "")).strip()
-        generated_at = datetime.fromisoformat(generated_at_text.replace("Z", "+00:00")) if generated_at_text else None
-        if not generated_at:
-            raise ValueError("The selected PDF does not have a generation timestamp.")
-        if generated_at.tzinfo is None:
-            generated_at = generated_at.replace(tzinfo=timezone.utc)
-        if (datetime.now(timezone.utc) - generated_at).total_seconds() > 24 * 60 * 60:
-            raise ValueError("Select a PDF generated within the last 24 hours.")
+        pdf_path = answer_pdf_path(draft, max_age_hours=24)
         if not draft.get("analysis"):
             raise ValueError("The selected resume does not have its job analysis.")
         max_characters = max(0, min(int(data.get("max_characters") or 0), 5000))
@@ -6188,7 +6227,7 @@ def generate_extension_application_answer(draft_id: str):
             job_description=draft.get("job_description", ""),
             analysis_payload=draft.get("analysis") or {},
             question=question,
-            resume_pdf_text=extract_text_from_pdf(pdf_path),
+            resume_pdf_text=extract_text_from_pdf(str(pdf_path)),
             max_characters=max_characters,
         )
         return jsonify({

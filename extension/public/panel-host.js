@@ -1,11 +1,23 @@
 (() => {
-  const version = chrome.runtime.getManifest?.().version || "development";
+  let version = "development";
+  let runtimeId = "";
+  try {
+    version = chrome.runtime.getManifest?.().version || version;
+    runtimeId = chrome.runtime.id || "";
+  } catch (_) {
+    return;
+  }
   const existingLifecycle = globalThis.__resumeGeneratorPanelHostLifecycle;
-  if (existingLifecycle?.version === version) return;
+  if (
+    existingLifecycle?.version === version
+    && existingLifecycle?.runtimeId === runtimeId
+    && existingLifecycle?.isActive?.()
+  ) return;
   existingLifecycle?.shutdown?.();
 
   const panelHostId = "resume-generator-global-panel";
   const panelTriggerId = "resume-generator-global-trigger";
+  const instanceId = globalThis.crypto?.randomUUID?.() || `${Date.now()}-${Math.random()}`;
   let stopped = false;
 
   function runtimeAvailable() {
@@ -20,6 +32,17 @@
     document.getElementById(panelHostId)?.remove();
   }
 
+  function extensionUrl(path) {
+    if (!runtimeAvailable()) return "";
+    try {
+      const value = chrome.runtime.getURL(path);
+      if (!value || value.startsWith("chrome-extension://invalid")) return "";
+      return value;
+    } catch (_) {
+      return "";
+    }
+  }
+
   function togglePanel() {
     const existing = document.getElementById(panelHostId);
     if (existing) {
@@ -27,9 +50,12 @@
       return false;
     }
     if (!runtimeAvailable()) return false;
+    const panelUrl = extensionUrl("sidepanel.html");
+    if (!panelUrl) return false;
 
     const host = document.createElement("div");
     host.id = panelHostId;
+    host.dataset.resumeGeneratorInstance = instanceId;
     Object.assign(host.style, {
       position: "fixed",
       inset: "0 0 0 auto",
@@ -59,7 +85,7 @@
 
     const frame = document.createElement("iframe");
     frame.title = "Resume Generator";
-    frame.src = chrome.runtime.getURL("sidepanel.html");
+    frame.src = panelUrl;
     frame.setAttribute("allow", "clipboard-write");
     Object.assign(frame.style, { width: "100%", height: "100%", border: "0", background: "#fff" });
     host.append(frame, close);
@@ -68,11 +94,16 @@
   }
 
   function ensureTrigger() {
-    if (document.getElementById(panelTriggerId)) return;
+    const existing = document.getElementById(panelTriggerId);
+    if (existing?.dataset.resumeGeneratorInstance === instanceId) return;
+    existing?.remove();
+    const stalePanel = document.getElementById(panelHostId);
+    if (stalePanel?.dataset.resumeGeneratorInstance !== instanceId) stalePanel?.remove();
     const trigger = document.createElement("button");
     trigger.id = panelTriggerId;
     trigger.type = "button";
     trigger.textContent = "Resume";
+    trigger.dataset.resumeGeneratorInstance = instanceId;
     trigger.setAttribute("aria-label", "Open Resume Generator");
     Object.assign(trigger.style, {
       all: "initial",
@@ -108,7 +139,7 @@
     document.getElementById(panelTriggerId)?.remove();
   }
 
-  globalThis.__resumeGeneratorPanelHostLifecycle = { version, shutdown };
+  globalThis.__resumeGeneratorPanelHostLifecycle = { version, runtimeId, instanceId, isActive: runtimeAvailable, shutdown };
   chrome.runtime.onMessage.addListener(handleMessage);
   ensureTrigger();
 })();

@@ -1,7 +1,18 @@
 (() => {
-  const version = chrome.runtime.getManifest?.().version || "development";
+  let version = "development";
+  let runtimeId = "";
+  try {
+    version = chrome.runtime.getManifest?.().version || version;
+    runtimeId = chrome.runtime.id || "";
+  } catch (_) {
+    return;
+  }
   const previous = globalThis.__resumeAutofillLifecycle;
-  if (previous?.version === version) return;
+  if (
+    previous?.version === version
+    && previous?.runtimeId === runtimeId
+    && previous?.isActive?.()
+  ) return;
   previous?.shutdown?.();
 
   const matcher = globalThis.ResumeAutofillMatcher;
@@ -293,7 +304,7 @@
     try { chrome.runtime.onMessage.removeListener(handleMessage); } catch (_) {}
   }
 
-  globalThis.__resumeAutofillLifecycle = { version, shutdown };
+  globalThis.__resumeAutofillLifecycle = { version, runtimeId, isActive: runtimeAvailable, shutdown };
   chrome.runtime.onMessage.addListener(handleMessage);
   observer = new MutationObserver(() => scheduleScan(500));
   observer.observe(document.documentElement, { childList: true, subtree: true });

@@ -82,11 +82,16 @@ function autofillAnswerStorageKey(draftId) {
   return `resumeAutofillAnswers:${draftId}`;
 }
 
+function draftPdfIsCurrent(draft) {
+  if (!draft?.pdf_path || draft.pdf_stale) return false;
+  return Number(draft.pdf_revision || 0) === Number(draft.resume_revision || 1);
+}
+
 function recentPdfDrafts(drafts) {
   const cutoff = Date.now() - 24 * 60 * 60 * 1000;
   return (drafts || []).filter((item) => {
     const generatedAt = new Date(item.pdf_generated_at || "").getTime();
-    return item.status === "pdf_ready" && !item.pdf_stale && item.pdf_path && Number.isFinite(generatedAt) && generatedAt >= cutoff;
+    return draftPdfIsCurrent(item) && Number.isFinite(generatedAt) && generatedAt >= cutoff;
   });
 }
 
@@ -257,9 +262,10 @@ function AutofillWorkspace({
       <label>Contact identity<select value={identityId} onChange={(event) => onIdentity(event.target.value)}>{(identities || []).map((item) => <option key={item.id} value={item.id}>{item.label}</option>)}</select></label>
       <div className="autofill-actions">
         <button className="primary" disabled={!status?.supported || !status?.applicationPage || busy !== ""} onClick={onFill}>{busy === "fill" ? "Filling..." : "Fill this page"}</button>
-        <label>Resume generated in the last 24 hours<select aria-label="Resume to attach and answer with" value={selectedDraftId} onChange={(event) => onSelectDraft(event.target.value)}><option value="">Select generated resume</option>{recentResumes.map((item) => <option key={item.id} value={item.id}>{item.company_name} - {item.role_title} - {generatedAgo(item.pdf_generated_at)}</option>)}</select></label>
+        <label>Resume generated in the last 24 hours<select aria-label="Resume to attach and answer with" value={selectedDraftId} onChange={(event) => onSelectDraft(event.target.value)}><option value="">{recentResumes.length ? "Select generated resume" : "No current PDF available"}</option>{recentResumes.map((item) => <option key={item.id} value={item.id}>{item.company_name} - {item.role_title} - {generatedAgo(item.pdf_generated_at)}</option>)}</select></label>
         <button disabled={!selectedDraftId || !status?.fileFields || busy !== ""} onClick={onAttach}>{busy === "attach" ? "Attaching..." : "Attach resume"}</button>
       </div>
+      {!recentResumes.length ? <small className="field-error">Generate a new PDF in the Resume tab before attaching it or asking AI.</small> : null}
       <small className="autofill-note">Existing answers are left unchanged. The extension never submits the application.</small>
 
       {questions.length ? <section className="application-questions"><div className="application-questions-heading"><strong>Application questions</strong><span>{questions.length}</span></div>{questions.map((question) => {
@@ -315,6 +321,7 @@ function App() {
   const [quickEdits, setQuickEdits] = useState({ title: "", summary: "", skills_text: "", experience: [] });
   const [quickDirty, setQuickDirty] = useState(false);
   const [saveState, setSaveState] = useState("");
+  const [resumeCopyState, setResumeCopyState] = useState("");
   const quickDirtyRef = useRef(false);
   const quickEditVersionRef = useRef(0);
   const quickEditsRef = useRef(quickEdits);
@@ -459,13 +466,14 @@ function App() {
     setAutofillAnswerBusy(question.questionId);
     setAutofillMessage(null);
     try {
+      const selectedResume = recentPdfDrafts(drafts).find((item) => item.id === autofillDraftId);
+      if (!selectedResume) throw new Error("Generate a new PDF before asking AI. Autofill answers use PDFs from the last 24 hours.");
       const data = await api(`/api/extension/drafts/${encodeURIComponent(autofillDraftId)}/application-answer`, {
         method: "POST",
         body: { question: question.label, max_characters: question.maxLength || 0 },
       });
       const answer = String(data.answer?.answer || "").trim();
       if (!answer) throw new Error("The AI returned an empty answer.");
-      const selectedResume = recentPdfDrafts(drafts).find((item) => item.id === autofillDraftId);
       setAutofillAnswers((current) => {
         const next = { ...current, [question.questionId]: { answer, resume_revision: selectedResume?.resume_revision, created_at: new Date().toISOString() } };
         chrome.storage.local.set({ [autofillAnswerStorageKey(autofillDraftId)]: next }).catch(() => {});
@@ -707,7 +715,9 @@ function App() {
       })
       .catch((saveError) => {
         quickDirtyRef.current = true;
-        setQuickDirty(true);
+        // Keep the unsaved values, but do not retry an unchanged rejected payload forever.
+        // A subsequent edit or an explicit PDF action will attempt the save again.
+        setQuickDirty(quickEditVersionRef.current !== version);
         setSaveState(saveError.message);
         throw saveError;
       })
@@ -915,6 +925,22 @@ function App() {
     }
   }
 
+  async function copyResumeContent() {
+    setResumeCopyState("copying");
+    setError("");
+    try {
+      const savedDraft = await persistQuickEdits();
+      const content = String(savedDraft?.resume_content || draftRef.current?.resume_content || "").trim();
+      if (!content) throw new Error("Generated resume content is unavailable.");
+      await copyText(content);
+      setResumeCopyState("copied");
+      window.setTimeout(() => setResumeCopyState(""), 1600);
+    } catch (copyError) {
+      setResumeCopyState("");
+      setError(copyError.message);
+    }
+  }
+
   async function selectDraft(item) {
     contextResolveRef.current += 1;
     viewingCurrentRef.current = false;
@@ -1108,8 +1134,8 @@ function App() {
                       <section className="message-tool">
                         <div className="message-tool-heading"><div><strong>Application follow-up</strong><small>Uses the latest generated PDF, including your edits.</small></div></div>
                         <label>Question<textarea value={assistantState.question} onChange={(event) => setAssistantState({ ...assistantState, question: event.target.value })} placeholder="Why are you interested in this role?" /></label>
-                        <button className="primary" disabled={assistantBusy !== "" || !assistantState.question.trim() || !draft.pdf_path || draft.pdf_stale} onClick={generateFollowup}>{assistantBusy === "followup" ? "Writing..." : "Answer Question"}</button>
-                        {!draft.pdf_path || draft.pdf_stale ? <small className="field-error">Generate the latest PDF before using follow-up answers.</small> : null}
+                        <button className="primary" disabled={assistantBusy !== "" || !assistantState.question.trim() || !draftPdfIsCurrent(draft)} onClick={generateFollowup}>{assistantBusy === "followup" ? "Writing..." : "Answer Question"}</button>
+                        {!draftPdfIsCurrent(draft) ? <small className="field-error">Generate the latest PDF before using follow-up answers.</small> : null}
                         {(assistantState.followups || []).slice().reverse().map((item, index) => <article className="followup-result" key={`${item.created_at}-${index}`}><div className="message-tool-heading"><strong>{item.question}</strong><button onClick={() => copyText(item.answer)}>Copy</button></div><p>{item.answer}</p></article>)}
                       </section>
                     </div>
@@ -1128,6 +1154,7 @@ function App() {
                   )}
                   <div className="action-bar">
                     <button onClick={() => send({ type: "OPEN_EDITOR", draftId: draft.id })}>Open Full Editor</button>
+                    <button disabled={resumeCopyState === "copying"} onClick={copyResumeContent}>{resumeCopyState === "copying" ? "Copying..." : resumeCopyState === "copied" ? "Copied" : "Copy Content"}</button>
                     <button className="primary" disabled={draft.locked || draft.status !== "ready" || busy === "pdf"} onClick={generateDraftPdf}>{busy === "pdf" ? "Saving..." : "Generate PDF"}</button>
                     <button disabled={draft.status !== "pdf_ready" || draft.pdf_stale || draft.locked} onClick={() => setShowApply(true)}>{draft.locked ? "Applied" : "Mark Applied"}</button>
                   </div>

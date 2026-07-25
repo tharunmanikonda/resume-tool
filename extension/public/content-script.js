@@ -1,11 +1,19 @@
 (() => {
-  const readerVersion = chrome.runtime.getManifest?.().version || "development";
+  let readerVersion = "development";
+  let runtimeId = "";
+  try {
+    readerVersion = chrome.runtime.getManifest?.().version || readerVersion;
+    runtimeId = chrome.runtime.id || "";
+  } catch (_) {
+    return;
+  }
   const previousLifecycle = globalThis.__resumeGeneratorLinkedInLifecycle;
-  if (previousLifecycle?.version === readerVersion) return;
+  if (
+    previousLifecycle?.version === readerVersion
+    && previousLifecycle?.runtimeId === runtimeId
+    && previousLifecycle?.isActive?.()
+  ) return;
   previousLifecycle?.shutdown?.();
-  globalThis.__resumeGeneratorLinkedInReaderVersion = readerVersion;
-  const lifecycle = { version: readerVersion, shutdown: null };
-  globalThis.__resumeGeneratorLinkedInLifecycle = lifecycle;
 
   const selectors = {
     title: [
@@ -51,6 +59,10 @@
   let observer = null;
   const panelHostId = "resume-generator-linkedin-panel";
   const panelTriggerId = "resume-generator-linkedin-trigger";
+  const instanceId = globalThis.crypto?.randomUUID?.() || `${Date.now()}-${Math.random()}`;
+  const lifecycle = { version: readerVersion, runtimeId, instanceId, isActive: null, shutdown: null };
+  globalThis.__resumeGeneratorLinkedInReaderVersion = readerVersion;
+  globalThis.__resumeGeneratorLinkedInLifecycle = lifecycle;
 
   function cleanText(value) {
     return String(value || "").replace(/\u00a0/g, " ").replace(/[ \t]+/g, " ").replace(/\n{3,}/g, "\n\n").trim();
@@ -80,6 +92,17 @@
       stopped = true;
       clearTimeout(timer);
       observer?.disconnect();
+    }
+  }
+
+  function extensionUrl(path) {
+    if (!runtimeAvailable()) return "";
+    try {
+      const value = chrome.runtime.getURL(path);
+      if (!value || value.startsWith("chrome-extension://invalid")) return "";
+      return value;
+    } catch (_) {
+      return "";
     }
   }
 
@@ -273,8 +296,11 @@
       existing.remove();
       return false;
     }
+    const panelUrl = extensionUrl("sidepanel.html");
+    if (!panelUrl) return false;
     const host = document.createElement("div");
     host.id = panelHostId;
+    host.dataset.resumeGeneratorInstance = instanceId;
     Object.assign(host.style, {
       position: "fixed",
       inset: "0 0 0 auto",
@@ -302,8 +328,8 @@
     close.addEventListener("click", () => host.remove());
     const frame = document.createElement("iframe");
     frame.title = "Resume Generator";
-    if (!runtimeAvailable()) return false;
-    frame.src = chrome.runtime.getURL("sidepanel.html");
+    frame.src = panelUrl;
+    frame.setAttribute("allow", "clipboard-write");
     Object.assign(frame.style, { width: "100%", height: "100%", border: "0", background: "#fff" });
     host.append(frame, close);
     document.documentElement.appendChild(host);
@@ -312,13 +338,16 @@
 
   function ensurePanelTrigger() {
     const existing = document.getElementById(panelTriggerId);
-    if (existing?.dataset.resumeGeneratorVersion === readerVersion) return;
+    if (existing?.dataset.resumeGeneratorInstance === instanceId) return;
     existing?.remove();
+    const stalePanel = document.getElementById(panelHostId);
+    if (stalePanel?.dataset.resumeGeneratorInstance !== instanceId) stalePanel?.remove();
     const trigger = document.createElement("button");
     trigger.id = panelTriggerId;
     trigger.type = "button";
     trigger.textContent = "Resume";
     trigger.dataset.resumeGeneratorVersion = readerVersion;
+    trigger.dataset.resumeGeneratorInstance = instanceId;
     trigger.setAttribute("aria-label", "Open Resume Generator");
     Object.assign(trigger.style, {
       position: "fixed",
@@ -421,6 +450,7 @@
   }
 
   lifecycle.shutdown = shutdown;
+  lifecycle.isActive = runtimeAvailable;
   chrome.runtime.onMessage.addListener(handleRuntimeMessage);
   window.addEventListener("popstate", scheduleRead);
   observer = new MutationObserver(scheduleRead);
