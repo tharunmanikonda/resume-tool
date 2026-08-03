@@ -45,7 +45,15 @@
 
   function applicationPage() {
     const value = `${location.href} ${document.title} ${(document.body?.innerText || "").slice(0, 5000)}`.toLowerCase();
-    return ["apply", "application", "candidate", "resume", "cover letter", "work authorization", "sponsorship", "submit application"].some((signal) => value.includes(signal));
+    if (["apply", "application", "candidate", "resume", "cover letter", "work authorization", "sponsorship", "submit application"].some((signal) => value.includes(signal))) {
+      return true;
+    }
+    const fields = matcher.fields();
+    const fieldText = fields.map((field) => `${field.label} ${field.name}`).join(" ").toLowerCase();
+    const hasIdentity = /\b(first name|last name|full name|e-?mail|phone)\b/.test(fieldText);
+    const hasApplicationField = fields.some((field) => field.type === "file" && /resume|cv|pdf|document/i.test(`${field.label} ${field.name} ${field.accept}`))
+      || /\b(linkedin|work authorization|sponsorship|current company|years of experience|cover letter)\b/.test(fieldText);
+    return fields.length >= 3 && hasIdentity && hasApplicationField;
   }
 
   function fieldSignature(fields) {
@@ -119,6 +127,7 @@
       frameUrl: location.href,
       topFrame: window === window.top,
       applicationPage: applicationPage(),
+      continueEnabled: userProfile?.autoFillEnabled !== false,
       totalFields: fields.filter((field) => field.type !== "file").length,
       filledFields: fields.filter((field) => field.type !== "file" && field.filled).length,
       matchedFields: fields.filter((field) => field.type !== "file" && field.matched).length,
@@ -226,7 +235,20 @@
     return true;
   }
 
-  async function fill({ identityId = "", automatic = false } = {}) {
+  async function fill({
+    identityId = "",
+    automatic = false,
+    approved = false,
+    safeOnly = true,
+  } = {}) {
+    if (!approved) {
+      return {
+        success: false,
+        error: "Confirm this application before filling it.",
+        filledCount: 0,
+        skippedCount: 0,
+      };
+    }
     const { allFields, userProfile } = await scan({ identityId, announce: false });
     if (!userProfile) return { success: false, error: "The local resume profile is unavailable.", filledCount: 0, skippedCount: 0 };
     let filledCount = 0;
@@ -237,6 +259,10 @@
       const match = matcher.matchField(field, userProfile);
       const value = match ? matcher.valueFor(field, userProfile, match.dataField) : "";
       if (!match || match.confidence < 0.6 || !value) {
+        skippedCount += 1;
+        continue;
+      }
+      if (safeOnly && config.sensitiveFields.has(match.dataField)) {
         skippedCount += 1;
         continue;
       }
@@ -275,11 +301,19 @@
 
   async function maybeAutoFill() {
     const { status, allFields, userProfile } = await scan({ announce: true });
-    if (!status.applicationPage || !allFields.length || !userProfile?.autoFillEnabled) return;
+    if (!status.applicationPage || !allFields.length || userProfile?.autoFillEnabled === false) return;
+    const approvalResponse = await send({ type: "AUTOFILL_GET_APPROVAL" });
+    const approval = approvalResponse?.success ? approvalResponse.approval : null;
+    if (approval?.mode !== "application") return;
     const signature = fieldSignature(allFields);
     if (signature === lastAutoFillSignature) return;
     lastAutoFillSignature = signature;
-    await fill({ identityId: userProfile.identityId, automatic: true });
+    await fill({
+      identityId: approval.identityId || userProfile.identityId,
+      automatic: true,
+      approved: true,
+      safeOnly: true,
+    });
   }
 
   function scheduleScan(delay = 450) {
@@ -290,7 +324,20 @@
   function handleMessage(message, _sender, sendResponse) {
     let operation = null;
     if (message?.type === "AUTOFILL_SCAN_FRAME") operation = scan({ identityId: message.identityId, announce: false }).then(({ status }) => status);
-    if (message?.type === "AUTOFILL_FILL_FRAME") operation = fill({ identityId: message.identityId, automatic: false });
+    if (message?.type === "AUTOFILL_FILL_FRAME") {
+      operation = fill({
+        identityId: message.identityId,
+        automatic: Boolean(message.automatic),
+        approved: Boolean(message.approved),
+        safeOnly: message.safeOnly !== false,
+      });
+    }
+    if (message?.type === "AUTOFILL_APPROVAL_CHANGED") {
+      lastAutoFillSignature = "";
+      scheduleScan(100);
+      sendResponse({ success: true });
+      return false;
+    }
     if (message?.type === "AUTOFILL_ATTACH_FRAME") operation = attachResume(message);
     if (!operation) return false;
     operation.then(sendResponse).catch((error) => sendResponse({ success: false, error: error.message }));

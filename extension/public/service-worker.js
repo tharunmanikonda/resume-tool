@@ -16,6 +16,7 @@ const ATS_HOST_SUFFIXES = [
 ];
 const autofillProfileCache = new Map();
 const autofillProfileRequests = new Map();
+const applicationScanTimers = new Map();
 
 async function configuredServerUrl() {
   const stored = await chrome.storage.local.get("resumeServerUrl");
@@ -66,11 +67,15 @@ async function configureExtension() {
     return chrome.scripting.executeScript({ target: { tabId: tab.id }, files: ["content-script.js"] }).catch(() => {});
   }));
   const webTabs = await chrome.tabs.query({ url: ["http://*/*", "https://*/*"] });
+  await Promise.all(webTabs.filter((tab) => isInspectableWebUrl(tab.url)).map((tab) => {
+    if (!tab.id) return Promise.resolve();
+    return chrome.scripting.executeScript({ target: { tabId: tab.id }, files: ["application-assistant.js"] }).catch(() => {});
+  }));
   await Promise.all(webTabs.filter((tab) => !isLinkedInJobsUrl(tab.url)).map((tab) => {
     if (!tab.id) return Promise.resolve();
     return chrome.scripting.executeScript({ target: { tabId: tab.id }, files: ["panel-host.js"] }).catch(() => {});
   }));
-  await Promise.all(webTabs.filter((tab) => isAtsUrl(tab.url)).map((tab) => ensureAtsRuntime(tab)));
+  await Promise.all(webTabs.filter((tab) => isKnownAtsUrl(tab.url)).map((tab) => ensureAutofillRuntime(tab)));
 }
 
 configureExtension();
@@ -88,7 +93,7 @@ function isLinkedInJobsUrl(url) {
   return String(url || "").startsWith("https://www.linkedin.com/jobs/");
 }
 
-function isAtsUrl(url) {
+function isKnownAtsUrl(url) {
   try {
     const host = new URL(String(url || "")).hostname.toLowerCase();
     return ATS_HOST_SUFFIXES.some((suffix) => host === suffix || host.endsWith(`.${suffix}`));
@@ -97,8 +102,84 @@ function isAtsUrl(url) {
   }
 }
 
-async function ensureAtsRuntime(tab) {
-  if (!tab?.id || !isAtsUrl(tab.url)) return false;
+function isInspectableWebUrl(url) {
+  try {
+    const parsed = new URL(String(url || ""));
+    if (!["http:", "https:"].includes(parsed.protocol)) return false;
+    return !["127.0.0.1", "localhost"].includes(parsed.hostname.toLowerCase());
+  } catch (_) {
+    return false;
+  }
+}
+
+function applicationApprovalKey(tabId) {
+  return `resumeAutofillApproval:${tabId}`;
+}
+
+function applicationScope(url) {
+  const parsed = new URL(String(url || ""));
+  const identifierKeys = [
+    "currentJobId", "jobId", "job_id", "jobReqId", "requisitionId", "requisition_id",
+    "gh_jid", "lever-origin", "postingId",
+  ];
+  for (const key of identifierKeys) {
+    const value = parsed.searchParams.get(key);
+    if (value) return `${parsed.origin}|${key}:${value}`;
+  }
+  const pathname = parsed.pathname
+    .replace(/\/+/g, "/")
+    .replace(/\/(apply|application)(?:\/.*)?$/i, "/$1")
+    .replace(/\/$/, "");
+  return `${parsed.origin}${pathname}`;
+}
+
+async function applicationApproval(tab) {
+  if (!tab?.id || !isInspectableWebUrl(tab.url)) return null;
+  const key = applicationApprovalKey(tab.id);
+  const stored = await chrome.storage.session.get(key);
+  const approval = stored[key];
+  if (!approval) return null;
+  const origin = new URL(tab.url).origin;
+  const scope = applicationScope(tab.url);
+  if (
+    approval.origin !== origin
+    || approval.scope !== scope
+    || Number(approval.expiresAt || 0) <= Date.now()
+  ) {
+    await chrome.storage.session.remove(key);
+    return null;
+  }
+  return approval;
+}
+
+async function setApplicationApproval(tab, identityId = "") {
+  const key = applicationApprovalKey(tab.id);
+  const approval = {
+    mode: "application",
+    origin: new URL(tab.url).origin,
+    scope: applicationScope(tab.url),
+    identityId: String(identityId || ""),
+    approvedAt: Date.now(),
+    expiresAt: Date.now() + 2 * 60 * 60 * 1000,
+  };
+  await chrome.storage.session.set({ [key]: approval });
+  return approval;
+}
+
+async function clearApplicationApproval(tabId) {
+  if (tabId) await chrome.storage.session.remove(applicationApprovalKey(tabId));
+}
+
+async function ensureAutofillRuntime(tab, { allowGeneric = false } = {}) {
+  if (!tab?.id || !isInspectableWebUrl(tab.url)) return false;
+  if (!allowGeneric && !isKnownAtsUrl(tab.url)) return false;
+  if (allowGeneric) {
+    await chrome.scripting.executeScript({
+      target: { tabId: tab.id, allFrames: true },
+      files: AUTOFILL_SCRIPTS,
+    }).catch(() => {});
+    return true;
+  }
   try {
     await chrome.tabs.sendMessage(tab.id, { type: "AUTOFILL_SCAN_FRAME" }, { frameId: 0 });
   } catch (_) {
@@ -112,9 +193,10 @@ async function activeWebTab() {
   return tab || null;
 }
 
-async function sendToAtsFrames(tab, message) {
-  if (!tab?.id || !isAtsUrl(tab.url)) return [];
-  await ensureAtsRuntime(tab);
+async function sendToAutofillFrames(tab, message, { allowGeneric = true } = {}) {
+  if (!tab?.id || !isInspectableWebUrl(tab.url)) return [];
+  if (!allowGeneric && !isKnownAtsUrl(tab.url)) return [];
+  await ensureAutofillRuntime(tab, { allowGeneric });
   const frames = await chrome.webNavigation.getAllFrames({ tabId: tab.id }).catch(() => [{ frameId: 0 }]);
   const responses = await Promise.all((frames || [{ frameId: 0 }]).map(async (frame) => {
     try {
@@ -126,7 +208,7 @@ async function sendToAtsFrames(tab, message) {
   return responses.filter(Boolean);
 }
 
-function aggregateAutofillStatus(tab, responses) {
+function aggregateAutofillStatus(tab, responses, { genericInspection = false } = {}) {
   const statuses = responses.filter((item) => item && typeof item.totalFields === "number");
   const fields = statuses.flatMap((item) => item.fields || []);
   const questionMap = new Map();
@@ -136,7 +218,7 @@ function aggregateAutofillStatus(tab, responses) {
   });
   return {
     success: true,
-    supported: Boolean(tab && isAtsUrl(tab.url)),
+    supported: Boolean(tab && (isKnownAtsUrl(tab.url) || genericInspection && isInspectableWebUrl(tab.url))),
     pageUrl: tab?.url || "",
     pageTitle: tab?.title || "",
     platform: statuses.find((item) => item.platform && item.platform !== "generic")?.platform || statuses[0]?.platform || "",
@@ -145,9 +227,46 @@ function aggregateAutofillStatus(tab, responses) {
     filledFields: statuses.reduce((sum, item) => sum + item.filledFields, 0),
     matchedFields: statuses.reduce((sum, item) => sum + item.matchedFields, 0),
     fileFields: statuses.reduce((sum, item) => sum + item.fileFields, 0),
+    continueEnabled: statuses.some((item) => item.continueEnabled !== false),
     fields,
     questions: Array.from(questionMap.values()),
   };
+}
+
+async function refreshAutofillStatusForTab(
+  tab,
+  {
+    identityId = "",
+    genericInspection = true,
+    notifyPage = true,
+  } = {},
+) {
+  if (!tab?.id || !isInspectableWebUrl(tab.url)) {
+    return aggregateAutofillStatus(tab, [], { genericInspection: false });
+  }
+  const responses = await sendToAutofillFrames(
+    tab,
+    { type: "AUTOFILL_SCAN_FRAME", identityId },
+    { allowGeneric: genericInspection },
+  );
+  const status = aggregateAutofillStatus(tab, responses, { genericInspection });
+  if (notifyPage) {
+    chrome.tabs.sendMessage(tab.id, { type: "AUTOFILL_PAGE_STATUS", status }).catch(() => {});
+  }
+  if (tab.active) {
+    chrome.runtime.sendMessage({ type: "AUTOFILL_ACTIVE_STATUS_CHANGED", tabId: tab.id, status }).catch(() => {});
+  }
+  return status;
+}
+
+function scheduleApplicationScan(tabId, delay = 450) {
+  clearTimeout(applicationScanTimers.get(tabId));
+  applicationScanTimers.set(tabId, setTimeout(async () => {
+    applicationScanTimers.delete(tabId);
+    const tab = await chrome.tabs.get(tabId).catch(() => null);
+    if (!tab || !isInspectableWebUrl(tab.url)) return;
+    await refreshAutofillStatusForTab(tab).catch(() => {});
+  }, delay));
 }
 
 async function getAutofillProfile(identityId = "") {
@@ -187,6 +306,125 @@ async function resumeFileForDraft(draftId) {
     base64: arrayBufferToBase64(await response.arrayBuffer()),
     filename: String(draft.pdf_path).split(/[\\/]/).pop() || "resume.pdf",
     mimeType: response.headers.get("content-type") || "application/pdf",
+  };
+}
+
+function currentRecentPdfDrafts(drafts) {
+  const cutoff = Date.now() - 24 * 60 * 60 * 1000;
+  return (drafts || [])
+    .filter((draft) => {
+      const generatedAt = new Date(draft?.pdf_generated_at || "").getTime();
+      return Boolean(
+        draft?.pdf_path
+        && !draft.pdf_stale
+        && Number(draft.pdf_revision || 0) === Number(draft.resume_revision || 1)
+        && Number.isFinite(generatedAt)
+        && generatedAt >= cutoff
+      );
+    })
+    .sort((left, right) => (
+      new Date(right.pdf_generated_at || "").getTime()
+      - new Date(left.pdf_generated_at || "").getTime()
+    ));
+}
+
+async function recentPdfDrafts() {
+  const payload = await apiRequest({ path: "/api/extension/drafts?limit=50" });
+  return currentRecentPdfDrafts(payload.drafts);
+}
+
+async function latestRecentPdfDraft() {
+  return (await recentPdfDrafts())[0] || null;
+}
+
+function resumeDraftOption(draft) {
+  return {
+    id: draft.id,
+    company_name: draft.company_name || "",
+    role_title: draft.role_title || "",
+    pdf_generated_at: draft.pdf_generated_at || "",
+    filename: String(draft.pdf_path || "").split(/[\\/]/).pop() || "resume.pdf",
+    resume_revision: draft.resume_revision,
+  };
+}
+
+async function attachResumeForDraft(tab, selectedDraft) {
+  if (!selectedDraft) {
+    throw new Error("Generate a new PDF in the Resume tab before attaching it.");
+  }
+  const file = await resumeFileForDraft(selectedDraft.id);
+  const responses = await sendToAutofillFrames(tab, {
+    type: "AUTOFILL_ATTACH_FRAME",
+    ...file,
+  });
+  const attached = responses.find((item) => item.success);
+  if (!attached) {
+    throw new Error(
+      responses.find((item) => item.error)?.error
+      || "No compatible resume upload field was found.",
+    );
+  }
+  const status = await refreshAutofillStatusForTab(tab);
+  return {
+    ...attached,
+    status,
+    draft: resumeDraftOption(selectedDraft),
+  };
+}
+
+async function answerApplicationQuestion(message) {
+  const question = String(message.question || "").replace(/\s+/g, " ").trim();
+  const questionId = String(message.questionId || "").trim();
+  if (!question || !questionId) throw new Error("Select an application question first.");
+
+  const draftPayload = await apiRequest({ path: "/api/extension/drafts?limit=50" });
+  const availableDrafts = currentRecentPdfDrafts(draftPayload.drafts);
+  const requestedDraftId = String(message.draftId || "").trim();
+  const selectedDraft = requestedDraftId
+    ? availableDrafts.find((draft) => draft.id === requestedDraftId)
+    : availableDrafts[0];
+  if (!selectedDraft) {
+    throw new Error(
+      requestedDraftId
+        ? "The selected resume is no longer current. Choose another PDF generated in the last 24 hours."
+        : "Generate a new PDF before asking AI. Answers use PDFs from the last 24 hours.",
+    );
+  }
+
+  const response = await apiRequest({
+    path: `/api/extension/drafts/${encodeURIComponent(selectedDraft.id)}/application-answer`,
+    method: "POST",
+    body: {
+      question,
+      max_characters: Math.max(0, Number(message.maxLength || 0)),
+    },
+  });
+  const answer = String(response.answer?.answer || "").trim();
+  if (!answer) throw new Error("The AI returned an empty answer.");
+
+  const storageKey = `resumeAutofillAnswers:${selectedDraft.id}`;
+  const stored = await chrome.storage.local.get(storageKey);
+  const existing = stored[storageKey] && typeof stored[storageKey] === "object"
+    ? stored[storageKey]
+    : {};
+  const saved = {
+    answer,
+    resume_revision: selectedDraft.resume_revision,
+    created_at: new Date().toISOString(),
+  };
+  await chrome.storage.local.set({
+    [storageKey]: { ...existing, [questionId]: saved },
+  });
+  return {
+    success: true,
+    answer,
+    questionId,
+    draft: {
+      id: selectedDraft.id,
+      company_name: selectedDraft.company_name || "",
+      role_title: selectedDraft.role_title || "",
+      resume_revision: selectedDraft.resume_revision,
+    },
   };
 }
 
@@ -287,7 +525,10 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
   if (message?.type === "AUTOFILL_GET_ACTIVE_STATUS") {
     activeWebTab()
-      .then(async (tab) => aggregateAutofillStatus(tab, await sendToAtsFrames(tab, { type: "AUTOFILL_SCAN_FRAME", identityId: message.identityId || "" })))
+      .then((tab) => refreshAutofillStatusForTab(tab, {
+        identityId: message.identityId || "",
+        genericInspection: Boolean(message.inspectGeneric),
+      }))
       .then(sendResponse)
       .catch((error) => sendResponse({ success: false, error: error.message }));
     return true;
@@ -296,12 +537,17 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message?.type === "AUTOFILL_FILL_ACTIVE") {
     activeWebTab()
       .then(async (tab) => {
-        const responses = await sendToAtsFrames(tab, { type: "AUTOFILL_FILL_FRAME", identityId: message.identityId || "" });
+        const responses = await sendToAutofillFrames(tab, {
+          type: "AUTOFILL_FILL_FRAME",
+          identityId: message.identityId || "",
+          approved: true,
+          safeOnly: true,
+        });
         const filledCount = responses.reduce((sum, item) => sum + Number(item.filledCount || 0), 0);
         const skippedCount = responses.reduce((sum, item) => sum + Number(item.skippedCount || 0), 0);
         const errors = responses.flatMap((item) => item.errors || []);
-        const statusResponses = await sendToAtsFrames(tab, { type: "AUTOFILL_SCAN_FRAME", identityId: message.identityId || "" });
-        return { success: filledCount > 0, filledCount, skippedCount, errors, status: aggregateAutofillStatus(tab, statusResponses) };
+        const status = await refreshAutofillStatusForTab(tab, { identityId: message.identityId || "" });
+        return { success: filledCount > 0, filledCount, skippedCount, errors, status };
       })
       .then(sendResponse)
       .catch((error) => sendResponse({ success: false, error: error.message }));
@@ -309,22 +555,117 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   }
 
   if (message?.type === "AUTOFILL_ATTACH_RESUME") {
-    Promise.all([activeWebTab(), resumeFileForDraft(message.draftId)])
-      .then(async ([tab, file]) => {
-        const responses = await sendToAtsFrames(tab, { type: "AUTOFILL_ATTACH_FRAME", ...file });
-        const attached = responses.find((item) => item.success);
-        if (!attached) throw new Error(responses.find((item) => item.error)?.error || "No compatible resume upload field was found.");
-        return attached;
+    const requestedDraftId = String(message.draftId || "").trim();
+    const requestedTab = sender.tab?.id && isInspectableWebUrl(sender.tab.url)
+      ? Promise.resolve(sender.tab)
+      : activeWebTab();
+    Promise.all([requestedTab, recentPdfDrafts()])
+      .then(([tab, drafts]) => {
+        const selectedDraft = drafts.find((draft) => draft.id === requestedDraftId);
+        if (!selectedDraft) {
+          throw new Error("The selected resume is no longer current. Choose another PDF generated in the last 24 hours.");
+        }
+        return attachResumeForDraft(tab, selectedDraft);
       })
       .then(sendResponse)
       .catch((error) => sendResponse({ success: false, error: error.message }));
     return true;
   }
 
+  if (message?.type === "AUTOFILL_GET_RECENT_RESUMES") {
+    recentPdfDrafts()
+      .then((drafts) => sendResponse({
+        success: true,
+        drafts: drafts.map(resumeDraftOption),
+      }))
+      .catch((error) => sendResponse({ success: false, error: error.message, drafts: [] }));
+    return true;
+  }
+
+  if (message?.type === "AUTOFILL_ATTACH_CURRENT_RESUME") {
+    const tab = sender.tab;
+    if (!tab?.id || !isInspectableWebUrl(tab.url)) {
+      sendResponse({ success: false, error: "Open a job application page first." });
+      return false;
+    }
+    latestRecentPdfDraft()
+      .then((draft) => attachResumeForDraft(tab, draft))
+      .then(sendResponse)
+      .catch((error) => sendResponse({ success: false, error: error.message }));
+    return true;
+  }
+
+  if (message?.type === "AUTOFILL_ANSWER_QUESTION") {
+    answerApplicationQuestion(message)
+      .then(sendResponse)
+      .catch((error) => sendResponse({ success: false, error: error.message }));
+    return true;
+  }
+
   if (message?.type === "AUTOFILL_STATUS_CHANGED") {
-    chrome.runtime.sendMessage({ type: "AUTOFILL_ACTIVE_STATUS_CHANGED", tabId: sender.tab?.id, status: message.status }).catch(() => {});
+    if (sender.tab?.id) scheduleApplicationScan(sender.tab.id);
     sendResponse({ success: true });
     return false;
+  }
+
+  if (message?.type === "AUTOFILL_APPLICATION_CANDIDATE") {
+    const tab = sender.tab;
+    if (!tab?.id || !isInspectableWebUrl(tab.url)) {
+      sendResponse({ success: false, error: "This page cannot be inspected." });
+      return false;
+    }
+    refreshAutofillStatusForTab(tab)
+      .then((status) => sendResponse({ success: true, status }))
+      .catch((error) => sendResponse({ success: false, error: error.message }));
+    return true;
+  }
+
+  if (message?.type === "AUTOFILL_APPLICATION_GONE") {
+    const tabId = sender.tab?.id;
+    clearApplicationApproval(tabId)
+      .then(() => sendResponse({ success: true }))
+      .catch((error) => sendResponse({ success: false, error: error.message }));
+    return true;
+  }
+
+  if (message?.type === "AUTOFILL_GET_APPROVAL") {
+    applicationApproval(sender.tab)
+      .then((approval) => sendResponse({ success: true, approval }))
+      .catch((error) => sendResponse({ success: false, error: error.message }));
+    return true;
+  }
+
+  if (message?.type === "AUTOFILL_CONFIRM_FILL") {
+    const tab = sender.tab;
+    if (!tab?.id || !isInspectableWebUrl(tab.url)) {
+      sendResponse({ success: false, error: "Open a job application page first." });
+      return false;
+    }
+    (async () => {
+      const statusBefore = await refreshAutofillStatusForTab(tab);
+      if (!statusBefore.applicationPage) throw new Error("No job application form was detected on this page.");
+      const identityId = String(message.identityId || "");
+      if (message.mode === "application" && statusBefore.continueEnabled !== false) {
+        await setApplicationApproval(tab, identityId);
+      } else {
+        await clearApplicationApproval(tab.id);
+      }
+      const responses = await sendToAutofillFrames(tab, {
+        type: "AUTOFILL_FILL_FRAME",
+        identityId,
+        approved: true,
+        safeOnly: true,
+      });
+      const filledCount = responses.reduce((sum, item) => sum + Number(item.filledCount || 0), 0);
+      const skippedCount = responses.reduce((sum, item) => sum + Number(item.skippedCount || 0), 0);
+      const errors = responses.flatMap((item) => item.errors || []);
+      const status = await refreshAutofillStatusForTab(tab, { identityId });
+      chrome.tabs.sendMessage(tab.id, { type: "AUTOFILL_APPROVAL_CHANGED" }).catch(() => {});
+      return { success: filledCount > 0, filledCount, skippedCount, errors, status };
+    })()
+      .then(sendResponse)
+      .catch((error) => sendResponse({ success: false, error: error.message }));
+    return true;
   }
 
   if (message?.type === "GET_SERVER_URL") {
@@ -333,7 +674,10 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   }
 
   if (message?.type === "OPEN_EDITOR") {
-    serverUrl().then((base) => chrome.tabs.create({ url: `${base}/?draft=${encodeURIComponent(message.draftId)}` }));
+    const reviewQuery = message.review ? "&review=1" : "";
+    serverUrl().then((base) => chrome.tabs.create({
+      url: `${base}/?draft=${encodeURIComponent(message.draftId)}${reviewQuery}`,
+    }));
     sendResponse({ success: true });
     return true;
   }
@@ -350,7 +694,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       sendResponse({ success: false, error: "This draft does not have a valid LinkedIn job URL." });
       return false;
     }
-    chrome.tabs.create({ url: jobUrl, active: true })
+    chrome.tabs.create({ url: jobUrl, active: false })
       .then(() => sendResponse({ success: true }))
       .catch((error) => sendResponse({ success: false, error: error.message }));
     return true;
@@ -372,10 +716,30 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 });
 
 chrome.webNavigation.onHistoryStateUpdated.addListener((details) => {
-  if (details.frameId !== 0 || !details.url.startsWith("https://www.linkedin.com/jobs/")) return;
-  chrome.tabs.sendMessage(details.tabId, { type: "READ_JOB_CONTEXT" }).catch(() => {});
-}, { url: [{ hostEquals: "www.linkedin.com", pathPrefix: "/jobs/" }] });
+  if (details.frameId !== 0) return;
+  if (details.url.startsWith("https://www.linkedin.com/jobs/")) {
+    chrome.tabs.sendMessage(details.tabId, { type: "READ_JOB_CONTEXT" }).catch(() => {});
+  }
+  chrome.tabs.sendMessage(details.tabId, { type: "AUTOFILL_NAVIGATION_CHANGED", url: details.url }).catch(() => {});
+});
+
+chrome.webNavigation.onReferenceFragmentUpdated.addListener((details) => {
+  if (details.frameId !== 0) return;
+  chrome.tabs.sendMessage(details.tabId, { type: "AUTOFILL_NAVIGATION_CHANGED", url: details.url }).catch(() => {});
+});
 
 chrome.tabs.onActivated.addListener(({ tabId }) => {
   chrome.tabs.sendMessage(tabId, { type: "READ_JOB_CONTEXT" }).catch(() => {});
+  chrome.tabs.sendMessage(tabId, { type: "AUTOFILL_NAVIGATION_CHANGED" }).catch(() => {});
+});
+
+chrome.tabs.onUpdated.addListener((tabId, changeInfo) => {
+  if (!changeInfo.url && changeInfo.status !== "complete") return;
+  chrome.tabs.sendMessage(tabId, { type: "AUTOFILL_NAVIGATION_CHANGED", url: changeInfo.url || "" }).catch(() => {});
+});
+
+chrome.tabs.onRemoved.addListener((tabId) => {
+  clearTimeout(applicationScanTimers.get(tabId));
+  applicationScanTimers.delete(tabId);
+  clearApplicationApproval(tabId).catch(() => {});
 });

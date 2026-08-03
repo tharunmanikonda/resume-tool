@@ -3,6 +3,8 @@ import { createRoot } from "react-dom/client";
 import "./panel.css";
 
 const ACTIVE_STATUSES = new Set(["queued", "analyzing", "generating_core", "generating_experience", "reviewing", "pdf_generating"]);
+const UNRESOLVED_AUDIT_STATUSES = new Set(["not_started", "running", "reviewing", "changes_suggested", "manual_attention", "technical_failed", "stale"]);
+const RESOLVED_AUDIT_STATUSES = new Set(["approved", "applied", "kept_current"]);
 const STATUS_LABELS = {
   duplicate_review: "Decision",
   queued: "Waiting",
@@ -19,7 +21,17 @@ const STATUS_LABELS = {
 };
 
 function send(message) {
-  return chrome.runtime.sendMessage(message);
+  try {
+    if (!chrome.runtime?.id) {
+      return Promise.resolve({ success: false, error: "The extension was reloaded. Refresh this page to reconnect." });
+    }
+    return chrome.runtime.sendMessage(message).catch(() => ({
+      success: false,
+      error: "The extension was reloaded. Refresh this page to reconnect.",
+    }));
+  } catch (_) {
+    return Promise.resolve({ success: false, error: "The extension was reloaded. Refresh this page to reconnect." });
+  }
 }
 
 async function api(path, options = {}) {
@@ -85,6 +97,109 @@ function autofillAnswerStorageKey(draftId) {
 function draftPdfIsCurrent(draft) {
   if (!draft?.pdf_path || draft.pdf_stale) return false;
   return Number(draft.pdf_revision || 0) === Number(draft.resume_revision || 1);
+}
+
+function auditStatusFromDraft(draft) {
+  return String(draft?.audit_status || "not_started").trim().toLowerCase();
+}
+
+function auditReviewResolved(draft) {
+  return RESOLVED_AUDIT_STATUSES.has(auditStatusFromDraft(draft));
+}
+
+function auditReviewUnresolved(draft) {
+  return !auditReviewResolved(draft);
+}
+
+function auditReviewBusy(draft) {
+  return ["running", "reviewing"].includes(auditStatusFromDraft(draft));
+}
+
+function canRegenerateDraft(draft, busy = "") {
+  return !!draft?.id && !draft.locked && !ACTIVE_STATUSES.has(draft.status) && !auditReviewBusy(draft) && !busy.startsWith("audit-");
+}
+
+function auditStateFromDraft(draft, isReviewing = false) {
+  const status = isReviewing ? "running" : auditStatusFromDraft(draft);
+  const changes = Array.isArray(draft?.audit_result?.review_groups) ? draft.audit_result.review_groups.length : 0;
+  const labels = {
+    running: "Reviewing",
+    reviewing: "Reviewing",
+    approved: "Passed",
+    changes_suggested: `${changes} change${changes === 1 ? "" : "s"} suggested`,
+    manual_attention: "Needs manual work",
+    technical_failed: "Review failed",
+    stale: "Resume changed; review again",
+    applied: "Luna reviewed",
+    kept_current: "Current resume kept",
+  };
+  return {
+    status,
+    label: labels[status] || "Not reviewed",
+    unresolved: UNRESOLVED_AUDIT_STATUSES.has(status),
+    resolved: RESOLVED_AUDIT_STATUSES.has(status),
+  };
+}
+
+function auditValueText(value) {
+  if (value == null) return "";
+  if (Array.isArray(value)) {
+    return value.map((item) => {
+      if (!item || typeof item !== "object") return String(item);
+      const items = Array.isArray(item.items) ? item.items.join(", ") : String(item.items || "");
+      return item.category ? `${item.category}: ${items}` : JSON.stringify(item);
+    }).join("\n");
+  }
+  if (value && typeof value === "object") {
+    if (value.skill) return value.category ? `${value.category}: ${value.skill}` : String(value.skill);
+    if (Array.isArray(value.skills)) {
+      return value.category ? `${value.category}: ${value.skills.join(", ")}` : value.skills.join(", ");
+    }
+    const items = Array.isArray(value.items) ? value.items.join(", ") : String(value.items || "");
+    if (value.category) return `${value.category}: ${items}`;
+    return JSON.stringify(value);
+  }
+  return String(value);
+}
+
+function auditReviewGroups(draft) {
+  if (Array.isArray(draft?.audit_result?.review_groups)) return draft.audit_result.review_groups;
+  return Array.isArray(draft?.review_groups) ? draft.review_groups : [];
+}
+
+function resumeVersionsFromDraft(draft) {
+  return draft?.resume_versions && typeof draft.resume_versions === "object"
+    ? draft.resume_versions
+    : {};
+}
+
+function versionHasResume(version) {
+  return !!version && typeof version === "object" && !!(version.resume_snapshot || version.resume_content);
+}
+
+function originalResumeVersion(draft) {
+  const original = resumeVersionsFromDraft(draft).original;
+  return versionHasResume(original) ? original : null;
+}
+
+function reviewedResumeVersion(draft) {
+  const versions = resumeVersionsFromDraft(draft);
+  const activeKey = String(draft?.active_resume_version || "");
+  if (versionHasResume(versions.luna_reviewed)) return versions.luna_reviewed;
+  if (versionHasResume(versions[activeKey])) return versions[activeKey];
+  if (versionHasResume(versions.manual)) return versions.manual;
+  return {
+    resume_snapshot: draft?.preview || null,
+    resume_content: draft?.resume_content || "",
+  };
+}
+
+function defaultResumeVersionView(draft) {
+  const versions = resumeVersionsFromDraft(draft);
+  if (versionHasResume(versions.luna_reviewed)) return "luna_reviewed";
+  return String(draft?.active_resume_version || "") === "original" && originalResumeVersion(draft)
+    ? "original"
+    : "luna_reviewed";
 }
 
 function recentPdfDrafts(drafts) {
@@ -183,6 +298,177 @@ function Preview({ preview }) {
   );
 }
 
+function reviewGroupLabel(group) {
+  if (group.section === "top_title") return "Resume title";
+  if (group.section === "summary") return "Summary";
+  if (group.section === "experience_title") return `${group.company || group.role_key} title`;
+  if (group.section === "experience") return `${group.company || group.role_key} experience`;
+  if (group.section?.startsWith("skills.")) return `Skills · ${String(group.section).split(".").pop().replaceAll("_", " ")}`;
+  return "Resume change";
+}
+
+function ReviewChanges({ draft }) {
+  const result = draft?.audit_result || {};
+  const reviewGroups = auditReviewGroups(draft);
+  const componentScores = result.component_scores && typeof result.component_scores === "object"
+    ? Object.entries(result.component_scores)
+    : [];
+  const findings = Array.isArray(result.manual_findings) ? result.manual_findings : [];
+  const reviewBasis = result.review_basis && typeof result.review_basis === "object"
+    ? result.review_basis
+    : {};
+  const nonBlockingGaps = Array.isArray(result.non_blocking_gaps)
+    ? result.non_blocking_gaps
+    : [];
+  return (
+    <div className="quality-review-panel quality-changes-view" data-resume-version-view="changes">
+      {result.review_summary ? <p className="quality-review-explanation">{result.review_summary}</p> : null}
+      {reviewBasis.normalized_market_title ? <ReviewBasis basis={reviewBasis} /> : null}
+      {Number.isFinite(result.overall_score) || componentScores.length ? (
+        <div className="quality-scores">
+          {Number.isFinite(result.overall_score) ? <span><strong>{result.overall_score}</strong> Overall</span> : null}
+          {componentScores.map(([name, score]) => <span key={name}><strong>{score}</strong> {name.replaceAll("_", " ")}</span>)}
+        </div>
+      ) : null}
+      {findings.length ? (
+        <div className="quality-findings">
+          {findings.map((finding) => (
+            <div className="quality-finding" key={finding.id || `${finding.path}-${finding.problem}`}>
+              <strong>{finding.problem}</strong>
+              <span>{finding.recommendation}</span>
+            </div>
+          ))}
+        </div>
+      ) : null}
+      {reviewGroups.length ? (
+        <div className="quality-changes">
+          {reviewGroups.map((group) => (
+            <div className="quality-change" key={group.change_id} data-review-group={group.change_id}>
+              <div className="quality-change-heading"><strong>{reviewGroupLabel(group)}</strong></div>
+              <div className="quality-change-diff">
+                <span className="quality-change-current"><b>Remove</b>{auditValueText(group.current) || "Not present"}</span>
+                <span className="quality-change-proposed"><b>Add</b>{auditValueText(group.proposed) || "Not present"}</span>
+              </div>
+              {group.reason ? <small>{group.reason}</small> : null}
+              {Array.isArray(group.supported_by) && group.supported_by.length ? (
+                <div className="quality-reviewer-support">
+                  {group.supported_by.map((reviewer) => <span key={reviewer}>{reviewer.replaceAll("_", " ")}</span>)}
+                </div>
+              ) : null}
+            </div>
+          ))}
+        </div>
+      ) : <div className="blank-state compact">Luna did not make any material changes.</div>}
+      {nonBlockingGaps.length ? <ReviewGaps gaps={nonBlockingGaps} /> : null}
+    </div>
+  );
+}
+
+function ResumeVersionSelector({ draft, value, onChange }) {
+  const original = originalResumeVersion(draft);
+  const reviewed = reviewedResumeVersion(draft);
+  const changes = auditReviewGroups(draft);
+  return (
+    <div className="resume-version-tabs" role="tablist" aria-label="Resume versions">
+      <button
+        role="tab"
+        aria-selected={value === "original"}
+        className={value === "original" ? "active" : ""}
+        disabled={!original}
+        onClick={() => onChange("original")}
+      >Original</button>
+      <button
+        role="tab"
+        aria-selected={value === "luna_reviewed"}
+        className={value === "luna_reviewed" ? "active" : ""}
+        disabled={!versionHasResume(reviewed)}
+        onClick={() => onChange("luna_reviewed")}
+      >Luna Reviewed</button>
+      <button
+        role="tab"
+        aria-selected={value === "changes"}
+        className={value === "changes" ? "active" : ""}
+        disabled={!changes.length}
+        onClick={() => onChange("changes")}
+      >Changes</button>
+    </div>
+  );
+}
+
+function QualityReviewBand({ draft, busy, onRetry, onOpenEditor }) {
+  const state = auditStateFromDraft(draft, busy === "audit-retry");
+  const result = draft?.audit_result || {};
+  const findings = Array.isArray(result.manual_findings) ? result.manual_findings : [];
+  const reviewBasis = result.review_basis && typeof result.review_basis === "object"
+    ? result.review_basis
+    : {};
+  const nonBlockingGaps = Array.isArray(result.non_blocking_gaps)
+    ? result.non_blocking_gaps
+    : [];
+  const actionBusy = busy.startsWith("audit-");
+  return (
+    <section className={`quality-review-band quality-${state.status}`} data-audit-status={state.status}>
+      <div className="quality-review-summary">
+        <div><span>Quality review</span><strong>{state.label}</strong></div>
+        <div className="quality-review-controls">
+          {["technical_failed", "stale"].includes(state.status) ? <button disabled={actionBusy} onClick={onRetry}>{busy === "audit-retry" ? "Reviewing..." : "Retry review"}</button> : null}
+          {state.status === "manual_attention" ? (
+            <>
+              <button disabled={actionBusy} onClick={onRetry}>{busy === "audit-retry" ? "Reviewing..." : "Retry review"}</button>
+              <button onClick={onOpenEditor}>Open Full Editor</button>
+            </>
+          ) : null}
+        </div>
+      </div>
+      {state.status === "technical_failed" && result.error ? <small className="quality-review-error">{result.error}</small> : null}
+      {state.status === "manual_attention" ? (
+        <div className="quality-review-panel quality-blocked-panel">
+          {result.review_summary ? <p className="quality-review-explanation">{result.review_summary}</p> : null}
+          {reviewBasis.normalized_market_title ? (
+            <ReviewBasis basis={reviewBasis} />
+          ) : null}
+          {findings.length ? <div className="quality-findings">{findings.map((finding) => <div className="quality-finding" key={finding.id || `${finding.path}-${finding.problem}`}><strong>{finding.problem}</strong><span>{finding.recommendation}</span></div>)}</div> : null}
+          {nonBlockingGaps.length ? <ReviewGaps gaps={nonBlockingGaps} /> : null}
+        </div>
+      ) : null}
+    </section>
+  );
+}
+
+function ReviewBasis({ basis }) {
+  const rows = [
+    ["Recruiter", basis.technical_recruiter_priorities],
+    ["Hiring manager", basis.hiring_manager_priorities],
+    ["Principal engineer", basis.principal_engineer_priorities],
+  ];
+  return (
+    <div className="quality-review-basis">
+      <strong>Review target: {basis.normalized_market_title}</strong>
+      {basis.advertised_job_title ? <span>Posted as {basis.advertised_job_title}</span> : null}
+      {basis.title_rationale ? <p><b>Title review</b>{basis.title_rationale}</p> : null}
+      {rows.map(([label, priorities]) => (
+        Array.isArray(priorities) && priorities.length
+          ? <p key={label}><b>{label}</b>{priorities.join(" · ")}</p>
+          : null
+      ))}
+    </div>
+  );
+}
+
+function ReviewGaps({ gaps }) {
+  return (
+    <div className="quality-review-gaps">
+      <strong>Requirements not claimed</strong>
+      {gaps.map((gap, index) => (
+        <p key={gap.id || index}>
+          <b>{gap.gap || "Unsupported requirement"}</b>
+          {gap.impact ? ` ${gap.impact}` : ""}
+        </p>
+      ))}
+    </div>
+  );
+}
+
 function History({ history }) {
   if (!history?.count) return null;
   return (
@@ -238,6 +524,11 @@ function AutofillWorkspace({
   onApplication, onFullName, onSave, onImport, onExport, onReset,
 }) {
   const percent = status?.totalFields ? Math.round((status.filledFields / status.totalFields) * 100) : 0;
+  const platformLabel = status?.platform === "generic"
+    ? "Company career site"
+    : status?.platform
+      ? `${status.platform} application`
+      : "Application";
   const unmatched = (status?.fields || []).filter((field) => field.type !== "file" && !field.filled && !field.matched && !field.applicationQuestion);
   const review = (status?.fields || []).filter((field) => field.reviewRequired && !field.filled);
   const questions = status?.questions || [];
@@ -246,7 +537,7 @@ function AutofillWorkspace({
   return (
     <section className="autofill-workspace">
       <div className="autofill-heading">
-        <div><h2>Application Autofill</h2><p>{status?.supported ? `${status.platform || "Application"} form` : "Open a supported job application page."}</p></div>
+        <div><h2>Application Autofill</h2><p>{status?.supported ? platformLabel : "Open a job application page."}</p></div>
         <button onClick={onRefresh} disabled={busy !== ""}>Refresh</button>
       </div>
 
@@ -261,7 +552,7 @@ function AutofillWorkspace({
 
       <label>Contact identity<select value={identityId} onChange={(event) => onIdentity(event.target.value)}>{(identities || []).map((item) => <option key={item.id} value={item.id}>{item.label}</option>)}</select></label>
       <div className="autofill-actions">
-        <button className="primary" disabled={!status?.supported || !status?.applicationPage || busy !== ""} onClick={onFill}>{busy === "fill" ? "Filling..." : "Fill this page"}</button>
+        <button className="primary" disabled={!status?.supported || !status?.applicationPage || busy !== ""} onClick={onFill}>{busy === "fill" ? "Filling..." : "Fill this step"}</button>
         <label>Resume generated in the last 24 hours<select aria-label="Resume to attach and answer with" value={selectedDraftId} onChange={(event) => onSelectDraft(event.target.value)}><option value="">{recentResumes.length ? "Select generated resume" : "No current PDF available"}</option>{recentResumes.map((item) => <option key={item.id} value={item.id}>{item.company_name} - {item.role_title} - {generatedAgo(item.pdf_generated_at)}</option>)}</select></label>
         <button disabled={!selectedDraftId || !status?.fileFields || busy !== ""} onClick={onAttach}>{busy === "attach" ? "Attaching..." : "Attach resume"}</button>
       </div>
@@ -284,7 +575,7 @@ function AutofillWorkspace({
         <div className="profile-field-grid">
           {APPLICATION_FIELDS.filter(([key]) => !["firstName", "middleName", "lastName"].includes(key)).map(([key, label]) => <label key={key}>{label}<input value={application[key] || ""} onChange={(event) => onApplication(key, event.target.value)} /></label>)}
         </div>
-        <label className="autofill-toggle"><input type="checkbox" checked={application.autoFillEnabled !== false} onChange={(event) => onApplication("autoFillEnabled", event.target.checked)} />Fill recognized fields automatically on application pages</label>
+        <label className="autofill-toggle"><input type="checkbox" checked={application.autoFillEnabled !== false} onChange={(event) => onApplication("autoFillEnabled", event.target.checked)} />After approval, continue filling newly rendered steps in this application</label>
         <label>Custom answers<textarea value={customAnswersText(application.customAnswers)} onChange={(event) => onApplication("customAnswers", parseCustomAnswers(event.target.value))} placeholder="Question text => Saved answer" /></label>
         <div className="button-row"><button className="primary" onClick={() => onSave("permanent")}>Save permanently</button><button onClick={() => onSave("session")}>Use this session</button></div>
         <div className="profile-data-actions"><button onClick={onExport}>Export JSON</button><label className="file-button">Import JSON<input type="file" accept="application/json,.json" onChange={onImport} /></label><button className="danger-text" onClick={onReset}>Clear application fields</button></div>
@@ -314,7 +605,8 @@ function App() {
   const [identityId, setIdentityId] = useState("");
   const [enabledKeys, setEnabledKeys] = useState([]);
   const [tab, setTab] = useState("preview");
-  const [error, setError] = useState("");
+  const [error, setErrorMessage] = useState("");
+  const [errorDraftId, setErrorDraftId] = useState("");
   const [busy, setBusy] = useState("");
   const [quickDraftId, setQuickDraftId] = useState("");
   const [quickHydratedDraftId, setQuickHydratedDraftId] = useState("");
@@ -322,6 +614,7 @@ function App() {
   const [quickDirty, setQuickDirty] = useState(false);
   const [saveState, setSaveState] = useState("");
   const [resumeCopyState, setResumeCopyState] = useState("");
+  const [resumeVersionView, setResumeVersionView] = useState("luna_reviewed");
   const quickDirtyRef = useRef(false);
   const quickEditVersionRef = useRef(0);
   const quickEditsRef = useRef(quickEdits);
@@ -343,6 +636,11 @@ function App() {
   const [autofillSaveState, setAutofillSaveState] = useState("");
   const [autofillAnswers, setAutofillAnswers] = useState({});
   const [autofillAnswerBusy, setAutofillAnswerBusy] = useState("");
+
+  function setError(message, draftId = "") {
+    setErrorMessage(String(message || ""));
+    setErrorDraftId(message ? String(draftId || "") : "");
+  }
 
   async function loadServer() {
     const stored = await send({ type: "GET_SERVER_URL" });
@@ -401,9 +699,9 @@ function App() {
     }
   }
 
-  async function refreshAutofillStatus(selectedIdentity = identityId, selectWorkspace = false) {
+  async function refreshAutofillStatus(selectedIdentity = identityId, selectWorkspace = false, inspectGeneric = false) {
     try {
-      const result = await send({ type: "AUTOFILL_GET_ACTIVE_STATUS", identityId: selectedIdentity || "" });
+      const result = await send({ type: "AUTOFILL_GET_ACTIVE_STATUS", identityId: selectedIdentity || "", inspectGeneric });
       if (!result?.success) throw new Error(result?.error || "Could not inspect this page.");
       setAutofillStatus(result);
       if (selectWorkspace && result.supported && result.applicationPage) setWorkspace("autofill");
@@ -546,6 +844,17 @@ function App() {
     setDraft(nextDraft);
   }
 
+  function rehydrateQuickEdits(nextDraft) {
+    const nextValues = quickEditValuesFromDraft(nextDraft);
+    setQuickDraftId(nextDraft?.id || "");
+    setQuickHydratedDraftId(nextDraft?.id || "");
+    setQuickEdits(nextValues);
+    quickEditsRef.current = nextValues;
+    quickDirtyRef.current = false;
+    setQuickDirty(false);
+    setSaveState("");
+  }
+
   async function loadDraft(draftId, select = false) {
     if (!draftId) return null;
     if (select) selectedDraftIdRef.current = draftId;
@@ -611,7 +920,7 @@ function App() {
     });
     const listener = (message) => {
       if (message?.type === "JOB_CONTEXT_CHANGED" && viewingCurrentRef.current) resolveContext(message.context);
-      if (message?.type === "AUTOFILL_ACTIVE_STATUS_CHANGED") refreshAutofillStatus();
+      if (message?.type === "AUTOFILL_ACTIVE_STATUS_CHANGED" && message.status) setAutofillStatus(message.status);
     };
     chrome.runtime.onMessage.addListener(listener);
     return () => chrome.runtime.onMessage.removeListener(listener);
@@ -658,6 +967,17 @@ function App() {
       setSaveState("");
     }
   }, [draft?.id, draft?.status, draft?.title_summary, draft?.preview, draft?.skills, quickDraftId, quickHydratedDraftId]);
+
+  useEffect(() => {
+    setResumeVersionView(defaultResumeVersionView(draft));
+  }, [
+    draft?.id,
+    draft?.audit_status,
+    draft?.active_resume_version,
+    !!draft?.resume_versions?.original,
+    !!draft?.resume_versions?.luna_reviewed,
+    !!draft?.resume_versions?.manual,
+  ]);
 
   useEffect(() => {
     assistantDraftRef.current = draft?.id || "";
@@ -736,6 +1056,17 @@ function App() {
   const visibleExperiences = profileHistory.filter((item) => item.enabled !== false && item.company && item.location && item.title && item.dates);
   const contextComplete = contextForm.company_name.trim() && contextForm.role_title.trim() && contextForm.job_description.trim().length >= 120;
   const draftSearches = useMemo(() => searchesForDraft(draft), [draft?.company_name, draft?.role_title, draft?.analysis]);
+  const selectedResumeVersion = resumeVersionView === "original"
+    ? originalResumeVersion(draft)
+    : reviewedResumeVersion(draft);
+  const selectedResumePreview = selectedResumeVersion?.resume_snapshot || draft?.preview || null;
+
+  function selectResumeVersion(nextVersion) {
+    setResumeVersionView(nextVersion);
+    if (nextVersion === "luna_reviewed" && draftRef.current?.id && !quickDirtyRef.current) {
+      loadDraft(draftRef.current.id);
+    }
+  }
 
   function updateExperienceEdit(key, field, value) {
     updateQuickEdits((current) => ({
@@ -780,15 +1111,73 @@ function App() {
 
   async function runDraftAction(action, body = {}) {
     if (!draft) return;
+    const actionDraftId = draft.id;
     setBusy(action);
     setError("");
     try {
-      const data = await api(`/api/extension/drafts/${draft.id}/${action}`, { method: "POST", body });
-      commitDraft(data.draft);
+      const data = await api(`/api/extension/drafts/${actionDraftId}/${action}`, { method: "POST", body });
+      if (selectedDraftIdRef.current === actionDraftId) commitDraft(data.draft);
       if (typeof data.queue_paused === "boolean") setServer((current) => current ? { ...current, queue_paused: data.queue_paused } : current);
       await loadDrafts();
     } catch (actionError) {
-      setError(actionError.message);
+      setError(actionError.message, actionDraftId);
+    } finally {
+      setBusy("");
+    }
+  }
+
+  async function retryAudit() {
+    const initialDraft = draftRef.current;
+    if (!initialDraft?.id) return;
+    const draftId = initialDraft.id;
+    let requestStarted = false;
+    setBusy("audit-retry");
+    setError("");
+    try {
+      await persistQuickEdits();
+      const activeDraft = draftRef.current;
+      if (!activeDraft || activeDraft.id !== draftId) throw new Error("The selected resume changed. Try the review action again.");
+      requestStarted = true;
+      const data = await api(`/api/extension/drafts/${encodeURIComponent(draftId)}/audit`, { method: "POST", body: {} });
+      commitDraft(data.draft);
+      rehydrateQuickEdits(data.draft);
+      await loadDrafts();
+    } catch (actionError) {
+      if (requestStarted) await loadDraft(draftId);
+      setError(actionError.message, draftId);
+    } finally {
+      setBusy("");
+    }
+  }
+
+  async function regenerateDraft() {
+    const activeDraft = draftRef.current;
+    if (!activeDraft?.resume_content || !canRegenerateDraft(activeDraft, busy)) return;
+    const draftId = activeDraft.id;
+    if (!window.confirm("Discard this resume and regenerate it from the current job details?")) return;
+    let requestStarted = false;
+    setBusy("regenerate");
+    setError("");
+    try {
+      if (quickSavePromiseRef.current) await quickSavePromiseRef.current;
+      quickDirtyRef.current = false;
+      setQuickDirty(false);
+      requestStarted = true;
+      const data = await api(`/api/extension/drafts/${encodeURIComponent(draftId)}/regenerate`, {
+        method: "POST",
+        body: { context: contextForm },
+      });
+      commitDraft(data.draft);
+      setQuickHydratedDraftId("");
+      setQuickEdits({ title: "", summary: "", skills_text: "", experience: [] });
+      quickEditsRef.current = { title: "", summary: "", skills_text: "", experience: [] };
+      setSaveState("");
+      setResumeVersionView("luna_reviewed");
+      setTab("preview");
+      await loadDrafts();
+    } catch (actionError) {
+      if (requestStarted) await loadDraft(draftId);
+      setError(actionError.message, draftId);
     } finally {
       setBusy("");
     }
@@ -796,6 +1185,7 @@ function App() {
 
   async function generateDraftPdf() {
     if (!draftRef.current) return;
+    const draftId = draftRef.current.id;
     setTab("pdf");
     setBusy("pdf");
     setError("");
@@ -803,11 +1193,12 @@ function App() {
       await persistQuickEdits();
       const activeDraft = draftRef.current;
       if (!activeDraft || activeDraft.status !== "ready") throw new Error("Wait for the latest resume edits to finish saving.");
+      if (auditReviewUnresolved(activeDraft)) throw new Error("Resolve the resume quality review before creating a PDF.");
       const data = await api(`/api/extension/drafts/${activeDraft.id}/pdf`, { method: "POST", body: {} });
-      commitDraft(data.draft);
+      if (selectedDraftIdRef.current === draftId) commitDraft(data.draft);
       await loadDrafts();
     } catch (actionError) {
-      setError(actionError.message);
+      setError(actionError.message, draftId);
     } finally {
       setBusy("");
     }
@@ -943,6 +1334,7 @@ function App() {
 
   async function selectDraft(item) {
     contextResolveRef.current += 1;
+    setError("");
     viewingCurrentRef.current = false;
     setViewingCurrent(false);
     setTab(item.status === "pdf_ready" ? "pdf" : "preview");
@@ -1003,6 +1395,10 @@ function App() {
     );
   }
 
+  const visibleError = error && (!errorDraftId || errorDraftId === draft?.id)
+    ? error
+    : "";
+
   return (
     <main className="panel-shell">
       <header className="panel-header">
@@ -1012,7 +1408,7 @@ function App() {
 
       <nav className="workspace-tabs" aria-label="Extension workspace">
         <button className={workspace === "resume" ? "active" : ""} onClick={() => setWorkspace("resume")}>Resume</button>
-        <button className={workspace === "autofill" ? "active" : ""} onClick={() => { setWorkspace("autofill"); refreshAutofillStatus(); }}>Autofill{autofillStatus?.supported && autofillStatus.totalFields ? ` ${autofillStatus.filledFields}/${autofillStatus.totalFields}` : ""}</button>
+        <button className={workspace === "autofill" ? "active" : ""} onClick={() => { setWorkspace("autofill"); refreshAutofillStatus(identityId, false, true); }}>Autofill{autofillStatus?.supported && autofillStatus.totalFields ? ` ${autofillStatus.filledFields}/${autofillStatus.totalFields}` : ""}</button>
         {workspace === "resume" ? <button className="workspace-refresh" disabled={busy === "refresh-context"} onClick={refreshResumeContext}>{busy === "refresh-context" ? "Reading..." : "Refresh"}</button> : null}
       </nav>
 
@@ -1032,7 +1428,7 @@ function App() {
           answers={autofillAnswers}
           answerBusy={autofillAnswerBusy}
           onIdentity={setIdentityId}
-          onRefresh={() => refreshAutofillStatus()}
+          onRefresh={() => refreshAutofillStatus(identityId, false, true)}
           onFill={fillActiveApplication}
           onAttach={attachResumeToApplication}
           onSelectDraft={setAutofillDraftId}
@@ -1065,7 +1461,7 @@ function App() {
       ) : null}
 
       {!viewingCurrent && context ? <button className="current-job-link" onClick={() => resolveContext(context)}>Back to current LinkedIn job</button> : null}
-      {error ? <div className="error-band">{error}</div> : null}
+      {visibleError ? <div className="error-band">{visibleError}</div> : null}
 
       {viewingCurrent && !context ? (
         <div className="blank-state"><h2>{visibleDrafts.length ? "Select a recent draft" : "No LinkedIn job selected"}</h2><p>{visibleDrafts.length ? "Choose a draft above to review progress or answer follow-up questions. This page is not being read." : "Open a LinkedIn job to create a resume. On other pages, the extension stays available without reading page content."}</p><button onClick={() => send({ type: "GET_ACTIVE_CONTEXT" }).then((result) => result?.context && resolveContext(result.context))}>Check LinkedIn again</button></div>
@@ -1098,7 +1494,7 @@ function App() {
           {draft ? (
             <section className="draft-workspace">
               <div className="draft-status-row"><strong>{STATUS_LABELS[draft.status] || draft.status}</strong><span>{draft.stage?.replaceAll("_", " ")}</span></div>
-              {draft.source_changed && viewingCurrent ? <div className="warning-band">LinkedIn changed this job description. Your current resume was preserved.<button onClick={() => window.confirm("Replace this draft using the latest job description?") && runDraftAction("regenerate", { context: contextForm })}>Regenerate</button></div> : null}
+              {draft.source_changed && viewingCurrent ? <div className="warning-band">LinkedIn changed this job description. Your current resume was preserved.<button disabled={!canRegenerateDraft(draft, busy)} onClick={() => window.confirm("Replace this draft using the latest job description?") && runDraftAction("regenerate", { context: contextForm })}>Regenerate</button></div> : null}
               {draft.status === "duplicate_review" ? (
                 <div className="decision-band"><strong>Previous applications found</strong><p>Generation has not called the AI yet. Choose whether to continue.</p><div className="button-row"><button className="primary" onClick={() => runDraftAction("duplicate-decision", { decision: "continue" })}>Continue</button><button onClick={() => runDraftAction("duplicate-decision", { decision: "skip" })}>Skip</button></div></div>
               ) : null}
@@ -1113,12 +1509,22 @@ function App() {
               {draft.resume_content ? (
                 <>
                   <div className="view-tabs"><button className={tab === "preview" ? "active" : ""} onClick={() => setTab("preview")}>Resume</button><button className={tab === "pdf" ? "active" : ""} onClick={() => setTab("pdf")}>PDF</button><button className={tab === "messages" ? "active" : ""} onClick={() => setTab("messages")}>Messages</button><button className={tab === "search" ? "active" : ""} onClick={() => setTab("search")}>Search</button></div>
+                  <QualityReviewBand
+                    draft={draft}
+                    busy={busy}
+                    onRetry={retryAudit}
+                    onOpenEditor={() => send({ type: "OPEN_EDITOR", draftId: draft.id, review: true })}
+                  />
                   {tab === "preview" ? (
                     <>
-                      {["ready", "pdf_ready"].includes(draft.status) && !draft.locked ? (
+                      <ResumeVersionSelector draft={draft} value={resumeVersionView} onChange={selectResumeVersion} />
+                      {resumeVersionView === "original" ? <div className="resume-version-note">Original generated resume · read only</div> : null}
+                      {resumeVersionView === "luna_reviewed" && auditReviewGroups(draft).length ? <div className="resume-version-note">Luna applied {auditReviewGroups(draft).length} reviewed change{auditReviewGroups(draft).length === 1 ? "" : "s"} to this version.</div> : null}
+                      {resumeVersionView === "changes" ? <ReviewChanges draft={draft} /> : null}
+                      {resumeVersionView === "luna_reviewed" && ["ready", "pdf_ready"].includes(draft.status) && !draft.locked ? (
                         <details className="quick-editor"><summary>Edit resume content <span>{saveState}</span></summary><label>Resume title<input value={quickEdits.title} onChange={(event) => updateQuickEdits({ ...quickEditsRef.current, title: event.target.value })} /></label><label>Summary<textarea value={quickEdits.summary} onChange={(event) => updateQuickEdits({ ...quickEditsRef.current, summary: event.target.value })} /></label><label>Technical skills<textarea className="skills-editor" value={quickEdits.skills_text} onChange={(event) => updateQuickEdits({ ...quickEditsRef.current, skills_text: event.target.value })} /></label><div className="experience-editor"><h4>Work experience</h4>{(quickEdits.experience || []).map((item) => <details className="experience-editor-row" key={item.key}><summary>{item.company || "Work experience"}<span>{item.title}</span></summary><div className="experience-metadata-grid"><label>Company<input value={item.company} onChange={(event) => updateExperienceEdit(item.key, "company", event.target.value)} /></label><label>Location<input value={item.location} onChange={(event) => updateExperienceEdit(item.key, "location", event.target.value)} /></label></div><label>Dates<input value={item.dates} onChange={(event) => updateExperienceEdit(item.key, "dates", event.target.value)} /></label><label>Role title<input value={item.title} onChange={(event) => updateExperienceEdit(item.key, "title", event.target.value)} /></label><label>Bullets, one per line<textarea className="experience-bullets-editor" value={item.bullets_text} onChange={(event) => updateExperienceEdit(item.key, "bullets_text", event.target.value)} /></label></details>)}</div></details>
                       ) : null}
-                      <Preview preview={draft.preview} />
+                      {resumeVersionView !== "changes" ? <Preview preview={selectedResumePreview} /> : null}
                     </>
                   ) : tab === "pdf" ? (
                     <div className="pdf-view">{draft.status === "pdf_ready" && !draft.pdf_stale ? <iframe title="Generated resume PDF" src={`${serverUrl}/api/download?path=${encodeURIComponent(draft.pdf_path)}&preview=true`} /> : <div className="blank-state">{draft.status === "pdf_generating" ? "Generating PDF..." : "Generate the latest PDF to preview it here."}</div>}</div>
@@ -1155,7 +1561,8 @@ function App() {
                   <div className="action-bar">
                     <button onClick={() => send({ type: "OPEN_EDITOR", draftId: draft.id })}>Open Full Editor</button>
                     <button disabled={resumeCopyState === "copying"} onClick={copyResumeContent}>{resumeCopyState === "copying" ? "Copying..." : resumeCopyState === "copied" ? "Copied" : "Copy Content"}</button>
-                    <button className="primary" disabled={draft.locked || draft.status !== "ready" || busy === "pdf"} onClick={generateDraftPdf}>{busy === "pdf" ? "Saving..." : "Generate PDF"}</button>
+                    {!draft.locked ? <button disabled={busy !== "" || !canRegenerateDraft(draft, busy)} onClick={regenerateDraft}>{busy === "regenerate" ? "Starting..." : "Regenerate"}</button> : null}
+                    <button className="primary" disabled={draft.locked || draft.status !== "ready" || auditReviewUnresolved(draft) || busy.startsWith("audit-") || busy === "pdf"} onClick={generateDraftPdf}>{busy === "pdf" ? "Saving..." : "Generate PDF"}</button>
                     <button disabled={draft.status !== "pdf_ready" || draft.pdf_stale || draft.locked} onClick={() => setShowApply(true)}>{draft.locked ? "Applied" : "Mark Applied"}</button>
                   </div>
                 </>

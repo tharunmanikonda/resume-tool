@@ -360,10 +360,294 @@ function parseProjects(text) {
     .filter((project) => project.name);
 }
 
-function combineCoreDraft(titleSummaryContent, skillsContent) {
-  return [titleSummaryContent?.trim(), skillsContent?.trim(), "Professional Experience"]
-    .filter(Boolean)
-    .join("\n\n");
+const initialAuditState = {
+  status: "not_started",
+  result: null,
+  proposal: null,
+  baseHash: "",
+  baseRevision: null,
+  error: "",
+};
+
+const emptyResumeVersions = {
+  original: null,
+  luna_reviewed: null,
+  manual: null,
+};
+
+function normalizeResumeVersionEntry(entry) {
+  if (!entry || typeof entry !== "object") return null;
+  const resume = entry.resume && typeof entry.resume === "object"
+    ? entry.resume
+    : (entry.canonical && typeof entry.canonical === "object" ? entry.canonical : null);
+  const resumeContent = String(entry.resume_content || entry.content || "");
+  const resumeSnapshot = entry.resume_snapshot && typeof entry.resume_snapshot === "object"
+    ? entry.resume_snapshot
+    : (entry.snapshot && typeof entry.snapshot === "object" ? entry.snapshot : null);
+  if (!resume && !resumeContent.trim() && !resumeSnapshot) return null;
+  return {
+    ...entry,
+    resume,
+    resume_content: resumeContent,
+    resume_snapshot: resumeSnapshot,
+  };
+}
+
+function resumeVersionStateFromPayload(payload = {}) {
+  const source = payload.resume_versions && typeof payload.resume_versions === "object"
+    ? payload.resume_versions
+    : {};
+  const versions = {
+    original: normalizeResumeVersionEntry(source.original),
+    luna_reviewed: normalizeResumeVersionEntry(source.luna_reviewed),
+    manual: normalizeResumeVersionEntry(source.manual),
+  };
+  const requestedActive = String(payload.active_resume_version || "");
+  const active = versions[requestedActive]
+    ? requestedActive
+    : (versions.manual ? "manual" : (versions.luna_reviewed ? "luna_reviewed" : (versions.original ? "original" : "")));
+  return { versions, active };
+}
+
+function resumeVersionPreview(entry, experienceHistory = [], contact = {}) {
+  if (!entry) return null;
+  const snapshot = entry.resume_snapshot;
+  if (snapshot && (snapshot.title || snapshot.summary || snapshot.experience || snapshot.technical_skills)) {
+    return snapshot;
+  }
+
+  const resume = entry.resume || {};
+  const experience = resume.experience && typeof resume.experience === "object"
+    ? resume.experience
+    : {};
+  const history = normalizeInlineExperienceHistory(experienceHistory);
+  return {
+    title: resume.updated_title || resume.title || "",
+    summary: resume.updated_summary || resume.summary || "",
+    contact,
+    technical_skills: (resume.updated_skills || resume.technical_skills || []).map((skill) => ({
+      category: skill.category || "Skills",
+      items: Array.isArray(skill.items) ? skill.items.join(", ") : String(skill.items || ""),
+    })),
+    experience: history
+      .filter((role) => experience[role.key])
+      .map((role) => ({
+        company: role.company || role.key,
+        location: role.location || "",
+        dates: role.dates || "",
+        title: experience[role.key]?.title || role.title || "",
+        bullets: Array.isArray(experience[role.key]?.bullets) ? experience[role.key].bullets : [],
+      })),
+  };
+}
+
+const staleableAuditStatuses = new Set([
+  "approved",
+  "applied",
+  "kept_current",
+  "changes_suggested",
+  "manual_attention",
+  "technical_failed",
+]);
+
+const unresolvedAuditStatuses = new Set([
+  "running",
+  "reviewing",
+  "changes_suggested",
+  "manual_attention",
+  "technical_failed",
+  "stale",
+]);
+
+const reviewGuidanceStatuses = new Set([
+  "manual_attention",
+  "technical_failed",
+  "stale",
+]);
+
+function auditStateFromPayload(payload = {}, fallbackStatus = "not_started") {
+  const result = payload.audit_result || payload.audit || null;
+  const status = payload.audit_status || result?.decision || fallbackStatus;
+  return {
+    status,
+    result,
+    proposal: payload.audit_proposal || result?.changes || null,
+    baseHash: payload.audit_base_hash || result?.base_hash || "",
+    baseRevision: payload.audit_base_revision ?? payload.resume_revision ?? null,
+    error: status === "technical_failed" ? (result?.error || payload.error || "Quality review failed.") : "",
+  };
+}
+
+function formatAuditSkills(skills = []) {
+  return (Array.isArray(skills) ? skills : [])
+    .map((item) => {
+      const items = Array.isArray(item?.items) ? item.items.join(", ") : String(item?.items || "");
+      return `${item?.category || "Skills"}: ${items}`;
+    })
+    .join("\n");
+}
+
+function auditStatusCopy(audit) {
+  const count = Array.isArray(audit.result?.review_groups) ? audit.result.review_groups.length : 0;
+  const copy = {
+    running: ["Reviewing", "Checking resume quality..."],
+    reviewing: ["Reviewing", "Checking resume quality..."],
+    approved: ["Passed", "Quality review passed."],
+    changes_suggested: ["Review ready", `${count} ${count === 1 ? "change" : "changes"} recorded by Luna.`],
+    manual_attention: ["Manual attention", "A blocking issue needs an editor change."],
+    technical_failed: ["Review failed", audit.error || "The review service could not finish."],
+    stale: ["Review stale", "The resume changed. Run the review again."],
+    kept_current: ["Kept current", "Current resume kept after review."],
+    applied: ["Luna reviewed", "Validated quality changes were applied automatically."],
+  };
+  return copy[audit.status] || ["Not reviewed", "Quality review has not run."];
+}
+
+function formatAuditFindingPath(path, history = []) {
+  const normalizedPath = String(path || "").trim();
+  const topLevelLabels = {
+    updated_title: "Top resume title",
+    updated_summary: "Summary",
+    updated_skills: "Technical skills",
+  };
+  if (topLevelLabels[normalizedPath]) return topLevelLabels[normalizedPath];
+
+  const match = normalizedPath.match(/^experience\.([^.]+)\.(title|bullets(?:\[(\d+)\])?)$/);
+  if (!match) {
+    return normalizedPath
+      .replace(/\[(\d+)\]/g, (_, index) => ` ${Number(index) + 1}`)
+      .replace(/[._-]+/g, " ")
+      .replace(/\b\w/g, (letter) => letter.toUpperCase()) || "Resume";
+  }
+
+  const role = normalizeInlineExperienceHistory(history).find((item) => item.key === match[1]);
+  const company = role?.company || match[1];
+  if (match[2] === "title") return `${company} role title`;
+  return `${company} bullet ${Number(match[3] || 0) + 1}`;
+}
+
+function AuditChangeReview({ audit, loading, onOpenEditor, onRetry }) {
+  const result = audit.result || {};
+  const reviewGroups = Array.isArray(result.review_groups) ? result.review_groups : [];
+  const findings = Array.isArray(result.manual_findings) ? result.manual_findings : [];
+  const reviewBasis = result.review_basis && typeof result.review_basis === "object"
+    ? result.review_basis
+    : {};
+  const nonBlockingGaps = Array.isArray(result.non_blocking_gaps)
+    ? result.non_blocking_gaps
+    : [];
+  const valueText = (value) => {
+    if (Array.isArray(value)) {
+      return value.map((item) => (
+        item && typeof item === "object"
+          ? (item.skill || item.new_bullet || JSON.stringify(item))
+          : String(item)
+      )).join("\n");
+    }
+    if (value && typeof value === "object") {
+      if (value.skill) return value.category ? `${value.category}: ${value.skill}` : String(value.skill);
+      if (Array.isArray(value.skills)) {
+        return value.category ? `${value.category}: ${value.skills.join(", ")}` : value.skills.join(", ");
+      }
+      return Object.values(value).filter(Boolean).join(": ");
+    }
+    return String(value || "");
+  };
+  const labelFor = (group) => {
+    if (group.section === "top_title") return "Top title";
+    if (group.section === "summary") return "Summary";
+    if (group.section === "experience_title") return `${group.company || group.role_key} title`;
+    if (group.section === "experience") return `${group.company || group.role_key} experience`;
+    if (group.section?.startsWith("skills.")) return `Skills · ${String(group.section).split(".").pop().replaceAll("_", " ")}`;
+    return "Resume change";
+  };
+
+  return (
+    <div className="audit-review-content">
+      {result.review_summary ? <p className="audit-review-summary">{result.review_summary}</p> : null}
+      {reviewBasis.normalized_market_title ? (
+        <div className="audit-review-basis">
+          <strong>Review target: {reviewBasis.normalized_market_title}</strong>
+          {reviewBasis.advertised_job_title ? <span>Posted as {reviewBasis.advertised_job_title}</span> : null}
+          {reviewBasis.title_rationale ? <p><b>Title review</b>{reviewBasis.title_rationale}</p> : null}
+          <p><b>Recruiter</b>{(reviewBasis.technical_recruiter_priorities || []).join(" · ")}</p>
+          <p><b>Hiring manager</b>{(reviewBasis.hiring_manager_priorities || []).join(" · ")}</p>
+          <p><b>Principal engineer</b>{(reviewBasis.principal_engineer_priorities || []).join(" · ")}</p>
+        </div>
+      ) : null}
+      {audit.status === "manual_attention" ? (
+        <div className="audit-guidance-message">
+          <strong>A safe automatic repair was not available.</strong>
+          <p>Review the findings, update the affected content, and run the review again.</p>
+          <button className="primary-button compact-button" onClick={onOpenEditor}>Open Editor</button>
+        </div>
+      ) : null}
+      {audit.status === "technical_failed" ? (
+        <div className="audit-guidance-message">
+          <strong>{audit.error || "The quality review could not finish."}</strong>
+          <button className="secondary-button compact-button" disabled={loading} onClick={onRetry}>{loading ? "Reviewing..." : "Retry Review"}</button>
+        </div>
+      ) : null}
+      {audit.status === "stale" ? (
+        <div className="audit-guidance-message">
+          <strong>This review is out of date.</strong>
+          <p>The resume changed after the review. Review your edits, then run the quality review again.</p>
+        </div>
+      ) : null}
+      {findings.length ? (
+        <div className="audit-findings">
+          {findings.map((finding, index) => (
+            <div key={finding.id || index} className="audit-finding">
+              <span className="audit-finding-path">
+                {formatAuditFindingPath(finding.path, audit.history || [])}
+                {finding.path ? <code>{finding.path}</code> : null}
+              </span>
+              <strong>{finding.problem || "Review finding"}</strong>
+              {finding.recommendation ? <span>{finding.recommendation}</span> : null}
+            </div>
+          ))}
+        </div>
+      ) : null}
+      {reviewGroups.length ? reviewGroups.map((group) => (
+        <section className="audit-change" key={group.change_id} data-change-id={group.change_id}>
+          <div className="audit-change-heading">
+            <h3>{labelFor(group)}</h3>
+          </div>
+          <div className="audit-change-grid">
+            <div>
+              <span className="audit-change-label">Remove</span>
+              <p>{valueText(group.current) || "Not present"}</p>
+            </div>
+            <div>
+              <span className="audit-change-label">Add</span>
+              <p>{valueText(group.proposed) || "Not present"}</p>
+            </div>
+          </div>
+          <p className="audit-change-reason">{group.reason}</p>
+          {Array.isArray(group.supported_by) && group.supported_by.length ? (
+            <div className="audit-reviewer-support">
+              {group.supported_by.map((reviewer) => (
+                <span key={reviewer}>{reviewer.replaceAll("_", " ")}</span>
+              ))}
+            </div>
+          ) : null}
+        </section>
+      )) : audit.status === "changes_suggested" ? (
+        <div className="blank-state compact">No section-level changes were returned.</div>
+      ) : null}
+      {nonBlockingGaps.length ? (
+        <div className="audit-non-blocking-gaps">
+          <strong>Requirements not claimed</strong>
+          {nonBlockingGaps.map((gap, index) => (
+            <p key={gap.id || index}>
+              <b>{gap.gap || "Unsupported requirement"}</b>
+              {gap.impact ? ` ${gap.impact}` : ""}
+            </p>
+          ))}
+        </div>
+      ) : null}
+    </div>
+  );
 }
 
 function formatDateShort(value) {
@@ -513,6 +797,7 @@ function PriorApplicationsList({ history }) {
 
 export default function App() {
   const [extensionDraftId] = useState(() => new URLSearchParams(window.location.search).get("draft") || "");
+  const [extensionReviewRequested] = useState(() => new URLSearchParams(window.location.search).get("review") === "1");
   const [extensionDraftLocked, setExtensionDraftLocked] = useState(false);
   const [extensionDraftSaveState, setExtensionDraftSaveState] = useState("");
   const [profileLoaded, setProfileLoaded] = useState(false);
@@ -532,6 +817,11 @@ export default function App() {
   const [composerInput, setComposerInput] = useState("");
   const [resumeJobContext, setResumeJobContext] = useState(null);
   const [generatedContent, setGeneratedContent] = useState("");
+  const [audit, setAudit] = useState(initialAuditState);
+  const [auditActionLoading, setAuditActionLoading] = useState(false);
+  const [resumeVersions, setResumeVersions] = useState(emptyResumeVersions);
+  const [activeResumeVersion, setActiveResumeVersion] = useState("");
+  const [resumeVersionView, setResumeVersionView] = useState("");
   const [preview, setPreview] = useState(null);
   const [validation, setValidation] = useState({ valid: false, errors: [] });
   const [tab, setTab] = useState("parsed");
@@ -561,6 +851,7 @@ export default function App() {
     profile: false,
     tracker: false,
     trackApply: false,
+    qualityReview: false,
   });
   const [trackerData, setTrackerData] = useState({ applications: [], summary: { counts: {}, total: 0 }, statuses: ["Applied", "Updated", "Converted", "Ghosted", "Rejected"] });
   const [trackerLoading, setTrackerLoading] = useState(false);
@@ -591,7 +882,164 @@ export default function App() {
   const previewRequestSeqRef = useRef(0);
   const extensionDraftHydratedRef = useRef(false);
   const extensionDraftLastSavedRef = useRef("");
+  const extensionReviewAutoOpenedRef = useRef(false);
+  const auditStaleSuppressionRef = useRef(false);
+  const previewEditorRef = useRef(null);
+  const focusPreviewEditorRef = useRef(false);
   const [recordingTarget, setRecordingTarget] = useState("");
+
+  function invalidatePdfState() {
+    setPdfState({ mode: "idle", error: "", statusPath: "", pdfPath: "", outputDir: "", statusLabel: "" });
+  }
+
+  function runWithoutAuditStale(callback) {
+    auditStaleSuppressionRef.current = true;
+    try {
+      callback();
+    } finally {
+      auditStaleSuppressionRef.current = false;
+    }
+  }
+
+  function setGeneratedContentProgrammatically(content) {
+    if (typeof content !== "string" || !content.trim()) return false;
+    runWithoutAuditStale(() => setGeneratedContent(content));
+    return true;
+  }
+
+  function resetAuditState() {
+    runWithoutAuditStale(() => setAudit(initialAuditState));
+  }
+
+  function resetResumeVersionState() {
+    setResumeVersions(emptyResumeVersions);
+    setActiveResumeVersion("");
+    setResumeVersionView("");
+  }
+
+  function hydrateResumeVersionState(payload, { syncCurrent = true } = {}) {
+    const next = resumeVersionStateFromPayload(payload);
+    if (!next.active) return false;
+    const activeEntry = next.versions[next.active];
+    setResumeVersions(next.versions);
+    setActiveResumeVersion(next.active);
+    setResumeVersionView(next.active);
+    if (syncCurrent && activeEntry?.resume_content?.trim()) {
+      setGeneratedContentProgrammatically(activeEntry.resume_content);
+    }
+    if (activeEntry?.resume_snapshot) {
+      setPreview(activeEntry.resume_snapshot);
+    }
+    return true;
+  }
+
+  function markCurrentResumeAsManual() {
+    if (!generatedContent.trim()) return;
+    setResumeVersions((current) => {
+      const base = current.manual || current.luna_reviewed || current.original || {};
+      return {
+        ...current,
+        manual: {
+          ...base,
+          resume_content: generatedContent,
+          resume_snapshot: preview,
+        },
+      };
+    });
+    setActiveResumeVersion("manual");
+    setResumeVersionView("manual");
+  }
+
+  function hydrateAuditState(payload, fallbackStatus = "not_started") {
+    runWithoutAuditStale(() => setAudit(auditStateFromPayload(payload, fallbackStatus)));
+    hydrateResumeVersionState(payload);
+  }
+
+  function keepCurrentResumeAfterUserEdit() {
+    if (auditStaleSuppressionRef.current || !generatedContent.trim()) {
+      return;
+    }
+    invalidatePdfState();
+    markCurrentResumeAsManual();
+    if (!staleableAuditStatuses.has(audit.status)) return;
+    setAudit((current) => ({
+      ...current,
+      status: "kept_current",
+      proposal: null,
+      error: "",
+    }));
+  }
+
+  function hydrateExtensionEditorData(data, { announce = true } = {}) {
+    const draft = data.draft || {};
+    const history = normalizeExperienceHistory(draft.experience_history_snapshot || []);
+    const nextAudit = auditStateFromPayload(draft);
+    const nextVersions = resumeVersionStateFromPayload(draft);
+    const activeVersion = nextVersions.versions[nextVersions.active];
+    const activeContent = activeVersion?.resume_content || draft.resume_content || "";
+    runWithoutAuditStale(() => {
+      setAiSessionId(data.session_id || null);
+      setLastGeneratedJd(draft.job_description || "");
+      setLatestAnalysis(draft.analysis || null);
+      setGeneratedContent(activeContent);
+      setCompanyName(draft.company_name || "");
+      setIdentity(draft.identity_id || "");
+      setContact({
+        location: draft.contact_snapshot?.location || "",
+        phone: draft.contact_snapshot?.phone || "",
+        email: draft.contact_snapshot?.email || "",
+      });
+      setEditableExperienceHistory(history);
+      setEnabledExperienceKeys(draft.enabled_experience_keys || allEnabledExperienceKeys(history));
+      setAudit(nextAudit);
+      setResumeVersions(nextVersions.versions);
+      setActiveResumeVersion(nextVersions.active);
+      setResumeVersionView(nextVersions.active);
+    });
+    setResumeJobContext({
+      id: "",
+      draft_id: draft.id,
+      title: draft.role_title || "",
+      company_name: draft.company_name || "",
+      job_url: draft.canonical_url || "",
+    });
+    setPreview(activeVersion?.resume_snapshot || draft.preview || draft.resume_snapshot || null);
+    setShowGeneratedArea(!!activeContent);
+    setExtensionDraftLocked(!!draft.locked);
+    setTab(draft.status === "pdf_ready" ? "pdf" : "parsed");
+    setPdfState(draft.pdf_path ? {
+      mode: draft.status === "pdf_ready" ? "ready" : (draft.status === "pdf_generating" ? "polling" : "idle"),
+      error: "",
+      statusPath: draft.pdf_status_path || "",
+      pdfPath: draft.pdf_path || "",
+      outputDir: draft.output_dir || "",
+      statusLabel: draft.status === "pdf_ready" ? "PDF ready" : "Generating PDF...",
+    } : {
+      mode: "idle", error: "", statusPath: "", pdfPath: "", outputDir: "", statusLabel: "",
+    });
+    if (announce) {
+      setAiThread([{
+        kind: "assistant",
+        title: draft.locked ? "Applied Resume" : "LinkedIn Draft Loaded",
+        lines: [draft.locked ? "This applied resume is locked." : "Edits in this page save back to the LinkedIn side-panel draft."],
+      }]);
+    }
+    extensionDraftLastSavedRef.current = JSON.stringify({
+      content: activeContent,
+      company: draft.company_name || "",
+      identity: draft.identity_id || "",
+      enabled: draft.enabled_experience_keys || [],
+      history,
+    });
+    if (
+      extensionReviewRequested
+      && !extensionReviewAutoOpenedRef.current
+      && reviewGuidanceStatuses.has(nextAudit.status)
+    ) {
+      extensionReviewAutoOpenedRef.current = true;
+      setModals((current) => ({ ...current, qualityReview: true }));
+    }
+  }
 
   useEffect(() => {
     fetchJson("/api/settings")
@@ -645,61 +1093,19 @@ export default function App() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({}),
     })
-      .then((data) => {
-        const draft = data.draft;
-        const history = normalizeExperienceHistory(draft.experience_history_snapshot || []);
-        setAiSessionId(data.session_id || null);
-        setLastGeneratedJd(draft.job_description || "");
-        setLatestAnalysis(draft.analysis || null);
-        setGeneratedContent(draft.resume_content || "");
-        setCompanyName(draft.company_name || "");
-        setIdentity(draft.identity_id || "");
-        setContact({
-          location: draft.contact_snapshot?.location || "",
-          phone: draft.contact_snapshot?.phone || "",
-          email: draft.contact_snapshot?.email || "",
-        });
-        setEditableExperienceHistory(history);
-        setEnabledExperienceKeys(draft.enabled_experience_keys || allEnabledExperienceKeys(history));
-        setResumeJobContext({
-          id: "",
-          draft_id: draft.id,
-          title: draft.role_title || "",
-          company_name: draft.company_name || "",
-          job_url: draft.canonical_url || "",
-        });
-        setPreview(draft.preview || draft.resume_snapshot || null);
-        setShowGeneratedArea(!!draft.resume_content);
-        setExtensionDraftLocked(!!draft.locked);
-        setTab(draft.status === "pdf_ready" ? "pdf" : "parsed");
-        setPdfState(draft.pdf_path ? {
-          mode: draft.status === "pdf_ready" ? "ready" : (draft.status === "pdf_generating" ? "polling" : "idle"),
-          error: "",
-          statusPath: draft.pdf_status_path || "",
-          pdfPath: draft.pdf_path || "",
-          outputDir: draft.output_dir || "",
-          statusLabel: draft.status === "pdf_ready" ? "PDF ready" : "Generating PDF...",
-        } : {
-          mode: "idle", error: "", statusPath: "", pdfPath: "", outputDir: "", statusLabel: "",
-        });
-        setAiThread([{
-          kind: "assistant",
-          title: draft.locked ? "Applied Resume" : "LinkedIn Draft Loaded",
-          lines: [draft.locked ? "This applied resume is locked." : "Edits in this page save back to the LinkedIn side-panel draft."],
-        }]);
-        extensionDraftLastSavedRef.current = JSON.stringify({
-          content: draft.resume_content || "",
-          company: draft.company_name || "",
-          identity: draft.identity_id || "",
-          enabled: draft.enabled_experience_keys || [],
-          history,
-        });
-      })
+      .then((data) => hydrateExtensionEditorData(data))
       .catch((error) => {
         extensionDraftHydratedRef.current = false;
         setAiError(error.message || "Could not load the LinkedIn resume draft.");
       });
-  }, [extensionDraftId, profileLoaded]);
+  }, [extensionDraftId, extensionReviewRequested, profileLoaded]);
+
+  useEffect(() => {
+    if (!previewEditMode || tab !== "parsed" || !focusPreviewEditorRef.current) return;
+    focusPreviewEditorRef.current = false;
+    previewEditorRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+    previewEditorRef.current?.focus({ preventScroll: true });
+  }, [previewEditMode, tab]);
 
   useEffect(() => {
     const identities = normalizeIdentityProfiles(settings.identities || []);
@@ -780,6 +1186,18 @@ export default function App() {
   }, [generatedContent]);
 
   useEffect(() => {
+    if (activeResumeVersion !== "manual" || !generatedContent.trim()) return;
+    setResumeVersions((current) => ({
+      ...current,
+      manual: {
+        ...(current.manual || current.luna_reviewed || current.original || {}),
+        resume_content: generatedContent,
+        resume_snapshot: preview,
+      },
+    }));
+  }, [activeResumeVersion, generatedContent, preview]);
+
+  useEffect(() => {
     if (!extensionDraftId || !extensionDraftHydratedRef.current || extensionDraftLocked || !generatedContent.trim() || generatingAi) return undefined;
     const fingerprint = JSON.stringify({
       content: generatedContent,
@@ -805,9 +1223,10 @@ export default function App() {
       })
         .then((data) => {
           setPreview(data.draft?.preview || preview);
+          if (data.draft) hydrateAuditState(data.draft, audit.status);
           setExtensionDraftSaveState("Draft saved");
           if (data.draft?.pdf_stale) {
-            setPdfState({ mode: "idle", error: "", statusPath: "", pdfPath: "", outputDir: "", statusLabel: "" });
+            invalidatePdfState();
           }
         })
         .catch((error) => {
@@ -862,11 +1281,38 @@ export default function App() {
     : "";
 
   const profileReady = !onboardingRequired;
-  const canGeneratePdf = validation.valid && generatedContent.trim().length > 0;
+  const reviewBlocksPdf = unresolvedAuditStatuses.has(audit.status);
+  const [auditStatusLabel, auditStatusMessage] = auditStatusCopy(audit);
   const orderedDraftExperience = normalizeInlineExperienceHistory(editableExperienceHistory);
   const selectableDraftExperience = orderedDraftExperience.filter((item) => isExperienceHistoryComplete(item));
   const sanitizedEnabledExperienceKeys = sanitizeEnabledExperienceKeys(orderedDraftExperience, enabledExperienceKeys);
   const visibleDraftExperience = selectableDraftExperience.filter((item) => sanitizedEnabledExperienceKeys.includes(item.key));
+  const reviewGroups = Array.isArray(audit.result?.review_groups) ? audit.result.review_groups : [];
+  const reviewFindings = Array.isArray(audit.result?.manual_findings) ? audit.result.manual_findings : [];
+  const reviewGaps = Array.isArray(audit.result?.non_blocking_gaps) ? audit.result.non_blocking_gaps : [];
+  const hasChangesView = !!(reviewGroups.length || reviewFindings.length || reviewGaps.length);
+  const currentResumeVersionKey = resumeVersions[activeResumeVersion]
+    ? activeResumeVersion
+    : (resumeVersions.manual ? "manual" : (resumeVersions.luna_reviewed ? "luna_reviewed" : (resumeVersions.original ? "original" : "")));
+  const viewingChanges = resumeVersionView === "changes";
+  const viewingCurrentResume = !currentResumeVersionKey || resumeVersionView === currentResumeVersionKey;
+  const viewingEditableResume = viewingCurrentResume && resumeVersionView !== "original" && !viewingChanges;
+  const selectedResumeVersion = resumeVersions[resumeVersionView] || null;
+  const selectedVersionPreview = useMemo(
+    () => resumeVersionPreview(selectedResumeVersion, orderedDraftExperience, contact),
+    [selectedResumeVersion, editableExperienceHistory, contact],
+  );
+  const displayedPreview = viewingCurrentResume ? preview : selectedVersionPreview;
+  const hasVersionViews = !!(
+    resumeVersions.original
+    || resumeVersions.luna_reviewed
+    || resumeVersions.manual
+    || hasChangesView
+  );
+  const canGeneratePdf = validation.valid
+    && generatedContent.trim().length > 0
+    && !reviewBlocksPdf
+    && viewingEditableResume;
   const filteredTrackerApplications = useMemo(() => {
     const query = trackerFilters.query.trim().toLowerCase();
     const from = trackerFilters.applied_from;
@@ -936,8 +1382,11 @@ export default function App() {
     setShowGeneratedArea(false);
     setLatestAnalysis(null);
     setGeneratedContent("");
+    resetAuditState();
+    resetResumeVersionState();
     setAiStage("");
     setResumeJobContext(null);
+    invalidatePdfState();
     setEnabledExperienceKeys(allEnabledExperienceKeys(editableExperienceHistory));
     if (clearJd) setComposerInput("");
 
@@ -1140,88 +1589,89 @@ export default function App() {
   }
 
   async function continueAiGenerationFromAnalysis({ sessionId, baseThread, enabledKeys }) {
-    setAiStage("core");
-    const [titleSummaryData, skillsData] = await Promise.all([
-      fetchJson("/api/ai/generate-title-summary", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ session_id: sessionId, enabled_experience_keys: enabledKeys }),
-      }),
-      fetchJson("/api/ai/generate-skills", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ session_id: sessionId, enabled_experience_keys: enabledKeys }),
-      }),
-    ]);
-
-    const sessionAfterCore = titleSummaryData.session_id || skillsData.session_id || sessionId;
-    const coreContent = combineCoreDraft(titleSummaryData.content, skillsData.content);
-    setAiSessionId(sessionAfterCore);
-    setShowGeneratedArea(true);
-    setGeneratedContent(coreContent);
-    setAiThread((current) => [
-      ...(current?.length ? current : baseThread),
-      {
-        kind: "assistant",
-        title: "Core Draft Ready",
-        lines: ["Title, summary, and technical skills are ready. Professional experience is generating now."],
-      },
-    ]);
+    resetAuditState();
+    resetResumeVersionState();
+    invalidatePdfState();
+    setAiStage("skills");
+    const skillsData = await fetchJson("/api/ai/generate-skills", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ session_id: sessionId, enabled_experience_keys: enabledKeys }),
+    });
+    const sessionAfterSkills = skillsData.session_id || sessionId;
+    setAiSessionId(sessionAfterSkills);
 
     setAiStage("experience");
-    const [recentExperienceData, olderExperienceData] = await Promise.all([
+    await Promise.all([
       fetchJson("/api/ai/generate-experience-recent", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ session_id: sessionAfterCore, enabled_experience_keys: enabledKeys }),
+        body: JSON.stringify({ session_id: sessionAfterSkills, enabled_experience_keys: enabledKeys }),
       }),
       fetchJson("/api/ai/generate-experience-older", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ session_id: sessionAfterCore, enabled_experience_keys: enabledKeys }),
+        body: JSON.stringify({ session_id: sessionAfterSkills, enabled_experience_keys: enabledKeys }),
       }),
     ]);
 
-    const finalExperienceData = recentExperienceData.complete ? recentExperienceData : olderExperienceData;
-    const sessionAfterExperience = finalExperienceData.session_id || sessionAfterCore;
-    const fullResumeContent = finalExperienceData.content || coreContent;
-    setAiSessionId(sessionAfterExperience || null);
-    setGeneratedContent(fullResumeContent);
-    setShowGeneratedArea(true);
-
-    setAiStage("refinement");
-    const reviewedCoreData = await fetchJson("/api/ai/review-core", {
+    setAiStage("final_synthesis");
+    const synthesisData = await fetchJson("/api/ai/final-synthesis", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ session_id: sessionAfterExperience, enabled_experience_keys: enabledKeys }),
+      body: JSON.stringify({ session_id: sessionAfterSkills, enabled_experience_keys: enabledKeys }),
     });
-
-    const sessionAfterReview = reviewedCoreData.session_id || sessionAfterExperience;
-    const reviewedContent = reviewedCoreData.content || fullResumeContent;
-    setAiSessionId(sessionAfterReview || null);
-    setGeneratedContent(reviewedContent);
+    const synthesizedSessionId = synthesisData.session_id || sessionAfterSkills;
+    setAiSessionId(synthesizedSessionId);
+    if (!hydrateResumeVersionState(synthesisData)) {
+      setGeneratedContentProgrammatically(synthesisData.content);
+    }
     setShowGeneratedArea(true);
     setComposerInput("");
     setTab("parsed");
+    setPreviewEditMode(false);
+
+    setAiStage("quality_review");
+    setAudit({ ...initialAuditState, status: "reviewing" });
+    let auditData = null;
+    try {
+      auditData = await fetchJson("/api/ai/quality-audit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          session_id: synthesizedSessionId,
+          enabled_experience_keys: enabledKeys,
+          advertised_job_title: resumeJobContext.title || "",
+        }),
+      });
+      hydrateAuditState(auditData);
+      hydrateResumeVersionState(auditData);
+    } catch (error) {
+      setAudit({
+        ...initialAuditState,
+        status: "technical_failed",
+        error: error.message || "Quality review failed.",
+        result: error.data?.audit_result || { error: error.message || "Quality review failed." },
+      });
+    }
+
     setAiThread((current) => {
       const next = [
         ...(current?.length ? current : baseThread),
         {
           kind: "assistant",
-          title: reviewedCoreData.revised ? "Resume Refined" : "Resume Complete",
-          lines: [
-            reviewedCoreData.revised
-              ? "The full resume is ready, and the summary and technical skills were tightened after experience generation."
-              : "Complete resume is generated. You can edit it directly in the parsed preview.",
-          ],
+          title: "Resume Complete",
+          lines: [auditData?.audit_status === "approved"
+            ? "The resume is ready and passed quality review."
+            : "The resume is ready. Check the quality review beside the preview tabs."],
         },
       ];
-      if (reviewedCoreData.title_warnings?.length) {
+      if (synthesisData.title_warnings?.length) {
         next.push({
           kind: "assistant",
           title: "Experience Titles Adjusted",
           lines: ["A few historical job titles were normalized to fit the detected role family."],
-          list: reviewedCoreData.title_warnings,
+          list: synthesisData.title_warnings,
         });
       }
       return next;
@@ -1253,6 +1703,9 @@ export default function App() {
     setAiError("");
     setAiStage("analyzing");
     if (isNewJd) {
+      resetAuditState();
+      resetResumeVersionState();
+      invalidatePdfState();
       if (autoDetectedNewJd) {
         setAiSessionId(null);
         setMemoryCount(0);
@@ -1324,19 +1777,17 @@ export default function App() {
         setShowGeneratedArea(true);
       }
       if (payload.content) {
-        setGeneratedContent(payload.content);
+        setGeneratedContentProgrammatically(payload.content);
         setShowGeneratedArea(true);
         setTab("parsed");
       }
 
       const stageNames = {
         analysis: "JD analysis failed",
-        title_summary_generation: "Title and summary generation failed",
         skills_generation: "Skills generation failed",
-        core_review: "Resume refinement failed",
-        core_generation: "Core resume generation failed",
         experience_generation: "Experience generation failed",
-        resume_generation: "Resume generation failed",
+        final_synthesis: "Final synthesis failed",
+        quality_audit: "Quality review failed",
       };
       const stageLabel = stageNames[payload.stage] || "";
       const totalMs = payload.timing?.total_ms || payload.timing?.analysis_ms || payload.timing?.core_ms || payload.timing?.experience_ms;
@@ -1359,18 +1810,16 @@ export default function App() {
     } catch (error) {
       const payload = error.data || {};
       if (payload.content) {
-        setGeneratedContent(payload.content);
+        setGeneratedContentProgrammatically(payload.content);
         setShowGeneratedArea(true);
         setTab("parsed");
       }
       const stageNames = {
         analysis: "JD analysis failed",
-        title_summary_generation: "Title and summary generation failed",
         skills_generation: "Skills generation failed",
-        core_review: "Resume refinement failed",
-        core_generation: "Core resume generation failed",
         experience_generation: "Experience generation failed",
-        resume_generation: "Resume generation failed",
+        final_synthesis: "Final synthesis failed",
+        quality_audit: "Quality review failed",
       };
       const stageLabel = stageNames[payload.stage] || "";
       const totalMs = payload.timing?.total_ms || payload.timing?.analysis_ms || payload.timing?.core_ms || payload.timing?.experience_ms;
@@ -1387,6 +1836,175 @@ export default function App() {
     setGeneratingAi(false);
     setAiStage("");
     setAiError("Generation paused because this company already has tracked applications.");
+  }
+
+  function markAuditActionError(error) {
+    const message = error.message?.toLowerCase() || "";
+    if (error.data?.audit_status === "stale" || message.includes("stale") || message.includes("changed after")) {
+      setAudit((current) => ({ ...current, status: "stale", proposal: null, error: "" }));
+      return;
+    }
+    setAudit((current) => ({
+      ...current,
+      status: "technical_failed",
+      proposal: null,
+      error: error.message || "Quality review failed.",
+    }));
+  }
+
+  async function retryAudit() {
+    if (!generatedContent.trim() || auditActionLoading) return;
+    setAuditActionLoading(true);
+    setAiError("");
+    setAudit((current) => ({ ...current, status: "reviewing", proposal: null, error: "" }));
+    try {
+      let data;
+      if (extensionDraftId) {
+        const latestHistory = deriveExperienceHistoryFromContent(generatedContent, editableExperienceHistory);
+        const saved = await fetchJson(`/api/extension/drafts/${encodeURIComponent(extensionDraftId)}`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            resume_content: generatedContent,
+            company_name: companyName,
+            identity_id: identity,
+            enabled_experience_keys: sanitizedEnabledExperienceKeys,
+            experience_history: latestHistory,
+          }),
+        });
+        extensionDraftLastSavedRef.current = JSON.stringify({
+          content: generatedContent,
+          company: companyName,
+          identity,
+          enabled: sanitizedEnabledExperienceKeys,
+          history: latestHistory,
+        });
+        setPreview(saved.draft?.preview || saved.draft?.resume_snapshot || preview);
+        data = await fetchJson(`/api/extension/drafts/${encodeURIComponent(extensionDraftId)}/audit`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({}),
+        });
+      } else {
+        data = await fetchJson("/api/ai/quality-audit", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            session_id: aiSessionId,
+            enabled_experience_keys: sanitizedEnabledExperienceKeys,
+            current_resume_content: generatedContent,
+          }),
+        });
+      }
+      const payload = data.draft || data;
+      hydrateAuditState(payload);
+      hydrateResumeVersionState(payload);
+    } catch (error) {
+      markAuditActionError(error);
+    } finally {
+      setAuditActionLoading(false);
+    }
+  }
+
+  function openAuditEditor() {
+    closeModal("qualityReview");
+    if (currentResumeVersionKey === "original") {
+      markCurrentResumeAsManual();
+    }
+    focusPreviewEditorRef.current = true;
+    setTab("parsed");
+    setResumeVersionView(currentResumeVersionKey === "original" ? "manual" : currentResumeVersionKey);
+    setPreviewEditMode(true);
+  }
+
+  function selectResumeVersionView(versionKey) {
+    setPreviewEditMode(false);
+    setTab("parsed");
+    setResumeVersionView(versionKey);
+  }
+
+  async function pollRegeneratedExtensionDraft(draftId) {
+    const terminalStatuses = new Set(["ready", "pdf_ready", "failed"]);
+    for (let attempt = 0; attempt < 60; attempt += 1) {
+      if (attempt > 0) {
+        await new Promise((resolve) => window.setTimeout(resolve, 1500));
+      }
+      const data = await fetchJson(`/api/extension/drafts/${encodeURIComponent(draftId)}`);
+      const draft = data.draft || {};
+      if (draft.stage === "audit") setAiStage("quality_review");
+      else if (draft.stage === "synthesis") setAiStage("final_synthesis");
+      else if (draft.status === "generating_experience") setAiStage("experience");
+      else setAiStage("skills");
+      if (!terminalStatuses.has(draft.status)) continue;
+      if (draft.status === "failed") {
+        throw new Error(draft.error_message || "Extension draft regeneration failed.");
+      }
+      return draft;
+    }
+    throw new Error("Regeneration is still running. Reload this draft shortly to continue.");
+  }
+
+  async function regenerateResume() {
+    if (!generatedContent.trim() || generatingAi) return;
+    if (!window.confirm("Regenerate this resume? The current generated resume and PDF will be discarded.")) return;
+
+    setGeneratingAi(true);
+    setAiError("");
+    setAiStage("skills");
+    resetAuditState();
+    resetResumeVersionState();
+    invalidatePdfState();
+    setPreviewEditMode(false);
+    runWithoutAuditStale(() => setGeneratedContent(""));
+    setPreview(null);
+    setValidation({ valid: false, errors: [] });
+    setShowGeneratedArea(true);
+
+    try {
+      if (extensionDraftId) {
+        const queued = await fetchJson(`/api/extension/drafts/${encodeURIComponent(extensionDraftId)}/regenerate`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({}),
+        });
+        const queuedDraft = queued.draft || {};
+        if (queuedDraft.id && queuedDraft.id !== extensionDraftId) {
+          throw new Error("Applied drafts regenerate as a new draft. Open the new draft from the extension.");
+        }
+        await pollRegeneratedExtensionDraft(extensionDraftId);
+        const editorData = await fetchJson(`/api/extension/drafts/${encodeURIComponent(extensionDraftId)}/editor-session`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({}),
+        });
+        hydrateExtensionEditorData(editorData, { announce: false });
+        setAiThread((current) => [...current, {
+          kind: "assistant",
+          title: "Resume Regenerated",
+          lines: ["The extension draft and quality review are ready."],
+        }]);
+        return;
+      }
+
+      const data = await fetchJson("/api/ai/regenerate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ session_id: aiSessionId }),
+      });
+      const sessionId = data.session_id || aiSessionId;
+      setAiSessionId(sessionId);
+      setLatestAnalysis(data.analysis || latestAnalysis);
+      await continueAiGenerationFromAnalysis({
+        sessionId,
+        baseThread: aiThread,
+        enabledKeys: sanitizedEnabledExperienceKeys,
+      });
+    } catch (error) {
+      setAiError(error.message || "Could not regenerate the resume.");
+    } finally {
+      setGeneratingAi(false);
+      setAiStage("");
+    }
   }
 
   async function submitPdfGeneration() {
@@ -1441,6 +2059,7 @@ export default function App() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           content: generatedContent,
+          ai_session_id: aiSessionId,
           company_name: companyName,
           job_id: resumeJobContext?.id || "",
           contact_override: contact,
@@ -1520,6 +2139,7 @@ export default function App() {
           phone: selected.phone || "",
           email: selected.email || "",
         } : (profileData.contact || emptyProfile.contact));
+        keepCurrentResumeAfterUserEdit();
         closeModal("profile");
       })
       .catch((error) => window.alert((error.data?.issues || [error.message]).join("\n")));
@@ -1546,6 +2166,7 @@ export default function App() {
   }
 
   function updateEditableExperienceHistory(index, field, value) {
+    keepCurrentResumeAfterUserEdit();
     setEditableExperienceHistory((current) => {
       const nextHistory = normalizeInlineExperienceHistory(current).map((item, itemIndex) => (
         itemIndex === index ? { ...item, [field]: value } : item
@@ -1570,6 +2191,7 @@ export default function App() {
   }
 
   function toggleExperienceKey(key) {
+    keepCurrentResumeAfterUserEdit();
     setEnabledExperienceKeys((current) => {
       const allowedKeys = allEnabledExperienceKeys(editableExperienceHistory);
       if (!allowedKeys.includes(key)) {
@@ -1587,12 +2209,23 @@ export default function App() {
 
   function selectIdentity(nextIdentity) {
     const selected = normalizeIdentityProfiles(settings.identities || []).find((item) => item.id === nextIdentity);
+    keepCurrentResumeAfterUserEdit();
     setIdentity(nextIdentity);
     setContact(selected ? {
       location: selected.location || "",
       phone: selected.phone || "",
       email: selected.email || "",
     } : emptyProfile.contact);
+  }
+
+  function updateCompanyName(value) {
+    keepCurrentResumeAfterUserEdit();
+    setCompanyName(value);
+  }
+
+  function updateGeneratedContent(value) {
+    keepCurrentResumeAfterUserEdit();
+    setGeneratedContent(value);
   }
 
   function updateSettingsIdentity(index, field, value) {
@@ -1796,13 +2429,15 @@ export default function App() {
                   <div className="loading-copy">
                     {aiStage === "analyzing"
                       ? "Analyzing the JD..."
-                      : aiStage === "core"
-                        ? "Building title, summary, and skills..."
+                      : aiStage === "skills"
+                        ? "Generating skills..."
                         : aiStage === "experience"
-                          ? "Writing the experience section..."
-                          : showGeneratedArea
-                            ? "Updating the draft for this JD..."
-                            : "Reading the JD and building the first draft..."}
+                          ? "Generating experience..."
+                          : aiStage === "final_synthesis"
+                            ? "Running final synthesis..."
+                            : aiStage === "quality_review"
+                              ? "Running quality review..."
+                              : "Updating the resume..."}
                   </div>
                 </div>
               </div>
@@ -1838,10 +2473,7 @@ export default function App() {
 
                 {showGeneratedArea ? (
                   <div className="chat-block">
-                    <div className="message-label">
-                      {generatingAi && (aiStage === "core" || aiStage === "experience") ? "Core Resume Draft" : "Generated Resume"}
-                      {generatingAi && aiStage === "experience" ? <span className="inline-status-pill">Experience still generating</span> : null}
-                    </div>
+                    <div className="message-label">Generated Resume</div>
                   </div>
                 ) : null}
           </div>
@@ -1911,13 +2543,22 @@ export default function App() {
                 <input
                   className="preview-company-input"
                   value={companyName}
-                  disabled={extensionDraftLocked}
-                  onChange={(e) => setCompanyName(e.target.value)}
+                  disabled={extensionDraftLocked || !viewingEditableResume}
+                  onChange={(e) => updateCompanyName(e.target.value)}
                   placeholder="Company name (required)"
                 />
+                {generatedContent.trim() ? (
+                  <button
+                    className="secondary-button compact-button"
+                    disabled={extensionDraftLocked || generatingAi || auditActionLoading || !viewingEditableResume}
+                    onClick={regenerateResume}
+                  >
+                    Regenerate
+                  </button>
+                ) : null}
                 <button
                   className="primary-button"
-                  disabled={!profileReady || extensionDraftLocked || !canGeneratePdf || !companyName.trim() || pdfState.mode === "loading" || pdfState.mode === "polling"}
+                  disabled={!profileReady || extensionDraftLocked || generatingAi || !canGeneratePdf || !companyName.trim() || pdfState.mode === "loading" || pdfState.mode === "polling"}
                   onClick={submitPdfGeneration}
                 >
                   Generate PDF
@@ -1925,7 +2566,7 @@ export default function App() {
               </div>
             </div>
             <div className="preview-toolbar-right">
-              {tab === "parsed" && preview && !extensionDraftLocked ? (
+              {tab === "parsed" && preview && !extensionDraftLocked && viewingEditableResume ? (
                 <button
                   className="secondary-button"
                   onClick={togglePreviewEditMode}
@@ -1946,7 +2587,7 @@ export default function App() {
                   <button
                     key={item.key}
                     className={`toggle-button experience-pill ${sanitizedEnabledExperienceKeys.includes(item.key) ? "active" : ""}`}
-                    disabled={extensionDraftLocked}
+                    disabled={extensionDraftLocked || !viewingEditableResume}
                     onClick={() => toggleExperienceKey(item.key)}
                     title={sanitizedEnabledExperienceKeys.includes(item.key) ? "Included in this draft" : "Hidden from this draft"}
                   >
@@ -1956,15 +2597,90 @@ export default function App() {
               </div>
             ) : null}
           </div>
+          {generatedContent.trim() && audit.status !== "not_started" ? (
+            <div className={`quality-review-band status-${audit.status}`} aria-live="polite">
+              <div className="quality-review-copy">
+                <strong>{auditStatusLabel}</strong>
+                <span>{auditStatusMessage}</span>
+              </div>
+              <div className="quality-review-actions">
+                {hasChangesView ? (
+                  <button className="secondary-button compact-button" onClick={() => selectResumeVersionView("changes")}>
+                    View Changes
+                  </button>
+                ) : null}
+                {["technical_failed", "stale"].includes(audit.status) ? (
+                  <button className="secondary-button compact-button" disabled={auditActionLoading} onClick={retryAudit}>
+                    {auditActionLoading ? "Reviewing..." : "Retry review"}
+                  </button>
+                ) : null}
+                {audit.status === "manual_attention" ? (
+                  <button className="text-button" onClick={openAuditEditor}>Open Editor</button>
+                ) : null}
+              </div>
+            </div>
+          ) : null}
+          {tab === "parsed" && hasVersionViews ? (
+            <div className="resume-version-bar" aria-label="Resume versions">
+              <div className="resume-version-tabs">
+                {resumeVersions.original ? (
+                  <button
+                    className={resumeVersionView === "original" ? "active" : ""}
+                    onClick={() => selectResumeVersionView("original")}
+                  >
+                    Original
+                  </button>
+                ) : null}
+                {resumeVersions.luna_reviewed ? (
+                  <button
+                    className={resumeVersionView === "luna_reviewed" ? "active" : ""}
+                    onClick={() => selectResumeVersionView("luna_reviewed")}
+                  >
+                    Luna Reviewed
+                  </button>
+                ) : null}
+                {resumeVersions.manual ? (
+                  <button
+                    className={resumeVersionView === "manual" ? "active" : ""}
+                    onClick={() => selectResumeVersionView("manual")}
+                  >
+                    Current Edits
+                  </button>
+                ) : null}
+                {hasChangesView ? (
+                  <button
+                    className={viewingChanges ? "active" : ""}
+                    onClick={() => selectResumeVersionView("changes")}
+                  >
+                    Changes
+                  </button>
+                ) : null}
+              </div>
+              <span className="resume-version-note">
+                {viewingChanges
+                  ? "Review changes applied by Luna."
+                  : (viewingEditableResume ? "This version is used for editing and PDF generation." : "Read-only version.")}
+              </span>
+            </div>
+          ) : null}
           <div className="panel-body preview-body">
             {tab === "parsed" ? (
               <>
-                {validation.errors?.length ? (
+                {viewingEditableResume && validation.errors?.length ? (
                   <div className="error-list">
                     {validation.errors.map((error, index) => <div key={index}>{error}</div>)}
                   </div>
                 ) : null}
-                {previewEditMode ? (
+                {viewingChanges ? (
+                  <div className="resume-changes-view">
+                    <AuditChangeReview
+                      audit={audit}
+                      loading={auditActionLoading}
+                      onOpenEditor={openAuditEditor}
+                      onRetry={retryAudit}
+                    />
+                  </div>
+                ) : previewEditMode && viewingEditableResume ? (
                   <div className="preview-edit-shell">
                     {visibleDraftExperience.length ? (
                       <div className="experience-inline-editor">
@@ -1983,16 +2699,17 @@ export default function App() {
                       </div>
                     ) : null}
                     <textarea
+                      ref={previewEditorRef}
                       className="preview-editor"
                       value={generatedContent}
                       disabled={extensionDraftLocked}
-                      onChange={(e) => setGeneratedContent(e.target.value)}
+                      onChange={(e) => updateGeneratedContent(e.target.value)}
                     />
                   </div>
                 ) : (
                   <ParsedPreview
-                    preview={preview}
-                    loadingExperience={generatingAi && aiStage === "experience"}
+                    preview={displayedPreview}
+                    loadingExperience={viewingCurrentResume && generatingAi && aiStage === "experience"}
                   />
                 )}
               </>
@@ -2021,6 +2738,33 @@ export default function App() {
           </div>
         </section>
       </main>
+
+      <Modal
+        open={modals.qualityReview}
+        title={audit.status === "manual_attention" ? "Quality Review Guidance" : audit.status === "stale" ? "Review Needs Updating" : "Quality Review Changes"}
+        onClose={() => closeModal("qualityReview")}
+        footer={(
+          <div className="audit-modal-actions">
+            {["manual_attention", "stale"].includes(audit.status) ? (
+              <>
+                <button className="primary-button compact-button" disabled={auditActionLoading} onClick={openAuditEditor}>Start Editing</button>
+                <button className="secondary-button compact-button" disabled={auditActionLoading} onClick={retryAudit}>
+                  {auditActionLoading ? "Reviewing..." : "Retry review"}
+                </button>
+              </>
+            ) : null}
+            <button className="secondary-button compact-button" disabled={auditActionLoading} onClick={() => closeModal("qualityReview")}>Close</button>
+          </div>
+        )}
+      >
+        <AuditChangeReview
+          key={`${aiSessionId || "no-session"}:${audit.baseRevision || ""}:${audit.baseHash || ""}:${audit.status}`}
+          audit={audit}
+          loading={auditActionLoading}
+          onOpenEditor={openAuditEditor}
+          onRetry={retryAudit}
+        />
+      </Modal>
 
       <Modal
         open={modals.instructions}
@@ -2220,7 +2964,7 @@ export default function App() {
         <div className="tracker-form-grid">
           <label className="field">
             Company
-            <input value={companyName || latestAnalysis?.company_name || ""} onChange={(e) => setCompanyName(e.target.value)} />
+            <input value={companyName || latestAnalysis?.company_name || ""} onChange={(e) => updateCompanyName(e.target.value)} />
           </label>
           <label className="field">
             Applied Date

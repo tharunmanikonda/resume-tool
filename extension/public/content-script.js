@@ -57,6 +57,7 @@
   let timer = null;
   let stopped = false;
   let observer = null;
+  let contextWatchdog = null;
   const panelHostId = "resume-generator-linkedin-panel";
   const panelTriggerId = "resume-generator-linkedin-trigger";
   const instanceId = globalThis.crypto?.randomUUID?.() || `${Date.now()}-${Math.random()}`;
@@ -104,6 +105,14 @@
     } catch (_) {
       return "";
     }
+  }
+
+  function panelContextInvalid() {
+    const frame = document.querySelector(`#${panelHostId} iframe`);
+    if (!frame) return false;
+    return [frame.getAttribute("src"), frame.src]
+      .filter(Boolean)
+      .some((value) => String(value).startsWith("chrome-extension://invalid"));
   }
 
   function textFrom(selectorsList, minimumLength = 1, preferTextContent = false) {
@@ -212,7 +221,9 @@
     const title = cleanText(value);
     if (title.length < 3 || title.length > 140 || title.includes("\n")) return false;
     const linkedinUiHeading = /^(jobs?|determine your fit|how to stand out|determine your fit and how to stand out|show match details|tailor my resume|create cover letter|people you can reach out to|meet the hiring team|about the job|featured benefits|job details|premium)/i;
-    return !linkedinUiHeading.test(title);
+    const nonTitleMetadata = /^(remote|hybrid|on[ -]?site|full[ -]?time|part[ -]?time|contract|temporary|internship|volunteer|united states)$/i;
+    const locationOnly = /^(?:[A-Za-z .'-]+,\s*[A-Z]{2}|[A-Za-z .'-]+,\s*(?:United States|USA))(?:\s*\([^)]*\))?$/i;
+    return !linkedinUiHeading.test(title) && !nonTitleMetadata.test(title) && !locationOnly.test(title);
   }
 
   function descriptionNearHeading() {
@@ -440,6 +451,7 @@
   function shutdown() {
     stopped = true;
     clearTimeout(timer);
+    clearInterval(contextWatchdog);
     observer?.disconnect();
     window.removeEventListener("popstate", scheduleRead);
     try {
@@ -456,5 +468,8 @@
   observer = new MutationObserver(scheduleRead);
   observer.observe(document.documentElement, { childList: true, subtree: true });
   ensurePanelTrigger();
+  contextWatchdog = setInterval(() => {
+    if (!runtimeAvailable() || panelContextInvalid()) shutdown();
+  }, 1000);
   scheduleRead();
 })();

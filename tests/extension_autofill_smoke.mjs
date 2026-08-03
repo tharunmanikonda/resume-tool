@@ -19,7 +19,7 @@ try {
 
   const page = await context.newPage();
   page.on("console", (message) => console.log("PAGE", message.type(), message.text()));
-  await page.route("https://boards.greenhouse.io/example/jobs/123", async (route) => route.fulfill({
+  await page.route("https://careers.example-company.test/openings/123/apply", async (route) => route.fulfill({
     contentType: "text/html",
     body: `<!doctype html><html><body>
       <main><h1>Software Engineer application</h1>
@@ -45,7 +45,45 @@ try {
       </main>
     </body></html>`,
   }));
-  await page.goto("https://boards.greenhouse.io/example/jobs/123");
+  await page.goto("https://careers.example-company.test/openings/123/apply");
+  await page.waitForSelector("#resume-generator-application-assistant", { timeout: 10000 });
+  await page.locator("#resume-generator-application-assistant").evaluate((host) => {
+    host.shadowRoot.querySelector(".chip").click();
+  });
+  await page.waitForFunction(() => document.querySelector("#resume-generator-application-assistant")?.shadowRoot?.querySelector(".action.primary"));
+  const widgetText = await page.locator("#resume-generator-application-assistant").evaluate((host) => host.shadowRoot.textContent);
+  if (!widgetText.includes("Ask AI") || !widgetText.includes("Attach selected resume") || !widgetText.includes("Why are you interested in this role?")) {
+    throw new Error(`Application question actions were missing from the widget: ${widgetText}`);
+  }
+  await page.screenshot({ path: "/tmp/resume-tool-application-widget.png", fullPage: true });
+  const draftListResponse = await fetch(`${serverUrl}/api/extension/drafts?limit=50`);
+  const draftList = (await draftListResponse.json()).drafts || [];
+  const recentCutoff = Date.now() - 24 * 60 * 60 * 1000;
+  const hasCurrentPdf = draftList.some((draft) => (
+    draft.pdf_path
+    && !draft.pdf_stale
+    && Number(draft.pdf_revision || 0) === Number(draft.resume_revision || 1)
+    && new Date(draft.pdf_generated_at || "").getTime() >= recentCutoff
+  ));
+  if (hasCurrentPdf) {
+    await page.waitForFunction(() => (
+      document.querySelector("#resume-generator-application-assistant")
+        ?.shadowRoot?.querySelector("select[aria-label='Resume to attach and answer with']")
+        ?.value
+    ));
+    await page.locator("#resume-generator-application-assistant").evaluate((host) => {
+      [...host.shadowRoot.querySelectorAll("button")].find((button) => button.textContent === "Attach selected resume").click();
+    });
+    await page.waitForFunction(() => document.querySelector("#resume")?.files?.length === 1);
+  } else {
+    await page.waitForFunction(() => (
+      document.querySelector("#resume-generator-application-assistant")
+        ?.shadowRoot?.querySelector("select[aria-label='Resume to attach and answer with']")
+        ?.textContent.includes("No current PDF available")
+    ));
+  }
+  await page.locator("#resume-generator-application-assistant").evaluate((host) => host.shadowRoot.querySelector(".action.primary").click());
+  await page.waitForFunction(() => document.querySelector("#first_name")?.value);
   await page.waitForSelector("#resume-generator-global-trigger", { timeout: 10000 });
   await page.click("#resume-generator-global-trigger");
   const panel = page.frameLocator("#resume-generator-global-panel iframe");
@@ -57,29 +95,29 @@ try {
   await panel.getByText("Why are you interested in this role?").waitFor();
   const resumeSelect = panel.getByLabel("Resume to attach and answer with");
   const selectedDraftId = await resumeSelect.inputValue();
-  const selectedDraftResponse = await fetch(`${serverUrl}/api/extension/drafts/${encodeURIComponent(selectedDraftId)}`);
-  const selectedDraft = (await selectedDraftResponse.json()).draft;
-  const questionRow = panel.locator(".application-question").filter({ hasText: "Why are you interested in this role?" });
-  const questionId = await questionRow.getAttribute("data-question-id");
-  const expectedClipboard = "This is a clipboard smoke-test answer.";
-  await context.grantPermissions(["clipboard-read", "clipboard-write"], { origin: "https://boards.greenhouse.io" });
-  await worker.evaluate(({ key, question, answer, revision }) => chrome.storage.local.set({
-    [key]: { [question]: { answer, resume_revision: revision, created_at: new Date().toISOString() } },
-  }), {
-    key: `resumeAutofillAnswers:${selectedDraftId}`,
-    question: questionId,
-    answer: expectedClipboard,
-    revision: selectedDraft.resume_revision,
-  });
-  await resumeSelect.selectOption("");
-  await resumeSelect.selectOption(selectedDraftId);
-  await questionRow.getByRole("button", { name: "Copy" }).click();
-  const copiedText = await page.evaluate(() => navigator.clipboard.readText());
-  if (copiedText !== expectedClipboard) throw new Error(`Clipboard mismatch: ${copiedText}`);
-  await panel.getByRole("button", { name: "Fill this page" }).click();
-  await page.waitForTimeout(1500);
-  await panel.getByRole("button", { name: "Attach resume" }).click();
-  await page.waitForFunction(() => document.querySelector("#resume")?.files?.length === 1);
+  if (selectedDraftId) {
+    const selectedDraftResponse = await fetch(`${serverUrl}/api/extension/drafts/${encodeURIComponent(selectedDraftId)}`);
+    const selectedDraft = (await selectedDraftResponse.json()).draft;
+    const questionRow = panel.locator(".application-question").filter({ hasText: "Why are you interested in this role?" });
+    const questionId = await questionRow.getAttribute("data-question-id");
+    const expectedClipboard = "This is a clipboard smoke-test answer.";
+    await context.grantPermissions(["clipboard-read", "clipboard-write"], { origin: "https://careers.example-company.test" });
+    await worker.evaluate(({ key, question, answer, revision }) => chrome.storage.local.set({
+      [key]: { [question]: { answer, resume_revision: revision, created_at: new Date().toISOString() } },
+    }), {
+      key: `resumeAutofillAnswers:${selectedDraftId}`,
+      question: questionId,
+      answer: expectedClipboard,
+      revision: selectedDraft.resume_revision,
+    });
+    await resumeSelect.selectOption("");
+    await resumeSelect.selectOption(selectedDraftId);
+    await questionRow.getByRole("button", { name: "Copy" }).click();
+    const copiedText = await page.evaluate(() => navigator.clipboard.readText());
+    if (copiedText !== expectedClipboard) throw new Error(`Clipboard mismatch: ${copiedText}`);
+    await panel.getByRole("button", { name: "Attach resume" }).click();
+    await page.waitForFunction(() => document.querySelector("#resume")?.files?.length === 1);
+  }
 
   const values = await page.evaluate(() => ({
     fullName: document.querySelector("#full_name").value,
@@ -91,15 +129,28 @@ try {
     resumeName: document.querySelector("#resume").files?.[0]?.name || "",
     frameworkState: document.querySelector("#first_name").dataset.frameworkState || "",
   }));
-  if (!values.fullName || !values.firstName || values.frameworkState !== values.firstName || !values.lastName || !values.email || values.authorization !== "yes" || !values.resumeName.endsWith(".pdf")) {
+  if (!values.fullName || !values.firstName || values.frameworkState !== values.firstName || !values.lastName || !values.email || values.authorization !== "" || selectedDraftId && !values.resumeName.endsWith(".pdf")) {
     const panelText = await panel.locator("body").innerText();
     throw new Error(`Unexpected autofill values: ${JSON.stringify(values)}\nPanel: ${panelText}`);
   }
   await page.locator("#next").evaluate((element) => element.click());
-  await page.waitForFunction(() => document.querySelector("#linkedin")?.value && document.querySelector("#sponsor")?.value);
+  await page.waitForFunction(() => document.querySelector("#linkedin")?.value);
   values.linkedin = await page.inputValue("#linkedin");
   values.sponsorship = await page.inputValue("#sponsor");
+  if (!values.linkedin || values.sponsorship !== "") {
+    throw new Error(`Continued autofill did not preserve sensitive fields: ${JSON.stringify(values)}`);
+  }
   await page.screenshot({ path: "/tmp/resume-tool-autofill-smoke.png", fullPage: true });
+  await worker.evaluate(() => chrome.runtime.reload());
+  await page.waitForFunction(() => !document.querySelector("#resume-generator-global-panel"), null, { timeout: 5000 });
+  const invalidExtensionResources = await page.evaluate(() => (
+    [...document.querySelectorAll("iframe, script, link")]
+      .map((element) => element.src || element.href || "")
+      .filter((value) => String(value).startsWith("chrome-extension://invalid"))
+  ));
+  if (invalidExtensionResources.length) {
+    throw new Error(`Stale extension resources remained after reload: ${JSON.stringify(invalidExtensionResources)}`);
+  }
   console.log(JSON.stringify({ extensionId, values }));
 } finally {
   await context.close();

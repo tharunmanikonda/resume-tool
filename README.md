@@ -14,7 +14,7 @@ The browser extension is a companion to the local server. It does not contain a 
 - Track applications by company, role, date, source, and status.
 - Generate conversational reachout messages and application-question answers.
 - Find focused LinkedIn people and hiring-post searches.
-- Detect and fill recognized application fields on supported ATS platforms.
+- Detect and fill recognized application fields on supported ATS platforms and company-owned career sites.
 - Attach the selected generated PDF to compatible resume upload fields.
 
 The extension never submits an application, sends a LinkedIn message, clicks Apply, reads LinkedIn cookies, or crawls job listings.
@@ -90,6 +90,10 @@ OPENAI_API_KEY=your-api-key
 # Optional overrides
 OPENAI_ANALYSIS_MODEL=gpt-4o-mini
 OPENAI_RESUME_MODEL=gpt-5-mini
+OPENAI_SYNTHESIS_MODEL=gpt-5.6-terra
+OPENAI_AUDIT_MODEL=gpt-5.6-luna
+OPENAI_SYNTHESIS_REASONING_EFFORT=medium
+OPENAI_AUDIT_REASONING_EFFORT=medium
 OPENAI_ANALYSIS_TIMEOUT_SECONDS=120
 OPENAI_RESUME_TIMEOUT_SECONDS=180
 FLASK_PORT=5001
@@ -102,6 +106,19 @@ LOCAL_DATABASE_PATH=config/resume_tool.db
 ```
 
 `OPENAI_API_KEY` is required for AI generation. The rest have working local defaults.
+
+## AI Pipeline and Model Routing
+
+Resume generation makes six model calls:
+
+1. JD analysis uses `OPENAI_ANALYSIS_MODEL` (`gpt-4o-mini` by default).
+2. Preliminary skills generation uses `OPENAI_RESUME_MODEL` (`gpt-5-mini` by default).
+3. Recent-experience generation uses `OPENAI_RESUME_MODEL`.
+4. Older-experience generation uses `OPENAI_RESUME_MODEL` and runs in parallel with recent-experience generation.
+5. Final title, summary, skills, and experience-title synthesis uses `OPENAI_SYNTHESIS_MODEL` (`gpt-5.6-terra`, Terra, by default) with configurable synthesis reasoning effort.
+6. The independent patch-only quality audit uses `OPENAI_AUDIT_MODEL` (`gpt-5.6-luna` by default) with configurable audit reasoning effort.
+
+All four model roles and both high-judgment reasoning levels are configurable through the environment variables above. The audit may propose a revised resume, but the user reviews that proposal and it is never applied silently.
 
 ## First-Run Profile
 
@@ -211,14 +228,25 @@ Generating a resume creates a persistent draft in the local database. Moving to 
 
 ### Autofill
 
-Autofill never opens automatically. Select it manually while viewing an application page.
+The extension watches normal URL and SPA route changes for application-form signals on ATS platforms and company-owned career sites. This lightweight detector reads field labels and form metadata, not entered values. When it finds an application, a compact page widget appears even if the extension drawer is closed.
+
+The widget reports how many empty fields are ready, need review, or remain unmatched. Nothing is filled until you choose:
+
+- **Fill this step** fills safe, empty, high-confidence fields currently visible.
+- **Fill this application** does the same and allows newly rendered steps in that application to be filled after you reach them.
+
+Detected written questions also show **Ask AI** in the widget. It uses the same newest current PDF from the last 24 hours, job description, resume-grounded backend prompt, and saved-answer format as the Autofill drawer. The answer stays in the widget with a Copy action and is never inserted automatically.
+
+When a compatible resume upload field is present, the widget also shows **Attach resume**. It uses the newest current PDF from the last 24 hours and reports the attached filename or the same actionable missing-PDF/upload-field error used by the drawer.
+
+Application approval is limited to the current tab and application URL, expires after two hours, and is cleared when the application is no longer detected. Use **Refresh** in the drawer only when a site changes its form without exposing a detectable URL or DOM update.
 
 It provides:
 
 - ATS and application-page detection.
 - Recognized, filled, unmatched, sensitive, and file-field counts.
-- Manual **Fill this page** behavior.
-- Optional automatic filling for newly rendered form steps.
+- Explicit **Fill this step** and **Fill this application** approval.
+- Optional continued filling for newly rendered steps after application-level approval.
 - Contact identity selection.
 - Permanent and session-only application-profile editing.
 - JSON import and export for application details.
@@ -230,7 +258,7 @@ It provides:
 
 AI answers are never inserted or submitted automatically. Sensitive questions involving authorization, sponsorship, salary, availability, legal declarations, security clearance, or demographic information are marked for manual confirmation and are not sent to the model.
 
-Existing field values are preserved. The extension does not click Next or Submit. The user remains responsible for reviewing every answer and submitting the application.
+Existing field values are preserved. Sensitive saved profile values, uncertain matches, written answers, and files are never inserted by the page widget. The extension does not click Next or Submit. The user remains responsible for reviewing every answer and submitting the application.
 
 ## Supported ATS Platforms
 
@@ -249,6 +277,8 @@ The manifest and runtime include detection for:
 - SAP SuccessFactors
 - Phenom
 - Google Careers
+
+Company-owned career sites are also supported through user-triggered generic form detection. The extension looks for a real application form using identity fields plus resume, work-history, authorization, or other application signals. It does not treat ordinary contact, login, or checkout forms as job applications.
 
 The runtime handles native inputs, textareas, selects, radio groups, checkboxes, controlled input events, open shadow roots, same-tab frames, and dynamically rendered multi-step forms.
 
@@ -361,10 +391,18 @@ An AI agent setting up this repository should follow this order:
 ### Autofill detects no fields
 
 - Confirm the application form is visible, not only the job description.
-- Press Refresh in Autofill after moving to a new form step.
+- Wait briefly after moving to a new form step; URL and form changes are detected automatically.
+- Press Refresh in Autofill if the site updates a form without a detectable page change.
 - Inspect the unmatched-field list.
 - Check that the host is included in `extension/public/manifest.json`.
 - Reload the extension after manifest changes.
+
+### Repeating `chrome-extension://invalid/` requests
+
+- This means an injected extension panel was still open when the unpacked extension was rebuilt or reloaded.
+- Version `1.4.3` removes the stale panel and stops its polling when the extension context becomes invalid.
+- Reload the affected web page once to remove content scripts left by an older extension build.
+- In `chrome://extensions` or `arc://extensions`, confirm only the current `extension/dist` build is loaded.
 
 ### Resume attachment fails
 
@@ -407,6 +445,7 @@ extension/src/panel-main.jsx            Resume and Autofill drawer UI
 extension/public/service-worker.js      Local API bridge, tab/frame routing and PDF transfer
 extension/public/content-script.js      LinkedIn job extraction and LinkedIn drawer host
 extension/public/panel-host.js           Drawer host on non-LinkedIn pages
+extension/public/application-assistant.js Application detection and compact approval widget
 extension/public/autofill-config.js      ATS hosts, field patterns and dropdown mappings
 extension/public/autofill-matcher.js     Deep field discovery and profile matching
 extension/public/autofill-content.js     Field filling, events, rescans and file attachment
@@ -420,8 +459,11 @@ tests/extension_autofill_smoke.mjs       Real Chromium extension workflow test
 - The Flask server binds to `127.0.0.1` by default.
 - Personal profile and session files are ignored by Git.
 - API keys belong only in `.env` or the process environment.
-- The extension requests host access only for LinkedIn, supported ATS domains, and the local server.
-- The extension reads the active supported page; it does not crawl other jobs or access LinkedIn cookies.
+- The extension has web-page host access so Autofill can detect company-owned career sites as well as known ATS domains.
+- The always-available page detector reads URL, title, field labels, and form metadata only. It does not read entered field values or send page content to the resume server.
+- The full matching runtime starts only after application signals are detected or Autofill is opened manually.
+- Filling requires an explicit step or application confirmation. Application-level continuation is scoped to the current tab and application URL.
+- The extension does not crawl other tabs, submit applications, or access LinkedIn cookies.
 - Recognized Autofill fields and saved custom answers come from the local profile. AI-written application answers run only after **Ask AI** is clicked and use the selected current PDF and its JD.
 - The application-answer workflow blocks legal, visa, demographic, salary, authorization, and other sensitive questions instead of inventing answers.
 - Review generated resumes, autofilled fields, and uploaded files before submitting anything.

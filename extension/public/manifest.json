@@ -1,10 +1,12 @@
 {
   "manifest_version": 3,
   "name": "Resume Generator Companion",
-  "version": "1.2.2",
+  "version": "1.4.3",
   "description": "Generate tailored resumes and fill job applications from one persistent browser panel.",
   "permissions": ["sidePanel", "storage", "tabs", "webNavigation", "scripting", "activeTab", "clipboardWrite"],
   "host_permissions": [
+    "http://*/*",
+    "https://*/*",
     "https://www.linkedin.com/*",
     "*://jobs.lever.co/*",
     "*://*.lever.co/*",
@@ -34,6 +36,12 @@
     "type": "module"
   },
   "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "exclude_matches": ["http://127.0.0.1/*", "http://localhost/*"],
+      "js": ["application-assistant.js"],
+      "run_at": "document_idle"
+    },
     {
       "matches": ["http://*/*", "https://*/*"],
       "exclude_matches": ["https://www.linkedin.com/jobs/*"],

@@ -94,10 +94,82 @@ def test_manifest_loads_autofill_runtime_for_original_platforms():
     assert autofill_script["all_frames"] is True
 
 
+def test_company_owned_career_sites_use_detected_and_confirmed_generic_autofill():
+    manifest = json.loads(Path("extension/public/manifest.json").read_text(encoding="utf-8"))
+    service_worker = Path("extension/public/service-worker.js").read_text(encoding="utf-8")
+    panel = Path("extension/src/panel-main.jsx").read_text(encoding="utf-8")
+    autofill = Path("extension/public/autofill-content.js").read_text(encoding="utf-8")
+    assistant = Path("extension/public/application-assistant.js").read_text(encoding="utf-8")
+    assistant_script = next(
+        item for item in manifest["content_scripts"]
+        if "application-assistant.js" in item.get("js", [])
+    )
+
+    assert "http://*/*" in manifest["host_permissions"]
+    assert "https://*/*" in manifest["host_permissions"]
+    assert assistant_script["matches"] == ["http://*/*", "https://*/*"]
+    assert assistant_script.get("all_frames") is not True
+    assert "function isInspectableWebUrl" in service_worker
+    assert "inspectGeneric" in service_worker
+    assert "allowGeneric: genericInspection" in service_worker
+    assert "AUTOFILL_APPLICATION_CANDIDATE" in assistant
+    assert "AUTOFILL_CONFIRM_FILL" in assistant
+    assert "AUTOFILL_ANSWER_QUESTION" in assistant
+    assert "AUTOFILL_GET_RECENT_RESUMES" in assistant
+    assert "AUTOFILL_ATTACH_RESUME" in assistant
+    assert "Ask AI" in assistant
+    assert "Attach selected resume" in assistant
+    assert "Resume to attach and answer with" in assistant
+    assert "Fill this application" in assistant
+    assert "Needs attention" in assistant
+    assert "applicationScope" in service_worker
+    assert "chrome.storage.session" in service_worker
+    assert "refreshAutofillStatus(identityId, false, true)" in panel
+    assert "fields.length >= 3 && hasIdentity && hasApplicationField" in autofill
+
+
 def test_autofill_runtime_never_submits_application():
+    for source_path in (
+        "extension/public/autofill-content.js",
+        "extension/public/application-assistant.js",
+    ):
+        source = Path(source_path).read_text(encoding="utf-8")
+        assert ".submit(" not in source
+        assert "requestSubmit(" not in source
+
+
+def test_continued_autofill_requires_application_approval_and_skips_sensitive_fields():
     source = Path("extension/public/autofill-content.js").read_text(encoding="utf-8")
-    assert ".submit(" not in source
-    assert "requestSubmit(" not in source
+
+    assert 'send({ type: "AUTOFILL_GET_APPROVAL" })' in source
+    assert 'approval?.mode !== "application"' in source
+    assert "if (!approved)" in source
+    assert "safeOnly && config.sensitiveFields.has(match.dataField)" in source
+    assert "userProfile?.autoFillEnabled === false" in source
+
+
+def test_compact_widget_uses_the_existing_resume_grounded_answer_flow():
+    service_worker = Path("extension/public/service-worker.js").read_text(encoding="utf-8")
+
+    assert 'message?.type === "AUTOFILL_ANSWER_QUESTION"' in service_worker
+    assert "/api/extension/drafts?limit=50" in service_worker
+    assert "/application-answer" in service_worker
+    assert "resumeAutofillAnswers:" in service_worker
+    assert "currentRecentPdfDrafts" in service_worker
+
+
+def test_compact_widget_uses_explicit_recent_pdf_attachment_flow():
+    service_worker = Path("extension/public/service-worker.js").read_text(encoding="utf-8")
+    assistant = Path("extension/public/application-assistant.js").read_text(encoding="utf-8")
+
+    assert 'message?.type === "AUTOFILL_GET_RECENT_RESUMES"' in service_worker
+    assert 'message?.type === "AUTOFILL_ATTACH_RESUME"' in service_worker
+    assert "recentPdfDrafts" in service_worker
+    assert "attachResumeForDraft" in service_worker
+    assert "resumeFileForDraft(selectedDraft.id)" in service_worker
+    assert "AUTOFILL_ATTACH_FRAME" in service_worker
+    assert 'type: "AUTOFILL_ATTACH_RESUME"' in assistant
+    assert "draftId: selectedResumeId" in assistant
 
 
 def test_embedded_panel_has_clipboard_write_access():
@@ -113,6 +185,17 @@ def test_injected_panels_reject_invalid_extension_urls_and_replace_stale_instanc
         source = Path(source_path).read_text(encoding="utf-8")
         assert 'value.startsWith("chrome-extension://invalid")' in source
         assert "resumeGeneratorInstance" in source
+        assert "panelContextInvalid" in source
+        assert "contextWatchdog = setInterval" in source
+        assert "clearInterval(contextWatchdog)" in source
+
+
+def test_embedded_panel_stops_messaging_after_extension_reload():
+    source = Path("extension/src/panel-main.jsx").read_text(encoding="utf-8")
+
+    assert "if (!chrome.runtime?.id)" in source
+    assert "The extension was reloaded. Refresh this page to reconnect." in source
+    assert "chrome.runtime.sendMessage(message).catch" in source
 
 
 def test_manual_resume_edits_are_not_forced_through_ai_word_count_rules():

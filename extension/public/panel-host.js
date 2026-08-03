@@ -19,6 +19,7 @@
   const panelTriggerId = "resume-generator-global-trigger";
   const instanceId = globalThis.crypto?.randomUUID?.() || `${Date.now()}-${Math.random()}`;
   let stopped = false;
+  let contextWatchdog = null;
 
   function runtimeAvailable() {
     try {
@@ -30,6 +31,14 @@
 
   function closePanel() {
     document.getElementById(panelHostId)?.remove();
+  }
+
+  function panelContextInvalid() {
+    const frame = document.querySelector(`#${panelHostId} iframe`);
+    if (!frame) return false;
+    return [frame.getAttribute("src"), frame.src]
+      .filter(Boolean)
+      .some((value) => String(value).startsWith("chrome-extension://invalid"));
   }
 
   function extensionUrl(path) {
@@ -132,6 +141,7 @@
 
   function shutdown() {
     stopped = true;
+    clearInterval(contextWatchdog);
     try {
       chrome.runtime.onMessage.removeListener(handleMessage);
     } catch (_) {}
@@ -142,4 +152,7 @@
   globalThis.__resumeGeneratorPanelHostLifecycle = { version, runtimeId, instanceId, isActive: runtimeAvailable, shutdown };
   chrome.runtime.onMessage.addListener(handleMessage);
   ensureTrigger();
+  contextWatchdog = setInterval(() => {
+    if (!runtimeAvailable() || panelContextInvalid()) shutdown();
+  }, 1000);
 })();

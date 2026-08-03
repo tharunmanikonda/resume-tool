@@ -9,6 +9,7 @@ from pathlib import Path
 
 from sqlalchemy import (
     Boolean,
+    Column,
     DateTime,
     ForeignKey,
     Index,
@@ -17,10 +18,15 @@ from sqlalchemy import (
     String,
     Text,
     create_engine,
+    column,
     inspect,
+    table,
     text,
+    update,
 )
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, sessionmaker
+from sqlalchemy.schema import CreateColumn
+from sqlalchemy.sql import quoted_name
 
 
 def utcnow() -> datetime:
@@ -78,6 +84,8 @@ class ResumeDraft(Base):
     experience_older: Mapped[dict] = mapped_column(JSON, default=dict)
     resume_content: Mapped[str] = mapped_column(Text, nullable=True)
     resume_snapshot: Mapped[dict] = mapped_column(JSON, default=dict)
+    resume_versions: Mapped[dict] = mapped_column(JSON, default=dict)
+    active_resume_version: Mapped[str] = mapped_column(String(40), nullable=True)
     pdf_path: Mapped[str] = mapped_column(Text, nullable=True)
     docx_path: Mapped[str] = mapped_column(Text, nullable=True)
     output_dir: Mapped[str] = mapped_column(Text, nullable=True)
@@ -86,6 +94,13 @@ class ResumeDraft(Base):
     resume_revision: Mapped[int] = mapped_column(Integer, default=1, nullable=False)
     pdf_revision: Mapped[int] = mapped_column(Integer, nullable=True)
     pdf_generated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=True)
+    audit_status: Mapped[str] = mapped_column(String(40), default="not_started", nullable=False)
+    audit_result: Mapped[dict] = mapped_column(JSON, nullable=True)
+    audit_proposal: Mapped[dict] = mapped_column(JSON, nullable=True)
+    audit_base_revision: Mapped[int] = mapped_column(Integer, nullable=True)
+    audit_base_hash: Mapped[str] = mapped_column(String(80), nullable=True)
+    audit_created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=True)
+    audit_applied_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=True)
     application_id: Mapped[str] = mapped_column(String(80), nullable=True, index=True)
     error_stage: Mapped[str] = mapped_column(String(80), nullable=True)
     error_message: Mapped[str] = mapped_column(Text, nullable=True)
@@ -115,28 +130,78 @@ engine = create_engine(database_url(), future=True, pool_pre_ping=True)
 SessionLocal = sessionmaker(bind=engine, autoflush=False, expire_on_commit=False, future=True)
 
 
+def _resume_draft_migration_columns() -> tuple[Column, ...]:
+    return (
+        Column("resume_revision", Integer, nullable=False, server_default=text("1"), quote=True),
+        Column("resume_versions", JSON, nullable=True, quote=True),
+        Column("active_resume_version", String(40), nullable=True, quote=True),
+        Column("pdf_revision", Integer, nullable=True, quote=True),
+        Column("pdf_generated_at", DateTime(timezone=True), nullable=True, quote=True),
+        Column("audit_status", String(40), nullable=False, server_default="not_started", quote=True),
+        Column("audit_result", JSON, nullable=True, quote=True),
+        Column("audit_proposal", JSON, nullable=True, quote=True),
+        Column("audit_base_revision", Integer, nullable=True, quote=True),
+        Column("audit_base_hash", String(80), nullable=True, quote=True),
+        Column("audit_created_at", DateTime(timezone=True), nullable=True, quote=True),
+        Column("audit_applied_at", DateTime(timezone=True), nullable=True, quote=True),
+    )
+
+
+def _resume_draft_addition_statements(dialect, existing_columns: set[str]) -> list[str]:
+    table_name = dialect.identifier_preparer.quote_identifier(ResumeDraft.__tablename__)
+    return [
+        f"ALTER TABLE {table_name} ADD COLUMN {CreateColumn(column).compile(dialect=dialect)}"
+        for column in _resume_draft_migration_columns()
+        if column.name not in existing_columns
+    ]
+
+
+def _resume_draft_pdf_backfill_statement():
+    migration_table = table(
+        quoted_name(ResumeDraft.__tablename__, quote=True),
+        column(quoted_name("status", quote=True), String(60)),
+        column(quoted_name("pdf_stale", quote=True), Boolean),
+        column(quoted_name("pdf_path", quote=True), Text),
+        column(quoted_name("resume_revision", quote=True), Integer),
+        column(quoted_name("pdf_revision", quote=True), Integer),
+        column(quoted_name("pdf_generated_at", quote=True), DateTime(timezone=True)),
+        column(quoted_name("updated_at", quote=True), DateTime(timezone=True)),
+    )
+    return (
+        update(migration_table)
+        .where(
+            migration_table.c.status.in_(("pdf_ready", "applied")),
+            migration_table.c.pdf_stale.is_(False),
+            migration_table.c.pdf_path.is_not(None),
+            (
+                migration_table.c.pdf_revision.is_(None)
+                | migration_table.c.pdf_generated_at.is_(None)
+            ),
+        )
+        .values(
+            pdf_revision=migration_table.c.resume_revision,
+            pdf_generated_at=migration_table.c.updated_at,
+        )
+    )
+
+
+def _apply_resume_draft_migration(connection, existing_columns: set[str]) -> None:
+    for statement in _resume_draft_addition_statements(connection.dialect, existing_columns):
+        connection.execute(text(statement))
+    connection.execute(_resume_draft_pdf_backfill_statement())
+
+
 def init_db() -> None:
     Base.metadata.create_all(bind=engine)
-    if "resume_drafts" not in inspect(engine).get_table_names():
+    inspector = inspect(engine)
+    if ResumeDraft.__tablename__ not in inspector.get_table_names():
         return
-    columns = {column["name"] for column in inspect(engine).get_columns("resume_drafts")}
-    additions = {
-        "resume_revision": "INTEGER NOT NULL DEFAULT 1",
-        "pdf_revision": "INTEGER",
-        "pdf_generated_at": "DATETIME",
+    columns = {
+        column["name"]
+        for column in inspector.get_columns(ResumeDraft.__tablename__)
     }
-    if engine.dialect.name != "sqlite":
-        return
     with engine.begin() as connection:
-        for name, definition in additions.items():
-            if name not in columns:
-                connection.execute(text(f"ALTER TABLE resume_drafts ADD COLUMN {name} {definition}"))
-        connection.execute(text(
-            "UPDATE resume_drafts "
-            "SET pdf_revision = resume_revision, pdf_generated_at = updated_at "
-            "WHERE status IN ('pdf_ready', 'applied') AND pdf_stale = 0 AND pdf_path IS NOT NULL "
-            "AND (pdf_revision IS NULL OR pdf_generated_at IS NULL)"
-        ))
+        _apply_resume_draft_migration(connection, columns)
 
 
 @contextmanager

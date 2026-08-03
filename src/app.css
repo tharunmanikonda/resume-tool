@@ -684,6 +684,164 @@ select:focus {
   gap: 8px;
 }
 
+.quality-review-band {
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+  border-left: 3px solid var(--muted);
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  min-height: 48px;
+  padding: 8px 14px 8px 11px;
+}
+
+.quality-review-band.status-approved,
+.quality-review-band.status-applied,
+.quality-review-band.status-kept_current {
+  border-left-color: var(--accent);
+}
+
+.quality-review-band.status-changes_suggested,
+.quality-review-band.status-stale,
+.quality-review-band.status-manual_attention {
+  border-left-color: #f0c98e;
+}
+
+.quality-review-band.status-technical_failed {
+  border-left-color: var(--error-text);
+}
+
+.audit-change-heading,
+.audit-change-decisions,
+.audit-inline-actions {
+  align-items: center;
+  display: flex;
+  gap: 8px;
+}
+
+.audit-change-heading {
+  justify-content: space-between;
+}
+
+.audit-change-heading h3 {
+  margin: 0;
+}
+
+.audit-change-decisions,
+.audit-inline-actions {
+  flex-wrap: wrap;
+}
+
+.audit-change-decisions button.selected.accept {
+  background: #e5f7ef;
+  border-color: #087f5b;
+  color: #075f46;
+}
+
+.audit-change-decisions button.selected.reject {
+  background: #fff0f0;
+  border-color: #c92a2a;
+  color: #8b1e1e;
+}
+
+.audit-change-reason,
+.audit-review-summary {
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.audit-inline-actions {
+  border-top: 1px solid var(--border);
+  justify-content: flex-end;
+  padding-top: 12px;
+}
+
+.quality-review-copy,
+.quality-review-actions {
+  align-items: center;
+  display: flex;
+  gap: 9px;
+}
+
+.quality-review-copy {
+  min-width: 0;
+}
+
+.quality-review-copy strong {
+  flex: 0 0 auto;
+  font-size: 0.86rem;
+}
+
+.quality-review-copy span {
+  color: var(--muted);
+  font-size: 0.84rem;
+  overflow-wrap: anywhere;
+}
+
+.quality-review-actions {
+  flex: 0 0 auto;
+}
+
+.resume-version-bar {
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  min-height: 46px;
+  padding: 7px 14px;
+}
+
+.resume-version-tabs {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.resume-version-tabs button {
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--muted);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 700;
+  min-height: 30px;
+  padding: 5px 9px;
+}
+
+.resume-version-tabs button:hover {
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.resume-version-tabs button.active {
+  background: color-mix(in srgb, var(--accent) 12%, var(--panel));
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.resume-version-note {
+  color: var(--muted);
+  font-size: 0.72rem;
+  line-height: 1.35;
+  text-align: right;
+}
+
+.resume-changes-view {
+  height: 100%;
+  overflow: auto;
+  padding: 16px;
+}
+
+.compact-button {
+  border-radius: 6px;
+  min-height: 32px;
+  padding: 0 10px;
+}
+
 .preview-toolbar {
   align-items: center;
   border-bottom: 1px solid var(--border);
@@ -1018,6 +1176,189 @@ select:focus {
 
 .modal-copy p {
   margin: 0;
+}
+
+.audit-review-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.audit-review-basis,
+.audit-non-blocking-gaps {
+  background: color-mix(in srgb, #10a37f 8%, var(--panel));
+  border-left: 3px solid #10a37f;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 14px;
+  padding: 10px 12px;
+}
+
+.audit-review-basis > span,
+.audit-review-basis p,
+.audit-non-blocking-gaps p {
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.audit-review-basis p b,
+.audit-non-blocking-gaps p b {
+  color: var(--text);
+  display: block;
+  margin-bottom: 1px;
+}
+
+.audit-non-blocking-gaps {
+  background: color-mix(in srgb, #d69e2e 9%, var(--panel));
+  border-left-color: #d69e2e;
+  margin-top: 14px;
+}
+
+.audit-reviewer-support {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 8px;
+}
+
+.audit-reviewer-support span {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--muted);
+  font-size: 0.68rem;
+  padding: 2px 6px;
+  text-transform: capitalize;
+}
+
+.audit-guidance-message {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 14px;
+  padding: 12px;
+}
+
+.audit-guidance-message strong,
+.audit-guidance-message p {
+  display: block;
+  line-height: 1.45;
+}
+
+.audit-guidance-message p {
+  color: var(--muted);
+  font-size: 0.88rem;
+  margin: 4px 0 0;
+}
+
+.audit-modal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.audit-findings {
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-bottom: 14px;
+}
+
+.audit-finding {
+  border-left: 3px solid #f0c98e;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-left: 10px;
+}
+
+.audit-finding-path {
+  align-items: center;
+  color: var(--text);
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 0.78rem;
+  font-weight: 700;
+  gap: 6px;
+}
+
+.audit-finding-path code {
+  color: var(--muted);
+  font-size: 0.7rem;
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+
+.audit-finding strong,
+.audit-finding span {
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+.audit-finding span,
+.audit-change-label {
+  color: var(--muted);
+}
+
+.audit-change {
+  border-bottom: 1px solid var(--border);
+  padding: 14px 0;
+}
+
+.audit-change:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.audit-change h3 {
+  font-size: 0.92rem;
+  margin: 0 0 9px;
+}
+
+.audit-change-grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.audit-change-grid > div {
+  border-left: 3px solid var(--border);
+  min-width: 0;
+  padding: 10px 12px;
+}
+
+.audit-change-grid > div:first-child {
+  background: color-mix(in srgb, #c92a2a 8%, var(--panel));
+  border-left-color: #c92a2a;
+}
+
+.audit-change-grid > div:last-child {
+  background: color-mix(in srgb, #087f5b 9%, var(--panel));
+  border-left-color: #087f5b;
+}
+
+.audit-change-label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+}
+
+.audit-change p {
+  font-size: 0.86rem;
+  line-height: 1.5;
+  margin: 0;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.blank-state.compact {
+  min-height: 80px;
 }
 
 .field {
@@ -1461,6 +1802,31 @@ select:focus {
   .pdf-actions {
     align-items: stretch;
     flex-direction: column;
+  }
+
+  .quality-review-band,
+  .quality-review-copy,
+  .quality-review-actions,
+  .resume-version-bar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .quality-review-actions,
+  .resume-version-tabs {
+    width: 100%;
+  }
+
+  .resume-version-note {
+    text-align: left;
+  }
+
+  .audit-change-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .audit-modal-actions {
+    width: 100%;
   }
 
   .composer-toolbar {
