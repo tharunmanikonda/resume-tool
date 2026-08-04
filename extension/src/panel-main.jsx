@@ -185,9 +185,9 @@ function originalResumeVersion(draft) {
 function reviewedResumeVersion(draft) {
   const versions = resumeVersionsFromDraft(draft);
   const activeKey = String(draft?.active_resume_version || "");
-  if (versionHasResume(versions.luna_reviewed)) return versions.luna_reviewed;
-  if (versionHasResume(versions[activeKey])) return versions[activeKey];
+  if (activeKey !== "original" && versionHasResume(versions[activeKey])) return versions[activeKey];
   if (versionHasResume(versions.manual)) return versions.manual;
+  if (versionHasResume(versions.luna_reviewed)) return versions.luna_reviewed;
   return {
     resume_snapshot: draft?.preview || null,
     resume_content: draft?.resume_content || "",

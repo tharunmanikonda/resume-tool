@@ -131,6 +131,28 @@ const server = http.createServer((request, response) => {
     return;
   }
   const draftMatch = request.url?.match(/^\/api\/extension\/drafts\/([^/]+)$/);
+  if (draftMatch && request.method === "PATCH") {
+    let body = "";
+    request.on("data", (chunk) => { body += chunk; });
+    request.on("end", () => {
+      const matchedDraft = servedDrafts.find((item) => item.id === decodeURIComponent(draftMatch[1]));
+      const payload = JSON.parse(body || "{}");
+      if (!matchedDraft || !payload.quick_edits) {
+        sendJson(400, { success: false, error: "Missing quick edits" });
+        return;
+      }
+      const nextSnapshot = structuredClone(matchedDraft.preview);
+      nextSnapshot.title = payload.quick_edits.title;
+      matchedDraft.preview = nextSnapshot;
+      matchedDraft.resume_versions.manual = {
+        resume_snapshot: nextSnapshot,
+        resume_content: `Manually edited ${matchedDraft.role_title} resume`,
+      };
+      matchedDraft.active_resume_version = "manual";
+      sendJson(200, { success: true, draft: matchedDraft });
+    });
+    return;
+  }
   if (draftMatch && request.method === "GET") {
     const matchedDraft = servedDrafts.find((item) => item.id === decodeURIComponent(draftMatch[1]));
     if (matchedDraft) {
@@ -172,6 +194,12 @@ try {
   await page.locator(".resume-preview h1").getByText("Luna Backend Engineer", { exact: true }).waitFor();
   await page.getByText("Edit resume content", { exact: false }).waitFor();
   await page.getByText("Luna reviewed", { exact: true }).waitFor();
+
+  await page.getByText("Edit resume content", { exact: false }).click();
+  const titleInput = page.getByLabel("Resume title");
+  await titleInput.fill("Edited Backend Engineer");
+  await page.getByText("Saved", { exact: true }).waitFor();
+  await page.locator(".resume-preview h1").getByText("Edited Backend Engineer", { exact: true }).waitFor();
 
   await page.getByRole("tab", { name: "Original" }).click();
   await page.locator(".resume-preview h1").getByText("Original Backend Engineer", { exact: true }).waitFor();
