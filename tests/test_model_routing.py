@@ -292,6 +292,11 @@ def test_quality_audit_forwards_dedicated_model_and_medium_reasoning(monkeypatch
     assert captured["model"] == resume_app.AUDIT_MODEL
     assert captured["reasoning_effort"] == "medium"
     assert captured["max_output_tokens"] == 8000
+    assert captured["background"] is True
+    assert (
+        captured["background_timeout_seconds"]
+        == resume_app.OPENAI_AUDIT_BACKGROUND_TIMEOUT_SECONDS
+    )
     assert validated["result"] == result
     assert validated["current_resume"]["updated_title"] == current_resume["updated_title"]
     assert resume_app.AUDIT_MODEL == "gpt-5.6-luna"

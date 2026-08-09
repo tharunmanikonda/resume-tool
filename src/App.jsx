@@ -536,6 +536,9 @@ function AuditChangeReview({ audit, loading, onOpenEditor, onRetry }) {
   const nonBlockingGaps = Array.isArray(result.non_blocking_gaps)
     ? result.non_blocking_gaps
     : [];
+  const resumeEvidenceGaps = nonBlockingGaps.filter((gap) => ![
+    "domain_context", "application_condition", "credential_or_duration",
+  ].includes(String(gap?.kind || "")));
   const valueText = (value) => {
     if (Array.isArray(value)) {
       return value.map((item) => (
@@ -635,10 +638,10 @@ function AuditChangeReview({ audit, loading, onOpenEditor, onRetry }) {
       )) : audit.status === "changes_suggested" ? (
         <div className="blank-state compact">No section-level changes were returned.</div>
       ) : null}
-      {nonBlockingGaps.length ? (
+      {resumeEvidenceGaps.length ? (
         <div className="audit-non-blocking-gaps">
-          <strong>Requirements not claimed</strong>
-          {nonBlockingGaps.map((gap, index) => (
+          <strong>Requirements not supported by profile evidence</strong>
+          {resumeEvidenceGaps.map((gap, index) => (
             <p key={gap.id || index}>
               <b>{gap.gap || "Unsupported requirement"}</b>
               {gap.impact ? ` ${gap.impact}` : ""}

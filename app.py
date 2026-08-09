@@ -16,6 +16,7 @@ import sys
 import threading
 import time
 import urllib.error
+import urllib.parse
 import urllib.request
 import uuid
 import tempfile
@@ -101,6 +102,15 @@ MEDIUM_OUTPUT_HEADROOM = 300
 LARGE_OUTPUT_HEADROOM = 500
 OPENAI_ANALYSIS_TIMEOUT_SECONDS = int(os.getenv("OPENAI_ANALYSIS_TIMEOUT_SECONDS", "120"))
 OPENAI_RESUME_TIMEOUT_SECONDS = int(os.getenv("OPENAI_RESUME_TIMEOUT_SECONDS", "180"))
+OPENAI_AUDIT_BACKGROUND_TIMEOUT_SECONDS = int(
+    os.getenv("OPENAI_AUDIT_BACKGROUND_TIMEOUT_SECONDS", "600")
+)
+OPENAI_BACKGROUND_HTTP_TIMEOUT_SECONDS = int(
+    os.getenv("OPENAI_BACKGROUND_HTTP_TIMEOUT_SECONDS", "60")
+)
+OPENAI_BACKGROUND_POLL_INTERVAL_SECONDS = float(
+    os.getenv("OPENAI_BACKGROUND_POLL_INTERVAL_SECONDS", "2")
+)
 OPENAI_API_URL = "https://api.openai.com/v1/responses"
 
 EXPERIENCE_BLUEPRINTS = [
@@ -3799,14 +3809,31 @@ def _post_openai_payload(
     payload: dict,
     request_timeout_seconds: int,
 ) -> dict:
+    return _request_openai_json(
+        api_key=api_key,
+        url=OPENAI_API_URL,
+        method="POST",
+        payload=payload,
+        request_timeout_seconds=request_timeout_seconds,
+    )
+
+
+def _request_openai_json(
+    *,
+    api_key: str,
+    url: str,
+    method: str,
+    request_timeout_seconds: int,
+    payload: dict | None = None,
+) -> dict:
     req = urllib.request.Request(
-        OPENAI_API_URL,
-        data=json.dumps(payload).encode("utf-8"),
+        url,
+        data=(json.dumps(payload).encode("utf-8") if payload is not None else None),
         headers={
             "Authorization": f"Bearer {api_key}",
             "Content-Type": "application/json",
         },
-        method="POST",
+        method=method,
     )
 
     try:
@@ -3817,8 +3844,76 @@ def _post_openai_payload(
         raise RuntimeError(f"OpenAI API error ({exc.code}): {body}") from exc
     except urllib.error.URLError as exc:
         raise RuntimeError(f"OpenAI API request failed: {exc.reason}") from exc
-    except (TimeoutError, socket.timeout) as exc:
-        raise RuntimeError(f"OpenAI API request timed out after {request_timeout_seconds}s") from exc
+    except (ConnectionError, TimeoutError, socket.timeout) as exc:
+        raise RuntimeError(f"OpenAI API request failed: {exc}") from exc
+
+
+def _get_openai_response_payload(
+    *,
+    api_key: str,
+    response_id: str,
+    request_timeout_seconds: int,
+) -> dict:
+    safe_response_id = urllib.parse.quote(str(response_id), safe="")
+    return _request_openai_json(
+        api_key=api_key,
+        url=f"{OPENAI_API_URL}/{safe_response_id}",
+        method="GET",
+        request_timeout_seconds=request_timeout_seconds,
+    )
+
+
+def _mark_background_response_error(
+    exc: Exception,
+    response_id: str,
+) -> Exception:
+    try:
+        exc.openai_response_started = True
+        exc.openai_response_id = response_id
+    except (AttributeError, TypeError):
+        pass
+    return exc
+
+
+def _poll_openai_background_response(
+    *,
+    api_key: str,
+    initial_response: dict,
+    request_timeout_seconds: int,
+    overall_timeout_seconds: int,
+    poll_interval_seconds: float,
+) -> dict:
+    response_payload = initial_response
+    response_id = str(response_payload.get("id", "")).strip()
+    if not response_id:
+        raise RuntimeError("OpenAI background response did not include a response ID.")
+
+    deadline = time.monotonic() + max(1, overall_timeout_seconds)
+    while str(response_payload.get("status", "")).strip() in {"queued", "in_progress"}:
+        remaining = deadline - time.monotonic()
+        if remaining <= 0:
+            error = RuntimeError(
+                f"OpenAI background response {response_id} did not finish within "
+                f"{overall_timeout_seconds}s"
+            )
+            raise _mark_background_response_error(error, response_id)
+
+        time.sleep(min(max(0.1, poll_interval_seconds), remaining))
+        try:
+            response_payload = _get_openai_response_payload(
+                api_key=api_key,
+                response_id=response_id,
+                request_timeout_seconds=max(
+                    1,
+                    min(request_timeout_seconds, int(max(1, remaining))),
+                ),
+            )
+        except Exception as exc:
+            if _is_transient_audit_network_error(exc) and time.monotonic() < deadline:
+                continue
+            raise _mark_background_response_error(exc, response_id)
+
+    return response_payload
 
 
 def call_openai_structured_output(
@@ -3833,6 +3928,9 @@ def call_openai_structured_output(
     max_output_tokens: int,
     request_timeout_seconds: int,
     reasoning_effort: str = "low",
+    background: bool = False,
+    background_timeout_seconds: int | None = None,
+    background_poll_interval_seconds: float = OPENAI_BACKGROUND_POLL_INTERVAL_SECONDS,
 ) -> dict:
     payload = {
         "model": model,
@@ -3856,11 +3954,32 @@ def call_openai_structured_output(
 
     if reasoning_effort and model.startswith("gpt-5"):
         payload["reasoning"] = {"effort": reasoning_effort}
+    if background:
+        payload["background"] = True
+
+    http_timeout = request_timeout_seconds
+    if background:
+        http_timeout = min(
+            request_timeout_seconds,
+            OPENAI_BACKGROUND_HTTP_TIMEOUT_SECONDS,
+        )
     response_payload = _post_openai_payload(
         api_key=api_key,
         payload=payload,
-        request_timeout_seconds=request_timeout_seconds,
+        request_timeout_seconds=http_timeout,
     )
+    if background:
+        response_payload = _poll_openai_background_response(
+            api_key=api_key,
+            initial_response=response_payload,
+            request_timeout_seconds=http_timeout,
+            overall_timeout_seconds=(
+                background_timeout_seconds
+                if background_timeout_seconds is not None
+                else request_timeout_seconds
+            ),
+            poll_interval_seconds=background_poll_interval_seconds,
+        )
 
     status = str(response_payload.get("status", "")).strip()
     if status and status != "completed":
@@ -5024,6 +5143,17 @@ class ResumeQualityAuditValidationError(ResumeQualityAuditError):
     def __init__(self, issues: list[str]):
         self.issues = list(dict.fromkeys(str(issue) for issue in issues if str(issue).strip()))
         super().__init__("; ".join(self.issues) or "Resume quality audit validation failed.")
+
+
+class ResumeQualityAuditRepairRequiredError(ResumeQualityAuditValidationError):
+    def __init__(self, diagnostics: list[dict]):
+        self.diagnostics = copy.deepcopy(diagnostics)
+        issues = [
+            str(item.get("reason", "A required engineering patch is missing.")).strip()
+            for item in diagnostics
+            if isinstance(item, dict)
+        ]
+        super().__init__(issues or ["A required engineering patch is missing."])
 
 
 class ResumeQualityAuditStaleConflictError(ResumeQualityAuditError):
@@ -6276,6 +6406,17 @@ def ai_resume_quality_audit_schema(
                 "pattern": r"^[A-Za-z0-9][A-Za-z0-9._-]*$",
             },
             "path": {"type": "string", "minLength": 1},
+            "kind": {
+                "type": "string",
+                "enum": [
+                    "unsupported_engineering",
+                    "named_technology",
+                    "domain_context",
+                    "application_condition",
+                    "credential_or_duration",
+                    "withheld_patch",
+                ],
+            },
             "gap": {"type": "string", "minLength": 1},
             "impact": {"type": "string", "minLength": 1},
             "evidence_refs": {
@@ -6283,7 +6424,7 @@ def ai_resume_quality_audit_schema(
                 "items": {"type": "string", "minLength": 1},
             },
         },
-        "required": ["id", "path", "gap", "impact", "evidence_refs"],
+        "required": ["id", "path", "kind", "gap", "impact", "evidence_refs"],
     }
     requirement_resolution = {
         "type": "object",
@@ -6298,6 +6439,24 @@ def ai_resume_quality_audit_schema(
             "priority": {
                 "type": "string",
                 "enum": ["critical", "important", "secondary"],
+            },
+            "claim_type": {
+                "type": "string",
+                "enum": [
+                    "engineering_capability",
+                    "named_technology",
+                    "domain_context",
+                    "application_condition",
+                    "credential_or_duration",
+                ],
+            },
+            "evidence_fit": {
+                "type": "string",
+                "enum": ["direct", "transferable", "none"],
+            },
+            "resume_action": {
+                "type": "string",
+                "enum": ["already_covered", "patch_required", "gap_only"],
             },
             "status": {
                 "type": "string",
@@ -6323,8 +6482,9 @@ def ai_resume_quality_audit_schema(
             "reason": {"type": "string", "minLength": 1},
         },
         "required": [
-            "requirement_id", "requirement", "priority", "status",
-            "evidence_refs", "change_ids", "reason",
+            "requirement_id", "requirement", "priority", "claim_type",
+            "evidence_fit", "resume_action", "status", "evidence_refs",
+            "change_ids", "reason",
         ],
     }
     return {
@@ -6454,7 +6614,9 @@ def build_ai_resume_quality_audit_prompt() -> str:
             "- build the review_basis first: normalized market title, explicit top-title and experience-title assessments with rationale, and the most important priorities from each point of view",
             "- derive the important JD requirements before proposing any resume change",
             "- for every important requirement, search the complete candidate evidence manifest across all roles, projects, certifications, and upstream-validated claims",
-            "- classify each requirement as already_covered, patched_direct, patched_transferable, or unresolved",
+            "- classify each requirement by claim_type, evidence_fit, resume_action, and status before writing patches",
+            "- engineering capabilities with direct or transferable evidence are resume-addressable and must use resume_action patch_required unless already covered",
+            "- a patch-required requirement must return a complete title, summary, skill, or experience patch and link its exact change_ids",
             "- create safe patches for direct evidence and for genuinely transferable evidence before declaring a requirement unresolved",
             "- patched_transferable means the candidate evidence demonstrates the same underlying capability without pretending to have an unsupported exact tool, employer context, duration, or industry",
             "- unresolved is allowed only after the complete evidence manifest has been exhausted and no defensible wording can cover the requirement",
@@ -6466,6 +6628,13 @@ def build_ai_resume_quality_audit_prompt() -> str:
             "- preserve strong wording; recommend only changes that materially improve interview-readiness",
             "- do not score, flag, or propose a change solely because existing content is outside a word-count range",
             "- do not mention word-count compliance in the review summary, findings, reasons, or recommendations",
+            "",
+            "NON-RESUME REQUIREMENTS TO IGNORE FOR PATCHING:",
+            "- warehouse installation, warehouse commissioning, conveyor-system operation, warehouse-site work, and warehouse or logistics domain context are not resume repair targets",
+            "- travel percentage, willingness to travel, on-site attendance, relocation, work location, shift availability, physical requirements, work authorization, citizenship, security clearance, background checks, driver's licenses, degrees, certifications, and minimum years are application conditions or credentials, not experience bullets to invent",
+            "- classify these as domain_context, application_condition, or credential_or_duration with evidence_fit none, resume_action gap_only, status unresolved, and empty change_ids",
+            "- do not create title, summary, skill, or experience patches for these requirements and do not lower the resume decision solely because they are absent",
+            "- when a JD mixes an ignored context with an engineering capability, ignore the context but repair the underlying engineering capability when direct or transferable evidence exists",
             "",
             "EVIDENCE RULES:",
             "- the job description is targeting context and never candidate evidence",
@@ -6485,6 +6654,8 @@ def build_ai_resume_quality_audit_prompt() -> str:
             "- every change_id must be unique and stable",
             "- every patched requirement must reference the exact change_ids that resolve it",
             "- already_covered and unresolved requirements must use an empty change_ids list",
+            "- patch_required must use patched_direct or patched_transferable and must have at least one linked change_id",
+            "- gap_only must use unresolved, empty change_ids, and no resume patch",
             "- every requirement evidence reference must exist in the supplied evidence manifest",
             "- every change identifies which reviewer points of view support it",
             "- title and summary changes must return the complete replacement text",
@@ -6501,6 +6672,29 @@ def build_ai_resume_quality_audit_prompt() -> str:
             "- give one concise reason for every change",
             "- return only JSON matching the supplied schema",
         ]
+    )
+
+
+def build_ai_resume_quality_audit_repair_prompt(
+    original_input: dict,
+    previous_result: dict,
+    diagnostics: list[dict],
+) -> str:
+    repair_input = {
+        "original_review_input": original_input,
+        "previous_review_result": previous_result,
+        "required_patch_diagnostics": diagnostics,
+    }
+    return (
+        "Correct the previous patch review. Preserve every valid prior conclusion and patch, "
+        "but repair each item in required_patch_diagnostics. Every listed item is a "
+        "resume-addressable engineering requirement with candidate evidence, so it must return "
+        "a grounded direct or transferable patch with valid evidence_refs and linked change_ids. "
+        "Do not convert it to gap_only or unresolved. Do not create patches for warehouse "
+        "installation, warehouse commissioning, conveyor operations, travel, location, or other "
+        "application conditions. Return one complete schema-valid patch review JSON, not only the "
+        "corrected fragments.\n"
+        + json.dumps(repair_input, ensure_ascii=False, separators=(",", ":"))
     )
 
 
@@ -6581,6 +6775,54 @@ def _quality_audit_evidence_manifest(
                 "value": metadata,
             }
     return manifest
+
+
+QUALITY_AUDIT_IGNORED_REQUIREMENT_PATTERNS = (
+    (
+        "domain_context",
+        re.compile(
+            r"\b(?:warehouse(?:[- ]site)?\s+(?:installation|commissioning|operations?)|"
+            r"conveyor(?:[- ]systems?)?|warehouse logistics|supply[- ]chain domain)\b",
+            re.IGNORECASE,
+        ),
+    ),
+    (
+        "application_condition",
+        re.compile(
+            r"\b(?:travel|on[- ]site|onsite|relocat(?:e|ion)|shift availability|"
+            r"work authorization|sponsorship|citizenship|security clearance|"
+            r"background check|driver'?s? licen[cs]e|physical requirements?|"
+            r"lift(?:ing)?\s+\d+)\b",
+            re.IGNORECASE,
+        ),
+    ),
+    (
+        "credential_or_duration",
+        re.compile(
+            r"\b(?:bachelor'?s?|master'?s?|ph\.?d\.?|degree|certification|"
+            r"\d+\+?\s+years?(?:\s+of)?\s+experience)\b",
+            re.IGNORECASE,
+        ),
+    ),
+)
+
+
+def _quality_audit_ignored_requirement_claim_type(requirement: str) -> str:
+    text = str(requirement or "").strip()
+    for claim_type, pattern in QUALITY_AUDIT_IGNORED_REQUIREMENT_PATTERNS:
+        if pattern.search(text):
+            return claim_type
+    return ""
+
+
+def _quality_audit_gap_kind(claim_type: str) -> str:
+    normalized = str(claim_type or "").strip()
+    if normalized in {
+        "named_technology", "domain_context", "application_condition",
+        "credential_or_duration",
+    }:
+        return normalized
+    return "unsupported_engineering"
 
 
 def _quality_audit_preflight(
@@ -7152,6 +7394,9 @@ def validate_resume_quality_audit_result(
         if not isinstance(priorities, list) or not priorities:
             review_basis[field] = ["Evaluate the resume against the target role."]
     non_blocking_gaps = copy.deepcopy(audit_result.get("non_blocking_gaps") or [])
+    for gap in non_blocking_gaps:
+        if isinstance(gap, dict) and not str(gap.get("kind", "")).strip():
+            gap["kind"] = "unsupported_engineering"
 
     current = _canonical_editable_resume(current_resume, active_blueprints)
     evidence_manifest = _quality_audit_evidence_manifest(
@@ -7175,12 +7420,55 @@ def validate_resume_quality_audit_result(
     known_change_ids = set(change_ids)
     resolution_issues: list[str] = []
     resolution_diagnostics: list[dict] = []
+    gap_only_linked_change_ids: set[str] = set()
+    patch_required_linked_change_ids: set[str] = set()
     for item in requirement_resolutions:
         if not isinstance(item, dict):
             resolution_issues.append("Every requirement resolution must be an object.")
             continue
         requirement_id = str(item.get("requirement_id", "")).strip()
+        requirement = str(item.get("requirement", "")).strip()
         status = str(item.get("status", "")).strip()
+        claim_type = str(item.get("claim_type", "")).strip()
+        evidence_fit = str(item.get("evidence_fit", "")).strip()
+        resume_action = str(item.get("resume_action", "")).strip()
+        ignored_claim_type = _quality_audit_ignored_requirement_claim_type(requirement)
+        if ignored_claim_type:
+            claim_type = ignored_claim_type
+            evidence_fit = "none"
+            resume_action = "gap_only"
+            status = "unresolved"
+        elif not claim_type:
+            # Preserve compatibility with persisted schema-v2 reviews created
+            # before explicit requirement classification was introduced.
+            claim_type = "engineering_capability"
+        if not evidence_fit:
+            evidence_fit = {
+                "patched_direct": "direct",
+                "patched_transferable": "transferable",
+            }.get(status, "none")
+        if not resume_action:
+            resume_action = (
+                "already_covered" if status == "already_covered"
+                else "patch_required" if status in {"patched_direct", "patched_transferable"}
+                else "gap_only"
+            )
+        priority = str(item.get("priority", "")).strip()
+        if not ignored_claim_type:
+            if status == "already_covered":
+                resume_action = "already_covered"
+            elif (
+                claim_type in {"engineering_capability", "named_technology"}
+                and evidence_fit in {"direct", "transferable"}
+                and priority in {"critical", "important"}
+            ):
+                resume_action = "patch_required"
+            elif evidence_fit == "none":
+                resume_action = "gap_only"
+        item["claim_type"] = claim_type
+        item["evidence_fit"] = evidence_fit
+        item["resume_action"] = resume_action
+        item["status"] = status
         refs = [str(ref).strip() for ref in item.get("evidence_refs") or []]
         linked_changes = [
             str(change_id).strip()
@@ -7209,6 +7497,10 @@ def validate_resume_quality_audit_result(
                 "issue": "unknown_change_ids_removed",
                 "details": unknown_changes,
             })
+        if resume_action == "gap_only":
+            gap_only_linked_change_ids.update(linked_changes)
+        elif resume_action == "patch_required":
+            patch_required_linked_change_ids.update(linked_changes)
         if status in {"already_covered", "unresolved"} and linked_changes:
             # The patch remains independently eligible. Only the contradictory
             # requirement-to-patch link is removed so one metadata mistake does
@@ -7238,6 +7530,16 @@ def validate_resume_quality_audit_result(
     withheld: list[dict] = []
     for record in records:
         change_id = str(record["change_id"]).strip()
+        if (
+            change_id in gap_only_linked_change_ids
+            and change_id not in patch_required_linked_change_ids
+        ):
+            withheld.append({
+                "change_id": change_id,
+                "section": record["section"],
+                "reason": "Non-resume requirements cannot create resume patches.",
+            })
+            continue
         patch_issue = _quality_audit_patch_structure_issue(
             record,
             current,
@@ -7382,6 +7684,7 @@ def validate_resume_quality_audit_result(
         non_blocking_gaps.extend({
             "id": f"withheld.{item['change_id']}",
             "path": str(item.get("section", "resume")),
+            "kind": "withheld_patch",
             "gap": "An optional review suggestion was withheld by deterministic validation.",
             "impact": str(item.get("reason", "")).strip(),
             "evidence_refs": [],
@@ -7391,6 +7694,7 @@ def validate_resume_quality_audit_result(
         validated_records = []
 
     normalized_requirement_resolutions: list[dict] = []
+    required_patch_diagnostics: list[dict] = []
     existing_gap_ids = {
         str(item.get("id", "")).strip()
         for item in non_blocking_gaps
@@ -7406,6 +7710,34 @@ def validate_resume_quality_audit_result(
             change_id for change_id in linked_ids
             if change_id in accepted_ids
         ]
+        requires_patch = resolution.get("resume_action") == "patch_required"
+        valid_patched_status = resolution.get("status") in {
+            "patched_direct", "patched_transferable",
+        }
+        if requires_patch and (not valid_patched_status or not surviving_ids):
+            linked_withheld = [
+                item for item in withheld
+                if str(item.get("change_id", "")).strip() in set(linked_ids)
+            ]
+            reason = (
+                "Resume-addressable engineering requirement "
+                f"'{resolution.get('requirement', '')}' requires a valid linked patch."
+            )
+            if linked_withheld:
+                reason += " Proposed patches were withheld: " + "; ".join(
+                    str(item.get("reason", "")).strip()
+                    for item in linked_withheld
+                    if str(item.get("reason", "")).strip()
+                )
+            required_patch_diagnostics.append({
+                "requirement_id": str(resolution.get("requirement_id", "")).strip(),
+                "requirement": str(resolution.get("requirement", "")).strip(),
+                "claim_type": str(resolution.get("claim_type", "")).strip(),
+                "evidence_fit": str(resolution.get("evidence_fit", "")).strip(),
+                "evidence_refs": copy.deepcopy(resolution.get("evidence_refs") or []),
+                "linked_change_ids": linked_ids,
+                "reason": reason,
+            })
         if (
             resolution.get("status") in {"patched_direct", "patched_transferable"}
             and not surviving_ids
@@ -7427,6 +7759,7 @@ def validate_resume_quality_audit_result(
         non_blocking_gaps.append({
             "id": gap_id,
             "path": "job.requirements",
+            "kind": _quality_audit_gap_kind(resolution.get("claim_type", "")),
             "gap": str(resolution.get("requirement", "")).strip(),
             "impact": str(resolution.get("reason", "")).strip(),
             "evidence_refs": copy.deepcopy(
@@ -7434,6 +7767,9 @@ def validate_resume_quality_audit_result(
             ),
         })
         existing_gap_ids.add(gap_id)
+
+    if required_patch_diagnostics:
+        raise ResumeQualityAuditRepairRequiredError(required_patch_diagnostics)
 
     review_groups = []
     blueprint_by_key = {
@@ -7566,6 +7902,7 @@ def _is_transient_audit_network_error(exc: Exception) -> bool:
             "timeout",
             "ssl eof",
             "unexpected eof",
+            "did not finish within",
             "winerror 10053",
             "winerror 10054",
             "winerror 10060",
@@ -7606,6 +7943,8 @@ def _quality_audit_failure_metadata(exc: Exception) -> dict:
         "reasoning_effort": AUDIT_REASONING_EFFORT,
         "attempt_count": attempt_count,
         "token_usage": None,
+        "execution_mode": "background",
+        "response_id": getattr(exc, "openai_response_id", None),
     }
 
 
@@ -7712,6 +8051,9 @@ def generate_resume_quality_audit(
                 max_output_tokens=last_limit,
                 request_timeout_seconds=timeout_seconds,
                 reasoning_effort=reasoning_effort,
+                background=True,
+                background_timeout_seconds=OPENAI_AUDIT_BACKGROUND_TIMEOUT_SECONDS,
+                background_poll_interval_seconds=OPENAI_BACKGROUND_POLL_INTERVAL_SECONDS,
             )
             break
         except Exception as exc:
@@ -7719,7 +8061,11 @@ def generate_resume_quality_audit(
                 retried_output_limit = True
                 last_limit = RESUME_QUALITY_AUDIT_RETRY_MAX_OUTPUT_TOKENS
                 continue
-            if not retried_network and _is_transient_audit_network_error(exc):
+            if (
+                not retried_network
+                and not bool(getattr(exc, "openai_response_started", False))
+                and _is_transient_audit_network_error(exc)
+            ):
                 retried_network = True
                 time.sleep(1.0)
                 continue
@@ -7728,13 +8074,48 @@ def generate_resume_quality_audit(
             except (AttributeError, TypeError):
                 pass
             raise
-    validated = validate_resume_quality_audit_result(
-        raw_result,
-        current_resume=canonical_resume,
-        analysis_payload=analysis_payload,
-        active_blueprints=active_blueprints,
-        candidate_profile=candidate_profile,
-    )
+    repair_attempted = False
+    try:
+        validated = validate_resume_quality_audit_result(
+            raw_result,
+            current_resume=canonical_resume,
+            analysis_payload=analysis_payload,
+            active_blueprints=active_blueprints,
+            candidate_profile=candidate_profile,
+        )
+    except ResumeQualityAuditRepairRequiredError as exc:
+        repair_attempted = True
+        attempts += 1
+        raw_result = call_openai_structured_output(
+            api_key=api_key,
+            model=model,
+            temperature=RESUME_TEMPERATURE,
+            developer_prompt=build_ai_resume_quality_audit_prompt(),
+            user_prompt=build_ai_resume_quality_audit_repair_prompt(
+                review_input,
+                raw_result,
+                exc.diagnostics,
+            ),
+            schema_name="resume_quality_audit_v2_repair",
+            schema=ai_resume_quality_audit_schema(
+                active_blueprints,
+                ordered_categories,
+            ),
+            max_output_tokens=RESUME_QUALITY_AUDIT_RETRY_MAX_OUTPUT_TOKENS,
+            request_timeout_seconds=timeout_seconds,
+            reasoning_effort=reasoning_effort,
+            background=True,
+            background_timeout_seconds=OPENAI_AUDIT_BACKGROUND_TIMEOUT_SECONDS,
+            background_poll_interval_seconds=OPENAI_BACKGROUND_POLL_INTERVAL_SECONDS,
+        )
+        last_limit = RESUME_QUALITY_AUDIT_RETRY_MAX_OUTPUT_TOKENS
+        validated = validate_resume_quality_audit_result(
+            raw_result,
+            current_resume=canonical_resume,
+            analysis_payload=analysis_payload,
+            active_blueprints=active_blueprints,
+            candidate_profile=candidate_profile,
+        )
     if isinstance(validated.get("review_basis"), dict):
         validated["review_basis"]["advertised_job_title"] = (
             authoritative_title or None
@@ -7743,8 +8124,10 @@ def generate_resume_quality_audit(
     validated["reasoning_effort"] = reasoning_effort
     validated["attempt_count"] = attempts
     validated["max_output_tokens"] = last_limit
+    validated["repair_attempted"] = repair_attempted
     validated["duration_ms"] = round((time.perf_counter() - started) * 1000)
     validated["token_usage"] = None
+    validated["execution_mode"] = "background"
     return validated
 
 

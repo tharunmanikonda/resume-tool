@@ -1,4 +1,4 @@
-"""Persistence helpers for LinkedIn extension resume drafts."""
+"""Persistence helpers for browser-extension resume drafts."""
 
 from __future__ import annotations
 
@@ -67,20 +67,38 @@ def linkedin_job_id(value: str, url: str = "") -> str:
     return clean_text(parse_qs(parsed.query).get("currentJobId", [""])[0])
 
 
-def canonical_job_url(value: str, external_job_id: str = "") -> str:
+def external_job_id(source: str, value: str, url: str = "") -> str:
+    normalized_source = clean_text(source).lower()
+    if normalized_source == "linkedin":
+        return linkedin_job_id(value, url)
+    explicit = clean_text(value)
+    if explicit:
+        return explicit
+    parsed = urlparse(clean_text(url))
+    if normalized_source == "dice":
+        path_match = re.search(r"^/job-detail/([^/?#]+)", parsed.path, re.IGNORECASE)
+        return clean_text(path_match.group(1) if path_match else "")
+    return ""
+
+
+def canonical_job_url(value: str, external_job_id: str = "", source: str = "linkedin") -> str:
     parsed = urlparse(clean_text(value))
-    if external_job_id:
+    normalized_source = clean_text(source).lower()
+    if external_job_id and normalized_source == "linkedin":
         return f"https://www.linkedin.com/jobs/view/{external_job_id}/"
+    if external_job_id and normalized_source == "dice":
+        safe_id = re.sub(r"[^a-zA-Z0-9-]", "", external_job_id)
+        return f"https://www.dice.com/job-detail/{safe_id}"
     if not parsed.scheme or not parsed.netloc:
         return ""
     return urlunparse((parsed.scheme, parsed.netloc, parsed.path.rstrip("/") + "/", "", "", ""))
 
 
 def normalize_context(payload: dict) -> dict:
-    source = clean_text(payload.get("source")) or "linkedin"
+    source = clean_text(payload.get("source")).lower() or "linkedin"
     raw_url = clean_text(payload.get("url") or payload.get("canonical_url"))
-    external_id = linkedin_job_id(payload.get("external_job_id"), raw_url)
-    url = canonical_job_url(raw_url, external_id)
+    external_id = external_job_id(source, payload.get("external_job_id"), raw_url)
+    url = canonical_job_url(raw_url, external_id, source)
     company = clean_text(payload.get("company_name"))
     title = clean_text(payload.get("role_title") or payload.get("title"))
     description = clean_text(payload.get("job_description") or payload.get("description"))

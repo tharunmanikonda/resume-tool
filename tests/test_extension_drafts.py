@@ -85,6 +85,41 @@ def test_linkedin_context_uses_stable_job_id_and_canonical_url():
     assert canonical_job_url("https://www.linkedin.com/jobs/view/12345/?trk=abc", "12345") == normalized["canonical_url"]
 
 
+def test_dice_context_uses_stable_job_id_and_canonical_url():
+    payload = {
+        "source": "dice",
+        "url": "https://www.dice.com/job-detail/336d7a94-e57e-47b1-ae57-07fbdb593ea4?utm_source=test",
+        "company_name": "Zions Bancorporation",
+        "role_title": "Engineering Manager",
+        "location": "Midvale, UT",
+        "job_description": "Lead reliable infrastructure and network operations across the enterprise. " * 8,
+    }
+
+    normalized = normalize_context(payload)
+
+    assert normalized["external_job_id"] == "336d7a94-e57e-47b1-ae57-07fbdb593ea4"
+    assert normalized["source_key"] == "dice:336d7a94-e57e-47b1-ae57-07fbdb593ea4"
+    assert normalized["canonical_url"] == "https://www.dice.com/job-detail/336d7a94-e57e-47b1-ae57-07fbdb593ea4"
+    assert not validate_context(normalized)
+
+
+def test_linkedin_and_dice_job_ids_do_not_collide(tmp_path, monkeypatch):
+    store = store_for_test(tmp_path, monkeypatch)
+    linkedin = store.create(context("shared-id", "LinkedIn Company"), snapshot(), duplicate_count=0)
+    dice_context = {
+        **context("shared-id", "Dice Company"),
+        "source": "dice",
+        "url": "https://www.dice.com/job-detail/shared-id",
+    }
+    dice = store.create(dice_context, snapshot(), duplicate_count=0)
+
+    assert linkedin["id"] != dice["id"]
+    assert linkedin["source_key"] == "linkedin:shared-id"
+    assert dice["source_key"] == "dice:shared-id"
+    _, restored = store.resolve(dice_context)
+    assert restored["id"] == dice["id"]
+
+
 def test_incomplete_context_is_blocked():
     normalized = normalize_context({"url": "https://www.linkedin.com/jobs/", "company_name": "", "role_title": "Engineer", "job_description": "short"})
     issues = validate_context(normalized)

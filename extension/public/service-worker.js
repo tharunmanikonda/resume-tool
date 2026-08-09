@@ -12,7 +12,7 @@ const ATS_HOST_SUFFIXES = [
   "lever.co", "greenhouse.io", "workday.com", "myworkdayjobs.com", "myworkdaysite.com",
   "linkedin.com", "ashbyhq.com", "ashby.com", "icims.com", "taleo.net", "oraclecloud.com",
   "smartrecruiters.com", "jobvite.com", "avature.net", "successfactors.com", "phenompeople.com",
-  "phenom.com", "careers.google.com", "google.com",
+  "phenom.com", "careers.google.com", "google.com", "dice.com",
 ];
 const autofillProfileCache = new Map();
 const autofillProfileRequests = new Map();
@@ -61,17 +61,24 @@ async function configureExtension() {
   if (chrome.sidePanel?.setPanelBehavior) {
     await chrome.sidePanel.setPanelBehavior({ openPanelOnActionClick: false }).catch(() => {});
   }
-  const jobsTabs = await chrome.tabs.query({ url: "https://www.linkedin.com/jobs/*" });
+  const jobsTabs = await chrome.tabs.query({ url: [
+    "https://www.linkedin.com/jobs/*",
+    "https://www.dice.com/*",
+    "https://dice.com/*",
+  ] });
   await Promise.all(jobsTabs.map((tab) => {
     if (!tab.id) return Promise.resolve();
-    return chrome.scripting.executeScript({ target: { tabId: tab.id }, files: ["content-script.js"] }).catch(() => {});
+    const script = jobReaderScriptForUrl(tab.url);
+    return script
+      ? chrome.scripting.executeScript({ target: { tabId: tab.id }, files: [script] }).catch(() => {})
+      : Promise.resolve();
   }));
   const webTabs = await chrome.tabs.query({ url: ["http://*/*", "https://*/*"] });
   await Promise.all(webTabs.filter((tab) => isInspectableWebUrl(tab.url)).map((tab) => {
     if (!tab.id) return Promise.resolve();
     return chrome.scripting.executeScript({ target: { tabId: tab.id }, files: ["application-assistant.js"] }).catch(() => {});
   }));
-  await Promise.all(webTabs.filter((tab) => !isLinkedInJobsUrl(tab.url)).map((tab) => {
+  await Promise.all(webTabs.filter((tab) => !isSupportedJobReaderUrl(tab.url)).map((tab) => {
     if (!tab.id) return Promise.resolve();
     return chrome.scripting.executeScript({ target: { tabId: tab.id }, files: ["panel-host.js"] }).catch(() => {});
   }));
@@ -91,6 +98,30 @@ chrome.storage.onChanged.addListener((changes, areaName) => {
 
 function isLinkedInJobsUrl(url) {
   return String(url || "").startsWith("https://www.linkedin.com/jobs/");
+}
+
+function isDiceUrl(url) {
+  try {
+    const parsed = new URL(String(url || ""));
+    return parsed.protocol === "https:" && ["dice.com", "www.dice.com"].includes(parsed.hostname.toLowerCase());
+  } catch (_) {
+    return false;
+  }
+}
+
+function isDiceJobDetailUrl(url) {
+  if (!isDiceUrl(url)) return false;
+  return /^\/job-detail\/[^/]+\/?$/i.test(new URL(String(url)).pathname);
+}
+
+function isSupportedJobReaderUrl(url) {
+  return isLinkedInJobsUrl(url) || isDiceUrl(url);
+}
+
+function jobReaderScriptForUrl(url) {
+  if (isLinkedInJobsUrl(url)) return "content-script.js";
+  if (isDiceUrl(url)) return "dice-content-script.js";
+  return "";
 }
 
 function isKnownAtsUrl(url) {
@@ -429,24 +460,35 @@ async function answerApplicationQuestion(message) {
 }
 
 async function ensureJobReader(tab) {
-  if (!tab?.id || !isLinkedInJobsUrl(tab.url)) return;
+  const script = jobReaderScriptForUrl(tab?.url);
+  if (!tab?.id || !script) return;
   try {
     await chrome.tabs.sendMessage(tab.id, { type: "READ_JOB_CONTEXT" });
   } catch (_) {
-    await chrome.scripting.executeScript({ target: { tabId: tab.id }, files: ["content-script.js"] });
+    await chrome.scripting.executeScript({ target: { tabId: tab.id }, files: [script] });
   }
 }
 
-async function activeLinkedInTab() {
-  const tabs = await chrome.tabs.query({ url: "https://www.linkedin.com/jobs/*" });
-  return tabs.find((tab) => tab.active) || tabs.sort((left, right) => (right.lastAccessed || 0) - (left.lastAccessed || 0))[0] || null;
+async function activeJobTab() {
+  const activeTabs = await chrome.tabs.query({ active: true, currentWindow: true });
+  const active = activeTabs.find((tab) => isSupportedJobReaderUrl(tab.url));
+  if (active) return active;
+  const tabs = await chrome.tabs.query({ url: [
+    "https://www.linkedin.com/jobs/*",
+    "https://www.dice.com/job-detail/*",
+    "https://dice.com/job-detail/*",
+  ] });
+  return tabs
+    .filter((tab) => isLinkedInJobsUrl(tab.url) || isDiceJobDetailUrl(tab.url))
+    .sort((left, right) => (right.lastAccessed || 0) - (left.lastAccessed || 0))[0] || null;
 }
 
 async function contextForTab(tabId) {
   if (!tabId) return null;
-  const key = `linkedinJobContext:${tabId}`;
-  const stored = await chrome.storage.session.get(key);
-  return stored[key] || null;
+  const key = `jobContext:${tabId}`;
+  const legacyKey = `linkedinJobContext:${tabId}`;
+  const stored = await chrome.storage.session.get([key, legacyKey]);
+  return stored[key] || stored[legacyKey] || null;
 }
 
 async function apiRequest(message) {
@@ -480,7 +522,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message?.type === "JOB_CONTEXT") {
     const tabId = sender.tab?.id;
     if (!tabId) return false;
-    const key = `linkedinJobContext:${tabId}`;
+    const key = `jobContext:${tabId}`;
     chrome.storage.session.set({ [key]: message.context }).then(() => {
       chrome.action.setBadgeBackgroundColor({ color: "#0f9f78", tabId }).catch(() => {});
       chrome.action.setBadgeText({ text: "JOB", tabId }).catch(() => {});
@@ -490,8 +532,19 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     return true;
   }
 
+  if (message?.type === "JOB_CONTEXT_CLEARED") {
+    const tabId = sender.tab?.id;
+    if (!tabId) return false;
+    chrome.storage.session.remove([`jobContext:${tabId}`, `linkedinJobContext:${tabId}`]).then(() => {
+      chrome.action.setBadgeText({ text: "", tabId }).catch(() => {});
+      chrome.runtime.sendMessage({ type: "JOB_CONTEXT_CHANGED", tabId, context: null }).catch(() => {});
+      sendResponse({ success: true });
+    });
+    return true;
+  }
+
   if (message?.type === "GET_ACTIVE_CONTEXT") {
-    activeLinkedInTab()
+    activeJobTab()
       .then(async (tab) => {
         await ensureJobReader(tab).catch(() => {});
         if (message.forceRefresh && tab) {
@@ -700,6 +753,20 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     return true;
   }
 
+  if (message?.type === "OPEN_SOURCE_JOB") {
+    const jobUrl = String(message.url || "");
+    const isLinkedIn = /^https:\/\/(www\.)?linkedin\.com\/jobs\/view\/\d+\/?(?:[?#].*)?$/i.test(jobUrl);
+    const isDice = /^https:\/\/(www\.)?dice\.com\/job-detail\/[a-z0-9-]+\/?(?:[?#].*)?$/i.test(jobUrl);
+    if (!isLinkedIn && !isDice) {
+      sendResponse({ success: false, error: "This draft does not have a valid supported job URL." });
+      return false;
+    }
+    chrome.tabs.create({ url: jobUrl, active: false })
+      .then(() => sendResponse({ success: true }))
+      .catch((error) => sendResponse({ success: false, error: error.message }));
+    return true;
+  }
+
   if (message?.type === "OPEN_LINKEDIN_SEARCH") {
     const searchUrl = String(message.url || "");
     if (!/^https:\/\/(www\.)?linkedin\.com\/search\/results\/(people|content)\/?(?:[?#].*)?$/i.test(searchUrl)) {
@@ -717,7 +784,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
 chrome.webNavigation.onHistoryStateUpdated.addListener((details) => {
   if (details.frameId !== 0) return;
-  if (details.url.startsWith("https://www.linkedin.com/jobs/")) {
+  if (isSupportedJobReaderUrl(details.url)) {
     chrome.tabs.sendMessage(details.tabId, { type: "READ_JOB_CONTEXT" }).catch(() => {});
   }
   chrome.tabs.sendMessage(details.tabId, { type: "AUTOFILL_NAVIGATION_CHANGED", url: details.url }).catch(() => {});
@@ -742,4 +809,5 @@ chrome.tabs.onRemoved.addListener((tabId) => {
   clearTimeout(applicationScanTimers.get(tabId));
   applicationScanTimers.delete(tabId);
   clearApplicationApproval(tabId).catch(() => {});
+  chrome.storage.session.remove([`jobContext:${tabId}`, `linkedinJobContext:${tabId}`]).catch(() => {});
 });

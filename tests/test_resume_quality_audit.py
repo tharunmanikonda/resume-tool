@@ -296,6 +296,9 @@ def test_project_evidence_can_resolve_requirement_with_safe_patch():
         "requirement_id": "req.llm-orchestration",
         "requirement": "Experience building LLM orchestration workflows",
         "priority": "important",
+        "claim_type": "engineering_capability",
+        "evidence_fit": "direct",
+        "resume_action": "patch_required",
         "status": "patched_direct",
         "evidence_refs": ["profile.project.1.bullet.1"],
         "change_ids": ["skills.backend.add-langchain"],
@@ -330,6 +333,9 @@ def test_genuinely_unsupported_requirement_becomes_non_blocking_gap():
         "requirement_id": "req.mobile-store",
         "requirement": "Published production applications to a mobile app store",
         "priority": "important",
+        "claim_type": "engineering_capability",
+        "evidence_fit": "none",
+        "resume_action": "gap_only",
         "status": "unresolved",
         "evidence_refs": [],
         "change_ids": [],
@@ -350,6 +356,9 @@ def test_already_covered_requirement_does_not_fail_when_luna_links_patch():
         "requirement_id": "R-010",
         "requirement": "Use a market-standard backend title",
         "priority": "important",
+        "claim_type": "engineering_capability",
+        "evidence_fit": "direct",
+        "resume_action": "already_covered",
         "status": "already_covered",
         "evidence_refs": ["upstream.mckinsey.title"],
         "change_ids": ["title.market-standard"],
@@ -367,6 +376,55 @@ def test_already_covered_requirement_does_not_fail_when_luna_links_patch():
         "issue": "incompatible_change_ids_removed",
         "details": ["title.market-standard"],
     }]
+
+
+def test_supported_engineering_requirement_cannot_remain_unpatched():
+    result = audit_result()
+    result["requirement_resolutions"] = [{
+        "requirement_id": "req.implementation-docs",
+        "requirement": "Create implementation guides and detailed test-result documentation",
+        "priority": "important",
+        "claim_type": "engineering_capability",
+        "evidence_fit": "transferable",
+        "resume_action": "gap_only",
+        "status": "unresolved",
+        "evidence_refs": ["upstream.mckinsey.bullet.2"],
+        "change_ids": [],
+        "reason": "The existing release-validation evidence can support a transferable rewrite.",
+    }]
+
+    with pytest.raises(
+        resume_app.ResumeQualityAuditRepairRequiredError,
+        match="requires a valid linked patch",
+    ):
+        validate(result)
+
+
+def test_warehouse_and_travel_requirements_are_forced_to_gap_only():
+    changes = title_change()
+    result = audit_result("changes_suggested", changes)
+    result["requirement_resolutions"] = [{
+        "requirement_id": "req.warehouse-travel",
+        "requirement": "Travel to warehouse sites for conveyor commissioning",
+        "priority": "critical",
+        "claim_type": "engineering_capability",
+        "evidence_fit": "direct",
+        "resume_action": "patch_required",
+        "status": "patched_direct",
+        "evidence_refs": ["upstream.mckinsey.title"],
+        "change_ids": ["title.market-standard"],
+        "reason": "The previous review incorrectly treated an application condition as resume evidence.",
+    }]
+
+    validated = validate(result)
+
+    resolution = validated["requirement_resolutions"][0]
+    assert resolution["claim_type"] == "domain_context"
+    assert resolution["resume_action"] == "gap_only"
+    assert resolution["status"] == "unresolved"
+    assert resolution["change_ids"] == []
+    assert validated["decision"] == "approved"
+    assert validated["non_blocking_gaps"][-1]["kind"] == "domain_context"
 
 
 def test_skill_removal_cannot_silently_collapse_category():
@@ -431,6 +489,9 @@ def test_schema_is_patch_only_and_never_contains_full_resume():
     assert "review_basis" in schema_text
     assert "supported_by" in schema_text
     assert "non_blocking_gaps" in schema_text
+    assert "claim_type" in schema_text
+    assert "evidence_fit" in schema_text
+    assert "resume_action" in schema_text
 
 
 def test_title_assessment_requires_matching_title_patch():
@@ -488,13 +549,71 @@ def test_generation_uses_luna_medium_and_retries_for_output_limit(monkeypatch):
     assert [call["max_output_tokens"] for call in calls] == [8000, 12000]
     assert all(call["model"] == "gpt-5.6-luna" for call in calls)
     assert all(call["reasoning_effort"] == "medium" for call in calls)
+    assert all(call["background"] is True for call in calls)
+    assert all(
+        call["background_timeout_seconds"]
+        == resume_app.OPENAI_AUDIT_BACKGROUND_TIMEOUT_SECONDS
+        for call in calls
+    )
     assert generated["attempt_count"] == 2
     assert generated["decision"] == "approved"
+    assert generated["execution_mode"] == "background"
     assert generated["review_basis"]["advertised_job_title"] == "Senior Backend Engineer"
     structured_input = calls[-1]["user_prompt"]
     assert '"advertised_title":"Senior Backend Engineer"' in structured_input
     assert '"advertised_title_is_authoritative":true' in structured_input
     assert '"has_manual_edits":true' in structured_input
+
+
+def test_generation_repairs_missing_supported_engineering_patch_once(monkeypatch):
+    calls = []
+    incomplete = audit_result()
+    incomplete["requirement_resolutions"] = [{
+        "requirement_id": "req.implementation-docs",
+        "requirement": "Create implementation guides and detailed test-result documentation",
+        "priority": "important",
+        "claim_type": "engineering_capability",
+        "evidence_fit": "transferable",
+        "resume_action": "gap_only",
+        "status": "unresolved",
+        "evidence_refs": ["upstream.mckinsey.bullet.2"],
+        "change_ids": [],
+        "reason": "Transferable release-validation evidence exists.",
+    }]
+    repaired = audit_result("changes_suggested", bullet_change())
+    repaired["requirement_resolutions"] = [{
+        "requirement_id": "req.implementation-docs",
+        "requirement": "Create implementation guides and detailed test-result documentation",
+        "priority": "important",
+        "claim_type": "engineering_capability",
+        "evidence_fit": "transferable",
+        "resume_action": "patch_required",
+        "status": "patched_transferable",
+        "evidence_refs": ["upstream.mckinsey.bullet.2"],
+        "change_ids": ["experience.mckinsey.rewrite-1"],
+        "reason": "The replacement surfaces supported release-validation documentation evidence.",
+    }]
+
+    def fake_call(**kwargs):
+        calls.append(kwargs)
+        return copy.deepcopy(incomplete if len(calls) == 1 else repaired)
+
+    monkeypatch.setattr(resume_app, "call_openai_structured_output", fake_call)
+
+    generated = resume_app.generate_resume_quality_audit(
+        api_key="test-key",
+        job_description="Create implementation guides and detailed test-result documentation.",
+        analysis_payload=ANALYSIS,
+        current_resume=current_resume(),
+        active_blueprints=active_blueprints(),
+    )
+
+    assert len(calls) == 2
+    assert calls[1]["max_output_tokens"] == 12000
+    assert "required_patch_diagnostics" in calls[1]["user_prompt"]
+    assert generated["decision"] == "changes_suggested"
+    assert generated["repair_attempted"] is True
+    assert generated["attempt_count"] == 2
 
 
 def test_generation_retries_once_after_transient_network_failure(monkeypatch):
@@ -523,6 +642,60 @@ def test_generation_retries_once_after_transient_network_failure(monkeypatch):
     assert len(calls) == 2
     assert generated["attempt_count"] == 2
     assert generated["decision"] == "approved"
+
+
+def test_generation_does_not_restart_accepted_background_response(monkeypatch):
+    calls = []
+
+    def fake_call(**kwargs):
+        calls.append(kwargs)
+        error = RuntimeError("OpenAI API request failed: connection reset")
+        error.openai_response_started = True
+        error.openai_response_id = "resp_audit_123"
+        raise error
+
+    monkeypatch.setattr(resume_app, "call_openai_structured_output", fake_call)
+
+    with pytest.raises(RuntimeError, match="connection reset"):
+        resume_app.generate_resume_quality_audit(
+            api_key="test-key",
+            job_description="Build reliable Python APIs.",
+            analysis_payload=ANALYSIS,
+            current_resume=current_resume(),
+            active_blueprints=active_blueprints(),
+        )
+
+    assert len(calls) == 1
+
+
+def test_background_poll_reuses_response_id_after_transient_failure(monkeypatch):
+    response_ids = []
+    responses = [
+        RuntimeError("OpenAI API request failed: connection reset"),
+        {"id": "resp_audit_123", "status": "in_progress"},
+        {"id": "resp_audit_123", "status": "completed", "output": []},
+    ]
+
+    def fake_get(**kwargs):
+        response_ids.append(kwargs["response_id"])
+        response = responses.pop(0)
+        if isinstance(response, Exception):
+            raise response
+        return response
+
+    monkeypatch.setattr(resume_app, "_get_openai_response_payload", fake_get)
+    monkeypatch.setattr(resume_app.time, "sleep", lambda _seconds: None)
+
+    completed = resume_app._poll_openai_background_response(
+        api_key="test-key",
+        initial_response={"id": "resp_audit_123", "status": "queued"},
+        request_timeout_seconds=60,
+        overall_timeout_seconds=10,
+        poll_interval_seconds=0.1,
+    )
+
+    assert completed["status"] == "completed"
+    assert response_ids == ["resp_audit_123"] * 3
 
 
 def test_non_truncation_failure_is_not_retried(monkeypatch):

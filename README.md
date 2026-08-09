@@ -1,13 +1,13 @@
 # Resume Generator With Application Companion
 
-Local resume generation, PDF export, application tracking, LinkedIn job capture, and ATS form autofill in one Flask and React application.
+Local resume generation, PDF export, application tracking, LinkedIn and Dice job capture, and ATS form autofill in one Flask and React application.
 
 The browser extension is a companion to the local server. It does not contain a separate resume-generation backend and should always use the same running Flask application as the main UI.
 
 ## Capabilities
 
 - Generate a resume tailored to the current job description.
-- Keep separate persistent drafts for multiple LinkedIn jobs.
+- Keep separate persistent drafts for multiple LinkedIn and Dice jobs.
 - Edit titles, summaries, technical skills, work history, and generated bullets before PDF creation.
 - Select which saved work experiences appear in each draft.
 - Generate and preview DOCX/PDF output.
@@ -17,7 +17,7 @@ The browser extension is a companion to the local server. It does not contain a 
 - Detect and fill recognized application fields on supported ATS platforms and company-owned career sites.
 - Attach the selected generated PDF to compatible resume upload fields.
 
-The extension never submits an application, sends a LinkedIn message, clicks Apply, reads LinkedIn cookies, or crawls job listings.
+The extension never submits an application, sends a LinkedIn message, clicks Apply, reads job-site cookies, or crawls job listings.
 
 ## System Requirements
 
@@ -202,7 +202,7 @@ Always load `extension/dist` in the browser. Do not load `extension/` or `extens
 6. Select the repository's `extension/dist` directory.
 7. Approve the requested LinkedIn, ATS, and localhost host permissions.
 8. Pin the extension if a persistent toolbar action is useful.
-9. Refresh any LinkedIn or ATS tabs that were already open.
+9. Refresh any LinkedIn, Dice, or ATS tabs that were already open.
 10. Click the extension icon or the page-edge **Resume** button.
 
 After rebuilding the extension, return to the browser extension page and press **Reload** for the unpacked extension. Rebuilding files alone does not update an already loaded extension runtime.
@@ -215,16 +215,16 @@ Disable the older standalone Job AutoFill extension when using this merged exten
 
 Resume is always the default workspace.
 
-On a LinkedIn Jobs page it reads only the currently displayed job and extracts:
+On a LinkedIn Jobs or Dice job-detail page it reads only the currently displayed job and extracts:
 
-- LinkedIn job ID and canonical URL.
+- Source job ID and canonical URL.
 - Company, role, and location.
 - Full job description.
 - Available posting metadata.
 
-Use **Refresh** when LinkedIn has finished loading but the company, role, or description is missing. Refresh forces a new page extraction and waits for the updated context before rendering it.
+Use **Refresh** when the job page has finished loading but the company, role, or description is missing. Refresh forces a new page extraction and waits for the updated context before rendering it.
 
-Generating a resume creates a persistent draft in the local database. Moving to another LinkedIn job does not overwrite an existing draft. The recent draft tray can reopen generation progress, editing, PDF, messages, or search tools.
+Generating a resume creates a persistent draft in the local database. Moving to another LinkedIn or Dice job does not overwrite an existing draft. The recent draft tray can reopen generation progress, editing, PDF, messages, or search tools.
 
 ### Autofill
 
@@ -286,7 +286,7 @@ Support does not mean every employer customization is guaranteed. Closed shadow 
 
 ## Resume and Tracker Workflow
 
-1. Open a LinkedIn job.
+1. Open a LinkedIn or Dice job.
 2. Open the extension; Resume is selected by default.
 3. Review the extracted company, role, and job description.
 4. Use Refresh if extraction is incomplete.
@@ -443,8 +443,9 @@ extension_drafts.py                     Persistent draft store and queue behavio
 config/user_profile.template.json       Blank committed personal/application profile schema
 extension/src/panel-main.jsx            Resume and Autofill drawer UI
 extension/public/service-worker.js      Local API bridge, tab/frame routing and PDF transfer
-extension/public/content-script.js      LinkedIn job extraction and LinkedIn drawer host
-extension/public/panel-host.js           Drawer host on non-LinkedIn pages
+extension/public/content-script.js      LinkedIn job extraction and drawer host
+extension/public/dice-content-script.js Dice job extraction and drawer host
+extension/public/panel-host.js           Drawer host on other pages
 extension/public/application-assistant.js Application detection and compact approval widget
 extension/public/autofill-config.js      ATS hosts, field patterns and dropdown mappings
 extension/public/autofill-matcher.js     Deep field discovery and profile matching

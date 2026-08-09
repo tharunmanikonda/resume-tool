@@ -53,7 +53,14 @@
     ]
   };
 
+  const STABLE_CONTEXT_OBSERVATIONS = 2;
+  const CONTEXT_STABILITY_DELAY_MS = 450;
   let lastFingerprint = "";
+  let lastPublishedJobId = "";
+  let lastPublishedDescriptionSignature = "";
+  let observedUrlJobId = "";
+  let pendingFingerprint = "";
+  let pendingObservations = 0;
   let timer = null;
   let stopped = false;
   let observer = null;
@@ -115,16 +122,36 @@
       .some((value) => String(value).startsWith("chrome-extension://invalid"));
   }
 
-  function textFrom(selectorsList, minimumLength = 1, preferTextContent = false) {
+  function textCandidate(selectorsList, minimumLength = 1, preferTextContent = false) {
     for (const selector of selectorsList) {
       for (const element of document.querySelectorAll(selector)) {
         if (!isVisible(element)) continue;
         const rawValue = preferTextContent ? element.textContent : (element.innerText || element.textContent);
         const value = cleanText(rawValue).replace(/\s+/g, " ");
-        if (value.length >= minimumLength) return value;
+        if (value.length >= minimumLength) return { value, element, selector };
       }
     }
-    return "";
+    return { value: "", element: null, selector: "" };
+  }
+
+  function textFrom(selectorsList, minimumLength = 1, preferTextContent = false) {
+    return textCandidate(selectorsList, minimumLength, preferTextContent).value;
+  }
+
+  function descriptionSignature(value) {
+    const normalized = cleanText(value).toLowerCase();
+    if (!normalized) return "";
+    return [normalized.length, normalized.slice(0, 180), normalized.slice(-180)].join("|");
+  }
+
+  function resetPendingContext() {
+    pendingFingerprint = "";
+    pendingObservations = 0;
+  }
+
+  function readAgainAfterStabilityDelay() {
+    clearTimeout(timer);
+    timer = setTimeout(readContext, CONTEXT_STABILITY_DELAY_MS);
   }
 
   function jobIdFromUrl() {
@@ -381,23 +408,46 @@
 
   function readContext() {
     if (!location.pathname.startsWith("/jobs/")) return;
+    const urlJobId = jobIdFromUrl();
+    if (observedUrlJobId && urlJobId && urlJobId !== observedUrlJobId) {
+      resetPendingContext();
+      lastFingerprint = "";
+      sendRuntimeMessage({ type: "JOB_CONTEXT_CLEARED" });
+    }
+    if (urlJobId) observedUrlJobId = urlJobId;
+
     const structured = structuredJob();
-    const externalJobId = jobIdFromUrl() || String(structured?.identifier?.value || "");
+    const externalJobId = urlJobId || String(structured?.identifier?.value || "");
     const card = cardContext(externalJobId);
     const detail = detailContext();
     const metadata = metadataContext();
     const roleCandidates = [
-      { value: String(structured?.title || "").trim(), source: "structured_data" },
       { value: card.roleTitle, source: "selected_job_card" },
       { value: textFrom(selectors.title), source: "job_detail_selector" },
       { value: detail.roleTitle, source: "detail_heading" },
+      { value: String(structured?.title || "").trim(), source: "structured_data" },
       { value: metadata.roleTitle, source: "page_metadata" },
     ];
     const selectedRole = roleCandidates.find((candidate) => plausibleRoleTitle(candidate.value)) || { value: "", source: "not_found" };
     const roleTitle = cleanText(selectedRole.value);
-    const companyName = textFrom(selectors.company) || String(structured?.hiringOrganization?.name || "").trim() || detail.companyName || card.companyName || metadata.companyName;
-    const jobDescription = textFrom(selectors.description, 120, true).replace(/\n{3,}/g, "\n\n").trim() || stripHtml(structured?.description) || descriptionNearHeading() || descriptionFromPageText() || metadata.description;
-    const jobLocation = normalizeLocation(locationFromStructured(structured) || card.jobLocation || textFrom(selectors.location) || detail.jobLocation);
+    const companyName = textFrom(selectors.company) || detail.companyName || card.companyName || String(structured?.hiringOrganization?.name || "").trim() || metadata.companyName;
+    const descriptionCandidate = textCandidate(selectors.description, 120, true);
+    const jobDescription = descriptionCandidate.value.replace(/\n{3,}/g, "\n\n").trim() || stripHtml(structured?.description) || descriptionNearHeading() || descriptionFromPageText() || metadata.description;
+    const jobLocation = normalizeLocation(card.jobLocation || textFrom(selectors.location) || detail.jobLocation || locationFromStructured(structured));
+    const currentDescriptionSignature = descriptionSignature(jobDescription);
+    const changedJob = Boolean(lastPublishedJobId && externalJobId && externalJobId !== lastPublishedJobId);
+    const descriptionNodeStillBelongsToPreviousJob = Boolean(
+      changedJob
+      && currentDescriptionSignature
+      && currentDescriptionSignature === lastPublishedDescriptionSignature
+    );
+
+    if (descriptionNodeStillBelongsToPreviousJob) {
+      resetPendingContext();
+      readAgainAfterStabilityDelay();
+      return;
+    }
+
     const canonicalUrl = externalJobId ? `https://www.linkedin.com/jobs/view/${externalJobId}/` : location.href;
     const completeFields = [companyName, roleTitle, jobDescription.length >= 120].filter(Boolean).length;
     const context = {
@@ -415,6 +465,8 @@
         extraction_method: structured ? "dom_and_json_ld" : "dom",
         extractor_version: readerVersion,
         role_source: selectedRole.source,
+        description_source: descriptionCandidate.selector || (structured?.description ? "structured_data" : "fallback"),
+        stability_observations: STABLE_CONTEXT_OBSERVATIONS,
         field_lengths: {
           company_name: companyName.length,
           role_title: roleTitle.length,
@@ -424,7 +476,24 @@
     };
     const fingerprint = [externalJobId, roleTitle, companyName, jobDescription.length, jobDescription.slice(0, 80), jobDescription.slice(-80)].join("|");
     if (fingerprint === lastFingerprint) return;
+
+    if (fingerprint !== pendingFingerprint) {
+      pendingFingerprint = fingerprint;
+      pendingObservations = 1;
+      readAgainAfterStabilityDelay();
+      return;
+    }
+
+    pendingObservations += 1;
+    if (pendingObservations < STABLE_CONTEXT_OBSERVATIONS) {
+      readAgainAfterStabilityDelay();
+      return;
+    }
+
     lastFingerprint = fingerprint;
+    lastPublishedJobId = externalJobId;
+    lastPublishedDescriptionSignature = currentDescriptionSignature;
+    resetPendingContext();
     sendRuntimeMessage({ type: "JOB_CONTEXT", context });
   }
 
@@ -436,7 +505,7 @@
       return;
     }
     clearTimeout(timer);
-    timer = setTimeout(readContext, 450);
+    timer = setTimeout(readContext, CONTEXT_STABILITY_DELAY_MS);
   }
 
   function handleRuntimeMessage(message, _sender, sendResponse) {

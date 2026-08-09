@@ -15,7 +15,10 @@ async function openResumePanel() {
     try {
       await chrome.tabs.sendMessage(tab.id, { type: "TOGGLE_RESUME_PANEL" });
     } catch (_) {
-      const script = String(tab.url || "").startsWith("https://www.linkedin.com/jobs/") ? "content-script.js" : "panel-host.js";
+      const currentUrl = String(tab.url || "");
+      let script = "panel-host.js";
+      if (currentUrl.startsWith("https://www.linkedin.com/jobs/")) script = "content-script.js";
+      else if (/^https:\/\/(?:www\.)?dice\.com\//i.test(currentUrl)) script = "dice-content-script.js";
       await chrome.scripting.executeScript({ target: { tabId: tab.id }, files: [script] });
       await chrome.tabs.sendMessage(tab.id, { type: "TOGGLE_RESUME_PANEL" });
     }

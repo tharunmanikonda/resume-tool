@@ -79,7 +79,7 @@ function quickEditValuesFromDraft(draft) {
 }
 
 function emptyContext() {
-  return { source: "linkedin", external_job_id: "", url: "", company_name: "", role_title: "", location: "", job_description: "" };
+  return { source: "", external_job_id: "", url: "", company_name: "", role_title: "", location: "", job_description: "" };
 }
 
 function emptyAssistantState() {
@@ -220,13 +220,22 @@ function generatedAgo(value) {
 
 function sourceIdentity(value) {
   if (!value) return "";
+  const source = String(value.source || "").trim().toLowerCase()
+    || (/dice\.com/i.test(String(value.url || value.canonical_url || "")) ? "dice" : "linkedin");
   const explicitId = String(value.external_job_id || "").trim();
-  if (explicitId) return `linkedin:${explicitId}`;
+  if (explicitId) return `${source}:${explicitId}`;
   const url = String(value.url || value.canonical_url || "");
-  const pathId = url.match(/\/jobs\/view\/(\d+)/)?.[1];
-  const queryId = url.match(/[?&]currentJobId=(\d+)/)?.[1];
-  if (pathId || queryId) return `linkedin:${pathId || queryId}`;
-  return [value.source || "linkedin", value.company_name || "", value.role_title || ""].map((item) => String(item).trim().toLowerCase()).join(":");
+  const linkedinId = url.match(/\/jobs\/view\/(\d+)/)?.[1] || url.match(/[?&]currentJobId=(\d+)/)?.[1];
+  const diceId = url.match(/\/job-detail\/([^/?#]+)/)?.[1];
+  if (linkedinId || diceId) return `${source}:${linkedinId || diceId}`;
+  return [source, value.company_name || "", value.role_title || ""].map((item) => String(item).trim().toLowerCase()).join(":");
+}
+
+function sourceLabel(value) {
+  const source = String(typeof value === "string" ? value : value?.source || "").trim().toLowerCase();
+  if (source === "dice") return "Dice";
+  if (source === "linkedin") return "LinkedIn";
+  return source ? source.charAt(0).toUpperCase() + source.slice(1) : "Job site";
 }
 
 function linkedinSearchUrl(type, query) {
@@ -456,10 +465,14 @@ function ReviewBasis({ basis }) {
 }
 
 function ReviewGaps({ gaps }) {
+  const visibleGaps = (Array.isArray(gaps) ? gaps : []).filter((gap) => ![
+    "domain_context", "application_condition", "credential_or_duration",
+  ].includes(String(gap?.kind || "")));
+  if (!visibleGaps.length) return null;
   return (
     <div className="quality-review-gaps">
-      <strong>Requirements not claimed</strong>
-      {gaps.map((gap, index) => (
+      <strong>Requirements not supported by profile evidence</strong>
+      {visibleGaps.map((gap, index) => (
         <p key={gap.id || index}>
           <b>{gap.gap || "Unsupported requirement"}</b>
           {gap.impact ? ` ${gap.impact}` : ""}
@@ -718,7 +731,7 @@ function App() {
     setError("");
     try {
       const result = await send({ type: "GET_ACTIVE_CONTEXT", forceRefresh: true });
-      if (!result?.context) throw new Error("No LinkedIn job could be read from the active tab.");
+      if (!result?.context) throw new Error("No supported job could be read from the active tab.");
       setViewingCurrent(true);
       viewingCurrentRef.current = true;
       await resolveContext(result.context);
@@ -886,6 +899,7 @@ function App() {
     const requestId = ++contextResolveRef.current;
     setContext(nextContext);
     setContextForm({ ...emptyContext(), ...nextContext });
+    setApplyForm((current) => ({ ...current, source: sourceLabel(nextContext) }));
     viewingCurrentRef.current = true;
     setViewingCurrent(true);
     try {
@@ -919,7 +933,16 @@ function App() {
       });
     });
     const listener = (message) => {
-      if (message?.type === "JOB_CONTEXT_CHANGED" && viewingCurrentRef.current) resolveContext(message.context);
+      if (message?.type === "JOB_CONTEXT_CHANGED" && viewingCurrentRef.current) {
+        if (message.context) resolveContext(message.context);
+        else {
+          currentContextRef.current = null;
+          setContext(null);
+          setContextForm(emptyContext());
+          setResolution({ history: null, issues: [], draft: null });
+          commitDraft(null);
+        }
+      }
       if (message?.type === "AUTOFILL_ACTIVE_STATUS_CHANGED" && message.status) setAutofillStatus(message.status);
     };
     chrome.runtime.onMessage.addListener(listener);
@@ -1350,12 +1373,13 @@ function App() {
         location: loaded.location || "",
         job_description: loaded.job_description || "",
       });
+      setApplyForm((current) => ({ ...current, source: sourceLabel(loaded) }));
     }
   }
 
-  async function openLinkedInJob(item) {
-    const result = await send({ type: "OPEN_LINKEDIN_JOB", url: item.canonical_url });
-    if (!result?.success) setError(result?.error || "This draft does not have a LinkedIn job link.");
+  async function openSourceJob(item) {
+    const result = await send({ type: "OPEN_SOURCE_JOB", url: item.canonical_url });
+    if (!result?.success) setError(result?.error || "This draft does not have a supported job link.");
   }
 
   async function openLinkedInSearch(url) {
@@ -1452,7 +1476,7 @@ function App() {
                 <span>{item.company_name}</span><small>{STATUS_LABELS[item.status] || item.status}</small>
               </button>
               <div className="draft-tray-actions">
-                {item.canonical_url ? <button className="draft-job-link" title={`Open ${item.role_title || "job"} on LinkedIn in a new tab`} onClick={() => openLinkedInJob(item)}>LinkedIn</button> : <span />}
+                {item.canonical_url ? <button className="draft-job-link" title={`Open ${item.role_title || "job"} on ${sourceLabel(item)} in a new tab`} onClick={() => openSourceJob(item)}>{sourceLabel(item)}</button> : <span />}
                 <button className="draft-hide" title={`Remove ${item.company_name} from recent drafts`} aria-label={`Remove ${item.company_name} from recent drafts`} onClick={() => hideRecentDraft(item.id)}>X</button>
               </div>
             </div>
@@ -1460,11 +1484,11 @@ function App() {
         </nav>
       ) : null}
 
-      {!viewingCurrent && context ? <button className="current-job-link" onClick={() => resolveContext(context)}>Back to current LinkedIn job</button> : null}
+      {!viewingCurrent && context ? <button className="current-job-link" onClick={() => resolveContext(context)}>Back to current {sourceLabel(context)} job</button> : null}
       {visibleError ? <div className="error-band">{visibleError}</div> : null}
 
       {viewingCurrent && !context ? (
-        <div className="blank-state"><h2>{visibleDrafts.length ? "Select a recent draft" : "No LinkedIn job selected"}</h2><p>{visibleDrafts.length ? "Choose a draft above to review progress or answer follow-up questions. This page is not being read." : "Open a LinkedIn job to create a resume. On other pages, the extension stays available without reading page content."}</p><button onClick={() => send({ type: "GET_ACTIVE_CONTEXT" }).then((result) => result?.context && resolveContext(result.context))}>Check LinkedIn again</button></div>
+        <div className="blank-state"><h2>{visibleDrafts.length ? "Select a recent draft" : "No supported job selected"}</h2><p>{visibleDrafts.length ? "Choose a draft above to review progress or answer follow-up questions. This page is not being read." : "Open a LinkedIn or Dice job to create a resume. On other pages, the extension stays available without reading page content."}</p><button onClick={() => send({ type: "GET_ACTIVE_CONTEXT" }).then((result) => result?.context && resolveContext(result.context))}>Check job page again</button></div>
       ) : null}
 
       {(context || draft) ? (
@@ -1494,7 +1518,7 @@ function App() {
           {draft ? (
             <section className="draft-workspace">
               <div className="draft-status-row"><strong>{STATUS_LABELS[draft.status] || draft.status}</strong><span>{draft.stage?.replaceAll("_", " ")}</span></div>
-              {draft.source_changed && viewingCurrent ? <div className="warning-band">LinkedIn changed this job description. Your current resume was preserved.<button disabled={!canRegenerateDraft(draft, busy)} onClick={() => window.confirm("Replace this draft using the latest job description?") && runDraftAction("regenerate", { context: contextForm })}>Regenerate</button></div> : null}
+              {draft.source_changed && viewingCurrent ? <div className="warning-band">{sourceLabel(draft)} changed this job description. Your current resume was preserved.<button disabled={!canRegenerateDraft(draft, busy)} onClick={() => window.confirm("Replace this draft using the latest job description?") && runDraftAction("regenerate", { context: contextForm })}>Regenerate</button></div> : null}
               {draft.status === "duplicate_review" ? (
                 <div className="decision-band"><strong>Previous applications found</strong><p>Generation has not called the AI yet. Choose whether to continue.</p><div className="button-row"><button className="primary" onClick={() => runDraftAction("duplicate-decision", { decision: "continue" })}>Continue</button><button onClick={() => runDraftAction("duplicate-decision", { decision: "skip" })}>Skip</button></div></div>
               ) : null}

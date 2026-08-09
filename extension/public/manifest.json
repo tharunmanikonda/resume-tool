@@ -1,13 +1,15 @@
 {
   "manifest_version": 3,
   "name": "Resume Generator Companion",
-  "version": "1.4.3",
+  "version": "1.5.0",
   "description": "Generate tailored resumes and fill job applications from one persistent browser panel.",
   "permissions": ["sidePanel", "storage", "tabs", "webNavigation", "scripting", "activeTab", "clipboardWrite"],
   "host_permissions": [
     "http://*/*",
     "https://*/*",
     "https://www.linkedin.com/*",
+    "https://www.dice.com/*",
+    "https://dice.com/*",
     "*://jobs.lever.co/*",
     "*://*.lever.co/*",
     "*://boards.greenhouse.io/*",
@@ -44,13 +46,22 @@
     },
     {
       "matches": ["http://*/*", "https://*/*"],
-      "exclude_matches": ["https://www.linkedin.com/jobs/*"],
+      "exclude_matches": [
+        "https://www.linkedin.com/jobs/*",
+        "https://www.dice.com/*",
+        "https://dice.com/*"
+      ],
       "js": ["panel-host.js"],
       "run_at": "document_idle"
     },
     {
       "matches": ["https://www.linkedin.com/jobs/*"],
       "js": ["content-script.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["https://www.dice.com/*", "https://dice.com/*"],
+      "js": ["dice-content-script.js"],
       "run_at": "document_idle"
     },
     {
@@ -62,7 +73,7 @@
         "*://*.icims.com/*", "*://*.taleo.net/*", "*://*.oraclecloud.com/*",
         "*://*.smartrecruiters.com/*", "*://*.jobvite.com/*", "*://*.avature.net/*",
         "*://*.successfactors.com/*", "*://*.phenompeople.com/*", "*://careers.phenom.com/*",
-        "*://careers.google.com/*", "*://www.google.com/*"
+        "*://careers.google.com/*", "*://www.google.com/*", "*://*.dice.com/*", "*://dice.com/*"
       ],
       "js": ["autofill-config.js", "autofill-matcher.js", "autofill-content.js"],
       "all_frames": true,
