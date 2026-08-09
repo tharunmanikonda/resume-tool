@@ -7535,27 +7535,68 @@ def _is_max_output_tokens_error(exc: Exception) -> bool:
     )
 
 
+def _is_transient_audit_network_error(exc: Exception) -> bool:
+    transient_types = (
+        TimeoutError,
+        socket.timeout,
+        ConnectionError,
+        urllib.error.URLError,
+    )
+    current: BaseException | None = exc
+    messages = []
+    while current is not None:
+        if isinstance(current, transient_types):
+            return True
+        messages.append(str(current).lower())
+        current = current.__cause__ or current.__context__
+
+    message = " | ".join(messages)
+    return any(
+        term in message
+        for term in (
+            "connection closed",
+            "connection reset",
+            "connection aborted",
+            "connection refused",
+            "remote end closed",
+            "network is unreachable",
+            "name resolution",
+            "temporary failure in name resolution",
+            "timed out",
+            "timeout",
+            "ssl eof",
+            "unexpected eof",
+            "winerror 10053",
+            "winerror 10054",
+            "winerror 10060",
+        )
+    )
+
+
 def _quality_audit_failure_metadata(exc: Exception) -> dict:
     message = str(exc)
     normalized = message.lower()
+    recorded_attempts = max(1, int(getattr(exc, "audit_attempt_count", 1)))
     if _is_max_output_tokens_error(exc):
         category = "max_output_tokens"
-        attempt_count = 2
+        attempt_count = max(2, recorded_attempts)
     elif isinstance(exc, ResumeQualityAuditValidationError):
         category = "validation"
-        attempt_count = 1
+        attempt_count = recorded_attempts
     elif any(term in normalized for term in ("401", "403", "authentication", "api key", "unauthorized")):
         category = "authentication"
-        attempt_count = 1
-    elif any(term in normalized for term in ("timeout", "timed out", "network", "connection", "dns")):
+        attempt_count = recorded_attempts
+    elif _is_transient_audit_network_error(exc) or any(
+        term in normalized for term in ("network", "connection", "dns")
+    ):
         category = "network"
-        attempt_count = 1
+        attempt_count = recorded_attempts
     elif any(term in normalized for term in ("json", "schema", "parse")):
         category = "parsing"
-        attempt_count = 1
+        attempt_count = recorded_attempts
     else:
         category = "api"
-        attempt_count = 1
+        attempt_count = recorded_attempts
     return {
         "schema_version": RESUME_QUALITY_AUDIT_SCHEMA_VERSION,
         "decision": "technical_failed",
@@ -7652,6 +7693,8 @@ def generate_resume_quality_audit(
     started = time.perf_counter()
     attempts = 0
     last_limit = RESUME_QUALITY_AUDIT_MAX_OUTPUT_TOKENS
+    retried_output_limit = False
+    retried_network = False
     while True:
         attempts += 1
         try:
@@ -7671,10 +7714,19 @@ def generate_resume_quality_audit(
                 reasoning_effort=reasoning_effort,
             )
             break
-        except RuntimeError as exc:
-            if attempts == 1 and _is_max_output_tokens_error(exc):
+        except Exception as exc:
+            if not retried_output_limit and _is_max_output_tokens_error(exc):
+                retried_output_limit = True
                 last_limit = RESUME_QUALITY_AUDIT_RETRY_MAX_OUTPUT_TOKENS
                 continue
+            if not retried_network and _is_transient_audit_network_error(exc):
+                retried_network = True
+                time.sleep(1.0)
+                continue
+            try:
+                exc.audit_attempt_count = attempts
+            except (AttributeError, TypeError):
+                pass
             raise
     validated = validate_resume_quality_audit_result(
         raw_result,

@@ -460,7 +460,7 @@ def test_summary_can_retain_named_technology_from_validated_manifest():
     assert validated["withheld_changes"] == []
 
 
-def test_generation_uses_luna_medium_and_retries_only_for_output_limit(monkeypatch):
+def test_generation_uses_luna_medium_and_retries_for_output_limit(monkeypatch):
     calls = []
     approved = audit_result()
 
@@ -495,6 +495,34 @@ def test_generation_uses_luna_medium_and_retries_only_for_output_limit(monkeypat
     assert '"advertised_title":"Senior Backend Engineer"' in structured_input
     assert '"advertised_title_is_authoritative":true' in structured_input
     assert '"has_manual_edits":true' in structured_input
+
+
+def test_generation_retries_once_after_transient_network_failure(monkeypatch):
+    calls = []
+    approved = audit_result()
+
+    def fake_call(**kwargs):
+        calls.append(kwargs)
+        if len(calls) == 1:
+            raise RuntimeError(
+                "OpenAI API request failed: remote end closed connection unexpectedly"
+            )
+        return copy.deepcopy(approved)
+
+    monkeypatch.setattr(resume_app, "call_openai_structured_output", fake_call)
+    monkeypatch.setattr(resume_app.time, "sleep", lambda _seconds: None)
+
+    generated = resume_app.generate_resume_quality_audit(
+        api_key="test-key",
+        job_description="Build reliable Python APIs.",
+        analysis_payload=ANALYSIS,
+        current_resume=current_resume(),
+        active_blueprints=active_blueprints(),
+    )
+
+    assert len(calls) == 2
+    assert generated["attempt_count"] == 2
+    assert generated["decision"] == "approved"
 
 
 def test_non_truncation_failure_is_not_retried(monkeypatch):
