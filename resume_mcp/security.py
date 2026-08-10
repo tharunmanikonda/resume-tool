@@ -5,6 +5,7 @@ from __future__ import annotations
 import hmac
 import logging
 import os
+from pathlib import Path
 from urllib.parse import quote
 from urllib.parse import urlparse
 
@@ -104,15 +105,16 @@ def create_download_token(
     kind: str,
     revision: int,
 ) -> str:
-    if kind not in {"pdf", "docx"}:
+    if not workflow_id or kind not in {"pdf", "docx"} or int(revision) < 1:
         raise ValueError("Unsupported download type.")
-    return serializer().dumps({
-        "workflow_id": workflow_id,
-        "resume_draft_id": resume_draft_id,
-        "poke_user_id": poke_user_id,
-        "kind": kind,
-        "revision": int(revision),
-    })
+    # The signed workflow ID is enough to recover ownership and the linked
+    # draft. Keeping the token compact reduces accidental mutation when an
+    # agent carries the URL into a plain-text chat response.
+    return serializer().dumps([
+        workflow_id,
+        "p" if kind == "pdf" else "d",
+        int(revision),
+    ])
 
 
 def read_download_token(token: str) -> dict:
@@ -122,9 +124,21 @@ def read_download_token(token: str) -> dict:
         raise AuthenticationError("This download link has expired.") from exc
     except BadSignature as exc:
         raise AuthenticationError("This download link is invalid.") from exc
-    if not isinstance(payload, dict):
+    if (
+        not isinstance(payload, list)
+        or len(payload) != 3
+        or payload[1] not in {"p", "d"}
+    ):
         raise AuthenticationError("This download link is invalid.")
-    return payload
+    try:
+        revision = int(payload[2])
+    except (TypeError, ValueError) as exc:
+        raise AuthenticationError("This download link is invalid.") from exc
+    return {
+        "workflow_id": str(payload[0]),
+        "kind": "pdf" if payload[1] == "p" else "docx",
+        "revision": revision,
+    }
 
 
 def public_base_url(request) -> str:
@@ -134,12 +148,20 @@ def public_base_url(request) -> str:
     return f"{request.url.scheme}://{request.url.netloc}".rstrip("/")
 
 
-def signed_download_urls(*, workflow: dict, draft: dict, poke_user_id: str, base_url: str) -> dict:
+def signed_download_urls(
+    *,
+    workflow: dict,
+    draft: dict,
+    poke_user_id: str,
+    base_url: str,
+    include_docx: bool = False,
+) -> dict:
     revision = int(draft.get("resume_revision") or 1)
     result = {}
-    for kind in ("pdf", "docx"):
+    kinds = ("pdf", "docx") if include_docx else ("pdf",)
+    for kind in kinds:
         path = str(draft.get(f"{kind}_path", "")).strip()
-        if not path:
+        if not path or not Path(path).is_file():
             continue
         token = create_download_token(
             workflow_id=workflow["id"],

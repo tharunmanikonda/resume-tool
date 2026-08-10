@@ -249,3 +249,30 @@ def test_finalization_reuses_current_files_and_does_not_create_tracker_entry(tmp
 
     assert response["status"] == "completed"
     assert response["revision"] == 3
+
+
+def test_finalization_preserves_docx_for_later_requests(tmp_path, monkeypatch):
+    store = setup_store(tmp_path, monkeypatch)
+    workflow = linked_workflow(store)
+    draft = generated_draft()
+    draft_store = FakeDraftStore(draft)
+    monkeypatch.setattr(service.resume_app, "extension_drafts", draft_store)
+    monkeypatch.setattr(service.resume_app, "extension_draft_payload", lambda value: value)
+    captured = {}
+
+    def fake_generate(value, *, preserve_docx=False):
+        captured["draft"] = value
+        captured["preserve_docx"] = preserve_docx
+        return value
+
+    monkeypatch.setattr(service.resume_app, "generate_extension_pdf", fake_generate)
+
+    service.finalize_resume(
+        poke_user_id="poke-a",
+        workflow_id=workflow["id"],
+        base_revision=3,
+        confirmed=True,
+    )
+
+    assert captured["draft"]["id"] == "draft-1"
+    assert captured["preserve_docx"] is True

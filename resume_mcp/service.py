@@ -628,7 +628,11 @@ def apply_structured_changes(
 
 
 def finalize_resume(
-    *, poke_user_id: str, workflow_id: str, base_revision: int, confirmed: bool
+    *,
+    poke_user_id: str,
+    workflow_id: str,
+    base_revision: int,
+    confirmed: bool,
 ) -> dict:
     workflow = workflows.get_for_user(workflow_id, poke_user_id)
     if not workflow or not workflow.get("resume_draft_id"):
@@ -663,11 +667,17 @@ def finalize_resume(
         "status": "finalizing", "revision": int(base_revision), "pending_action": None,
     })
     if not already_current:
-        resume_app.generate_extension_pdf(draft)
+        resume_app.generate_extension_pdf(draft, preserve_docx=True)
     return get_resume_status(poke_user_id=poke_user_id, workflow_id=workflow_id)
 
 
-def add_file_urls(response: dict, *, poke_user_id: str, base_url: str) -> dict:
+def add_file_urls(
+    response: dict,
+    *,
+    poke_user_id: str,
+    base_url: str,
+    include_docx: bool = False,
+) -> dict:
     if response.get("status") != "completed":
         return response
     workflow = workflows.get_for_user(response["draft_id"], poke_user_id)
@@ -677,7 +687,11 @@ def add_file_urls(response: dict, *, poke_user_id: str, base_url: str) -> dict:
     return {
         **response,
         "files": signed_download_urls(
-            workflow=workflow, draft=draft, poke_user_id=poke_user_id, base_url=base_url
+            workflow=workflow,
+            draft=draft,
+            poke_user_id=poke_user_id,
+            base_url=base_url,
+            include_docx=include_docx,
         ),
         "links_expire_in_hours": 24,
     }

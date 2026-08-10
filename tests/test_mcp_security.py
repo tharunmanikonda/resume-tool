@@ -7,6 +7,7 @@ from resume_mcp.security import (
     authenticate_headers,
     create_download_token,
     read_download_token,
+    signed_download_urls,
     transport_security_settings,
 )
 
@@ -53,13 +54,43 @@ def test_download_token_preserves_owner_file_type_and_revision(monkeypatch):
 
     payload = read_download_token(token)
 
-    assert payload == {
-        "workflow_id": "mcp-1",
-        "resume_draft_id": "draft-1",
-        "poke_user_id": "poke-a",
-        "kind": "pdf",
-        "revision": 4,
+    assert payload == {"workflow_id": "mcp-1", "kind": "pdf", "revision": 4}
+    assert len(token) < 120
+
+
+def test_download_urls_default_to_pdf_and_add_docx_only_when_requested(
+    tmp_path, monkeypatch
+):
+    monkeypatch.setenv("MCP_API_KEY", "secret")
+    monkeypatch.setenv("MCP_SIGNING_SECRET", "signing-secret")
+    pdf_path = tmp_path / "resume.pdf"
+    docx_path = tmp_path / "resume.docx"
+    pdf_path.write_bytes(b"pdf")
+    docx_path.write_bytes(b"docx")
+    workflow = {"id": "mcp-1"}
+    draft = {
+        "id": "draft-1",
+        "resume_revision": 4,
+        "pdf_path": str(pdf_path),
+        "docx_path": str(docx_path),
     }
+
+    default_files = signed_download_urls(
+        workflow=workflow,
+        draft=draft,
+        poke_user_id="poke-a",
+        base_url="https://resume.example.com",
+    )
+    requested_files = signed_download_urls(
+        workflow=workflow,
+        draft=draft,
+        poke_user_id="poke-a",
+        base_url="https://resume.example.com",
+        include_docx=True,
+    )
+
+    assert set(default_files) == {"pdf"}
+    assert set(requested_files) == {"pdf", "docx"}
 
 
 def test_download_token_expiration_is_reported(monkeypatch):

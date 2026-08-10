@@ -63,6 +63,11 @@ class McpWorkflowStore:
             )).first()
             return _serialize(row) if row else None
 
+    def get(self, workflow_id: str) -> dict | None:
+        with session_scope() as db:
+            row = db.get(McpResumeWorkflow, workflow_id)
+            return _serialize(row) if row else None
+
     def update(self, workflow_id: str, poke_user_id: str, values: dict) -> dict:
         allowed = {
             "resume_draft_id", "status", "revision", "identity_id",

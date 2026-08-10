@@ -182,7 +182,7 @@ MCP_HOST=127.0.0.1
 MCP_PORT=8010
 ```
 
-`MCP_ALLOWED_POKE_USER_IDS` accepts a comma-separated list. Do not commit real keys or user IDs. Download links are signed for one workflow, one user, one resume revision, and expire after 24 hours.
+`MCP_ALLOWED_POKE_USER_IDS` accepts a comma-separated list. Do not commit real keys or user IDs. Download links are signed for one workflow and resume revision and expire after 24 hours. The workflow remains scoped to its authenticated Poke user.
 
 If you do not know your Poke user ID yet, use a temporary placeholder such as
 `MCP_ALLOWED_POKE_USER_IDS=pending`, start the MCP server, and send one test
@@ -233,10 +233,10 @@ The copy-ready recipe configuration and operating instructions are in
 The adapter exposes five tools:
 
 1. `start_resume_generation` accepts a JD and optional identity, company, role, and source URL.
-2. `get_resume_status` returns progress, a required decision, the final Luna-reviewed resume, or completed files. A status call can wait for up to 20 seconds.
+2. `get_resume_status` returns progress, a required decision, the final Luna-reviewed resume, or completed files. A status call can wait for up to 20 seconds. Completed responses return the PDF by default; pass `include_docx: true` only when the user asks for the Word document.
 3. `continue_resume_action` resolves identity selection, duplicate applications, checkpoint retries, and review decisions using the returned `action_id`.
 4. `update_resume_draft` applies structured changes against an exact `base_revision`. Manual edits invalidate existing files and do not run Luna again.
-5. `finalize_resume` requires `confirmed: true` and the latest revision, then creates both PDF and DOCX without adding a tracker record.
+5. `finalize_resume` requires `confirmed: true` and the latest revision, then creates and retains both PDF and DOCX without adding a tracker record. It returns the DOCX link only when `include_docx: true` is requested.
 
 Poke should preserve every returned `draft_id`, `revision`, and `action_id`. When a response is `action_required`, resolve that action before continuing. Generation is asynchronous; Poke should check status on a later turn instead of continuously polling.
 

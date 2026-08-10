@@ -8946,18 +8946,26 @@ def require_within_output(path_value: str, must_exist: bool = True) -> Path:
     return requested
 
 
-def start_pdf_conversion(docx_path: Path, pdf_path: Path, status_path: Path) -> None:
+def start_pdf_conversion(
+    docx_path: Path,
+    pdf_path: Path,
+    status_path: Path,
+    *,
+    delete_docx: bool = True,
+) -> None:
     script_dir = Path(__file__).resolve().parent
+    command = [
+        sys.executable,
+        str(script_dir / "convert_pdf_job.py"),
+        "--docx", str(docx_path),
+        "--pdf", str(pdf_path),
+        "--status", str(status_path),
+        "--timeout", "180",
+    ]
+    if delete_docx:
+        command.append("--delete-docx")
     proc = subprocess.Popen(
-        [
-            sys.executable,
-            str(script_dir / "convert_pdf_job.py"),
-            "--docx", str(docx_path),
-            "--pdf", str(pdf_path),
-            "--status", str(status_path),
-            "--timeout", "180",
-            "--delete-docx",
-        ],
+        command,
         stdin=subprocess.DEVNULL,
         stdout=subprocess.DEVNULL,
         stderr=subprocess.DEVNULL,
@@ -9857,7 +9865,7 @@ def extension_profile_snapshot(identity_id: str, enabled_keys_payload) -> dict:
     }
 
 
-def generate_extension_pdf(draft: dict) -> dict:
+def generate_extension_pdf(draft: dict, *, preserve_docx: bool = False) -> dict:
     audit_status = str(draft.get("audit_status") or "not_started").strip().lower()
     if audit_status not in AI_PDF_ALLOWED_AUDIT_STATUSES:
         raise ExtensionPdfAuditConflict(audit_status)
@@ -9879,7 +9887,12 @@ def generate_extension_pdf(draft: dict) -> dict:
     pdf_path = out_dir / "tharun manikonda resume.pdf"
     status_path = out_dir / "pdf_status.json"
     build_resume_docx(resume, str(docx_path), format_profile=format_profile)
-    start_pdf_conversion(docx_path, pdf_path, status_path)
+    start_pdf_conversion(
+        docx_path,
+        pdf_path,
+        status_path,
+        delete_docx=not preserve_docx,
+    )
     return extension_drafts.materialize_pdf(draft["id"], {
         "status": "pdf_generating",
         "stage": "pdf_generation",

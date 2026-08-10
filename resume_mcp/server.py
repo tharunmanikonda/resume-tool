@@ -59,11 +59,18 @@ def _user(ctx: Context) -> str:
     return authenticate_headers(_request(ctx).headers)
 
 
-def _with_files(response: dict, ctx: Context, poke_user_id: str) -> dict:
+def _with_files(
+    response: dict,
+    ctx: Context,
+    poke_user_id: str,
+    *,
+    include_docx: bool = False,
+) -> dict:
     return add_file_urls(
         response,
         poke_user_id=poke_user_id,
         base_url=public_base_url(_request(ctx)),
+        include_docx=include_docx,
     )
 
 
@@ -95,9 +102,10 @@ def get_resume_status(
     draft_id: str,
     ctx: Context,
     include_review: bool = False,
+    include_docx: bool = False,
     wait_seconds: int = 0,
 ) -> dict:
-    """Check generation progress, optionally waiting up to 20 seconds for a state change."""
+    """Check progress. Set include_docx only when the user explicitly asks for DOCX."""
     user_id = _user(ctx)
     if wait_seconds < 0 or wait_seconds > 20:
         raise ValueError("wait_seconds must be between 0 and 20.")
@@ -107,7 +115,7 @@ def get_resume_status(
         include_review=include_review,
         wait_seconds=wait_seconds,
     )
-    return _with_files(response, ctx, user_id)
+    return _with_files(response, ctx, user_id, include_docx=include_docx)
 
 
 @mcp.tool()
@@ -151,8 +159,9 @@ def finalize_resume(
     base_revision: int,
     confirmed: bool,
     ctx: Context,
+    include_docx: bool = False,
 ) -> dict:
-    """Generate PDF and DOCX for the latest revision after explicit confirmation."""
+    """Finalize files after confirmation; return DOCX only when explicitly requested."""
     user_id = _user(ctx)
     response = finalize_service(
         poke_user_id=user_id,
@@ -160,7 +169,7 @@ def finalize_resume(
         base_revision=base_revision,
         confirmed=confirmed,
     )
-    return _with_files(response, ctx, user_id)
+    return _with_files(response, ctx, user_id, include_docx=include_docx)
 
 
 class McpAuthenticationMiddleware:
@@ -195,11 +204,8 @@ async def health(_request: Request):
 async def download(request: Request):
     try:
         payload = read_download_token(request.path_params["token"])
-        workflow = workflows.get_for_user(payload["workflow_id"], payload["poke_user_id"])
-        if (
-            not workflow
-            or workflow.get("resume_draft_id") != payload.get("resume_draft_id")
-        ):
+        workflow = workflows.get(payload["workflow_id"])
+        if not workflow or not workflow.get("resume_draft_id"):
             raise AuthenticationError("This download does not belong to the workflow.")
         draft = resume_service.resume_app.extension_draft_payload(
             resume_service.resume_app.extension_drafts.get(workflow["resume_draft_id"])

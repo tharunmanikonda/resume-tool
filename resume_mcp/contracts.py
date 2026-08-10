@@ -109,6 +109,7 @@ class StartResumeGenerationInput(StrictModel):
 class GetResumeStatusInput(StrictModel):
     draft_id: str = Field(min_length=1)
     include_review: bool = False
+    include_docx: bool = False
     wait_seconds: int = Field(default=0, ge=0, le=20)
 
 
@@ -128,3 +129,4 @@ class FinalizeResumeInput(StrictModel):
     draft_id: str = Field(min_length=1)
     base_revision: int = Field(ge=1)
     confirmed: bool
+    include_docx: bool = False
