@@ -118,7 +118,7 @@ Resume generation makes six model calls:
 5. Final title, summary, skills, and experience-title synthesis uses `OPENAI_SYNTHESIS_MODEL` (`gpt-5.6-terra`, Terra, by default) with configurable synthesis reasoning effort.
 6. The independent patch-only quality audit uses `OPENAI_AUDIT_MODEL` (`gpt-5.6-luna` by default) with configurable audit reasoning effort.
 
-All four model roles and both high-judgment reasoning levels are configurable through the environment variables above. The audit may propose a revised resume, but the user reviews that proposal and it is never applied silently.
+All four model roles and both high-judgment reasoning levels are configurable through the environment variables above. The audit preserves the original resume, applies validated Luna improvements to a separate reviewed version, and exposes the exact changes for inspection.
 
 ## First-Run Profile
 
@@ -164,6 +164,87 @@ curl http://127.0.0.1:5001/api/extension/status
 ```
 
 The extension status response reports server, AI, PDF, profile, and queue readiness.
+
+## Poke MCP Integration
+
+The optional MCP adapter lets Poke start and monitor the same resume workflow used by the main app and browser extension. It does not contain separate prompts, resume content, or generation logic.
+
+### Configure MCP access
+
+Add these values to `.env`:
+
+```dotenv
+MCP_API_KEY=replace-with-a-long-random-secret
+MCP_ALLOWED_POKE_USER_IDS=your-poke-user-id
+MCP_SIGNING_SECRET=replace-with-a-different-long-random-secret
+MCP_PUBLIC_BASE_URL=https://your-https-tunnel.example
+MCP_HOST=127.0.0.1
+MCP_PORT=8010
+```
+
+`MCP_ALLOWED_POKE_USER_IDS` accepts a comma-separated list. Do not commit real keys or user IDs. Download links are signed for one workflow, one user, one resume revision, and expire after 24 hours.
+
+If you do not know your Poke user ID yet, use a temporary placeholder such as
+`MCP_ALLOWED_POKE_USER_IDS=pending`, start the MCP server, and send one test
+request from Poke. The rejected request is logged with the stable user ID that
+Poke supplied. Replace the placeholder with that value and restart the MCP
+server.
+
+### Run the local services
+
+Keep the Flask server running because it owns the existing resume-generation worker:
+
+```bash
+.venv/bin/python app.py
+```
+
+In a second terminal, start the MCP adapter:
+
+```bash
+.venv/bin/python -m resume_mcp.server
+```
+
+Expose port `8010` through an HTTPS tunnel. For example:
+
+```bash
+ngrok http 8010
+```
+
+Set `MCP_PUBLIC_BASE_URL` to that HTTPS origin, restart the MCP process, and register this SSE endpoint in Poke:
+
+```text
+https://your-https-tunnel.example/sse
+```
+
+Register the bearer key in Poke:
+
+```text
+Authorization: Bearer <MCP_API_KEY>
+```
+
+Poke supplies `X-Poke-User-Id` automatically. Do not configure or override that
+header manually.
+
+The copy-ready recipe configuration and operating instructions are in
+[`docs/poke-recipe.md`](docs/poke-recipe.md).
+
+### MCP workflow
+
+The adapter exposes five tools:
+
+1. `start_resume_generation` accepts a JD and optional identity, company, role, and source URL.
+2. `get_resume_status` returns progress, a required decision, the final Luna-reviewed resume, or completed files. A status call can wait for up to 20 seconds.
+3. `continue_resume_action` resolves identity selection, duplicate applications, checkpoint retries, and review decisions using the returned `action_id`.
+4. `update_resume_draft` applies structured changes against an exact `base_revision`. Manual edits invalidate existing files and do not run Luna again.
+5. `finalize_resume` requires `confirmed: true` and the latest revision, then creates both PDF and DOCX without adding a tracker record.
+
+Poke should preserve every returned `draft_id`, `revision`, and `action_id`. When a response is `action_required`, resolve that action before continuing. Generation is asynchronous; Poke should check status on a later turn instead of continuously polling.
+
+The public readiness endpoint is:
+
+```bash
+curl http://127.0.0.1:8010/health
+```
 
 ## Building the Frontends
 

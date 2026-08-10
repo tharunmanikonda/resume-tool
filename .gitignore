@@ -83,6 +83,8 @@ config/session_profile.json
 # Local application state
 config/application_tracker.json
 config/resume_tool.db
+config/resume_tool.db-shm
+config/resume_tool.db-wal
 
 # Local agent/plugin installation artifacts
 .agents/

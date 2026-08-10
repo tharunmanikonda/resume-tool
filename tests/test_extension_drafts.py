@@ -151,6 +151,47 @@ def test_duplicate_review_creates_no_task_until_continue(tmp_path, monkeypatch):
     assert task["draft"]["id"] == draft["id"]
 
 
+def test_mcp_draft_accepts_jd_before_company_and_role_are_known(tmp_path, monkeypatch):
+    store = store_for_test(tmp_path, monkeypatch)
+    draft = store.create_mcp(
+        {
+            "job_description": "Build reliable software and integrations for enterprise customers. " * 4,
+            "company_name": "",
+            "role_title": "",
+        },
+        snapshot(),
+        "mcp-workflow-1",
+    )
+
+    assert draft["source"] == "mcp"
+    assert draft["source_key"] == "mcp:mcp-workflow-1"
+    assert draft["company_name"] == ""
+    assert draft["role_title"] == ""
+    assert draft["source_metadata"]["duplicate_checked"] is False
+    assert store.next_task()["draft"]["id"] == draft["id"]
+
+
+def test_technical_review_retry_keeps_generated_resume_checkpoint(tmp_path, monkeypatch):
+    store = store_for_test(tmp_path, monkeypatch)
+    draft = store.create(context(), snapshot(), duplicate_count=0)
+    task = store.next_task()
+    ready = store.complete_task(task["task_id"], draft["id"], {
+        "status": "ready",
+        "stage": "complete",
+        "resume_content": "Generated resume checkpoint",
+        "audit_status": "technical_failed",
+        "audit_result": {"error": "connection closed"},
+    })
+
+    queued = store.retry_audit_background(ready["id"])
+
+    assert queued["status"] == "queued"
+    assert queued["stage"] == "audit"
+    assert queued["resume_content"] == "Generated resume checkpoint"
+    assert queued["audit_status"] == "not_started"
+    assert task_statuses(draft["id"]) == ["completed", "queued"]
+
+
 def test_skip_retains_draft_without_queueing(tmp_path, monkeypatch):
     store = store_for_test(tmp_path, monkeypatch)
     draft = store.create(context(), snapshot(), duplicate_count=1)

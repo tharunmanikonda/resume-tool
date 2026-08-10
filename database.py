@@ -19,6 +19,7 @@ from sqlalchemy import (
     Text,
     create_engine,
     column,
+    event,
     inspect,
     table,
     text,
@@ -126,7 +127,52 @@ class ResumeDraftTask(Base):
     error_message: Mapped[str] = mapped_column(Text, nullable=True)
 
 
-engine = create_engine(database_url(), future=True, pool_pre_ping=True)
+class McpResumeWorkflow(Base):
+    """Conversation-safe MCP orchestration state linked to a canonical resume draft."""
+
+    __tablename__ = "mcp_resume_workflows"
+    __table_args__ = (
+        Index("ix_mcp_resume_workflows_user_updated", "poke_user_id", "updated_at"),
+        Index("ix_mcp_resume_workflows_status", "status"),
+    )
+
+    id: Mapped[str] = mapped_column(String(80), primary_key=True)
+    poke_user_id: Mapped[str] = mapped_column(String(200), nullable=False, index=True)
+    resume_draft_id: Mapped[str] = mapped_column(
+        ForeignKey("resume_drafts.id", ondelete="SET NULL"),
+        nullable=True,
+        index=True,
+    )
+    status: Mapped[str] = mapped_column(String(60), default="created", nullable=False)
+    revision: Mapped[int] = mapped_column(Integer, default=1, nullable=False)
+    identity_id: Mapped[str] = mapped_column(String(80), nullable=True)
+    job_description: Mapped[str] = mapped_column(Text, nullable=False)
+    company_name: Mapped[str] = mapped_column(String(300), nullable=True)
+    role_title: Mapped[str] = mapped_column(String(500), nullable=True)
+    source_url: Mapped[str] = mapped_column(Text, nullable=True)
+    pending_action: Mapped[dict] = mapped_column(JSON, nullable=True)
+    last_error: Mapped[dict] = mapped_column(JSON, nullable=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow, nullable=False)
+    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow, onupdate=utcnow, nullable=False)
+
+
+_database_url = database_url()
+_engine_options = {"future": True, "pool_pre_ping": True}
+if _database_url.startswith("sqlite:"):
+    _engine_options["connect_args"] = {"timeout": 30}
+engine = create_engine(_database_url, **_engine_options)
+
+
+if _database_url.startswith("sqlite:"):
+    @event.listens_for(engine, "connect")
+    def _configure_sqlite_connection(dbapi_connection, _connection_record) -> None:
+        cursor = dbapi_connection.cursor()
+        cursor.execute("PRAGMA busy_timeout=30000")
+        cursor.execute("PRAGMA foreign_keys=ON")
+        cursor.execute("PRAGMA journal_mode=WAL")
+        cursor.close()
+
+
 SessionLocal = sessionmaker(bind=engine, autoflush=False, expire_on_commit=False, future=True)
 
 

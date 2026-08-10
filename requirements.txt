@@ -9,3 +9,6 @@ soundfile>=0.13.0
 SQLAlchemy>=2.0
 psycopg[binary]>=3.2
 alembic>=1.13
+mcp>=1.23,<2
+starlette>=0.37,<1
+uvicorn>=0.30,<1

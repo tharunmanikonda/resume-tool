@@ -316,6 +316,50 @@ class ExtensionDraftStore:
                 self._add_task(db, row.id)
             return serialize_draft(row)
 
+    def create_mcp(
+        self,
+        context_payload: dict,
+        snapshot: dict,
+        workflow_id: str,
+        duplicate_count: int = 0,
+    ) -> dict:
+        """Create a JD-first draft that the existing worker will enrich after analysis."""
+        context = normalize_context({**context_payload, "source": "mcp"})
+        if not clean_text(context.get("job_description")):
+            raise ValueError("Job description is required.")
+        if len(context["job_description"]) < 120:
+            raise ValueError("The job description is incomplete.")
+        context.update({
+            "source": "mcp",
+            "external_job_id": "",
+            "source_key": f"mcp:{clean_text(workflow_id)}",
+            "source_metadata": {
+                **(context.get("source_metadata") or {}),
+                "mcp_workflow_id": clean_text(workflow_id),
+                "context_resolved": bool(context.get("company_name") and context.get("role_title")),
+                "duplicate_checked": bool(context.get("company_name")),
+            },
+        })
+        status = "duplicate_review" if duplicate_count else "queued"
+        with session_scope() as db:
+            row = ResumeDraft(
+                id="draft-" + uuid.uuid4().hex,
+                **context,
+                latest_description_hash=context["description_hash"],
+                status=status,
+                stage="duplicate_review" if duplicate_count else "waiting",
+                identity_id=clean_text(snapshot.get("identity_id")),
+                enabled_experience_keys=list(snapshot.get("enabled_experience_keys") or []),
+                profile_snapshot=snapshot.get("profile_snapshot") or {},
+                contact_snapshot=snapshot.get("contact_snapshot") or {},
+                experience_history_snapshot=list(snapshot.get("experience_history_snapshot") or []),
+            )
+            db.add(row)
+            db.flush()
+            if status == "queued":
+                self._add_task(db, row.id)
+            return serialize_draft(row)
+
     @staticmethod
     def _add_task(db, draft_id: str) -> ResumeDraftTask:
         task = ResumeDraftTask(id="task-" + uuid.uuid4().hex, draft_id=draft_id, status="queued", stage="waiting")
@@ -346,6 +390,7 @@ class ExtensionDraftStore:
             "status", "stage", "duplicate_decision", "pdf_path", "docx_path", "output_dir", "pdf_status_path",
             "pdf_stale", "resume_revision", "pdf_revision", "pdf_generated_at", "application_id", "error_stage", "error_message", "job_description", "description_hash",
             "latest_description_hash", "contact_snapshot", "experience_history_snapshot",
+            "source_metadata",
             "audit_status", "audit_result", "audit_proposal", "audit_base_revision",
             "audit_base_hash", "audit_created_at", "audit_applied_at",
         }
@@ -636,6 +681,30 @@ class ExtensionDraftStore:
                 db.flush()
                 return serialize_draft(row)
 
+    def pause_task_for_duplicate(
+        self,
+        task_id: str,
+        draft_id: str,
+        values: dict | None = None,
+    ) -> dict:
+        """Finish the active task and wait for an explicit duplicate decision."""
+        with session_scope() as db:
+            task = db.get(ResumeDraftTask, task_id)
+            row = db.get(ResumeDraft, draft_id)
+            if not task or not row:
+                raise KeyError("Draft task not found.")
+            for key, value in (values or {}).items():
+                if hasattr(row, key):
+                    setattr(row, key, value)
+            row.status = "duplicate_review"
+            row.stage = "duplicate_review"
+            row.updated_at = utcnow()
+            task.status = "completed"
+            task.stage = "duplicate_review"
+            task.completed_at = utcnow()
+            db.flush()
+            return serialize_draft(row)
+
     def retry(self, draft_id: str) -> dict:
         with self._task_lock:
             with session_scope() as db:
@@ -648,6 +717,32 @@ class ExtensionDraftStore:
                 row.status = "queued"
                 row.error_message = None
                 row.error_stage = None
+                row.updated_at = utcnow()
+                db.flush()
+                return serialize_draft(row)
+
+    def retry_audit_background(self, draft_id: str) -> dict:
+        """Queue only the existing review checkpoint after a technical audit failure."""
+        with self._task_lock:
+            with session_scope() as db:
+                row = db.get(ResumeDraft, draft_id)
+                if not row:
+                    raise KeyError("Resume draft not found.")
+                if row.status == "applied" or row.application_id:
+                    raise ValueError("Applied resume drafts are locked.")
+                if row.status not in {"ready", "pdf_ready"} or not clean_text(row.resume_content):
+                    raise ValueError("The resume must finish generating before retrying review.")
+                if row.audit_status != "technical_failed":
+                    raise ValueError("Only a technically failed quality review can be retried here.")
+                if not self._active_task(db, draft_id):
+                    self._add_task(db, row.id)
+                row.status = "queued"
+                row.stage = "audit"
+                row.audit_status = "not_started"
+                row.audit_result = None
+                row.audit_proposal = None
+                row.error_stage = None
+                row.error_message = None
                 row.updated_at = utcnow()
                 db.flush()
                 return serialize_draft(row)

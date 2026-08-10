@@ -199,6 +199,69 @@ def test_worker_makes_six_calls_and_audits_canonical_resume(tmp_path, monkeypatc
     assert completed["audit_status"] == "approved"
 
 
+def test_mcp_jd_analysis_enriches_context_and_is_reused_after_duplicate_decision(tmp_path, monkeypatch):
+    store = pipeline_store(tmp_path, monkeypatch)
+    history = [
+        {
+            "key": blueprint["key"],
+            "company": blueprint["company"],
+            "location": blueprint["location"],
+            "dates": blueprint["dates"],
+            "title": "Software Engineer",
+            "enabled": True,
+        }
+        for blueprint in resume_app.EXPERIENCE_BLUEPRINTS
+    ]
+    draft = store.create_mcp(
+        {
+            "job_description": "Build reliable Python APIs and distributed backend systems. " * 8,
+            "company_name": "",
+            "role_title": "",
+        },
+        {
+            "identity_id": "outlook",
+            "enabled_experience_keys": [item["key"] for item in history],
+            "profile_snapshot": {"name": "Candidate"},
+            "contact_snapshot": {"email": "candidate@example.com"},
+            "experience_history_snapshot": history,
+        },
+        "workflow-1",
+    )
+    task = store.next_task()
+    calls = []
+    install_pipeline_mocks(monkeypatch, calls)
+    original_analysis = resume_app.analyze_job_description
+
+    def analyze_with_context(**kwargs):
+        return {
+            **original_analysis(**kwargs),
+            "company_name": "Acme",
+            "target_role": "Backend Engineer",
+        }
+
+    monkeypatch.setattr(resume_app, "analyze_job_description", analyze_with_context)
+    monkeypatch.setattr(
+        resume_app,
+        "tracker_company_history",
+        lambda _company: {"count": 1, "applications": [{"company": "Acme"}]},
+    )
+
+    resume_app.run_extension_generation_task(task)
+
+    paused = store.get(draft["id"])
+    assert paused["status"] == "duplicate_review"
+    assert paused["company_name"] == "Acme"
+    assert paused["role_title"] == "Backend Engineer"
+    assert [name for name, _payload in calls] == ["analysis"]
+
+    store.decide_duplicate(draft["id"], "continue")
+    resume_app.run_extension_generation_task(store.next_task())
+
+    completed = store.get(draft["id"])
+    assert completed["status"] == "ready"
+    assert [name for name, _payload in calls].count("analysis") == 1
+
+
 def test_audit_failure_preserves_ready_resume(tmp_path, monkeypatch):
     store = pipeline_store(tmp_path, monkeypatch)
     draft, task = queued_task(store)

@@ -9254,7 +9254,8 @@ def normalize_profile_documents_if_needed() -> None:
         save_session_profile_doc(normalize_profile(session_doc))
 
 
-clear_session_profile_doc()
+if os.getenv("RESUME_PRESERVE_SESSION_PROFILE", "").strip().lower() not in {"1", "true", "yes"}:
+    clear_session_profile_doc()
 migrate_legacy_profile_if_needed()
 normalize_profile_documents_if_needed()
 
@@ -9505,6 +9506,58 @@ def run_extension_generation_task(task: dict) -> None:
             })
         elif draft.get("analysis") != analysis_payload:
             draft = extension_drafts.update(draft_id, {"analysis": analysis_payload})
+
+        if draft.get("source") == "mcp":
+            source_metadata = dict(draft.get("source_metadata") or {})
+            company_name = str(
+                draft.get("company_name") or analysis_payload.get("company_name") or ""
+            ).strip()
+            role_title = str(
+                draft.get("role_title") or analysis_payload.get("target_role") or ""
+            ).strip()
+            context_values = {
+                "company_name": company_name,
+                "role_title": role_title,
+                "source_metadata": {
+                    **source_metadata,
+                    "context_resolved": bool(company_name and role_title),
+                },
+            }
+            draft = extension_drafts.update(draft_id, context_values)
+            if not company_name or not role_title:
+                missing = []
+                if not company_name:
+                    missing.append("company")
+                if not role_title:
+                    missing.append("role title")
+                raise AIStageError(
+                    "context_resolution",
+                    "The job analysis could not determine the " + " and ".join(missing) + ".",
+                )
+
+            if not source_metadata.get("duplicate_checked"):
+                history = tracker_company_history(company_name)
+                source_metadata = {
+                    **source_metadata,
+                    "context_resolved": True,
+                    "duplicate_checked": True,
+                }
+                if int(history.get("count", 0)) and draft.get("duplicate_decision") != "continue":
+                    extension_drafts.pause_task_for_duplicate(
+                        task_id,
+                        draft_id,
+                        {
+                            "company_name": company_name,
+                            "role_title": role_title,
+                            "source_metadata": source_metadata,
+                        },
+                    )
+                    extension_worker_event.set()
+                    return
+                draft = extension_drafts.update(
+                    draft_id,
+                    {"source_metadata": source_metadata},
+                )
 
         stage = "preliminary_skills"
         skills_payload = draft.get("skills") or {}
@@ -10522,97 +10575,115 @@ def get_extension_draft(draft_id: str):
     return jsonify({"success": True, "draft": extension_draft_payload(draft)})
 
 
+def update_extension_draft_service(
+    draft_id: str,
+    data: dict,
+    *,
+    expected_revision: int | None = None,
+) -> dict:
+    """Apply one canonical draft update for the app, extension, or MCP adapter."""
+    draft = extension_drafts.get(draft_id)
+    if not draft:
+        raise KeyError("Resume draft not found.")
+    if draft.get("locked"):
+        raise ValueError("Applied resume drafts are locked.")
+    current_revision = int(draft.get("resume_revision") or 1)
+    if expected_revision is not None and int(expected_revision) != current_revision:
+        raise AuditStaleError(
+            f"The resume changed. Expected revision {expected_revision}, current revision is {current_revision}."
+        )
+
+    values: dict = {}
+    invalidate_pdf = False
+    if "company_name" in data:
+        values["company_name"] = str(data.get("company_name", "")).strip()
+        invalidate_pdf = True
+    if "role_title" in data:
+        values["role_title"] = str(data.get("role_title", "")).strip()
+        invalidate_pdf = True
+    if "identity_id" in data:
+        identity = identity_profile_by_id(str(data.get("identity_id", "")))
+        values.update({"identity_id": identity.get("id", ""), "contact_snapshot": identity})
+        invalidate_pdf = True
+    if "experience_history" in data and isinstance(data.get("experience_history"), list):
+        history = merge_experience_history_lists([], data.get("experience_history"))
+        values["experience_history_snapshot"] = history
+        invalidate_pdf = True
+
+    enabled_keys = draft.get("enabled_experience_keys") or []
+    if "enabled_experience_keys" in data:
+        requested = normalize_enabled_experience_keys(data.get("enabled_experience_keys"))
+        complete = {
+            str(item.get("key", "")).strip()
+            for item in draft.get("experience_history_snapshot", [])
+            if isinstance(item, dict) and is_experience_history_entry_enabled(item)
+        }
+        enabled_keys = [key for key in requested if key in complete]
+        if not enabled_keys:
+            raise ValueError("Keep at least one complete experience role enabled.")
+        values["enabled_experience_keys"] = enabled_keys
+        invalidate_pdf = True
+
+    title_summary = dict(draft.get("title_summary") or {})
+    skills_payload = dict(draft.get("skills") or {})
+    quick_edits = data.get("quick_edits") if isinstance(data.get("quick_edits"), dict) else None
+    if quick_edits is not None:
+        if "title" in quick_edits:
+            title_summary["updated_title"] = str(quick_edits.get("title", "")).strip()
+        if "summary" in quick_edits:
+            title_summary["updated_summary"] = str(quick_edits.get("summary", "")).strip()
+        if "skills_text" in quick_edits:
+            skills_text_value = str(quick_edits.get("skills_text", ""))
+            malformed_lines = [
+                line.strip()
+                for line in skills_text_value.splitlines()
+                if line.strip() and (
+                    ":" not in line
+                    or not line.split(":", 1)[0].strip()
+                    or not line.split(":", 1)[1].strip()
+                )
+            ]
+            if malformed_lines:
+                raise ValueError("Use one skills category per line in 'Category: item, item' format.")
+            parsed_skills = parse_extension_skills_text(skills_text_value)
+            if not parsed_skills:
+                raise ValueError("Use one skills category per line in 'Category: item, item' format.")
+            skills_payload["updated_skills"] = parsed_skills
+        if "experience" in quick_edits:
+            values.update(apply_extension_experience_edits(draft, quick_edits.get("experience"), enabled_keys))
+        issues = validate_extension_manual_core(title_summary, skills_payload)
+        if issues:
+            raise ValueError(" | ".join(issues[:3]))
+        values.update({"title_summary": title_summary, "skills": skills_payload})
+        invalidate_pdf = True
+
+    if quick_edits is not None or "enabled_experience_keys" in data:
+        values["resume_content"] = rebuild_extension_draft_content({**draft, **values}, title_summary, skills_payload, enabled_keys)
+    if "resume_content" in data:
+        content = str(data.get("resume_content", "")).strip()
+        errors, _warnings = validate_updated_content(content)
+        if errors:
+            raise ValueError(errors[0])
+        values["resume_content"] = content
+        values.update(extension_payloads_from_content(content, {**draft, **values}, enabled_keys))
+        invalidate_pdf = True
+
+    next_draft = {**draft, **values}
+    if values.get("resume_content"):
+        values["resume_snapshot"] = draft_resume_snapshot(next_draft)
+    updated = extension_drafts.update(draft_id, values, invalidate_pdf=invalidate_pdf)
+    return extension_draft_payload(updated)
+
+
 @app.route("/api/extension/drafts/<draft_id>", methods=["PATCH"])
 def update_extension_draft(draft_id: str):
     try:
-        draft = extension_drafts.get(draft_id)
-        if not draft:
-            return jsonify({"success": False, "error": "Resume draft not found."}), 404
-        if draft.get("locked"):
-            return jsonify({"success": False, "error": "Applied resume drafts are locked."}), 409
-        data = request.get_json() or {}
-        values: dict = {}
-        invalidate_pdf = False
-        if "company_name" in data:
-            values["company_name"] = str(data.get("company_name", "")).strip()
-            invalidate_pdf = True
-        if "role_title" in data:
-            values["role_title"] = str(data.get("role_title", "")).strip()
-            invalidate_pdf = True
-        if "identity_id" in data:
-            identity = identity_profile_by_id(str(data.get("identity_id", "")))
-            values.update({"identity_id": identity.get("id", ""), "contact_snapshot": identity})
-            invalidate_pdf = True
-        if "experience_history" in data and isinstance(data.get("experience_history"), list):
-            history = merge_experience_history_lists([], data.get("experience_history"))
-            values["experience_history_snapshot"] = history
-            invalidate_pdf = True
-
-        enabled_keys = draft.get("enabled_experience_keys") or []
-        if "enabled_experience_keys" in data:
-            requested = normalize_enabled_experience_keys(data.get("enabled_experience_keys"))
-            complete = {
-                str(item.get("key", "")).strip()
-                for item in draft.get("experience_history_snapshot", [])
-                if isinstance(item, dict) and is_experience_history_entry_enabled(item)
-            }
-            enabled_keys = [key for key in requested if key in complete]
-            if not enabled_keys:
-                raise ValueError("Keep at least one complete experience role enabled.")
-            values["enabled_experience_keys"] = enabled_keys
-            invalidate_pdf = True
-
-        title_summary = dict(draft.get("title_summary") or {})
-        skills_payload = dict(draft.get("skills") or {})
-        quick_edits = data.get("quick_edits") if isinstance(data.get("quick_edits"), dict) else None
-        if quick_edits is not None:
-            if "title" in quick_edits:
-                title_summary["updated_title"] = str(quick_edits.get("title", "")).strip()
-            if "summary" in quick_edits:
-                title_summary["updated_summary"] = str(quick_edits.get("summary", "")).strip()
-            if "skills_text" in quick_edits:
-                skills_text_value = str(quick_edits.get("skills_text", ""))
-                malformed_lines = [
-                    line.strip()
-                    for line in skills_text_value.splitlines()
-                    if line.strip() and (
-                        ":" not in line
-                        or not line.split(":", 1)[0].strip()
-                        or not line.split(":", 1)[1].strip()
-                    )
-                ]
-                if malformed_lines:
-                    raise ValueError("Use one skills category per line in 'Category: item, item' format.")
-                parsed_skills = parse_extension_skills_text(skills_text_value)
-                if not parsed_skills:
-                    raise ValueError("Use one skills category per line in 'Category: item, item' format.")
-                skills_payload["updated_skills"] = parsed_skills
-            if "experience" in quick_edits:
-                values.update(apply_extension_experience_edits(draft, quick_edits.get("experience"), enabled_keys))
-            issues = validate_extension_manual_core(title_summary, skills_payload)
-            if issues:
-                raise ValueError(" | ".join(issues[:3]))
-            values.update({"title_summary": title_summary, "skills": skills_payload})
-            invalidate_pdf = True
-
-        if quick_edits is not None or "enabled_experience_keys" in data:
-            values["resume_content"] = rebuild_extension_draft_content({**draft, **values}, title_summary, skills_payload, enabled_keys)
-        if "resume_content" in data:
-            content = str(data.get("resume_content", "")).strip()
-            errors, _warnings = validate_updated_content(content)
-            if errors:
-                raise ValueError(errors[0])
-            values["resume_content"] = content
-            values.update(extension_payloads_from_content(content, {**draft, **values}, enabled_keys))
-            invalidate_pdf = True
-
-        next_draft = {**draft, **values}
-        if values.get("resume_content"):
-            values["resume_snapshot"] = draft_resume_snapshot(next_draft)
-        updated = extension_drafts.update(draft_id, values, invalidate_pdf=invalidate_pdf)
-        return jsonify({"success": True, "draft": extension_draft_payload(updated)})
+        updated = update_extension_draft_service(draft_id, request.get_json() or {})
+        return jsonify({"success": True, "draft": updated})
     except KeyError as exc:
         return jsonify({"success": False, "error": str(exc)}), 404
+    except AuditStaleError as exc:
+        return jsonify({"success": False, "error": str(exc)}), 409
     except ValueError as exc:
         return jsonify({"success": False, "error": str(exc)}), 400
     except Exception as exc:
@@ -12833,7 +12904,8 @@ def add_caching_headers(response):
     return response
 
 
-ensure_extension_worker_started()
+if os.getenv("RESUME_DISABLE_EXTENSION_WORKER", "").strip().lower() not in {"1", "true", "yes"}:
+    ensure_extension_worker_started()
 
 
 if __name__ == "__main__":
