@@ -46,6 +46,10 @@ assert.ok(
   "quality audit must run after final synthesis",
 );
 assert.ok(
+  generationFlow.includes("resumeJobContext?.title"),
+  "pasted-JD review must tolerate a missing page job context",
+);
+assert.ok(
   !generationFlow.includes("generate-title-summary"),
   "generation flow must not call generate-title-summary",
 );

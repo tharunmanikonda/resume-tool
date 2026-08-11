@@ -1,0 +1,99 @@
+name: Deploy production
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: resume-tool-production
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the pushed commit
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install frontend dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Build web app and extension
+        run: npm run build
+
+      - name: Check the main review UI contract
+        run: node tests/main_review_ui_smoke.mjs
+
+      - name: Check Python syntax
+        run: python -m py_compile app.py resume_mcp/server.py resume_mcp/service.py
+
+  deploy:
+    needs: validate
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Check out the deployment script
+        uses: actions/checkout@v4
+
+      - name: Configure SSH
+        env:
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          DEPLOY_KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+        run: |
+          : "${DEPLOY_SSH_KEY:?DEPLOY_SSH_KEY is required}"
+          : "${DEPLOY_KNOWN_HOSTS:?DEPLOY_KNOWN_HOSTS is required}"
+          install -m 0700 -d ~/.ssh
+          printf '%s\n' "$DEPLOY_SSH_KEY" | tr -d '\r' > ~/.ssh/id_ed25519
+          chmod 0600 ~/.ssh/id_ed25519
+          printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          chmod 0600 ~/.ssh/known_hosts
+
+      - name: Deploy the pushed commit
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_PORT: ${{ secrets.DEPLOY_PORT }}
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+          DEPLOY_SERVICE_USER: ${{ secrets.DEPLOY_SERVICE_USER }}
+          DEPLOY_WEB_SERVICE: ${{ secrets.DEPLOY_WEB_SERVICE }}
+          DEPLOY_MCP_SERVICE: ${{ secrets.DEPLOY_MCP_SERVICE }}
+          REPO_URL: https://github.com/${{ github.repository }}.git
+          REVISION: ${{ github.sha }}
+        run: |
+          : "${DEPLOY_HOST:?DEPLOY_HOST is required}"
+          : "${DEPLOY_USER:?DEPLOY_USER is required}"
+          DEPLOY_PORT="${DEPLOY_PORT:-22}"
+          DEPLOY_PATH="${DEPLOY_PATH:-/home/resume-tool}"
+          DEPLOY_SERVICE_USER="${DEPLOY_SERVICE_USER:-$DEPLOY_USER}"
+          DEPLOY_WEB_SERVICE="${DEPLOY_WEB_SERVICE:-resume-tool-web.service}"
+          DEPLOY_MCP_SERVICE="${DEPLOY_MCP_SERVICE:-resume-tool-mcp.service}"
+          printf -v remote_command \
+            'APP_DIR=%q REPO_URL=%q RESUME_SERVICE_USER=%q WEB_SERVICE=%q MCP_SERVICE=%q bash -s -- %q' \
+            "$DEPLOY_PATH" \
+            "$REPO_URL" \
+            "$DEPLOY_SERVICE_USER" \
+            "$DEPLOY_WEB_SERVICE" \
+            "$DEPLOY_MCP_SERVICE" \
+            "$REVISION"
+          ssh \
+            -p "$DEPLOY_PORT" \
+            -o BatchMode=yes \
+            -o StrictHostKeyChecking=yes \
+            "$DEPLOY_USER@$DEPLOY_HOST" \
+            "$remote_command" < ops/deploy_server.sh

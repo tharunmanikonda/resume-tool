@@ -1591,7 +1591,12 @@ export default function App() {
     };
   }
 
-  async function continueAiGenerationFromAnalysis({ sessionId, baseThread, enabledKeys }) {
+  async function continueAiGenerationFromAnalysis({
+    sessionId,
+    baseThread,
+    enabledKeys,
+    advertisedJobTitle = "",
+  }) {
     resetAuditState();
     resetResumeVersionState();
     invalidatePdfState();
@@ -1644,7 +1649,8 @@ export default function App() {
         body: JSON.stringify({
           session_id: synthesizedSessionId,
           enabled_experience_keys: enabledKeys,
-          advertised_job_title: resumeJobContext.title || "",
+          advertised_job_title:
+            advertisedJobTitle || resumeJobContext?.title || latestAnalysis?.target_role || "",
         }),
       });
       hydrateAuditState(auditData);
@@ -1758,6 +1764,8 @@ export default function App() {
               sessionId: nextSessionId,
               baseThread: [...baseThread, soulThreadEntry(analyzeData.analysis)],
               enabledKeys: sanitizedEnabledExperienceKeys,
+              advertisedJobTitle:
+                resumeJobContext?.title || analyzeData.analysis?.target_role || "",
             },
           });
           setGeneratingAi(false);
@@ -1770,6 +1778,8 @@ export default function App() {
         sessionId: nextSessionId,
         baseThread: [...baseThread, soulThreadEntry(analyzeData.analysis)],
         enabledKeys: sanitizedEnabledExperienceKeys,
+        advertisedJobTitle:
+          resumeJobContext?.title || analyzeData.analysis?.target_role || "",
       });
     } catch (error) {
       const payload = error.data || {};
@@ -2001,6 +2011,8 @@ export default function App() {
         sessionId,
         baseThread: aiThread,
         enabledKeys: sanitizedEnabledExperienceKeys,
+        advertisedJobTitle:
+          resumeJobContext?.title || data.analysis?.target_role || latestAnalysis?.target_role || "",
       });
     } catch (error) {
       setAiError(error.message || "Could not regenerate the resume.");

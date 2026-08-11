@@ -246,6 +246,79 @@ The public readiness endpoint is:
 curl http://127.0.0.1:8010/health
 ```
 
+## Automatic Production Deployment
+
+Every push to `master` can deploy the same commit to the production droplet.
+The workflow in `.github/workflows/deploy-production.yml` first builds the web
+app and extension, checks the main review UI contract, and checks the Python
+entry points. It deploys only after those checks pass.
+
+The server-side deployment then:
+
+- Pulls the exact pushed commit rather than whichever commit happens to be latest.
+- Leaves `.env`, profile JSON, SQLite/PostgreSQL data, tracker data, and generated resumes untouched.
+- Installs locked frontend and current Python dependencies.
+- Rebuilds the web app and extension.
+- Runs Flask with one Gunicorn worker and multiple threads so in-memory AI sessions and the draft worker remain consistent.
+- Runs the Poke MCP adapter as a separate service without starting a duplicate draft worker.
+- Restarts both systemd services and verifies ports `5001` and `8010`.
+- Rolls back to the previous commit if either health check fails.
+
+### Server prerequisites
+
+The deployment user needs:
+
+- Git, Python 3.10 or newer with `venv`, Node.js 20 or newer, npm, curl, and `flock`.
+- LibreOffice for PDF generation.
+- Passwordless permission to install and restart the two systemd units, or root access.
+- An existing production `.env` at the deployment path. Deployment intentionally never creates or replaces production secrets.
+- Existing Nginx/TLS routing for the web app and MCP endpoint. Deployment does not rewrite Nginx, so the working Poke URL remains unchanged.
+
+The default deployment path is `/home/resume-tool`. The managed services are:
+
+```text
+resume-tool-web.service
+resume-tool-mcp.service
+```
+
+### GitHub production secrets
+
+Create a `production` environment in the GitHub repository and add:
+
+```text
+DEPLOY_HOST             Droplet hostname or IP
+DEPLOY_USER             SSH deployment user
+DEPLOY_SSH_KEY          Private SSH key for that user
+DEPLOY_KNOWN_HOSTS      Pinned SSH known-hosts line for the droplet
+DEPLOY_PORT             Optional; defaults to 22
+DEPLOY_PATH             Optional; defaults to /home/resume-tool
+DEPLOY_SERVICE_USER     Optional; defaults to DEPLOY_USER
+DEPLOY_WEB_SERVICE      Optional; defaults to resume-tool-web.service
+DEPLOY_MCP_SERVICE      Optional; defaults to resume-tool-mcp.service
+```
+
+Generate the pinned host entry from a trusted machine and verify its fingerprint
+before saving it:
+
+```bash
+ssh-keyscan -H your-server-hostname
+```
+
+After the secrets are configured, a push to `master` deploys automatically. A
+manual deployment of the currently checked-out commit can also be run on the
+server from the repository root:
+
+```bash
+./deploy.sh
+```
+
+Deployment logs are available through GitHub Actions and systemd:
+
+```bash
+sudo journalctl -u resume-tool-web.service -n 200 --no-pager
+sudo journalctl -u resume-tool-mcp.service -n 200 --no-pager
+```
+
 ## Building the Frontends
 
 Build the main React application and extension:

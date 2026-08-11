@@ -1,0 +1,21 @@
+[Unit]
+Description=Resume Generator MCP adapter for Poke
+After=network-online.target __WEB_SERVICE__
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=__SERVICE_USER__
+WorkingDirectory=__APP_DIR__
+EnvironmentFile=__APP_DIR__/.env
+Environment=PYTHONUNBUFFERED=1
+Environment=RESUME_DISABLE_EXTENSION_WORKER=1
+ExecStart=__APP_DIR__/.venv/bin/python -m resume_mcp.server
+Restart=always
+RestartSec=5
+TimeoutStopSec=120
+KillSignal=SIGTERM
+UMask=0027
+
+[Install]
+WantedBy=multi-user.target

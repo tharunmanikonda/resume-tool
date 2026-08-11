@@ -1,0 +1,20 @@
+[Unit]
+Description=Resume Generator web application
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=__SERVICE_USER__
+WorkingDirectory=__APP_DIR__
+EnvironmentFile=__APP_DIR__/.env
+Environment=PYTHONUNBUFFERED=1
+ExecStart=__APP_DIR__/.venv/bin/gunicorn --workers 1 --threads 8 --timeout 900 --graceful-timeout 120 --bind 127.0.0.1:5001 --access-logfile - --error-logfile - app:app
+Restart=always
+RestartSec=5
+TimeoutStopSec=130
+KillSignal=SIGTERM
+UMask=0027
+
+[Install]
+WantedBy=multi-user.target

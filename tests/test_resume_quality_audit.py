@@ -205,6 +205,49 @@ def test_title_patch_returns_stable_review_group():
     }]
 
 
+def test_duplicate_model_change_ids_are_normalized_with_requirement_links():
+    changes = title_change()
+    changes["summary"] = {
+        "change_id": "title.market-standard",
+        "suggested": SUMMARY,
+        "reason": "Keep the summary focused on supported backend evidence.",
+        "supported_by": ["technical_recruiter", "hiring_manager"],
+        "evidence_refs": ["upstream.summary"],
+    }
+    result = audit_result("changes_suggested", changes)
+    result["requirement_resolutions"] = [{
+        "requirement_id": "req.backend-positioning",
+        "requirement": "Use direct backend positioning",
+        "priority": "important",
+        "claim_type": "engineering_capability",
+        "evidence_fit": "direct",
+        "resume_action": "patch_required",
+        "status": "patched_direct",
+        "evidence_refs": ["upstream.summary"],
+        "change_ids": ["title.market-standard"],
+        "reason": "Both patches express the supported backend positioning.",
+    }]
+
+    normalized = resume_app._normalize_quality_audit_change_ids(result)
+
+    assert result["changes"]["summary"]["change_id"] == "title.market-standard"
+    assert normalized["changes"]["top_title"]["change_id"] == "title.market-standard"
+    assert normalized["changes"]["summary"]["change_id"] == "title.market-standard-2"
+    assert normalized["requirement_resolutions"][0]["change_ids"] == [
+        "title.market-standard",
+        "title.market-standard-2",
+    ]
+
+    validated = validate(result)
+    validated_ids = {
+        group["change_id"] for group in validated["review_groups"]
+    } | {
+        item["change_id"] for item in validated["withheld_changes"]
+    }
+    assert "title.market-standard" in validated_ids
+    assert "title.market-standard-2" in validated_ids
+
+
 def test_atomic_bullet_rewrite_removes_and_inserts_as_one_change():
     result = audit_result("changes_suggested", bullet_change())
     validated = validate(result)

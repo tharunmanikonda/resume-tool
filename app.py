@@ -6899,6 +6899,88 @@ def _quality_audit_change_records(changes: dict) -> list[dict]:
     return records
 
 
+def _quality_audit_change_nodes(changes: dict) -> list[dict]:
+    """Return mutable patch objects in the same stable order as review records."""
+    nodes: list[dict] = []
+    for section in ("top_title", "summary"):
+        change = changes.get(section)
+        if isinstance(change, dict):
+            nodes.append(change)
+    nodes.extend(
+        change
+        for change in changes.get("experience_titles") or []
+        if isinstance(change, dict)
+    )
+    skills = changes.get("skills") or {}
+    for field in (
+        "category_removals", "category_additions",
+        "skill_removals", "skill_additions",
+    ):
+        nodes.extend(
+            change
+            for change in skills.get(field) or []
+            if isinstance(change, dict)
+        )
+    if isinstance(skills.get("category_order"), dict):
+        nodes.append(skills["category_order"])
+    for role in changes.get("experience") or []:
+        if not isinstance(role, dict):
+            continue
+        for change in role.get("change_groups") or []:
+            if isinstance(change, dict):
+                nodes.append(change)
+    return nodes
+
+
+def _normalize_quality_audit_change_ids(audit_result: dict) -> dict:
+    """Disambiguate duplicate model-generated IDs without changing patch meaning."""
+    normalized = copy.deepcopy(audit_result)
+    changes = normalized.get("changes")
+    if not isinstance(changes, dict):
+        return normalized
+
+    nodes = _quality_audit_change_nodes(changes)
+    valid_pattern = re.compile(r"[A-Za-z0-9][A-Za-z0-9._-]*")
+    reserved_ids = {
+        str(node.get("change_id", "")).strip()
+        for node in nodes
+        if valid_pattern.fullmatch(str(node.get("change_id", "")).strip())
+    }
+    used_ids: set[str] = set()
+    next_suffix: dict[str, int] = {}
+    id_expansions: dict[str, list[str]] = {}
+
+    for node in nodes:
+        original_id = str(node.get("change_id", "")).strip()
+        resolved_id = original_id
+        if valid_pattern.fullmatch(original_id) and original_id in used_ids:
+            suffix = next_suffix.get(original_id, 2)
+            candidate = f"{original_id}-{suffix}"
+            while candidate in used_ids or candidate in reserved_ids:
+                suffix += 1
+                candidate = f"{original_id}-{suffix}"
+            next_suffix[original_id] = suffix + 1
+            resolved_id = candidate
+            node["change_id"] = resolved_id
+        used_ids.add(resolved_id)
+        id_expansions.setdefault(original_id, []).append(resolved_id)
+
+    if not any(len(ids) > 1 for ids in id_expansions.values()):
+        return normalized
+
+    for resolution in normalized.get("requirement_resolutions") or []:
+        if not isinstance(resolution, dict):
+            continue
+        expanded_ids: list[str] = []
+        for change_id in resolution.get("change_ids") or []:
+            original_id = str(change_id).strip()
+            for resolved_id in id_expansions.get(original_id, [original_id]):
+                if resolved_id and resolved_id not in expanded_ids:
+                    expanded_ids.append(resolved_id)
+        resolution["change_ids"] = expanded_ids
+    return normalized
+
+
 def resume_quality_audit_review_groups(
     changed_paths_or_result,
     active_blueprints: list[dict] | None = None,
@@ -7316,6 +7398,7 @@ def validate_resume_quality_audit_result(
     del max_change_fraction
     if not isinstance(audit_result, dict):
         raise ResumeQualityAuditValidationError(["Audit result must be an object."])
+    audit_result = _normalize_quality_audit_change_ids(audit_result)
     if str(audit_result.get("schema_version", "")) != RESUME_QUALITY_AUDIT_SCHEMA_VERSION:
         raise ResumeQualityAuditValidationError(["Unsupported quality audit schema version."])
     decision = str(audit_result.get("decision", "")).strip()
