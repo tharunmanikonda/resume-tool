@@ -297,11 +297,13 @@ DEPLOY_WEB_SERVICE      Optional; defaults to resume-tool-web.service
 DEPLOY_MCP_SERVICE      Optional; defaults to resume-tool-mcp.service
 ```
 
-Generate the pinned host entry from a trusted machine and verify its fingerprint
-before saving it:
+Generate an ED25519 pinned host entry from a trusted machine and verify its
+fingerprint before saving the complete output line. The deployment workflow
+compares the scanned key material with this pin and binds it to the exact value
+of `DEPLOY_HOST`:
 
 ```bash
-ssh-keyscan -H your-server-hostname
+ssh-keyscan -H -t ed25519 your-server-hostname 2>/dev/null | grep -v '^#'
 ```
 
 After the secrets are configured, a push to `master` deploys automatically. A

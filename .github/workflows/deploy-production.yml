@@ -53,16 +53,42 @@ jobs:
 
       - name: Configure SSH
         env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_PORT: ${{ secrets.DEPLOY_PORT }}
           DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
           DEPLOY_KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
         run: |
+          : "${DEPLOY_HOST:?DEPLOY_HOST is required}"
           : "${DEPLOY_SSH_KEY:?DEPLOY_SSH_KEY is required}"
           : "${DEPLOY_KNOWN_HOSTS:?DEPLOY_KNOWN_HOSTS is required}"
+          DEPLOY_PORT="${DEPLOY_PORT:-22}"
           install -m 0700 -d ~/.ssh
           printf '%s\n' "$DEPLOY_SSH_KEY" | tr -d '\r' > ~/.ssh/id_ed25519
           chmod 0600 ~/.ssh/id_ed25519
-          printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > ~/.ssh/known_hosts
+
+          # Match the pinned key material, then bind it to the exact host name
+          # used by this workflow. This supports a key captured by IP while
+          # DEPLOY_HOST uses a DNS name, without trusting an unverified scan.
+          expected_key="$(printf '%s\n' "$DEPLOY_KNOWN_HOSTS" | tr -d '\r' | awk '$2 == "ssh-ed25519" { print $3; exit }')"
+          if [[ -z "$expected_key" ]]; then
+            echo "DEPLOY_KNOWN_HOSTS must contain an ssh-ed25519 host-key line."
+            exit 1
+          fi
+          scanned_line="$(ssh-keyscan -p "$DEPLOY_PORT" -t ed25519 "$DEPLOY_HOST" 2>/dev/null | awk '$2 == "ssh-ed25519" { print; exit }')"
+          scanned_key="$(printf '%s\n' "$scanned_line" | awk '{ print $3 }')"
+          if [[ -z "$scanned_key" || "$scanned_key" != "$expected_key" ]]; then
+            echo "The server ED25519 key does not match DEPLOY_KNOWN_HOSTS."
+            exit 1
+          fi
+          if [[ "$DEPLOY_PORT" == "22" ]]; then
+            known_host="$DEPLOY_HOST"
+          else
+            known_host="[$DEPLOY_HOST]:$DEPLOY_PORT"
+          fi
+          printf '%s ssh-ed25519 %s\n' "$known_host" "$expected_key" > ~/.ssh/known_hosts
           chmod 0600 ~/.ssh/known_hosts
+          ssh-keygen -y -f ~/.ssh/id_ed25519 >/dev/null
+          ssh-keygen -F "$known_host" -f ~/.ssh/known_hosts >/dev/null
 
       - name: Deploy the pushed commit
         env:
