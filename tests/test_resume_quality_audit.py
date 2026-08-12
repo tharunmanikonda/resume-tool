@@ -189,6 +189,17 @@ def test_approved_review_has_no_changes():
     assert validated["changes"] == empty_changes()
 
 
+def test_approved_review_with_patches_is_normalized():
+    validated = validate(audit_result("approved", title_change()))
+
+    assert validated["decision"] == "changes_suggested"
+    assert validated["review_groups"][0]["section"] == "top_title"
+    assert validated["contract_diagnostics"] == [{
+        "issue": "approved_with_changes_normalized",
+        "details": "Patches were present, so the decision was set to changes_suggested.",
+    }]
+
+
 def test_title_patch_returns_stable_review_group():
     validated = validate(audit_result("changes_suggested", title_change()))
 
@@ -454,7 +465,7 @@ def test_already_covered_requirement_does_not_fail_when_luna_links_patch():
     }]
 
 
-def test_supported_engineering_requirement_cannot_remain_unpatched():
+def test_supported_engineering_requirement_missing_patch_becomes_gap():
     result = audit_result()
     result["requirement_resolutions"] = [{
         "requirement_id": "req.implementation-docs",
@@ -469,11 +480,18 @@ def test_supported_engineering_requirement_cannot_remain_unpatched():
         "reason": "The existing release-validation evidence can support a transferable rewrite.",
     }]
 
-    with pytest.raises(
-        resume_app.ResumeQualityAuditRepairRequiredError,
-        match="requires a valid linked patch",
-    ):
-        validate(result)
+    validated = validate(result)
+
+    assert validated["decision"] == "approved"
+    resolution = validated["requirement_resolutions"][0]
+    assert resolution["resume_action"] == "gap_only"
+    assert resolution["status"] == "unresolved"
+    assert resolution["change_ids"] == []
+    assert validated["requirement_resolution_diagnostics"] == [{
+        "requirement_id": "req.implementation-docs",
+        "issue": "missing_linked_patch_downgraded",
+        "details": [],
+    }]
 
 
 def test_warehouse_and_travel_requirements_are_forced_to_gap_only():
@@ -570,15 +588,40 @@ def test_schema_is_patch_only_and_never_contains_full_resume():
     assert "resume_action" in schema_text
 
 
-def test_title_assessment_requires_matching_title_patch():
+def test_title_assessment_without_patch_uses_normalized_market_title():
     result = audit_result()
     result["review_basis"]["top_title_assessment"] = "change_recommended"
+    result["review_basis"]["normalized_market_title"] = "Backend Engineer"
 
-    with pytest.raises(
-        resume_app.ResumeQualityAuditValidationError,
-        match="top-title change requires",
-    ):
-        validate(result)
+    validated = validate(result)
+
+    assert validated["decision"] == "changes_suggested"
+    assert validated["changes"]["top_title"]["suggested"] == "Backend Engineer"
+    assert validated["contract_diagnostics"] == [
+        {
+            "issue": "missing_top_title_patch_synthesized",
+            "details": "Used the model-provided normalized market title.",
+        },
+        {
+            "issue": "approved_with_changes_normalized",
+            "details": "Patches were present, so the decision was set to changes_suggested.",
+        },
+    ]
+
+
+def test_title_assessment_without_safe_title_is_downgraded():
+    result = audit_result()
+    result["review_basis"]["top_title_assessment"] = "change_recommended"
+    result["review_basis"]["normalized_market_title"] = current_resume()["updated_title"]
+
+    validated = validate(result)
+
+    assert validated["decision"] == "approved"
+    assert validated["review_basis"]["top_title_assessment"] == "aligned"
+    assert validated["contract_diagnostics"] == [{
+        "issue": "incomplete_top_title_recommendation_downgraded",
+        "details": "No safe complete replacement title was available.",
+    }]
 
 
 def test_summary_can_retain_named_technology_from_validated_manifest():
@@ -641,7 +684,7 @@ def test_generation_uses_luna_medium_and_retries_for_output_limit(monkeypatch):
     assert '"has_manual_edits":true' in structured_input
 
 
-def test_generation_repairs_missing_supported_engineering_patch_once(monkeypatch):
+def test_generation_does_not_retry_missing_supported_engineering_patch(monkeypatch):
     calls = []
     incomplete = audit_result()
     incomplete["requirement_resolutions"] = [{
@@ -656,23 +699,10 @@ def test_generation_repairs_missing_supported_engineering_patch_once(monkeypatch
         "change_ids": [],
         "reason": "Transferable release-validation evidence exists.",
     }]
-    repaired = audit_result("changes_suggested", bullet_change())
-    repaired["requirement_resolutions"] = [{
-        "requirement_id": "req.implementation-docs",
-        "requirement": "Create implementation guides and detailed test-result documentation",
-        "priority": "important",
-        "claim_type": "engineering_capability",
-        "evidence_fit": "transferable",
-        "resume_action": "patch_required",
-        "status": "patched_transferable",
-        "evidence_refs": ["upstream.mckinsey.bullet.2"],
-        "change_ids": ["experience.mckinsey.rewrite-1"],
-        "reason": "The replacement surfaces supported release-validation documentation evidence.",
-    }]
 
     def fake_call(**kwargs):
         calls.append(kwargs)
-        return copy.deepcopy(incomplete if len(calls) == 1 else repaired)
+        return copy.deepcopy(incomplete)
 
     monkeypatch.setattr(resume_app, "call_openai_structured_output", fake_call)
 
@@ -684,12 +714,15 @@ def test_generation_repairs_missing_supported_engineering_patch_once(monkeypatch
         active_blueprints=active_blueprints(),
     )
 
-    assert len(calls) == 2
-    assert calls[1]["max_output_tokens"] == 12000
-    assert "required_patch_diagnostics" in calls[1]["user_prompt"]
-    assert generated["decision"] == "changes_suggested"
-    assert generated["repair_attempted"] is True
-    assert generated["attempt_count"] == 2
+    assert len(calls) == 1
+    assert generated["decision"] == "approved"
+    assert generated["repair_attempted"] is False
+    assert generated["attempt_count"] == 1
+    assert generated["requirement_resolution_diagnostics"] == [{
+        "requirement_id": "req.implementation-docs",
+        "issue": "missing_linked_patch_downgraded",
+        "details": [],
+    }]
 
 
 def test_generation_does_not_retry_deterministically_withheld_patch(monkeypatch):

@@ -5174,17 +5174,6 @@ class ResumeQualityAuditValidationError(ResumeQualityAuditError):
         super().__init__("; ".join(self.issues) or "Resume quality audit validation failed.")
 
 
-class ResumeQualityAuditRepairRequiredError(ResumeQualityAuditValidationError):
-    def __init__(self, diagnostics: list[dict]):
-        self.diagnostics = copy.deepcopy(diagnostics)
-        issues = [
-            str(item.get("reason", "A required engineering patch is missing.")).strip()
-            for item in diagnostics
-            if isinstance(item, dict)
-        ]
-        super().__init__(issues or ["A required engineering patch is missing."])
-
-
 class ResumeQualityAuditStaleConflictError(ResumeQualityAuditError):
     def __init__(self, expected_base_hash: str, actual_base_hash: str):
         self.expected_base_hash = expected_base_hash
@@ -6648,6 +6637,7 @@ def build_ai_resume_quality_audit_prompt() -> str:
             "- classify each requirement by claim_type, evidence_fit, resume_action, and status before writing patches",
             "- engineering capabilities with direct or transferable evidence are resume-addressable and must use resume_action patch_required unless already covered",
             "- a patch-required requirement must return a complete title, summary, skill, or experience patch and link its exact change_ids",
+            "- if you cannot produce a complete safe patch for a requirement, mark it unresolved/gap_only with empty change_ids instead of returning patch_required",
             "- create safe patches for direct evidence and for genuinely transferable evidence before declaring a requirement unresolved",
             "- patched_transferable means the candidate evidence demonstrates the same underlying capability without pretending to have an unsupported exact tool, employer context, duration, or industry",
             "- unresolved is allowed only after the complete evidence manifest has been exhausted and no defensible wording can cover the requirement",
@@ -6687,6 +6677,7 @@ def build_ai_resume_quality_audit_prompt() -> str:
             "- already_covered and unresolved requirements must use an empty change_ids list",
             "- patch_required must use patched_direct or patched_transferable and must have at least one linked change_id",
             "- gap_only must use unresolved, empty change_ids, and no resume patch",
+            "- never set top_title_assessment or experience_title_assessment to change_recommended unless the matching complete patch is present",
             "- every requirement evidence reference must exist in the supplied evidence manifest",
             "- every change identifies which reviewer points of view support it",
             "- title and summary changes must return the complete replacement text",
@@ -6703,29 +6694,6 @@ def build_ai_resume_quality_audit_prompt() -> str:
             "- give one concise reason for every change",
             "- return only JSON matching the supplied schema",
         ]
-    )
-
-
-def build_ai_resume_quality_audit_repair_prompt(
-    original_input: dict,
-    previous_result: dict,
-    diagnostics: list[dict],
-) -> str:
-    repair_input = {
-        "original_review_input": original_input,
-        "previous_review_result": previous_result,
-        "required_patch_diagnostics": diagnostics,
-    }
-    return (
-        "Correct the previous patch review. Preserve every valid prior conclusion and patch, "
-        "but repair each item in required_patch_diagnostics. Every listed item is a "
-        "resume-addressable engineering requirement with candidate evidence, so it must return "
-        "a grounded direct or transferable patch with valid evidence_refs and linked change_ids. "
-        "Do not convert it to gap_only or unresolved. Do not create patches for warehouse "
-        "installation, warehouse commissioning, conveyor operations, travel, location, or other "
-        "application conditions. Return one complete schema-valid patch review JSON, not only the "
-        "corrected fragments.\n"
-        + json.dumps(repair_input, ensure_ascii=False, separators=(",", ":"))
     )
 
 
@@ -7009,6 +6977,97 @@ def _normalize_quality_audit_change_ids(audit_result: dict) -> dict:
                 if resolved_id and resolved_id not in expanded_ids:
                     expanded_ids.append(resolved_id)
         resolution["change_ids"] = expanded_ids
+    return normalized
+
+
+def _normalize_quality_audit_contract(
+    audit_result: dict,
+    *,
+    current_resume: dict,
+    active_blueprints: list[dict],
+) -> dict:
+    """Repair harmless cross-field inconsistencies in a model audit response.
+
+    The schema validates each field shape, but a model can still return mutually
+    inconsistent fields. Reconcile those cases locally instead of treating them
+    as an audit failure or spending another model call on mechanical repair.
+    """
+    normalized = copy.deepcopy(audit_result)
+    changes = normalized.get("changes")
+    review_basis = normalized.get("review_basis")
+    if not isinstance(changes, dict) or not isinstance(review_basis, dict):
+        return normalized
+
+    diagnostics: list[dict] = []
+    decision = str(normalized.get("decision", "")).strip()
+    current_title = str(current_resume.get("updated_title", "")).strip()
+
+    if (
+        decision != "manual_attention"
+        and
+        review_basis.get("top_title_assessment") == "change_recommended"
+        and not isinstance(changes.get("top_title"), dict)
+    ):
+        suggested = str(review_basis.get("normalized_market_title", "")).strip()
+        evidence_refs = []
+        for blueprint in active_blueprints:
+            role_key = str(blueprint.get("key", "")).strip()
+            role = ((current_resume.get("experience") or {}).get(role_key) or {})
+            if role_key and str(role.get("title", "")).strip():
+                evidence_refs = [f"upstream.{role_key}.title"]
+                break
+        if suggested and suggested != current_title and evidence_refs:
+            changes["top_title"] = {
+                "change_id": "title.normalized-market-title",
+                "suggested": suggested,
+                "reason": (
+                    str(review_basis.get("title_rationale", "")).strip()
+                    or "Use the market-standard title identified during review."
+                ),
+                "supported_by": ["technical_recruiter", "hiring_manager"],
+                "evidence_refs": evidence_refs,
+            }
+            diagnostics.append({
+                "issue": "missing_top_title_patch_synthesized",
+                "details": "Used the model-provided normalized market title.",
+            })
+        else:
+            review_basis["top_title_assessment"] = "aligned"
+            diagnostics.append({
+                "issue": "incomplete_top_title_recommendation_downgraded",
+                "details": "No safe complete replacement title was available.",
+            })
+
+    if (
+        decision != "manual_attention"
+        and
+        review_basis.get("experience_title_assessment") == "change_recommended"
+        and not (changes.get("experience_titles") or [])
+    ):
+        # Unlike the top title, there is no per-role normalized replacement in
+        # the response to safely reconstruct. Keep this as review context only.
+        review_basis["experience_title_assessment"] = "coherent"
+        diagnostics.append({
+            "issue": "incomplete_experience_title_recommendation_downgraded",
+            "details": "No complete per-role title replacement was supplied.",
+        })
+
+    records = _quality_audit_change_records(changes)
+    if decision == "approved" and records:
+        normalized["decision"] = "changes_suggested"
+        diagnostics.append({
+            "issue": "approved_with_changes_normalized",
+            "details": "Patches were present, so the decision was set to changes_suggested.",
+        })
+    elif decision == "changes_suggested" and not records:
+        normalized["decision"] = "approved"
+        diagnostics.append({
+            "issue": "changes_suggested_without_changes_normalized",
+            "details": "No complete safe patch was supplied.",
+        })
+
+    if diagnostics:
+        normalized["contract_diagnostics"] = diagnostics
     return normalized
 
 
@@ -7430,6 +7489,12 @@ def validate_resume_quality_audit_result(
     if not isinstance(audit_result, dict):
         raise ResumeQualityAuditValidationError(["Audit result must be an object."])
     audit_result = _normalize_quality_audit_change_ids(audit_result)
+    audit_result = _normalize_quality_audit_contract(
+        audit_result,
+        current_resume=current_resume,
+        active_blueprints=active_blueprints,
+    )
+    audit_result = _normalize_quality_audit_change_ids(audit_result)
     if str(audit_result.get("schema_version", "")) != RESUME_QUALITY_AUDIT_SCHEMA_VERSION:
         raise ResumeQualityAuditValidationError(["Unsupported quality audit schema version."])
     decision = str(audit_result.get("decision", "")).strip()
@@ -7808,7 +7873,6 @@ def validate_resume_quality_audit_result(
         validated_records = []
 
     normalized_requirement_resolutions: list[dict] = []
-    required_patch_diagnostics: list[dict] = []
     existing_gap_ids = {
         str(item.get("id", "")).strip()
         for item in non_blocking_gaps
@@ -7863,17 +7927,14 @@ def validate_resume_quality_audit_result(
                     ],
                 })
             else:
-                # Luna classified supported evidence as patchable but omitted
-                # the patch entirely. This is the one case where a repair call
-                # can add value instead of contesting deterministic validation.
-                required_patch_diagnostics.append({
+                resolution["resume_action"] = "gap_only"
+                resolution["status"] = "unresolved"
+                resolution["change_ids"] = []
+                resolution["reason"] = reason + " Luna did not return a complete safe patch."
+                resolution_diagnostics.append({
                     "requirement_id": str(resolution.get("requirement_id", "")).strip(),
-                    "requirement": str(resolution.get("requirement", "")).strip(),
-                    "claim_type": str(resolution.get("claim_type", "")).strip(),
-                    "evidence_fit": str(resolution.get("evidence_fit", "")).strip(),
-                    "evidence_refs": copy.deepcopy(resolution.get("evidence_refs") or []),
-                    "linked_change_ids": linked_ids,
-                    "reason": reason,
+                    "issue": "missing_linked_patch_downgraded",
+                    "details": [],
                 })
         if (
             resolution.get("status") in {"patched_direct", "patched_transferable"}
@@ -7904,9 +7965,6 @@ def validate_resume_quality_audit_result(
             ),
         })
         existing_gap_ids.add(gap_id)
-
-    if required_patch_diagnostics:
-        raise ResumeQualityAuditRepairRequiredError(required_patch_diagnostics)
 
     review_groups = []
     blueprint_by_key = {
@@ -7994,6 +8052,7 @@ def validate_resume_quality_audit_result(
         "non_blocking_gaps": non_blocking_gaps,
         "requirement_resolutions": normalized_requirement_resolutions,
         "requirement_resolution_diagnostics": resolution_diagnostics,
+        "contract_diagnostics": copy.deepcopy(audit_result.get("contract_diagnostics") or []),
         "changes": validated_changes,
         "review_groups": review_groups,
         "withheld_changes": withheld,
@@ -8211,48 +8270,13 @@ def generate_resume_quality_audit(
             except (AttributeError, TypeError):
                 pass
             raise
-    repair_attempted = False
-    try:
-        validated = validate_resume_quality_audit_result(
-            raw_result,
-            current_resume=canonical_resume,
-            analysis_payload=analysis_payload,
-            active_blueprints=active_blueprints,
-            candidate_profile=candidate_profile,
-        )
-    except ResumeQualityAuditRepairRequiredError as exc:
-        repair_attempted = True
-        attempts += 1
-        raw_result = call_openai_structured_output(
-            api_key=api_key,
-            model=model,
-            temperature=RESUME_TEMPERATURE,
-            developer_prompt=build_ai_resume_quality_audit_prompt(),
-            user_prompt=build_ai_resume_quality_audit_repair_prompt(
-                review_input,
-                raw_result,
-                exc.diagnostics,
-            ),
-            schema_name="resume_quality_audit_v2_repair",
-            schema=ai_resume_quality_audit_schema(
-                active_blueprints,
-                ordered_categories,
-            ),
-            max_output_tokens=RESUME_QUALITY_AUDIT_RETRY_MAX_OUTPUT_TOKENS,
-            request_timeout_seconds=timeout_seconds,
-            reasoning_effort=reasoning_effort,
-            background=True,
-            background_timeout_seconds=OPENAI_AUDIT_BACKGROUND_TIMEOUT_SECONDS,
-            background_poll_interval_seconds=OPENAI_BACKGROUND_POLL_INTERVAL_SECONDS,
-        )
-        last_limit = RESUME_QUALITY_AUDIT_RETRY_MAX_OUTPUT_TOKENS
-        validated = validate_resume_quality_audit_result(
-            raw_result,
-            current_resume=canonical_resume,
-            analysis_payload=analysis_payload,
-            active_blueprints=active_blueprints,
-            candidate_profile=candidate_profile,
-        )
+    validated = validate_resume_quality_audit_result(
+        raw_result,
+        current_resume=canonical_resume,
+        analysis_payload=analysis_payload,
+        active_blueprints=active_blueprints,
+        candidate_profile=candidate_profile,
+    )
     if isinstance(validated.get("review_basis"), dict):
         validated["review_basis"]["advertised_job_title"] = (
             authoritative_title or None
@@ -8261,7 +8285,7 @@ def generate_resume_quality_audit(
     validated["reasoning_effort"] = reasoning_effort
     validated["attempt_count"] = attempts
     validated["max_output_tokens"] = last_limit
-    validated["repair_attempted"] = repair_attempted
+    validated["repair_attempted"] = False
     validated["duration_ms"] = round((time.perf_counter() - started) * 1000)
     validated["token_usage"] = None
     validated["execution_mode"] = "background"
