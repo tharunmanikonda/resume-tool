@@ -69,9 +69,24 @@ jobs:
           # Match the pinned key material, then bind it to the exact host name
           # used by this workflow. This supports a key captured by IP while
           # DEPLOY_HOST uses a DNS name, without trusting an unverified scan.
-          expected_key="$(printf '%s\n' "$DEPLOY_KNOWN_HOSTS" | tr -d '\r' | awk '$2 == "ssh-ed25519" { print $3; exit }')"
+          expected_key="$(
+            printf '%s\n' "$DEPLOY_KNOWN_HOSTS" |
+              tr -d '\r' |
+              awk '{
+                for (field = 1; field <= NF; field += 1) {
+                  if ($field == "ssh-ed25519" && field < NF) {
+                    print $(field + 1)
+                    exit
+                  }
+                }
+                if (NF == 1 && $1 ~ /^AAAAC3NzaC1lZDI1NTE5/) {
+                  print $1
+                  exit
+                }
+              }'
+          )"
           if [[ -z "$expected_key" ]]; then
-            echo "DEPLOY_KNOWN_HOSTS must contain an ssh-ed25519 host-key line."
+            echo "DEPLOY_KNOWN_HOSTS must contain an ED25519 known-hosts line or its Base64 key body."
             exit 1
           fi
           scanned_line="$(ssh-keyscan -p "$DEPLOY_PORT" -t ed25519 "$DEPLOY_HOST" 2>/dev/null | awk '$2 == "ssh-ed25519" { print; exit }')"

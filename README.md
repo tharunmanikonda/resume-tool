@@ -306,6 +306,11 @@ of `DEPLOY_HOST`:
 ssh-keyscan -H -t ed25519 your-server-hostname 2>/dev/null | grep -v '^#'
 ```
 
+Save the entire resulting line in `DEPLOY_KNOWN_HOSTS`. The workflow also
+accepts only the Base64 key body or a value prefixed with a variable label, but
+it must contain the droplet's host key, not the deployment user's `.pub`
+authentication key.
+
 After the secrets are configured, a push to `master` deploys automatically. A
 manual deployment of the currently checked-out commit can also be run on the
 server from the repository root:
