@@ -324,6 +324,39 @@ def test_all_unsupported_patches_become_non_blocking_gaps():
     assert validated["non_blocking_gaps"][0]["id"].startswith("withheld.")
 
 
+def test_required_patch_rejected_by_grounding_becomes_gap_without_repair():
+    changes = bullet_change(
+        bullet=(
+            "Built Kubernetes services that improved workflow reliability by 55% across enterprise "
+            "delivery teams while strengthening release automation and operational support."
+        ),
+    )
+    result = audit_result("changes_suggested", changes)
+    result["requirement_resolutions"] = [{
+        "requirement_id": "req.kubernetes",
+        "requirement": "Deploy backend services with Kubernetes",
+        "priority": "important",
+        "claim_type": "named_technology",
+        "evidence_fit": "transferable",
+        "resume_action": "patch_required",
+        "status": "patched_transferable",
+        "evidence_refs": ["upstream.mckinsey.bullet.1"],
+        "change_ids": ["experience.mckinsey.rewrite-1"],
+        "reason": "The proposed rewrite attempted to surface deployment evidence.",
+    }]
+
+    validated = validate(result)
+
+    assert validated["decision"] == "approved"
+    resolution = validated["requirement_resolutions"][0]
+    assert resolution["resume_action"] == "gap_only"
+    assert resolution["status"] == "unresolved"
+    assert resolution["change_ids"] == []
+    assert validated["requirement_resolution_diagnostics"][0]["issue"] == (
+        "linked_patches_withheld"
+    )
+
+
 def test_project_evidence_can_resolve_requirement_with_safe_patch():
     changes = empty_changes()
     changes["skills"]["skill_additions"] = [{
@@ -657,6 +690,48 @@ def test_generation_repairs_missing_supported_engineering_patch_once(monkeypatch
     assert generated["decision"] == "changes_suggested"
     assert generated["repair_attempted"] is True
     assert generated["attempt_count"] == 2
+
+
+def test_generation_does_not_retry_deterministically_withheld_patch(monkeypatch):
+    calls = []
+    changes = bullet_change(
+        bullet=(
+            "Built Kubernetes services that improved workflow reliability by 55% across enterprise "
+            "delivery teams while strengthening release automation and operational support."
+        ),
+    )
+    unsafe = audit_result("changes_suggested", changes)
+    unsafe["requirement_resolutions"] = [{
+        "requirement_id": "req.kubernetes",
+        "requirement": "Deploy backend services with Kubernetes",
+        "priority": "important",
+        "claim_type": "named_technology",
+        "evidence_fit": "transferable",
+        "resume_action": "patch_required",
+        "status": "patched_transferable",
+        "evidence_refs": ["upstream.mckinsey.bullet.1"],
+        "change_ids": ["experience.mckinsey.rewrite-1"],
+        "reason": "The proposed rewrite attempted to surface deployment evidence.",
+    }]
+
+    def fake_call(**kwargs):
+        calls.append(kwargs)
+        return copy.deepcopy(unsafe)
+
+    monkeypatch.setattr(resume_app, "call_openai_structured_output", fake_call)
+
+    generated = resume_app.generate_resume_quality_audit(
+        api_key="test-key",
+        job_description="Deploy backend services with Kubernetes.",
+        analysis_payload=ANALYSIS,
+        current_resume=current_resume(),
+        active_blueprints=active_blueprints(),
+    )
+
+    assert len(calls) == 1
+    assert generated["attempt_count"] == 1
+    assert generated["repair_attempted"] is False
+    assert generated["decision"] == "approved"
 
 
 def test_generation_retries_once_after_transient_network_failure(monkeypatch):

@@ -345,6 +345,145 @@ def test_identical_manual_content_does_not_increment_revision(one_blueprint):
     assert session["resume_revision"] == before_revision
 
 
+def test_pdf_preparation_parses_content_with_newly_disabled_middle_role():
+    blueprints = resume_app.current_experience_blueprints()
+    enabled_blueprints = [
+        blueprint for blueprint in blueprints if blueprint["key"] != "uber"
+    ]
+    enabled_keys = [blueprint["key"] for blueprint in enabled_blueprints]
+    session_id, session = resume_app.get_ai_session(None, "Build test automation.", False)
+    session["analysis"] = copy.deepcopy(ANALYSIS)
+    session["enabled_experience_keys"] = [blueprint["key"] for blueprint in blueprints]
+    titles = {
+        "mckinsey": "Applied AI Engineer",
+        "uber": "Platform Engineer",
+        "kpmg": "Java Engineer",
+        "trigent": "Frontend Engineer",
+    }
+    canonical = {
+        "updated_title": "Playwright Automation Engineer",
+        "updated_summary": SUMMARY,
+        "updated_skills": copy.deepcopy(SKILLS["updated_skills"]),
+        "experience": {
+            blueprint["key"]: {
+                "title": titles[blueprint["key"]],
+                "bullets": [f"Built reliable automation workflows for {blueprint['company']}."],
+            }
+            for blueprint in blueprints
+        },
+    }
+    resume_app.update_ai_session_structured_resume(session, canonical, blueprints)
+    full_content = resume_app.format_generated_resume_text(
+        {
+            **canonical,
+            "_enabled_experience_keys": [blueprint["key"] for blueprint in blueprints],
+        },
+        blueprints,
+    )
+
+    changed, active_blueprints = resume_app.prepare_ai_session_for_pdf(
+        session,
+        full_content,
+        enabled_keys,
+    )
+
+    assert changed is True
+    assert [blueprint["key"] for blueprint in active_blueprints] == enabled_keys
+    assert session["enabled_experience_keys"] == enabled_keys
+    parsed = resume_app.ai_session_canonical_resume(session, active_blueprints)
+    assert parsed["experience"]["kpmg"]["title"]
+    assert parsed["experience"]["kpmg"]["bullets"]
+    assert parsed["experience"]["trigent"]["title"]
+    assert parsed["experience"]["trigent"]["bullets"]
+    assert "uber" not in parsed["experience"]
+    assert parsed["experience"]["kpmg"]["title"] == "Java Engineer"
+    assert parsed["experience"]["trigent"]["title"] == "Frontend Engineer"
+
+
+def test_preview_keeps_changed_dates_when_middle_role_is_disabled(monkeypatch):
+    blueprints = resume_app.current_experience_blueprints()
+    base_resume = {
+        "title": "Base title",
+        "summary": "Base summary",
+        "technical_skills": [],
+        "experience": [
+            {
+                "company": blueprint["company"],
+                "location": blueprint["location"],
+                "dates": blueprint["dates"],
+                "title": "Old title",
+                "bullets": ["Old bullet"],
+            }
+            for blueprint in blueprints
+        ],
+    }
+    monkeypatch.setattr(resume_app, "load_base_resume", lambda: copy.deepcopy(base_resume))
+    monkeypatch.setattr(resume_app, "apply_profile_overrides", lambda resume: resume)
+
+    canonical = {
+        "updated_title": "Playwright Automation Engineer",
+        "updated_summary": SUMMARY,
+        "updated_skills": copy.deepcopy(SKILLS["updated_skills"]),
+        "experience": {
+            blueprint["key"]: {
+                "title": f"Role {index + 1}",
+                "bullets": [f"Built reliable automation workflows for {blueprint['company']}."],
+            }
+            for index, blueprint in enumerate(blueprints)
+        },
+        "_enabled_experience_keys": [blueprint["key"] for blueprint in blueprints],
+    }
+    full_content = resume_app.format_generated_resume_text(canonical, blueprints)
+    changed_dates = {
+        "mckinsey": "January 2025 - Present",
+        "kpmg": "March 2021 - December 2022",
+        "trigent": "June 2019 - February 2021",
+    }
+    history = [
+        {
+            "key": blueprint["key"],
+            "company": blueprint["company"],
+            "location": blueprint["location"],
+            "title": f"Role {index + 1}",
+            "dates": changed_dates.get(blueprint["key"], blueprint["dates"]),
+            "enabled": blueprint["key"] != "uber",
+        }
+        for index, blueprint in enumerate(blueprints)
+    ]
+
+    preview = resume_app.parse_resume_snapshot(
+        full_content,
+        experience_history_override=history,
+        enabled_experience_keys=["mckinsey", "kpmg", "trigent"],
+    )
+
+    assert [entry["company"] for entry in preview["experience"]] == [
+        blueprints[0]["company"],
+        blueprints[2]["company"],
+        blueprints[3]["company"],
+    ]
+    assert [entry["dates"] for entry in preview["experience"]] == [
+        changed_dates["mckinsey"],
+        changed_dates["kpmg"],
+        changed_dates["trigent"],
+    ]
+    assert [entry["title"] for entry in preview["experience"]] == [
+        "Role 1",
+        "Role 3",
+        "Role 4",
+    ]
+
+    _canonical, pdf_resume = resume_app.canonical_resume_override_for_pdf(
+        preview,
+        [blueprints[0], blueprints[2], blueprints[3]],
+    )
+    assert [entry["dates"] for entry in pdf_resume["experience"]] == [
+        changed_dates["mckinsey"],
+        changed_dates["kpmg"],
+        changed_dates["trigent"],
+    ]
+
+
 @pytest.mark.parametrize("decision", ["approved", "changes_suggested", "manual_attention"])
 def test_audit_decision_persists(monkeypatch, one_blueprint, decision):
     session_id, session = completed_session(one_blueprint)

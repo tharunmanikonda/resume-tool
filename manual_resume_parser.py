@@ -1,6 +1,8 @@
 from __future__ import annotations
 
+import ast
 import copy
+import json
 import re
 from typing import Any
 
@@ -112,6 +114,19 @@ def _parse_skills(skills_block: str) -> list[dict[str, str]]:
             category, items = line.split(":", 1)
             category = category.strip()
             items = items.strip()
+            if items.startswith("[") and items.endswith("]"):
+                for parser in (json.loads, ast.literal_eval):
+                    try:
+                        parsed_items = parser(items)
+                    except (ValueError, SyntaxError, json.JSONDecodeError):
+                        continue
+                    if isinstance(parsed_items, (list, tuple)):
+                        items = ", ".join(
+                            str(item).strip()
+                            for item in parsed_items
+                            if str(item).strip()
+                        )
+                        break
             # Skip lines that look like extraneous metadata (e.g., "MATCH SCORE (%)" or "%)")
             if re.match(r'^[A-Z\s]*(\([^)]*\))?$', category) and items and items[0].isdigit():
                 # Looks like "MATCH SCORE (%): 97%" - skip it
@@ -149,8 +164,7 @@ def _looks_like_company_header(line: str) -> bool:
 
 def _parse_experience_titles_and_bullets(text: str) -> list[dict[str, Any]]:
     """
-    Parse experience sections in order rather than by exact company name.
-    Returns one entry per fixed experience slot.
+    Parse the experience sections that are present, preserving their order.
     """
     lines = text.split("\n")
     sections: list[list[str]] = []
@@ -170,12 +184,8 @@ def _parse_experience_titles_and_bullets(text: str) -> list[dict[str, Any]]:
         sections.append(current_section)
 
     parsed: list[dict[str, Any]] = []
-    for index in range(len(COMPANIES)):
-        if index >= len(sections):
-            parsed.append({"title": "", "bullets": []})
-            continue
-
-        section = sections[index]
+    for section in sections:
+        company = ""
         title = ""
         bullets: list[str] = []
         company_line_consumed = False
@@ -186,6 +196,7 @@ def _parse_experience_titles_and_bullets(text: str) -> list[dict[str, Any]]:
                 continue
             if not company_line_consumed and _looks_like_company_header(cleaned):
                 company_line_consumed = True
+                company = cleaned.split("|", 1)[0].strip()
                 continue
             if not title:
                 if "|" in cleaned:
@@ -196,12 +207,16 @@ def _parse_experience_titles_and_bullets(text: str) -> list[dict[str, Any]]:
                 continue
             bullets.append(cleaned)
 
-        parsed.append({"title": title, "bullets": bullets})
+        parsed.append({"company": company, "title": title, "bullets": bullets})
 
     return parsed
 
 
-def parse_updated_content_to_resume(updated_text: str, base_resume: dict) -> dict:
+def parse_updated_content_to_resume(
+    updated_text: str,
+    base_resume: dict,
+    enabled_experience_keys: list[str] | None = None,
+) -> dict:
     """Parse updated content and merge with base resume."""
     resume = copy.deepcopy(base_resume)
 
@@ -253,12 +268,53 @@ def parse_updated_content_to_resume(updated_text: str, base_resume: dict) -> dic
             exp_entry["title"] = ""
             exp_entry["bullets"] = []
 
-    # Keep slot order stable; titles and bullets come from parsed content.
+    # Generated content contains only enabled roles. Map those compact blocks
+    # back to their stable profile slots so removing a middle role does not
+    # shift every later company into the wrong slot.
     if company_data:
-        for index, exp_entry in enumerate(resume.get("experience", [])):
-            if index >= len(company_data):
+        known_keys = [item["key"] for item in COMPANIES]
+        requested_keys = (
+            [key for key in enabled_experience_keys if key in known_keys]
+            if enabled_experience_keys is not None
+            else known_keys
+        )
+        slot_by_key = {item["key"]: index for index, item in enumerate(COMPANIES)}
+        expected_company_by_key = {
+            item["key"]: str(item.get("company", "")).strip()
+            for item in COMPANIES
+        }
+        for key, slot_index in slot_by_key.items():
+            experience = resume.get("experience", [])
+            if slot_index < len(experience):
+                current_company = str(experience[slot_index].get("company", "")).strip()
+                if current_company:
+                    expected_company_by_key[key] = current_company
+
+        def normalized_company(value: str) -> str:
+            return re.sub(r"[^a-z0-9]+", "", str(value or "").lower())
+
+        company_key_lookup = {
+            normalized_company(company): key
+            for key, company in expected_company_by_key.items()
+            if normalized_company(company)
+        }
+        fallback_keys = known_keys if len(company_data) > len(requested_keys) else requested_keys
+        used_keys: set[str] = set()
+
+        for data in company_data:
+            matched_key = company_key_lookup.get(normalized_company(data.get("company", "")))
+            if matched_key in used_keys:
+                matched_key = None
+            if not matched_key:
+                matched_key = next((key for key in fallback_keys if key not in used_keys), None)
+            if not matched_key:
                 continue
-            data = company_data[index]
+            used_keys.add(matched_key)
+            slot_index = slot_by_key[matched_key]
+            experience = resume.get("experience", [])
+            if slot_index >= len(experience):
+                continue
+            exp_entry = experience[slot_index]
             if data["title"]:
                 exp_entry["title"] = data["title"]
             if data["bullets"]:

@@ -302,7 +302,13 @@ def build_resume_docx(resume_data: dict, output_docx: str, format_profile: str =
         r1 = p.add_run(sk['category'])
         _format_run(r1, size=body_size, font_name=font_name)
         r1.bold      = True
-        r2 = p.add_run(f": {sk['items']}")
+        raw_items = sk.get('items', [])
+        items_text = (
+            ', '.join(str(item).strip() for item in raw_items if str(item).strip())
+            if isinstance(raw_items, (list, tuple, set))
+            else str(raw_items).strip()
+        )
+        r2 = p.add_run(f": {items_text}")
         _format_run(r2, size=body_size, font_name=font_name)
 
     # ── PROFESSIONAL EXPERIENCE ───────────────────────────────────────────

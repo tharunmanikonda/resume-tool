@@ -5,6 +5,7 @@ Modern Flask Resume Generator App
 - No AI needed, just template replacement
 """
 
+import ast
 import copy
 import hashlib
 import json
@@ -752,7 +753,11 @@ def parse_resume_snapshot(
     enabled_experience_keys: list[str] | None = None,
 ) -> dict:
     base_resume = load_base_resume()
-    merged_resume = parse_updated_content_to_resume(str(content or "").strip(), base_resume)
+    merged_resume = parse_updated_content_to_resume(
+        str(content or "").strip(),
+        base_resume,
+        normalize_enabled_experience_keys(enabled_experience_keys),
+    )
     merged_resume = apply_profile_overrides(merged_resume)
     merged_resume = apply_experience_history_override(merged_resume, experience_history_override)
     merged_resume = apply_enabled_experience_filter(merged_resume, enabled_experience_keys)
@@ -1441,9 +1446,8 @@ def extract_text_from_pdf(pdf_path: str) -> str:
 def normalize_skill_item_text(item: str) -> str:
     text = re.sub(r"\s+", " ", str(item or "").strip())
     text = re.sub(r"[\[\]\(\)]", "", text)
-    text = re.sub(r"\s*/\s*", ", ", text)
     text = re.sub(r"\s{2,}", " ", text)
-    return text.strip(" ,.;")
+    return text.strip(" ,.;'\"")
 
 
 def normalize_skill_dedupe_key(item: str) -> str:
@@ -1476,9 +1480,23 @@ def skill_item_looks_like_model_meta(item: str) -> bool:
     return any(marker in text for marker in meta_markers)
 
 
-def expand_skill_items(raw_items: list) -> list[str]:
+def expand_skill_items(raw_items) -> list[str]:
+    values = raw_items if isinstance(raw_items, (list, tuple, set)) else [raw_items]
+    if isinstance(raw_items, str):
+        candidate = raw_items.strip()
+        if candidate.startswith("[") and candidate.endswith("]"):
+            parsed = None
+            for parser in (json.loads, ast.literal_eval):
+                try:
+                    parsed = parser(candidate)
+                except (ValueError, SyntaxError, json.JSONDecodeError):
+                    continue
+                if isinstance(parsed, (list, tuple, set)):
+                    values = parsed
+                    break
+
     expanded: list[str] = []
-    for raw_item in raw_items or []:
+    for raw_item in values or []:
         cleaned = normalize_skill_item_text(raw_item)
         if not cleaned:
             continue
@@ -3505,7 +3523,12 @@ def parse_ai_session_resume_content(
     if errors:
         raise ValueError("Current resume content is invalid: " + " | ".join(errors))
 
-    parsed = parse_updated_content_to_resume(normalized_content, load_base_resume())
+    active_keys = [blueprint["key"] for blueprint in active_blueprints]
+    parsed = parse_updated_content_to_resume(
+        normalized_content,
+        load_base_resume(),
+        active_keys,
+    )
     parsed_skills = []
     for item in parsed.get("technical_skills") or []:
         if not isinstance(item, dict):
@@ -3523,7 +3546,9 @@ def parse_ai_session_resume_content(
 
     parsed_experience = parsed.get("experience") if isinstance(parsed.get("experience"), list) else []
     experience = {}
-    for index, blueprint in enumerate(active_blueprints):
+    slot_by_key = {key: index for index, key in enumerate(EXPERIENCE_BLUEPRINT_KEYS)}
+    for blueprint in active_blueprints:
+        index = slot_by_key[blueprint["key"]]
         entry = parsed_experience[index] if index < len(parsed_experience) and isinstance(parsed_experience[index], dict) else {}
         experience[blueprint["key"]] = {
             "title": str(entry.get("title", "")).strip(),
@@ -3601,12 +3626,6 @@ def prepare_ai_session_for_pdf(
     if not previous_blueprints:
         raise ValueError("Keep at least one experience role enabled.")
 
-    content_changed = accept_ai_session_resume_content(
-        session,
-        content,
-        previous_blueprints,
-    )
-
     next_enabled_keys = (
         normalize_enabled_experience_keys(enabled_experience_keys)
         if enabled_experience_keys is not None
@@ -3619,19 +3638,29 @@ def prepare_ai_session_for_pdf(
     if not active_blueprints:
         raise ValueError("Keep at least one experience role enabled.")
 
+    # Submitted text may still contain roles that were just disabled. The
+    # parser identifies known company headers before falling back to active
+    # order, so disabled middle roles cannot shift later stable role keys.
+    content_changed = accept_ai_session_resume_content(
+        session,
+        content,
+        active_blueprints,
+    )
+
     selection_changed = next_enabled_keys != previous_enabled_keys
     if selection_changed:
         session["enabled_experience_keys"] = next_enabled_keys
-        session["resume_revision"] = int(session.get("resume_revision") or 1) + 1
-        session["resume_content"] = format_ai_session_resume(session, active_blueprints)
-        session["audit_status"] = "kept_current"
-        session["audit_proposal"] = None
-        session["has_manual_resume_edits"] = True
-        capture_ai_session_resume_version(
-            session,
-            "manual",
-            active_blueprints,
-        )
+        if not content_changed:
+            session["resume_revision"] = int(session.get("resume_revision") or 1) + 1
+            session["resume_content"] = format_ai_session_resume(session, active_blueprints)
+            session["audit_status"] = "kept_current"
+            session["audit_proposal"] = None
+            session["has_manual_resume_edits"] = True
+            capture_ai_session_resume_version(
+                session,
+                "manual",
+                active_blueprints,
+            )
 
     if content_changed or selection_changed:
         session["updated_at"] = time.time()
@@ -5308,7 +5337,9 @@ def _canonical_editable_resume(resume_payload: dict, active_blueprints: list[dic
     return {
         "updated_title": str((resume_payload or {}).get("updated_title", "")).strip(),
         "updated_summary": str((resume_payload or {}).get("updated_summary", "")).strip(),
-        "updated_skills": copy.deepcopy((resume_payload or {}).get("updated_skills", [])),
+        "updated_skills": normalize_updated_skills(
+            copy.deepcopy((resume_payload or {}).get("updated_skills", []))
+        ),
         "experience": {
             blueprint["key"]: {
                 "title": str((experience.get(blueprint["key"]) or {}).get("title", "")).strip(),
@@ -7812,15 +7843,38 @@ def validate_resume_quality_audit_result(
                     for item in linked_withheld
                     if str(item.get("reason", "")).strip()
                 )
-            required_patch_diagnostics.append({
-                "requirement_id": str(resolution.get("requirement_id", "")).strip(),
-                "requirement": str(resolution.get("requirement", "")).strip(),
-                "claim_type": str(resolution.get("claim_type", "")).strip(),
-                "evidence_fit": str(resolution.get("evidence_fit", "")).strip(),
-                "evidence_refs": copy.deepcopy(resolution.get("evidence_refs") or []),
-                "linked_change_ids": linked_ids,
-                "reason": reason,
-            })
+                # A deterministic grounding or structure check has already
+                # established that these patches are unsafe. Retrying Luna is
+                # both costly and likely to repeat the same unsupported claim.
+                # Keep the review usable and report the requirement as a gap.
+                resolution["resume_action"] = "gap_only"
+                resolution["status"] = "unresolved"
+                resolution["change_ids"] = []
+                resolution["reason"] = reason
+                resolution_diagnostics.append({
+                    "requirement_id": str(resolution.get("requirement_id", "")).strip(),
+                    "issue": "linked_patches_withheld",
+                    "details": [
+                        {
+                            "change_id": str(item.get("change_id", "")).strip(),
+                            "reason": str(item.get("reason", "")).strip(),
+                        }
+                        for item in linked_withheld
+                    ],
+                })
+            else:
+                # Luna classified supported evidence as patchable but omitted
+                # the patch entirely. This is the one case where a repair call
+                # can add value instead of contesting deterministic validation.
+                required_patch_diagnostics.append({
+                    "requirement_id": str(resolution.get("requirement_id", "")).strip(),
+                    "requirement": str(resolution.get("requirement", "")).strip(),
+                    "claim_type": str(resolution.get("claim_type", "")).strip(),
+                    "evidence_fit": str(resolution.get("evidence_fit", "")).strip(),
+                    "evidence_refs": copy.deepcopy(resolution.get("evidence_refs") or []),
+                    "linked_change_ids": linked_ids,
+                    "reason": reason,
+                })
         if (
             resolution.get("status") in {"patched_direct", "patched_transferable"}
             and not surviving_ids
@@ -9388,21 +9442,12 @@ def experience_blueprints_from_snapshot(draft: dict) -> list[dict]:
 
 def draft_resume_snapshot(draft: dict) -> dict:
     content = str(draft.get("resume_content", "")).strip()
-    resume = parse_updated_content_to_resume(content, load_base_resume())
     enabled_keys = normalize_enabled_experience_keys(draft.get("enabled_experience_keys"))
-    if len(enabled_keys) != len(EXPERIENCE_BLUEPRINT_KEYS) and isinstance(resume.get("experience"), list):
-        parsed_active_entries = list(resume["experience"][:len(enabled_keys)])
-        active_by_key = {key: parsed_active_entries[index] for index, key in enumerate(enabled_keys) if index < len(parsed_active_entries)}
-        resume["experience"] = [
-            active_by_key.get(blueprint["key"], {
-                "company": blueprint["company"],
-                "location": blueprint["location"],
-                "dates": blueprint["dates"],
-                "title": "",
-                "bullets": [],
-            })
-            for blueprint in EXPERIENCE_BLUEPRINTS
-        ]
+    resume = parse_updated_content_to_resume(
+        content,
+        load_base_resume(),
+        enabled_keys,
+    )
     profile = draft.get("profile_snapshot") if isinstance(draft.get("profile_snapshot"), dict) else {}
     resume["name"] = str(profile.get("name", resume.get("name", ""))).strip()
     resume["projects"] = profile.get("projects") if isinstance(profile.get("projects"), list) else resume.get("projects", [])
@@ -10051,7 +10096,11 @@ def preview():
             }), 400
 
         base_resume = load_base_resume()
-        merged_resume = parse_updated_content_to_resume(content, base_resume)
+        merged_resume = parse_updated_content_to_resume(
+            content,
+            base_resume,
+            enabled_experience_keys,
+        )
         merged_resume = apply_profile_overrides(merged_resume)
         merged_resume = apply_experience_history_override(merged_resume, data.get("experience_history_override"))
         merged_resume = apply_enabled_experience_filter(merged_resume, enabled_experience_keys)
@@ -10335,7 +10384,7 @@ def rebuild_extension_draft_content(draft: dict, title_summary: dict, skills_pay
 
 
 def extension_payloads_from_content(content: str, draft: dict, enabled_keys: list[str]) -> dict:
-    parsed = parse_updated_content_to_resume(content, load_base_resume())
+    parsed = parse_updated_content_to_resume(content, load_base_resume(), enabled_keys)
     parsed_skills = []
     for item in parsed.get("technical_skills", []):
         if not isinstance(item, dict):
@@ -10350,7 +10399,9 @@ def extension_payloads_from_content(content: str, draft: dict, enabled_keys: lis
     }
     experience_by_key: dict[str, dict] = {}
     parsed_experience = parsed.get("experience") if isinstance(parsed.get("experience"), list) else []
-    for index, key in enumerate(enabled_keys):
+    slot_by_key = {key: index for index, key in enumerate(EXPERIENCE_BLUEPRINT_KEYS)}
+    for key in enabled_keys:
+        index = slot_by_key[key]
         entry = parsed_experience[index] if index < len(parsed_experience) and isinstance(parsed_experience[index], dict) else {}
         experience_by_key[key] = {
             "title": str(entry.get("title", "")).strip(),
@@ -12753,7 +12804,11 @@ def generate():
             merged_resume = validated_resume_override
         else:
             base_resume = load_base_resume()
-            merged_resume = parse_updated_content_to_resume(content, base_resume)
+            merged_resume = parse_updated_content_to_resume(
+                content,
+                base_resume,
+                normalize_enabled_experience_keys(data.get("enabled_experience_keys")),
+            )
             merged_resume = apply_profile_overrides(merged_resume)
             merged_resume = apply_experience_history_override(merged_resume, data.get("experience_history_override"))
             merged_resume = apply_enabled_experience_filter(merged_resume, data.get("enabled_experience_keys"))

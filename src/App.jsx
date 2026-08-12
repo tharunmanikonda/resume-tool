@@ -194,7 +194,48 @@ function sanitizeEnabledExperienceKeys(history = [], selectedKeys = []) {
   return filteredKeys.length ? filteredKeys : orderedEnabledKeys;
 }
 
-function deriveExperienceHistoryFromContent(content, history = []) {
+function selectedExperienceHistory(history = [], enabledKeys = []) {
+  const normalized = normalizeInlineExperienceHistory(history);
+  if (!Array.isArray(enabledKeys) || !enabledKeys.length) return normalized;
+  const byKey = new Map(normalized.map((item) => [item.key, item]));
+  return enabledKeys.map((key) => byKey.get(key)).filter(Boolean);
+}
+
+function experienceHistoryForContent(content, history = [], enabledKeys = []) {
+  const normalized = normalizeInlineExperienceHistory(history);
+  const selected = selectedExperienceHistory(normalized, enabledKeys);
+  const lines = String(content || "").split("\n");
+  const headers = lines
+    .map((line) => line.trim())
+    .filter((line, index) => {
+      if (!line || line.startsWith("•") || !line.includes("|")) return false;
+      let nextIndex = index + 1;
+      while (nextIndex < lines.length && !lines[nextIndex].trim()) nextIndex += 1;
+      const nextLine = lines[nextIndex]?.trim() || "";
+      return !!nextLine && !nextLine.startsWith("•") && nextLine.includes("|");
+    });
+  if (!headers.length) return selected;
+
+  const normalizeCompany = (value) => String(value || "").toLowerCase().replace(/[^a-z0-9]+/g, "");
+  const byCompany = new Map(
+    normalized
+      .map((role) => [normalizeCompany(role.company), role])
+      .filter(([company]) => company),
+  );
+  const fallback = headers.length > selected.length ? normalized : selected;
+  const usedKeys = new Set();
+
+  return headers.map((header) => {
+    const company = normalizeCompany(header.split("|", 1)[0]);
+    let role = byCompany.get(company);
+    if (role && usedKeys.has(role.key)) role = null;
+    if (!role) role = fallback.find((item) => !usedKeys.has(item.key));
+    if (role) usedKeys.add(role.key);
+    return role;
+  }).filter(Boolean);
+}
+
+function deriveExperienceHistoryFromContent(content, history = [], enabledKeys = []) {
   const normalizedHistory = normalizeInlineExperienceHistory(history);
   const text = String(content || "");
   if (!text.trim() || !normalizedHistory.length) return normalizedHistory;
@@ -207,9 +248,10 @@ function deriveExperienceHistoryFromContent(content, history = []) {
   if (experienceIndex === -1) return normalizedHistory;
 
   const nextHistory = normalizedHistory.map((item) => ({ ...item }));
+  const selectedHistory = experienceHistoryForContent(text, normalizedHistory, enabledKeys);
   let roleCursor = 0;
 
-  for (let index = experienceIndex + 1; index < lines.length && roleCursor < nextHistory.length; index += 1) {
+  for (let index = experienceIndex + 1; index < lines.length && roleCursor < selectedHistory.length; index += 1) {
     const companyLine = lines[index]?.trim() || "";
     if (!companyLine || companyLine.startsWith("•")) continue;
     if (!companyLine.includes("|")) continue;
@@ -225,7 +267,9 @@ function deriveExperienceHistoryFromContent(content, history = []) {
 
     const [companyPart, ...locationParts] = companyLine.split("|");
     const [titlePart, ...dateParts] = titleLine.split("|");
-    const role = nextHistory[roleCursor];
+    const selectedRole = selectedHistory[roleCursor];
+    const role = nextHistory.find((item) => item.key === selectedRole.key);
+    if (!role) continue;
     role.company = companyPart.trim() || role.company;
     role.location = locationParts.join("|").trim() || role.location;
     role.title = titlePart.trim() || role.title;
@@ -250,7 +294,7 @@ function experienceHistoryEquals(left = [], right = []) {
   });
 }
 
-function applyExperienceHistoryToGeneratedContent(content, history = []) {
+function applyExperienceHistoryToGeneratedContent(content, history = [], enabledKeys = []) {
   const text = String(content || "");
   const normalizedHistory = normalizeInlineExperienceHistory(history);
   if (!text.trim() || !normalizedHistory.length) return text;
@@ -260,9 +304,10 @@ function applyExperienceHistoryToGeneratedContent(content, history = []) {
   if (experienceIndex === -1) return text;
 
   const updatedLines = [...lines];
+  const selectedHistory = experienceHistoryForContent(text, normalizedHistory, enabledKeys);
   let roleCursor = 0;
 
-  for (let index = experienceIndex + 1; index < updatedLines.length && roleCursor < normalizedHistory.length; index += 1) {
+  for (let index = experienceIndex + 1; index < updatedLines.length && roleCursor < selectedHistory.length; index += 1) {
     const currentLine = updatedLines[index];
     const trimmed = currentLine.trim();
     if (!trimmed || trimmed.startsWith("•")) continue;
@@ -278,7 +323,7 @@ function applyExperienceHistoryToGeneratedContent(content, history = []) {
       continue;
     }
 
-    const role = normalizedHistory[roleCursor];
+    const role = selectedHistory[roleCursor];
     const currentParts = currentLine.split("|");
     const existingLocation = currentParts.slice(1).join("|").trim();
     const nextParts = updatedLines[nextIndex].split("|");
@@ -1137,7 +1182,11 @@ export default function App() {
       return Promise.resolve(null);
     }
 
-    const draftExperienceHistory = deriveExperienceHistoryFromContent(content, editableExperienceHistory);
+    const draftExperienceHistory = deriveExperienceHistoryFromContent(
+      content,
+      editableExperienceHistory,
+      sanitizedEnabledExperienceKeys,
+    );
     const requestSeq = ++previewRequestSeqRef.current;
     return fetchJson("/api/preview", {
       method: "POST",
@@ -1182,7 +1231,11 @@ export default function App() {
 
   useEffect(() => {
     if (!generatedContent.trim()) return;
-    const derivedHistory = deriveExperienceHistoryFromContent(generatedContent, editableExperienceHistory);
+    const derivedHistory = deriveExperienceHistoryFromContent(
+      generatedContent,
+      editableExperienceHistory,
+      sanitizedEnabledExperienceKeys,
+    );
     if (!experienceHistoryEquals(derivedHistory, editableExperienceHistory)) {
       setEditableExperienceHistory(derivedHistory);
     }
@@ -1873,7 +1926,11 @@ export default function App() {
     try {
       let data;
       if (extensionDraftId) {
-        const latestHistory = deriveExperienceHistoryFromContent(generatedContent, editableExperienceHistory);
+        const latestHistory = deriveExperienceHistoryFromContent(
+          generatedContent,
+          editableExperienceHistory,
+          sanitizedEnabledExperienceKeys,
+        );
         const saved = await fetchJson(`/api/extension/drafts/${encodeURIComponent(extensionDraftId)}`, {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
@@ -2037,7 +2094,11 @@ export default function App() {
 
     try {
       if (extensionDraftId) {
-        const latestHistory = deriveExperienceHistoryFromContent(generatedContent, editableExperienceHistory);
+        const latestHistory = deriveExperienceHistoryFromContent(
+          generatedContent,
+          editableExperienceHistory,
+          sanitizedEnabledExperienceKeys,
+        );
         await fetchJson(`/api/extension/drafts/${encodeURIComponent(extensionDraftId)}`, {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
@@ -2067,7 +2128,11 @@ export default function App() {
       }
       const previewData = await requestPreview(generatedContent);
       const latestPreview = previewData?.preview || preview;
-      const latestHistory = deriveExperienceHistoryFromContent(generatedContent, editableExperienceHistory);
+      const latestHistory = deriveExperienceHistoryFromContent(
+        generatedContent,
+        editableExperienceHistory,
+        sanitizedEnabledExperienceKeys,
+      );
 
       const data = await fetchJson("/api/generate", {
         method: "POST",
@@ -2186,7 +2251,11 @@ export default function App() {
       const nextHistory = normalizeInlineExperienceHistory(current).map((item, itemIndex) => (
         itemIndex === index ? { ...item, [field]: value } : item
       ));
-      setGeneratedContent((currentContent) => applyExperienceHistoryToGeneratedContent(currentContent, nextHistory));
+      setGeneratedContent((currentContent) => applyExperienceHistoryToGeneratedContent(
+        currentContent,
+        nextHistory,
+        sanitizedEnabledExperienceKeys,
+      ));
       return nextHistory;
     });
   }
