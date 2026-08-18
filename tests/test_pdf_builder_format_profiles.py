@@ -12,12 +12,12 @@ def assert_near(actual, expected, tolerance=200):
 
 def sample_resume():
     return {
-        "name": "Tharun Manikonda",
+        "name": "Test Candidate",
         "title": "Software Engineer",
         "contact": {
-            "location": "Dallas, TX",
-            "phone": "(469)963-5323",
-            "email": "tmanikonda.1@gmail.com",
+            "location": "Austin, TX",
+            "phone": "555-0100",
+            "email": "candidate@example.com",
         },
         "summary": "Builds reliable systems.",
         "technical_skills": [

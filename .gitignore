@@ -60,7 +60,10 @@ outputs/
 tharun-resume/
 generated-resumes/
 vendor/
-# Note: resumes/ IS tracked for template file, but not for generated ones
+# Keep only the neutral DOCX template; ignore generated resume artifacts.
+resumes/**
+!resumes/
+!resumes/base_resume_template.docx
 
 # Logs and temp files
 app.log

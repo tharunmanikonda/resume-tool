@@ -1,6 +1,14 @@
 import copy
 
-from manual_resume_parser import COMPANIES, parse_updated_content_to_resume
+from manual_resume_parser import parse_updated_content_to_resume
+
+
+ROLE_BLUEPRINTS = [
+    {"key": "mckinsey", "company": "Company One", "location": "Austin, TX", "dates": "May 2023 - Present"},
+    {"key": "uber", "company": "Company Two", "location": "Denver, CO", "dates": "January 2022 - April 2023"},
+    {"key": "kpmg", "company": "Company Three", "location": "Chicago, IL", "dates": "June 2020 - December 2021"},
+    {"key": "trigent", "company": "Company Four", "location": "Phoenix, AZ", "dates": "March 2019 - May 2020"},
+]
 
 
 def test_removed_middle_role_does_not_shift_later_experience():
@@ -16,7 +24,7 @@ def test_removed_middle_role_does_not_shift_later_experience():
                 "title": "Old title",
                 "bullets": ["Old bullet"],
             }
-            for item in COMPANIES
+            for item in ROLE_BLUEPRINTS
         ],
     }
     content = """Updated Title
@@ -30,16 +38,16 @@ Testing & Quality: Playwright, TypeScript.
 
 Professional Experience
 
-McKinsey & Company | CA, USA
-Senior Test Automation Engineer | February 2024 - Present
+Company One | Austin, TX
+Senior Test Automation Engineer | May 2023 - Present
 • Built a Playwright framework.
 
-KPMG | India
-Software Engineer | September 2021 - July 2022
+Company Three | Chicago, IL
+Software Engineer | June 2020 - December 2021
 • Built integration tests.
 
-Trigent Software | India
-Frontend Engineer | March 2020 - August 2021
+Company Four | Phoenix, AZ
+Frontend Engineer | March 2019 - May 2020
 • Built browser automation.
 """
 
@@ -47,6 +55,7 @@ Frontend Engineer | March 2020 - August 2021
         content,
         copy.deepcopy(base_resume),
         ["mckinsey", "kpmg", "trigent"],
+        ROLE_BLUEPRINTS,
     )
 
     assert parsed["experience"][0]["title"] == "Senior Test Automation Engineer"
@@ -71,7 +80,7 @@ def test_full_content_is_stable_when_middle_role_is_disabled_at_export_time():
                 "title": "Old title",
                 "bullets": ["Old bullet"],
             }
-            for item in COMPANIES
+            for item in ROLE_BLUEPRINTS
         ],
     }
     titles = {
@@ -81,7 +90,7 @@ def test_full_content_is_stable_when_middle_role_is_disabled_at_export_time():
         "trigent": "Frontend Engineer",
     }
     blocks = []
-    for item in COMPANIES:
+    for item in ROLE_BLUEPRINTS:
         blocks.append(
             f"{item['company']} | {item['location']}\n"
             f"{titles[item['key']]} | {item['dates']}\n"
@@ -104,14 +113,15 @@ Professional Experience
         content,
         copy.deepcopy(base_resume),
         ["mckinsey", "kpmg", "trigent"],
+        ROLE_BLUEPRINTS,
     )
 
     assert parsed["experience"][0]["title"] == "Applied AI Engineer"
     assert parsed["experience"][1]["title"] == "Platform Engineer"
     assert parsed["experience"][2]["title"] == "Java Engineer"
-    assert parsed["experience"][2]["bullets"] == ["Built reliable systems for KPMG."]
+    assert parsed["experience"][2]["bullets"] == ["Built reliable systems for Company Three."]
     assert parsed["experience"][3]["title"] == "Frontend Engineer"
-    assert parsed["experience"][3]["bullets"] == ["Built reliable systems for Trigent Software."]
+    assert parsed["experience"][3]["bullets"] == ["Built reliable systems for Company Four."]
 
 
 def test_python_style_skill_lists_are_normalized_for_editor_preview():

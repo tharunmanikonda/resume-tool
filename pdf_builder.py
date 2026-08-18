@@ -69,7 +69,7 @@ def get_soffice_path():
 
 # Configuration - use environment variables with fallback defaults
 # Default to local resumes folder in project directory
-DEFAULT_TEMPLATE = str(_app_base_dir() / 'resumes' / 'Tharun Manikonda Resume.docx')
+DEFAULT_TEMPLATE = str(_app_base_dir() / 'resumes' / 'base_resume_template.docx')
 TEMPLATE_PATH = os.getenv("RESUME_TEMPLATE_PATH", DEFAULT_TEMPLATE)
 BULLET = "●"
 TEXT_W = 7.884   # usable width (A4 8.278" − 2 × 0.197")

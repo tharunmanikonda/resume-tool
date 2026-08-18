@@ -1373,6 +1373,30 @@ select:focus {
   min-height: 120px;
 }
 
+.settings-toggle {
+  align-items: flex-start;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  display: flex;
+  gap: 10px;
+  padding: 12px;
+}
+
+.settings-toggle input {
+  margin-top: 3px;
+}
+
+.settings-toggle span {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.settings-toggle small {
+  color: var(--muted);
+  line-height: 1.4;
+}
+
 .profile-grid {
   display: grid;
   gap: 12px;

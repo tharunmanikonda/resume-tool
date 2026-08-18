@@ -63,7 +63,7 @@ def snapshot():
         "identity_id": "outlook",
         "enabled_experience_keys": ["mckinsey"],
         "profile_snapshot": {"name": "Candidate", "experience_history": history},
-        "contact_snapshot": {"location": "Dallas, TX", "phone": "123", "email": "candidate@example.com"},
+        "contact_snapshot": {"location": "Austin, TX", "phone": "555-0100", "email": "candidate@example.com"},
         "experience_history_snapshot": history,
     }
 

@@ -353,6 +353,11 @@ function normalizeIdentityProfiles(identities = []) {
     : [];
 }
 
+function defaultIdentityId(settingsLike = {}, identities = []) {
+  const configured = String(settingsLike.default_identity_id || "").trim();
+  return identities.some((item) => item.id === configured) ? configured : (identities[0]?.id || "");
+}
+
 function createEmptyIdentity() {
   return {
     id: `identity-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
@@ -853,8 +858,8 @@ export default function App() {
   const [profileDraft, setProfileDraft] = useState(emptyProfile);
   const [onboardingRequired, setOnboardingRequired] = useState(false);
   const [sessionProfileActive, setSessionProfileActive] = useState(false);
-  const [settings, setSettings] = useState({ output_directory: "", identities: [] });
-  const [settingsDraft, setSettingsDraft] = useState({ output_directory: "", identities: [] });
+  const [settings, setSettings] = useState({ output_directory: "", identities: [], default_identity_id: "", allow_security_clearance_jobs: false });
+  const [settingsDraft, setSettingsDraft] = useState({ output_directory: "", identities: [], default_identity_id: "", allow_security_clearance_jobs: false });
   const [pdfStatus, setPdfStatus] = useState({ ready: false, message: "Checking..." });
   const [aiStatus, setAiStatus] = useState({ ready: false, message: "Checking...", model: "gpt-5-mini", memory_limit: 2 });
   const [identity, setIdentity] = useState("");
@@ -1093,8 +1098,14 @@ export default function App() {
     fetchJson("/api/settings")
       .then((data) => {
         const identities = normalizeIdentityProfiles(data.identities || []);
+        const default_identity_id = defaultIdentityId(data, identities);
         setSettings({ ...data, identities });
-        setSettingsDraft({ output_directory: data.output_directory || "", identities });
+        setSettingsDraft({
+          output_directory: data.output_directory || "",
+          identities,
+          default_identity_id,
+          allow_security_clearance_jobs: !!data.allow_security_clearance_jobs,
+        });
         setPdfStatus({
           ready: !!data.pdf_conversion_ready,
           message: data.pdf_conversion_status || "Unknown",
@@ -1163,7 +1174,10 @@ export default function App() {
       return;
     }
 
-    const activeIdentity = identities.find((item) => item.id === identity) || identities[0];
+    const preferredIdentity = defaultIdentityId(settings, identities);
+    const activeIdentity = identities.find((item) => item.id === identity)
+      || identities.find((item) => item.id === preferredIdentity)
+      || identities[0];
     if (activeIdentity.id !== identity) {
       setIdentity(activeIdentity.id);
     }
@@ -1172,7 +1186,7 @@ export default function App() {
       phone: activeIdentity.phone || "",
       email: activeIdentity.email || "",
     });
-  }, [settings.identities]);
+  }, [settings.identities, settings.default_identity_id]);
 
   function requestPreview(nextContent = generatedContent) {
     const content = String(nextContent || "");
@@ -1399,8 +1413,14 @@ export default function App() {
     if (name === "settings") {
       fetchJson("/api/settings").then((data) => {
         const identities = normalizeIdentityProfiles(data.identities || []);
+        const default_identity_id = defaultIdentityId(data, identities);
         setSettings({ ...data, identities });
-        setSettingsDraft({ output_directory: data.output_directory || "", identities });
+        setSettingsDraft({
+          output_directory: data.output_directory || "",
+          identities,
+          default_identity_id,
+          allow_security_clearance_jobs: !!data.allow_security_clearance_jobs,
+        });
       }).catch(() => {});
     }
     if (name === "profile") {
@@ -2171,18 +2191,34 @@ export default function App() {
   }
 
   function saveSettings() {
+    const identities = normalizeIdentityProfiles(settingsDraft.identities || []);
+    const default_identity_id = defaultIdentityId(settingsDraft, identities);
     fetchJson("/api/settings", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         output_directory: settingsDraft.output_directory,
-        identities: normalizeIdentityProfiles(settingsDraft.identities || []),
+        allow_security_clearance_jobs: !!settingsDraft.allow_security_clearance_jobs,
+        default_identity_id,
+        identities,
       }),
     })
       .then((data) => {
         const identities = normalizeIdentityProfiles(data.identities || []);
-        setSettings((current) => ({ ...current, output_directory: data.output_directory, identities }));
-        setSettingsDraft({ output_directory: data.output_directory || "", identities });
+        const default_identity_id = defaultIdentityId(data, identities);
+        setSettings((current) => ({
+          ...current,
+          output_directory: data.output_directory,
+          identities,
+          default_identity_id,
+          allow_security_clearance_jobs: !!data.allow_security_clearance_jobs,
+        }));
+        setSettingsDraft({
+          output_directory: data.output_directory || "",
+          identities,
+          default_identity_id,
+          allow_security_clearance_jobs: !!data.allow_security_clearance_jobs,
+        });
         closeModal("settings");
       })
       .catch((error) => window.alert(error.message));
@@ -2325,6 +2361,7 @@ export default function App() {
     setSettingsDraft((current) => ({
       ...current,
       identities: [...normalizeIdentityProfiles(current.identities || []), createEmptyIdentity()],
+      default_identity_id: current.default_identity_id || normalizeIdentityProfiles(current.identities || [])[0]?.id || "",
     }));
   }
 
@@ -2332,9 +2369,13 @@ export default function App() {
     setSettingsDraft((current) => {
       const identities = normalizeIdentityProfiles(current.identities || []);
       if (identities.length <= 1) return current;
+      const nextIdentities = identities.filter((_, itemIndex) => itemIndex !== index);
       return {
         ...current,
-        identities: identities.filter((_, itemIndex) => itemIndex !== index),
+        identities: nextIdentities,
+        default_identity_id: nextIdentities.some((item) => item.id === current.default_identity_id)
+          ? current.default_identity_id
+          : (nextIdentities[0]?.id || ""),
       };
     });
   }
@@ -2878,8 +2919,31 @@ export default function App() {
           Output Directory
           <input value={settingsDraft.output_directory || ""} onChange={(e) => setSettingsDraft((current) => ({ ...current, output_directory: e.target.value }))} />
         </label>
+        <label className="settings-toggle">
+          <input
+            type="checkbox"
+            checked={!!settingsDraft.allow_security_clearance_jobs}
+            onChange={(e) => setSettingsDraft((current) => ({ ...current, allow_security_clearance_jobs: e.target.checked }))}
+          />
+          <span>
+            <strong>Allow clearance-restricted jobs</strong>
+            <small>When off, jobs requiring clearance, U.S. citizenship, Public Trust, ITAR, or export-control eligibility stop before AI generation.</small>
+          </span>
+        </label>
         <div className="profile-experience-section">
           <div className="section-label">Contact identities</div>
+          <label className="field">
+            Default contact identity
+            <select
+              value={settingsDraft.default_identity_id || defaultIdentityId(settingsDraft, normalizeIdentityProfiles(settingsDraft.identities || []))}
+              onChange={(e) => setSettingsDraft((current) => ({ ...current, default_identity_id: e.target.value }))}
+            >
+              {normalizeIdentityProfiles(settingsDraft.identities || []).map((item) => (
+                <option key={item.id} value={item.id}>{item.label}</option>
+              ))}
+            </select>
+            <small>Used by resume generation and autofill when no identity is selected.</small>
+          </label>
           <div className="profile-experience-list">
             {(settingsDraft.identities || []).map((item, index) => (
               <div key={item.id || index} className="profile-experience-card">

@@ -5,10 +5,10 @@
  */
 
 const COMPANIES = [
-    { company: "McKinsey & Company", location: "CA, USA", dates: "May 2025 – Present" },
-    { company: "Uber", location: "CA, USA", dates: "February 2024 – May 2025" },
-    { company: "KPMG", location: "India", dates: "September 2021 – July 2022" },
-    { company: "Trigent Software", location: "India", dates: "March 2020 – August 2021" },
+    { company: "Role 1", location: "", dates: "" },
+    { company: "Role 2", location: "", dates: "" },
+    { company: "Role 3", location: "", dates: "" },
+    { company: "Role 4", location: "", dates: "" },
 ];
 
 const cleanBullet = (line) => {

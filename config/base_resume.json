@@ -1,10 +1,10 @@
 {
-  "name": "MANIKONDA THARUN",
-  "title": "Full Stack Developer – Applied AI",
+  "name": "",
+  "title": "Resume",
   "contact": {
-    "location": "California, USA",
-    "phone": "(205)259-8634",
-    "email": "tharun.manikonda1@outlook.com"
+    "location": "",
+    "phone": "",
+    "email": ""
   },
   "summary": "Full Stack Engineer with 4+ years of experience building scalable backend and frontend systems across finance, mobility, and enterprise domains. Over time, expanded into applied AI engineering by designing and productionizing LLM-powered features, RAG pipelines, and anomaly detection systems. Experienced in prompt evaluation, embedding optimization, and model performance benchmarking, with a strong foundation in microservices architecture, cloud infrastructure, and CI/CD automation. Skilled in translating product requirements into reliable, measurable AI-driven solutions in production environments.",
   "technical_skills": [

@@ -85,6 +85,21 @@ def _set_profile_action(workflow: dict, issues: list[str] | None = None) -> dict
     return _action_response(updated)
 
 
+def _set_security_preflight_action(workflow: dict, preflight: dict) -> dict:
+    updated = workflows.set_action(
+        workflow["id"],
+        workflow["poke_user_id"],
+        action_type="security_clearance_blocked",
+        question=(
+            preflight.get("message")
+            or "This job is blocked by your clearance/citizenship eligibility settings."
+        ),
+        choices=[{"value": "check_again", "label": "Check again after changing settings"}],
+        details=preflight,
+    )
+    return _action_response(updated)
+
+
 def _create_linked_draft(workflow: dict, identity_id: str) -> dict:
     require_identity(identity_id)
     snapshot = resume_app.extension_profile_snapshot(identity_id, None)
@@ -114,6 +129,27 @@ def _create_linked_draft(workflow: dict, identity_id: str) -> dict:
     })
 
 
+def _prepare_generation_after_preflight(workflow: dict, identity_id: str = "") -> dict:
+    profile_issues = resume_app.validate_profile_payload(resume_app.current_profile())
+    if not resume_app.has_permanent_profile_doc() or profile_issues:
+        return _set_profile_action(workflow, profile_issues)
+
+    selected_identity = identity_id or workflow.get("identity_id", "")
+    choices = identity_choices()
+    if selected_identity:
+        try:
+            require_identity(selected_identity)
+        except ValueError:
+            return _set_identity_action(workflow, f"Identity '{selected_identity}' is not available. Which identity should be used?")
+    elif len(choices) == 1:
+        selected_identity = choices[0]["value"]
+    else:
+        return _set_identity_action(workflow)
+
+    workflow = _create_linked_draft(workflow, selected_identity)
+    return get_resume_status(poke_user_id=workflow["poke_user_id"], workflow_id=workflow["id"])
+
+
 def start_resume_generation(
     *,
     poke_user_id: str,
@@ -131,23 +167,10 @@ def start_resume_generation(
         role_title=role_title.strip(),
         source_url=source_url.strip(),
     )
-    profile_issues = resume_app.validate_profile_payload(resume_app.current_profile())
-    if not resume_app.has_permanent_profile_doc() or profile_issues:
-        return _set_profile_action(workflow, profile_issues)
-
-    choices = identity_choices()
-    if identity_id:
-        try:
-            require_identity(identity_id)
-        except ValueError:
-            return _set_identity_action(workflow, f"Identity '{identity_id}' is not available. Which identity should be used?")
-    elif len(choices) == 1:
-        identity_id = choices[0]["value"]
-    else:
-        return _set_identity_action(workflow)
-
-    workflow = _create_linked_draft(workflow, identity_id)
-    return get_resume_status(poke_user_id=poke_user_id, workflow_id=workflow["id"])
+    preflight = resume_app.current_job_preflight(workflow["job_description"])
+    if preflight.get("blocked"):
+        return _set_security_preflight_action(workflow, preflight)
+    return _prepare_generation_after_preflight(workflow, identity_id)
 
 
 def _sync_workflow(workflow: dict, draft: dict, status: str) -> dict:
@@ -361,6 +384,15 @@ def continue_resume_action(
     action = _require_action(workflow, action_id)
     action_type = action["type"]
 
+    if action_type == "security_clearance_blocked":
+        if str(selection).strip() != "check_again":
+            raise ValueError("Change the clearance job setting, then select check_again.")
+        preflight = resume_app.current_job_preflight(workflow.get("job_description", ""))
+        if preflight.get("blocked"):
+            return _set_security_preflight_action(workflow, preflight)
+        workflows.clear_action(workflow_id, poke_user_id)
+        workflow = workflows.get_for_user(workflow_id, poke_user_id) or workflow
+        return _prepare_generation_after_preflight(workflow, workflow.get("identity_id", ""))
     if action_type == "select_contact_identity":
         selected = str(selection).strip()
         try:

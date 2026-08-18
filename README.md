@@ -140,6 +140,23 @@ An experience is usable only when it is enabled and its company, location, title
 
 Do not commit a real `config/user_profile.json` or `config/session_profile.json`. For a new user, let onboarding create the permanent file instead of putting personal data in the template.
 
+### Sharing With Another User
+
+Share the repository through Git. Do not share your local `config/user_profile.json`,
+`config/session_profile.json`, `config/application_tracker.json`, or generated resume
+folders. They are ignored because they contain personal data and local history.
+
+For a clean setup, the new user should:
+
+1. Pull the repo.
+2. Create their `.env` with their own `OPENAI_API_KEY`.
+3. Run the app.
+4. Complete the onboarding form when it opens.
+5. Set their output directory and optional extra contact identities in Settings.
+
+The committed `config/settings.json` is intentionally neutral. If its output
+directory is blank, the server uses the local `resumes/` folder at runtime.
+
 ## Running the Server
 
 Default command:

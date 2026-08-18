@@ -5,6 +5,8 @@ import "./panel.css";
 const ACTIVE_STATUSES = new Set(["queued", "analyzing", "generating_core", "generating_experience", "reviewing", "pdf_generating"]);
 const UNRESOLVED_AUDIT_STATUSES = new Set(["not_started", "running", "reviewing", "changes_suggested", "manual_attention", "technical_failed", "stale"]);
 const RESOLVED_AUDIT_STATUSES = new Set(["approved", "applied", "kept_current"]);
+const DRAFT_SYNC_KEY = "resumeDraftsUpdatedAt";
+const SELECTED_DRAFT_SYNC_KEY = "resumeSelectedDraft";
 const STATUS_LABELS = {
   duplicate_review: "Decision",
   queued: "Waiting",
@@ -36,7 +38,11 @@ function send(message) {
 
 async function api(path, options = {}) {
   const result = await send({ type: "API_REQUEST", path, method: options.method || "GET", body: options.body });
-  if (!result?.success) throw new Error(result?.error || "The local resume server is unavailable.");
+  if (!result?.success) {
+    const error = new Error(result?.error || "The local resume server is unavailable.");
+    error.data = result;
+    throw error;
+  }
   return result;
 }
 
@@ -592,7 +598,7 @@ function AutofillWorkspace({
         <label>Custom answers<textarea value={customAnswersText(application.customAnswers)} onChange={(event) => onApplication("customAnswers", parseCustomAnswers(event.target.value))} placeholder="Question text => Saved answer" /></label>
         <div className="button-row"><button className="primary" onClick={() => onSave("permanent")}>Save permanently</button><button onClick={() => onSave("session")}>Use this session</button></div>
         <div className="profile-data-actions"><button onClick={onExport}>Export JSON</button><label className="file-button">Import JSON<input type="file" accept="application/json,.json" onChange={onImport} /></label><button className="danger-text" onClick={onReset}>Clear application fields</button></div>
-        <small>Email, phone, and location come from the selected contact identity: {profile?.identityLabel || "default"}.</small>
+        <small>Email, phone, and location come from the selected contact identity: {profile?.identityLabel || "default"}. Address fields come from this autofill profile.</small>
       </details>
     </section>
   );
@@ -615,6 +621,7 @@ function App() {
   const selectedDraftIdRef = useRef("");
   const currentContextRef = useRef(null);
   const generatingContextRef = useRef("");
+  const panelInstanceIdRef = useRef(`${Date.now()}-${Math.random().toString(36).slice(2)}`);
   const [identityId, setIdentityId] = useState("");
   const [enabledKeys, setEnabledKeys] = useState([]);
   const [tab, setTab] = useState("preview");
@@ -664,7 +671,8 @@ function App() {
       setError("");
       const completeKeys = (data.experience_history || []).filter((item) => item.enabled !== false && item.company && item.location && item.title && item.dates).map((item) => item.key);
       setEnabledKeys((current) => current.length ? current : completeKeys);
-      setIdentityId((current) => current || data.identities?.[0]?.id || "");
+      const preferredIdentity = data.default_identity_id || data.identities?.[0]?.id || "";
+      setIdentityId((current) => data.identities?.some((item) => item.id === current) ? current : preferredIdentity);
       return data;
     } catch (loadError) {
       setServer(null);
@@ -684,6 +692,35 @@ function App() {
       return loadedDrafts;
     } catch (_) {
       return [];
+    }
+  }
+
+  function broadcastDraftsChanged(reason = "drafts") {
+    chrome.storage.local.set({
+      [DRAFT_SYNC_KEY]: {
+        at: Date.now(),
+        reason,
+        draft_id: selectedDraftIdRef.current || "",
+        source: panelInstanceIdRef.current,
+      },
+    }).catch(() => {});
+  }
+
+  function broadcastSelectedDraft(draftId) {
+    chrome.storage.local.set({
+      [SELECTED_DRAFT_SYNC_KEY]: {
+        at: Date.now(),
+        draft_id: draftId || "",
+        source: panelInstanceIdRef.current,
+      },
+    }).catch(() => {});
+  }
+
+  async function refreshSyncedDrafts() {
+    const loadedDrafts = await loadDrafts();
+    const activeDraftId = selectedDraftIdRef.current;
+    if (activeDraftId && loadedDrafts.some((item) => item.id === activeDraftId)) {
+      await loadDraft(activeDraftId);
     }
   }
 
@@ -905,8 +942,11 @@ function App() {
     try {
       const data = await api("/api/extension/contexts/resolve", { method: "POST", body: nextContext });
       if (requestId !== contextResolveRef.current) return;
-      setResolution({ history: data.history, issues: data.issues || [], draft: data.draft || null });
-      if (data.draft) await loadDraft(data.draft.id, true);
+      setResolution({ history: data.history, issues: data.issues || [], preflight: data.preflight || null, draft: data.draft || null });
+      if (data.draft) {
+        await loadDraft(data.draft.id, true);
+        broadcastSelectedDraft(data.draft.id);
+      }
       else {
         if (draftRef.current && sourceIdentity(draftRef.current) === nextIdentity) return;
         draftLoadRef.current += 1;
@@ -926,7 +966,7 @@ function App() {
     loadServer().then((ready) => {
       if (!ready) return;
       loadDrafts();
-      const initialIdentity = ready.identities?.[0]?.id || "";
+      const initialIdentity = ready.default_identity_id || ready.identities?.[0]?.id || "";
       refreshAutofillStatus(initialIdentity, false);
       send({ type: "GET_ACTIVE_CONTEXT" }).then((result) => {
         if (result?.context) resolveContext(result.context);
@@ -939,14 +979,38 @@ function App() {
           currentContextRef.current = null;
           setContext(null);
           setContextForm(emptyContext());
-          setResolution({ history: null, issues: [], draft: null });
+          setResolution({ history: null, issues: [], preflight: null, draft: null });
           commitDraft(null);
         }
       }
       if (message?.type === "AUTOFILL_ACTIVE_STATUS_CHANGED" && message.status) setAutofillStatus(message.status);
     };
+    const storageListener = (changes, areaName) => {
+      if (areaName !== "local") return;
+      if (Array.isArray(changes.hiddenResumeDraftIds?.newValue)) {
+        setHiddenDraftIds(changes.hiddenResumeDraftIds.newValue);
+      }
+      const draftSync = changes[DRAFT_SYNC_KEY]?.newValue;
+      if (draftSync && draftSync.source !== panelInstanceIdRef.current) {
+        refreshSyncedDrafts().catch(() => {});
+      }
+      const selectedSync = changes[SELECTED_DRAFT_SYNC_KEY]?.newValue;
+      const selectedDraftId = selectedSync?.draft_id || "";
+      if (selectedDraftId && selectedSync.source !== panelInstanceIdRef.current && selectedDraftId !== selectedDraftIdRef.current) {
+        contextResolveRef.current += 1;
+        viewingCurrentRef.current = false;
+        setViewingCurrent(false);
+        setResolution({ history: null, issues: [], preflight: null, draft: null });
+        setError("");
+        loadDraft(selectedDraftId, true).catch(() => {});
+      }
+    };
     chrome.runtime.onMessage.addListener(listener);
-    return () => chrome.runtime.onMessage.removeListener(listener);
+    chrome.storage.onChanged.addListener(storageListener);
+    return () => {
+      chrome.runtime.onMessage.removeListener(listener);
+      chrome.storage.onChanged.removeListener(storageListener);
+    };
   }, []);
 
   useEffect(() => {
@@ -1054,6 +1118,7 @@ function App() {
           setQuickDirty(true);
         }
         loadDrafts();
+        broadcastDraftsChanged("quick-edits");
         return data.draft;
       })
       .catch((saveError) => {
@@ -1077,6 +1142,8 @@ function App() {
 
   const profileHistory = draft?.experience_history_snapshot || server?.experience_history || [];
   const visibleExperiences = profileHistory.filter((item) => item.enabled !== false && item.company && item.location && item.title && item.dates);
+  const preflight = viewingCurrent ? resolution.preflight : null;
+  const preflightBlocked = Boolean(preflight?.blocked);
   const contextComplete = contextForm.company_name.trim() && contextForm.role_title.trim() && contextForm.job_description.trim().length >= 120;
   const draftSearches = useMemo(() => searchesForDraft(draft), [draft?.company_name, draft?.role_title, draft?.analysis]);
   const selectedResumeVersion = resumeVersionView === "original"
@@ -1120,11 +1187,16 @@ function App() {
       if (viewingCurrentRef.current && sourceIdentity(currentContextRef.current || contextForm) === generationIdentity) {
         draftLoadRef.current += 1;
         commitDraft(data.draft);
-        setResolution((current) => ({ ...current, history: data.history, draft: data.draft }));
+        setResolution((current) => ({ ...current, history: data.history, preflight: null, draft: data.draft }));
       }
       setServer((current) => current ? { ...current, queue_paused: data.queue_paused } : current);
       await loadDrafts();
+      broadcastDraftsChanged("generated");
+      if (data.draft?.id) broadcastSelectedDraft(data.draft.id);
     } catch (actionError) {
+      if (actionError.data?.preflight) {
+        setResolution((current) => ({ ...current, preflight: actionError.data.preflight }));
+      }
       setError(actionError.message);
     } finally {
       if (generatingContextRef.current === generationIdentity) generatingContextRef.current = "";
@@ -1142,6 +1214,7 @@ function App() {
       if (selectedDraftIdRef.current === actionDraftId) commitDraft(data.draft);
       if (typeof data.queue_paused === "boolean") setServer((current) => current ? { ...current, queue_paused: data.queue_paused } : current);
       await loadDrafts();
+      broadcastDraftsChanged(action);
     } catch (actionError) {
       setError(actionError.message, actionDraftId);
     } finally {
@@ -1165,6 +1238,7 @@ function App() {
       commitDraft(data.draft);
       rehydrateQuickEdits(data.draft);
       await loadDrafts();
+      broadcastDraftsChanged("audit");
     } catch (actionError) {
       if (requestStarted) await loadDraft(draftId);
       setError(actionError.message, draftId);
@@ -1198,6 +1272,7 @@ function App() {
       setResumeVersionView("luna_reviewed");
       setTab("preview");
       await loadDrafts();
+      broadcastDraftsChanged("regenerated");
     } catch (actionError) {
       if (requestStarted) await loadDraft(draftId);
       setError(actionError.message, draftId);
@@ -1220,6 +1295,7 @@ function App() {
       const data = await api(`/api/extension/drafts/${activeDraft.id}/pdf`, { method: "POST", body: {} });
       if (selectedDraftIdRef.current === draftId) commitDraft(data.draft);
       await loadDrafts();
+      broadcastDraftsChanged("pdf");
     } catch (actionError) {
       setError(actionError.message, draftId);
     } finally {
@@ -1236,6 +1312,7 @@ function App() {
       const data = await api(`/api/extension/drafts/${draft.id}`, { method: "PATCH", body: { enabled_experience_keys: next } });
       commitDraft(data.draft);
       loadDrafts();
+      broadcastDraftsChanged("experience");
     } catch (toggleError) {
       setEnabledKeys(draft.enabled_experience_keys || []);
       setError(toggleError.message);
@@ -1249,6 +1326,7 @@ function App() {
       const data = await api(`/api/extension/drafts/${draft.id}`, { method: "PATCH", body: { identity_id: nextIdentity } });
       commitDraft(data.draft);
       loadDrafts();
+      broadcastDraftsChanged("identity");
     } catch (identityError) {
       setError(identityError.message);
     }
@@ -1364,6 +1442,7 @@ function App() {
     setResolution({ history: null, issues: [], draft: item });
     const loaded = await loadDraft(item.id, true);
     if (loaded) {
+      broadcastSelectedDraft(item.id);
       setContextForm({
         source: loaded.source || "linkedin",
         external_job_id: loaded.external_job_id || "",
@@ -1391,6 +1470,7 @@ function App() {
     setHiddenDraftIds((current) => {
       const next = [...new Set([...current, draftId])];
       chrome.storage.local.set({ hiddenResumeDraftIds: next }).catch(() => {});
+      broadcastDraftsChanged("hidden");
       return next;
     });
   }
@@ -1510,7 +1590,14 @@ function App() {
                 <label>Contact identity<select value={identityId} onChange={(event) => setIdentityId(event.target.value)}>{(server.identities || []).map((item) => <option key={item.id} value={item.id}>{item.label}</option>)}</select></label>
               </div>
               <div className="experience-pills">{visibleExperiences.map((item) => <button key={item.key} className={enabledKeys.includes(item.key) ? "active" : ""} onClick={() => toggleExperience(item.key)}>{item.company}</button>)}</div>
-              <button className="primary wide" disabled={!contextComplete || busy === "generate" || !server.ai_ready} onClick={generateResume}>{busy === "generate" ? "Starting..." : "Generate Resume"}</button>
+              {preflightBlocked ? (
+                <div className="preflight-block">
+                  <strong>Blocked before AI</strong>
+                  <p>{preflight.message}</p>
+                  {(preflight.matches || []).slice(0, 3).map((item, index) => <small key={`${item.code}-${index}`}>{item.label}: {item.match}</small>)}
+                </div>
+              ) : null}
+              <button className="primary wide" disabled={!contextComplete || preflightBlocked || busy === "generate" || !server.ai_ready} onClick={generateResume}>{busy === "generate" ? "Starting..." : "Generate Resume"}</button>
               {!server.ai_ready ? <small className="field-error">{server.ai_message}</small> : null}
             </section>
           ) : null}

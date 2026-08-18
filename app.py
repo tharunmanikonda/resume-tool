@@ -39,6 +39,7 @@ from desktop_runtime import (
     settings_path,
     write_json_file,
 )
+from job_preflight import ALLOW_CLEARANCE_JOBS_SETTING, evaluate_job_preflight
 from manual_resume_parser import parse_updated_content_to_resume, validate_updated_content
 from pdf_builder import build_resume_docx, is_pdf_conversion_ready
 from extension_drafts import ActiveDraftTaskError, AuditStaleError, ExtensionDraftStore, normalize_context, validate_context
@@ -56,22 +57,18 @@ TRACKER_FILE = resource_path("config", "application_tracker.json")
 PERMANENT_PROFILE_FILE = resource_path("config", "user_profile.json")
 SESSION_PROFILE_FILE = resource_path("config", "session_profile.json")
 PROFILE_TEMPLATE_FILE = resource_path("config", "user_profile.template.json")
-
-GMAIL_IDENTITY_DEFAULT = {
-    "id": "gmail",
-    "label": "Gmail",
-    "location": "Dallas, TX",
-    "phone": "(469)963-5323",
-    "email": "tmanikonda.1@gmail.com",
-    "format_profile": "gmail",
-}
+DEFAULT_IDENTITY_SETTING = "default_identity_id"
 
 def load_settings():
     """Load settings from config/settings.json, fall back to env var if missing."""
     loaded_settings = load_json_file(Path(SETTINGS_FILE), {"output_directory": OUTPUT_ROOT})
     loaded_settings.setdefault("output_directory", OUTPUT_ROOT)
+    if not str(loaded_settings.get("output_directory", "")).strip():
+        loaded_settings["output_directory"] = OUTPUT_ROOT
     loaded_settings.setdefault("keep_docx", True)
     loaded_settings.setdefault("identities", [])
+    loaded_settings.setdefault(DEFAULT_IDENTITY_SETTING, "primary")
+    loaded_settings.setdefault(ALLOW_CLEARANCE_JOBS_SETTING, False)
     return loaded_settings
 
 def save_settings(settings_dict):
@@ -82,6 +79,18 @@ settings = load_settings()
 init_db()
 extension_drafts = ExtensionDraftStore()
 extension_ai_stage_gate_lock = threading.RLock()
+
+
+def current_job_preflight(job_description: str) -> dict:
+    return evaluate_job_preflight(job_description, settings)
+
+
+def job_preflight_blocked_response(preflight: dict):
+    return jsonify({
+        "success": False,
+        "error": preflight.get("message") or "This job is blocked by your preflight settings.",
+        "preflight": preflight,
+    }), 409
 
 TRACKER_STATUSES = ["Applied", "Updated", "Converted", "Ghosted", "Rejected"]
 
@@ -117,36 +126,36 @@ OPENAI_API_URL = "https://api.openai.com/v1/responses"
 EXPERIENCE_BLUEPRINTS = [
     {
         "key": "mckinsey",
-        "company": "McKinsey & Company",
-        "location": "CA, USA",
-        "dates": "May 2025 – Present",
+        "company": "Role 1",
+        "location": "",
+        "dates": "",
         "bullet_min": 6,
         "bullet_max": 7,
         "anchor": "enterprise delivery, applied AI workflows, ingestion and retrieval systems, customer-facing software",
     },
     {
         "key": "uber",
-        "company": "Uber",
-        "location": "CA, USA",
-        "dates": "February 2024 – May 2025",
+        "company": "Role 2",
+        "location": "",
+        "dates": "",
         "bullet_min": 5,
         "bullet_max": 6,
         "anchor": "operational tooling, transaction validation, real-time workflows, internal product systems",
     },
     {
         "key": "kpmg",
-        "company": "KPMG",
-        "location": "India",
-        "dates": "September 2021 – July 2022",
+        "company": "Role 3",
+        "location": "",
+        "dates": "",
         "bullet_min": 5,
         "bullet_max": 5,
         "anchor": "audit and compliance systems, Java backend services, document processing, reporting workflows",
     },
     {
         "key": "trigent",
-        "company": "Trigent Software",
-        "location": "India",
-        "dates": "March 2020 – August 2021",
+        "company": "Role 4",
+        "location": "",
+        "dates": "",
         "bullet_min": 3,
         "bullet_max": 3,
         "anchor": "frontend engineering, UI migration, responsive web delivery, QA-oriented implementation",
@@ -594,14 +603,11 @@ GENERIC_BULLET_PATTERNS = (
     "participated in",
 )
 
-FORBIDDEN_TERMS_BY_COMPANY = {
-    "Trigent Software": {
+FORBIDDEN_TERMS_BY_BLUEPRINT_KEY = {
+    "trigent": {
         "ai", "llm", "rag", "embedding", "embeddings", "langchain", "openai",
         "pinecone", "vector", "vectors", "semantic search", "retrieval",
     },
-}
-FORBIDDEN_TERMS_BY_BLUEPRINT_KEY = {
-    "trigent": FORBIDDEN_TERMS_BY_COMPANY["Trigent Software"],
 }
 
 ai_sessions: dict[str, dict] = {}
@@ -753,10 +759,12 @@ def parse_resume_snapshot(
     enabled_experience_keys: list[str] | None = None,
 ) -> dict:
     base_resume = load_base_resume()
+    parser_blueprints = current_experience_blueprints()
     merged_resume = parse_updated_content_to_resume(
         str(content or "").strip(),
         base_resume,
         normalize_enabled_experience_keys(enabled_experience_keys),
+        parser_blueprints,
     )
     merged_resume = apply_profile_overrides(merged_resume)
     merged_resume = apply_experience_history_override(merged_resume, experience_history_override)
@@ -850,8 +858,13 @@ def infer_application_from_output_dir(folder: Path, output_root: Path | None = N
     if not folder.is_dir():
         return None
 
-    docx_path = folder / "tharun manikonda resume.docx"
-    pdf_path = folder / "tharun manikonda resume.pdf"
+    candidate_artifacts = [
+        path
+        for path in folder.iterdir()
+        if path.is_file() and is_generated_resume_artifact(path)
+    ]
+    docx_path = next((path for path in candidate_artifacts if path.suffix.lower() == ".docx"), folder / "resume.docx")
+    pdf_path = next((path for path in candidate_artifacts if path.suffix.lower() == ".pdf"), folder / "resume.pdf")
     status_path = folder / "pdf_status.json"
     artifact_path = docx_path if docx_path.exists() else pdf_path if pdf_path.exists() else None
     if artifact_path is None:
@@ -927,7 +940,7 @@ def scan_output_tracker_applications() -> list[dict]:
         )
 
         for path in candidate_files:
-            if path.name.lower() in {"tharun manikonda resume.docx", "tharun manikonda resume.pdf"} and path.parent != output_root:
+            if is_generated_resume_artifact(path) and path.parent != output_root:
                 parent_key = str(path.parent.resolve())
                 if parent_key in seen_dirs:
                     continue
@@ -2441,7 +2454,7 @@ def build_ai_resume_experience_prompt(prompt_family_key: str = "software_enginee
             "- Follow the fixed company, location, and date structure exactly",
             "- The title field must contain only the role title",
             "- Never put company name, location, dates, or separators into the title field",
-            "- Invalid title example: 'McKinsey & Company | CA, USA | May 2025 – Present'",
+            "- Invalid title example: 'Company Name | Location | Date Range'",
             "- Valid title example: 'Integration Engineer'",
             "- Preserve natural title phrasing",
             "- Do not rewrite historical titles to imitate the target role family",
@@ -2574,7 +2587,7 @@ def build_ai_resume_experience_subset_prompt(blueprints: list[dict], prompt_fami
             "- keep historical titles believable",
             "- the title field must contain only the role title",
             "- never put company name, location, dates, or separators into the title field",
-            "- invalid title example: 'McKinsey & Company | CA, USA | May 2025 – Present'",
+            "- invalid title example: 'Company Name | Location | Date Range'",
             "- valid title example: 'Integration Engineer'",
             "- do not rewrite titles to imitate the target role",
             "- keep experience titles coherent with the overall career lane, but allow JD-aligned retitling when the bullets credibly support it",
@@ -2608,7 +2621,7 @@ def build_ai_resume_experience_subset_prompt(blueprints: list[dict], prompt_fami
             "- if a JD term appears, the bullet itself must prove it with an action, workflow, system, or measurable result",
             *family_rules.get(prompt_family_key, family_rules["software_engineering"]),
             "- older roles should use the lighter, earlier-career portion of the preliminary skills instead of inheriting the most modern or specialized parts of the stack",
-            "- keep KPMG and Trigent technology choices believable for 2020-2022, their company anchors, and normal exposure progression",
+            "- keep older-role technology choices believable for their dates, company anchors, and normal exposure progression",
             "- do not backfill newer tools, AI frameworks, or unusually convenient target-stack substitutions into older roles unless the anchor strongly supports them",
             "- if a bullet wants to mention a named platform that is not already in the JD or preliminary skills, replace it with a generic workflow phrase instead",
             "- prefer simpler wording over dense clause chains when both communicate the same accomplishment",
@@ -3528,6 +3541,7 @@ def parse_ai_session_resume_content(
         normalized_content,
         load_base_resume(),
         active_keys,
+        active_blueprints,
     )
     parsed_skills = []
     for item in parsed.get("technical_skills") or []:
@@ -8924,11 +8938,11 @@ def profile_experience_history_from_resume(resume: dict) -> list[dict]:
         history.append(
             {
                 "key": blueprint["key"],
-                "company": str(resume_entry.get("company", blueprint["company"])).strip() or blueprint["company"],
-                "location": str(resume_entry.get("location", blueprint["location"])).strip() or blueprint["location"],
+                "company": str(resume_entry.get("company", "")).strip(),
+                "location": str(resume_entry.get("location", "")).strip(),
                 "title": str(resume_entry.get("title", "")).strip(),
-                "dates": str(resume_entry.get("dates", blueprint["dates"])).strip() or blueprint["dates"],
-                "enabled": True,
+                "dates": str(resume_entry.get("dates", "")).strip(),
+                "enabled": bool(resume_entry) and is_experience_history_entry_complete(resume_entry),
             }
         )
     return history
@@ -8942,6 +8956,21 @@ def is_experience_history_entry_enabled(entry: dict) -> bool:
     return entry.get("enabled", True) is not False and is_experience_history_entry_complete(entry)
 
 
+def complete_profile_experience_keys(profile: dict | None = None) -> list[str]:
+    source = profile if isinstance(profile, dict) else current_profile()
+    history = source.get("experience_history") if isinstance(source.get("experience_history"), list) else []
+    enabled_by_key = {
+        str(entry.get("key", "")).strip(): entry
+        for entry in history
+        if isinstance(entry, dict) and str(entry.get("key", "")).strip()
+    }
+    return [
+        blueprint["key"]
+        for blueprint in EXPERIENCE_BLUEPRINTS
+        if is_experience_history_entry_enabled(enabled_by_key.get(blueprint["key"], {}))
+    ]
+
+
 def current_experience_blueprints() -> list[dict]:
     active_profile = current_profile()
     saved_history = active_profile.get("experience_history") if isinstance(active_profile.get("experience_history"), list) else []
@@ -8953,19 +8982,28 @@ def current_experience_blueprints() -> list[dict]:
 
     blueprints: list[dict] = []
     for blueprint in EXPERIENCE_BLUEPRINTS:
-        override = saved_history_by_key.get(blueprint["key"], {})
+        override = saved_history_by_key.get(blueprint["key"])
         merged = dict(blueprint)
-        merged["company"] = str(override.get("company", blueprint["company"])).strip() or blueprint["company"]
-        merged["location"] = str(override.get("location", blueprint["location"])).strip() or blueprint["location"]
-        merged["dates"] = str(override.get("dates", blueprint["dates"])).strip() or blueprint["dates"]
-        merged["default_title"] = str(override.get("title", "")).strip()
+        if isinstance(override, dict):
+            merged["company"] = str(override.get("company", "")).strip()
+            merged["location"] = str(override.get("location", "")).strip()
+            merged["dates"] = str(override.get("dates", "")).strip()
+            merged["default_title"] = str(override.get("title", "")).strip()
+            merged["enabled"] = is_experience_history_entry_enabled(override)
+        else:
+            merged["company"] = str(blueprint.get("company", "")).strip()
+            merged["location"] = str(blueprint.get("location", "")).strip()
+            merged["dates"] = str(blueprint.get("dates", "")).strip()
+            merged["default_title"] = ""
+            merged["enabled"] = is_experience_history_entry_complete(merged)
         blueprints.append(merged)
     return blueprints
 
 
 def normalize_enabled_experience_keys(payload: list[str] | None) -> list[str]:
     if payload is None:
-        return list(EXPERIENCE_BLUEPRINT_KEYS)
+        profile_keys = complete_profile_experience_keys()
+        return profile_keys or list(EXPERIENCE_BLUEPRINT_KEYS)
     requested = [str(item).strip() for item in payload if str(item).strip()]
     requested_set = set(requested)
     return [key for key in EXPERIENCE_BLUEPRINT_KEYS if key in requested_set]
@@ -8973,7 +9011,11 @@ def normalize_enabled_experience_keys(payload: list[str] | None) -> list[str]:
 
 def filter_blueprints_by_enabled_keys(blueprints: list[dict], enabled_experience_keys: list[str] | None = None) -> list[dict]:
     enabled_keys = set(normalize_enabled_experience_keys(enabled_experience_keys))
-    return [blueprint for blueprint in blueprints if blueprint["key"] in enabled_keys]
+    return [
+        blueprint
+        for blueprint in blueprints
+        if blueprint["key"] in enabled_keys and is_experience_history_entry_complete(blueprint)
+    ]
 
 
 def normalize_experience_history_override(payload: list[dict] | None) -> list[dict]:
@@ -8986,15 +9028,27 @@ def normalize_experience_history_override(payload: list[dict] | None) -> list[di
 
     normalized: list[dict] = []
     for blueprint in current_experience_blueprints():
-        raw_item = raw_by_key.get(blueprint["key"], {})
+        raw_item = raw_by_key.get(blueprint["key"])
+        if isinstance(raw_item, dict):
+            company = str(raw_item.get("company", "")).strip()
+            location = str(raw_item.get("location", "")).strip()
+            title = str(raw_item.get("title", "")).strip()
+            dates = str(raw_item.get("dates", "")).strip()
+            enabled = bool(raw_item.get("enabled", True))
+        else:
+            company = str(blueprint.get("company", "")).strip()
+            location = str(blueprint.get("location", "")).strip()
+            title = str(blueprint.get("default_title", "")).strip()
+            dates = str(blueprint.get("dates", "")).strip()
+            enabled = bool(blueprint.get("enabled", True))
         normalized.append(
             {
                 "key": blueprint["key"],
-                "company": str(raw_item.get("company", blueprint["company"])).strip() or blueprint["company"],
-                "location": str(raw_item.get("location", blueprint["location"])).strip() or blueprint["location"],
-                "title": str(raw_item.get("title", blueprint.get("default_title", ""))).strip(),
-                "dates": str(raw_item.get("dates", blueprint["dates"])).strip() or blueprint["dates"],
-                "enabled": bool(raw_item.get("enabled", True)),
+                "company": company,
+                "location": location,
+                "title": title,
+                "dates": dates,
+                "enabled": enabled and all((company, location, title, dates)),
             }
         )
     return normalized
@@ -9169,14 +9223,13 @@ def default_identity_profiles() -> list[dict]:
     profile_contact = (current_profile().get("contact") or {})
     return [
         {
-            "id": "outlook",
-            "label": "Outlook",
+            "id": "primary",
+            "label": "Primary",
             "location": str(profile_contact.get("location", "")).strip(),
             "phone": str(profile_contact.get("phone", "")).strip(),
             "email": str(profile_contact.get("email", "")).strip(),
             "format_profile": "outlook",
-        },
-        dict(GMAIL_IDENTITY_DEFAULT),
+        }
     ]
 
 
@@ -9224,14 +9277,43 @@ def current_identity_profiles() -> list[dict]:
     return normalize_identity_profiles(settings.get("identities"))
 
 
+def current_default_identity_id() -> str:
+    identities = current_identity_profiles()
+    configured = str(settings.get(DEFAULT_IDENTITY_SETTING, "")).strip().lower()
+    if configured and any(item.get("id") == configured for item in identities):
+        return configured
+    return identities[0]["id"] if identities else default_identity_profiles()[0]["id"]
+
+
 def identity_profile_by_id(identity_id: str) -> dict:
-    normalized_id = str(identity_id or "").strip().lower()
+    normalized_id = str(identity_id or "").strip().lower() or current_default_identity_id()
     identities = current_identity_profiles()
     if normalized_id:
         for item in identities:
             if item["id"] == normalized_id:
                 return item
     return identities[0] if identities else default_identity_profiles()[0]
+
+
+def resume_artifact_stem(resume: dict | None = None) -> str:
+    """Return a neutral generated resume file stem for the active profile."""
+    source = resume if isinstance(resume, dict) else {}
+    profile = current_profile()
+    candidate_name = str(source.get("name") or profile.get("name") or "").strip()
+    base = re.sub(r"[^a-zA-Z0-9]+", " ", candidate_name).strip().lower()
+    return f"{base} resume" if base else "resume"
+
+
+def generated_resume_artifact_paths(folder: Path, resume: dict | None = None) -> tuple[Path, Path]:
+    stem = resume_artifact_stem(resume)
+    return folder / f"{stem}.docx", folder / f"{stem}.pdf"
+
+
+def is_generated_resume_artifact(path: Path) -> bool:
+    if path.suffix.lower() not in {".docx", ".pdf"}:
+        return False
+    normalized_stem = re.sub(r"[^a-z0-9]+", " ", path.stem.lower()).strip()
+    return normalized_stem == "resume" or normalized_stem.endswith(" resume")
 
 
 def apply_profile_overrides(resume: dict) -> dict:
@@ -9454,12 +9536,20 @@ def experience_blueprints_from_snapshot(draft: dict) -> list[dict]:
     }
     blueprints: list[dict] = []
     for blueprint in EXPERIENCE_BLUEPRINTS:
-        saved = by_key.get(blueprint["key"], {})
+        saved = by_key.get(blueprint["key"])
         merged = dict(blueprint)
-        merged["company"] = str(saved.get("company", blueprint["company"])).strip() or blueprint["company"]
-        merged["location"] = str(saved.get("location", blueprint["location"])).strip() or blueprint["location"]
-        merged["dates"] = str(saved.get("dates", blueprint["dates"])).strip() or blueprint["dates"]
-        merged["default_title"] = str(saved.get("title", "")).strip()
+        if isinstance(saved, dict):
+            merged["company"] = str(saved.get("company", "")).strip()
+            merged["location"] = str(saved.get("location", "")).strip()
+            merged["dates"] = str(saved.get("dates", "")).strip()
+            merged["default_title"] = str(saved.get("title", "")).strip()
+            merged["enabled"] = is_experience_history_entry_enabled(saved)
+        else:
+            merged["company"] = str(blueprint.get("company", "")).strip()
+            merged["location"] = str(blueprint.get("location", "")).strip()
+            merged["dates"] = str(blueprint.get("dates", "")).strip()
+            merged["default_title"] = ""
+            merged["enabled"] = is_experience_history_entry_complete(merged)
         blueprints.append(merged)
     return blueprints
 
@@ -9467,10 +9557,12 @@ def experience_blueprints_from_snapshot(draft: dict) -> list[dict]:
 def draft_resume_snapshot(draft: dict) -> dict:
     content = str(draft.get("resume_content", "")).strip()
     enabled_keys = normalize_enabled_experience_keys(draft.get("enabled_experience_keys"))
+    draft_blueprints = experience_blueprints_from_snapshot(draft)
     resume = parse_updated_content_to_resume(
         content,
         load_base_resume(),
         enabled_keys,
+        draft_blueprints,
     )
     profile = draft.get("profile_snapshot") if isinstance(draft.get("profile_snapshot"), dict) else {}
     resume["name"] = str(profile.get("name", resume.get("name", ""))).strip()
@@ -10035,8 +10127,7 @@ def generate_extension_pdf(draft: dict, *, preserve_docx: bool = False) -> dict:
     folder_name = safe_folder_name(display_folder_name(draft.get("company_name", ""), title, ""), settings["output_directory"])
     out_dir = Path(settings["output_directory"]) / folder_name
     out_dir.mkdir(parents=True, exist_ok=True)
-    docx_path = out_dir / "tharun manikonda resume.docx"
-    pdf_path = out_dir / "tharun manikonda resume.pdf"
+    docx_path, pdf_path = generated_resume_artifact_paths(out_dir, resume)
     status_path = out_dir / "pdf_status.json"
     build_resume_docx(resume, str(docx_path), format_profile=format_profile)
     start_pdf_conversion(
@@ -10120,10 +10211,12 @@ def preview():
             }), 400
 
         base_resume = load_base_resume()
+        parser_blueprints = current_experience_blueprints()
         merged_resume = parse_updated_content_to_resume(
             content,
             base_resume,
             enabled_experience_keys,
+            parser_blueprints,
         )
         merged_resume = apply_profile_overrides(merged_resume)
         merged_resume = apply_experience_history_override(merged_resume, data.get("experience_history_override"))
@@ -10170,6 +10263,7 @@ def get_settings():
     return jsonify({
         **settings,
         "identities": current_identity_profiles(),
+        DEFAULT_IDENTITY_SETTING: current_default_identity_id(),
         "settings_file": str(SETTINGS_FILE),
         "pdf_conversion_ready": ok,
         "pdf_conversion_status": msg,
@@ -10193,6 +10287,12 @@ def update_settings():
         data = request.get_json()
         output_directory = data.get("output_directory", "").strip()
         identities = normalize_identity_profiles(data.get("identities"))
+        requested_default_identity = str(data.get(
+            DEFAULT_IDENTITY_SETTING,
+            settings.get(DEFAULT_IDENTITY_SETTING, ""),
+        )).strip().lower()
+        identity_ids = {item.get("id") for item in identities}
+        default_identity_id = requested_default_identity if requested_default_identity in identity_ids else (identities[0]["id"] if identities else "")
 
         if not output_directory:
             return jsonify({
@@ -10223,14 +10323,21 @@ def update_settings():
         # Update in-memory settings and save to file
         settings["output_directory"] = output_directory
         settings["keep_docx"] = bool(data.get("keep_docx", settings.get("keep_docx", True)))
+        settings[ALLOW_CLEARANCE_JOBS_SETTING] = bool(data.get(
+            ALLOW_CLEARANCE_JOBS_SETTING,
+            settings.get(ALLOW_CLEARANCE_JOBS_SETTING, False),
+        ))
         settings["identities"] = identities
+        settings[DEFAULT_IDENTITY_SETTING] = default_identity_id
         save_settings(settings)
 
         return jsonify({
             "success": True,
             "message": "Settings saved successfully",
             "output_directory": output_directory,
+            ALLOW_CLEARANCE_JOBS_SETTING: bool(settings.get(ALLOW_CLEARANCE_JOBS_SETTING, False)),
             "identities": identities,
+            DEFAULT_IDENTITY_SETTING: current_default_identity_id(),
         })
     except Exception as e:
         return jsonify({
@@ -10408,7 +10515,12 @@ def rebuild_extension_draft_content(draft: dict, title_summary: dict, skills_pay
 
 
 def extension_payloads_from_content(content: str, draft: dict, enabled_keys: list[str]) -> dict:
-    parsed = parse_updated_content_to_resume(content, load_base_resume(), enabled_keys)
+    parsed = parse_updated_content_to_resume(
+        content,
+        load_base_resume(),
+        enabled_keys,
+        experience_blueprints_from_snapshot(draft),
+    )
     parsed_skills = []
     for item in parsed.get("technical_skills", []):
         if not isinstance(item, dict):
@@ -10631,8 +10743,10 @@ def extension_status():
         "onboarding_required": not has_permanent_profile_doc(),
         "queue_paused": extension_drafts.has_duplicate_review(),
         "identities": current_identity_profiles(),
+        DEFAULT_IDENTITY_SETTING: current_default_identity_id(),
         "experience_history": profile.get("experience_history", []),
         "autofill_ready": bool(profile.get("name")) and bool(current_identity_profiles()),
+        "allow_security_clearance_jobs": bool(settings.get(ALLOW_CLEARANCE_JOBS_SETTING, False)),
     })
 
 
@@ -10681,12 +10795,14 @@ def resolve_extension_context():
     try:
         context, draft = extension_drafts.resolve(request.get_json() or {})
         issues = validate_context(context)
+        preflight = current_job_preflight(context.get("job_description", ""))
         history = tracker_company_history(context.get("company_name", "")) if context.get("company_name") else {"count": 0, "applications": []}
         return jsonify({
             "success": True,
             "context": context,
-            "complete": not issues,
+            "complete": not issues and not preflight.get("blocked"),
             "issues": issues,
+            "preflight": preflight,
             "history": history,
             "draft": extension_draft_payload(draft),
         })
@@ -10704,6 +10820,9 @@ def create_extension_draft():
         issues = validate_context(context)
         if issues:
             return jsonify({"success": False, "error": " ".join(issues), "issues": issues}), 400
+        preflight = current_job_preflight(context.get("job_description", ""))
+        if preflight.get("blocked"):
+            return job_preflight_blocked_response(preflight)
         history = tracker_company_history(context["company_name"])
         snapshot = extension_profile_snapshot(str(data.get("identity_id", "")), data.get("enabled_experience_keys"))
         draft = create_extension_draft_with_gate(
@@ -11394,6 +11513,10 @@ def analyze_ai_content():
         if len(job_description) > 20000:
             return jsonify({"success": False, "error": "Job description is too long"}), 400
 
+        preflight = current_job_preflight(job_description)
+        if preflight.get("blocked"):
+            return job_preflight_blocked_response(preflight)
+
         api_key = os.getenv("OPENAI_API_KEY", "").strip()
         if not api_key:
             return jsonify({"success": False, "error": "OPENAI_API_KEY is not configured"}), 500
@@ -11479,6 +11602,10 @@ def generate_ai_content():
 
         if len(job_description) > 20000:
             return jsonify({"success": False, "error": "Job description is too long"}), 400
+
+        preflight = current_job_preflight(job_description)
+        if preflight.get("blocked"):
+            return job_preflight_blocked_response(preflight)
 
         session_id, session = get_ai_session(session_id, job_description, reset_memory)
         session["enabled_experience_keys"] = enabled_experience_keys
@@ -12832,6 +12959,7 @@ def generate():
                 content,
                 base_resume,
                 normalize_enabled_experience_keys(data.get("enabled_experience_keys")),
+                current_experience_blueprints(),
             )
             merged_resume = apply_profile_overrides(merged_resume)
             merged_resume = apply_experience_history_override(merged_resume, data.get("experience_history_override"))
@@ -12862,11 +12990,10 @@ def generate():
         out_dir.mkdir(parents=True, exist_ok=True)
 
         # Build DOCX
-        docx_path = out_dir / "tharun manikonda resume.docx"
+        docx_path, pdf_path = generated_resume_artifact_paths(out_dir, merged_resume)
         build_resume_docx(merged_resume, str(docx_path), format_profile=format_profile)
 
         # Start background PDF conversion
-        pdf_path = out_dir / "tharun manikonda resume.pdf"
         status_path = out_dir / "pdf_status.json"
         metadata = {
             "job_id": str(data.get("job_id", "")).strip(),

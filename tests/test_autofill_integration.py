@@ -46,7 +46,7 @@ def test_autofill_profile_uses_identity_and_application_data(monkeypatch, tmp_pa
         "identities": [{
             "id": "primary",
             "label": "Primary",
-            "location": "Dallas, TX",
+            "location": "Austin, TX",
             "phone": "555-0199",
             "email": "primary@example.com",
             "format_profile": "outlook",

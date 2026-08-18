@@ -6,33 +6,53 @@ import json
 import re
 from typing import Any
 
-# Fixed experience order. Titles and bullets are parsed from user input.
+# Legacy fallback order. Runtime callers should pass the active profile/draft
+# blueprints so renamed or disabled roles do not map back to these defaults.
 COMPANIES = [
     {
         "key": "mckinsey",
-        "company": "McKinsey & Company",
-        "location": "CA, USA",
-        "dates": "May 2025 – Present",
+        "company": "Role 1",
+        "location": "",
+        "dates": "",
     },
     {
         "key": "uber",
-        "company": "Uber",
-        "location": "CA, USA",
-        "dates": "February 2024 – May 2025",
+        "company": "Role 2",
+        "location": "",
+        "dates": "",
     },
     {
         "key": "kpmg",
-        "company": "KPMG",
-        "location": "India",
-        "dates": "September 2021 – July 2022",
+        "company": "Role 3",
+        "location": "",
+        "dates": "",
     },
     {
         "key": "trigent",
-        "company": "Trigent Software",
-        "location": "India",
-        "dates": "March 2020 – August 2021",
+        "company": "Role 4",
+        "location": "",
+        "dates": "",
     },
 ]
+
+
+def _parser_companies(experience_blueprints: list[dict[str, Any]] | None = None) -> list[dict[str, Any]]:
+    if not isinstance(experience_blueprints, list) or not experience_blueprints:
+        return COMPANIES
+    normalized: list[dict[str, Any]] = []
+    for index, item in enumerate(experience_blueprints):
+        if not isinstance(item, dict):
+            continue
+        key = str(item.get("key") or "").strip()
+        if not key:
+            key = COMPANIES[index]["key"] if index < len(COMPANIES) else f"role_{index + 1}"
+        normalized.append({
+            "key": key,
+            "company": str(item.get("company") or "").strip(),
+            "location": str(item.get("location") or "").strip(),
+            "dates": str(item.get("dates") or "").strip(),
+        })
+    return normalized or COMPANIES
 
 
 def _clean_bullet(line: str) -> str:
@@ -138,9 +158,9 @@ def _parse_skills(skills_block: str) -> list[dict[str, str]]:
 
 def _clean_title(title: str) -> str:
     """Remove dates from title since they're hardcoded."""
-    # Remove patterns like "| September 2021" or "| September 2021 – July 2022"
+    # Remove patterns like "| Month YYYY" or "| Month YYYY – Month YYYY"
     title = re.sub(r'\s*\|\s*\w+\s+\d{4}.*', '', title)  # Remove "| Month Year ..."
-    # Remove patterns like "– September 2021" or "- September 2021"
+    # Remove patterns like "– Month YYYY" or "- Month YYYY"
     title = re.sub(r'\s*[\–\-]\s*\w+\s+\d{4}.*', '', title)  # Remove "– Month Year ..."
     return title.strip()
 
@@ -216,6 +236,7 @@ def parse_updated_content_to_resume(
     updated_text: str,
     base_resume: dict,
     enabled_experience_keys: list[str] | None = None,
+    experience_blueprints: list[dict[str, Any]] | None = None,
 ) -> dict:
     """Parse updated content and merge with base resume."""
     resume = copy.deepcopy(base_resume)
@@ -272,16 +293,17 @@ def parse_updated_content_to_resume(
     # back to their stable profile slots so removing a middle role does not
     # shift every later company into the wrong slot.
     if company_data:
-        known_keys = [item["key"] for item in COMPANIES]
+        parser_companies = _parser_companies(experience_blueprints)
+        known_keys = [item["key"] for item in parser_companies]
         requested_keys = (
             [key for key in enabled_experience_keys if key in known_keys]
             if enabled_experience_keys is not None
             else known_keys
         )
-        slot_by_key = {item["key"]: index for index, item in enumerate(COMPANIES)}
+        slot_by_key = {item["key"]: index for index, item in enumerate(parser_companies)}
         expected_company_by_key = {
             item["key"]: str(item.get("company", "")).strip()
-            for item in COMPANIES
+            for item in parser_companies
         }
         for key, slot_index in slot_by_key.items():
             experience = resume.get("experience", [])

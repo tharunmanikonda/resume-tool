@@ -83,11 +83,7 @@ class ResumeGenerator {
         this.gmailIdentityBtn = document.getElementById("gmailIdentityBtn");
         this.identityPresets = {
             outlook: null,
-            gmail: {
-                location: "Dallas, TX",
-                phone: "(469)963-5323",
-                email: "tmanikonda.1@gmail.com",
-            },
+            gmail: null,
         };
         this.selectedIdentity = "outlook";
 
@@ -235,7 +231,8 @@ class ResumeGenerator {
             const contact = this.identityPresets.outlook || this.currentProfile?.contact || this.baseResume?.contact || {};
             this.setCurrentContact(contact);
         } else {
-            this.setCurrentContact(this.identityPresets.gmail);
+            const contact = this.identityPresets.gmail || this.currentProfile?.contact || this.baseResume?.contact || {};
+            this.setCurrentContact(contact);
         }
 
         this.updateIdentityButtons(identity);
@@ -301,7 +298,7 @@ class ResumeGenerator {
             const data = await response.json();
             if (data.success) {
                 this.currentProfile = data.profile;
-                this.updateIdentityButtons(this.previewEmail.value === this.identityPresets.gmail.email ? "gmail" : "outlook");
+                this.updateIdentityButtons(this.identityPresets.gmail?.email && this.previewEmail.value === this.identityPresets.gmail.email ? "gmail" : "outlook");
                 this.contactSaveStatus.textContent = "Saved";
                 setTimeout(() => {
                     if (this.contactSaveStatus.textContent === "Saved") {
@@ -842,7 +839,7 @@ class ResumeGenerator {
         if (force || !this.previewLocation.value) this.previewLocation.value = contact.location || "";
         if (force || !this.previewPhone.value) this.previewPhone.value = contact.phone || "";
         if (force || !this.previewEmail.value) this.previewEmail.value = contact.email || "";
-        this.updateIdentityButtons(this.previewEmail.value === this.identityPresets.gmail.email ? "gmail" : "outlook");
+        this.updateIdentityButtons(this.identityPresets.gmail?.email && this.previewEmail.value === this.identityPresets.gmail.email ? "gmail" : "outlook");
         const content = this.contentInput.value.trim();
         if (content) {
             this.loadPreview(content);

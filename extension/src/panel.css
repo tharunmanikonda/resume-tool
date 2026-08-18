@@ -72,6 +72,9 @@ details[open] summary { margin-bottom: 9px; }
 .error-band { border-color: #c92a2a; background: #fff5f5; color: #8b1e1e; }
 .decision-band { margin: 10px 0; }
 .warning-band button { margin-left: 8px; }
+.preflight-block { border-left: 3px solid #c92a2a; background: #fff5f5; color: #8b1e1e; margin: 8px 0; padding: 10px; }
+.preflight-block p { margin: 6px 0; }
+.preflight-block small { display: block; color: #7a2222; line-height: 1.35; }
 .button-row, .action-bar { display: flex; flex-wrap: wrap; gap: 7px; }
 
 .view-tabs { display: flex; gap: 4px; margin: 14px 0 0; border-bottom: 1px solid #ddd; }
