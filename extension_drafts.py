@@ -245,6 +245,7 @@ def serialize_draft(row: ResumeDraft, *, include_content: bool = True) -> dict:
             row.audit_applied_at if row.audit_applied_at and row.audit_applied_at.tzinfo else row.audit_applied_at.replace(tzinfo=timezone.utc)
         ).isoformat() if row.audit_applied_at else "",
         "application_id": row.application_id or "",
+        "job_lead_id": row.job_lead_id or "",
         "error_stage": row.error_stage or "",
         "error_message": row.error_message or "",
         "locked": row.status == "applied" or bool(row.application_id),
@@ -388,7 +389,7 @@ class ExtensionDraftStore:
             "company_name", "role_title", "identity_id", "enabled_experience_keys", "resume_content",
             "resume_snapshot", "title_summary", "skills", "analysis", "experience_recent", "experience_older",
             "status", "stage", "duplicate_decision", "pdf_path", "docx_path", "output_dir", "pdf_status_path",
-            "pdf_stale", "resume_revision", "pdf_revision", "pdf_generated_at", "application_id", "error_stage", "error_message", "job_description", "description_hash",
+            "pdf_stale", "resume_revision", "pdf_revision", "pdf_generated_at", "application_id", "job_lead_id", "error_stage", "error_message", "job_description", "description_hash",
             "latest_description_hash", "contact_snapshot", "experience_history_snapshot",
             "source_metadata",
             "audit_status", "audit_result", "audit_proposal", "audit_base_revision",

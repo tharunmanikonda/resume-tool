@@ -51,6 +51,25 @@ class Base(DeclarativeBase):
     pass
 
 
+class AiStageCache(Base):
+    __tablename__ = "ai_stage_cache"
+    __table_args__ = (
+        Index("ix_ai_stage_cache_stage_source", "stage", "source_hash"),
+        Index("ix_ai_stage_cache_key", "cache_key", unique=True),
+    )
+
+    id: Mapped[str] = mapped_column(String(80), primary_key=True)
+    stage: Mapped[str] = mapped_column(String(80), nullable=False, index=True)
+    cache_key: Mapped[str] = mapped_column(String(160), nullable=False, unique=True)
+    model: Mapped[str] = mapped_column(String(120), nullable=False)
+    prompt_version: Mapped[str] = mapped_column(String(80), nullable=False)
+    source_hash: Mapped[str] = mapped_column(String(80), nullable=False, index=True)
+    result: Mapped[dict] = mapped_column(JSON, default=dict, nullable=False)
+    source_metadata: Mapped[dict] = mapped_column(JSON, default=dict, nullable=False)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow, nullable=False)
+    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow, onupdate=utcnow, nullable=False)
+
+
 class ResumeDraft(Base):
     __tablename__ = "resume_drafts"
     __table_args__ = (
@@ -102,6 +121,7 @@ class ResumeDraft(Base):
     audit_base_hash: Mapped[str] = mapped_column(String(80), nullable=True)
     audit_created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=True)
     audit_applied_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=True)
+    job_lead_id: Mapped[str] = mapped_column(String(80), nullable=True, index=True)
     application_id: Mapped[str] = mapped_column(String(80), nullable=True, index=True)
     error_stage: Mapped[str] = mapped_column(String(80), nullable=True)
     error_message: Mapped[str] = mapped_column(Text, nullable=True)
@@ -156,6 +176,89 @@ class McpResumeWorkflow(Base):
     updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow, onupdate=utcnow, nullable=False)
 
 
+class CptCompanyCheck(Base):
+    __tablename__ = "cpt_company_checks"
+    __table_args__ = (
+        Index("ix_cpt_company_checks_normalized", "normalized_company_name"),
+        Index("ix_cpt_company_checks_expires", "expires_at"),
+    )
+
+    id: Mapped[str] = mapped_column(String(80), primary_key=True)
+    company_name: Mapped[str] = mapped_column(String(300), nullable=False)
+    normalized_company_name: Mapped[str] = mapped_column(String(300), nullable=False, index=True)
+    matched_company_name: Mapped[str] = mapped_column(String(300), nullable=True)
+    status: Mapped[str] = mapped_column(String(40), default="red", nullable=False, index=True)
+    blocked: Mapped[bool] = mapped_column(Boolean, default=True, nullable=False)
+    cpt_friendly: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
+    cpt_onboard: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
+    cpt_agreement: Mapped[str] = mapped_column(String(80), nullable=True)
+    message: Mapped[str] = mapped_column(Text, nullable=False)
+    source_url: Mapped[str] = mapped_column(Text, nullable=False)
+    source_snapshot: Mapped[dict] = mapped_column(JSON, default=dict)
+    checked_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow, nullable=False)
+    expires_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=False)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow, nullable=False)
+    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow, onupdate=utcnow, nullable=False)
+
+
+class JobSource(Base):
+    __tablename__ = "job_sources"
+    __table_args__ = (
+        Index("ix_job_sources_type_key", "source_type", "source_key"),
+        Index("ix_job_sources_enabled", "enabled"),
+    )
+
+    id: Mapped[str] = mapped_column(String(80), primary_key=True)
+    source_type: Mapped[str] = mapped_column(String(40), nullable=False, index=True)
+    name: Mapped[str] = mapped_column(String(200), nullable=False)
+    company_name: Mapped[str] = mapped_column(String(300), nullable=True)
+    source_key: Mapped[str] = mapped_column(String(300), nullable=False)
+    url: Mapped[str] = mapped_column(Text, nullable=True)
+    enabled: Mapped[bool] = mapped_column(Boolean, default=True, nullable=False)
+    scan_frequency: Mapped[str] = mapped_column(String(40), default="daily", nullable=False)
+    last_scan_started_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=True)
+    last_scan_finished_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=True)
+    last_scan_status: Mapped[str] = mapped_column(String(40), nullable=True)
+    last_scan_error: Mapped[str] = mapped_column(Text, nullable=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow, nullable=False)
+    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow, onupdate=utcnow, nullable=False)
+
+
+class JobLead(Base):
+    __tablename__ = "job_leads"
+    __table_args__ = (
+        Index("ix_job_leads_identity_hash", "identity_hash", unique=True),
+        Index("ix_job_leads_status_seen", "status", "last_seen_at"),
+        Index("ix_job_leads_source", "source", "source_company_key"),
+        Index("ix_job_leads_relevance", "relevance_status"),
+    )
+
+    id: Mapped[str] = mapped_column(String(80), primary_key=True)
+    source: Mapped[str] = mapped_column(String(40), nullable=False)
+    source_company_key: Mapped[str] = mapped_column(String(300), nullable=False)
+    external_job_id: Mapped[str] = mapped_column(String(200), nullable=True)
+    identity_hash: Mapped[str] = mapped_column(String(80), nullable=False)
+    content_hash: Mapped[str] = mapped_column(String(80), nullable=False)
+    company_name: Mapped[str] = mapped_column(String(300), nullable=False)
+    role_title: Mapped[str] = mapped_column(String(500), nullable=False)
+    location: Mapped[str] = mapped_column(String(300), nullable=True)
+    job_url: Mapped[str] = mapped_column(Text, nullable=True)
+    apply_url: Mapped[str] = mapped_column(Text, nullable=True)
+    job_description: Mapped[str] = mapped_column(Text, nullable=True)
+    posted_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=True)
+    first_seen_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow, nullable=False)
+    last_seen_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow, nullable=False)
+    last_changed_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow, nullable=False)
+    missing_seen_count: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
+    status: Mapped[str] = mapped_column(String(40), default="new", nullable=False, index=True)
+    relevance_status: Mapped[str] = mapped_column(String(40), default="candidate", nullable=False, index=True)
+    relevance_reason: Mapped[str] = mapped_column(Text, nullable=True)
+    cpt_status: Mapped[str] = mapped_column(String(40), nullable=True, index=True)
+    raw_snapshot: Mapped[dict] = mapped_column(JSON, default=dict)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow, nullable=False)
+    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow, onupdate=utcnow, nullable=False)
+
+
 _database_url = database_url()
 _engine_options = {"future": True, "pool_pre_ping": True}
 if _database_url.startswith("sqlite:"):
@@ -190,6 +293,7 @@ def _resume_draft_migration_columns() -> tuple[Column, ...]:
         Column("audit_base_hash", String(80), nullable=True, quote=True),
         Column("audit_created_at", DateTime(timezone=True), nullable=True, quote=True),
         Column("audit_applied_at", DateTime(timezone=True), nullable=True, quote=True),
+        Column("job_lead_id", String(80), nullable=True, quote=True),
     )
 
 

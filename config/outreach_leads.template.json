@@ -1,0 +1,28 @@
+{
+  "leads": [
+    {
+      "company_name": "",
+      "website": "",
+      "source_type": "Manual research",
+      "source_url": "",
+      "signal_text": "",
+      "product_summary": "",
+      "inferred_engineering_need": "",
+      "target_role_type": "",
+      "contact_name": "",
+      "contact_role": "",
+      "contact_email": "",
+      "contact_url": "",
+      "fit_score": 0,
+      "fit_reasons": [],
+      "resume_angle": "",
+      "message_subject": "",
+      "message_body": "",
+      "blocked_reason": "",
+      "status": "Researching",
+      "notes": "",
+      "last_contacted_at": "",
+      "follow_up_at": ""
+    }
+  ]
+}

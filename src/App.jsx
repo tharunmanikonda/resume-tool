@@ -10,6 +10,73 @@ const emptyProfile = {
 
 const experienceKeys = ["mckinsey", "uber", "kpmg", "trigent"];
 
+const outreachStatuses = [
+  "Researching",
+  "Ready to contact",
+  "Strong outreach lead",
+  "Needs contact research",
+  "Weak fit",
+  "Blocked",
+  "Contacted",
+  "Follow-up",
+  "Responded",
+  "Closed",
+];
+
+const outreachSourceTypes = [
+  "VC/Funding",
+  "Founder post",
+  "Product launch",
+  "Engineering signal",
+  "Hiring signal",
+  "Manual research",
+  "Other",
+];
+
+function createEmptyOutreachDraft() {
+  return {
+    company_name: "",
+    website: "",
+    source_type: "Manual research",
+    source_url: "",
+    signal_text: "",
+    product_summary: "",
+    inferred_engineering_need: "",
+    target_role_type: "",
+    contact_name: "",
+    contact_role: "",
+    contact_email: "",
+    contact_url: "",
+    fit_score: "",
+    fit_reasons: "",
+    resume_angle: "",
+    message_subject: "",
+    message_body: "",
+    blocked_reason: "",
+    status: "",
+    notes: "",
+    last_contacted_at: "",
+    follow_up_at: "",
+  };
+}
+
+async function copyTextToClipboard(text) {
+  const value = String(text || "");
+  if (navigator.clipboard?.writeText) {
+    await navigator.clipboard.writeText(value);
+    return;
+  }
+  const element = document.createElement("textarea");
+  element.value = value;
+  element.setAttribute("readonly", "");
+  element.style.position = "fixed";
+  element.style.opacity = "0";
+  document.body.appendChild(element);
+  element.select();
+  document.execCommand("copy");
+  document.body.removeChild(element);
+}
+
 function fetchJson(url, options = {}) {
   return fetch(url, options).then(async (response) => {
     const data = await response.json().catch(() => ({}));
@@ -73,6 +140,371 @@ function ThreadCard({ entry }) {
         ) : null}
       </div>
     </div>
+  );
+}
+
+function CptStatusBand({ cpt }) {
+  if (!cpt) return null;
+  const passed = cpt.status === "green";
+  const state = passed ? "passed" : cpt.status === "red" ? "red" : "review";
+  return (
+    <div className={`cpt-status-band ${state}`}>
+      <strong>{passed ? "CPT check passed" : cpt.status === "red" ? "CPT check not accepting" : "CPT check needs review"}</strong>
+      <span>{cpt.message}</span>
+      <div className="cpt-status-meta">
+        {cpt.matched_company_name ? <small>Matched: {cpt.matched_company_name}</small> : null}
+        {cpt.cpt_agreement ? <small>Agreement: {cpt.cpt_agreement}</small> : null}
+        {cpt.warning ? <small>{cpt.warning}</small> : null}
+      </div>
+    </div>
+  );
+}
+
+const jobSourceTypes = [
+  { value: "linkedin_search", label: "LinkedIn search" },
+  { value: "greenhouse", label: "Greenhouse" },
+  { value: "lever", label: "Lever" },
+  { value: "ashby", label: "Ashby" },
+  { value: "rippling", label: "Rippling" },
+];
+
+function cptLabel(status) {
+  if (status === "green") return "CPT green";
+  if (status === "red") return "CPT red";
+  return "CPT review";
+}
+
+function sourceLabel(value) {
+  return jobSourceTypes.find((item) => item.value === value)?.label || value || "Source";
+}
+
+function JobInbox() {
+  const [tab, setTab] = useState("fresh");
+  const [sources, setSources] = useState([]);
+  const [leads, setLeads] = useState([]);
+  const [selectedLeadId, setSelectedLeadId] = useState("");
+  const [selectedLead, setSelectedLead] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
+  const [scanResult, setScanResult] = useState(null);
+  const [filters, setFilters] = useState({ q: "", source: "", cpt_status: "", location: "" });
+  const [sourceDraft, setSourceDraft] = useState({
+    source_type: "greenhouse",
+    name: "",
+    company_name: "",
+    source_key: "",
+    url: "",
+    enabled: true,
+  });
+  const enabledSourceCount = sources.filter((source) => source.enabled).length;
+
+  function loadSources() {
+    return fetchJson("/api/job-sources")
+      .then((data) => setSources(data.sources || []))
+      .catch((err) => setError(err.message || "Could not load sources."));
+  }
+
+  function leadQueryParams(nextTab = tab) {
+    const params = new URLSearchParams();
+    params.set("limit", "75");
+    if (nextTab === "fresh") params.set("fresh", "true");
+    if (nextTab === "review") params.set("relevance_status", "needs_review");
+    if (nextTab === "saved") params.set("status", "saved");
+    if (nextTab === "hidden") params.set("status", "hidden");
+    if (filters.q.trim()) params.set("q", filters.q.trim());
+    if (filters.source) params.set("source", filters.source);
+    if (filters.cpt_status) params.set("cpt_status", filters.cpt_status);
+    if (filters.location.trim()) params.set("location", filters.location.trim());
+    return params.toString();
+  }
+
+  function loadLeads(nextTab = tab) {
+    if (nextTab === "sources") return Promise.resolve();
+    setLoading(true);
+    setError("");
+    return fetchJson(`/api/job-leads?${leadQueryParams(nextTab)}`)
+      .then((data) => {
+        setLeads(data.leads || []);
+        setSelectedLeadId(data.leads?.[0]?.id || "");
+        setSelectedLead(null);
+      })
+      .catch((err) => setError(err.message || "Could not load job leads."))
+      .finally(() => setLoading(false));
+  }
+
+  useEffect(() => {
+    loadSources();
+    loadLeads("fresh");
+  }, []);
+
+  useEffect(() => {
+    loadLeads(tab);
+  }, [tab, filters.q, filters.source, filters.cpt_status, filters.location]);
+
+  useEffect(() => {
+    if (!selectedLeadId) {
+      setSelectedLead(null);
+      return;
+    }
+    fetchJson(`/api/job-leads/${encodeURIComponent(selectedLeadId)}`)
+      .then((data) => setSelectedLead(data.lead || null))
+      .catch(() => setSelectedLead(null));
+  }, [selectedLeadId]);
+
+  async function saveSource() {
+    setError("");
+    setMessage("");
+    try {
+      const data = await fetchJson("/api/job-sources", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(sourceDraft),
+      });
+      setSources((current) => [data.source, ...current]);
+      setSourceDraft({ source_type: "greenhouse", name: "", company_name: "", source_key: "", url: "", enabled: true });
+      setMessage("Source saved.");
+    } catch (err) {
+      setError(err.message || "Source could not be saved.");
+    }
+  }
+
+  async function toggleSource(source) {
+    try {
+      const data = await fetchJson(`/api/job-sources/${encodeURIComponent(source.id)}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...source, enabled: !source.enabled }),
+      });
+      setSources((current) => current.map((item) => item.id === source.id ? data.source : item));
+    } catch (err) {
+      setError(err.message || "Source could not be updated.");
+    }
+  }
+
+  async function scanSource(source) {
+    setLoading(true);
+    setError("");
+    setMessage("");
+    try {
+      const data = await fetchJson(`/api/job-sources/${encodeURIComponent(source.id)}/scan`, { method: "POST" });
+      setScanResult(data.result || null);
+      await loadSources();
+      await loadLeads(tab);
+      setMessage(`${source.name} scan finished.`);
+    } catch (err) {
+      setError(err.message || "Scan failed.");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function scanAll() {
+    if (!enabledSourceCount) {
+      setMessage("");
+      setError("Add and enable at least one ATS source before scanning.");
+      setTab("sources");
+      return;
+    }
+    setLoading(true);
+    setError("");
+    setMessage("");
+    try {
+      const data = await fetchJson("/api/job-sources/scan-all", { method: "POST" });
+      setScanResult(data.totals || null);
+      await loadSources();
+      await loadLeads(tab);
+      setMessage("Scan all finished.");
+    } catch (err) {
+      setError(err.message || "Scan all failed.");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function updateLeadStatus(lead, status) {
+    if (!lead?.id) return;
+    try {
+      const data = await fetchJson(`/api/job-leads/${encodeURIComponent(lead.id)}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ status }),
+      });
+      setSelectedLead(data.lead || null);
+      await loadLeads(tab);
+    } catch (err) {
+      setError(err.message || "Job could not be updated.");
+    }
+  }
+
+  async function promoteLead(lead) {
+    if (!lead?.id) return;
+    setLoading(true);
+    setError("");
+    try {
+      const data = await fetchJson(`/api/job-leads/${encodeURIComponent(lead.id)}/promote-to-draft`, { method: "POST" });
+      if (data.draft?.id) {
+        window.location.href = `/?draft=${encodeURIComponent(data.draft.id)}`;
+      }
+    } catch (err) {
+      setError(err.message || "Could not create a resume draft.");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  const currentLead = selectedLead || leads.find((lead) => lead.id === selectedLeadId) || null;
+
+  return (
+    <main className="workspace job-workspace-shell">
+      <div className="job-workspace">
+        <div className="job-workspace-header">
+          <div>
+            <h1>Job Inbox</h1>
+            <div className="muted-text">Scan ATS boards, keep fresh jobs visible, and turn good leads into resume drafts.</div>
+          </div>
+          <div className="job-header-actions">
+            <button className="secondary-button" disabled={loading} onClick={() => loadLeads(tab)}>Refresh</button>
+            <button className="primary-button" disabled={loading || !enabledSourceCount} onClick={scanAll}>{loading ? "Scanning..." : "Scan all"}</button>
+          </div>
+        </div>
+
+        <div className="job-tabs">
+          {["fresh", "review", "saved", "hidden", "sources"].map((item) => (
+            <button key={item} className={tab === item ? "active" : ""} onClick={() => setTab(item)}>
+              {item === "fresh" ? "Fresh Jobs" : item === "review" ? "Needs Review" : item[0].toUpperCase() + item.slice(1)}
+            </button>
+          ))}
+        </div>
+
+        {message ? <div className="job-notice">{message}</div> : null}
+        {error ? <div className="error-banner">{error}</div> : null}
+        {scanResult ? (
+          <div className="job-summary-strip">
+            <div><strong>{scanResult.fetched ?? 0}</strong><span>Fetched</span></div>
+            <div><strong>{scanResult.new ?? 0}</strong><span>New</span></div>
+            <div><strong>{scanResult.updated ?? 0}</strong><span>Updated</span></div>
+            <div><strong>{scanResult.errors ?? 0}</strong><span>Errors</span></div>
+          </div>
+        ) : null}
+
+        {tab === "sources" ? (
+          <div className="job-settings-layout">
+            <section className="job-panel">
+              <div className="job-panel-heading">
+                <h2>Sources</h2>
+                <button className="secondary-button compact-button" onClick={loadSources}>Refresh</button>
+              </div>
+              {sources.length ? sources.map((source) => (
+                <div key={source.id} className="source-row">
+                  <div>
+                    <strong>{source.name}</strong>
+                    <div className="muted-text">{sourceLabel(source.source_type)} · {source.source_key}</div>
+                    {source.last_scan_status ? <div className="muted-text">Last scan: {source.last_scan_status}{source.last_scan_error ? ` · ${source.last_scan_error}` : ""}</div> : null}
+                  </div>
+                  <div className="source-row-actions">
+                    {source.url ? <a className="secondary-button link-button" href={source.url} target="_blank" rel="noreferrer">Open</a> : null}
+                    <button className="secondary-button compact-button" onClick={() => toggleSource(source)}>{source.enabled ? "Disable" : "Enable"}</button>
+                    <button className="primary-button compact-button" disabled={loading || !source.enabled} onClick={() => scanSource(source)}>Scan</button>
+                  </div>
+                </div>
+              )) : <div className="blank-state compact">No sources yet. Add an ATS source with its board token or slug, then scan.</div>}
+            </section>
+            <section className="job-panel source-form">
+              <h2>Add Source</h2>
+              <p className="muted-text">For ATS scans, use the exact company board token or slug, for example a Greenhouse board token like stripe or an Ashby slug like ramp.</p>
+              <select value={sourceDraft.source_type} onChange={(e) => setSourceDraft((current) => ({ ...current, source_type: e.target.value }))}>
+                {jobSourceTypes.map((item) => <option key={item.value} value={item.value}>{item.label}</option>)}
+              </select>
+              <input value={sourceDraft.name} onChange={(e) => setSourceDraft((current) => ({ ...current, name: e.target.value }))} placeholder="Source name" />
+              <input value={sourceDraft.company_name} onChange={(e) => setSourceDraft((current) => ({ ...current, company_name: e.target.value }))} placeholder="Company name" />
+              <input value={sourceDraft.source_key} onChange={(e) => setSourceDraft((current) => ({ ...current, source_key: e.target.value }))} placeholder="Board token, slug, or search key" />
+              <input value={sourceDraft.url} onChange={(e) => setSourceDraft((current) => ({ ...current, url: e.target.value }))} placeholder="Optional URL" />
+              <button className="primary-button" onClick={saveSource}>Save source</button>
+            </section>
+          </div>
+        ) : (
+          <>
+            <div className="job-filters">
+              <input value={filters.q} onChange={(e) => setFilters((current) => ({ ...current, q: e.target.value }))} placeholder="Search title or company" />
+              <select value={filters.source} onChange={(e) => setFilters((current) => ({ ...current, source: e.target.value }))}>
+                <option value="">All sources</option>
+                {jobSourceTypes.filter((item) => item.value !== "linkedin_search").map((item) => <option key={item.value} value={item.value}>{item.label}</option>)}
+                <option value="linkedin">LinkedIn</option>
+              </select>
+              <select value={filters.cpt_status} onChange={(e) => setFilters((current) => ({ ...current, cpt_status: e.target.value }))}>
+                <option value="">Any CPT</option>
+                <option value="green">Green</option>
+                <option value="red">Red</option>
+                <option value="review">Review</option>
+                <option value="not_found">Not found</option>
+              </select>
+              <input value={filters.location} onChange={(e) => setFilters((current) => ({ ...current, location: e.target.value }))} placeholder="Location" />
+              <button className="secondary-button" onClick={() => setFilters({ q: "", source: "", cpt_status: "", location: "" })}>Clear</button>
+            </div>
+            <div className="job-content">
+              <section className="job-list">
+                {leads.length ? leads.map((lead) => (
+                  <button key={lead.id} className={`job-row ${lead.id === currentLead?.id ? "selected" : ""}`} onClick={() => setSelectedLeadId(lead.id)}>
+                    <span className="job-row-main">
+                      <strong>{lead.role_title}</strong>
+                      <span>{lead.company_name} · {lead.location || "Location unknown"}</span>
+                      <small>{lead.relevance_reason}</small>
+                    </span>
+                    <span className="job-row-meta">
+                      <span>{sourceLabel(lead.source)}</span>
+                      <span className="job-date-line"><b>Posted</b>{lead.posted_at ? formatDateShort(lead.posted_at) : "Unknown"}</span>
+                      <span className="job-date-line"><b>Seen</b>{formatDateShort(lead.first_seen_at)}</span>
+                      <span>{cptLabel(lead.cpt_status)}</span>
+                    </span>
+                  </button>
+                )) : <div className="blank-state compact">{loading ? "Loading jobs..." : "No jobs in this view."}</div>}
+              </section>
+              <section className="job-detail">
+                {currentLead ? (
+                  <>
+                    <div className="job-detail-top">
+                      <div className="panel-eyebrow">{sourceLabel(currentLead.source)}</div>
+                      <h2>{currentLead.role_title}</h2>
+                      <div className="muted-text">{currentLead.company_name} · {currentLead.location || "Location unknown"}</div>
+                      <div className="job-chip-row">
+                        <span className="badge">{currentLead.status}</span>
+                        <span className="badge">{currentLead.relevance_status}</span>
+                        <span className={`badge ${currentLead.cpt_status === "green" ? "status-ok" : currentLead.cpt_status === "red" ? "status-error" : ""}`}>{cptLabel(currentLead.cpt_status)}</span>
+                      </div>
+                      <div className="job-date-grid">
+                        <div>
+                          <span>Posted</span>
+                          <strong>{currentLead.posted_at ? formatDateTimeShort(currentLead.posted_at) : "Unknown"}</strong>
+                        </div>
+                        <div>
+                          <span>First seen</span>
+                          <strong>{formatDateTimeShort(currentLead.first_seen_at)}</strong>
+                        </div>
+                        <div>
+                          <span>Last changed</span>
+                          <strong>{formatDateTimeShort(currentLead.last_changed_at)}</strong>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="job-detail-actions">
+                      {currentLead.job_url ? <a className="secondary-button link-button" href={currentLead.job_url} target="_blank" rel="noreferrer">Open job</a> : null}
+                      {currentLead.apply_url ? <a className="secondary-button link-button" href={currentLead.apply_url} target="_blank" rel="noreferrer">Apply page</a> : null}
+                      <button className="secondary-button" onClick={() => updateLeadStatus(currentLead, "saved")}>Save</button>
+                      <button className="secondary-button" onClick={() => updateLeadStatus(currentLead, "hidden")}>Hide</button>
+                      <button className="primary-button" disabled={loading} onClick={() => promoteLead(currentLead)}>Create resume</button>
+                    </div>
+                    <div className="job-detail-scroll">
+                      <div className="job-copy">{currentLead.job_description || "No full description was available from this source. Open the job page and use the extension reader."}</div>
+                    </div>
+                  </>
+                ) : <div className="blank-state compact">Select a job to inspect it.</div>}
+              </section>
+            </div>
+          </>
+        )}
+      </div>
+    </main>
   );
 }
 
@@ -710,6 +1142,19 @@ function formatDateShort(value) {
   return date.toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" });
 }
 
+function formatDateTimeShort(value) {
+  if (!value) return "—";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return value;
+  return date.toLocaleString(undefined, {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+  });
+}
+
 function daysSince(value) {
   if (!value) return null;
   const date = new Date(value);
@@ -849,6 +1294,7 @@ function PriorApplicationsList({ history }) {
 }
 
 export default function App() {
+  const jobInboxMode = window.location.pathname.startsWith("/jobs");
   const [extensionDraftId] = useState(() => new URLSearchParams(window.location.search).get("draft") || "");
   const [extensionReviewRequested] = useState(() => new URLSearchParams(window.location.search).get("review") === "1");
   const [extensionDraftLocked, setExtensionDraftLocked] = useState(false);
@@ -883,6 +1329,7 @@ export default function App() {
   const [memoryCount, setMemoryCount] = useState(0);
   const [aiThread, setAiThread] = useState([]);
   const [aiError, setAiError] = useState("");
+  const [aiPreflight, setAiPreflight] = useState(null);
   const [showGeneratedArea, setShowGeneratedArea] = useState(false);
   const [latestAnalysis, setLatestAnalysis] = useState(null);
   const [generatingAi, setGeneratingAi] = useState(false);
@@ -905,6 +1352,7 @@ export default function App() {
     tracker: false,
     trackApply: false,
     qualityReview: false,
+    outreach: false,
   });
   const [trackerData, setTrackerData] = useState({ applications: [], summary: { counts: {}, total: 0 }, statuses: ["Applied", "Updated", "Converted", "Ghosted", "Rejected"] });
   const [trackerLoading, setTrackerLoading] = useState(false);
@@ -928,6 +1376,19 @@ export default function App() {
     history: null,
     pending: null,
   });
+  const [outreachData, setOutreachData] = useState({
+    leads: [],
+    summary: { counts: {}, total: 0 },
+    statuses: outreachStatuses,
+    source_types: outreachSourceTypes,
+  });
+  const [outreachLoading, setOutreachLoading] = useState(false);
+  const [outreachError, setOutreachError] = useState("");
+  const [outreachFilters, setOutreachFilters] = useState({ query: "", status: "" });
+  const [outreachDraft, setOutreachDraft] = useState(createEmptyOutreachDraft);
+  const [editingOutreachId, setEditingOutreachId] = useState("");
+  const [outreachMessage, setOutreachMessage] = useState(null);
+  const [outreachImportText, setOutreachImportText] = useState("");
 
   const mediaRecorderRef = useRef(null);
   const mediaChunksRef = useRef([]);
@@ -1034,6 +1495,7 @@ export default function App() {
       setAiSessionId(data.session_id || null);
       setLastGeneratedJd(draft.job_description || "");
       setLatestAnalysis(draft.analysis || null);
+      setAiPreflight(null);
       setGeneratedContent(activeContent);
       setCompanyName(draft.company_name || "");
       setIdentity(draft.identity_id || "");
@@ -1142,6 +1604,7 @@ export default function App() {
       });
 
     loadTracker();
+    loadOutreach();
   }, []);
 
   useEffect(() => {
@@ -1356,6 +1819,11 @@ export default function App() {
   const orderedDraftExperience = normalizeInlineExperienceHistory(editableExperienceHistory);
   const selectableDraftExperience = orderedDraftExperience.filter((item) => isExperienceHistoryComplete(item));
   const sanitizedEnabledExperienceKeys = sanitizeEnabledExperienceKeys(orderedDraftExperience, enabledExperienceKeys);
+  function effectiveEnabledExperienceKeys(selectedKeys = enabledExperienceKeys) {
+    const draftKeys = sanitizeEnabledExperienceKeys(editableExperienceHistory, selectedKeys);
+    if (draftKeys.length) return draftKeys;
+    return sanitizeEnabledExperienceKeys(profile?.experience_history || [], selectedKeys);
+  }
   const visibleDraftExperience = selectableDraftExperience.filter((item) => sanitizedEnabledExperienceKeys.includes(item.key));
   const reviewGroups = Array.isArray(audit.result?.review_groups) ? audit.result.review_groups : [];
   const reviewFindings = Array.isArray(audit.result?.manual_findings) ? audit.result.manual_findings : [];
@@ -1401,6 +1869,30 @@ export default function App() {
     });
   }, [trackerData.applications, trackerFilters]);
 
+  const filteredOutreachLeads = useMemo(() => {
+    const query = outreachFilters.query.trim().toLowerCase();
+    const status = outreachFilters.status;
+    return (outreachData.leads || []).filter((item) => {
+      if (status && item.status !== status) return false;
+      if (!query) return true;
+      return [
+        item.company_name,
+        item.target_role_type,
+        item.contact_name,
+        item.contact_role,
+        item.contact_email,
+        item.signal_text,
+        item.product_summary,
+        item.inferred_engineering_need,
+        item.resume_angle,
+        item.message_subject,
+        item.message_body,
+        item.blocked_reason,
+        ...(Array.isArray(item.fit_reasons) ? item.fit_reasons : []),
+      ].some((value) => String(value || "").toLowerCase().includes(query));
+    });
+  }, [outreachData.leads, outreachFilters]);
+
   useEffect(() => {
     const nextKeys = sanitizeEnabledExperienceKeys(editableExperienceHistory, enabledExperienceKeys);
     if (nextKeys.length === enabledExperienceKeys.length && nextKeys.every((key, index) => key === enabledExperienceKeys[index])) {
@@ -1441,6 +1933,9 @@ export default function App() {
     if (name === "tracker") {
       loadTracker();
     }
+    if (name === "outreach") {
+      loadOutreach();
+    }
     setModals((current) => ({ ...current, [name]: true }));
   }
 
@@ -1455,6 +1950,7 @@ export default function App() {
     setMemoryCount(0);
     setAiThread([]);
     setAiError("");
+    setAiPreflight(null);
     setShowGeneratedArea(false);
     setLatestAnalysis(null);
     setGeneratedContent("");
@@ -1570,6 +2066,179 @@ export default function App() {
     }
   }
 
+  function loadOutreach() {
+    setOutreachLoading(true);
+    setOutreachError("");
+    fetchJson("/api/outreach/leads")
+      .then((data) => setOutreachData({
+        leads: data.leads || [],
+        summary: data.summary || { counts: {}, total: 0 },
+        statuses: data.statuses || outreachStatuses,
+        source_types: data.source_types || outreachSourceTypes,
+      }))
+      .catch((error) => setOutreachError(error.message || "Failed to load outreach leads."))
+      .finally(() => setOutreachLoading(false));
+  }
+
+  function updateOutreachDraft(field, value) {
+    setOutreachDraft((current) => ({ ...current, [field]: value }));
+  }
+
+  function startNewOutreachLead() {
+    setEditingOutreachId("");
+    setOutreachDraft(createEmptyOutreachDraft());
+    setOutreachMessage(null);
+    setOutreachError("");
+  }
+
+  function editOutreachLead(lead) {
+    setEditingOutreachId(lead.id || "");
+    setOutreachDraft({
+      ...createEmptyOutreachDraft(),
+      ...lead,
+      status: lead.status || "",
+      source_type: lead.source_type || "Manual research",
+      fit_score: lead.fit_score ?? "",
+      fit_reasons: Array.isArray(lead.fit_reasons) ? lead.fit_reasons.join("\n") : (lead.fit_reasons || ""),
+    });
+    setOutreachMessage(null);
+    setOutreachError("");
+  }
+
+  async function saveOutreachLead() {
+    if (!outreachDraft.company_name.trim()) {
+      setOutreachError("Company name is required.");
+      return;
+    }
+    setOutreachError("");
+    const isEditing = !!editingOutreachId;
+    try {
+      const data = await fetchJson(isEditing
+        ? `/api/outreach/leads/${encodeURIComponent(editingOutreachId)}`
+        : "/api/outreach/leads", {
+        method: isEditing ? "PATCH" : "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(outreachDraft),
+      });
+      setOutreachData({
+        leads: data.leads || [],
+        summary: data.summary || { counts: {}, total: 0 },
+        statuses: data.statuses || outreachStatuses,
+        source_types: data.source_types || outreachSourceTypes,
+      });
+      setEditingOutreachId(data.lead?.id || "");
+      if (data.lead) editOutreachLead(data.lead);
+    } catch (error) {
+      setOutreachError(error.message || "Failed to save outreach lead.");
+    }
+  }
+
+  async function importOutreachLeads() {
+    const raw = outreachImportText.trim();
+    if (!raw) {
+      setOutreachError("Paste a JSON array or an object with a leads array.");
+      return;
+    }
+    let payload;
+    try {
+      payload = JSON.parse(raw);
+    } catch (error) {
+      setOutreachError("Import JSON is not valid.");
+      return;
+    }
+    try {
+      const data = await fetchJson("/api/outreach/leads/import", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(Array.isArray(payload) ? { leads: payload } : payload),
+      });
+      setOutreachData({
+        leads: data.leads || [],
+        summary: data.summary || { counts: {}, total: 0 },
+        statuses: data.statuses || outreachStatuses,
+        source_types: data.source_types || outreachSourceTypes,
+      });
+      setOutreachImportText("");
+      setOutreachError((data.errors || []).length ? `Imported ${data.created_count || 0} leads. ${data.errors.join(" ")}` : "");
+    } catch (error) {
+      setOutreachError(error.message || "Failed to import outreach leads.");
+    }
+  }
+
+  async function deleteOutreachLead(lead) {
+    if (!lead?.id) return;
+    if (!window.confirm(`Remove ${lead.company_name || "this lead"} from outreach leads?`)) return;
+    try {
+      const data = await fetchJson(`/api/outreach/leads/${encodeURIComponent(lead.id)}`, {
+        method: "DELETE",
+      });
+      setOutreachData({
+        leads: data.leads || [],
+        summary: data.summary || { counts: {}, total: 0 },
+        statuses: data.statuses || outreachStatuses,
+        source_types: data.source_types || outreachSourceTypes,
+      });
+      if (editingOutreachId === lead.id) startNewOutreachLead();
+    } catch (error) {
+      setOutreachError(error.message || "Failed to delete outreach lead.");
+    }
+  }
+
+  async function useOutreachLeadForResume(lead) {
+    if (!lead?.id) return;
+    setOutreachError("");
+    try {
+      const data = await fetchJson(`/api/outreach/leads/${encodeURIComponent(lead.id)}/prepare-resume-context`, {
+        method: "POST",
+      });
+      resetAiSession(false);
+      updateCompanyName(data.company_name || lead.company_name || "");
+      setComposerInput(data.resume_context || "");
+      setResumeJobContext({
+        id: lead.id,
+        title: data.target_role_type || lead.target_role_type || "Startup outreach",
+        company_name: data.company_name || lead.company_name || "",
+        job_url: lead.source_url || lead.website || "",
+        source: "startup_outreach",
+      });
+      setAiThread([{
+        kind: "user",
+        title: "Startup Outreach Lead",
+        lines: [
+          `Company: ${data.company_name || lead.company_name || ""}`,
+          `Target: ${data.target_role_type || lead.target_role_type || "Startup outreach"}`,
+          "Resume context is loaded in the input box. Send it to generate a tailored resume.",
+        ],
+      }]);
+      setShowGeneratedArea(true);
+      closeModal("outreach");
+    } catch (error) {
+      setOutreachError(error.message || "This lead cannot be used for resume generation.");
+    }
+  }
+
+  async function loadOutreachMessage(lead) {
+    if (!lead?.id) return;
+    setOutreachError("");
+    try {
+      const data = await fetchJson(`/api/outreach/leads/${encodeURIComponent(lead.id)}/draft-message`, {
+        method: "POST",
+      });
+      setOutreachMessage(data.message || null);
+    } catch (error) {
+      setOutreachError(error.message || "No stored message is available for this lead.");
+    }
+  }
+
+  async function copyOutreachMessage() {
+    if (!outreachMessage) return;
+    try {
+      await copyTextToClipboard(`Subject: ${outreachMessage.subject || ""}\n\n${outreachMessage.body || ""}`.trim());
+    } catch (error) {
+      setOutreachError("Could not copy the message.");
+    }
+  }
+
   async function stopRecorder() {
     if (mediaRecorderRef.current && mediaRecorderRef.current.state !== "inactive") {
       mediaRecorderRef.current.stop();
@@ -1670,6 +2339,10 @@ export default function App() {
     enabledKeys,
     advertisedJobTitle = "",
   }) {
+    const activeEnabledKeys = effectiveEnabledExperienceKeys(enabledKeys);
+    if (!activeEnabledKeys.length) {
+      throw new Error("Keep at least one complete experience role enabled.");
+    }
     resetAuditState();
     resetResumeVersionState();
     invalidatePdfState();
@@ -1677,7 +2350,7 @@ export default function App() {
     const skillsData = await fetchJson("/api/ai/generate-skills", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ session_id: sessionId, enabled_experience_keys: enabledKeys }),
+      body: JSON.stringify({ session_id: sessionId, enabled_experience_keys: activeEnabledKeys }),
     });
     const sessionAfterSkills = skillsData.session_id || sessionId;
     setAiSessionId(sessionAfterSkills);
@@ -1687,12 +2360,12 @@ export default function App() {
       fetchJson("/api/ai/generate-experience-recent", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ session_id: sessionAfterSkills, enabled_experience_keys: enabledKeys }),
+        body: JSON.stringify({ session_id: sessionAfterSkills, enabled_experience_keys: activeEnabledKeys }),
       }),
       fetchJson("/api/ai/generate-experience-older", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ session_id: sessionAfterSkills, enabled_experience_keys: enabledKeys }),
+        body: JSON.stringify({ session_id: sessionAfterSkills, enabled_experience_keys: activeEnabledKeys }),
       }),
     ]);
 
@@ -1700,7 +2373,7 @@ export default function App() {
     const synthesisData = await fetchJson("/api/ai/final-synthesis", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ session_id: sessionAfterSkills, enabled_experience_keys: enabledKeys }),
+      body: JSON.stringify({ session_id: sessionAfterSkills, enabled_experience_keys: activeEnabledKeys }),
     });
     const synthesizedSessionId = synthesisData.session_id || sessionAfterSkills;
     setAiSessionId(synthesizedSessionId);
@@ -1721,7 +2394,7 @@ export default function App() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           session_id: synthesizedSessionId,
-          enabled_experience_keys: enabledKeys,
+          enabled_experience_keys: activeEnabledKeys,
           advertised_job_title:
             advertisedJobTitle || resumeJobContext?.title || latestAnalysis?.target_role || "",
         }),
@@ -1799,6 +2472,15 @@ export default function App() {
       if (!resumeJobContext?.id) setResumeJobContext(null);
       setEnabledExperienceKeys(allEnabledExperienceKeys(editableExperienceHistory));
     }
+    const activeEnabledKeys = isNewJd
+      ? effectiveEnabledExperienceKeys(allEnabledExperienceKeys(editableExperienceHistory))
+      : effectiveEnabledExperienceKeys(enabledExperienceKeys);
+    if (!activeEnabledKeys.length) {
+      setGeneratingAi(false);
+      setAiStage("");
+      setAiError("Keep at least one complete experience role enabled.");
+      return;
+    }
 
     try {
       const analyzeData = await fetchJson("/api/ai/analyze", {
@@ -1806,11 +2488,13 @@ export default function App() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           job_description: jd,
+          company_name: companyName,
+          enforce_cpt_company: true,
           revision_request: revisionRequest,
           current_resume_content: generatedContent,
           session_id: aiSessionId,
           reset_memory: isNewJd,
-          enabled_experience_keys: sanitizedEnabledExperienceKeys,
+          enabled_experience_keys: activeEnabledKeys,
         }),
       });
 
@@ -1818,6 +2502,7 @@ export default function App() {
       setAiSessionId(nextSessionId);
       setLastGeneratedJd(jd);
       setLatestAnalysis(analyzeData.analysis || null);
+      setAiPreflight(analyzeData.preflight || null);
       setMemoryCount(analyzeData.memory_count || 0);
       if ((analyzeData.analysis?.company_name || "").trim()) {
         setCompanyName((current) => current.trim() || analyzeData.analysis.company_name.trim());
@@ -1836,7 +2521,7 @@ export default function App() {
             pending: {
               sessionId: nextSessionId,
               baseThread: [...baseThread, soulThreadEntry(analyzeData.analysis)],
-              enabledKeys: sanitizedEnabledExperienceKeys,
+              enabledKeys: activeEnabledKeys,
               advertisedJobTitle:
                 resumeJobContext?.title || analyzeData.analysis?.target_role || "",
             },
@@ -1850,12 +2535,15 @@ export default function App() {
       await continueAiGenerationFromAnalysis({
         sessionId: nextSessionId,
         baseThread: [...baseThread, soulThreadEntry(analyzeData.analysis)],
-        enabledKeys: sanitizedEnabledExperienceKeys,
+        enabledKeys: activeEnabledKeys,
         advertisedJobTitle:
           resumeJobContext?.title || analyzeData.analysis?.target_role || "",
       });
     } catch (error) {
       const payload = error.data || {};
+      if (payload.preflight) {
+        setAiPreflight(payload.preflight);
+      }
       if (payload.analysis) {
         setAiSessionId(payload.session_id || aiSessionId || null);
         setMemoryCount(payload.memory_count || 0);
@@ -2483,6 +3171,27 @@ export default function App() {
     }
   }
 
+  if (jobInboxMode) {
+    return (
+      <div className="app-shell">
+        <header className="topbar">
+          <div className="brand-wrap">
+            <div className="brand-dot" />
+            <div className="brand">Resume Generator</div>
+          </div>
+          <div className="topbar-actions">
+            <a className="icon-button link-button" href="/">Resume</a>
+            <button className="toggle-button active">Jobs</button>
+            <span className={pdfStatus.ready ? "badge status-ok" : "badge status-error"}>
+              {pdfStatus.ready ? "Ready" : "PDF Error"}
+            </span>
+          </div>
+        </header>
+        <JobInbox />
+      </div>
+    );
+  }
+
   return (
     <div className="app-shell">
       <header className="topbar">
@@ -2491,7 +3200,9 @@ export default function App() {
           <div className="brand">Resume Generator</div>
         </div>
         <div className="topbar-actions">
+          <a className="icon-button link-button" href="/jobs">Jobs</a>
           <button className="icon-button" onClick={() => openModal("profile")}>{onboardingRequired ? "Setup Profile" : "Profile"}</button>
+          <button className="icon-button" onClick={() => openModal("outreach")}>Outreach</button>
           <button className="icon-button" onClick={() => openModal("tracker")}>Tracker</button>
           <button className="icon-button" onClick={() => openModal("instructions")}>?</button>
           <button className="icon-button" onClick={() => openModal("settings")}>⚙</button>
@@ -2537,6 +3248,7 @@ export default function App() {
             ) : null}
 
             {aiError ? <div className="error-banner">{aiError}</div> : null}
+            <CptStatusBand cpt={aiPreflight?.cpt} />
 
             {aiThread.map((entry, index) => (
               <ThreadCard key={`${entry.kind}-${index}`} entry={entry} />
@@ -2615,6 +3327,15 @@ export default function App() {
                 onKeyDown={handleComposerKeyDown}
                 placeholder={showGeneratedArea ? "Ask for changes for this JD only" : "Paste the full job description here"}
               />
+              {!showGeneratedArea ? (
+                <input
+                  className="composer-company-input"
+                  value={companyName}
+                  disabled={extensionDraftLocked || generatingAi}
+                  onChange={(e) => setCompanyName(e.target.value)}
+                  placeholder="Company name for CPT check"
+                />
+              ) : null}
               <div className="composer-toolbar">
                 <div className="composer-toolbar-left">
                   <button className="composer-pill" onClick={() => resetAiSession(true)}>New JD</button>
@@ -3094,6 +3815,222 @@ export default function App() {
                 ) : null}
               </div>
             ))}
+          </div>
+        </div>
+      </Modal>
+
+      <Modal
+        open={modals.outreach}
+        title="Startup Outreach Leads"
+        onClose={() => closeModal("outreach")}
+      >
+        <div className="outreach-modal">
+          <div className="tracker-summary-row outreach-summary-row">
+            <span className="badge">Total {outreachData.summary?.total || 0}</span>
+            {(outreachData.statuses || outreachStatuses).map((status) => (
+              <span key={status} className="badge">{status} {outreachData.summary?.counts?.[status] || 0}</span>
+            ))}
+          </div>
+
+          {outreachError ? <div className="error-banner">{outreachError}</div> : null}
+          {outreachMessage ? (
+            <div className="outreach-message-card">
+              <div className="outreach-card-header">
+                <div>
+                  <div className="section-label">Stored Message</div>
+                  <strong>{outreachMessage.subject || "Outreach note"}</strong>
+                </div>
+                <button className="secondary-button compact-button" onClick={copyOutreachMessage}>Copy</button>
+              </div>
+              <p>{outreachMessage.body}</p>
+            </div>
+          ) : null}
+
+          <details className="outreach-import-card">
+            <summary>Import from Codex</summary>
+            <textarea
+              placeholder='Paste JSON like {"leads":[{"company_name":"Acme","status":"Ready to contact","fit_score":82}]}'
+              value={outreachImportText}
+              onChange={(e) => setOutreachImportText(e.target.value)}
+            />
+            <div className="outreach-actions">
+              <button className="secondary-button compact-button" onClick={() => setOutreachImportText("")}>Clear</button>
+              <button className="primary-button compact-button" onClick={importOutreachLeads}>Import Leads</button>
+            </div>
+          </details>
+
+          <div className="outreach-layout">
+            <div className="outreach-form-card">
+              <div className="outreach-card-header">
+                <div>
+                  <div className="section-label">{editingOutreachId ? "Edit Lead" : "New Lead"}</div>
+                  <strong>{outreachDraft.company_name || "Company research"}</strong>
+                </div>
+                <button className="secondary-button compact-button" onClick={startNewOutreachLead}>New</button>
+              </div>
+
+              <div className="profile-grid">
+                <label className="field">
+                  Company *
+                  <input value={outreachDraft.company_name} onChange={(e) => updateOutreachDraft("company_name", e.target.value)} />
+                </label>
+                <label className="field">
+                  Target role
+                  <input placeholder="Backend engineer, AI engineer..." value={outreachDraft.target_role_type} onChange={(e) => updateOutreachDraft("target_role_type", e.target.value)} />
+                </label>
+                <label className="field">
+                  Website
+                  <input value={outreachDraft.website} onChange={(e) => updateOutreachDraft("website", e.target.value)} />
+                </label>
+                <label className="field">
+                  Source type
+                  <select value={outreachDraft.source_type} onChange={(e) => updateOutreachDraft("source_type", e.target.value)}>
+                    {(outreachData.source_types || outreachSourceTypes).map((type) => (
+                      <option key={type} value={type}>{type}</option>
+                    ))}
+                  </select>
+                </label>
+                <label className="field">
+                  Source URL
+                  <input value={outreachDraft.source_url} onChange={(e) => updateOutreachDraft("source_url", e.target.value)} />
+                </label>
+                <label className="field">
+                  Status
+                  <select value={outreachDraft.status} onChange={(e) => updateOutreachDraft("status", e.target.value)}>
+                    {(outreachData.statuses || outreachStatuses).map((status) => (
+                      <option key={status} value={status}>{status}</option>
+                    ))}
+                  </select>
+                </label>
+                <label className="field">
+                  Contact name
+                  <input value={outreachDraft.contact_name} onChange={(e) => updateOutreachDraft("contact_name", e.target.value)} />
+                </label>
+                <label className="field">
+                  Contact role
+                  <input placeholder="CEO, CTO, Founder..." value={outreachDraft.contact_role} onChange={(e) => updateOutreachDraft("contact_role", e.target.value)} />
+                </label>
+                <label className="field">
+                  Contact email
+                  <input value={outreachDraft.contact_email} onChange={(e) => updateOutreachDraft("contact_email", e.target.value)} />
+                </label>
+                <label className="field">
+                  Contact URL
+                  <input value={outreachDraft.contact_url} onChange={(e) => updateOutreachDraft("contact_url", e.target.value)} />
+                </label>
+                <label className="field">
+                  Fit score
+                  <input type="number" min="0" max="100" value={outreachDraft.fit_score} onChange={(e) => updateOutreachDraft("fit_score", e.target.value)} />
+                </label>
+                <label className="field">
+                  Follow-up date
+                  <input type="date" value={outreachDraft.follow_up_at} onChange={(e) => updateOutreachDraft("follow_up_at", e.target.value)} />
+                </label>
+              </div>
+
+              <label className="field">
+                Hiring or growth signal
+                <textarea placeholder="Funding news, founder post, product launch, hiring clue..." value={outreachDraft.signal_text} onChange={(e) => updateOutreachDraft("signal_text", e.target.value)} />
+              </label>
+              <label className="field">
+                Product summary
+                <textarea placeholder="What the startup builds and who it serves." value={outreachDraft.product_summary} onChange={(e) => updateOutreachDraft("product_summary", e.target.value)} />
+              </label>
+              <label className="field">
+                Engineering need
+                <textarea placeholder="Why your resume should be angled toward their current technical needs." value={outreachDraft.inferred_engineering_need} onChange={(e) => updateOutreachDraft("inferred_engineering_need", e.target.value)} />
+              </label>
+              <label className="field">
+                Resume angle
+                <textarea placeholder="How Codex wants the resume positioned for this lead." value={outreachDraft.resume_angle} onChange={(e) => updateOutreachDraft("resume_angle", e.target.value)} />
+              </label>
+              <label className="field">
+                Fit reasons
+                <textarea placeholder="One reason per line." value={outreachDraft.fit_reasons} onChange={(e) => updateOutreachDraft("fit_reasons", e.target.value)} />
+              </label>
+              <label className="field">
+                Message subject
+                <input value={outreachDraft.message_subject} onChange={(e) => updateOutreachDraft("message_subject", e.target.value)} />
+              </label>
+              <label className="field">
+                Message body
+                <textarea placeholder="Store the final outreach message Codex wrote." value={outreachDraft.message_body} onChange={(e) => updateOutreachDraft("message_body", e.target.value)} />
+              </label>
+              <label className="field">
+                Blocked reason
+                <textarea placeholder="Only fill this when Codex decides the lead should not be contacted." value={outreachDraft.blocked_reason} onChange={(e) => updateOutreachDraft("blocked_reason", e.target.value)} />
+              </label>
+              <label className="field">
+                Notes
+                <textarea value={outreachDraft.notes} onChange={(e) => updateOutreachDraft("notes", e.target.value)} />
+              </label>
+
+              <div className="outreach-actions">
+                <button className="primary-button" onClick={saveOutreachLead}>{editingOutreachId ? "Save Lead" : "Add Lead"}</button>
+              </div>
+            </div>
+
+            <div className="outreach-list-panel">
+              <div className="tracker-filters outreach-filters">
+                <input
+                  className="tracker-search"
+                  placeholder="Search company, role, contact, or signal"
+                  value={outreachFilters.query}
+                  onChange={(e) => setOutreachFilters((current) => ({ ...current, query: e.target.value }))}
+                />
+                <select
+                  value={outreachFilters.status}
+                  onChange={(e) => setOutreachFilters((current) => ({ ...current, status: e.target.value }))}
+                >
+                  <option value="">All statuses</option>
+                  {(outreachData.statuses || outreachStatuses).map((status) => (
+                    <option key={status} value={status}>{status}</option>
+                  ))}
+                </select>
+                <button className="secondary-button compact-button" onClick={loadOutreach}>Refresh</button>
+              </div>
+
+              {outreachLoading ? (
+                <div className="blank-state">Loading outreach leads...</div>
+              ) : filteredOutreachLeads.length ? (
+                <div className="outreach-lead-list">
+                  {filteredOutreachLeads.map((lead) => (
+                    <article key={lead.id} className={`outreach-lead-card ${lead.blocked_reason ? "blocked" : ""}`}>
+                      <div className="outreach-lead-top">
+                        <div>
+                          <div className="outreach-lead-company">{lead.company_name}</div>
+                          <div className="outreach-lead-meta">{lead.target_role_type || "Role not set"}</div>
+                        </div>
+                        <span className="badge">Score {lead.fit_score || 0}</span>
+                      </div>
+                      <div className="outreach-lead-meta">
+                        {lead.status || "Needs review"}
+                        {lead.contact_name || lead.contact_role ? ` · ${[lead.contact_name, lead.contact_role].filter(Boolean).join(", ")}` : ""}
+                      </div>
+                      {lead.blocked_reason ? (
+                        <div className="outreach-blocked-reason">{lead.blocked_reason}</div>
+                      ) : null}
+                      {lead.fit_reasons?.length ? (
+                        <div className="outreach-reasons">
+                          {lead.fit_reasons.map((reason) => <span key={reason}>{reason}</span>)}
+                        </div>
+                      ) : null}
+                      <div className="outreach-actions">
+                        <button className="secondary-button compact-button" onClick={() => editOutreachLead(lead)}>Edit</button>
+                        <button className="primary-button compact-button" disabled={!!lead.blocked_reason} onClick={() => useOutreachLeadForResume(lead)}>Use for Resume</button>
+                        <button className="secondary-button compact-button" onClick={() => loadOutreachMessage(lead)}>View Message</button>
+                        {lead.source_url ? (
+                          <a className="secondary-button compact-button link-button" href={lead.source_url} target="_blank" rel="noreferrer">Source</a>
+                        ) : null}
+                        <button className="secondary-button compact-button danger-button" onClick={() => deleteOutreachLead(lead)}>Delete</button>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              ) : (
+                <div className="blank-state">No outreach leads match this view.</div>
+              )}
+            </div>
           </div>
         </div>
       </Modal>

@@ -85,16 +85,17 @@ def _set_profile_action(workflow: dict, issues: list[str] | None = None) -> dict
     return _action_response(updated)
 
 
-def _set_security_preflight_action(workflow: dict, preflight: dict) -> dict:
+def _set_job_preflight_action(workflow: dict, preflight: dict) -> dict:
+    cpt_blocked = bool((preflight.get("cpt") or {}).get("blocked"))
     updated = workflows.set_action(
         workflow["id"],
         workflow["poke_user_id"],
-        action_type="security_clearance_blocked",
+        action_type="cpt_blocked" if cpt_blocked else "security_clearance_blocked",
         question=(
             preflight.get("message")
-            or "This job is blocked by your clearance/citizenship eligibility settings."
+            or "This job is blocked by your job preflight settings."
         ),
-        choices=[{"value": "check_again", "label": "Check again after changing settings"}],
+        choices=[{"value": "check_again", "label": "Check again"}],
         details=preflight,
     )
     return _action_response(updated)
@@ -146,6 +147,13 @@ def _prepare_generation_after_preflight(workflow: dict, identity_id: str = "") -
     else:
         return _set_identity_action(workflow)
 
+    preflight = resume_app.current_job_preflight(
+        workflow["job_description"],
+        workflow.get("company_name", ""),
+    )
+    if preflight.get("blocked"):
+        return _set_job_preflight_action(workflow, preflight)
+
     workflow = _create_linked_draft(workflow, selected_identity)
     return get_resume_status(poke_user_id=workflow["poke_user_id"], workflow_id=workflow["id"])
 
@@ -167,9 +175,6 @@ def start_resume_generation(
         role_title=role_title.strip(),
         source_url=source_url.strip(),
     )
-    preflight = resume_app.current_job_preflight(workflow["job_description"])
-    if preflight.get("blocked"):
-        return _set_security_preflight_action(workflow, preflight)
     return _prepare_generation_after_preflight(workflow, identity_id)
 
 
@@ -384,12 +389,15 @@ def continue_resume_action(
     action = _require_action(workflow, action_id)
     action_type = action["type"]
 
-    if action_type == "security_clearance_blocked":
+    if action_type in {"security_clearance_blocked", "cpt_blocked"}:
         if str(selection).strip() != "check_again":
-            raise ValueError("Change the clearance job setting, then select check_again.")
-        preflight = resume_app.current_job_preflight(workflow.get("job_description", ""))
+            raise ValueError("Update the job or settings, then select check_again.")
+        preflight = resume_app.current_job_preflight(
+            workflow.get("job_description", ""),
+            workflow.get("company_name", ""),
+        )
         if preflight.get("blocked"):
-            return _set_security_preflight_action(workflow, preflight)
+            return _set_job_preflight_action(workflow, preflight)
         workflows.clear_action(workflow_id, poke_user_id)
         workflow = workflows.get_for_user(workflow_id, poke_user_id) or workflow
         return _prepare_generation_after_preflight(workflow, workflow.get("identity_id", ""))

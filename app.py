@@ -40,10 +40,24 @@ from desktop_runtime import (
     write_json_file,
 )
 from job_preflight import ALLOW_CLEARANCE_JOBS_SETTING, evaluate_job_preflight
+from cpt_checker import check_cpt_company
+from job_discovery import (
+    attach_lead_to_draft,
+    create_source as create_job_source_record,
+    get_lead as get_job_lead_record,
+    list_leads as list_job_lead_records,
+    list_sources as list_job_source_records,
+    mark_lead_applied_from_draft,
+    promote_lead_to_draft_payload,
+    scan_all_enabled_sources,
+    scan_source as scan_job_source_record,
+    update_lead as update_job_lead_record,
+    update_source as update_job_source_record,
+)
 from manual_resume_parser import parse_updated_content_to_resume, validate_updated_content
 from pdf_builder import build_resume_docx, is_pdf_conversion_ready
 from extension_drafts import ActiveDraftTaskError, AuditStaleError, ExtensionDraftStore, normalize_context, validate_context
-from database import init_db
+from database import AiStageCache, init_db, session_scope
 
 # Configuration
 app = Flask(__name__)
@@ -54,6 +68,7 @@ DEFAULT_OUTPUT_ROOT = str(default_output_dir())
 OUTPUT_ROOT = os.getenv("OUTPUT_ROOT", DEFAULT_OUTPUT_ROOT)
 SETTINGS_FILE = settings_path()
 TRACKER_FILE = resource_path("config", "application_tracker.json")
+OUTREACH_FILE = resource_path("config", "outreach_leads.json")
 PERMANENT_PROFILE_FILE = resource_path("config", "user_profile.json")
 SESSION_PROFILE_FILE = resource_path("config", "session_profile.json")
 PROFILE_TEMPLATE_FILE = resource_path("config", "user_profile.template.json")
@@ -81,8 +96,44 @@ extension_drafts = ExtensionDraftStore()
 extension_ai_stage_gate_lock = threading.RLock()
 
 
-def current_job_preflight(job_description: str) -> dict:
-    return evaluate_job_preflight(job_description, settings)
+def infer_company_name_for_preflight(job_description: str, payload: dict | None = None) -> str:
+    data = payload or {}
+    explicit = str(data.get("company_name") or data.get("company") or "").strip()
+    if explicit:
+        return explicit
+    analysis = data.get("analysis") if isinstance(data.get("analysis"), dict) else {}
+    analyzed = str(analysis.get("company_name") or "").strip()
+    if analyzed:
+        return analyzed
+    text_value = str(job_description or "").strip()
+    patterns = (
+        r"(?im)^\s*(?:company|employer|organization)\s*:\s*([A-Za-z0-9&.,' -]{2,80})\s*$",
+        r"(?im)^\s*([A-Z][A-Za-z0-9&.,' -]{1,80})\s+is\s+(?:seeking|hiring|looking|building)\b",
+        r"(?im)\b(?:join|at)\s+([A-Z][A-Za-z0-9&.,' -]{1,80})\s+(?:as|to|and|where|,|\.)",
+    )
+    for pattern in patterns:
+        match = re.search(pattern, text_value)
+        if match:
+            return match.group(1).strip(" .,-")
+    return ""
+
+
+def current_job_preflight(job_description: str, company_name: str = "", *, check_cpt: bool = True) -> dict:
+    security = evaluate_job_preflight(job_description, settings)
+    cpt = None
+    if check_cpt:
+        cpt = check_cpt_company(company_name)
+    blocked = bool(security.get("blocked"))
+    message = ""
+    if security.get("blocked"):
+        message = security.get("message", "")
+    return {
+        **security,
+        "blocked": blocked,
+        "message": message,
+        "security": security,
+        "cpt": cpt,
+    }
 
 
 def job_preflight_blocked_response(preflight: dict):
@@ -93,11 +144,33 @@ def job_preflight_blocked_response(preflight: dict):
     }), 409
 
 TRACKER_STATUSES = ["Applied", "Updated", "Converted", "Ghosted", "Rejected"]
+OUTREACH_STATUSES = [
+    "Researching",
+    "Ready to contact",
+    "Strong outreach lead",
+    "Needs contact research",
+    "Weak fit",
+    "Blocked",
+    "Contacted",
+    "Follow-up",
+    "Responded",
+    "Closed",
+]
+OUTREACH_SOURCE_TYPES = [
+    "VC/Funding",
+    "Founder post",
+    "Product launch",
+    "Engineering signal",
+    "Hiring signal",
+    "Manual research",
+    "Other",
+]
 
 ANALYSIS_MODEL = os.getenv("OPENAI_ANALYSIS_MODEL", "gpt-4o-mini")
 RESUME_MODEL = os.getenv("OPENAI_RESUME_MODEL", "gpt-5-mini")
-SYNTHESIS_MODEL = os.getenv("OPENAI_SYNTHESIS_MODEL", "gpt-5.6-terra")
+SYNTHESIS_MODEL = os.getenv("OPENAI_SYNTHESIS_MODEL", "gpt-5.6-luna")
 AUDIT_MODEL = os.getenv("OPENAI_AUDIT_MODEL", "gpt-5.6-luna")
+ANALYSIS_PROMPT_VERSION = os.getenv("OPENAI_ANALYSIS_PROMPT_VERSION", "jd_analysis_v1")
 SYNTHESIS_REASONING_EFFORT = os.getenv("OPENAI_SYNTHESIS_REASONING_EFFORT", "medium")
 AUDIT_REASONING_EFFORT = os.getenv("OPENAI_AUDIT_REASONING_EFFORT", "medium")
 ANALYSIS_TEMPERATURE = 0.2
@@ -725,13 +798,66 @@ def save_tracker_store(store: dict) -> None:
     write_json_file(Path(TRACKER_FILE), {"applications": store.get("applications", [])})
 
 
+def load_outreach_store() -> dict:
+    store = load_json_file(Path(OUTREACH_FILE), {"leads": []})
+    leads = store.get("leads")
+    if not isinstance(leads, list):
+        leads = []
+    store["leads"] = leads
+    return store
+
+
+def save_outreach_store(store: dict) -> None:
+    write_json_file(Path(OUTREACH_FILE), {"leads": store.get("leads", [])})
+
+
 def today_iso_date() -> str:
     return datetime.now().date().isoformat()
+
+
+def now_iso_utc() -> str:
+    return datetime.now(timezone.utc).isoformat()
 
 
 def normalize_tracker_status(status: str) -> str:
     value = str(status or "").strip().title()
     return value if value in TRACKER_STATUSES else "Applied"
+
+
+def normalize_outreach_status(status: str) -> str:
+    wanted = str(status or "").strip().lower()
+    for option in OUTREACH_STATUSES:
+        if option.lower() == wanted:
+            return option
+    return ""
+
+
+def normalize_outreach_source_type(source_type: str) -> str:
+    wanted = str(source_type or "").strip().lower()
+    for option in OUTREACH_SOURCE_TYPES:
+        if option.lower() == wanted:
+            return option
+    return "Manual research"
+
+
+def normalize_text_list(value) -> list[str]:
+    if isinstance(value, list):
+        return [str(item).strip() for item in value if str(item or "").strip()]
+    if isinstance(value, str):
+        return [
+            line.strip(" -•\t")
+            for line in value.replace(";", "\n").splitlines()
+            if line.strip(" -•\t")
+        ]
+    return []
+
+
+def bounded_int(value, default: int = 0, minimum: int = 0, maximum: int = 100) -> int:
+    try:
+        number = int(value)
+    except (TypeError, ValueError):
+        number = default
+    return max(minimum, min(maximum, number))
 
 
 def parse_iso_date(value: str) -> datetime:
@@ -1047,6 +1173,110 @@ def sorted_tracker_applications(applications: list[dict], *, sort_key: str = "ap
 
 def normalize_company_lookup(company_name: str) -> str:
     return re.sub(r"[^a-z0-9]+", "", str(company_name or "").strip().lower())
+
+
+def normalize_outreach_lead(data: dict, existing: dict | None = None, touch_updated: bool = True) -> dict:
+    existing = existing or {}
+    created_at = existing.get("created_at") or now_iso_utc()
+    blocked_reason = str(data.get("blocked_reason", existing.get("blocked_reason", "")) or "").strip()
+    requested_status = normalize_outreach_status(data.get("status", existing.get("status", "")))
+    default_status = "Blocked" if blocked_reason else "Researching"
+    lead = {
+        "id": existing.get("id") or str(data.get("id") or "").strip() or f"lead-{uuid.uuid4().hex}",
+        "company_name": str(data.get("company_name", existing.get("company_name", "")) or "").strip(),
+        "website": str(data.get("website", existing.get("website", "")) or "").strip(),
+        "source_type": normalize_outreach_source_type(data.get("source_type", existing.get("source_type", ""))),
+        "source_url": str(data.get("source_url", existing.get("source_url", "")) or "").strip(),
+        "signal_text": str(data.get("signal_text", existing.get("signal_text", "")) or "").strip(),
+        "product_summary": str(data.get("product_summary", existing.get("product_summary", "")) or "").strip(),
+        "inferred_engineering_need": str(data.get("inferred_engineering_need", existing.get("inferred_engineering_need", "")) or "").strip(),
+        "target_role_type": str(data.get("target_role_type", existing.get("target_role_type", "")) or "").strip(),
+        "contact_name": str(data.get("contact_name", existing.get("contact_name", "")) or "").strip(),
+        "contact_role": str(data.get("contact_role", existing.get("contact_role", "")) or "").strip(),
+        "contact_email": str(data.get("contact_email", existing.get("contact_email", "")) or "").strip(),
+        "contact_url": str(data.get("contact_url", existing.get("contact_url", "")) or "").strip(),
+        "notes": str(data.get("notes", existing.get("notes", "")) or "").strip(),
+        "resume_angle": str(data.get("resume_angle", existing.get("resume_angle", "")) or "").strip(),
+        "message_subject": str(data.get("message_subject", existing.get("message_subject", "")) or "").strip(),
+        "message_body": str(data.get("message_body", existing.get("message_body", "")) or "").strip(),
+        "blocked_reason": blocked_reason,
+        "fit_score": bounded_int(data.get("fit_score", existing.get("fit_score", 0))),
+        "fit_reasons": normalize_text_list(data.get(
+            "fit_reasons",
+            data.get("reasons", existing.get("fit_reasons", existing.get("reasons", []))),
+        )),
+        "last_contacted_at": str(data.get("last_contacted_at", existing.get("last_contacted_at", "")) or "").strip(),
+        "follow_up_at": str(data.get("follow_up_at", existing.get("follow_up_at", "")) or "").strip(),
+        "status": requested_status or normalize_outreach_status(existing.get("status", "")) or default_status,
+        "created_at": created_at,
+        "updated_at": now_iso_utc() if touch_updated else existing.get("updated_at", created_at),
+    }
+    return lead
+
+
+def summarize_outreach(store: dict) -> dict:
+    counts = {status: 0 for status in OUTREACH_STATUSES}
+    for lead in store.get("leads", []):
+        status = normalize_outreach_status(lead.get("status", "")) or "Researching"
+        counts[status] = counts.get(status, 0) + 1
+    return {"total": len(store.get("leads", [])), "counts": counts}
+
+
+def list_outreach_leads() -> list[dict]:
+    store = load_outreach_store()
+    normalized = [normalize_outreach_lead(item, existing=item, touch_updated=False) for item in store.get("leads", [])]
+    return sorted(normalized, key=lambda item: parse_iso_date(item.get("updated_at", "")), reverse=True)
+
+
+def outreach_lead_by_id(lead_id: str) -> dict | None:
+    wanted = str(lead_id or "").strip()
+    if not wanted:
+        return None
+    for lead in list_outreach_leads():
+        if str(lead.get("id", "")) == wanted:
+            return lead
+    return None
+
+
+def build_outreach_resume_context(lead: dict) -> str:
+    contact_parts = [lead.get("contact_name"), lead.get("contact_role"), lead.get("contact_email") or lead.get("contact_url")]
+    contact_line = " | ".join(str(part).strip() for part in contact_parts if str(part or "").strip())
+    lines = [
+        "Startup Outreach Context",
+        f"Company: {lead.get('company_name', '')}",
+        f"Website: {lead.get('website', '')}",
+        f"Source: {lead.get('source_type', '')} {lead.get('source_url', '')}".strip(),
+        f"Target role: {lead.get('target_role_type') or 'Software engineering'}",
+        f"Contact: {contact_line}",
+        "",
+        "Product or growth signal:",
+        lead.get("signal_text", ""),
+        "",
+        "What the company appears to be building:",
+        lead.get("product_summary", ""),
+        "",
+        "Likely engineering need:",
+        lead.get("inferred_engineering_need", ""),
+        "",
+        "Codex resume angle:",
+        lead.get("resume_angle", ""),
+        "",
+        "Resume instructions:",
+        "Tailor this resume for a speculative founder or technical-leader outreach message.",
+        "Do not claim this is a posted job or that the company listed these requirements.",
+        "Use the startup context only to frame relevant transferable engineering evidence.",
+    ]
+    return "\n".join(line for line in lines if line is not None).strip()
+
+
+def build_outreach_message(lead: dict) -> dict:
+    body = str(lead.get("message_body", "") or "").strip()
+    if not body:
+        raise ValueError("No stored outreach message is available for this lead.")
+    return {
+        "subject": str(lead.get("message_subject", "") or "").strip(),
+        "body": body,
+    }
 
 
 def list_tracker_applications() -> list[dict]:
@@ -3434,6 +3664,17 @@ def merge_resume_payloads(core_payload: dict, experience_payload: dict) -> dict:
 
 def ai_session_active_blueprints(session: dict) -> list[dict]:
     ensure_ai_session_state(session)
+    profile_snapshot = (
+        session.get("profile_snapshot")
+        if isinstance(session.get("profile_snapshot"), dict)
+        else None
+    )
+    active = filter_blueprints_by_enabled_keys(
+        current_experience_blueprints(profile_snapshot),
+        session.get("enabled_experience_keys"),
+    )
+    if active:
+        return active
     return filter_blueprints_by_enabled_keys(
         current_experience_blueprints(),
         session.get("enabled_experience_keys"),
@@ -3560,9 +3801,7 @@ def parse_ai_session_resume_content(
 
     parsed_experience = parsed.get("experience") if isinstance(parsed.get("experience"), list) else []
     experience = {}
-    slot_by_key = {key: index for index, key in enumerate(EXPERIENCE_BLUEPRINT_KEYS)}
-    for blueprint in active_blueprints:
-        index = slot_by_key[blueprint["key"]]
+    for index, blueprint in enumerate(active_blueprints):
         entry = parsed_experience[index] if index < len(parsed_experience) and isinstance(parsed_experience[index], dict) else {}
         experience[blueprint["key"]] = {
             "title": str(entry.get("title", "")).strip(),
@@ -3633,10 +3872,7 @@ def prepare_ai_session_for_pdf(
     previous_enabled_keys = normalize_enabled_experience_keys(
         session.get("enabled_experience_keys")
     )
-    previous_blueprints = filter_blueprints_by_enabled_keys(
-        current_experience_blueprints(),
-        previous_enabled_keys,
-    )
+    previous_blueprints = ai_session_active_blueprints(session)
     if not previous_blueprints:
         raise ValueError("Keep at least one experience role enabled.")
 
@@ -3645,10 +3881,20 @@ def prepare_ai_session_for_pdf(
         if enabled_experience_keys is not None
         else previous_enabled_keys
     )
+    profile_snapshot = (
+        session.get("profile_snapshot")
+        if isinstance(session.get("profile_snapshot"), dict)
+        else None
+    )
     active_blueprints = filter_blueprints_by_enabled_keys(
-        current_experience_blueprints(),
+        current_experience_blueprints(profile_snapshot),
         next_enabled_keys,
     )
+    if not active_blueprints:
+        active_blueprints = filter_blueprints_by_enabled_keys(
+            current_experience_blueprints(),
+            next_enabled_keys,
+        )
     if not active_blueprints:
         raise ValueError("Keep at least one experience role enabled.")
 
@@ -4765,11 +5011,97 @@ def validate_final_synthesis_payload(
     return issues
 
 
+def normalized_prompt_source_hash(value: str) -> str:
+    normalized = re.sub(r"\s+", " ", str(value or "").strip())
+    return hashlib.sha256(normalized.encode("utf-8")).hexdigest()
+
+
+def ai_stage_cache_key(
+    *,
+    stage: str,
+    model: str,
+    prompt_version: str,
+    source_hash: str,
+) -> str:
+    key_payload = {
+        "stage": stage,
+        "model": model,
+        "prompt_version": prompt_version,
+        "source_hash": source_hash,
+    }
+    serialized = json.dumps(key_payload, sort_keys=True, separators=(",", ":"))
+    return hashlib.sha256(serialized.encode("utf-8")).hexdigest()
+
+
+def get_cached_ai_stage_result(cache_key: str) -> dict | None:
+    try:
+        with session_scope() as db:
+            row = (
+                db.query(AiStageCache)
+                .filter(AiStageCache.cache_key == cache_key)
+                .one_or_none()
+            )
+            if not row or not isinstance(row.result, dict):
+                return None
+            return copy.deepcopy(row.result)
+    except Exception:
+        return None
+
+
+def save_cached_ai_stage_result(
+    *,
+    stage: str,
+    cache_key: str,
+    model: str,
+    prompt_version: str,
+    source_hash: str,
+    result: dict,
+    source_metadata: dict | None = None,
+) -> None:
+    try:
+        with session_scope() as db:
+            row = (
+                db.query(AiStageCache)
+                .filter(AiStageCache.cache_key == cache_key)
+                .one_or_none()
+            )
+            if row:
+                row.result = copy.deepcopy(result)
+                row.source_metadata = dict(source_metadata or {})
+                row.updated_at = datetime.now(timezone.utc)
+                return
+            db.add(
+                AiStageCache(
+                    id=str(uuid.uuid4()),
+                    stage=stage,
+                    cache_key=cache_key,
+                    model=model,
+                    prompt_version=prompt_version,
+                    source_hash=source_hash,
+                    result=copy.deepcopy(result),
+                    source_metadata=dict(source_metadata or {}),
+                )
+            )
+    except Exception:
+        return
+
+
 def analyze_job_description(
     *,
     api_key: str,
     job_description: str,
 ) -> dict:
+    description_hash = normalized_prompt_source_hash(job_description)
+    cache_key = ai_stage_cache_key(
+        stage="jd_analysis",
+        model=ANALYSIS_MODEL,
+        prompt_version=ANALYSIS_PROMPT_VERSION,
+        source_hash=description_hash,
+    )
+    cached_result = get_cached_ai_stage_result(cache_key)
+    if cached_result is not None:
+        return normalize_analysis_payload(cached_result)
+
     analysis_user_parts = [
         f"Job description:\n{job_description.strip()}",
         "Return the full JD intelligence analysis aligned to the required schema.",
@@ -4787,7 +5119,17 @@ def analyze_job_description(
         request_timeout_seconds=OPENAI_ANALYSIS_TIMEOUT_SECONDS,
         reasoning_effort="low",
     )
-    return normalize_analysis_payload(result)
+    normalized_result = normalize_analysis_payload(result)
+    save_cached_ai_stage_result(
+        stage="jd_analysis",
+        cache_key=cache_key,
+        model=ANALYSIS_MODEL,
+        prompt_version=ANALYSIS_PROMPT_VERSION,
+        source_hash=description_hash,
+        result=normalized_result,
+        source_metadata={"source": "job_description"},
+    )
+    return normalized_result
 
 
 def generate_resume_from_analysis(
@@ -4803,10 +5145,12 @@ def generate_resume_from_analysis(
     compact_analysis = compact_analysis_for_generation(analysis_payload)
     blueprints = filter_blueprints_by_enabled_keys(current_experience_blueprints(), enabled_experience_keys)
     resume_user_parts = [
-        f"Job description:\n{job_description.strip()}",
+        "Immutable active experience blueprints and stable role keys:",
+        json.dumps(blueprints, ensure_ascii=False, separators=(",", ":")),
         "Use the full JD analysis below as the source of truth. Generate only the final resume object matching the required schema.",
         "JD analysis:",
         json.dumps(compact_analysis, ensure_ascii=False, separators=(",", ":")),
+        f"Job description:\n{job_description.strip()}",
     ]
     if revision_request.strip():
         resume_user_parts.append(f"Current refinement request:\n{revision_request.strip()}")
@@ -5131,18 +5475,18 @@ def generate_final_synthesis_from_analysis(
         for blueprint in active_blueprints
     }
     user_parts = [
-        f"Raw job description:\n{job_description.strip()}",
-        "JD analysis:",
-        json.dumps(compact_analysis, ensure_ascii=False, separators=(",", ":")),
-        "Preliminary skills:",
-        json.dumps(preliminary_skills, ensure_ascii=False, separators=(",", ":")),
+        "Immutable active experience blueprints and stable role keys:",
+        json.dumps(active_blueprints, ensure_ascii=False, separators=(",", ":")),
         f"Skill category order key: {order_key}",
         "Required skill category order:",
         json.dumps(ordered_categories, ensure_ascii=False, separators=(",", ":")),
+        "Preliminary skills:",
+        json.dumps(preliminary_skills, ensure_ascii=False, separators=(",", ":")),
         "Complete generated experience, including every bullet:",
         json.dumps({"experience": complete_experience}, ensure_ascii=False, separators=(",", ":")),
-        "Immutable active experience blueprints and stable role keys:",
-        json.dumps(active_blueprints, ensure_ascii=False, separators=(",", ":")),
+        "JD analysis:",
+        json.dumps(compact_analysis, ensure_ascii=False, separators=(",", ":")),
+        f"Raw job description:\n{job_description.strip()}",
     ]
     append_revision_context_to_prompt(user_parts, revision_context)
     result = call_openai_structured_output(
@@ -5985,15 +6329,15 @@ def _legacy_generate_resume_quality_audit(
     order_key = skill_category_order_key_for_analysis(analysis_payload)
     ordered_categories = skill_category_order_for_key(order_key)
     user_parts = [
-        f"Raw job description:\n{job_description.strip()}",
-        "JD analysis and grounded profile evidence:",
-        json.dumps(compact_analysis_for_generation(analysis_payload), ensure_ascii=False, separators=(",", ":")),
-        "Canonical current structured resume:",
-        json.dumps(current_resume, ensure_ascii=False, separators=(",", ":")),
         "Immutable active experience blueprints and stable role keys:",
         json.dumps(active_blueprints, ensure_ascii=False, separators=(",", ":")),
         "Required skill category order:",
         json.dumps(ordered_categories, ensure_ascii=False, separators=(",", ":")),
+        "Canonical current structured resume:",
+        json.dumps(current_resume, ensure_ascii=False, separators=(",", ":")),
+        "JD analysis and grounded profile evidence:",
+        json.dumps(compact_analysis_for_generation(analysis_payload), ensure_ascii=False, separators=(",", ":")),
+        f"Raw job description:\n{job_description.strip()}",
     ]
     result = call_openai_structured_output(
         api_key=api_key,
@@ -8547,12 +8891,12 @@ def generate_experience_subset_from_analysis(
     skills_source = preliminary_skills_payload if preliminary_skills_payload is not None else (core_payload or {})
     preliminary_skills = {"updated_skills": normalize_updated_skills(skills_source.get("updated_skills", []))}
     user_parts = [
-        "Analysis:",
-        json.dumps(compact_analysis, ensure_ascii=False, separators=(",", ":")),
-        "Preliminary skills:",
-        json.dumps(preliminary_skills, ensure_ascii=False, separators=(",", ":")),
         "Immutable experience blueprints:",
         json.dumps(blueprints, ensure_ascii=False, separators=(",", ":")),
+        "Preliminary skills:",
+        json.dumps(preliminary_skills, ensure_ascii=False, separators=(",", ":")),
+        "Analysis:",
+        json.dumps(compact_analysis, ensure_ascii=False, separators=(",", ":")),
     ]
     append_revision_context_to_prompt(user_parts, revision_context)
     def run_generation(extra_instruction: str = "") -> dict:
@@ -8956,6 +9300,11 @@ def is_experience_history_entry_enabled(entry: dict) -> bool:
     return entry.get("enabled", True) is not False and is_experience_history_entry_complete(entry)
 
 
+def is_experience_blueprint_complete(blueprint: dict) -> bool:
+    title = str(blueprint.get("title") or blueprint.get("default_title") or "").strip()
+    return bool(title) and all(str(blueprint.get(field, "")).strip() for field in ("company", "location", "dates"))
+
+
 def complete_profile_experience_keys(profile: dict | None = None) -> list[str]:
     source = profile if isinstance(profile, dict) else current_profile()
     history = source.get("experience_history") if isinstance(source.get("experience_history"), list) else []
@@ -8971,8 +9320,8 @@ def complete_profile_experience_keys(profile: dict | None = None) -> list[str]:
     ]
 
 
-def current_experience_blueprints() -> list[dict]:
-    active_profile = current_profile()
+def current_experience_blueprints(profile: dict | None = None) -> list[dict]:
+    active_profile = profile if isinstance(profile, dict) else current_profile()
     saved_history = active_profile.get("experience_history") if isinstance(active_profile.get("experience_history"), list) else []
     saved_history_by_key = {
         str(entry.get("key", "")).strip(): entry
@@ -8989,13 +9338,15 @@ def current_experience_blueprints() -> list[dict]:
             merged["location"] = str(override.get("location", "")).strip()
             merged["dates"] = str(override.get("dates", "")).strip()
             merged["default_title"] = str(override.get("title", "")).strip()
+            merged["title"] = merged["default_title"]
             merged["enabled"] = is_experience_history_entry_enabled(override)
         else:
             merged["company"] = str(blueprint.get("company", "")).strip()
             merged["location"] = str(blueprint.get("location", "")).strip()
             merged["dates"] = str(blueprint.get("dates", "")).strip()
             merged["default_title"] = ""
-            merged["enabled"] = is_experience_history_entry_complete(merged)
+            merged["title"] = ""
+            merged["enabled"] = is_experience_blueprint_complete(merged)
         blueprints.append(merged)
     return blueprints
 
@@ -9009,12 +9360,27 @@ def normalize_enabled_experience_keys(payload: list[str] | None) -> list[str]:
     return [key for key in EXPERIENCE_BLUEPRINT_KEYS if key in requested_set]
 
 
+def normalize_ai_enabled_experience_keys(payload: list[str] | None, session: dict | None = None) -> list[str]:
+    keys = normalize_enabled_experience_keys(payload)
+    if keys:
+        return keys
+    if payload is not None:
+        session_keys = normalize_enabled_experience_keys(session.get("enabled_experience_keys") if isinstance(session, dict) else None)
+        if session_keys:
+            return session_keys
+        profile_keys = complete_profile_experience_keys()
+        return profile_keys or list(EXPERIENCE_BLUEPRINT_KEYS)
+    return keys
+
+
 def filter_blueprints_by_enabled_keys(blueprints: list[dict], enabled_experience_keys: list[str] | None = None) -> list[dict]:
     enabled_keys = set(normalize_enabled_experience_keys(enabled_experience_keys))
     return [
         blueprint
         for blueprint in blueprints
-        if blueprint["key"] in enabled_keys and is_experience_history_entry_complete(blueprint)
+        if blueprint["key"] in enabled_keys
+        and blueprint.get("enabled", True) is not False
+        and is_experience_blueprint_complete(blueprint)
     ]
 
 
@@ -9543,13 +9909,15 @@ def experience_blueprints_from_snapshot(draft: dict) -> list[dict]:
             merged["location"] = str(saved.get("location", "")).strip()
             merged["dates"] = str(saved.get("dates", "")).strip()
             merged["default_title"] = str(saved.get("title", "")).strip()
+            merged["title"] = merged["default_title"]
             merged["enabled"] = is_experience_history_entry_enabled(saved)
         else:
             merged["company"] = str(blueprint.get("company", "")).strip()
             merged["location"] = str(blueprint.get("location", "")).strip()
             merged["dates"] = str(blueprint.get("dates", "")).strip()
             merged["default_title"] = ""
-            merged["enabled"] = is_experience_history_entry_complete(merged)
+            merged["title"] = ""
+            merged["enabled"] = is_experience_blueprint_complete(merged)
         blueprints.append(merged)
     return blueprints
 
@@ -10163,6 +10531,7 @@ def get_conversion_status(status_path: str) -> dict:
 
 
 @app.route("/")
+@app.route("/jobs")
 def index():
     """Main page."""
     ok, msg = get_pdf_conversion_status()
@@ -10535,9 +10904,7 @@ def extension_payloads_from_content(content: str, draft: dict, enabled_keys: lis
     }
     experience_by_key: dict[str, dict] = {}
     parsed_experience = parsed.get("experience") if isinstance(parsed.get("experience"), list) else []
-    slot_by_key = {key: index for index, key in enumerate(EXPERIENCE_BLUEPRINT_KEYS)}
-    for key in enabled_keys:
-        index = slot_by_key[key]
+    for index, key in enumerate(enabled_keys):
         entry = parsed_experience[index] if index < len(parsed_experience) and isinstance(parsed_experience[index], dict) else {}
         experience_by_key[key] = {
             "title": str(entry.get("title", "")).strip(),
@@ -10795,7 +11162,7 @@ def resolve_extension_context():
     try:
         context, draft = extension_drafts.resolve(request.get_json() or {})
         issues = validate_context(context)
-        preflight = current_job_preflight(context.get("job_description", ""))
+        preflight = current_job_preflight(context.get("job_description", ""), context.get("company_name", ""))
         history = tracker_company_history(context.get("company_name", "")) if context.get("company_name") else {"count": 0, "applications": []}
         return jsonify({
             "success": True,
@@ -10820,7 +11187,7 @@ def create_extension_draft():
         issues = validate_context(context)
         if issues:
             return jsonify({"success": False, "error": " ".join(issues), "issues": issues}), 400
-        preflight = current_job_preflight(context.get("job_description", ""))
+        preflight = current_job_preflight(context.get("job_description", ""), context.get("company_name", ""))
         if preflight.get("blocked"):
             return job_preflight_blocked_response(preflight)
         history = tracker_company_history(context["company_name"])
@@ -10835,8 +11202,137 @@ def create_extension_draft():
             "success": True,
             "draft": extension_draft_payload(draft),
             "history": history,
+            "preflight": preflight,
             "queue_paused": extension_drafts.has_duplicate_review(),
         })
+    except ValueError as exc:
+        return jsonify({"success": False, "error": str(exc)}), 400
+    except Exception as exc:
+        return jsonify({"success": False, "error": str(exc)}), 500
+
+
+@app.route("/api/cpt/check", methods=["POST"])
+def check_cpt_status():
+    try:
+        data = request.get_json() or {}
+        company_name = str(data.get("company_name", "")).strip()
+        force_refresh = bool(data.get("force_refresh", False))
+        cpt = check_cpt_company(company_name, force_refresh=force_refresh)
+        return jsonify({"success": True, "cpt": cpt})
+    except Exception as exc:
+        return jsonify({"success": False, "error": str(exc)}), 500
+
+
+@app.route("/api/job-sources", methods=["GET"])
+def get_job_sources():
+    try:
+        return jsonify({"success": True, "sources": list_job_source_records()})
+    except Exception as exc:
+        return jsonify({"success": False, "error": str(exc)}), 500
+
+
+@app.route("/api/job-sources", methods=["POST"])
+def create_job_source():
+    try:
+        source = create_job_source_record(request.get_json() or {})
+        return jsonify({"success": True, "source": source})
+    except ValueError as exc:
+        return jsonify({"success": False, "error": str(exc)}), 400
+    except Exception as exc:
+        return jsonify({"success": False, "error": str(exc)}), 500
+
+
+@app.route("/api/job-sources/<source_id>", methods=["PATCH"])
+def update_job_source(source_id: str):
+    try:
+        source = update_job_source_record(source_id, request.get_json() or {})
+        return jsonify({"success": True, "source": source})
+    except KeyError as exc:
+        return jsonify({"success": False, "error": str(exc)}), 404
+    except ValueError as exc:
+        return jsonify({"success": False, "error": str(exc)}), 400
+    except Exception as exc:
+        return jsonify({"success": False, "error": str(exc)}), 500
+
+
+@app.route("/api/job-sources/<source_id>/scan", methods=["POST"])
+def scan_job_source(source_id: str):
+    try:
+        return jsonify({"success": True, "result": scan_job_source_record(source_id)})
+    except KeyError as exc:
+        return jsonify({"success": False, "error": str(exc)}), 404
+    except Exception as exc:
+        return jsonify({"success": False, "error": str(exc)}), 500
+
+
+@app.route("/api/job-sources/scan-all", methods=["POST"])
+def scan_all_job_sources():
+    try:
+        return jsonify({"success": True, **scan_all_enabled_sources()})
+    except Exception as exc:
+        return jsonify({"success": False, "error": str(exc)}), 500
+
+
+@app.route("/api/job-leads", methods=["GET"])
+def get_job_leads():
+    try:
+        data = list_job_lead_records(request.args.to_dict())
+        return jsonify({"success": True, **data})
+    except Exception as exc:
+        return jsonify({"success": False, "error": str(exc)}), 500
+
+
+@app.route("/api/job-leads/<lead_id>", methods=["GET"])
+def get_job_lead(lead_id: str):
+    lead = get_job_lead_record(lead_id)
+    if not lead:
+        return jsonify({"success": False, "error": "Job lead not found."}), 404
+    return jsonify({"success": True, "lead": lead})
+
+
+@app.route("/api/job-leads/<lead_id>", methods=["PATCH"])
+def update_job_lead(lead_id: str):
+    try:
+        lead = update_job_lead_record(lead_id, request.get_json() or {})
+        return jsonify({"success": True, "lead": lead})
+    except KeyError as exc:
+        return jsonify({"success": False, "error": str(exc)}), 404
+    except ValueError as exc:
+        return jsonify({"success": False, "error": str(exc)}), 400
+    except Exception as exc:
+        return jsonify({"success": False, "error": str(exc)}), 500
+
+
+@app.route("/api/job-leads/<lead_id>/promote-to-draft", methods=["POST"])
+def promote_job_lead_to_draft(lead_id: str):
+    try:
+        if not has_permanent_profile_doc():
+            return jsonify({"success": False, "error": "Complete Profile setup before generating a resume.", "onboarding_required": True}), 409
+        context = normalize_context(promote_lead_to_draft_payload(lead_id))
+        issues = validate_context(context)
+        if issues:
+            return jsonify({"success": False, "error": " ".join(issues), "issues": issues}), 400
+        preflight = current_job_preflight(context.get("job_description", ""), context.get("company_name", ""))
+        if preflight.get("blocked"):
+            return job_preflight_blocked_response(preflight)
+        history = tracker_company_history(context["company_name"])
+        data = request.get_json(silent=True) or {}
+        snapshot = extension_profile_snapshot(
+            str(data.get("identity_id", "")),
+            data.get("enabled_experience_keys"),
+        )
+        draft = create_extension_draft_with_gate(context, snapshot, int(history.get("count", 0)))
+        attach_lead_to_draft(draft["id"], lead_id)
+        extension_worker_event.set()
+        return jsonify({
+            "success": True,
+            "draft": extension_draft_payload(extension_drafts.get(draft["id"]) or draft),
+            "history": history,
+            "preflight": preflight,
+            "queue_paused": extension_drafts.has_duplicate_review(),
+        })
+    except KeyError as exc:
+        return jsonify({"success": False, "error": str(exc)}), 404
     except ValueError as exc:
         return jsonify({"success": False, "error": str(exc)}), 400
     except Exception as exc:
@@ -11149,6 +11645,7 @@ def mark_extension_draft_applied(draft_id: str):
         )
         saved_application = upsert_tracker_application(application)
         updated = extension_drafts.update(draft_id, {"application_id": saved_application.get("id", ""), "status": "applied", "stage": "complete"})
+        mark_lead_applied_from_draft(updated)
         applications = list_tracker_applications()
         return jsonify({
             "success": True,
@@ -11418,6 +11915,9 @@ def create_tracker_application():
         if data.get("job_id"):
             application["job_id"] = str(data.get("job_id", "")).strip()
         response_application = upsert_tracker_application(application)
+        job_id = str(data.get("job_id", "")).strip()
+        if job_id.startswith("lead-"):
+            update_job_lead_record(job_id, {"status": "applied"})
         merged_applications = list_tracker_applications()
         return jsonify({
             "success": True,
@@ -11470,6 +11970,170 @@ def open_tracker_application_file(application_id: str):
         return jsonify({"success": False, "error": str(e)}), 500
 
 
+@app.route("/api/outreach/leads", methods=["GET"])
+def get_outreach_leads():
+    try:
+        leads = list_outreach_leads()
+        return jsonify({
+            "success": True,
+            "leads": leads,
+            "summary": summarize_outreach({"leads": leads}),
+            "statuses": OUTREACH_STATUSES,
+            "source_types": OUTREACH_SOURCE_TYPES,
+        })
+    except Exception as e:
+        return jsonify({"success": False, "error": str(e)}), 500
+
+
+@app.route("/api/outreach/leads", methods=["POST"])
+def create_outreach_lead():
+    try:
+        data = request.get_json() or {}
+        if not str(data.get("company_name", "")).strip():
+            return jsonify({"success": False, "error": "Company name is required."}), 400
+        store = load_outreach_store()
+        lead = normalize_outreach_lead(data)
+        store["leads"] = [lead, *store.get("leads", [])]
+        save_outreach_store(store)
+        leads = list_outreach_leads()
+        return jsonify({
+            "success": True,
+            "lead": lead,
+            "leads": leads,
+            "summary": summarize_outreach({"leads": leads}),
+            "statuses": OUTREACH_STATUSES,
+            "source_types": OUTREACH_SOURCE_TYPES,
+        })
+    except Exception as e:
+        return jsonify({"success": False, "error": str(e)}), 500
+
+
+@app.route("/api/outreach/leads/import", methods=["POST"])
+def import_outreach_leads():
+    try:
+        data = request.get_json() or {}
+        raw_leads = data if isinstance(data, list) else data.get("leads", [])
+        if not isinstance(raw_leads, list):
+            return jsonify({"success": False, "error": "Import payload must contain a leads array."}), 400
+
+        store = load_outreach_store()
+        created = []
+        errors = []
+        for index, item in enumerate(raw_leads, start=1):
+            if not isinstance(item, dict):
+                errors.append(f"Lead {index} is not an object.")
+                continue
+            if not str(item.get("company_name", "")).strip():
+                errors.append(f"Lead {index} is missing company_name.")
+                continue
+            lead = normalize_outreach_lead(item)
+            created.append(lead)
+
+        if not created and errors:
+            return jsonify({"success": False, "error": "No valid leads found.", "errors": errors}), 400
+
+        store["leads"] = [*created, *store.get("leads", [])]
+        save_outreach_store(store)
+        leads = list_outreach_leads()
+        return jsonify({
+            "success": True,
+            "created_count": len(created),
+            "errors": errors,
+            "leads": leads,
+            "summary": summarize_outreach({"leads": leads}),
+            "statuses": OUTREACH_STATUSES,
+            "source_types": OUTREACH_SOURCE_TYPES,
+        })
+    except Exception as e:
+        return jsonify({"success": False, "error": str(e)}), 500
+
+
+@app.route("/api/outreach/leads/<lead_id>", methods=["PATCH"])
+def update_outreach_lead(lead_id: str):
+    try:
+        data = request.get_json() or {}
+        store = load_outreach_store()
+        leads = store.get("leads", [])
+        match_index = next((index for index, item in enumerate(leads) if item.get("id") == lead_id), -1)
+        if match_index < 0:
+            return jsonify({"success": False, "error": "Outreach lead not found."}), 404
+        lead = normalize_outreach_lead(data, existing=leads[match_index])
+        if not lead.get("company_name"):
+            return jsonify({"success": False, "error": "Company name is required."}), 400
+        leads[match_index] = lead
+        save_outreach_store({"leads": leads})
+        normalized = list_outreach_leads()
+        return jsonify({
+            "success": True,
+            "lead": lead,
+            "leads": normalized,
+            "summary": summarize_outreach({"leads": normalized}),
+            "statuses": OUTREACH_STATUSES,
+            "source_types": OUTREACH_SOURCE_TYPES,
+        })
+    except Exception as e:
+        return jsonify({"success": False, "error": str(e)}), 500
+
+
+@app.route("/api/outreach/leads/<lead_id>", methods=["DELETE"])
+def delete_outreach_lead(lead_id: str):
+    try:
+        store = load_outreach_store()
+        leads = store.get("leads", [])
+        next_leads = [item for item in leads if item.get("id") != lead_id]
+        if len(next_leads) == len(leads):
+            return jsonify({"success": False, "error": "Outreach lead not found."}), 404
+        save_outreach_store({"leads": next_leads})
+        normalized = list_outreach_leads()
+        return jsonify({
+            "success": True,
+            "leads": normalized,
+            "summary": summarize_outreach({"leads": normalized}),
+            "statuses": OUTREACH_STATUSES,
+            "source_types": OUTREACH_SOURCE_TYPES,
+        })
+    except Exception as e:
+        return jsonify({"success": False, "error": str(e)}), 500
+
+
+@app.route("/api/outreach/leads/<lead_id>/prepare-resume-context", methods=["POST"])
+def prepare_outreach_resume_context(lead_id: str):
+    try:
+        lead = outreach_lead_by_id(lead_id)
+        if not lead:
+            return jsonify({"success": False, "error": "Outreach lead not found."}), 404
+        if lead.get("blocked_reason"):
+            return jsonify({"success": False, "error": lead["blocked_reason"], "lead": lead}), 409
+        if not str(lead.get("company_name", "")).strip():
+            return jsonify({"success": False, "error": "Company name is required."}), 400
+        if not str(lead.get("signal_text", "")).strip() and not str(lead.get("product_summary", "")).strip():
+            return jsonify({"success": False, "error": "Add a product summary or signal before creating resume context."}), 400
+        return jsonify({
+            "success": True,
+            "lead": lead,
+            "company_name": lead.get("company_name", ""),
+            "target_role_type": lead.get("target_role_type", ""),
+            "resume_context": build_outreach_resume_context(lead),
+        })
+    except Exception as e:
+        return jsonify({"success": False, "error": str(e)}), 500
+
+
+@app.route("/api/outreach/leads/<lead_id>/draft-message", methods=["POST"])
+def draft_outreach_lead_message(lead_id: str):
+    try:
+        lead = outreach_lead_by_id(lead_id)
+        if not lead:
+            return jsonify({"success": False, "error": "Outreach lead not found."}), 404
+        if not str(lead.get("company_name", "")).strip():
+            return jsonify({"success": False, "error": "Company name is required."}), 400
+        return jsonify({"success": True, "lead": lead, "message": build_outreach_message(lead)})
+    except ValueError as e:
+        return jsonify({"success": False, "error": str(e), "lead": lead if "lead" in locals() else None}), 400
+    except Exception as e:
+        return jsonify({"success": False, "error": str(e)}), 500
+
+
 @app.route("/api/ai/status", methods=["GET"])
 def ai_status():
     ready, message = is_ai_generation_ready()
@@ -11505,15 +12169,15 @@ def analyze_ai_content():
         current_resume_content = str(data.get("current_resume_content", "")).strip()
         session_id = str(data.get("session_id", "")).strip() or None
         reset_memory = bool(data.get("reset_memory", False))
-        enabled_experience_keys = normalize_enabled_experience_keys(data.get("enabled_experience_keys"))
-
         if not job_description:
             return jsonify({"success": False, "error": "Job description is required"}), 400
 
         if len(job_description) > 20000:
             return jsonify({"success": False, "error": "Job description is too long"}), 400
 
-        preflight = current_job_preflight(job_description)
+        preflight_company = infer_company_name_for_preflight(job_description, data)
+        enforce_cpt = bool(data.get("enforce_cpt_company") or preflight_company)
+        preflight = current_job_preflight(job_description, preflight_company, check_cpt=enforce_cpt)
         if preflight.get("blocked"):
             return job_preflight_blocked_response(preflight)
 
@@ -11522,6 +12186,7 @@ def analyze_ai_content():
             return jsonify({"success": False, "error": "OPENAI_API_KEY is not configured"}), 500
 
         session_id, session = get_ai_session(session_id, job_description, reset_memory)
+        enabled_experience_keys = normalize_ai_enabled_experience_keys(data.get("enabled_experience_keys"), session)
         session["enabled_experience_keys"] = enabled_experience_keys
         incoming_revision_context = normalize_revision_context(revision_request, current_resume_content)
         if incoming_revision_context is not None:
@@ -11548,6 +12213,7 @@ def analyze_ai_content():
             "memory_count": len(session.get("turns", [])),
             "memory_limit": AI_MEMORY_LIMIT,
             "analysis": analysis_payload,
+            "preflight": preflight,
             "model": ANALYSIS_MODEL,
             "timing": timing,
         })
@@ -11595,19 +12261,20 @@ def generate_ai_content():
         current_resume_content = str(data.get("current_resume_content", "")).strip()
         session_id = str(data.get("session_id", "")).strip() or None
         reset_memory = bool(data.get("reset_memory", False))
-        enabled_experience_keys = normalize_enabled_experience_keys(data.get("enabled_experience_keys"))
-
         if not job_description:
             return jsonify({"success": False, "error": "Job description is required"}), 400
 
         if len(job_description) > 20000:
             return jsonify({"success": False, "error": "Job description is too long"}), 400
 
-        preflight = current_job_preflight(job_description)
+        preflight_company = infer_company_name_for_preflight(job_description, data)
+        enforce_cpt = bool(data.get("enforce_cpt_company") or preflight_company)
+        preflight = current_job_preflight(job_description, preflight_company, check_cpt=enforce_cpt)
         if preflight.get("blocked"):
             return job_preflight_blocked_response(preflight)
 
         session_id, session = get_ai_session(session_id, job_description, reset_memory)
+        enabled_experience_keys = normalize_ai_enabled_experience_keys(data.get("enabled_experience_keys"), session)
         session["enabled_experience_keys"] = enabled_experience_keys
         memory_turns = session.get("turns", [])[-AI_MEMORY_LIMIT:]
         cached_analysis = session.get("analysis")
@@ -11661,12 +12328,11 @@ def generate_ai_core():
         current_resume_content = str(data.get("current_resume_content", "")).strip()
         session_id = str(data.get("session_id", "")).strip() or None
         reset_memory = bool(data.get("reset_memory", False))
-        enabled_experience_keys = normalize_enabled_experience_keys(data.get("enabled_experience_keys"))
-
         if not job_description:
             return jsonify({"success": False, "error": "Job description is required"}), 400
 
         session_id, session = get_ai_session(session_id, job_description, reset_memory)
+        enabled_experience_keys = normalize_ai_enabled_experience_keys(data.get("enabled_experience_keys"), session)
         session["enabled_experience_keys"] = enabled_experience_keys
         analysis_payload = session.get("analysis")
         if not analysis_payload:
@@ -11735,7 +12401,6 @@ def generate_ai_title_summary():
     try:
         data = request.get_json() or {}
         session_id = str(data.get("session_id", "")).strip() or None
-        enabled_experience_keys = normalize_enabled_experience_keys(data.get("enabled_experience_keys"))
         if not session_id:
             return jsonify({"success": False, "error": "An active JD session is required."}), 400
         if session_id not in ai_sessions:
@@ -11747,6 +12412,7 @@ def generate_ai_title_summary():
         ).strip()
         if supplied_advertised_title:
             session["advertised_job_title"] = supplied_advertised_title
+        enabled_experience_keys = normalize_ai_enabled_experience_keys(data.get("enabled_experience_keys"), session)
         session["enabled_experience_keys"] = enabled_experience_keys
         analysis_payload = session.get("analysis")
         if not analysis_payload:
@@ -11789,13 +12455,13 @@ def generate_ai_skills():
     try:
         data = request.get_json() or {}
         session_id = str(data.get("session_id", "")).strip() or None
-        enabled_experience_keys = normalize_enabled_experience_keys(data.get("enabled_experience_keys"))
         if not session_id:
             return jsonify({"success": False, "error": "An active JD session is required."}), 400
         if session_id not in ai_sessions:
             return jsonify({"success": False, "error": "AI session not found."}), 404
 
         session = ensure_ai_session_state(ai_sessions[session_id])
+        enabled_experience_keys = normalize_ai_enabled_experience_keys(data.get("enabled_experience_keys"), session)
         session["enabled_experience_keys"] = enabled_experience_keys
         analysis_payload = session.get("analysis")
         if not analysis_payload:
@@ -11840,13 +12506,13 @@ def review_ai_core():
     try:
         data = request.get_json() or {}
         session_id = str(data.get("session_id", "")).strip() or None
-        enabled_experience_keys = normalize_enabled_experience_keys(data.get("enabled_experience_keys"))
         if not session_id:
             return jsonify({"success": False, "error": "An active JD session is required."}), 400
         if session_id not in ai_sessions:
             return jsonify({"success": False, "error": "AI session not found."}), 404
 
         session = ensure_ai_session_state(ai_sessions[session_id])
+        enabled_experience_keys = normalize_ai_enabled_experience_keys(data.get("enabled_experience_keys"), session)
         session["enabled_experience_keys"] = enabled_experience_keys
         analysis_payload = session.get("analysis")
         title_summary = session.get("title_summary")
@@ -11960,12 +12626,11 @@ def generate_ai_experience():
         current_resume_content = str(data.get("current_resume_content", "")).strip()
         session_id = str(data.get("session_id", "")).strip() or None
         reset_memory = bool(data.get("reset_memory", False))
-        enabled_experience_keys = normalize_enabled_experience_keys(data.get("enabled_experience_keys"))
-
         if not job_description:
             return jsonify({"success": False, "error": "Job description is required"}), 400
 
         session_id, session = get_ai_session(session_id, job_description, reset_memory)
+        enabled_experience_keys = normalize_ai_enabled_experience_keys(data.get("enabled_experience_keys"), session)
         session["enabled_experience_keys"] = enabled_experience_keys
         analysis_payload = session.get("analysis")
         core_payload = session.get("core_resume")
@@ -12051,13 +12716,13 @@ def _generate_ai_experience_subset(*, recent: bool):
     try:
         data = request.get_json() or {}
         session_id = str(data.get("session_id", "")).strip() or None
-        enabled_experience_keys = normalize_enabled_experience_keys(data.get("enabled_experience_keys"))
         if not session_id:
             return jsonify({"success": False, "error": "An active JD session is required."}), 400
         if session_id not in ai_sessions:
             return jsonify({"success": False, "error": "AI session not found."}), 404
 
         session = ensure_ai_session_state(ai_sessions[session_id])
+        enabled_experience_keys = normalize_ai_enabled_experience_keys(data.get("enabled_experience_keys"), session)
         session["enabled_experience_keys"] = enabled_experience_keys
         analysis_payload = session.get("analysis")
         skills_payload = session.get("skills")
@@ -12066,7 +12731,9 @@ def _generate_ai_experience_subset(*, recent: bool):
         if not skills_payload:
             raise AIStageError("skills_generation", "Preliminary skills are required before experience generation.", analysis=analysis_payload)
 
-        all_blueprints = filter_blueprints_by_enabled_keys(current_experience_blueprints(), enabled_experience_keys)
+        all_blueprints = ai_session_active_blueprints(session)
+        if not all_blueprints:
+            raise ValueError("Keep at least one experience role enabled.")
         recent_keys = set(EXPERIENCE_BLUEPRINT_KEYS[:2])
         blueprints = [blueprint for blueprint in all_blueprints if (blueprint["key"] in recent_keys) == recent]
         model = RESUME_MODEL
@@ -12154,9 +12821,13 @@ def final_synthesize_ai_resume():
                 ai_session_canonical_resume(session, previous_blueprints)
             )
         if "enabled_experience_keys" in data:
-            session["enabled_experience_keys"] = normalize_enabled_experience_keys(data.get("enabled_experience_keys"))
-        enabled_keys = normalize_enabled_experience_keys(session.get("enabled_experience_keys"))
-        active_blueprints = filter_blueprints_by_enabled_keys(current_experience_blueprints(), enabled_keys)
+            session["enabled_experience_keys"] = normalize_ai_enabled_experience_keys(
+                data.get("enabled_experience_keys"),
+                session,
+            )
+        enabled_keys = normalize_ai_enabled_experience_keys(session.get("enabled_experience_keys"), session)
+        session["enabled_experience_keys"] = enabled_keys
+        active_blueprints = ai_session_active_blueprints(session)
         if not active_blueprints:
             raise ValueError("Keep at least one experience role enabled.")
 
@@ -12297,7 +12968,10 @@ def audit_ai_resume_quality():
         if supplied_advertised_title:
             session["advertised_job_title"] = supplied_advertised_title
         if "enabled_experience_keys" in data:
-            session["enabled_experience_keys"] = normalize_enabled_experience_keys(data.get("enabled_experience_keys"))
+            session["enabled_experience_keys"] = normalize_ai_enabled_experience_keys(
+                data.get("enabled_experience_keys"),
+                session,
+            )
         active_blueprints = ai_session_active_blueprints(session)
         if not active_blueprints:
             raise ValueError("Keep at least one experience role enabled.")

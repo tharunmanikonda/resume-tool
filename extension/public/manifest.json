@@ -49,7 +49,16 @@
       "exclude_matches": [
         "https://www.linkedin.com/jobs/*",
         "https://www.dice.com/*",
-        "https://dice.com/*"
+        "https://dice.com/*",
+        "*://jobs.lever.co/*",
+        "*://*.lever.co/*",
+        "*://boards.greenhouse.io/*",
+        "*://*.greenhouse.io/*",
+        "*://jobs.ashbyhq.com/*",
+        "*://*.ashbyhq.com/*",
+        "*://*.ashby.com/*",
+        "*://ats.rippling.com/*",
+        "*://*.rippling.com/*"
       ],
       "js": ["panel-host.js"],
       "run_at": "document_idle"
@@ -62,6 +71,16 @@
     {
       "matches": ["https://www.dice.com/*", "https://dice.com/*"],
       "js": ["dice-content-script.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "*://jobs.lever.co/*", "*://*.lever.co/*",
+        "*://boards.greenhouse.io/*", "*://*.greenhouse.io/*",
+        "*://jobs.ashbyhq.com/*", "*://*.ashbyhq.com/*", "*://*.ashby.com/*",
+        "*://ats.rippling.com/*", "*://*.rippling.com/*"
+      ],
+      "js": ["ats-content-script.js"],
       "run_at": "document_idle"
     },
     {

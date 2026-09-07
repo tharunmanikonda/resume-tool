@@ -65,6 +65,13 @@ async function configureExtension() {
     "https://www.linkedin.com/jobs/*",
     "https://www.dice.com/*",
     "https://dice.com/*",
+    "*://jobs.lever.co/*",
+    "*://boards.greenhouse.io/*",
+    "*://*.greenhouse.io/*",
+    "*://jobs.ashbyhq.com/*",
+    "*://*.ashbyhq.com/*",
+    "*://ats.rippling.com/*",
+    "*://*.rippling.com/*",
   ] });
   await Promise.all(jobsTabs.map((tab) => {
     if (!tab.id) return Promise.resolve();
@@ -115,13 +122,30 @@ function isDiceJobDetailUrl(url) {
 }
 
 function isSupportedJobReaderUrl(url) {
-  return isLinkedInJobsUrl(url) || isDiceUrl(url);
+  return isLinkedInJobsUrl(url) || isDiceUrl(url) || isSupportedAtsJobUrl(url);
 }
 
 function jobReaderScriptForUrl(url) {
   if (isLinkedInJobsUrl(url)) return "content-script.js";
   if (isDiceUrl(url)) return "dice-content-script.js";
+  if (isSupportedAtsJobUrl(url)) return "ats-content-script.js";
   return "";
+}
+
+function isSupportedAtsJobUrl(url) {
+  try {
+    const parsed = new URL(String(url || ""));
+    const host = parsed.hostname.toLowerCase();
+    const path = parsed.pathname.toLowerCase();
+    if (!["http:", "https:"].includes(parsed.protocol)) return false;
+    if (host === "jobs.lever.co" || host.endsWith(".lever.co")) return path.split("/").filter(Boolean).length >= 2;
+    if (host === "boards.greenhouse.io" || host.endsWith(".greenhouse.io")) return path.includes("/jobs/") || parsed.searchParams.has("gh_jid");
+    if (host === "jobs.ashbyhq.com" || host.endsWith(".ashbyhq.com") || host.endsWith(".ashby.com")) return path.split("/").filter(Boolean).length >= 2;
+    if (host === "ats.rippling.com" || host.endsWith(".rippling.com")) return path.includes("/jobs/") || path.includes("/job/");
+    return false;
+  } catch (_) {
+    return false;
+  }
 }
 
 function isKnownAtsUrl(url) {
@@ -477,9 +501,16 @@ async function activeJobTab() {
     "https://www.linkedin.com/jobs/*",
     "https://www.dice.com/job-detail/*",
     "https://dice.com/job-detail/*",
+    "*://jobs.lever.co/*",
+    "*://boards.greenhouse.io/*",
+    "*://*.greenhouse.io/*",
+    "*://jobs.ashbyhq.com/*",
+    "*://*.ashbyhq.com/*",
+    "*://ats.rippling.com/*",
+    "*://*.rippling.com/*",
   ] });
   return tabs
-    .filter((tab) => isLinkedInJobsUrl(tab.url) || isDiceJobDetailUrl(tab.url))
+    .filter((tab) => isLinkedInJobsUrl(tab.url) || isDiceJobDetailUrl(tab.url) || isSupportedAtsJobUrl(tab.url))
     .sort((left, right) => (right.lastAccessed || 0) - (left.lastAccessed || 0))[0] || null;
 }
 
@@ -757,7 +788,8 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     const jobUrl = String(message.url || "");
     const isLinkedIn = /^https:\/\/(www\.)?linkedin\.com\/jobs\/view\/\d+\/?(?:[?#].*)?$/i.test(jobUrl);
     const isDice = /^https:\/\/(www\.)?dice\.com\/job-detail\/[a-z0-9-]+\/?(?:[?#].*)?$/i.test(jobUrl);
-    if (!isLinkedIn && !isDice) {
+    const isAts = isSupportedAtsJobUrl(jobUrl);
+    if (!isLinkedIn && !isDice && !isAts) {
       sendResponse({ success: false, error: "This draft does not have a valid supported job URL." });
       return false;
     }
@@ -771,6 +803,56 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     const searchUrl = String(message.url || "");
     if (!/^https:\/\/(www\.)?linkedin\.com\/search\/results\/(people|content)\/?(?:[?#].*)?$/i.test(searchUrl)) {
       sendResponse({ success: false, error: "This is not a valid LinkedIn people or post search URL." });
+      return false;
+    }
+    chrome.tabs.create({ url: searchUrl, active: true })
+      .then(() => sendResponse({ success: true }))
+      .catch((error) => sendResponse({ success: false, error: error.message }));
+    return true;
+  }
+
+  if (message?.type === "OPEN_LINKEDIN_JOB_SEARCH") {
+    const searchUrl = String(message.url || "");
+    let parsed = null;
+    try {
+      parsed = new URL(searchUrl);
+    } catch (_) {
+      parsed = null;
+    }
+    const allowedTimeRanges = new Set(["r3600", "r14400", "r21600", "r43200", "r64800", "r86400"]);
+    const validLinkedInJobSearch = parsed
+      && parsed.protocol === "https:"
+      && ["linkedin.com", "www.linkedin.com"].includes(parsed.hostname.toLowerCase())
+      && parsed.pathname === "/jobs/search/"
+      && parsed.searchParams.has("keywords")
+      && allowedTimeRanges.has(parsed.searchParams.get("f_TPR"))
+      && parsed.searchParams.get("sortBy") === "DD";
+    if (!validLinkedInJobSearch) {
+      sendResponse({ success: false, error: "This is not a valid recent LinkedIn job search." });
+      return false;
+    }
+    chrome.tabs.create({ url: searchUrl, active: true })
+      .then(() => sendResponse({ success: true }))
+      .catch((error) => sendResponse({ success: false, error: error.message }));
+    return true;
+  }
+
+  if (message?.type === "OPEN_DISCOVERY_SEARCH") {
+    const searchUrl = String(message.url || "");
+    let parsed = null;
+    try {
+      parsed = new URL(searchUrl);
+    } catch (_) {
+      parsed = null;
+    }
+    const validGoogleSearch = parsed
+      && parsed.protocol === "https:"
+      && ["google.com", "www.google.com"].includes(parsed.hostname.toLowerCase())
+      && parsed.pathname === "/search"
+      && parsed.searchParams.has("q")
+      && parsed.searchParams.get("tbs")?.includes("qdr:d");
+    if (!validGoogleSearch) {
+      sendResponse({ success: false, error: "This is not a valid 24-hour Google discovery search." });
       return false;
     }
     chrome.tabs.create({ url: searchUrl, active: true })

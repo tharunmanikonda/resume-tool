@@ -24,6 +24,8 @@ def test_jd_analysis_keeps_analysis_stage_configuration(monkeypatch):
         return dict(ANALYSIS)
 
     monkeypatch.setattr(resume_app, "call_openai_structured_output", fake_call)
+    monkeypatch.setattr(resume_app, "get_cached_ai_stage_result", lambda _cache_key: None)
+    monkeypatch.setattr(resume_app, "save_cached_ai_stage_result", lambda **_kwargs: None)
 
     resume_app.analyze_job_description(
         api_key="test-key",
@@ -35,6 +37,46 @@ def test_jd_analysis_keeps_analysis_stage_configuration(monkeypatch):
     assert captured["request_timeout_seconds"] == resume_app.OPENAI_ANALYSIS_TIMEOUT_SECONDS
     assert captured["reasoning_effort"] == "low"
     assert captured["schema_name"] == "jd_analysis"
+
+
+def test_jd_analysis_cache_hit_skips_openai_call(monkeypatch):
+    def fail_call(**_kwargs):
+        raise AssertionError("JD analysis should be served from cache")
+
+    monkeypatch.setattr(resume_app, "get_cached_ai_stage_result", lambda _cache_key: dict(ANALYSIS))
+    monkeypatch.setattr(resume_app, "call_openai_structured_output", fail_call)
+
+    result = resume_app.analyze_job_description(
+        api_key="test-key",
+        job_description="Build reliable backend systems with Python and FastAPI.",
+    )
+
+    assert result["target_role"] == ANALYSIS["target_role"]
+    assert result["generation_route_key"] == "backend_application"
+
+
+def test_jd_analysis_cache_miss_saves_normalized_result(monkeypatch):
+    saved = {}
+
+    def fake_call(**_kwargs):
+        return dict(ANALYSIS)
+
+    def fake_save(**kwargs):
+        saved.update(kwargs)
+
+    monkeypatch.setattr(resume_app, "get_cached_ai_stage_result", lambda _cache_key: None)
+    monkeypatch.setattr(resume_app, "call_openai_structured_output", fake_call)
+    monkeypatch.setattr(resume_app, "save_cached_ai_stage_result", fake_save)
+
+    result = resume_app.analyze_job_description(
+        api_key="test-key",
+        job_description="Build reliable backend systems with Python and FastAPI.",
+    )
+
+    assert saved["stage"] == "jd_analysis"
+    assert saved["model"] == resume_app.ANALYSIS_MODEL
+    assert saved["prompt_version"] == resume_app.ANALYSIS_PROMPT_VERSION
+    assert saved["result"]["generation_route_key"] == result["generation_route_key"]
 
 
 def test_analysis_schema_uses_one_canonical_generation_route():
@@ -257,6 +299,39 @@ def test_final_synthesis_forwards_dedicated_model_and_medium_reasoning(monkeypat
 
     assert captured["model"] == resume_app.SYNTHESIS_MODEL
     assert captured["reasoning_effort"] == "medium"
+    assert captured["user_prompt"].index("Immutable active experience blueprints") < captured["user_prompt"].index("Raw job description")
+
+
+def test_experience_subset_prompt_places_blueprints_before_analysis(monkeypatch):
+    captured = {}
+    blueprints = active_blueprints()
+
+    def fake_call(**kwargs):
+        captured.update(kwargs)
+        return {
+            "experience": {
+                blueprints[0]["key"]: {
+                    "title": "Software Engineer",
+                    "bullets": ["Built reliable backend systems."],
+                }
+            }
+        }
+
+    monkeypatch.setattr(resume_app, "call_openai_structured_output", fake_call)
+    monkeypatch.setattr(resume_app, "collect_invalid_experience_titles", lambda *_args, **_kwargs: [])
+    monkeypatch.setattr(resume_app, "validate_experience_subset_payload_with_analysis", lambda *_args, **_kwargs: [])
+    monkeypatch.setattr(resume_app, "validate_generated_experience_evidence", lambda *_args, **_kwargs: [])
+
+    resume_app.generate_experience_subset_from_analysis(
+        api_key="test-key",
+        analysis_payload=ANALYSIS,
+        blueprints=blueprints,
+        model=resume_app.RESUME_MODEL,
+        timeout_seconds=resume_app.OPENAI_RESUME_TIMEOUT_SECONDS,
+        preliminary_skills_payload={"updated_skills": []},
+    )
+
+    assert captured["user_prompt"].index("Immutable experience blueprints") < captured["user_prompt"].index("Analysis:")
 
 
 def test_quality_audit_forwards_dedicated_model_and_medium_reasoning(monkeypatch):

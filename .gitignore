@@ -85,6 +85,7 @@ config/session_profile.json
 
 # Local application state
 config/application_tracker.json
+config/outreach_leads.json
 config/resume_tool.db
 config/resume_tool.db-shm
 config/resume_tool.db-wal

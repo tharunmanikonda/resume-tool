@@ -28,8 +28,8 @@ p { line-height: 1.5; }
 .server-state { color: #087f5b; font-size: 11px; font-weight: 800; text-transform: uppercase; }
 .server-state.paused { color: #c2410c; }
 
-.workspace-tabs { display: grid; grid-template-columns: 1fr 1fr auto; border-bottom: 1px solid #ddd; background: #fafafa; }
-.workspace-tabs button { border: 0; border-bottom: 2px solid transparent; border-radius: 0; padding: 10px; background: transparent; font-weight: 750; }
+.workspace-tabs { display: grid; grid-template-columns: 1fr 1fr 1fr auto; border-bottom: 1px solid #ddd; background: #fafafa; }
+.workspace-tabs button { min-width: 0; border: 0; border-bottom: 2px solid transparent; border-radius: 0; padding: 10px 6px; overflow: hidden; background: transparent; font-weight: 750; text-overflow: ellipsis; white-space: nowrap; }
 .workspace-tabs button.active { border-bottom-color: #087f5b; color: #087f5b; background: #fff; }
 .workspace-tabs .workspace-refresh { align-self: center; margin-right: 7px; border: 1px solid #c9c9c9; border-radius: 6px; padding: 5px 8px; background: #fff; font-size: 11px; }
 
@@ -75,6 +75,11 @@ details[open] summary { margin-bottom: 9px; }
 .preflight-block { border-left: 3px solid #c92a2a; background: #fff5f5; color: #8b1e1e; margin: 8px 0; padding: 10px; }
 .preflight-block p { margin: 6px 0; }
 .preflight-block small { display: block; color: #7a2222; line-height: 1.35; }
+.cpt-status { border-left: 3px solid #087f5b; background: #e6fcf5; color: #064e3b; margin: 8px 0; padding: 10px; }
+.cpt-status.review { border-color: #d97706; background: #fff7ed; color: #7c2d12; }
+.cpt-status.red { border-color: #c92a2a; background: #fff5f5; color: #8b1e1e; }
+.cpt-status p { margin: 6px 0; }
+.cpt-status small { display: block; color: inherit; line-height: 1.35; opacity: .85; }
 .button-row, .action-bar { display: flex; flex-wrap: wrap; gap: 7px; }
 
 .view-tabs { display: flex; gap: 4px; margin: 14px 0 0; border-bottom: 1px solid #ddd; }
@@ -149,9 +154,15 @@ details[open] summary { margin-bottom: 9px; }
 .followup-result p { margin: 0; white-space: pre-wrap; }
 .followup-result strong { font-size: 12px; line-height: 1.4; }
 
+.job-search-workspace { display: grid; gap: 14px; padding: 16px 14px 28px; }
 .search-tools { display: grid; gap: 18px; padding: 14px 0; }
+.job-search-workspace .search-tools { padding: 0; }
 .search-intro { display: grid; gap: 4px; }
 .search-intro p { margin: 0; color: #666; font-size: 12px; }
+.time-window-control { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); overflow: hidden; border: 1px solid #c9c9c9; border-radius: 6px; }
+.time-window-control button { min-width: 0; border: 0; border-right: 1px solid #d8d8d8; border-radius: 0; padding: 7px 4px; background: #fff; font-size: 11px; font-weight: 800; }
+.time-window-control button:last-child { border-right: 0; }
+.time-window-control button.active { background: #087f5b; color: #fff; }
 .search-group { display: grid; gap: 7px; }
 .search-group h4 { margin: 0 0 2px; font-size: 12px; text-transform: uppercase; }
 .search-row { display: flex; width: 100%; justify-content: space-between; align-items: center; gap: 12px; padding: 9px 10px; text-align: left; }

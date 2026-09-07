@@ -88,6 +88,21 @@ function emptyContext() {
   return { source: "", external_job_id: "", url: "", company_name: "", role_title: "", location: "", job_description: "" };
 }
 
+function CptStatus({ cpt }) {
+  if (!cpt) return null;
+  const passed = cpt.status === "green";
+  const state = passed ? "passed" : cpt.status === "red" ? "red" : "review";
+  return (
+    <div className={`cpt-status ${state}`}>
+      <strong>{passed ? "CPT check passed" : cpt.status === "red" ? "CPT check not accepting" : "CPT check needs review"}</strong>
+      <p>{cpt.message}</p>
+      {cpt.matched_company_name ? <small>Matched: {cpt.matched_company_name}</small> : null}
+      {cpt.cpt_agreement ? <small>Agreement: {cpt.cpt_agreement}</small> : null}
+      {cpt.warning ? <small>{cpt.warning}</small> : null}
+    </div>
+  );
+}
+
 function emptyAssistantState() {
   return { recipient_name: "", reachout: "", question: "", followups: [] };
 }
@@ -247,6 +262,97 @@ function sourceLabel(value) {
 function linkedinSearchUrl(type, query) {
   return `https://www.linkedin.com/search/results/${type}/?keywords=${encodeURIComponent(query)}&origin=GLOBAL_SEARCH_HEADER`;
 }
+
+function googleRecentSearchUrl(query) {
+  const params = new URLSearchParams({
+    q: query,
+    tbs: "qdr:d,sbd:1",
+    filter: "0",
+  });
+  return `https://www.google.com/search?${params.toString()}`;
+}
+
+function linkedinJobSearchUrl({ keywords, location = "United States", timeRange = "r86400", workType = "", experience = "1,2,3", jobType = "F,I" }) {
+  const params = new URLSearchParams({
+    keywords,
+    location,
+    f_TPR: timeRange,
+    sortBy: "DD",
+  });
+  if (workType) params.set("f_WT", workType);
+  if (experience) params.set("f_E", experience);
+  if (jobType) params.set("f_JT", jobType);
+  return `https://www.linkedin.com/jobs/search/?${params.toString()}`;
+}
+
+const LINKEDIN_JOB_SEARCHES = [
+  {
+    group: "LinkedIn Fresh Jobs",
+    items: [
+      { label: "Software engineer", keywords: '"Software Engineer"', workType: "" },
+      { label: "Backend remote", keywords: '"Backend Engineer"', workType: "2,3" },
+      { label: "Full stack remote", keywords: '"Full Stack Engineer"', workType: "2,3" },
+      { label: "Frontend React", keywords: '"Frontend Engineer" React', workType: "2,3" },
+      { label: "Python backend", keywords: 'Python "Backend Engineer"', workType: "" },
+      { label: "Data engineer", keywords: '"Data Engineer"', workType: "" },
+      { label: "AI engineer", keywords: '"AI Engineer" OR "Machine Learning Engineer"', workType: "" },
+      { label: "New grad", keywords: '"New Grad" "Software Engineer"', workType: "" },
+      { label: "Internships", keywords: '"Software Engineer Intern"', workType: "", experience: "1", jobType: "I" },
+    ],
+  },
+].map((group) => ({
+  ...group,
+  items: group.items.map((item) => ({
+    ...item,
+    url: linkedinJobSearchUrl(item),
+  })),
+}));
+
+const LINKEDIN_TIME_WINDOWS = [
+  { label: "1h", value: "r3600" },
+  { label: "4h", value: "r14400" },
+  { label: "6h", value: "r21600" },
+  { label: "12h", value: "r43200" },
+  { label: "18h", value: "r64800" },
+  { label: "24h", value: "r86400" },
+];
+
+const DISCOVERY_SEARCHES = [
+  {
+    group: "Greenhouse",
+    items: [
+      { label: "Software engineer", query: 'site:boards.greenhouse.io "Software Engineer" "United States"' },
+      { label: "Backend remote", query: 'site:boards.greenhouse.io "Backend Engineer" "Remote"' },
+      { label: "New grad", query: 'site:boards.greenhouse.io "New Grad" "Software Engineer"' },
+    ],
+  },
+  {
+    group: "Ashby",
+    items: [
+      { label: "Software engineer", query: 'site:jobs.ashbyhq.com "Software Engineer" "United States"' },
+      { label: "Backend remote", query: 'site:jobs.ashbyhq.com "Backend Engineer" "Remote"' },
+      { label: "New grad", query: 'site:jobs.ashbyhq.com "New Grad" "Software Engineer"' },
+    ],
+  },
+  {
+    group: "Lever",
+    items: [
+      { label: "Software engineer", query: 'site:jobs.lever.co "Software Engineer" "United States"' },
+      { label: "Backend remote", query: 'site:jobs.lever.co "Backend Engineer" "Remote"' },
+      { label: "New grad", query: 'site:jobs.lever.co "New Grad" "Software Engineer"' },
+    ],
+  },
+  {
+    group: "Rippling",
+    items: [
+      { label: "Software engineer", query: 'site:ats.rippling.com "Software Engineer" "United States"' },
+      { label: "Backend remote", query: 'site:ats.rippling.com "Backend Engineer" "Remote"' },
+    ],
+  },
+].map((group) => ({
+  ...group,
+  items: group.items.map((item) => ({ ...item, url: googleRecentSearchUrl(item.query) })),
+}));
 
 function hiringManagerTitles(roleTitle) {
   const role = String(roleTitle || "").toLowerCase();
@@ -604,6 +710,74 @@ function AutofillWorkspace({
   );
 }
 
+function JobSearchWorkspace({ onLinkedInJobSearch, onDiscoverySearch, linkedInTimeRange, onLinkedInTimeRange }) {
+  const linkedInSearches = useMemo(() => LINKEDIN_JOB_SEARCHES.map((group) => ({
+    ...group,
+    items: group.items.map((item) => ({
+      ...item,
+      url: linkedinJobSearchUrl({ ...item, timeRange: linkedInTimeRange }),
+    })),
+  })), [linkedInTimeRange]);
+  const selectedWindow = LINKEDIN_TIME_WINDOWS.find((item) => item.value === linkedInTimeRange) || LINKEDIN_TIME_WINDOWS[LINKEDIN_TIME_WINDOWS.length - 1];
+
+  return (
+    <section className="job-search-workspace">
+      <div className="autofill-heading">
+        <div>
+          <h2>Job Search</h2>
+          <p>Open fresh job searches without selecting a resume draft.</p>
+        </div>
+      </div>
+
+      <div className="search-tools">
+        <div className="search-intro">
+          <strong>LinkedIn fresh jobs</strong>
+          <p>Classic LinkedIn search with your selected time window and newest-first sort.</p>
+        </div>
+        <div className="time-window-control" role="group" aria-label="LinkedIn posted time">
+          {LINKEDIN_TIME_WINDOWS.map((item) => (
+            <button
+              className={linkedInTimeRange === item.value ? "active" : ""}
+              key={item.value}
+              onClick={() => onLinkedInTimeRange(item.value)}
+              type="button"
+            >
+              {item.label}
+            </button>
+          ))}
+        </div>
+        {linkedInSearches.map((group) => (
+          <section className="search-group" key={group.group}>
+            <h4>{group.group} - {selectedWindow.label}</h4>
+            {group.items.map((item) => (
+              <button className="search-row" key={`${group.group}-${item.keywords}`} onClick={() => onLinkedInJobSearch(item.url)}>
+                <span><strong>{item.label}</strong><small>{item.keywords}</small></span>
+                <b>{selectedWindow.label}</b>
+              </button>
+            ))}
+          </section>
+        ))}
+
+        <div className="search-intro discovery-intro">
+          <strong>Discover ATS jobs</strong>
+          <p>Google searches open ATS boards indexed in the last 24 hours.</p>
+        </div>
+        {DISCOVERY_SEARCHES.map((group) => (
+          <section className="search-group" key={group.group}>
+            <h4>{group.group}</h4>
+            {group.items.map((item) => (
+              <button className="search-row" key={`${group.group}-${item.query}`} onClick={() => onDiscoverySearch(item.url)}>
+                <span><strong>{item.label}</strong><small>{item.query}</small></span>
+                <b>24h</b>
+              </button>
+            ))}
+          </section>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function App() {
   const [server, setServer] = useState(null);
   const [serverUrl, setServerUrl] = useState("http://127.0.0.1:5001");
@@ -625,6 +799,7 @@ function App() {
   const [identityId, setIdentityId] = useState("");
   const [enabledKeys, setEnabledKeys] = useState([]);
   const [tab, setTab] = useState("preview");
+  const [linkedInTimeRange, setLinkedInTimeRange] = useState("r86400");
   const [error, setErrorMessage] = useState("");
   const [errorDraftId, setErrorDraftId] = useState("");
   const [busy, setBusy] = useState("");
@@ -1187,7 +1362,7 @@ function App() {
       if (viewingCurrentRef.current && sourceIdentity(currentContextRef.current || contextForm) === generationIdentity) {
         draftLoadRef.current += 1;
         commitDraft(data.draft);
-        setResolution((current) => ({ ...current, history: data.history, preflight: null, draft: data.draft }));
+        setResolution((current) => ({ ...current, history: data.history, preflight: data.preflight || null, draft: data.draft }));
       }
       setServer((current) => current ? { ...current, queue_paused: data.queue_paused } : current);
       await loadDrafts();
@@ -1466,6 +1641,16 @@ function App() {
     if (!result?.success) setError(result?.error || "Could not open the LinkedIn search.");
   }
 
+  async function openDiscoverySearch(url) {
+    const result = await send({ type: "OPEN_DISCOVERY_SEARCH", url });
+    if (!result?.success) setError(result?.error || "Could not open the discovery search.");
+  }
+
+  async function openLinkedInJobSearch(url) {
+    const result = await send({ type: "OPEN_LINKEDIN_JOB_SEARCH", url });
+    if (!result?.success) setError(result?.error || "Could not open the LinkedIn job search.");
+  }
+
   function hideRecentDraft(draftId) {
     setHiddenDraftIds((current) => {
       const next = [...new Set([...current, draftId])];
@@ -1512,6 +1697,7 @@ function App() {
 
       <nav className="workspace-tabs" aria-label="Extension workspace">
         <button className={workspace === "resume" ? "active" : ""} onClick={() => setWorkspace("resume")}>Resume</button>
+        <button className={workspace === "job-search" ? "active" : ""} onClick={() => setWorkspace("job-search")}>Job Search</button>
         <button className={workspace === "autofill" ? "active" : ""} onClick={() => { setWorkspace("autofill"); refreshAutofillStatus(identityId, false, true); }}>Autofill{autofillStatus?.supported && autofillStatus.totalFields ? ` ${autofillStatus.filledFields}/${autofillStatus.totalFields}` : ""}</button>
         {workspace === "resume" ? <button className="workspace-refresh" disabled={busy === "refresh-context"} onClick={refreshResumeContext}>{busy === "refresh-context" ? "Reading..." : "Refresh"}</button> : null}
       </nav>
@@ -1544,6 +1730,13 @@ function App() {
           onImport={importAutofillProfile}
           onExport={exportAutofillProfile}
           onReset={resetAutofillProfile}
+        />
+      ) : workspace === "job-search" ? (
+        <JobSearchWorkspace
+          onLinkedInJobSearch={openLinkedInJobSearch}
+          onDiscoverySearch={openDiscoverySearch}
+          linkedInTimeRange={linkedInTimeRange}
+          onLinkedInTimeRange={setLinkedInTimeRange}
         />
       ) : (
         <>
@@ -1597,6 +1790,7 @@ function App() {
                   {(preflight.matches || []).slice(0, 3).map((item, index) => <small key={`${item.code}-${index}`}>{item.label}: {item.match}</small>)}
                 </div>
               ) : null}
+              <CptStatus cpt={preflight?.cpt} />
               <button className="primary wide" disabled={!contextComplete || preflightBlocked || busy === "generate" || !server.ai_ready} onClick={generateResume}>{busy === "generate" ? "Starting..." : "Generate Resume"}</button>
               {!server.ai_ready ? <small className="field-error">{server.ai_message}</small> : null}
             </section>

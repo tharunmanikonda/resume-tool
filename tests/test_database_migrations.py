@@ -17,6 +17,7 @@ MIGRATION_COLUMN_NAMES = {
     "audit_base_hash",
     "audit_created_at",
     "audit_applied_at",
+    "job_lead_id",
 }
 
 
@@ -59,7 +60,7 @@ def test_sqlite_legacy_resume_drafts_migration_is_idempotent(tmp_path, monkeypat
                 "SELECT id, resume_revision, pdf_revision, pdf_generated_at, "
                 "resume_versions, active_resume_version, "
                 "audit_status, audit_result, audit_proposal, audit_base_revision, "
-                "audit_base_hash, audit_created_at, audit_applied_at "
+                "audit_base_hash, audit_created_at, audit_applied_at, job_lead_id "
                 "FROM resume_drafts WHERE id = :id"
             ),
             {"id": "legacy-draft"},
@@ -81,6 +82,7 @@ def test_sqlite_legacy_resume_drafts_migration_is_idempotent(tmp_path, monkeypat
             "audit_base_hash",
             "audit_created_at",
             "audit_applied_at",
+            "job_lead_id",
         )
     )
 
@@ -116,6 +118,7 @@ def test_postgresql_addition_definitions_use_dialect_types():
     assert '"audit_proposal" JSON' in compiled
     assert '"audit_base_revision" INTEGER' in compiled
     assert '"audit_base_hash" VARCHAR(80)' in compiled
+    assert '"job_lead_id" VARCHAR(80)' in compiled
     assert all(statement.startswith('ALTER TABLE "resume_drafts"') for statement in statements)
 
 
