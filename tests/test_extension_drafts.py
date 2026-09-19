@@ -68,6 +68,13 @@ def snapshot():
     }
 
 
+def internship_snapshot():
+    return {
+        **snapshot(),
+        "resume_mode": "internship",
+    }
+
+
 def task_rows(draft_id):
     with database.SessionLocal() as db:
         return db.query(ResumeDraftTask).filter(ResumeDraftTask.draft_id == draft_id).order_by(ResumeDraftTask.requested_at.asc()).all()
@@ -136,6 +143,17 @@ def test_drafts_are_isolated_and_restore_by_linkedin_job(tmp_path, monkeypatch):
     assert second["source_key"] == "linkedin:222"
     _, restored = store.resolve(context("111", "Acme"))
     assert restored["id"] == first["id"]
+
+
+def test_draft_persists_internship_resume_mode(tmp_path, monkeypatch):
+    store = store_for_test(tmp_path, monkeypatch)
+    draft = store.create(context(), internship_snapshot(), duplicate_count=0)
+
+    assert draft["resume_mode"] == "internship"
+
+    updated = store.update(draft["id"], {"resume_mode": "professional"})
+
+    assert updated["resume_mode"] == "professional"
 
 
 def test_duplicate_review_creates_no_task_until_continue(tmp_path, monkeypatch):

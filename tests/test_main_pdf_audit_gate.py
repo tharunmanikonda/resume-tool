@@ -31,14 +31,14 @@ def isolated_sessions():
 
 @pytest.fixture
 def blueprints(monkeypatch):
-    items = [copy.deepcopy(item) for item in resume_app.EXPERIENCE_BLUEPRINTS[:2]]
+    items = [copy.deepcopy(item) for item in resume_app.current_experience_blueprints()[:2]]
     for item in items:
         item["bullet_min"] = 2
         item["bullet_max"] = 2
     monkeypatch.setattr(
         resume_app,
         "current_experience_blueprints",
-        lambda: copy.deepcopy(items),
+        lambda *_args, **_kwargs: copy.deepcopy(items),
     )
     return items
 

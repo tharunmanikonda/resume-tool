@@ -819,7 +819,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     } catch (_) {
       parsed = null;
     }
-    const allowedTimeRanges = new Set(["r3600", "r14400", "r21600", "r43200", "r64800", "r86400"]);
+    const allowedTimeRanges = new Set(["r3600", "r14400", "r21600", "r43200", "r64800", "r86400", "r172800"]);
     const validLinkedInJobSearch = parsed
       && parsed.protocol === "https:"
       && ["linkedin.com", "www.linkedin.com"].includes(parsed.hostname.toLowerCase())
@@ -856,6 +856,28 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       return false;
     }
     chrome.tabs.create({ url: searchUrl, active: true })
+      .then(() => sendResponse({ success: true }))
+      .catch((error) => sendResponse({ success: false, error: error.message }));
+    return true;
+  }
+
+  if (message?.type === "OPEN_JOB_SEARCH_RESOURCE") {
+    const resourceUrl = String(message.url || "");
+    let parsed = null;
+    try {
+      parsed = new URL(resourceUrl);
+    } catch (_) {
+      parsed = null;
+    }
+    const allowedResources = new Set([
+      "https://chromewebstore.google.com/detail/froghireai-ai-resume-job/jabnaledogdghdbckajlnbipcdicinom",
+      "https://www.froghire.ai/help/faq",
+    ]);
+    if (!parsed || parsed.protocol !== "https:" || !allowedResources.has(resourceUrl)) {
+      sendResponse({ success: false, error: "This is not a valid job-search resource." });
+      return false;
+    }
+    chrome.tabs.create({ url: resourceUrl, active: true })
       .then(() => sendResponse({ success: true }))
       .catch((error) => sendResponse({ success: false, error: error.message }));
     return true;

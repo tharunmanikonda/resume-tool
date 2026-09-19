@@ -287,17 +287,65 @@ function linkedinJobSearchUrl({ keywords, location = "United States", timeRange 
 
 const LINKEDIN_JOB_SEARCHES = [
   {
-    group: "LinkedIn Fresh Jobs",
+    group: "Core SWE",
     items: [
-      { label: "Software engineer", keywords: '"Software Engineer"', workType: "" },
-      { label: "Backend remote", keywords: '"Backend Engineer"', workType: "2,3" },
-      { label: "Full stack remote", keywords: '"Full Stack Engineer"', workType: "2,3" },
-      { label: "Frontend React", keywords: '"Frontend Engineer" React', workType: "2,3" },
-      { label: "Python backend", keywords: 'Python "Backend Engineer"', workType: "" },
-      { label: "Data engineer", keywords: '"Data Engineer"', workType: "" },
-      { label: "AI engineer", keywords: '"AI Engineer" OR "Machine Learning Engineer"', workType: "" },
-      { label: "New grad", keywords: '"New Grad" "Software Engineer"', workType: "" },
-      { label: "Internships", keywords: '"Software Engineer Intern"', workType: "", experience: "1", jobType: "I" },
+      { label: "Software engineer/developer", keywords: '("Software Engineer" OR "Software Developer" OR "Software Development Engineer")', workType: "" },
+    ],
+  },
+  {
+    group: "Intern / New Grad",
+    items: [
+      { label: "Intern/new grad SWE", keywords: '("Software Engineer Intern" OR "Software Developer Intern" OR "Software Engineering Intern" OR "New Grad Software Engineer" OR "Junior Software Engineer" OR "Associate Software Engineer")', workType: "", experience: "1,2", jobType: "F,I" },
+    ],
+  },
+  {
+    group: "Web / Full Stack",
+    items: [
+      { label: "Full stack/web", keywords: '("Full Stack Engineer" OR "Full Stack Developer" OR "Frontend Engineer" OR "Front End Developer" OR "Backend Engineer" OR "Back End Developer" OR "Web Developer")', workType: "" },
+    ],
+  },
+  {
+    group: "Application / Integration",
+    items: [
+      { label: "Application/integration", keywords: '("Application Developer" OR "Application Engineer" OR "Application Integration Engineer" OR "Integration Engineer" OR "Integration Developer")', workType: "" },
+    ],
+  },
+  {
+    group: "Enterprise Platforms",
+    items: [
+      { label: "Workday / Salesforce / ServiceNow", keywords: '("Workday Engineer" OR "Workday Integration Engineer" OR "Workday Integration Developer" OR "Workday Developer" OR "Salesforce Developer" OR "Salesforce Engineer" OR "ServiceNow Developer" OR "ServiceNow Engineer" OR "ServiceNow Application Developer")', workType: "" },
+    ],
+  },
+  {
+    group: "Platform / DevOps",
+    items: [
+      { label: "Platform / DevOps", keywords: '("DevOps Engineer" OR "Infrastructure Engineer" OR "Systems Engineer" OR "Platform Engineer" OR "Site Reliability Engineer")', workType: "" },
+    ],
+  },
+  {
+    group: "Language-Based",
+    items: [
+      { label: "Java / Python / Programmer", keywords: '("Java Developer" OR "Python Developer" OR "Programmer Analyst" OR "Application Programmer Analyst")', workType: "" },
+    ],
+  },
+  {
+    group: "QA Adjacent",
+    items: [
+      { label: "QA / test engineering", keywords: '("QA Engineer" OR "Software QA Engineer" OR "Software Test Engineer" OR "Automation Tester" OR "Test Engineer")', workType: "" },
+    ],
+  },
+  {
+    group: "Data / Analyst",
+    items: [
+      { label: "Data analyst", keywords: '"Data Analyst" SQL', workType: "" },
+      { label: "Business analyst", keywords: '"Business Analyst" SQL', workType: "" },
+      { label: "BI analyst", keywords: '"BI Analyst" OR "Business Intelligence Analyst"', workType: "" },
+      { label: "Product analyst", keywords: '"Product Analyst" SQL', workType: "" },
+      { label: "Operations analyst", keywords: '"Operations Analyst" SQL', workType: "" },
+      { label: "ERP analyst", keywords: '"ERP Analyst" OR "Business Systems Analyst"', workType: "" },
+      { label: "WMS analyst", keywords: '"WMS Analyst" OR "Warehouse Management Analyst"', workType: "" },
+      { label: "Data analyst intern", keywords: '"Data Analyst Intern" OR "Analytics Intern"', workType: "", experience: "1", jobType: "I" },
+      { label: "New grad analyst", keywords: '"New Grad" ("Data Analyst" OR "Business Analyst")', workType: "" },
     ],
   },
 ].map((group) => ({
@@ -315,7 +363,41 @@ const LINKEDIN_TIME_WINDOWS = [
   { label: "12h", value: "r43200" },
   { label: "18h", value: "r64800" },
   { label: "24h", value: "r86400" },
+  { label: "48h", value: "r172800" },
 ];
+
+const RESUME_MODES = [
+  { value: "professional", label: "Professional" },
+  { value: "internship", label: "Intern / Co-op" },
+];
+
+function normalizeResumeMode(value) {
+  return value === "internship" ? "internship" : "professional";
+}
+
+function isCompleteExperience(item) {
+  return !!(item?.enabled !== false && item.company && item.location && item.title && item.dates);
+}
+
+function locationMentionsIndia(value = "") {
+  return /\b(india|karnataka|bangalore|bengaluru|hyderabad|chennai|pune|mumbai|delhi|gurugram|gurgaon|noida)\b/i.test(String(value || ""));
+}
+
+function locationMentionsUnitedStates(value = "") {
+  const location = String(value || "");
+  return /\b(united states|usa|u\.s\.a\.|u\.s\.|us)\b/i.test(location)
+    || /\b(AL|AK|AZ|AR|CA|CO|CT|DE|FL|GA|HI|IA|ID|IL|IN|KS|KY|LA|MA|MD|ME|MI|MN|MO|MS|MT|NC|ND|NE|NH|NJ|NM|NV|NY|OH|OK|OR|PA|RI|SC|SD|TN|TX|UT|VA|VT|WA|WI|WV|WY)\b/.test(location);
+}
+
+function defaultExperienceKeys(history = [], resumeModeValue = "professional") {
+  let entries = Array.isArray(history) ? history.filter(isCompleteExperience) : [];
+  if (normalizeResumeMode(resumeModeValue) === "internship") {
+    entries = entries
+      .filter((item) => !locationMentionsIndia(item.location) && locationMentionsUnitedStates(item.location))
+      .slice(0, 2);
+  }
+  return entries.map((item) => item.key).filter(Boolean);
+}
 
 const DISCOVERY_SEARCHES = [
   {
@@ -324,6 +406,8 @@ const DISCOVERY_SEARCHES = [
       { label: "Software engineer", query: 'site:boards.greenhouse.io "Software Engineer" "United States"' },
       { label: "Backend remote", query: 'site:boards.greenhouse.io "Backend Engineer" "Remote"' },
       { label: "New grad", query: 'site:boards.greenhouse.io "New Grad" "Software Engineer"' },
+      { label: "Data analyst", query: 'site:boards.greenhouse.io "Data Analyst" "United States"' },
+      { label: "Business systems", query: 'site:boards.greenhouse.io "Business Systems Analyst" "United States"' },
     ],
   },
   {
@@ -332,6 +416,8 @@ const DISCOVERY_SEARCHES = [
       { label: "Software engineer", query: 'site:jobs.ashbyhq.com "Software Engineer" "United States"' },
       { label: "Backend remote", query: 'site:jobs.ashbyhq.com "Backend Engineer" "Remote"' },
       { label: "New grad", query: 'site:jobs.ashbyhq.com "New Grad" "Software Engineer"' },
+      { label: "Data analyst", query: 'site:jobs.ashbyhq.com "Data Analyst" "United States"' },
+      { label: "Business analyst", query: 'site:jobs.ashbyhq.com "Business Analyst" "United States"' },
     ],
   },
   {
@@ -340,6 +426,8 @@ const DISCOVERY_SEARCHES = [
       { label: "Software engineer", query: 'site:jobs.lever.co "Software Engineer" "United States"' },
       { label: "Backend remote", query: 'site:jobs.lever.co "Backend Engineer" "Remote"' },
       { label: "New grad", query: 'site:jobs.lever.co "New Grad" "Software Engineer"' },
+      { label: "Data analyst", query: 'site:jobs.lever.co "Data Analyst" "United States"' },
+      { label: "Operations analyst", query: 'site:jobs.lever.co "Operations Analyst" "United States"' },
     ],
   },
   {
@@ -347,12 +435,36 @@ const DISCOVERY_SEARCHES = [
     items: [
       { label: "Software engineer", query: 'site:ats.rippling.com "Software Engineer" "United States"' },
       { label: "Backend remote", query: 'site:ats.rippling.com "Backend Engineer" "Remote"' },
+      { label: "Data analyst", query: 'site:ats.rippling.com "Data Analyst" "United States"' },
+    ],
+  },
+  {
+    group: "Higher Ed / University",
+    items: [
+      { label: "ERP analyst", query: 'site:higheredjobs.com "ERP Analyst" "United States"' },
+      { label: "Programmer analyst", query: 'site:higheredjobs.com "Programmer Analyst" "United States"' },
+      { label: "Institutional data", query: 'site:higheredjobs.com "Institutional Data Analyst" "United States"' },
+      { label: "Research analyst", query: 'site:higheredjobs.com "Research Analyst" SQL "United States"' },
+      { label: "Business systems", query: 'site:higheredjobs.com "Business Systems Analyst" "United States"' },
     ],
   },
 ].map((group) => ({
   ...group,
   items: group.items.map((item) => ({ ...item, url: googleRecentSearchUrl(item.query) })),
 }));
+
+const JOB_SEARCH_RESOURCES = [
+  {
+    label: "FrogHireAI Chrome extension",
+    description: "Fast H-1B sponsorship visibility check before spending time on an application.",
+    url: "https://chromewebstore.google.com/detail/froghireai-ai-resume-job/jabnaledogdghdbckajlnbipcdicinom",
+  },
+  {
+    label: "FrogHireAI FAQ",
+    description: "Reminder: use sponsorship signals as a filter, then confirm with recruiter or job posting.",
+    url: "https://www.froghire.ai/help/faq",
+  },
+];
 
 function hiringManagerTitles(roleTitle) {
   const role = String(roleTitle || "").toLowerCase();
@@ -710,7 +822,7 @@ function AutofillWorkspace({
   );
 }
 
-function JobSearchWorkspace({ onLinkedInJobSearch, onDiscoverySearch, linkedInTimeRange, onLinkedInTimeRange }) {
+function JobSearchWorkspace({ onLinkedInJobSearch, onDiscoverySearch, onResourceOpen, linkedInTimeRange, onLinkedInTimeRange }) {
   const linkedInSearches = useMemo(() => LINKEDIN_JOB_SEARCHES.map((group) => ({
     ...group,
     items: group.items.map((item) => ({
@@ -773,6 +885,20 @@ function JobSearchWorkspace({ onLinkedInJobSearch, onDiscoverySearch, linkedInTi
             ))}
           </section>
         ))}
+
+        <div className="search-intro discovery-intro">
+          <strong>Sponsorship visibility</strong>
+          <p>Use this as a quick H-1B sponsorship filter, then confirm role-level sponsorship before applying.</p>
+        </div>
+        <section className="search-group">
+          <h4>FrogHireAI</h4>
+          {JOB_SEARCH_RESOURCES.map((item) => (
+            <button className="search-row" key={item.url} onClick={() => onResourceOpen(item.url)}>
+              <span><strong>{item.label}</strong><small>{item.description}</small></span>
+              <b>Open</b>
+            </button>
+          ))}
+        </section>
       </div>
     </section>
   );
@@ -797,6 +923,7 @@ function App() {
   const generatingContextRef = useRef("");
   const panelInstanceIdRef = useRef(`${Date.now()}-${Math.random().toString(36).slice(2)}`);
   const [identityId, setIdentityId] = useState("");
+  const [resumeMode, setResumeMode] = useState("professional");
   const [enabledKeys, setEnabledKeys] = useState([]);
   const [tab, setTab] = useState("preview");
   const [linkedInTimeRange, setLinkedInTimeRange] = useState("r86400");
@@ -844,8 +971,8 @@ function App() {
       const data = await api("/api/extension/status");
       setServer(data);
       setError("");
-      const completeKeys = (data.experience_history || []).filter((item) => item.enabled !== false && item.company && item.location && item.title && item.dates).map((item) => item.key);
-      setEnabledKeys((current) => current.length ? current : completeKeys);
+      const completeKeys = defaultExperienceKeys(data.experience_history || [], resumeMode);
+      setEnabledKeys((current) => current.length ? current.filter((key) => completeKeys.includes(key)) : completeKeys);
       const preferredIdentity = data.default_identity_id || data.identities?.[0]?.id || "";
       setIdentityId((current) => data.identities?.some((item) => item.id === current) ? current : preferredIdentity);
       return data;
@@ -1066,6 +1193,13 @@ function App() {
   function commitDraft(nextDraft) {
     selectedDraftIdRef.current = nextDraft?.id || "";
     draftRef.current = nextDraft;
+    if (nextDraft?.resume_mode) {
+      const nextMode = normalizeResumeMode(nextDraft.resume_mode);
+      setResumeMode(nextMode);
+      const defaultKeys = defaultExperienceKeys(nextDraft.experience_history_snapshot || [], nextMode);
+      const selectedKeys = defaultKeys.filter((key) => (nextDraft.enabled_experience_keys || []).includes(key));
+      setEnabledKeys(selectedKeys.length ? selectedKeys : defaultKeys);
+    }
     setDraft(nextDraft);
   }
 
@@ -1089,7 +1223,6 @@ function App() {
       const data = await api(`/api/extension/drafts/${encodeURIComponent(draftId)}`);
       if (requestId !== draftLoadRef.current || selectedDraftIdRef.current !== draftId) return null;
       commitDraft(data.draft);
-      setEnabledKeys(data.draft.enabled_experience_keys || []);
       setIdentityId(data.draft.identity_id || "");
       return data.draft;
     } catch (loadError) {
@@ -1316,7 +1449,8 @@ function App() {
   }, [quickDirty, quickEdits, quickDraftId, quickHydratedDraftId, draft?.id, draft?.status]);
 
   const profileHistory = draft?.experience_history_snapshot || server?.experience_history || [];
-  const visibleExperiences = profileHistory.filter((item) => item.enabled !== false && item.company && item.location && item.title && item.dates);
+  const visibleExperienceKeys = defaultExperienceKeys(profileHistory, resumeMode);
+  const visibleExperiences = profileHistory.filter((item) => visibleExperienceKeys.includes(item.key));
   const preflight = viewingCurrent ? resolution.preflight : null;
   const preflightBlocked = Boolean(preflight?.blocked);
   const contextComplete = contextForm.company_name.trim() && contextForm.role_title.trim() && contextForm.job_description.trim().length >= 120;
@@ -1358,7 +1492,7 @@ function App() {
     setBusy("generate");
     setError("");
     try {
-      const data = await api("/api/extension/drafts", { method: "POST", body: { context: contextForm, identity_id: identityId, enabled_experience_keys: enabledKeys } });
+      const data = await api("/api/extension/drafts", { method: "POST", body: { context: contextForm, identity_id: identityId, resume_mode: resumeMode, enabled_experience_keys: enabledKeys } });
       if (viewingCurrentRef.current && sourceIdentity(currentContextRef.current || contextForm) === generationIdentity) {
         draftLoadRef.current += 1;
         commitDraft(data.draft);
@@ -1437,7 +1571,7 @@ function App() {
       requestStarted = true;
       const data = await api(`/api/extension/drafts/${encodeURIComponent(draftId)}/regenerate`, {
         method: "POST",
-        body: { context: contextForm },
+        body: { context: contextForm, resume_mode: resumeMode },
       });
       commitDraft(data.draft);
       setQuickHydratedDraftId("");
@@ -1479,12 +1613,14 @@ function App() {
   }
 
   async function toggleExperience(key) {
+    if (!visibleExperienceKeys.includes(key)) return;
     const next = enabledKeys.includes(key) ? enabledKeys.filter((item) => item !== key) : [...enabledKeys, key];
     if (!next.length) return;
-    setEnabledKeys(next);
+    const sanitizedNext = visibleExperienceKeys.filter((item) => next.includes(item));
+    setEnabledKeys(sanitizedNext);
     if (!draft || draft.locked || ACTIVE_STATUSES.has(draft.status)) return;
     try {
-      const data = await api(`/api/extension/drafts/${draft.id}`, { method: "PATCH", body: { enabled_experience_keys: next } });
+      const data = await api(`/api/extension/drafts/${draft.id}`, { method: "PATCH", body: { enabled_experience_keys: sanitizedNext } });
       commitDraft(data.draft);
       loadDrafts();
       broadcastDraftsChanged("experience");
@@ -1504,6 +1640,23 @@ function App() {
       broadcastDraftsChanged("identity");
     } catch (identityError) {
       setError(identityError.message);
+    }
+  }
+
+  async function changeResumeMode(nextModeValue) {
+    const nextMode = normalizeResumeMode(nextModeValue);
+    setResumeMode(nextMode);
+    const nextEnabledKeys = defaultExperienceKeys(profileHistory, nextMode);
+    setEnabledKeys(nextEnabledKeys);
+    if (!draft || draft.locked || ACTIVE_STATUSES.has(draft.status)) return;
+    try {
+      const data = await api(`/api/extension/drafts/${draft.id}`, { method: "PATCH", body: { resume_mode: nextMode, enabled_experience_keys: nextEnabledKeys } });
+      commitDraft(data.draft);
+      loadDrafts();
+      broadcastDraftsChanged("resume-mode");
+    } catch (modeError) {
+      setResumeMode(normalizeResumeMode(draft.resume_mode));
+      setError(modeError.message);
     }
   }
 
@@ -1651,6 +1804,11 @@ function App() {
     if (!result?.success) setError(result?.error || "Could not open the LinkedIn job search.");
   }
 
+  async function openJobSearchResource(url) {
+    const result = await send({ type: "OPEN_JOB_SEARCH_RESOURCE", url });
+    if (!result?.success) setError(result?.error || "Could not open the job-search resource.");
+  }
+
   function hideRecentDraft(draftId) {
     setHiddenDraftIds((current) => {
       const next = [...new Set([...current, draftId])];
@@ -1735,6 +1893,7 @@ function App() {
         <JobSearchWorkspace
           onLinkedInJobSearch={openLinkedInJobSearch}
           onDiscoverySearch={openDiscoverySearch}
+          onResourceOpen={openJobSearchResource}
           linkedInTimeRange={linkedInTimeRange}
           onLinkedInTimeRange={setLinkedInTimeRange}
         />
@@ -1781,6 +1940,7 @@ function App() {
             <section className="setup-band">
               <div className="field-row">
                 <label>Contact identity<select value={identityId} onChange={(event) => setIdentityId(event.target.value)}>{(server.identities || []).map((item) => <option key={item.id} value={item.id}>{item.label}</option>)}</select></label>
+                <label>Resume mode<select value={resumeMode} onChange={(event) => changeResumeMode(event.target.value)}>{RESUME_MODES.map((mode) => <option key={mode.value} value={mode.value}>{mode.label}</option>)}</select></label>
               </div>
               <div className="experience-pills">{visibleExperiences.map((item) => <button key={item.key} className={enabledKeys.includes(item.key) ? "active" : ""} onClick={() => toggleExperience(item.key)}>{item.company}</button>)}</div>
               {preflightBlocked ? (
@@ -1799,7 +1959,7 @@ function App() {
           {draft ? (
             <section className="draft-workspace">
               <div className="draft-status-row"><strong>{STATUS_LABELS[draft.status] || draft.status}</strong><span>{draft.stage?.replaceAll("_", " ")}</span></div>
-              {draft.source_changed && viewingCurrent ? <div className="warning-band">{sourceLabel(draft)} changed this job description. Your current resume was preserved.<button disabled={!canRegenerateDraft(draft, busy)} onClick={() => window.confirm("Replace this draft using the latest job description?") && runDraftAction("regenerate", { context: contextForm })}>Regenerate</button></div> : null}
+              {draft.source_changed && viewingCurrent ? <div className="warning-band">{sourceLabel(draft)} changed this job description. Your current resume was preserved.<button disabled={!canRegenerateDraft(draft, busy)} onClick={() => window.confirm("Replace this draft using the latest job description?") && runDraftAction("regenerate", { context: contextForm, resume_mode: resumeMode })}>Regenerate</button></div> : null}
               {draft.status === "duplicate_review" ? (
                 <div className="decision-band"><strong>Previous applications found</strong><p>Generation has not called the AI yet. Choose whether to continue.</p><div className="button-row"><button className="primary" onClick={() => runDraftAction("duplicate-decision", { decision: "continue" })}>Continue</button><button onClick={() => runDraftAction("duplicate-decision", { decision: "skip" })}>Skip</button></div></div>
               ) : null}
@@ -1808,6 +1968,7 @@ function App() {
 
               <div className="draft-settings">
                 <select value={identityId} disabled={draft.locked || ACTIVE_STATUSES.has(draft.status)} onChange={(event) => changeIdentity(event.target.value)}>{(server.identities || []).map((item) => <option key={item.id} value={item.id}>{item.label}</option>)}</select>
+                <select value={resumeMode} disabled={draft.locked || ACTIVE_STATUSES.has(draft.status)} onChange={(event) => changeResumeMode(event.target.value)}>{RESUME_MODES.map((mode) => <option key={mode.value} value={mode.value}>{mode.label}</option>)}</select>
                 <div className="experience-pills">{visibleExperiences.map((item) => <button key={item.key} disabled={draft.locked || ACTIVE_STATUSES.has(draft.status)} className={enabledKeys.includes(item.key) ? "active" : ""} onClick={() => toggleExperience(item.key)}>{item.company}</button>)}</div>
               </div>
 

@@ -18,6 +18,7 @@ MIGRATION_COLUMN_NAMES = {
     "audit_created_at",
     "audit_applied_at",
     "job_lead_id",
+    "resume_mode",
 }
 
 
@@ -58,7 +59,7 @@ def test_sqlite_legacy_resume_drafts_migration_is_idempotent(tmp_path, monkeypat
         migrated_row = connection.execute(
             text(
                 "SELECT id, resume_revision, pdf_revision, pdf_generated_at, "
-                "resume_versions, active_resume_version, "
+                "resume_versions, active_resume_version, resume_mode, "
                 "audit_status, audit_result, audit_proposal, audit_base_revision, "
                 "audit_base_hash, audit_created_at, audit_applied_at, job_lead_id "
                 "FROM resume_drafts WHERE id = :id"
@@ -70,6 +71,7 @@ def test_sqlite_legacy_resume_drafts_migration_is_idempotent(tmp_path, monkeypat
     assert migrated_row["resume_revision"] == 1
     assert migrated_row["resume_versions"] is None
     assert migrated_row["active_resume_version"] is None
+    assert migrated_row["resume_mode"] == "professional"
     assert migrated_row["pdf_revision"] == 1
     assert migrated_row["pdf_generated_at"] == "2026-07-20 12:34:56+00:00"
     assert migrated_row["audit_status"] == "not_started"
@@ -111,6 +113,7 @@ def test_postgresql_addition_definitions_use_dialect_types():
     assert '"resume_revision" INTEGER DEFAULT 1 NOT NULL' in compiled
     assert '"resume_versions" JSON' in compiled
     assert '"active_resume_version" VARCHAR(40)' in compiled
+    assert '"resume_mode" VARCHAR(40) DEFAULT \'professional\' NOT NULL' in compiled
     assert '"pdf_revision" INTEGER' in compiled
     assert compiled.count("TIMESTAMP WITH TIME ZONE") == 3
     assert '"audit_status" VARCHAR(40) DEFAULT \'not_started\' NOT NULL' in compiled

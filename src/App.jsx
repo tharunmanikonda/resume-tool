@@ -10,6 +10,15 @@ const emptyProfile = {
 
 const experienceKeys = ["mckinsey", "uber", "kpmg", "trigent"];
 
+const resumeModes = [
+  { value: "professional", label: "Professional" },
+  { value: "internship", label: "Intern / Co-op" },
+];
+
+function normalizeResumeMode(value) {
+  return value === "internship" ? "internship" : "professional";
+}
+
 const outreachStatuses = [
   "Researching",
   "Ready to contact",
@@ -610,15 +619,31 @@ function isExperienceHistoryEnabled(item) {
   return !!(item?.enabled !== false && isExperienceHistoryComplete(item));
 }
 
-function allEnabledExperienceKeys(history = []) {
-  return normalizeInlineExperienceHistory(history)
-    .filter((item) => isExperienceHistoryEnabled(item))
+function locationMentionsIndia(value = "") {
+  return /\b(india|karnataka|bangalore|bengaluru|hyderabad|chennai|pune|mumbai|delhi|gurugram|gurgaon|noida)\b/i.test(String(value || ""));
+}
+
+function locationMentionsUnitedStates(value = "") {
+  const location = String(value || "");
+  return /\b(united states|usa|u\.s\.a\.|u\.s\.|us)\b/i.test(location)
+    || /\b(AL|AK|AZ|AR|CA|CO|CT|DE|FL|GA|HI|IA|ID|IL|IN|KS|KY|LA|MA|MD|ME|MI|MN|MO|MS|MT|NC|ND|NE|NH|NJ|NM|NV|NY|OH|OK|OR|PA|RI|SC|SD|TN|TX|UT|VA|VT|WA|WI|WV|WY)\b/.test(location);
+}
+
+function allEnabledExperienceKeys(history = [], resumeModeValue = "professional") {
+  let entries = normalizeInlineExperienceHistory(history)
+    .filter((item) => isExperienceHistoryEnabled(item));
+  if (normalizeResumeMode(resumeModeValue) === "internship") {
+    entries = entries
+      .filter((item) => !locationMentionsIndia(item.location) && locationMentionsUnitedStates(item.location))
+      .slice(0, 2);
+  }
+  return entries
     .map((item) => item.key)
     .filter(Boolean);
 }
 
-function sanitizeEnabledExperienceKeys(history = [], selectedKeys = []) {
-  const orderedEnabledKeys = allEnabledExperienceKeys(history);
+function sanitizeEnabledExperienceKeys(history = [], selectedKeys = [], resumeModeValue = "professional") {
+  const orderedEnabledKeys = allEnabledExperienceKeys(history, resumeModeValue);
   if (!orderedEnabledKeys.length) return [];
 
   const selectedSet = new Set((selectedKeys || []).filter(Boolean));
@@ -1309,6 +1334,7 @@ export default function App() {
   const [pdfStatus, setPdfStatus] = useState({ ready: false, message: "Checking..." });
   const [aiStatus, setAiStatus] = useState({ ready: false, message: "Checking...", model: "gpt-5-mini", memory_limit: 2 });
   const [identity, setIdentity] = useState("");
+  const [resumeMode, setResumeMode] = useState("professional");
   const [contact, setContact] = useState({ location: "", phone: "", email: "" });
   const [editableExperienceHistory, setEditableExperienceHistory] = useState([]);
   const [enabledExperienceKeys, setEnabledExperienceKeys] = useState([]);
@@ -1499,13 +1525,14 @@ export default function App() {
       setGeneratedContent(activeContent);
       setCompanyName(draft.company_name || "");
       setIdentity(draft.identity_id || "");
+      setResumeMode(normalizeResumeMode(draft.resume_mode));
       setContact({
         location: draft.contact_snapshot?.location || "",
         phone: draft.contact_snapshot?.phone || "",
         email: draft.contact_snapshot?.email || "",
       });
       setEditableExperienceHistory(history);
-      setEnabledExperienceKeys(draft.enabled_experience_keys || allEnabledExperienceKeys(history));
+      setEnabledExperienceKeys(draft.enabled_experience_keys || allEnabledExperienceKeys(history, normalizeResumeMode(draft.resume_mode)));
       setAudit(nextAudit);
       setResumeVersions(nextVersions.versions);
       setActiveResumeVersion(nextVersions.active);
@@ -1543,6 +1570,7 @@ export default function App() {
       content: activeContent,
       company: draft.company_name || "",
       identity: draft.identity_id || "",
+      resume_mode: normalizeResumeMode(draft.resume_mode),
       enabled: draft.enabled_experience_keys || [],
       history,
     });
@@ -1583,7 +1611,7 @@ export default function App() {
         setProfile(profileData);
         const history = normalizeExperienceHistory(profileData.experience_history || []);
         setEditableExperienceHistory(history);
-        setEnabledExperienceKeys(allEnabledExperienceKeys(history));
+        setEnabledExperienceKeys(allEnabledExperienceKeys(history, resumeMode));
         setProfileDraft({
           ...profileData,
           contact: { ...(profileData.contact || emptyProfile.contact) },
@@ -1674,6 +1702,7 @@ export default function App() {
         identity,
         experience_history_override: draftExperienceHistory,
         enabled_experience_keys: sanitizedEnabledExperienceKeys,
+        resume_mode: resumeMode,
       }),
     })
       .then((data) => {
@@ -1704,7 +1733,7 @@ export default function App() {
     }, 250);
 
     return () => window.clearTimeout(timeoutId);
-  }, [generatedContent, contact, identity, profile, editableExperienceHistory, enabledExperienceKeys]);
+  }, [generatedContent, contact, identity, profile, editableExperienceHistory, enabledExperienceKeys, resumeMode]);
 
   useEffect(() => {
     if (!generatedContent.trim()) return;
@@ -1736,6 +1765,7 @@ export default function App() {
       content: generatedContent,
       company: companyName,
       identity,
+      resume_mode: resumeMode,
       enabled: sanitizedEnabledExperienceKeys,
       history: editableExperienceHistory,
     });
@@ -1750,6 +1780,7 @@ export default function App() {
           resume_content: generatedContent,
           company_name: companyName,
           identity_id: identity,
+          resume_mode: resumeMode,
           enabled_experience_keys: sanitizedEnabledExperienceKeys,
           experience_history: editableExperienceHistory,
         }),
@@ -1768,7 +1799,7 @@ export default function App() {
         });
     }, 800);
     return () => window.clearTimeout(timer);
-  }, [extensionDraftId, extensionDraftLocked, generatedContent, companyName, identity, enabledExperienceKeys, editableExperienceHistory, generatingAi]);
+  }, [extensionDraftId, extensionDraftLocked, generatedContent, companyName, identity, resumeMode, enabledExperienceKeys, editableExperienceHistory, generatingAi]);
 
   useEffect(() => {
     if (pdfState.mode !== "polling" || !pdfState.statusPath) return undefined;
@@ -1817,12 +1848,13 @@ export default function App() {
   const reviewBlocksPdf = unresolvedAuditStatuses.has(audit.status);
   const [auditStatusLabel, auditStatusMessage] = auditStatusCopy(audit);
   const orderedDraftExperience = normalizeInlineExperienceHistory(editableExperienceHistory);
-  const selectableDraftExperience = orderedDraftExperience.filter((item) => isExperienceHistoryComplete(item));
-  const sanitizedEnabledExperienceKeys = sanitizeEnabledExperienceKeys(orderedDraftExperience, enabledExperienceKeys);
+  const selectableExperienceKeys = allEnabledExperienceKeys(orderedDraftExperience, resumeMode);
+  const selectableDraftExperience = orderedDraftExperience.filter((item) => selectableExperienceKeys.includes(item.key));
+  const sanitizedEnabledExperienceKeys = sanitizeEnabledExperienceKeys(orderedDraftExperience, enabledExperienceKeys, resumeMode);
   function effectiveEnabledExperienceKeys(selectedKeys = enabledExperienceKeys) {
-    const draftKeys = sanitizeEnabledExperienceKeys(editableExperienceHistory, selectedKeys);
+    const draftKeys = sanitizeEnabledExperienceKeys(editableExperienceHistory, selectedKeys, resumeMode);
     if (draftKeys.length) return draftKeys;
-    return sanitizeEnabledExperienceKeys(profile?.experience_history || [], selectedKeys);
+    return sanitizeEnabledExperienceKeys(profile?.experience_history || [], selectedKeys, resumeMode);
   }
   const visibleDraftExperience = selectableDraftExperience.filter((item) => sanitizedEnabledExperienceKeys.includes(item.key));
   const reviewGroups = Array.isArray(audit.result?.review_groups) ? audit.result.review_groups : [];
@@ -1894,12 +1926,12 @@ export default function App() {
   }, [outreachData.leads, outreachFilters]);
 
   useEffect(() => {
-    const nextKeys = sanitizeEnabledExperienceKeys(editableExperienceHistory, enabledExperienceKeys);
+    const nextKeys = sanitizeEnabledExperienceKeys(editableExperienceHistory, enabledExperienceKeys, resumeMode);
     if (nextKeys.length === enabledExperienceKeys.length && nextKeys.every((key, index) => key === enabledExperienceKeys[index])) {
       return;
     }
     setEnabledExperienceKeys(nextKeys);
-  }, [editableExperienceHistory, enabledExperienceKeys]);
+  }, [editableExperienceHistory, enabledExperienceKeys, resumeMode]);
 
   function openModal(name) {
     if (name === "settings") {
@@ -1959,7 +1991,7 @@ export default function App() {
     setAiStage("");
     setResumeJobContext(null);
     invalidatePdfState();
-    setEnabledExperienceKeys(allEnabledExperienceKeys(editableExperienceHistory));
+    setEnabledExperienceKeys(allEnabledExperienceKeys(editableExperienceHistory, resumeMode));
     if (clearJd) setComposerInput("");
 
     if (sessionId) {
@@ -1968,6 +2000,30 @@ export default function App() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ session_id: sessionId }),
       }).catch(() => {});
+    }
+  }
+
+  function changeResumeMode(nextValue) {
+    const nextMode = normalizeResumeMode(nextValue);
+    if (nextMode === resumeMode) return;
+    setResumeMode(nextMode);
+    setEnabledExperienceKeys(allEnabledExperienceKeys(editableExperienceHistory, nextMode));
+    if (!generatedContent.trim()) return;
+    invalidatePdfState();
+    if (extensionDraftId && !extensionDraftLocked) {
+      setExtensionDraftSaveState("Saving draft...");
+      fetchJson(`/api/extension/drafts/${encodeURIComponent(extensionDraftId)}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ resume_mode: nextMode }),
+      })
+        .then((data) => {
+          if (data.draft) {
+            hydrateExtensionEditorData({ draft: data.draft, session_id: aiSessionId }, { announce: false });
+          }
+          setExtensionDraftSaveState("Draft saved");
+        })
+        .catch((error) => setExtensionDraftSaveState(error.message || "Draft save failed"));
     }
   }
 
@@ -2015,6 +2071,7 @@ export default function App() {
           identity,
           experience_history_override: editableExperienceHistory,
           enabled_experience_keys: sanitizedEnabledExperienceKeys,
+          resume_mode: resumeMode,
           resume_snapshot_override: preview,
         }),
       });
@@ -2350,7 +2407,7 @@ export default function App() {
     const skillsData = await fetchJson("/api/ai/generate-skills", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ session_id: sessionId, enabled_experience_keys: activeEnabledKeys }),
+      body: JSON.stringify({ session_id: sessionId, enabled_experience_keys: activeEnabledKeys, resume_mode: resumeMode }),
     });
     const sessionAfterSkills = skillsData.session_id || sessionId;
     setAiSessionId(sessionAfterSkills);
@@ -2360,12 +2417,12 @@ export default function App() {
       fetchJson("/api/ai/generate-experience-recent", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ session_id: sessionAfterSkills, enabled_experience_keys: activeEnabledKeys }),
+        body: JSON.stringify({ session_id: sessionAfterSkills, enabled_experience_keys: activeEnabledKeys, resume_mode: resumeMode }),
       }),
       fetchJson("/api/ai/generate-experience-older", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ session_id: sessionAfterSkills, enabled_experience_keys: activeEnabledKeys }),
+        body: JSON.stringify({ session_id: sessionAfterSkills, enabled_experience_keys: activeEnabledKeys, resume_mode: resumeMode }),
       }),
     ]);
 
@@ -2373,7 +2430,7 @@ export default function App() {
     const synthesisData = await fetchJson("/api/ai/final-synthesis", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ session_id: sessionAfterSkills, enabled_experience_keys: activeEnabledKeys }),
+      body: JSON.stringify({ session_id: sessionAfterSkills, enabled_experience_keys: activeEnabledKeys, resume_mode: resumeMode }),
     });
     const synthesizedSessionId = synthesisData.session_id || sessionAfterSkills;
     setAiSessionId(synthesizedSessionId);
@@ -2395,6 +2452,7 @@ export default function App() {
         body: JSON.stringify({
           session_id: synthesizedSessionId,
           enabled_experience_keys: activeEnabledKeys,
+          resume_mode: resumeMode,
           advertised_job_title:
             advertisedJobTitle || resumeJobContext?.title || latestAnalysis?.target_role || "",
         }),
@@ -2470,10 +2528,10 @@ export default function App() {
       }
       setCompanyName("");
       if (!resumeJobContext?.id) setResumeJobContext(null);
-      setEnabledExperienceKeys(allEnabledExperienceKeys(editableExperienceHistory));
+      setEnabledExperienceKeys(allEnabledExperienceKeys(editableExperienceHistory, resumeMode));
     }
     const activeEnabledKeys = isNewJd
-      ? effectiveEnabledExperienceKeys(allEnabledExperienceKeys(editableExperienceHistory))
+      ? effectiveEnabledExperienceKeys(allEnabledExperienceKeys(editableExperienceHistory, resumeMode))
       : effectiveEnabledExperienceKeys(enabledExperienceKeys);
     if (!activeEnabledKeys.length) {
       setGeneratingAi(false);
@@ -2495,6 +2553,7 @@ export default function App() {
           session_id: aiSessionId,
           reset_memory: isNewJd,
           enabled_experience_keys: activeEnabledKeys,
+          resume_mode: resumeMode,
         }),
       });
 
@@ -2646,6 +2705,7 @@ export default function App() {
             resume_content: generatedContent,
             company_name: companyName,
             identity_id: identity,
+            resume_mode: resumeMode,
             enabled_experience_keys: sanitizedEnabledExperienceKeys,
             experience_history: latestHistory,
           }),
@@ -2654,6 +2714,7 @@ export default function App() {
           content: generatedContent,
           company: companyName,
           identity,
+          resume_mode: resumeMode,
           enabled: sanitizedEnabledExperienceKeys,
           history: latestHistory,
         });
@@ -2671,6 +2732,7 @@ export default function App() {
             session_id: aiSessionId,
             enabled_experience_keys: sanitizedEnabledExperienceKeys,
             current_resume_content: generatedContent,
+            resume_mode: resumeMode,
           }),
         });
       }
@@ -2743,7 +2805,7 @@ export default function App() {
         const queued = await fetchJson(`/api/extension/drafts/${encodeURIComponent(extensionDraftId)}/regenerate`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({}),
+          body: JSON.stringify({ resume_mode: resumeMode }),
         });
         const queuedDraft = queued.draft || {};
         if (queuedDraft.id && queuedDraft.id !== extensionDraftId) {
@@ -2814,6 +2876,7 @@ export default function App() {
             resume_content: generatedContent,
             company_name: companyName,
             identity_id: identity,
+            resume_mode: resumeMode,
             enabled_experience_keys: sanitizedEnabledExperienceKeys,
             experience_history: latestHistory,
           }),
@@ -2854,6 +2917,7 @@ export default function App() {
           identity,
           experience_history_override: latestHistory,
           enabled_experience_keys: sanitizedEnabledExperienceKeys,
+          resume_mode: resumeMode,
           resume_override: latestPreview,
         }),
       });
@@ -2936,7 +3000,7 @@ export default function App() {
         setProfile(profileData);
         const history = normalizeExperienceHistory(profileData.experience_history || []);
         setEditableExperienceHistory(history);
-        setEnabledExperienceKeys(allEnabledExperienceKeys(history));
+        setEnabledExperienceKeys(allEnabledExperienceKeys(history, resumeMode));
         const selected = normalizeIdentityProfiles(settings.identities || []).find((item) => item.id === identity);
         setContact(selected ? {
           location: selected.location || "",
@@ -3001,7 +3065,7 @@ export default function App() {
   function toggleExperienceKey(key) {
     keepCurrentResumeAfterUserEdit();
     setEnabledExperienceKeys((current) => {
-      const allowedKeys = allEnabledExperienceKeys(editableExperienceHistory);
+      const allowedKeys = allEnabledExperienceKeys(editableExperienceHistory, resumeMode);
       if (!allowedKeys.includes(key)) {
         return current;
       }
@@ -3328,13 +3392,24 @@ export default function App() {
                 placeholder={showGeneratedArea ? "Ask for changes for this JD only" : "Paste the full job description here"}
               />
               {!showGeneratedArea ? (
-                <input
-                  className="composer-company-input"
-                  value={companyName}
-                  disabled={extensionDraftLocked || generatingAi}
-                  onChange={(e) => setCompanyName(e.target.value)}
-                  placeholder="Company name for CPT check"
-                />
+                <div className="composer-inline-controls">
+                  <input
+                    className="composer-company-input"
+                    value={companyName}
+                    disabled={extensionDraftLocked || generatingAi}
+                    onChange={(e) => setCompanyName(e.target.value)}
+                    placeholder="Company name for CPT check"
+                  />
+                  <select
+                    className="resume-mode-select"
+                    value={resumeMode}
+                    disabled={extensionDraftLocked || generatingAi}
+                    onChange={(e) => changeResumeMode(e.target.value)}
+                    aria-label="Resume mode"
+                  >
+                    {resumeModes.map((mode) => <option key={mode.value} value={mode.value}>{mode.label}</option>)}
+                  </select>
+                </div>
               ) : null}
               <div className="composer-toolbar">
                 <div className="composer-toolbar-left">
@@ -3393,6 +3468,15 @@ export default function App() {
                   onChange={(e) => updateCompanyName(e.target.value)}
                   placeholder="Company name (required)"
                 />
+                <select
+                  className="resume-mode-select compact"
+                  value={resumeMode}
+                  disabled={extensionDraftLocked || generatingAi || !viewingEditableResume}
+                  onChange={(e) => changeResumeMode(e.target.value)}
+                  aria-label="Resume mode"
+                >
+                  {resumeModes.map((mode) => <option key={mode.value} value={mode.value}>{mode.label}</option>)}
+                </select>
                 {generatedContent.trim() ? (
                   <button
                     className="secondary-button compact-button"

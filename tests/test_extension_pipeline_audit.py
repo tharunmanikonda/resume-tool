@@ -27,8 +27,8 @@ def queued_task(store):
         {
             "key": blueprint["key"],
             "company": blueprint["company"],
-            "location": blueprint["location"],
-            "dates": blueprint["dates"],
+            "location": blueprint["location"] or "CA, USA",
+            "dates": blueprint["dates"] or "January 2024 - Present",
             "title": "Software Engineer",
             "enabled": True,
         }
@@ -277,59 +277,35 @@ def test_audit_failure_preserves_ready_resume(tmp_path, monkeypatch):
     assert "audit unavailable" in completed["audit_result"]["error"]
 
 
-def test_duplicate_review_gate_blocks_quality_audit_stage(tmp_path, monkeypatch):
+def test_duplicate_review_does_not_block_quality_audit_stage(tmp_path, monkeypatch):
     store = pipeline_store(tmp_path, monkeypatch)
     draft, task = queued_task(store)
     calls = []
     install_pipeline_mocks(monkeypatch, calls)
-    duplicate_review = threading.Event()
-    audit_gate_waiting = threading.Event()
-    release_gate = threading.Event()
-    synthesis_finished = threading.Event()
     audit_started = threading.Event()
     original_synthesis = resume_app.generate_final_synthesis_from_analysis
     original_audit = resume_app.generate_resume_quality_audit
 
-    class ObservedWorkerSignal:
-        def wait(self, timeout=None):
-            audit_gate_waiting.set()
-            return release_gate.wait(timeout=timeout)
-
-        def clear(self):
-            pass
-
-    def synthesis_then_pause(**kwargs):
+    def synthesis_with_duplicate_review_present(**kwargs):
         result = original_synthesis(**kwargs)
-        duplicate_review.set()
-        synthesis_finished.set()
+        monkeypatch.setattr(store, "has_duplicate_review", lambda: True)
         return result
 
     def audited(**kwargs):
         audit_started.set()
         return original_audit(**kwargs)
 
-    monkeypatch.setattr(store, "has_duplicate_review", duplicate_review.is_set)
-    monkeypatch.setattr(resume_app, "extension_worker_event", ObservedWorkerSignal())
-    monkeypatch.setattr(resume_app, "generate_final_synthesis_from_analysis", synthesis_then_pause)
+    monkeypatch.setattr(store, "has_duplicate_review", lambda: True)
+    monkeypatch.setattr(resume_app, "generate_final_synthesis_from_analysis", synthesis_with_duplicate_review_present)
     monkeypatch.setattr(resume_app, "generate_resume_quality_audit", audited)
 
-    worker = threading.Thread(target=resume_app.run_extension_generation_task, args=(task,))
-    worker.start()
+    resume_app.run_extension_generation_task(task)
 
-    assert synthesis_finished.wait(timeout=2)
-    assert audit_gate_waiting.wait(timeout=2)
-    assert not audit_started.is_set()
-
-    duplicate_review.clear()
-    release_gate.set()
-    worker.join(timeout=2)
-
-    assert not worker.is_alive()
     assert audit_started.is_set()
     assert store.get(draft["id"])["audit_status"] == "approved"
 
 
-def test_duplicate_creation_wins_gate_before_ai_stage_reservation(monkeypatch):
+def test_duplicate_creation_does_not_block_ai_stage(monkeypatch):
     create_entered = threading.Event()
     release_create = threading.Event()
     ai_started = threading.Event()
@@ -363,18 +339,13 @@ def test_duplicate_creation_wins_gate_before_ai_stage_reservation(monkeypatch):
         args=(lambda: ai_started.set(),),
     )
     ai_thread.start()
-    assert not ai_started.wait(timeout=0.1)
+    assert ai_started.wait(timeout=0.1)
 
     release_create.set()
     create_thread.join(timeout=2)
-    assert not create_thread.is_alive()
-    assert not ai_started.wait(timeout=0.1)
-
-    store.duplicate_pending = False
-    wake_event.set()
     ai_thread.join(timeout=2)
+    assert not create_thread.is_alive()
     assert not ai_thread.is_alive()
-    assert ai_started.is_set()
 
 
 def test_ai_stage_reservation_wins_without_holding_gate_for_network_call(monkeypatch):
@@ -419,6 +390,26 @@ def test_ai_stage_reservation_wins_without_holding_gate_for_network_call(monkeyp
     create_thread.join(timeout=2)
     assert not ai_thread.is_alive()
     assert not create_thread.is_alive()
+
+
+def test_ai_stage_retries_transient_network_failure(monkeypatch):
+    attempts = {"count": 0}
+    sleeps = []
+    monkeypatch.setenv("EXTENSION_AI_STAGE_MAX_ATTEMPTS", "3")
+    monkeypatch.setenv("EXTENSION_AI_STAGE_RETRY_BASE_SECONDS", "0.01")
+    monkeypatch.setattr(resume_app.time, "sleep", lambda seconds: sleeps.append(seconds))
+
+    def flaky_call():
+        attempts["count"] += 1
+        if attempts["count"] == 1:
+            raise RuntimeError(
+                "OpenAI API request failed: [Errno 8] nodename nor servname provided, or not known"
+            )
+        return {"ok": True}
+
+    assert resume_app.run_extension_ai_stage(flaky_call) == {"ok": True}
+    assert attempts["count"] == 2
+    assert sleeps == [0.01]
 
 
 def test_pdf_rejects_stale_audit():

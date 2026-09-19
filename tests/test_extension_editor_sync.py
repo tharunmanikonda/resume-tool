@@ -29,7 +29,7 @@ def test_extension_payloads_from_content_returns_all_editor_sections(monkeypatch
     monkeypatch.setattr(
         resume_app,
         "parse_updated_content_to_resume",
-        lambda content, base_resume: copy.deepcopy(parsed),
+        lambda content, base_resume, *_args, **_kwargs: copy.deepcopy(parsed),
     )
     monkeypatch.setattr(resume_app, "normalize_updated_skills", lambda skills: skills)
 
@@ -109,7 +109,7 @@ def test_extension_full_editor_patch_persists_parsed_resume_payload(monkeypatch)
     monkeypatch.setattr(
         resume_app,
         "parse_updated_content_to_resume",
-        lambda content, base_resume: copy.deepcopy(parsed),
+        lambda content, base_resume, *_args, **_kwargs: copy.deepcopy(parsed),
     )
     monkeypatch.setattr(resume_app, "normalize_updated_skills", lambda skills: skills)
     monkeypatch.setattr(

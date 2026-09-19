@@ -208,6 +208,156 @@ def test_preliminary_skills_forwards_resume_stage_configuration(monkeypatch):
     assert captured["schema_name"] == "resume_skills_generation"
 
 
+def test_professional_resume_mode_keeps_existing_experience_guidance():
+    prompt = resume_app.build_ai_resume_title_summary_prompt(resume_mode="professional")
+
+    assert "RESUME MODE: Professional" in prompt
+    assert "4+ years of experience" in prompt
+
+
+def test_internship_resume_mode_uses_student_eligible_guidance():
+    prompt = resume_app.build_ai_resume_title_summary_prompt(resume_mode="internship")
+
+    assert "RESUME MODE: Internship / Co-op / New Grad" in prompt
+    assert "3+ years of software engineering experience" in prompt
+    assert "lead with software engineering experience first for engineering roles" in prompt
+    assert "for analyst/data roles, lead with data, SQL, reporting, process, and decision-support evidence" in prompt
+    assert "Treat DBA as education/context" in prompt
+    assert "4+ years of experience" not in prompt
+
+
+def test_internship_resume_mode_neutralizes_india_experience_locations():
+    profile = {
+        "experience_history": [
+            {
+                "key": "mckinsey",
+                "company": "Example",
+                "location": "Bengaluru, India",
+                "title": "Software Engineer",
+                "dates": "Jan 2022 - Dec 2024",
+                "enabled": True,
+            }
+        ]
+    }
+
+    professional = resume_app.current_experience_blueprints(profile, "professional")
+    internship = resume_app.current_experience_blueprints(profile, "internship")
+
+    assert professional[0]["location"] == "Bengaluru, India"
+    assert internship[0]["location"] == "Location omitted"
+    assert internship[0]["enabled"] is False
+
+
+def test_internship_resume_mode_defaults_to_two_us_experiences():
+    profile = {
+        "experience_history": [
+            {
+                "key": "mckinsey",
+                "company": "Role 1",
+                "location": "CA, USA",
+                "title": "Software Engineer",
+                "dates": "2025 - Present",
+                "enabled": True,
+            },
+            {
+                "key": "uber",
+                "company": "Role 2",
+                "location": "Austin, TX",
+                "title": "Full Stack Developer",
+                "dates": "2024 - 2025",
+                "enabled": True,
+            },
+            {
+                "key": "kpmg",
+                "company": "Role 3",
+                "location": "Bengaluru, India",
+                "title": "Java Developer",
+                "dates": "2021 - 2022",
+                "enabled": True,
+            },
+            {
+                "key": "trigent",
+                "company": "Role 4",
+                "location": "Remote, United States",
+                "title": "Frontend Developer",
+                "dates": "2020 - 2021",
+                "enabled": True,
+            },
+        ]
+    }
+
+    assert resume_app.complete_profile_experience_keys(profile, "internship") == ["mckinsey", "uber"]
+
+
+def test_internship_ai_enabled_keys_are_capped_to_two_us_roles():
+    profile = {
+        "experience_history": [
+            {
+                "key": "mckinsey",
+                "company": "Role 1",
+                "location": "CA, USA",
+                "title": "Software Engineer",
+                "dates": "2025 - Present",
+                "enabled": True,
+            },
+            {
+                "key": "uber",
+                "company": "Role 2",
+                "location": "Austin, TX",
+                "title": "Full Stack Developer",
+                "dates": "2024 - 2025",
+                "enabled": True,
+            },
+            {
+                "key": "kpmg",
+                "company": "Role 3",
+                "location": "Bengaluru, India",
+                "title": "Java Developer",
+                "dates": "2021 - 2022",
+                "enabled": True,
+            },
+            {
+                "key": "trigent",
+                "company": "Role 4",
+                "location": "Remote, United States",
+                "title": "Frontend Developer",
+                "dates": "2020 - 2021",
+                "enabled": True,
+            },
+        ]
+    }
+    session = {
+        "resume_mode": "internship",
+        "profile_snapshot": resume_app.profile_for_resume_mode(profile, "internship"),
+    }
+
+    keys = resume_app.normalize_ai_enabled_experience_keys(["mckinsey", "uber", "kpmg", "trigent"], session)
+
+    assert keys == ["mckinsey", "uber"]
+
+
+def test_internship_resume_mode_adds_dba_education(monkeypatch):
+    monkeypatch.setattr(
+        resume_app,
+        "current_profile",
+        lambda: {
+            "name": "Test User",
+            "contact": {},
+            "application": {},
+            "projects": [],
+            "certifications": [],
+            "experience_history": [],
+        },
+    )
+    resume = {"education": [{"degree": "Master's in Computer Science", "institution": "UAB", "dates": "2023"}]}
+
+    updated = resume_app.apply_profile_overrides(resume, resume_mode="internship")
+
+    assert updated["education"][0]["degree"] == "Doctor of Business Administration (DBA), in progress"
+    assert updated["education"][0]["dates"] == "In progress"
+    assert updated["education"][1]["degree"] == "Master's in Computer Science"
+
+
 def test_preliminary_skills_retries_once_with_more_tokens_on_truncation(monkeypatch):
     calls = []
 
@@ -299,7 +449,7 @@ def test_final_synthesis_forwards_dedicated_model_and_medium_reasoning(monkeypat
 
     assert captured["model"] == resume_app.SYNTHESIS_MODEL
     assert captured["reasoning_effort"] == "medium"
-    assert captured["user_prompt"].index("Immutable active experience blueprints") < captured["user_prompt"].index("Raw job description")
+    assert captured["user_prompt"].index("Active experience structure") < captured["user_prompt"].index("Raw job description")
 
 
 def test_experience_subset_prompt_places_blueprints_before_analysis(monkeypatch):
@@ -312,7 +462,7 @@ def test_experience_subset_prompt_places_blueprints_before_analysis(monkeypatch)
             "experience": {
                 blueprints[0]["key"]: {
                     "title": "Software Engineer",
-                    "bullets": ["Built reliable backend systems."],
+                    "bullets": ["Built reliable backend systems that improved recurring operational throughput by 20%."],
                 }
             }
         }
@@ -320,7 +470,7 @@ def test_experience_subset_prompt_places_blueprints_before_analysis(monkeypatch)
     monkeypatch.setattr(resume_app, "call_openai_structured_output", fake_call)
     monkeypatch.setattr(resume_app, "collect_invalid_experience_titles", lambda *_args, **_kwargs: [])
     monkeypatch.setattr(resume_app, "validate_experience_subset_payload_with_analysis", lambda *_args, **_kwargs: [])
-    monkeypatch.setattr(resume_app, "validate_generated_experience_evidence", lambda *_args, **_kwargs: [])
+    monkeypatch.setattr(resume_app, "validate_experience_numeric_coverage", lambda *_args, **_kwargs: [])
 
     resume_app.generate_experience_subset_from_analysis(
         api_key="test-key",
@@ -331,7 +481,7 @@ def test_experience_subset_prompt_places_blueprints_before_analysis(monkeypatch)
         preliminary_skills_payload={"updated_skills": []},
     )
 
-    assert captured["user_prompt"].index("Immutable experience blueprints") < captured["user_prompt"].index("Analysis:")
+    assert captured["user_prompt"].index("Experience structure") < captured["user_prompt"].index("Analysis:")
 
 
 def test_quality_audit_forwards_dedicated_model_and_medium_reasoning(monkeypatch):

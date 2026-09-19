@@ -23,7 +23,7 @@ STALEABLE_AUDIT_STATUSES = {
     "kept_current", "applied", "technical_failed",
 }
 RESUME_AFFECTING_FIELDS = {
-    "company_name", "role_title", "identity_id", "enabled_experience_keys",
+    "company_name", "role_title", "identity_id", "resume_mode", "enabled_experience_keys",
     "resume_content", "resume_snapshot", "title_summary", "skills", "analysis",
     "experience_recent", "experience_older", "job_description", "description_hash",
     "contact_snapshot", "experience_history_snapshot",
@@ -49,6 +49,11 @@ class ActiveDraftTaskError(ValueError):
 
 def clean_text(value) -> str:
     return str(value or "").strip()
+
+
+def normalize_resume_mode(value) -> str:
+    normalized = clean_text(value).lower().replace("-", "_")
+    return "internship" if normalized in {"intern", "internship", "co_op", "coop", "new_grad", "student"} else "professional"
 
 
 def description_hash(value: str) -> str:
@@ -218,6 +223,7 @@ def serialize_draft(row: ResumeDraft, *, include_content: bool = True) -> dict:
         "stage": row.stage,
         "duplicate_decision": row.duplicate_decision or "",
         "identity_id": row.identity_id or "",
+        "resume_mode": normalize_resume_mode(row.resume_mode),
         "enabled_experience_keys": row.enabled_experience_keys or [],
         "analysis": row.analysis or {},
         "resume_snapshot": row.resume_snapshot or {},
@@ -306,6 +312,7 @@ class ExtensionDraftStore:
                 status=status,
                 stage="duplicate_review" if duplicate_count else "waiting",
                 identity_id=clean_text(snapshot.get("identity_id")),
+                resume_mode=normalize_resume_mode(snapshot.get("resume_mode")),
                 enabled_experience_keys=list(snapshot.get("enabled_experience_keys") or []),
                 profile_snapshot=snapshot.get("profile_snapshot") or {},
                 contact_snapshot=snapshot.get("contact_snapshot") or {},
@@ -350,6 +357,7 @@ class ExtensionDraftStore:
                 status=status,
                 stage="duplicate_review" if duplicate_count else "waiting",
                 identity_id=clean_text(snapshot.get("identity_id")),
+                resume_mode=normalize_resume_mode(snapshot.get("resume_mode")),
                 enabled_experience_keys=list(snapshot.get("enabled_experience_keys") or []),
                 profile_snapshot=snapshot.get("profile_snapshot") or {},
                 contact_snapshot=snapshot.get("contact_snapshot") or {},
@@ -385,8 +393,10 @@ class ExtensionDraftStore:
             return serialize_draft(row) if row else None
 
     def update(self, draft_id: str, values: dict, *, invalidate_pdf: bool = False) -> dict:
+        if "resume_mode" in values:
+            values = {**values, "resume_mode": normalize_resume_mode(values.get("resume_mode"))}
         allowed = {
-            "company_name", "role_title", "identity_id", "enabled_experience_keys", "resume_content",
+            "company_name", "role_title", "identity_id", "resume_mode", "enabled_experience_keys", "resume_content",
             "resume_snapshot", "title_summary", "skills", "analysis", "experience_recent", "experience_older",
             "status", "stage", "duplicate_decision", "pdf_path", "docx_path", "output_dir", "pdf_status_path",
             "pdf_stale", "resume_revision", "pdf_revision", "pdf_generated_at", "application_id", "job_lead_id", "error_stage", "error_message", "job_description", "description_hash",

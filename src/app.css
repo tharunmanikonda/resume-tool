@@ -953,6 +953,28 @@ select:focus {
   width: 100%;
 }
 
+.composer-inline-controls {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: minmax(0, 1fr) minmax(140px, 180px);
+}
+
+.resume-mode-select {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  min-height: 38px;
+  padding: 8px 10px;
+}
+
+.resume-mode-select.compact {
+  border-radius: 10px;
+  font-size: 0.88rem;
+  min-height: 34px;
+  width: 150px;
+}
+
 .composer-toolbar {
   align-items: center;
   display: flex;
@@ -2433,6 +2455,19 @@ select:focus {
   .composer-toolbar-left,
   .composer-toolbar-right {
     justify-content: space-between;
+    width: 100%;
+  }
+
+  .composer-inline-controls,
+  .preview-toolbar-actions {
+    align-items: stretch;
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+
+  .resume-mode-select.compact,
+  .preview-company-input {
     width: 100%;
   }
 

@@ -129,6 +129,38 @@ def test_two_workers_execute_distinct_tasks_concurrently():
     assert set(completed) == {"draft-1", "draft-2"}
 
 
+def test_duplicate_review_does_not_pause_unrelated_queued_tasks():
+    stop_event = threading.Event()
+    wake_event = threading.Event()
+    ran = []
+
+    class QueueStore:
+        def __init__(self):
+            self._tasks = [{"task_id": "task-1", "draft": {"id": "draft-1"}}]
+
+        def has_duplicate_review(self):
+            return True
+
+        def next_task(self):
+            return self._tasks.pop(0) if self._tasks else None
+
+    def run_task(task):
+        ran.append(task["draft"]["id"])
+        stop_event.set()
+        wake_event.set()
+
+    worker = threading.Thread(
+        target=resume_app.extension_worker_loop,
+        args=(stop_event, QueueStore(), run_task, wake_event),
+        name="test-resume-worker",
+    )
+    worker.start()
+    worker.join(timeout=2)
+
+    assert not worker.is_alive()
+    assert ran == ["draft-1"]
+
+
 def test_store_never_claims_two_tasks_for_the_same_draft(tmp_path, monkeypatch):
     engine = create_engine(f"sqlite:///{tmp_path / 'worker-pool.db'}", future=True)
     session_local = sessionmaker(bind=engine, autoflush=False, expire_on_commit=False, future=True)
@@ -177,4 +209,3 @@ def test_store_never_claims_two_tasks_for_the_same_draft(tmp_path, monkeypatch):
     claimed_tasks = [claim for claim in claims if claim is not None]
     assert len(claimed_tasks) == 1
     assert claimed_tasks[0]["draft"]["id"] == draft["id"]
-

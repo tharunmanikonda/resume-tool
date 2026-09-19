@@ -93,6 +93,7 @@ class ResumeDraft(Base):
     stage: Mapped[str] = mapped_column(String(80), default="waiting", nullable=False)
     duplicate_decision: Mapped[str] = mapped_column(String(30), nullable=True)
     identity_id: Mapped[str] = mapped_column(String(80), nullable=True)
+    resume_mode: Mapped[str] = mapped_column(String(40), default="professional", nullable=False, index=True)
     enabled_experience_keys: Mapped[list] = mapped_column(JSON, default=list)
     profile_snapshot: Mapped[dict] = mapped_column(JSON, default=dict)
     contact_snapshot: Mapped[dict] = mapped_column(JSON, default=dict)
@@ -294,6 +295,7 @@ def _resume_draft_migration_columns() -> tuple[Column, ...]:
         Column("audit_created_at", DateTime(timezone=True), nullable=True, quote=True),
         Column("audit_applied_at", DateTime(timezone=True), nullable=True, quote=True),
         Column("job_lead_id", String(80), nullable=True, quote=True),
+        Column("resume_mode", String(40), nullable=False, server_default="professional", quote=True),
     )
 
 

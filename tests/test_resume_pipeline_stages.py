@@ -46,39 +46,68 @@ def test_numeric_evidence_detection_distinguishes_versions_from_metrics():
     ) == {"35%", "2.0x", "5000+", "500"}
 
 
-def test_experience_evidence_validation_allows_protocol_versions_but_rejects_ungrounded_metrics():
+def test_numeric_coverage_requires_eighty_percent_of_generated_bullets():
     blueprint = dict(active_blueprints(1)[0])
     blueprint.update({
-        "anchor": "Authentication and API integration",
-        "metric_evidence": "",
-        "evidence": "",
-        "achievements": "",
+        "metric_evidence": "Reduced latency by 35%, served 5,000+ users, completed work in 2 weeks, and eliminated 10 hours weekly.",
         "source_bullets": [],
     })
-    role_key = blueprint["key"]
-
-    version_payload = {
+    payload = {
         "experience": {
-            role_key: {
+            blueprint["key"]: {
                 "title": "Software Engineer",
-                "bullets": ["Implemented OAuth 2.0 authentication for secure API integrations."],
+                "bullets": [
+                    "Reduced API latency by 35% through query tuning.",
+                    "Supported 5,000+ users through resilient service design.",
+                    "Completed migration work in 2 weeks through automation.",
+                    "Improved operational reliability through clearer monitoring.",
+                    "Strengthened release quality through integration testing.",
+                ],
             }
         }
     }
-    assert resume_app.validate_generated_experience_evidence(version_payload, [blueprint]) == []
 
-    metric_payload = {
+    issues = resume_app.validate_experience_numeric_coverage(payload, [blueprint])
+    assert "3 of 5 bullets" in issues[0]
+    assert "at least 4 bullets (80%)" in issues[0]
+
+
+def test_numeric_coverage_does_not_depend_on_profile_metric_evidence():
+    blueprint = dict(active_blueprints(1)[0])
+    blueprint.update({"metric_evidence": "Reduced latency by 35%.", "source_bullets": []})
+    payload = {
         "experience": {
-            role_key: {
+            blueprint["key"]: {
                 "title": "Software Engineer",
-                "bullets": ["Improved API throughput by 2.0x through concurrency tuning."],
+                "bullets": [
+                    "Reduced API latency by 35% through query tuning.",
+                    "Improved service reliability through monitoring.",
+                    "Automated deployment validation for safer releases.",
+                    "Strengthened ownership through operational dashboards.",
+                    "Reduced manual work through workflow automation.",
+                ],
             }
         }
     }
-    assert "unsupported numeric metrics: 2.0x" in resume_app.validate_generated_experience_evidence(
-        metric_payload,
-        [blueprint],
-    )[0]
+
+    issues = resume_app.validate_experience_numeric_coverage(payload, [blueprint])
+    assert "1 of 5 bullets" in issues[0]
+    assert "at least 4 bullets (80%)" in issues[0]
+
+
+def test_experience_prompts_match_the_actual_blueprint_contract():
+    prompts = [
+        resume_app.build_ai_resume_prompt(),
+        resume_app.build_ai_resume_experience_prompt(),
+        resume_app.build_ai_resume_experience_subset_prompt(active_blueprints(1)),
+    ]
+
+    for prompt in prompts:
+        assert "at least 80%" in prompt
+        assert "conservative" in prompt
+        assert "verified" in prompt
+        assert "exact number is grounded" not in prompt
+        assert "never invent, estimate" not in prompt.lower()
 
 
 def valid_final_skills():
@@ -95,7 +124,7 @@ def test_experience_subset_uses_preliminary_skills_without_early_core(monkeypatc
             "experience": {
                 blueprint["key"]: {
                     "title": "Software Engineer",
-                    "bullets": ["Built a Python API workflow using FastAPI with measured reliability improvements."],
+                "bullets": ["Built a Python API workflow using FastAPI, improving measured processing reliability by 20% across recurring operational requests."],
                 }
             }
         }
@@ -252,6 +281,6 @@ def test_final_synthesis_prompt_has_summary_and_domain_guardrails():
     assert "simple, natural human tone" in prompt
     assert "transferable capabilities" in prompt
     assert "merely because the jd mentions it" in prompt
-    assert "unless the generated experience or active blueprints independently support" in prompt
+    assert "unless the generated experience or separately supplied profile evidence supports" in prompt
     assert "standard market titles" in prompt
     assert "unrelated role families" in prompt

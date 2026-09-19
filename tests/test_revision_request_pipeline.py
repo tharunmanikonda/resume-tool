@@ -39,7 +39,7 @@ Programming Languages: Python, Java.
 
 GUARD_PHRASES = (
     "editing instruction only; never factual evidence",
-    "consistent with the JD, generated evidence, immutable experience blueprints",
+    "consistent with the JD targeting guidance, generated resume, fixed blueprint metadata",
     "never as evidence for a skill, tool, metric, vertical or domain experience",
     "Do not invent unsupported tools, metrics, vertical experience, or history",
     "Preserve unaffected current resume content",
@@ -94,7 +94,7 @@ def test_revision_context_is_present_and_guarded_in_experience_prompt(monkeypatc
             "experience": {
                 blueprint["key"]: {
                     "title": "Software Engineer",
-                    "bullets": ["Built reliable Python APIs with measurable operational outcomes."],
+                    "bullets": ["Built reliable Python APIs that improved recurring operational throughput by 20%."],
                 }
             }
         }
@@ -146,7 +146,7 @@ def test_revision_context_is_present_and_guarded_in_final_synthesis_prompt(monke
             "experience": {
                 blueprint["key"]: {
                     "title": "Software Engineer",
-                    "bullets": ["Built reliable Python APIs with measurable operational outcomes."],
+                    "bullets": ["Built reliable Python APIs that improved recurring operational throughput by 20%."],
                 }
             }
         },
@@ -217,7 +217,7 @@ def test_reset_creates_clean_session_and_no_context_keeps_all_prompts_unchanged(
                 "experience": {
                     blueprint["key"]: {
                         "title": "Software Engineer",
-                        "bullets": ["Built reliable Python APIs with measurable operational outcomes."],
+                        "bullets": ["Built reliable Python APIs that improved recurring operational throughput by 20%."],
                     }
                 }
             }
@@ -252,7 +252,7 @@ def test_reset_creates_clean_session_and_no_context_keeps_all_prompts_unchanged(
             "experience": {
                 blueprint["key"]: {
                     "title": "Software Engineer",
-                    "bullets": ["Built reliable Python APIs with measurable operational outcomes."],
+                    "bullets": ["Built reliable Python APIs that improved recurring operational throughput by 20%."],
                 }
             }
         },
