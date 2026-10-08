@@ -130,3 +130,10 @@ class FinalizeResumeInput(StrictModel):
     base_revision: int = Field(ge=1)
     confirmed: bool
     include_docx: bool = False
+
+
+class RenderResumeDocumentInput(StrictModel):
+    """Authoritative, AI-free resume document request."""
+
+    resume: dict
+    output: dict

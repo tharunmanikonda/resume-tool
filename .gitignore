@@ -92,4 +92,5 @@ config/resume_tool.db-wal
 
 # Local agent/plugin installation artifacts
 .agents/
+.codex-artifacts/
 *.tgz

@@ -30,6 +30,7 @@ from .service import (
     continue_resume_action as continue_action_service,
     finalize_resume as finalize_service,
     get_resume_status as status_service,
+    render_resume_document as render_document_service,
     start_resume_generation as start_service,
 )
 from . import service as resume_service
@@ -170,6 +171,17 @@ def finalize_resume(
         confirmed=confirmed,
     )
     return _with_files(response, ctx, user_id, include_docx=include_docx)
+
+
+@mcp.tool()
+def render_resume_document(
+    resume: dict,
+    output: dict,
+    ctx: Context,
+) -> dict:
+    """Create DOCX/PDF directly from authoritative JSON without AI or profile fallback."""
+    _user(ctx)
+    return render_document_service(resume=resume, output=output)
 
 
 class McpAuthenticationMiddleware:

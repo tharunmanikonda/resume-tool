@@ -1,14 +1,54 @@
 {
   "output_directory": "/Users/tharun/Documents/tharun-resume",
   "keep_docx": true,
-  "default_identity_id": "primary",
+  "default_identity_id": "tmainkon",
   "identities": [
+    {
+      "id": "outlook",
+      "label": "Outlook",
+      "location": "California, USA",
+      "phone": "(205)259-8634",
+      "email": "tharun.manikonda1@outlook.com",
+      "format_profile": "outlook"
+    },
+    {
+      "id": "gmail",
+      "label": "Gmail",
+      "location": "Dallas, TX",
+      "phone": "(205)413-5995",
+      "email": "tmanikonda.1@gmail.com",
+      "format_profile": "gmail"
+    },
+    {
+      "id": "identity-1780184456728-5ieyx",
+      "label": "9381 email",
+      "location": "Dallas, TX",
+      "phone": "(205)413-5995",
+      "email": "tharunmanikonda9381@gmail.com",
+      "format_profile": "gmail"
+    },
+    {
+      "id": "tmainkon",
+      "label": "tmainkon Gmail",
+      "location": "Dallas, TX",
+      "phone": "(704)769-3338",
+      "email": "tmainkon.1@gmail.com",
+      "format_profile": "gmail"
+    },
     {
       "id": "primary",
       "label": "Primary",
       "location": "California, USA",
       "phone": "(205)259-8634",
       "email": "tharun.manikonda1@outlook.com",
+      "format_profile": "outlook"
+    },
+    {
+      "id": "identity-1788554876891-hs2ek",
+      "label": "tmanikon.1",
+      "location": "Dallas, TX",
+      "phone": "(704)769-3338",
+      "email": "tmainkon.1@gmail.com",
       "format_profile": "outlook"
     }
   ],

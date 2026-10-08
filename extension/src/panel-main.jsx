@@ -103,6 +103,19 @@ function CptStatus({ cpt }) {
   );
 }
 
+function JobFitStatus({ jobFit }) {
+  if (!jobFit) return null;
+  const suitable = jobFit.status === "suitable";
+  return (
+    <div className={`job-fit-status ${suitable ? "suitable" : "not-suitable"}`}>
+      <strong>{suitable ? "Suitable" : "Not suitable"}</strong>
+      <p>{jobFit.message}</p>
+      {!suitable && (jobFit.reasons || []).slice(1).map((reason) => <p className="job-fit-reason" key={reason}>{reason}</p>)}
+      <small>{jobFit.cached ? "Reused the result for this job and profile." : "Checked with OpenAI Decisions."}</small>
+    </div>
+  );
+}
+
 function emptyAssistantState() {
   return { recipient_name: "", reachout: "", question: "", followups: [] };
 }
@@ -930,6 +943,7 @@ function App() {
   const [error, setErrorMessage] = useState("");
   const [errorDraftId, setErrorDraftId] = useState("");
   const [busy, setBusy] = useState("");
+  const [jobFit, setJobFit] = useState(null);
   const [quickDraftId, setQuickDraftId] = useState("");
   const [quickHydratedDraftId, setQuickHydratedDraftId] = useState("");
   const [quickEdits, setQuickEdits] = useState({ title: "", summary: "", skills_text: "", experience: [] });
@@ -1234,6 +1248,7 @@ function App() {
 
   async function resolveContext(nextContext) {
     if (!nextContext) return;
+    setJobFit(null);
     currentContextRef.current = nextContext;
     const nextIdentity = sourceIdentity(nextContext);
     if (generatingContextRef.current && generatingContextRef.current === nextIdentity) {
@@ -1247,6 +1262,14 @@ function App() {
     setApplyForm((current) => ({ ...current, source: sourceLabel(nextContext) }));
     viewingCurrentRef.current = true;
     setViewingCurrent(true);
+    api("/api/job-fit/check", {
+      method: "POST",
+      body: { context: nextContext, resume_mode: resumeMode, cache_only: true },
+    }).then((fitData) => {
+      if (requestId !== contextResolveRef.current) return;
+      if (sourceIdentity(currentContextRef.current) !== nextIdentity) return;
+      setJobFit(fitData.job_fit || null);
+    }).catch(() => {});
     try {
       const data = await api("/api/extension/contexts/resolve", { method: "POST", body: nextContext });
       if (requestId !== contextResolveRef.current) return;
@@ -1287,6 +1310,7 @@ function App() {
           currentContextRef.current = null;
           setContext(null);
           setContextForm(emptyContext());
+          setJobFit(null);
           setResolution({ history: null, issues: [], preflight: null, draft: null });
           commitDraft(null);
         }
@@ -1485,6 +1509,28 @@ function App() {
     setQuickDirty(true);
   }
 
+  function updateContextField(field, value) {
+    setContextForm((current) => ({ ...current, [field]: value }));
+    setJobFit(null);
+  }
+
+  async function checkJobFit(forceRefresh = false) {
+    setBusy("job-fit");
+    setError("");
+    try {
+      const data = await api("/api/job-fit/check", {
+        method: "POST",
+        body: { context: contextForm, resume_mode: resumeMode, force_refresh: forceRefresh },
+      });
+      setJobFit(data.job_fit);
+    } catch (actionError) {
+      setJobFit(null);
+      setError(actionError.message);
+    } finally {
+      setBusy("");
+    }
+  }
+
   async function generateResume() {
     const generationIdentity = sourceIdentity(contextForm);
     generatingContextRef.current = generationIdentity;
@@ -1645,6 +1691,7 @@ function App() {
 
   async function changeResumeMode(nextModeValue) {
     const nextMode = normalizeResumeMode(nextModeValue);
+    setJobFit(null);
     setResumeMode(nextMode);
     const nextEnabledKeys = defaultExperienceKeys(profileHistory, nextMode);
     setEnabledKeys(nextEnabledKeys);
@@ -1763,6 +1810,7 @@ function App() {
 
   async function selectDraft(item) {
     contextResolveRef.current += 1;
+    setJobFit(null);
     setError("");
     viewingCurrentRef.current = false;
     setViewingCurrent(false);
@@ -1926,11 +1974,11 @@ function App() {
       {(context || draft) ? (
         <>
           <section className="job-band">
-            <label>Company<input value={contextForm.company_name} disabled={!viewingCurrent || !!draft?.locked} onChange={(event) => setContextForm({ ...contextForm, company_name: event.target.value })} /></label>
-            <label>Role<input value={contextForm.role_title} disabled={!viewingCurrent || !!draft?.locked} onChange={(event) => setContextForm({ ...contextForm, role_title: event.target.value })} /></label>
+            <label>Company<input value={contextForm.company_name} disabled={!viewingCurrent || !!draft?.locked} onChange={(event) => updateContextField("company_name", event.target.value)} /></label>
+            <label>Role<input value={contextForm.role_title} disabled={!viewingCurrent || !!draft?.locked} onChange={(event) => updateContextField("role_title", event.target.value)} /></label>
             <div className="job-meta">{contextForm.location || "Location not provided"}</div>
             {viewingCurrent ? (
-              <details><summary>Review extracted job description</summary><textarea value={contextForm.job_description} onChange={(event) => setContextForm({ ...contextForm, job_description: event.target.value })} /></details>
+              <details><summary>Review extracted job description</summary><textarea value={contextForm.job_description} onChange={(event) => updateContextField("job_description", event.target.value)} /></details>
             ) : null}
           </section>
 
@@ -1951,7 +1999,9 @@ function App() {
                 </div>
               ) : null}
               <CptStatus cpt={preflight?.cpt} />
-              <button className="primary wide" disabled={!contextComplete || preflightBlocked || busy === "generate" || !server.ai_ready} onClick={generateResume}>{busy === "generate" ? "Starting..." : "Generate Resume"}</button>
+              <JobFitStatus jobFit={jobFit} />
+              <button className="wide fit-check-button" disabled={!contextComplete || Boolean(busy) || !server.ai_ready} onClick={() => checkJobFit(Boolean(jobFit))}>{busy === "job-fit" ? "Checking fit..." : jobFit ? "Check Fit Again" : "Check Job Fit"}</button>
+              <button className="primary wide" disabled={!contextComplete || preflightBlocked || Boolean(busy) || !server.ai_ready} onClick={generateResume}>{busy === "generate" ? "Starting..." : "Generate Resume"}</button>
               {!server.ai_ready ? <small className="field-error">{server.ai_message}</small> : null}
             </section>
           ) : null}

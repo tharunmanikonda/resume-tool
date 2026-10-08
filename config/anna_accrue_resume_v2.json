@@ -1,0 +1,66 @@
+{
+  "name": "MANIKONDA THARUN",
+  "title": "Full-Stack Product Engineer | Applied AI",
+  "contact": {
+    "location": "Dallas, TX | Open to NYC / SF",
+    "phone": "(704) 769-3338",
+    "email": "tmanikon.1@gmail.com"
+  },
+  "summary": "Full-stack product engineer with 4+ years of recent experience shipping software end to end, from ambiguous requirements and first prototypes to tested production features. Built a foundation in Java, Spring, and React; moved into TypeScript, Node.js, and real-time systems; and now build applied-AI products with Python, RAG, LLM orchestration, and cloud deployment. Comfortable owning the product surface, backend, data model, evaluation, and release loop in early-stage environments.",
+  "technical_skills": [
+    {"category": "Languages", "items": "TypeScript, JavaScript, Python, Java"},
+    {"category": "Frontend", "items": "React, Next.js, GraphQL, CSS-in-JS, responsive UI"},
+    {"category": "Backend", "items": "Node.js, Express, FastAPI, Java Spring Boot, REST APIs"},
+    {"category": "Applied AI", "items": "OpenAI API, LangChain, RAG, pgvector, vector search, function calling, evaluation"},
+    {"category": "Data and Delivery", "items": "PostgreSQL, Redis Streams, AWS Lambda, Docker, OpenTelemetry, Playwright, GitHub Actions"}
+  ],
+  "experience": [
+    {
+      "company": "McKinsey & Company",
+      "location": "CA, USA",
+      "title": "Applied AI / Full-Stack Engineer",
+      "dates": "May 2025 - Present",
+      "bullets": [
+        "Led end-to-end delivery of LLM-powered customer-facing software, turning ambiguous stakeholder needs into prototypes, production features, demos, and technical milestones with TypeScript, Next.js, and Node.js.",
+        "Architected ingestion and retrieval pipelines with Python, FastAPI, PostgreSQL, and pgvector, supporting RAG across 5,000+ documents at 92% precision and sub-500ms search.",
+        "Built LLM orchestration flows with OpenAI API and LangChain on AWS Lambda, designing deterministic response routing under cost and latency constraints.",
+        "Implemented conversational React and TypeScript interfaces over GraphQL APIs, tightening feedback loops during pilots and early product iterations.",
+        "Developed evaluation harnesses and integration tests with pytest and Playwright in CI/CD, enforcing model regression checks before client delivery.",
+        "Added OpenTelemetry and structured logging to fast-moving customer deployments, making production issues easier to isolate."
+      ]
+    },
+    {
+      "company": "Uber",
+      "location": "CA, USA",
+      "title": "Full-Stack Developer",
+      "dates": "February 2024 - May 2025",
+      "bullets": [
+        "Owned internal operational tooling and transaction validation workflows, shipping full-stack features with React, TypeScript, Node.js, Redis Streams, and PostgreSQL.",
+        "Built a real-time validation pipeline under throughput constraints, automating integrity checks and reducing manual reconciliation across operator workflows.",
+        "Designed Express services and PostgreSQL schemas, improving data correctness for reporting and operational decisions.",
+        "Integrated OpenAI function-calling prototypes into internal help workflows, enabling operators to resolve common cases faster during trials.",
+        "Partnered with product and SRE teams on feature flags, GitHub Actions, observability, and rollback-ready releases under tight delivery windows."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "Enterprise AI Document Assistant",
+      "bullets": [
+        "Built a RAG product with Python, FastAPI, LangChain, React, AWS S3, and vector search to extract answers from 5,000+ enterprise documents with 92% retrieval precision.",
+        "Tuned chunking and retrieval strategies to deliver semantic search responses in under 500ms, then added evaluation checks to make iteration measurable."
+      ]
+    },
+    {
+      "name": "NotchSafe - macOS Productivity Utility",
+      "bullets": [
+        "Designed and shipped a native macOS utility from concept to working product using Swift and SwiftUI, including encrypted storage, clipboard management, and Touch ID authentication."
+      ]
+    }
+  ],
+  "education": [
+    {"degree": "Master's in Computer Science", "institution": "University of Alabama at Birmingham", "dates": "August 2022 - December 2023"},
+    {"degree": "Bachelor of Engineering in Computer Science", "institution": "K.S. Institute of Technology, Karnataka, India", "dates": "June 2018 - May 2022"}
+  ],
+  "certifications": ["AWS Certified Solutions Architect - Associate"]
+}

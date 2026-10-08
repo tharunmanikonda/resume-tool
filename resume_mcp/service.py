@@ -24,6 +24,14 @@ PROCESSING_STATUSES = {
 PREVIEW_AUDIT_STATUSES = {"approved", "applied", "kept_current"}
 
 
+def render_resume_document(*, resume: dict, output: dict) -> dict:
+    """Render supplied JSON exactly; do not load profile data or invoke AI."""
+    return resume_app.render_direct_resume_document(
+        {"resume": resume, "output": output},
+        resume_app.settings["output_directory"],
+    )
+
+
 def identity_choices() -> list[dict]:
     return [
         {"value": item["id"], "label": item.get("label") or item["id"]}

@@ -57,6 +57,10 @@ from job_discovery import (
 )
 from manual_resume_parser import parse_updated_content_to_resume, validate_updated_content
 from pdf_builder import build_resume_docx, is_pdf_conversion_ready
+from resume_document_renderer import (
+    ResumeDocumentValidationError,
+    render_resume_document as render_direct_resume_document,
+)
 from extension_drafts import ActiveDraftTaskError, AuditStaleError, ExtensionDraftStore, normalize_context, normalize_resume_mode, validate_context
 from database import AiStageCache, init_db, session_scope
 
@@ -196,6 +200,11 @@ OPENAI_BACKGROUND_POLL_INTERVAL_SECONDS = float(
     os.getenv("OPENAI_BACKGROUND_POLL_INTERVAL_SECONDS", "2")
 )
 OPENAI_API_URL = "https://api.openai.com/v1/responses"
+OPENAI_DECISIONS_API_URL = "https://api.openai.com/v1/decisions"
+JOB_FIT_MODEL = os.getenv("OPENAI_JOB_FIT_MODEL", "gpt-6-luna")
+JOB_FIT_PROMPT_VERSION = "job-fit-v4"
+JOB_FIT_TIMEOUT_SECONDS = int(os.getenv("OPENAI_JOB_FIT_TIMEOUT_SECONDS", "60"))
+JOB_FIT_THRESHOLD = float(os.getenv("OPENAI_JOB_FIT_THRESHOLD", "0.70"))
 
 EXPERIENCE_BLUEPRINTS = [
     {
@@ -5326,6 +5335,125 @@ def save_cached_ai_stage_result(
             )
     except Exception:
         return
+
+
+def check_job_fit_decision(
+    *,
+    api_key: str,
+    company_name: str,
+    role_title: str,
+    location: str,
+    job_description: str,
+    resume_mode: str = "professional",
+    force_refresh: bool = False,
+    cache_only: bool = False,
+) -> dict | None:
+    evidence = {
+        "company_name": company_name.strip(),
+        "role_title": role_title.strip(),
+        "location": location.strip(),
+        "job_description": job_description.strip(),
+    }
+    source_hash = normalized_prompt_source_hash(json.dumps(evidence, sort_keys=True, separators=(",", ":")))
+    cache_key = ai_stage_cache_key(
+        stage="job_fit_decision",
+        model=JOB_FIT_MODEL,
+        prompt_version=JOB_FIT_PROMPT_VERSION,
+        source_hash=source_hash,
+    )
+    if not force_refresh:
+        cached = get_cached_ai_stage_result(cache_key)
+        if cached is not None:
+            return {**cached, "cached": True}
+    if cache_only:
+        return None
+
+    payload = {
+        "model": JOB_FIT_MODEL,
+        "input": (
+            "Classify this job using the complete posting below. Do not compare it with any specific candidate, "
+            "resume, profile, or list of currently documented skills. Judge the actual duties and "
+            "required skills, not the job title alone. Software engineering, backend, frontend, full-stack, "
+            "data engineering, AI/ML engineering, cloud, DevOps, platform, and software-centric application "
+            "engineering may qualify. A role titled Application Engineer or Software Engineer does not qualify "
+            "when its work is primarily HVAC, mechanical, civil, electrical hardware, construction, manufacturing "
+            "process, field maintenance/service, or unrelated sales. Specialized software stacks such as Android, "
+            "iOS, embedded, ERP, or security still qualify when the work is fundamentally software engineering.\n\nJob posting:\n"
+            + json.dumps(evidence, ensure_ascii=True, sort_keys=True)
+        ),
+        "questions": [
+            {
+                "type": "predicate",
+                "name": "software_related",
+                "instructions": "Are the role's primary responsibilities genuinely computer-science or software/data/AI/cloud engineering related?",
+            },
+            {
+                "type": "predicate",
+                "name": "over_six_years_required",
+                "instructions": "Does the job explicitly require more than six years of overall relevant professional experience, such as 7+, 8+, 10+, or an equivalent minimum? Do not count preferred qualifications as requirements.",
+            },
+            {
+                "type": "predicate",
+                "name": "advanced_seniority_scope",
+                "instructions": "Even without a numeric requirement, is this role genuinely scoped for staff, principal, lead, architect, or similarly advanced seniority through organization-wide technical leadership, architecture ownership, or leadership of multiple teams? Judge responsibilities, not title alone.",
+            },
+        ],
+    }
+    response = _request_openai_json(
+        api_key=api_key,
+        url=OPENAI_DECISIONS_API_URL,
+        method="POST",
+        payload=payload,
+        request_timeout_seconds=JOB_FIT_TIMEOUT_SECONDS,
+    )
+    answers = response.get("answers") if isinstance(response.get("answers"), list) else []
+    if any(isinstance(answer, dict) and answer.get("type") == "refusal" for answer in answers):
+        raise RuntimeError("OpenAI could not evaluate this job fit request.")
+    probabilities = {
+        str(answer.get("name", "")): float(answer.get("probability"))
+        for answer in answers
+        if isinstance(answer, dict) and answer.get("type") == "predicate" and answer.get("name") and isinstance(answer.get("probability"), (int, float))
+    }
+    required = {
+        "software_related",
+        "over_six_years_required",
+        "advanced_seniority_scope",
+    }
+    if not required.issubset(probabilities):
+        raise RuntimeError("OpenAI returned an incomplete job fit decision.")
+
+    reasons = []
+    if probabilities["software_related"] < JOB_FIT_THRESHOLD:
+        reasons.append("The primary responsibilities are not sufficiently software, data, AI, or cloud engineering focused.")
+    if probabilities["over_six_years_required"] >= JOB_FIT_THRESHOLD:
+        reasons.append("The job requires more than six years of relevant professional experience.")
+    if probabilities["advanced_seniority_scope"] >= JOB_FIT_THRESHOLD:
+        reasons.append("The responsibilities indicate staff, principal, lead, architect, or equivalent advanced scope.")
+    suitable = not reasons
+    result = {
+        "status": "suitable" if suitable else "not_suitable",
+        "suitable": suitable,
+        "message": (
+            "This is a software-engineering-related role within the supported seniority range."
+            if suitable
+            else reasons[0]
+        ),
+        "reasons": reasons,
+        "checked_at": datetime.now(timezone.utc).isoformat(),
+        "model": str(response.get("model") or JOB_FIT_MODEL),
+        "cached": False,
+        "signals": probabilities,
+    }
+    save_cached_ai_stage_result(
+        stage="job_fit_decision",
+        cache_key=cache_key,
+        model=JOB_FIT_MODEL,
+        prompt_version=JOB_FIT_PROMPT_VERSION,
+        source_hash=source_hash,
+        result=result,
+        source_metadata={"company_name": company_name, "role_title": role_title},
+    )
+    return result
 
 
 def analyze_job_description(
@@ -10931,6 +11059,20 @@ def preview():
         return jsonify({"success": False, "error": str(e)}), 500
 
 
+@app.route("/api/resume-documents/render", methods=["POST"])
+def render_resume_document_api():
+    """Render an authoritative resume JSON payload without profile or AI fallback."""
+    try:
+        payload = request.get_json(silent=True)
+        result = render_direct_resume_document(payload, settings["output_directory"])
+        return jsonify(result)
+    except ResumeDocumentValidationError as exc:
+        return jsonify({"success": False, "error": str(exc)}), 400
+    except Exception as exc:
+        print(f"Error rendering resume document: {exc}")
+        return jsonify({"success": False, "error": str(exc)}), 500
+
+
 @app.route("/api/settings", methods=["GET"])
 def get_settings():
     """Get current settings."""
@@ -11530,6 +11672,35 @@ def check_cpt_status():
         force_refresh = bool(data.get("force_refresh", False))
         cpt = check_cpt_company(company_name, force_refresh=force_refresh)
         return jsonify({"success": True, "cpt": cpt})
+    except Exception as exc:
+        return jsonify({"success": False, "error": str(exc)}), 500
+
+
+@app.route("/api/job-fit/check", methods=["POST"])
+def check_job_fit():
+    try:
+        data = request.get_json() or {}
+        context = normalize_context(data.get("context") or data)
+        issues = validate_context(context)
+        if issues:
+            return jsonify({"success": False, "error": " ".join(issues), "issues": issues}), 400
+        cache_only = bool(data.get("cache_only", False))
+        api_key = os.getenv("OPENAI_API_KEY", "").strip()
+        if not api_key and not cache_only:
+            return jsonify({"success": False, "error": "OPENAI_API_KEY is not configured."}), 503
+        result = check_job_fit_decision(
+            api_key=api_key,
+            company_name=context["company_name"],
+            role_title=context["role_title"],
+            location=context.get("location", ""),
+            job_description=context["job_description"],
+            resume_mode=str(data.get("resume_mode", "professional")),
+            force_refresh=bool(data.get("force_refresh", False)),
+            cache_only=cache_only,
+        )
+        return jsonify({"success": True, "job_fit": result})
+    except ValueError as exc:
+        return jsonify({"success": False, "error": str(exc)}), 400
     except Exception as exc:
         return jsonify({"success": False, "error": str(exc)}), 500
 

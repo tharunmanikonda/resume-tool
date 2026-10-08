@@ -1,0 +1,1189 @@
+{
+  "version": 1,
+  "source": "https://careers.withwaymo.com/jobs/search/?department=Software%20Engineering",
+  "baseline_date": "2026-10-07",
+  "baseline_listing_count": 176,
+  "last_successful_scan_at": "2026-10-07T12:44:08-05:00",
+  "highest_seen_job_id": 5542,
+  "known_job_ids": [
+    "3246",
+    "3265",
+    "3394",
+    "3404",
+    "3447",
+    "3570",
+    "3591",
+    "3627",
+    "3658",
+    "3673",
+    "3699",
+    "3742",
+    "3750",
+    "3915",
+    "3934",
+    "3969",
+    "3973",
+    "4032",
+    "4042",
+    "4058",
+    "4066",
+    "4067",
+    "4070-3",
+    "4253",
+    "4266",
+    "4274",
+    "4275",
+    "4286",
+    "4299",
+    "4300",
+    "4301",
+    "4304",
+    "4320",
+    "4329",
+    "4348",
+    "4350",
+    "4353",
+    "4376",
+    "4387",
+    "4410",
+    "4416",
+    "4418",
+    "4420",
+    "4425",
+    "4430",
+    "4441",
+    "4457",
+    "4483",
+    "4493",
+    "4513",
+    "4525",
+    "4531",
+    "4540",
+    "4575",
+    "4579",
+    "4647",
+    "4654",
+    "4658",
+    "4660",
+    "4677",
+    "4702",
+    "4751",
+    "4757",
+    "4792",
+    "4800",
+    "4856",
+    "4873",
+    "4879",
+    "4921",
+    "4940",
+    "4963",
+    "4967",
+    "4971",
+    "4976",
+    "4979",
+    "5004",
+    "5012",
+    "5015",
+    "5016",
+    "5018",
+    "5022",
+    "5024",
+    "5027",
+    "5036",
+    "5039",
+    "5048",
+    "5065",
+    "5067",
+    "5068",
+    "5070",
+    "5073",
+    "5090",
+    "5091",
+    "5101",
+    "5102",
+    "5112",
+    "5128",
+    "5131",
+    "5142",
+    "5146",
+    "5149",
+    "5153",
+    "5270",
+    "5293",
+    "5302",
+    "5303",
+    "5324",
+    "5335",
+    "5343",
+    "5344",
+    "5346",
+    "5352",
+    "5360",
+    "5364",
+    "5386",
+    "5387",
+    "5389",
+    "5390",
+    "5395",
+    "5401",
+    "5404",
+    "5406",
+    "5407",
+    "5408",
+    "5410",
+    "5416",
+    "5418",
+    "5419",
+    "5420",
+    "5422",
+    "5424",
+    "5425",
+    "5426",
+    "5427",
+    "5431",
+    "5432",
+    "5433",
+    "5434",
+    "5438",
+    "5441",
+    "5442",
+    "5443",
+    "5446",
+    "5451",
+    "5452",
+    "5453",
+    "5456",
+    "5458",
+    "5462",
+    "5469",
+    "5471",
+    "5477",
+    "5480",
+    "5483",
+    "5485",
+    "5486",
+    "5493",
+    "5500",
+    "5510",
+    "5511",
+    "5514",
+    "5523",
+    "5524",
+    "5528",
+    "5539",
+    "5540",
+    "5541",
+    "5542"
+  ],
+  "known_url_hashes": [
+    "01ec9fd3",
+    "03722f51",
+    "03ab3553",
+    "06f27484",
+    "08bb1042",
+    "092485e0",
+    "0d54f48a",
+    "0e586e8b",
+    "0f1b00cf",
+    "117a467f",
+    "126951b1",
+    "13151ba7",
+    "144b4f07",
+    "155bae8b",
+    "162bc85e",
+    "1b49e8de",
+    "1c010579",
+    "1e647c4d",
+    "1f4d4c60",
+    "1ffa1bb2",
+    "211e1490",
+    "21e196d1",
+    "22b8ccee",
+    "233a1652",
+    "27e348ca",
+    "2a35986b",
+    "2ab5170b",
+    "2b70b0b5",
+    "2be3013f",
+    "2d338645",
+    "2dd75af8",
+    "2f2314bb",
+    "30f0cc42",
+    "313fefb6",
+    "314d2280",
+    "329963d0",
+    "32e4649a",
+    "3565a72f",
+    "374df86c",
+    "38e416c6",
+    "3a56576b",
+    "3ba29bfc",
+    "3cd179f2",
+    "3d71b4b1",
+    "3e7f2418",
+    "3f6d48bb",
+    "3fe2745b",
+    "4313cea2",
+    "438ed602",
+    "4678dc18",
+    "47465fae",
+    "478cae73",
+    "47bb71f4",
+    "47e3da46",
+    "4a4df4d9",
+    "4c6e175f",
+    "4c983710",
+    "4cc2f682",
+    "4d1efa3e",
+    "52d47e85",
+    "55b263a3",
+    "563aaf1f",
+    "5ab78e2c",
+    "5ac6af1a",
+    "5bc59290",
+    "5c9b0b9e",
+    "5cd14f6e",
+    "5eba4ff2",
+    "6377f5c3",
+    "63bed62c",
+    "63fe4ab9",
+    "679e0402",
+    "69dd0b19",
+    "6af05e07",
+    "6c231f14",
+    "6e33a9c6",
+    "6f0c29a4",
+    "6f231629",
+    "7015e246",
+    "728b9ac2",
+    "73c21689",
+    "764051b3",
+    "7819f291",
+    "79f46381",
+    "7a4a807a",
+    "7a67a28f",
+    "7c27b98a",
+    "7c9626ad",
+    "7d61fe58",
+    "825a7c6c",
+    "83483b9f",
+    "83b2c5cf",
+    "85a3dcac",
+    "887ed8c4",
+    "8abe5c08",
+    "8b94696c",
+    "8b9b99d8",
+    "8be4ff41",
+    "8f5ee2d6",
+    "8fed1bcf",
+    "90716ad6",
+    "91d70dba",
+    "9250882c",
+    "9a7c685c",
+    "9b08af8d",
+    "9cf1d325",
+    "9df6a324",
+    "9e1969a6",
+    "9e2363c3",
+    "a1cab0bd",
+    "a2ff59c6",
+    "a38f6e7c",
+    "a52972ba",
+    "a5792fd2",
+    "a9a038e6",
+    "aa6d8e94",
+    "aaf0a3f1",
+    "abbb64e0",
+    "acc3c99e",
+    "ad28d110",
+    "af809db0",
+    "b17ef546",
+    "b1efb5d9",
+    "b2795a11",
+    "b3a296f9",
+    "b3a91086",
+    "b42674ea",
+    "b659eea1",
+    "b8cce53f",
+    "b8f96490",
+    "b9257482",
+    "b95701a7",
+    "bb168e87",
+    "c08a30b7",
+    "c1019064",
+    "c34922b3",
+    "c69fe4ad",
+    "cb7f99da",
+    "cd9ef253",
+    "d05f26a3",
+    "d146c596",
+    "d205f36f",
+    "d2b6ce64",
+    "d2c52193",
+    "d3e85a2a",
+    "d454ba78",
+    "d5ec8dab",
+    "d6b3227f",
+    "d92e0614",
+    "da1c4df8",
+    "da5d53c2",
+    "db2f130e",
+    "dc2358bf",
+    "de30432b",
+    "dfa4481d",
+    "e0efa68b",
+    "e1f9b4eb",
+    "e55e7ad7",
+    "e6e484be",
+    "e894aaa4",
+    "e96a6db4",
+    "e9767beb",
+    "e9a2fc70",
+    "eab8a135",
+    "eaedf6cc",
+    "ece269a8",
+    "ed99eddc",
+    "f12e39ce",
+    "f1761d8e",
+    "f21da2a9",
+    "f39f8ace",
+    "f63b4643",
+    "f677b7c6",
+    "f7133d46",
+    "f7f6b32c",
+    "fa6374dd"
+  ],
+  "catalog_version": 3,
+  "listing_catalog": {
+    "3fe2745b": {
+      "url": "https://careers.withwaymo.com/jobs/senior-backend-engineer-security-san-francisco-california-united-states-mountain-view",
+      "title": "Senior Backend Engineer, Security",
+      "metadata": [
+        "Mountain View, California",
+        "San Francisco, California",
+        "Software Engineering",
+        "Full-Time",
+        "Mid Career"
+      ],
+      "job_id": "3915",
+      "filter": {
+        "decision": "filtered_out",
+        "priority": "none",
+        "category": "backend",
+        "score": 7,
+        "reasons": [
+          "target_title:backend",
+          "profile_signal:go:+2",
+          "profile_signal:java:+1",
+          "profile_signal:backend_apis:+2",
+          "profile_signal:cloud_containers:+2"
+        ],
+        "blockers": [
+          "minimum_experience:7_years",
+          "minimum_experience_at_least_5_years"
+        ]
+      },
+      "checked_at": "2026-10-07T12:44:08-05:00"
+    },
+    "ece269a8": {
+      "url": "https://careers.withwaymo.com/jobs/senior-data-engineer-mountain-view-california-united-states",
+      "title": "Senior Data Engineer",
+      "metadata": [
+        "Mountain View, California",
+        "Software Engineering",
+        "Full-Time",
+        "Mid Career"
+      ],
+      "job_id": "4266",
+      "filter": {
+        "decision": "filtered_out",
+        "priority": "none",
+        "category": "data",
+        "score": 6,
+        "reasons": [
+          "target_title:data",
+          "profile_signal:python:+2",
+          "profile_signal:java:+1",
+          "profile_signal:data_streaming:+2",
+          "profile_signal:databases:+1"
+        ],
+        "blockers": [
+          "minimum_experience:6_years",
+          "minimum_experience_at_least_5_years"
+        ]
+      },
+      "checked_at": "2026-10-07T12:44:08-05:00"
+    },
+    "6377f5c3": {
+      "url": "https://careers.withwaymo.com/jobs/senior-fullstack-software-engineer-workshop-management-san-francisco-california-united-states",
+      "title": "Senior Fullstack Software Engineer, Workshop Management",
+      "metadata": [
+        "San Francisco, California",
+        "Software Engineering",
+        "Full-Time",
+        "Mid Career"
+      ],
+      "job_id": "4058",
+      "filter": {
+        "decision": "candidate",
+        "priority": "medium",
+        "category": "full_stack",
+        "score": 8,
+        "reasons": [
+          "target_title:full_stack",
+          "profile_signal:python:+2",
+          "profile_signal:go:+2",
+          "profile_signal:java:+1",
+          "profile_signal:javascript_react:+1",
+          "profile_signal:backend_apis:+2"
+        ],
+        "blockers": []
+      },
+      "checked_at": "2026-10-07T12:44:08-05:00"
+    },
+    "aaf0a3f1": {
+      "url": "https://careers.withwaymo.com/jobs/senior-software-engineer-mountain-view-california-united-states-san-francisco",
+      "title": "Senior Software Engineer",
+      "metadata": [
+        "Mountain View, California",
+        "San Francisco, California",
+        "Software Engineering",
+        "Full-Time",
+        "Mid Career"
+      ],
+      "job_id": "5425",
+      "filter": {
+        "decision": "filtered_out",
+        "priority": "none",
+        "category": "software",
+        "score": -2,
+        "reasons": [
+          "target_title:software",
+          "experience_stretch:5_years:-2"
+        ],
+        "blockers": [
+          "insufficient_profile_overlap",
+          "minimum_experience_at_least_5_years"
+        ]
+      },
+      "checked_at": "2026-10-07T12:44:08-05:00"
+    },
+    "e9a2fc70": {
+      "url": "https://careers.withwaymo.com/jobs/senior-software-engineer-multiverse-mountain-view-california-united-states",
+      "title": "Senior Software Engineer - Multiverse",
+      "metadata": [
+        "Mountain View, California",
+        "Software Engineering",
+        "Full-Time",
+        "Mid Career"
+      ],
+      "job_id": "3447",
+      "filter": {
+        "decision": "filtered_out",
+        "priority": "none",
+        "category": "software",
+        "score": 9,
+        "reasons": [
+          "target_title:software",
+          "profile_signal:python:+2",
+          "profile_signal:backend_apis:+2",
+          "profile_signal:distributed_systems:+2",
+          "profile_signal:data_streaming:+2",
+          "profile_signal:databases:+1"
+        ],
+        "blockers": [
+          "minimum_experience:7_years",
+          "minimum_experience_at_least_5_years"
+        ]
+      },
+      "checked_at": "2026-10-07T12:44:08-05:00"
+    },
+    "fa6374dd": {
+      "url": "https://careers.withwaymo.com/jobs/senior-software-engineer-devai-mountain-view-california-united-states-san-francisco",
+      "title": "Senior Software Engineer, DevAI",
+      "metadata": [
+        "Mountain View, California",
+        "San Francisco, California",
+        "Software Engineering",
+        "Full-Time",
+        "Mid Career"
+      ],
+      "job_id": "4856",
+      "filter": {
+        "decision": "filtered_out",
+        "priority": "none",
+        "category": "software",
+        "score": 5,
+        "reasons": [
+          "target_title:software",
+          "profile_signal:backend_apis:+2",
+          "profile_signal:data_streaming:+2",
+          "profile_signal:agentic_tooling:+3",
+          "experience_stretch:5_years:-2"
+        ],
+        "blockers": [
+          "minimum_experience_at_least_5_years"
+        ]
+      },
+      "checked_at": "2026-10-07T12:44:08-05:00"
+    },
+    "8fed1bcf": {
+      "url": "https://careers.withwaymo.com/jobs/senior-software-engineer-bulk-interactive-inference-mountain-view-california-united-states",
+      "title": "Senior Software Engineer, Bulk/Interactive Inference",
+      "metadata": [
+        "Mountain View, California",
+        "Software Engineering",
+        "Full-Time",
+        "Mid Career"
+      ],
+      "job_id": "4387",
+      "filter": {
+        "decision": "filtered_out",
+        "priority": "none",
+        "category": "software",
+        "score": 0,
+        "reasons": [
+          "target_title:software",
+          "profile_signal:distributed_systems:+2",
+          "experience_stretch:5_years:-2"
+        ],
+        "blockers": [
+          "insufficient_profile_overlap",
+          "minimum_experience_at_least_5_years"
+        ]
+      },
+      "checked_at": "2026-10-07T12:44:08-05:00"
+    },
+    "47e3da46": {
+      "url": "https://careers.withwaymo.com/jobs/senior-software-engineer-chassis-mountain-view-california-united-states-san-francisco",
+      "title": "Senior Software Engineer, Chassis",
+      "metadata": [
+        "Mountain View, California",
+        "San Francisco, California",
+        "Software Engineering",
+        "Full-Time",
+        "Mid Career"
+      ],
+      "job_id": "5486",
+      "filter": {
+        "decision": "needs_review",
+        "priority": "low",
+        "category": "software",
+        "score": 4,
+        "reasons": [
+          "target_title:software",
+          "profile_signal:backend_apis:+2",
+          "profile_signal:cloud_containers:+2"
+        ],
+        "blockers": []
+      },
+      "checked_at": "2026-10-07T12:44:08-05:00"
+    },
+    "2f2314bb": {
+      "url": "https://careers.withwaymo.com/jobs/senior-software-engineer-configuration-experiments-mountain-view-california-united-states-san-francisco",
+      "title": "Senior Software Engineer, Configuration & Experiments",
+      "metadata": [
+        "Mountain View, California",
+        "San Francisco, California",
+        "Software Engineering",
+        "Full-Time",
+        "Mid Career"
+      ],
+      "job_id": "4420",
+      "filter": {
+        "decision": "filtered_out",
+        "priority": "none",
+        "category": "software",
+        "score": 2,
+        "reasons": [
+          "target_title:software",
+          "profile_signal:backend_apis:+2",
+          "profile_signal:distributed_systems:+2",
+          "experience_stretch:5_years:-2"
+        ],
+        "blockers": [
+          "insufficient_profile_overlap",
+          "minimum_experience_at_least_5_years"
+        ]
+      },
+      "checked_at": "2026-10-07T12:44:08-05:00"
+    },
+    "f12e39ce": {
+      "url": "https://careers.withwaymo.com/jobs/senior-software-engineer-eval-authoring-apis-mountain-view-california-united-states",
+      "title": "Senior Software Engineer, Eval Authoring APIs",
+      "metadata": [
+        "Mountain View, California",
+        "Software Engineering",
+        "Full-Time",
+        "Mid Career"
+      ],
+      "job_id": "4702",
+      "filter": {
+        "decision": "filtered_out",
+        "priority": "none",
+        "category": "software",
+        "score": 4,
+        "reasons": [
+          "target_title:software",
+          "profile_signal:python:+2",
+          "profile_signal:backend_apis:+2",
+          "profile_signal:distributed_systems:+2",
+          "experience_stretch:5_years:-2"
+        ],
+        "blockers": [
+          "minimum_experience_at_least_5_years"
+        ]
+      },
+      "checked_at": "2026-10-07T12:44:08-05:00"
+    },
+    "5ab78e2c": {
+      "url": "https://careers.withwaymo.com/jobs/senior-software-engineer-eval-efficiency-optimization-mountain-view-california-united-states-new-york-city-new-york-san-francisco",
+      "title": "Senior Software Engineer, Eval Efficiency & Optimization",
+      "metadata": [
+        "Mountain View, California",
+        "San Francisco, California",
+        "New York City, New York",
+        "Software Engineering",
+        "Full-Time",
+        "Mid Career"
+      ],
+      "job_id": "5514",
+      "filter": {
+        "decision": "candidate",
+        "priority": "medium",
+        "category": "software",
+        "score": 6,
+        "reasons": [
+          "target_title:software",
+          "profile_signal:python:+2",
+          "profile_signal:databases:+1",
+          "profile_signal:agentic_tooling:+3"
+        ],
+        "blockers": []
+      },
+      "checked_at": "2026-10-07T12:44:08-05:00"
+    },
+    "d146c596": {
+      "url": "https://careers.withwaymo.com/jobs/senior-software-engineer-fleet-response-infrastructure-mountain-view-california-united-states-san-francisco",
+      "title": "Senior Software Engineer, Fleet Response Infrastructure",
+      "metadata": [
+        "Mountain View, California",
+        "San Francisco, California",
+        "Software Engineering",
+        "Full-Time",
+        "Mid Career"
+      ],
+      "job_id": "5067",
+      "filter": {
+        "decision": "needs_review",
+        "priority": "low",
+        "category": "software",
+        "score": 5,
+        "reasons": [
+          "target_title:software",
+          "profile_signal:javascript_react:+1",
+          "profile_signal:backend_apis:+2",
+          "profile_signal:distributed_systems:+2"
+        ],
+        "blockers": []
+      },
+      "checked_at": "2026-10-07T12:44:08-05:00"
+    },
+    "b8f96490": {
+      "url": "https://careers.withwaymo.com/jobs/senior-software-engineer-icx-graphics-mountain-view-california-united-states",
+      "title": "Senior Software Engineer, ICX Graphics",
+      "metadata": [
+        "Mountain View, California",
+        "Software Engineering",
+        "Full-Time",
+        "Mid Career"
+      ],
+      "job_id": "5153",
+      "filter": {
+        "decision": "filtered_out",
+        "priority": "none",
+        "category": "software",
+        "score": 1,
+        "reasons": [
+          "target_title:software",
+          "profile_signal:java:+1",
+          "profile_signal:backend_apis:+2",
+          "experience_stretch:5_years:-2"
+        ],
+        "blockers": [
+          "graphics_core",
+          "minimum_experience_at_least_5_years"
+        ]
+      },
+      "checked_at": "2026-10-07T12:44:08-05:00"
+    },
+    "a5792fd2": {
+      "url": "https://careers.withwaymo.com/jobs/senior-software-engineer-inertial-navigation-mountain-view-california-united-states-914a25e7-e9a2-445c-91cf-d34dc8efc28b",
+      "title": "Senior Software Engineer, Inertial Navigation",
+      "metadata": [
+        "Mountain View, California",
+        "Software Engineering",
+        "Full-Time",
+        "Mid Career"
+      ],
+      "job_id": "4457",
+      "filter": {
+        "decision": "needs_review",
+        "priority": "low",
+        "category": "software",
+        "score": 3,
+        "reasons": [
+          "target_title:software",
+          "profile_signal:python:+2",
+          "profile_signal:databases:+1"
+        ],
+        "blockers": []
+      },
+      "checked_at": "2026-10-07T12:44:08-05:00"
+    },
+    "5bc59290": {
+      "url": "https://careers.withwaymo.com/jobs/senior-software-engineer-internal-tooling-mountain-view-california-united-states",
+      "title": "Senior Software Engineer, Internal Tooling",
+      "metadata": [
+        "Mountain View, California",
+        "Software Engineering",
+        "Full-Time",
+        "Mid Career"
+      ],
+      "job_id": "4067",
+      "filter": {
+        "decision": "needs_review",
+        "priority": "low",
+        "category": "software",
+        "score": 5,
+        "reasons": [
+          "target_title:software",
+          "profile_signal:python:+2",
+          "profile_signal:backend_apis:+2",
+          "profile_signal:databases:+1"
+        ],
+        "blockers": []
+      },
+      "checked_at": "2026-10-07T12:44:08-05:00"
+    },
+    "1ffa1bb2": {
+      "url": "https://careers.withwaymo.com/jobs/senior-software-engineer-linux-kernel-mountain-view-california-united-states",
+      "title": "Senior Software Engineer, Linux Kernel",
+      "metadata": [
+        "Mountain View, California",
+        "Software Engineering",
+        "Full-Time",
+        "Mid Career"
+      ],
+      "job_id": "3570",
+      "filter": {
+        "decision": "filtered_out",
+        "priority": "none",
+        "category": "software",
+        "score": 2,
+        "reasons": [
+          "target_title:software",
+          "profile_signal:backend_apis:+2",
+          "profile_signal:distributed_systems:+2",
+          "experience_stretch:5_years:-2"
+        ],
+        "blockers": [
+          "insufficient_profile_overlap",
+          "minimum_experience_at_least_5_years"
+        ]
+      },
+      "checked_at": "2026-10-07T12:44:08-05:00"
+    },
+    "092485e0": {
+      "url": "https://careers.withwaymo.com/jobs/senior-software-engineer-mapping-data-eval-mountain-view-california-united-states-san-francisco",
+      "title": "Senior Software Engineer, Mapping Data & Eval",
+      "metadata": [
+        "Mountain View, California",
+        "San Francisco, California",
+        "Software Engineering",
+        "Full-Time",
+        "Mid Career"
+      ],
+      "job_id": "5364",
+      "filter": {
+        "decision": "candidate",
+        "priority": "medium",
+        "category": "software",
+        "score": 6,
+        "reasons": [
+          "target_title:software",
+          "profile_signal:backend_apis:+2",
+          "profile_signal:distributed_systems:+2",
+          "profile_signal:data_streaming:+2"
+        ],
+        "blockers": []
+      },
+      "checked_at": "2026-10-07T12:44:08-05:00"
+    },
+    "2b70b0b5": {
+      "url": "https://careers.withwaymo.com/jobs/senior-software-engineer-mapping-field-response-mountain-view-california-united-states",
+      "title": "Senior Software Engineer, Mapping Field Response",
+      "metadata": [
+        "Mountain View, California",
+        "Software Engineering",
+        "Full-Time",
+        "Mid Career"
+      ],
+      "job_id": "4070-3",
+      "filter": {
+        "decision": "filtered_out",
+        "priority": "none",
+        "category": "software",
+        "score": 2,
+        "reasons": [
+          "target_title:software",
+          "profile_signal:backend_apis:+2"
+        ],
+        "blockers": [
+          "insufficient_profile_overlap"
+        ]
+      },
+      "checked_at": "2026-10-07T12:44:08-05:00"
+    },
+    "b2795a11": {
+      "url": "https://careers.withwaymo.com/jobs/senior-software-engineer-ml-evaluation-infra-and-efficiency-mountain-view-california-united-states",
+      "title": "Senior Software Engineer, ML Evaluation Infra and Efficiency",
+      "metadata": [
+        "Mountain View, California",
+        "Software Engineering",
+        "Full-Time",
+        "Advanced Career"
+      ],
+      "job_id": "3673",
+      "filter": {
+        "decision": "needs_review",
+        "priority": "low",
+        "category": "software",
+        "score": 4,
+        "reasons": [
+          "target_title:software",
+          "profile_signal:python:+2",
+          "profile_signal:distributed_systems:+2"
+        ],
+        "blockers": []
+      },
+      "checked_at": "2026-10-07T12:44:08-05:00"
+    },
+    "f677b7c6": {
+      "url": "https://careers.withwaymo.com/jobs/senior-software-engineer-ml-eval-data-platforms-infrastructure-mountain-view-california-united-states-san-francisco",
+      "title": "Senior Software Engineer, ML/Eval Data Platforms & Infrastructure",
+      "metadata": [
+        "Mountain View, California",
+        "San Francisco, California",
+        "Software Engineering",
+        "Full-Time",
+        "Mid Career"
+      ],
+      "job_id": "4967",
+      "filter": {
+        "decision": "candidate",
+        "priority": "medium",
+        "category": "software",
+        "score": 9,
+        "reasons": [
+          "target_title:software",
+          "profile_signal:python:+2",
+          "profile_signal:backend_apis:+2",
+          "profile_signal:distributed_systems:+2",
+          "profile_signal:data_streaming:+2",
+          "profile_signal:databases:+1"
+        ],
+        "blockers": []
+      },
+      "checked_at": "2026-10-07T12:44:08-05:00"
+    },
+    "7819f291": {
+      "url": "https://careers.withwaymo.com/jobs/senior-software-engineer-quantitative-evaluations-mountain-view-california-united-states-san-francisco",
+      "title": "Senior Software Engineer, Quantitative Evaluations",
+      "metadata": [
+        "Mountain View, California",
+        "San Francisco, California",
+        "Software Engineering",
+        "Full-Time",
+        "Mid Career"
+      ],
+      "job_id": "4410",
+      "filter": {
+        "decision": "needs_review",
+        "priority": "low",
+        "category": "software",
+        "score": 5,
+        "reasons": [
+          "target_title:software",
+          "profile_signal:python:+2",
+          "profile_signal:backend_apis:+2",
+          "profile_signal:databases:+1"
+        ],
+        "blockers": []
+      },
+      "checked_at": "2026-10-07T12:44:08-05:00"
+    },
+    "211e1490": {
+      "url": "https://careers.withwaymo.com/jobs/senior-software-engineer-simulator-orchestration-mountain-view-california-united-states",
+      "title": "Senior Software Engineer, Simulator Orchestration",
+      "metadata": [
+        "Mountain View, California",
+        "Software Engineering",
+        "Full-Time",
+        "Mid Career"
+      ],
+      "job_id": "4963",
+      "filter": {
+        "decision": "filtered_out",
+        "priority": "none",
+        "category": "software",
+        "score": 2,
+        "reasons": [
+          "target_title:software",
+          "profile_signal:python:+2",
+          "profile_signal:backend_apis:+2",
+          "experience_stretch:5_years:-2"
+        ],
+        "blockers": [
+          "insufficient_profile_overlap",
+          "minimum_experience_at_least_5_years"
+        ]
+      },
+      "checked_at": "2026-10-07T12:44:08-05:00"
+    },
+    "4cc2f682": {
+      "url": "https://careers.withwaymo.com/jobs/senior-software-engineer-training-efficiency-mountain-view-california-united-states",
+      "title": "Senior Software Engineer, Training Efficiency",
+      "metadata": [
+        "Mountain View, California",
+        "Software Engineering",
+        "Full-Time",
+        "Mid Career"
+      ],
+      "job_id": "3627",
+      "filter": {
+        "decision": "filtered_out",
+        "priority": "none",
+        "category": "software",
+        "score": 4,
+        "reasons": [
+          "target_title:software",
+          "profile_signal:python:+2",
+          "profile_signal:distributed_systems:+2",
+          "profile_signal:data_streaming:+2",
+          "experience_stretch:5_years:-2"
+        ],
+        "blockers": [
+          "minimum_experience_at_least_5_years"
+        ]
+      },
+      "checked_at": "2026-10-07T12:44:08-05:00"
+    },
+    "9b08af8d": {
+      "url": "https://careers.withwaymo.com/jobs/senior-software-engineer-vehicle-interaction-mountain-view-california-united-states",
+      "title": "Senior Software Engineer, Vehicle Interaction",
+      "metadata": [
+        "Mountain View, California",
+        "Software Engineering",
+        "Full-Time",
+        "Mid Career"
+      ],
+      "job_id": "5524",
+      "filter": {
+        "decision": "filtered_out",
+        "priority": "none",
+        "category": "software",
+        "score": 1,
+        "reasons": [
+          "target_title:software",
+          "profile_signal:agentic_tooling:+3",
+          "experience_stretch:5_years:-2"
+        ],
+        "blockers": [
+          "insufficient_profile_overlap",
+          "minimum_experience_at_least_5_years"
+        ]
+      },
+      "checked_at": "2026-10-07T12:44:08-05:00"
+    },
+    "3e7f2418": {
+      "url": "https://careers.withwaymo.com/jobs/software-engineer-gpu-mountain-view-california-united-states-new-york-city-new-york-3c95b74d-814f-40d2-9988-2bd4a9a97a11",
+      "title": "Software Engineer, GPU",
+      "metadata": [
+        "Mountain View, California",
+        "New York City, New York",
+        "Software Engineering",
+        "Full-Time",
+        "Mid Career"
+      ],
+      "job_id": "4531",
+      "filter": {
+        "decision": "filtered_out",
+        "priority": "none",
+        "category": "software",
+        "score": 2,
+        "reasons": [
+          "target_title:software",
+          "profile_signal:qa_automation:+2"
+        ],
+        "blockers": [
+          "insufficient_profile_overlap"
+        ]
+      },
+      "checked_at": "2026-10-07T12:44:08-05:00"
+    },
+    "126951b1": {
+      "url": "https://careers.withwaymo.com/jobs/software-engineer-marketplace-logistic-mountain-view-california-united-states-san-francisco",
+      "title": "Software Engineer, Marketplace Logistic",
+      "metadata": [
+        "Mountain View, California",
+        "San Francisco, California",
+        "Software Engineering",
+        "Full-Time",
+        "Mid Career"
+      ],
+      "job_id": "5018",
+      "filter": {
+        "decision": "needs_review",
+        "priority": "low",
+        "category": "software",
+        "score": 4,
+        "reasons": [
+          "target_title:software",
+          "profile_signal:backend_apis:+2",
+          "profile_signal:distributed_systems:+2"
+        ],
+        "blockers": []
+      },
+      "checked_at": "2026-10-07T12:44:08-05:00"
+    },
+    "d205f36f": {
+      "url": "https://careers.withwaymo.com/jobs/software-engineer-perception-scaling-evaluation-mountain-view-california-united-states-san-francisco",
+      "title": "Software Engineer, Perception Scaling Evaluation",
+      "metadata": [
+        "Mountain View, California",
+        "San Francisco, California",
+        "Software Engineering",
+        "Full-Time",
+        "Mid Career"
+      ],
+      "job_id": "4301",
+      "filter": {
+        "decision": "filtered_out",
+        "priority": "none",
+        "category": "software",
+        "score": 2,
+        "reasons": [
+          "target_title:software",
+          "profile_signal:backend_apis:+2"
+        ],
+        "blockers": [
+          "insufficient_profile_overlap"
+        ]
+      },
+      "checked_at": "2026-10-07T12:44:08-05:00"
+    },
+    "c69fe4ad": {
+      "url": "https://careers.withwaymo.com/jobs/software-engineer-statistical-evaluation-and-sampling-mountain-view-california-united-states-san-francisco",
+      "title": "Software Engineer, Statistical Evaluation and Sampling",
+      "metadata": [
+        "Mountain View, California",
+        "San Francisco, California",
+        "Software Engineering",
+        "Full-Time",
+        "Mid Career"
+      ],
+      "job_id": "4513",
+      "filter": {
+        "decision": "candidate",
+        "priority": "medium",
+        "category": "software",
+        "score": 6,
+        "reasons": [
+          "target_title:software",
+          "profile_signal:python:+2",
+          "profile_signal:databases:+1",
+          "profile_signal:agentic_tooling:+3"
+        ],
+        "blockers": []
+      },
+      "checked_at": "2026-10-07T12:44:08-05:00"
+    },
+    "e55e7ad7": {
+      "url": "https://careers.withwaymo.com/jobs/software-engineer-weather-monitoring-mountain-view-california-united-states-san-francisco-59e882b1-9467-4aea-879e-11d040ce14e2",
+      "title": "Software Engineer, Weather Monitoring",
+      "metadata": [
+        "Mountain View, California",
+        "San Francisco, California",
+        "Software Engineering",
+        "Full-Time",
+        "Mid Career"
+      ],
+      "job_id": "5523",
+      "filter": {
+        "decision": "candidate",
+        "priority": "medium",
+        "category": "software",
+        "score": 6,
+        "reasons": [
+          "target_title:software",
+          "profile_signal:backend_apis:+2",
+          "profile_signal:distributed_systems:+2",
+          "profile_signal:data_streaming:+2"
+        ],
+        "blockers": []
+      },
+      "checked_at": "2026-10-07T12:44:08-05:00"
+    },
+    "4d1efa3e": {
+      "url": "https://careers.withwaymo.com/jobs/sr-software-engineer-android-automotive-mountain-view-california-united-states",
+      "title": "Sr Software Engineer, Android Automotive",
+      "metadata": [
+        "Mountain View, California",
+        "Software Engineering",
+        "Full-Time",
+        "Mid Career"
+      ],
+      "job_id": "4275",
+      "filter": {
+        "decision": "filtered_out",
+        "priority": "none",
+        "category": "software",
+        "score": 2,
+        "reasons": [
+          "target_title:software",
+          "profile_signal:python:+2"
+        ],
+        "blockers": [
+          "insufficient_profile_overlap"
+        ]
+      },
+      "checked_at": "2026-10-07T12:44:08-05:00"
+    },
+    "b3a91086": {
+      "url": "https://careers.withwaymo.com/jobs/sr-software-engineer-telematics-mountain-view-california-united-states",
+      "title": "Sr Software Engineer, Telematics",
+      "metadata": [
+        "Mountain View, California",
+        "Software Engineering",
+        "Full-Time",
+        "Mid Career"
+      ],
+      "job_id": "4274",
+      "filter": {
+        "decision": "filtered_out",
+        "priority": "none",
+        "category": "software",
+        "score": 0,
+        "reasons": [
+          "target_title:software"
+        ],
+        "blockers": [
+          "insufficient_profile_overlap"
+        ]
+      },
+      "checked_at": "2026-10-07T12:44:08-05:00"
+    }
+  },
+  "recent_catalog_checked_at": "2026-10-07T12:44:08-05:00"
+}

@@ -226,6 +226,7 @@ def _set_compact_spacing(para):
 
 def _add_section_borders(para):
     """Add bottom border only to a section header paragraph (Heading 1)."""
+    para.paragraph_format.keep_with_next = True
     pPr  = para._p.get_or_add_pPr()
     pBdr = OxmlElement('w:pBdr')
 
@@ -256,89 +257,131 @@ def build_resume_docx(resume_data: dict, output_docx: str, format_profile: str =
         if child.tag != qn('w:sectPr'):
             body.remove(child)
 
-    d = resume_data
+    d = resume_data if isinstance(resume_data, dict) else {}
 
     # ── NAME ──────────────────────────────────────────────────────────────
-    doc.add_paragraph(d['name'], style='Title')
+    name = str(d.get('name', '')).strip()
+    if name:
+        doc.add_paragraph(name, style='Title')
 
     # ── PROFESSIONAL TITLE ────────────────────────────────────────────────
-    p = doc.add_paragraph(style='Normal')
-    p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    p.paragraph_format.space_before = Pt(2.2)
-    p.paragraph_format.space_after  = Pt(0)
-    r = p.add_run(d['title'])
-    _format_run(r, size=profile["title_size"], font_name=font_name)
-    r.bold      = True
+    title = str(d.get('title', '')).strip()
+    if title:
+        p = doc.add_paragraph(style='Normal')
+        p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        p.paragraph_format.space_before = Pt(2.2)
+        p.paragraph_format.space_after  = Pt(0)
+        r = p.add_run(title)
+        _format_run(r, size=profile["title_size"], font_name=font_name)
+        r.bold = True
 
     # ── CONTACT LINE ──────────────────────────────────────────────────────
-    c  = d['contact']
-    p  = doc.add_paragraph(style='Normal')
-    p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    p.paragraph_format.space_before = Pt(2.2)
-    p.paragraph_format.space_after  = Pt(0)
-    r  = p.add_run(f"{c['location']} | {c['phone']} | {c['email']}")
-    _format_run(r, size=profile["contact_size"], font_name=font_name)
+    contact = d.get('contact') if isinstance(d.get('contact'), dict) else {}
+    contact_parts = [
+        str(contact.get(field, '')).strip()
+        for field in ('location', 'phone', 'email')
+        if str(contact.get(field, '')).strip()
+    ]
+    if contact_parts:
+        p = doc.add_paragraph(style='Normal')
+        p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        p.paragraph_format.space_before = Pt(2.2)
+        p.paragraph_format.space_after = Pt(0)
+        r = p.add_run(' | '.join(contact_parts))
+        _format_run(r, size=profile["contact_size"], font_name=font_name)
 
-    _spacer(doc, after_pt=6)
+    if name or title or contact_parts:
+        _spacer(doc, after_pt=6)
 
     # ── SUMMARY ───────────────────────────────────────────────────────────
-    p_h = doc.add_paragraph('SUMMARY', style='Heading 1')
-    p_h.paragraph_format.space_before = Pt(profile["section_spacing_before"])
-    _add_section_borders(p_h)
-    p = doc.add_paragraph(style='Normal')
-    p.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
-    p.paragraph_format.space_before = Pt(profile["summary_spacing_before"])
-    p.paragraph_format.space_after = Pt(0)
-    _runs(p, d['summary'], size=body_size, font_name=font_name)
+    summary = str(d.get('summary', '')).strip()
+    if summary:
+        p_h = doc.add_paragraph('SUMMARY', style='Heading 1')
+        p_h.paragraph_format.space_before = Pt(profile["section_spacing_before"])
+        _add_section_borders(p_h)
+        p = doc.add_paragraph(style='Normal')
+        p.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
+        p.paragraph_format.space_before = Pt(profile["summary_spacing_before"])
+        p.paragraph_format.space_after = Pt(0)
+        _runs(p, summary, size=body_size, font_name=font_name)
 
-    _spacer(doc, after_pt=6)
+        _spacer(doc, after_pt=6)
 
     # ── TECHNICAL SKILLS ──────────────────────────────────────────────────
-    p_h = doc.add_paragraph('TECHNICAL SKILLS', style='Heading 1')
-    _add_section_borders(p_h)
-    for sk in d['technical_skills']:
-        p = doc.add_paragraph(style='p1')
-        _set_compact_spacing(p)
-        r1 = p.add_run(sk['category'])
-        _format_run(r1, size=body_size, font_name=font_name)
-        r1.bold      = True
-        raw_items = sk.get('items', [])
-        items_text = (
-            ', '.join(str(item).strip() for item in raw_items if str(item).strip())
-            if isinstance(raw_items, (list, tuple, set))
-            else str(raw_items).strip()
-        )
-        r2 = p.add_run(f": {items_text}")
-        _format_run(r2, size=body_size, font_name=font_name)
+    technical_skills = d.get('technical_skills') if isinstance(d.get('technical_skills'), list) else []
+    technical_skills = [item for item in technical_skills if isinstance(item, dict)]
+    if technical_skills:
+        p_h = doc.add_paragraph('TECHNICAL SKILLS', style='Heading 1')
+        _add_section_borders(p_h)
+        for sk in technical_skills:
+            category = str(sk.get('category', '')).strip()
+            raw_items = sk.get('items', [])
+            items_text = (
+                ', '.join(str(item).strip() for item in raw_items if str(item).strip())
+                if isinstance(raw_items, (list, tuple, set))
+                else str(raw_items).strip()
+            )
+            if not category and not items_text:
+                continue
+            p = doc.add_paragraph(style='p1')
+            _set_compact_spacing(p)
+            if category:
+                r1 = p.add_run(category)
+                _format_run(r1, size=body_size, font_name=font_name)
+                r1.bold = True
+            if items_text:
+                prefix = ': ' if category else ''
+                r2 = p.add_run(f"{prefix}{items_text}")
+                _format_run(r2, size=body_size, font_name=font_name)
 
     # ── PROFESSIONAL EXPERIENCE ───────────────────────────────────────────
-    p_h = doc.add_paragraph('PROFESSIONAL EXPERIENCE', style='Heading 1')
-    _add_section_borders(p_h)
-    for i, exp in enumerate(d['experience']):
-
+    experience = d.get('experience') if isinstance(d.get('experience'), list) else []
+    experience = [item for item in experience if isinstance(item, dict)]
+    if experience:
+        p_h = doc.add_paragraph('PROFESSIONAL EXPERIENCE', style='Heading 1')
+        _add_section_borders(p_h)
+    for i, exp in enumerate(experience):
         # Company | Location
-        p = doc.add_paragraph(f"{exp['company']} | {exp['location']}",
-                               style='Heading 2')
-        p.paragraph_format.space_before = Pt(profile["experience_gap"] if i > 0 else 1.9)
+        company_line = ' | '.join(
+            value for value in (
+                str(exp.get('company', '')).strip(),
+                str(exp.get('location', '')).strip(),
+            ) if value
+        )
+        if company_line:
+            p = doc.add_paragraph(company_line, style='Heading 2')
+            p.paragraph_format.space_before = Pt(profile["experience_gap"] if i > 0 else 1.9)
 
         # Title [TAB] Dates  — right-tab aligned, bold-italic
-        p = doc.add_paragraph(style='Normal')
-        p.paragraph_format.space_before = Pt(1.9)
-        p.paragraph_format.space_after  = Pt(0)
-        p.paragraph_format.left_indent  = Inches(0.085)
-        _add_right_tab(p, profile["text_width"])
-        r1 = p.add_run(exp['title'])
-        _format_run(r1, size=body_size, font_name=font_name)
-        r1.bold      = True
-        r1.italic    = True
-        p.add_run('\t')
-        r2 = p.add_run(exp['dates'])
-        _format_run(r2, size=body_size, font_name=font_name)
-        r2.bold      = True
-        r2.italic    = True
+        experience_title = str(exp.get('title', '')).strip()
+        dates = str(exp.get('dates', '')).strip()
+        if experience_title or dates:
+            p = doc.add_paragraph(style='Normal')
+            p.paragraph_format.space_before = Pt(1.9)
+            p.paragraph_format.space_after = Pt(0)
+            p.paragraph_format.left_indent = Inches(0.085)
+            _add_right_tab(p, profile["text_width"])
+            if experience_title:
+                r1 = p.add_run(experience_title)
+                _format_run(r1, size=body_size, font_name=font_name)
+                r1.bold = True
+                r1.italic = True
+            if dates:
+                if experience_title:
+                    p.add_run('\t')
+                else:
+                    p.add_run('\t')
+                r2 = p.add_run(dates)
+                _format_run(r2, size=body_size, font_name=font_name)
+                r2.bold = True
+                r2.italic = True
 
         # Bullet points
-        for b in exp['bullets']:
+        bullets = exp.get('bullets') if isinstance(exp.get('bullets'), list) else []
+        for b in bullets:
+            bullet_text = str(b).strip()
+            if not bullet_text:
+                continue
             p = doc.add_paragraph(style='List Paragraph')
             p.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
             p.paragraph_format.space_before = Pt(profile["bullet_spacing"])
@@ -346,53 +389,79 @@ def build_resume_docx(resume_data: dict, output_docx: str, format_profile: str =
             _set_hanging_indent(p)  # Uses default: left=86 twips (0.06"), hanging=187 twips (0.13")
             r = p.add_run(f"{BULLET} ")
             _format_run(r, size=body_size, font_name=font_name)
-            _runs(p, b, size=body_size, font_name=font_name)
+            _runs(p, bullet_text, size=body_size, font_name=font_name)
 
-    _spacer(doc, after_pt=5)
+    if experience:
+        _spacer(doc, after_pt=5)
 
     # ── PROJECTS ──────────────────────────────────────────────────────────
-    p_h = doc.add_paragraph('PROJECTS', style='Heading 1')
-    _add_section_borders(p_h)
-    for proj in d['projects']:
-        p = doc.add_paragraph(proj['name'], style='Heading 2')
-        p.paragraph_format.space_before = Pt(profile["project_gap"])
+    projects = d.get('projects') if isinstance(d.get('projects'), list) else []
+    projects = [item for item in projects if isinstance(item, dict)]
+    if projects:
+        p_h = doc.add_paragraph('PROJECTS', style='Heading 1')
+        _add_section_borders(p_h)
+    for proj in projects:
+        project_name = str(proj.get('name', '')).strip()
+        if project_name:
+            p = doc.add_paragraph(project_name, style='Heading 2')
+            p.paragraph_format.keep_with_next = True
+            p.paragraph_format.space_before = Pt(profile["project_gap"])
 
-        for b in proj['bullets']:
+        bullets = proj.get('bullets') if isinstance(proj.get('bullets'), list) else []
+        for b in bullets:
+            bullet_text = str(b).strip()
+            if not bullet_text:
+                continue
             p = doc.add_paragraph(style='Body Text')
             p.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
             p.paragraph_format.space_before = Pt(1.55)
             r = p.add_run(f"{BULLET} ")
             _format_run(r, size=body_size, font_name=font_name)
-            _runs(p, b, size=body_size, font_name=font_name)
+            _runs(p, bullet_text, size=body_size, font_name=font_name)
 
-    _spacer(doc, after_pt=5)
+    if projects:
+        _spacer(doc, after_pt=5)
 
     # ── EDUCATION ─────────────────────────────────────────────────────────
-    p_h = doc.add_paragraph('EDUCATION', style='Heading 1')
-    _add_section_borders(p_h)
-    for edu in d['education']:
-        p = doc.add_paragraph(edu['degree'], style='Heading 2')
-        p.paragraph_format.space_before = Pt(1.9)
+    education = d.get('education') if isinstance(d.get('education'), list) else []
+    education = [item for item in education if isinstance(item, dict)]
+    if education:
+        p_h = doc.add_paragraph('EDUCATION', style='Heading 1')
+        _add_section_borders(p_h)
+    for edu in education:
+        degree = str(edu.get('degree', '')).strip()
+        if degree:
+            p = doc.add_paragraph(degree, style='Heading 2')
+            p.paragraph_format.space_before = Pt(1.9)
 
         # Institution [TAB] Dates
-        p = doc.add_paragraph(style='Normal')
-        p.paragraph_format.space_before = Pt(2.1)
-        p.paragraph_format.space_after  = Pt(0)
-        p.paragraph_format.left_indent  = Inches(0.053)
-        _add_right_tab(p, profile["text_width"])
-        r1 = p.add_run(edu['institution'])
-        _format_run(r1, size=body_size, font_name=font_name)
-        p.add_run('\t')
-        r2 = p.add_run(edu['dates'])
-        _format_run(r2, size=body_size, font_name=font_name)
-        r2.italic    = True
+        institution = str(edu.get('institution', '')).strip()
+        education_dates = str(edu.get('dates', '')).strip()
+        if institution or education_dates:
+            p = doc.add_paragraph(style='Normal')
+            p.paragraph_format.space_before = Pt(2.1)
+            p.paragraph_format.space_after = Pt(0)
+            p.paragraph_format.left_indent = Inches(0.053)
+            _add_right_tab(p, profile["text_width"])
+            if institution:
+                r1 = p.add_run(institution)
+                _format_run(r1, size=body_size, font_name=font_name)
+            if education_dates:
+                p.add_run('\t')
+                r2 = p.add_run(education_dates)
+                _format_run(r2, size=body_size, font_name=font_name)
+                r2.italic = True
 
-    _spacer(doc, after_pt=5)
+    if education:
+        _spacer(doc, after_pt=5)
 
     # ── CERTIFICATIONS ────────────────────────────────────────────────────
-    p_h = doc.add_paragraph('CERTIFICATIONS', style='Heading 1')
-    _add_section_borders(p_h)
-    for cert in d['certifications']:
+    certifications = d.get('certifications') if isinstance(d.get('certifications'), list) else []
+    certifications = [str(item).strip() for item in certifications if str(item).strip()]
+    if certifications:
+        p_h = doc.add_paragraph('CERTIFICATIONS', style='Heading 1')
+        _add_section_borders(p_h)
+    for cert in certifications:
         p = doc.add_paragraph(style='List Paragraph')
         p.paragraph_format.space_before = Pt(2.25)
         _set_hanging_indent(p)  # Uses default: left=86 twips (0.06"), hanging=187 twips (0.13")
@@ -435,6 +504,17 @@ def is_pdf_conversion_ready() -> tuple[bool, str]:
         return False, "LibreOffice version check timed out"
     except Exception as e:
         return False, f"Error checking LibreOffice: {str(e)}"
+
+
+def _move_converted_pdf_to_requested_path(expected_pdf: str, output_path: str) -> str:
+    """Move LibreOffice's DOCX-stem PDF to the caller's exact requested name."""
+    expected = Path(expected_pdf)
+    requested = Path(output_path)
+    if expected.resolve() == requested.resolve():
+        return str(requested)
+    requested.parent.mkdir(parents=True, exist_ok=True)
+    expected.replace(requested)
+    return str(requested)
 
 
 def _convert_docx_to_pdf_via_libreoffice(docx_path: str, output_path: str, timeout_seconds: int = 120) -> None:
@@ -524,6 +604,9 @@ def _convert_docx_to_pdf_via_libreoffice(docx_path: str, output_path: str, timeo
             raise RuntimeError(f"PDF not created at {expected_pdf}. Files in directory: {files_in_dir}")
 
         print(f"  [PDF] ✓ PDF created successfully: {expected_pdf}")
+        final_pdf = _move_converted_pdf_to_requested_path(expected_pdf, output_path)
+        if os.path.abspath(final_pdf) != os.path.abspath(expected_pdf):
+            print(f"  [PDF] Renamed PDF to requested path: {final_pdf}")
 
     except subprocess.TimeoutExpired as e:
         raise RuntimeError(f"LibreOffice conversion timed out after {timeout_seconds} seconds. Error: {str(e)}")

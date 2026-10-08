@@ -182,6 +182,48 @@ curl http://127.0.0.1:5001/api/extension/status
 
 The extension status response reports server, AI, PDF, profile, and queue readiness.
 
+## Direct JSON Resume Rendering
+
+`POST /api/resume-documents/render` creates resume artifacts directly from an
+authoritative JSON payload. This route does not load the saved profile, merge a
+base resume, run preflight checks, create a tracker entry, or call an AI model.
+Only supplied resume fields and sections are rendered.
+
+```json
+{
+  "resume": {
+    "name": "Manikonda Tharun",
+    "title": "Software Engineer",
+    "contact": {
+      "location": "Dallas, TX",
+      "phone": "(205) 490-8183",
+      "email": "candidate@example.com"
+    },
+    "summary": "Software engineer building reliable production systems.",
+    "experience": [
+      {
+        "company": "Example Company",
+        "title": "Software Engineer",
+        "dates": "February 2024 - Present",
+        "bullets": ["Built reliable production services."]
+      }
+    ]
+  },
+  "output": {
+    "relative_directory": "Tesla/Software Engineer",
+    "docx_file_name": "Manikonda Tharun - Software Engineer.docx",
+    "pdf_file_name": "Manikonda Tharun - Software Engineer.pdf",
+    "json_file_name": "resume-request.json",
+    "format_profile": "outlook"
+  }
+}
+```
+
+`relative_directory` is resolved under the configured output directory and
+cannot escape it. Artifact names are never inferred: omit a filename to skip
+that artifact. At least one of `docx_file_name` or `pdf_file_name` is required.
+The optional JSON artifact stores the complete reproducible request.
+
 ## Poke MCP Integration
 
 The optional MCP adapter lets Poke start and monitor the same resume workflow used by the main app and browser extension. It does not contain separate prompts, resume content, or generation logic.
@@ -247,13 +289,14 @@ The copy-ready recipe configuration and operating instructions are in
 
 ### MCP workflow
 
-The adapter exposes five tools:
+The adapter exposes six tools:
 
 1. `start_resume_generation` accepts a JD and optional identity, company, role, and source URL.
 2. `get_resume_status` returns progress, a required decision, the final Luna-reviewed resume, or completed files. A status call can wait for up to 20 seconds. Completed responses return the PDF by default; pass `include_docx: true` only when the user asks for the Word document.
 3. `continue_resume_action` resolves identity selection, duplicate applications, checkpoint retries, and review decisions using the returned `action_id`.
 4. `update_resume_draft` applies structured changes against an exact `base_revision`. Manual edits invalidate existing files and do not run Luna again.
 5. `finalize_resume` requires `confirmed: true` and the latest revision, then creates and retains both PDF and DOCX without adding a tracker record. It returns the DOCX link only when `include_docx: true` is requested.
+6. `render_resume_document` accepts authoritative `resume` and `output` objects and renders them directly with zero AI calls or saved-profile fallback.
 
 Poke should preserve every returned `draft_id`, `revision`, and `action_id`. When a response is `action_required`, resolve that action before continuing. Generation is asynchronous; Poke should check status on a later turn instead of continuously polling.
 
