@@ -24,6 +24,7 @@ def test_job_fit_endpoint_uses_decisions_and_returns_suitable(monkeypatch):
         return {
             "model": "gpt-6-luna",
             "answers": [
+                {"type": "predicate", "name": "data_center_related", "probability": 0.01},
                 {"type": "predicate", "name": "software_related", "probability": 0.98},
                 {"type": "predicate", "name": "over_six_years_required", "probability": 0.02},
                 {"type": "predicate", "name": "advanced_seniority_scope", "probability": 0.05},
@@ -39,7 +40,7 @@ def test_job_fit_endpoint_uses_decisions_and_returns_suitable(monkeypatch):
     assert captured["url"] == "https://api.openai.com/v1/decisions"
     assert captured["payload"]["model"] == "gpt-6-luna"
     assert [item["name"] for item in captured["payload"]["questions"]] == [
-        "software_related", "over_six_years_required", "advanced_seniority_scope"
+        "data_center_related", "software_related", "over_six_years_required", "advanced_seniority_scope"
     ]
     assert "candidate_profile" not in captured["payload"]["input"]
 
@@ -51,6 +52,7 @@ def test_job_fit_rejects_non_software_application_engineer(monkeypatch):
     monkeypatch.setattr(resume_app, "_request_openai_json", lambda **_kwargs: {
         "model": "gpt-6-luna",
         "answers": [
+            {"type": "predicate", "name": "data_center_related", "probability": 0.01},
             {"type": "predicate", "name": "software_related", "probability": 0.04},
             {"type": "predicate", "name": "over_six_years_required", "probability": 0.02},
             {"type": "predicate", "name": "advanced_seniority_scope", "probability": 0.04},
@@ -72,6 +74,7 @@ def test_job_fit_rejects_software_role_that_requires_over_six_years(monkeypatch)
     monkeypatch.setattr(resume_app, "_request_openai_json", lambda **_kwargs: {
         "model": "gpt-6-luna",
         "answers": [
+            {"type": "predicate", "name": "data_center_related", "probability": 0.01},
             {"type": "predicate", "name": "software_related", "probability": 1.0},
             {"type": "predicate", "name": "over_six_years_required", "probability": 0.99},
             {"type": "predicate", "name": "advanced_seniority_scope", "probability": 0.30},
@@ -96,6 +99,7 @@ def test_job_fit_rejects_principal_scope_without_numeric_years(monkeypatch):
     monkeypatch.setattr(resume_app, "_request_openai_json", lambda **_kwargs: {
         "model": "gpt-6-luna",
         "answers": [
+            {"type": "predicate", "name": "data_center_related", "probability": 0.01},
             {"type": "predicate", "name": "software_related", "probability": 1.0},
             {"type": "predicate", "name": "over_six_years_required", "probability": 0.10},
             {"type": "predicate", "name": "advanced_seniority_scope", "probability": 0.95},

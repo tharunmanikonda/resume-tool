@@ -10,15 +10,43 @@ from pathlib import Path
 
 
 TARGET_TITLE_PATTERNS = (
+    ("database", r"\bdatabase (?:technician|administrator|analyst|coordinator|engineer)\b|\bjunior dba\b|\bsql developer\b"),
+    ("debug_test", r"\bdebug technician\b|\bsoftware test technician\b|\bsystems? test technician\b"),
+    ("systems_analysis", r"\bapplication systems? analyst\b|\bprogrammer analyst\b|\bit systems? analyst\b|\bcomputer systems? analyst\b"),
+    ("integration", r"\b(?:application|systems?|software) integration engineer\b|\bintegration developer\b"),
+    ("production", r"\bproduction engineer\b|\bsoftware operations engineer\b|\brelease engineer\b|\bbuild engineer\b|\bdeployment engineer\b"),
     ("backend", r"\bbackend\b"),
     ("full_stack", r"\bfull[ -]?stack\b|\bfullstack\b"),
     ("frontend", r"\bfront[ -]?end\b|\bfrontend\b"),
     ("mobile", r"\bmobile (?:app|application|software)\b"),
     ("data", r"\bdata engineer\b|\bdata platform\b|\betl\b"),
-    ("qa", r"\bsoftware qa\b|\bqa automation\b|\bsoftware validation\b|\btest automation\b"),
-    ("reliability", r"\bsite reliability\b|\bsre\b"),
+    ("qa", r"\bsoftware qa\b|\bqa automation\b|\bsoftware validation\b|\btest automation\b|\bsoftware (?:test|quality) engineer\b|\bautomation tester\b|\bsoftware tester\b"),
+    ("reliability", r"\bsite reliability\b|\bsre\b|\breliability engineer\b|\btelemetry engineer\b"),
     ("software", r"\bsoftware engineer\b"),
 )
+
+# Tesla search is relevance-based, so no single query is complete. Keep these
+# families explicit and scan their lightweight result sets independently.
+TESLA_SEARCH_QUERIES = {
+    "software_engineer": "software engineer",
+    "site_reliability": "site reliability engineer",
+    "platform_engineer": "platform engineer",
+    "data_engineer": "data engineer",
+    "backend_engineer": "backend engineer",
+    "full_stack_engineer": "full stack engineer",
+    "software_qa": "software QA",
+    "test_automation": "test automation",
+    "software_validation": "software validation",
+    "systems_analyst": "systems analyst",
+    "programmer_analyst": "programmer analyst",
+    "database_engineer": "database engineer",
+    "database_administrator": "database administrator",
+    "integration": "systems integration engineer",
+    "production_engineer": "production engineer",
+    "release_engineer": "release engineer",
+    "build_engineer": "build engineer",
+    "deployment_engineer": "deployment engineer",
+}
 
 TITLE_EXCLUSIONS = {
     "internship": r"\bintern(?:ship)?\b|\bco-?op\b|\bapprentice\b",
@@ -32,6 +60,12 @@ TITLE_EXCLUSIONS = {
     ),
     "specialized_non_target": r"\bbim\b|\btax\b|\bplm\b|\bmes support\b",
 }
+
+SUPPORTABLE_CATEGORIES = {"database", "debug_test"}
+HARDWARE_DEBUG_PATTERN = (
+    r"\bsolder(?:ing)?\b|\boscilloscope\b|\bmultimeter\b|\bpcb\b|\bcircuit boards?\b|"
+    r"\bboard rework\b|\belectrical schematics?\b|\bbench equipment\b|\bcomponent-level\b"
+)
 
 NON_US_LOCATION_PATTERNS = (
     r"\bindia\b", r"\bcanada\b", r"\bmexico\b", r"\bgermany\b", r"\bnetherlands\b",
@@ -52,6 +86,11 @@ PROFILE_SIGNALS = {
     "databases": (1, r"\bpostgres(?:ql)?\b|\bredis\b|\bsql\b|\bnosql\b|\bclickhouse\b"),
     "cloud_containers": (2, r"\baws\b|\bcloud\b|\bdocker\b|\bkubernetes\b|\bargocd\b"),
     "observability": (1, r"\bobservability\b|\bprometheus\b|\bgrafana\b|\bopentelemetry\b"),
+    "reliability_telemetry": (
+        3,
+        r"\btelemetry\b|\bfleet analytics\b|\breliability engineering\b|"
+        r"\bsite reliability\b|\bon-call\b|\bincident response\b",
+    ),
     "qa_automation": (2, r"\btest automation\b|\btest framework\b|\bsoftware testing\b|\bci/cd\b"),
     "agentic_tooling": (3, r"\bagent(?:ic|s)?\b|\bmcp\b|\bevaluation pipelines?\b|\bdeveloper tooling\b"),
 }
@@ -99,6 +138,52 @@ def select_unseen_jobs(jobs: list[dict], state: dict) -> dict:
     }
 
 
+def select_unseen_jobs_across_queries(query_results: dict[str, list[dict]], state: dict) -> dict:
+    """Select globally unseen jobs without using a cross-query numeric boundary.
+
+    Tesla's search results vary by query. A higher ID found by one query must
+    never hide a lower, globally unseen ID that appears later in another query.
+    """
+    known_ids = {str(value) for value in state.get("known_job_ids", [])}
+    query_states = state.get("query_states", {})
+    selected: dict[str, dict] = {}
+    query_summaries = {}
+
+    for query_key, jobs in query_results.items():
+        previous_high = int(query_states.get(query_key, {}).get("highest_seen_job_id") or 0)
+        observed_ids = [value for job in jobs if (value := job_id_number(job)) is not None]
+        query_summaries[query_key] = {
+            "previous_highest_seen_job_id": previous_high,
+            "highest_observed_job_id": max([previous_high, *observed_ids], default=previous_high),
+            "observed_count": len(observed_ids),
+        }
+        for job in jobs:
+            numeric_id = job_id_number(job)
+            if numeric_id is None or str(numeric_id) in known_ids:
+                continue
+            identity = str(numeric_id)
+            freshness = (
+                "above_query_high_watermark"
+                if numeric_id > previous_high
+                else "globally_unseen_below_query_high_watermark"
+            )
+            if identity not in selected:
+                selected[identity] = {
+                    **job,
+                    "freshness_signal": freshness,
+                    "discovered_by_queries": [query_key],
+                }
+            elif query_key not in selected[identity]["discovered_by_queries"]:
+                selected[identity]["discovered_by_queries"].append(query_key)
+
+    jobs = sorted(selected.values(), key=lambda job: job_id_number(job) or 0, reverse=True)
+    return {
+        "unseen_count": len(jobs),
+        "jobs": jobs,
+        "queries": query_summaries,
+    }
+
+
 def update_monitor_state(state: dict, jobs: list[dict], scanned_at: str = "") -> dict:
     known_ids = {str(value) for value in state.get("known_job_ids", [])}
     observed_ids = [value for job in jobs if (value := job_id_number(job)) is not None]
@@ -113,6 +198,49 @@ def update_monitor_state(state: dict, jobs: list[dict], scanned_at: str = "") ->
         "known_job_ids": sorted(known_ids, key=int),
         **({"last_successful_scan_at": scanned_at} if scanned_at else {}),
     }
+
+
+def update_monitor_state_for_queries(
+    state: dict,
+    query_results: dict[str, list[dict]],
+    scanned_at: str = "",
+) -> dict:
+    """Commit a successful multi-query scan while retaining per-query cursors."""
+    updated = dict(state)
+    known_ids = {str(value) for value in state.get("known_job_ids", [])}
+    query_states = {key: dict(value) for key, value in state.get("query_states", {}).items()}
+    all_observed_ids = []
+
+    for query_key, jobs in query_results.items():
+        observed_ids = [value for job in jobs if (value := job_id_number(job)) is not None]
+        all_observed_ids.extend(observed_ids)
+        known_ids.update(str(value) for value in observed_ids)
+        previous = query_states.get(query_key, {})
+        previous_ids = {str(value) for value in previous.get("known_job_ids", [])}
+        previous_ids.update(str(value) for value in observed_ids)
+        query_states[query_key] = {
+            **previous,
+            "query": TESLA_SEARCH_QUERIES.get(query_key, previous.get("query", query_key)),
+            "highest_seen_job_id": max(
+                [int(previous.get("highest_seen_job_id") or 0), *observed_ids],
+                default=0,
+            ),
+            "known_job_ids": sorted(previous_ids, key=int),
+            **({"last_successful_scan_at": scanned_at} if scanned_at else {}),
+        }
+
+    updated.update({
+        "version": max(int(state.get("version") or 1), 2),
+        "search_queries": TESLA_SEARCH_QUERIES,
+        "query_states": query_states,
+        "highest_seen_job_id": max(
+            [int(state.get("highest_seen_job_id") or 0), *all_observed_ids],
+            default=0,
+        ),
+        "known_job_ids": sorted(known_ids, key=int),
+        **({"last_successful_scan_at": scanned_at} if scanned_at else {}),
+    })
+    return updated
 
 
 def _text(value) -> str:
@@ -132,15 +260,17 @@ def prefilter_tesla_job(job: dict) -> TeslaFilterResult:
     location = _text(job.get("location"))
 
     blockers = []
+    category = _first_match(TARGET_TITLE_PATTERNS, title)
     if job_type and not any(term in job_type for term in ("full-time", "full time")):
         blockers.append("not_full_time")
     if any(re.search(pattern, location) for pattern in NON_US_LOCATION_PATTERNS):
         blockers.append("non_us_location")
     for name, pattern in TITLE_EXCLUSIONS.items():
+        if name == "support" and category in SUPPORTABLE_CATEGORIES:
+            continue
         if re.search(pattern, title):
             blockers.append(name)
 
-    category = _first_match(TARGET_TITLE_PATTERNS, title)
     if not category:
         blockers.append("title_not_targeted")
     if blockers:
@@ -177,9 +307,13 @@ def classify_tesla_job(job: dict) -> TeslaFilterResult:
     for name, pattern in DOMAIN_BLOCKERS.items():
         if re.search(pattern, haystack):
             blockers.append(name)
+    if preflight.category == "debug_test" and re.search(HARDWARE_DEBUG_PATTERN, haystack):
+        blockers.append("hardware_debug_role")
 
     if blockers:
         return TeslaFilterResult("filtered_out", "none", preflight.category, score, reasons, blockers)
+    if preflight.category == "debug_test" and score >= 3:
+        return TeslaFilterResult("needs_review", "low", preflight.category, score, reasons, [])
     if score >= 10:
         return TeslaFilterResult("candidate", "high", preflight.category, score, reasons, [])
     if score >= 6:

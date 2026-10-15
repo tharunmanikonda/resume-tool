@@ -1,8 +1,107 @@
 {
-  "version": 1,
+  "version": 2,
   "source": "https://www.tesla.com/careers/search/?query=software%20engineer&site=US",
-  "highest_seen_job_id": 285797,
-  "last_successful_scan_at": "2026-10-07T08:05:29-05:00",
+  "search_queries": {
+    "software_engineer": "software engineer",
+    "site_reliability": "site reliability engineer",
+    "platform_engineer": "platform engineer",
+    "data_engineer": "data engineer",
+    "backend_engineer": "backend engineer",
+    "full_stack_engineer": "full stack engineer",
+    "software_qa": "software QA",
+    "test_automation": "test automation",
+    "software_validation": "software validation",
+    "systems_analyst": "systems analyst",
+    "programmer_analyst": "programmer analyst",
+    "database_engineer": "database engineer",
+    "database_administrator": "database administrator",
+    "integration": "systems integration engineer",
+    "production_engineer": "production engineer",
+    "release_engineer": "release engineer",
+    "build_engineer": "build engineer",
+    "deployment_engineer": "deployment engineer"
+  },
+  "query_states": {
+    "software_engineer": {
+      "query": "software engineer",
+      "highest_seen_job_id": 286874,
+      "last_successful_scan_at": "2026-10-15T08:00:18-05:00"
+    },
+    "site_reliability": {
+      "query": "site reliability engineer",
+      "highest_seen_job_id": 286844,
+      "known_job_ids": [
+        "286844"
+      ],
+      "last_successful_scan_at": "2026-10-15T10:00:00-05:00"
+    },
+    "platform_engineer": {
+      "query": "platform engineer",
+      "highest_seen_job_id": 286874
+    },
+    "data_engineer": {
+      "query": "data engineer",
+      "highest_seen_job_id": 286779
+    },
+    "backend_engineer": {
+      "query": "backend engineer",
+      "highest_seen_job_id": 284638
+    },
+    "full_stack_engineer": {
+      "query": "full stack engineer",
+      "highest_seen_job_id": 285673
+    },
+    "software_qa": {
+      "query": "software QA",
+      "highest_seen_job_id": 285632
+    },
+    "test_automation": {
+      "query": "test automation",
+      "highest_seen_job_id": 284026
+    },
+    "software_validation": {
+      "query": "software validation",
+      "highest_seen_job_id": 286261
+    },
+    "systems_analyst": {
+      "query": "systems analyst",
+      "highest_seen_job_id": 0
+    },
+    "programmer_analyst": {
+      "query": "programmer analyst",
+      "highest_seen_job_id": 0
+    },
+    "database_engineer": {
+      "query": "database engineer",
+      "highest_seen_job_id": 0
+    },
+    "database_administrator": {
+      "query": "database administrator",
+      "highest_seen_job_id": 0
+    },
+    "integration": {
+      "query": "systems integration engineer",
+      "highest_seen_job_id": 285779
+    },
+    "production_engineer": {
+      "query": "production engineer",
+      "highest_seen_job_id": 286840
+    },
+    "release_engineer": {
+      "query": "release engineer",
+      "highest_seen_job_id": 281557
+    },
+    "build_engineer": {
+      "query": "build engineer",
+      "highest_seen_job_id": 285801
+    },
+    "deployment_engineer": {
+      "query": "deployment engineer",
+      "highest_seen_job_id": 270344
+    }
+  },
+  "highest_seen_job_id": 286874,
+  "last_successful_scan_at": "2026-10-15T08:00:18-05:00",
   "known_job_ids": [
     "222387",
     "225531",
@@ -159,6 +258,7 @@
     "284645",
     "284761",
     "285076",
+    "285080",
     "285084",
     "285085",
     "285153",
@@ -170,7 +270,24 @@
     "285317",
     "285632",
     "285671",
+    "285673",
+    "285705",
     "285779",
-    "285797"
+    "285797",
+    "285801",
+    "286064",
+    "286108",
+    "286127",
+    "286229",
+    "286231",
+    "286240",
+    "286261",
+    "286410",
+    "286413",
+    "286640",
+    "286684",
+    "286835",
+    "286844",
+    "286874"
   ]
 }

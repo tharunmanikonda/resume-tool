@@ -38,6 +38,7 @@ SKILLS = [
 
 @pytest.fixture(autouse=True)
 def isolated_ai_sessions(monkeypatch):
+    monkeypatch.setattr(resume_app, "classify_resume_job", lambda *_args: {"category": "software_engineering", "suitable": True})
     resume_app.ai_sessions.clear()
     monkeypatch.setenv("OPENAI_API_KEY", "test-key")
     yield

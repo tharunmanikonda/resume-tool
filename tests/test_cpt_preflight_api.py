@@ -33,6 +33,7 @@ def test_cpt_check_endpoint_returns_structured_result(monkeypatch):
 
 
 def test_ai_analyze_warns_but_allows_non_green_company(monkeypatch):
+    monkeypatch.setattr(resume_app, "classify_resume_job", lambda *_args: {"category": "software_engineering", "suitable": True})
     called = {"openai": False}
     monkeypatch.setenv("OPENAI_API_KEY", "test-key")
     monkeypatch.setattr(resume_app, "check_cpt_company", lambda company_name: _cpt_result(True))

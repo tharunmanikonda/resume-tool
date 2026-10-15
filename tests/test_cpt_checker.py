@@ -6,6 +6,7 @@ import pytest
 
 from cpt_checker import (
     CptEmployerRow,
+    check_cpt_companies,
     check_cpt_company,
     classify_cpt_row,
     find_cpt_employer,
@@ -125,3 +126,25 @@ def test_fetch_failure_without_cache_blocks():
 
     assert result["blocked"] is False
     assert "unavailable" in result["message"].lower()
+
+
+def test_batch_check_fetches_employer_table_once():
+    calls = []
+    with session_scope() as db:
+        db.query(CptCompanyCheck).filter(
+            CptCompanyCheck.normalized_company_name.in_(("batchgreen", "batchred"))
+        ).delete(synchronize_session=False)
+
+    def fetcher():
+        calls.append(True)
+        return """
+        <table><tr><th>Company</th><th>Industry</th><th>CPT Friendly</th><th>CPT Onboard</th><th>CPT Agreement</th></tr>
+        <tr><td>Batch Green</td><td>Technology</td><td>✓</td><td>✓</td><td>Supporting</td></tr>
+        <tr><td>Batch Red</td><td>Technology</td><td></td><td></td><td>Not Supporting</td></tr></table>
+        """
+
+    results = check_cpt_companies(["Batch Green", "Batch Red"], fetcher=fetcher)
+
+    assert len(calls) == 1
+    assert results["Batch Green"]["status"] == "green"
+    assert results["Batch Red"]["status"] == "red"

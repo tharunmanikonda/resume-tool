@@ -14,7 +14,9 @@ def setup_discovery_db(tmp_path, monkeypatch):
     session_local = sessionmaker(bind=engine, autoflush=False, expire_on_commit=False, future=True)
     monkeypatch.setattr(database, "SessionLocal", session_local)
     Base.metadata.create_all(bind=engine)
-    monkeypatch.setattr(job_discovery, "check_cpt_company", lambda _company: {"status": "green"})
+    monkeypatch.setattr(job_discovery, "check_cpt_companies", lambda companies: {
+        company: {"status": "green"} for company in companies
+    })
     return engine
 
 
@@ -54,6 +56,42 @@ def test_identity_hash_uses_ats_id_not_recency():
 
     assert job_discovery.identity_hash_for(first) == job_discovery.identity_hash_for(second)
     assert job_discovery.content_hash_for(first) != job_discovery.content_hash_for(second)
+
+
+def test_jobbie_internship_feed_normalizes_direct_application_links(monkeypatch):
+    monkeypatch.setattr(job_discovery, "fetch_json", lambda _url: {
+        "jobs": [{
+            "id": "public-job-1",
+            "title": "Software Engineering Intern",
+            "company": "Acme",
+            "location": "Dallas, TX",
+            "posted_at": "2026-10-09T12:30:00Z",
+            "source": "Greenhouse",
+            "url": "https://jobbie.bot/discover/acme-public-job-1",
+            "apply_url": "https://job-boards.greenhouse.io/acme/jobs/123",
+        }],
+    })
+
+    rows = job_discovery.jobbie_internship_candidates({
+        "source_key": "public-internships",
+        "url": job_discovery.JOBBIE_INTERNSHIPS_URL,
+    })
+
+    assert len(rows) == 1
+    assert rows[0].source == "jobbie_internships"
+    assert rows[0].external_job_id == "public-job-1"
+    assert rows[0].job_url == "https://job-boards.greenhouse.io/acme/jobs/123"
+    assert rows[0].posted_at == datetime(2026, 10, 9, 12, 30, tzinfo=timezone.utc)
+
+
+def test_jobbie_source_uses_public_defaults():
+    values = job_discovery.normalize_source_payload({
+        "source_type": "jobbie_internships",
+        "name": "Jobbie internships",
+    })
+
+    assert values["source_key"] == "public-internships"
+    assert values["url"] == job_discovery.JOBBIE_INTERNSHIPS_URL
 
 
 def test_scan_repeated_job_does_not_duplicate_and_changed_content_updates(tmp_path, monkeypatch):

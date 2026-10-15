@@ -1,0 +1,122 @@
+{
+  "resume": {
+    "name": "MANIKONDA THARUN",
+    "title": "Software Engineer",
+    "contact": {
+      "location": "Dallas, TX",
+      "phone": "205-490-8183",
+      "email": "tharunmanikonda885@gmail.com"
+    },
+    "summary": "Software engineer with 4+ years of experience developing backend APIs and full-stack features using Java, Python, TypeScript, and React. Takes responsibility for component-level design decisions and implementation within larger engineering projects, with experience in relational databases, event-driven processing, AWS, Kubernetes, CI/CD, and production observability. Uses AI-assisted development tools to improve delivery efficiency.",
+    "technical_skills": [
+      {
+        "category": "Languages",
+        "items": "Java, Python, TypeScript, JavaScript, SQL, Bash"
+      },
+      {
+        "category": "Backend & APIs",
+        "items": "Spring Boot, FastAPI, Node.js, REST APIs, Microservices, Distributed Systems, Object-Oriented Programming"
+      },
+      {
+        "category": "Cloud & Infrastructure",
+        "items": "AWS, Docker, Kubernetes, Terraform, Linux"
+      },
+      {
+        "category": "Data & Processing",
+        "items": "PostgreSQL, Redis, Kafka, Query Optimization, Data Validation"
+      },
+      {
+        "category": "Reliability & Delivery",
+        "items": "Prometheus, Grafana, Logging, Error Handling, CI/CD, GitHub Actions, Git, Unit Testing, Integration Testing"
+      },
+      {
+        "category": "Frontend & Developer Tools",
+        "items": "React, Redux, HTML, CSS, Jest, GitHub Copilot, Cursor"
+      }
+    ],
+    "experience": [
+      {
+        "company": "Uber",
+        "location": "Dallas, TX",
+        "title": "Full Stack Engineer",
+        "dates": "February 2024 - Present",
+        "bullets": [
+          "Developed trip audit service components and operational interface features using Python, Java, and React within workflows covering more than 200,000 weekly trips, implementing validation and traceable processing.",
+          "Optimized transaction API response paths using PostgreSQL query tuning and Redis caching, contributing to a 32% latency reduction while preserving validation behavior and consistent results in operational workflows.",
+          "Designed the transaction-validation component using Kafka and Python for more than 75,000 daily bookings, separating validation from downstream updates so exceptions could be investigated without interrupting routine processing.",
+          "Implemented container build and integration-check steps using Docker, Kubernetes, and GitHub Actions within the team's delivery workflow, supporting repeatable releases and documented rollback procedures for AWS services.",
+          "Implemented Prometheus and Grafana dashboard views within an observability environment covering more than 50,000 telemetry metrics, connecting processing failures with operational workflows to support diagnosis of production anomalies.",
+          "Implemented the cache lookup and fallback component within workflows supporting more than one million monthly transactions, applying semantic matching to reuse suitable results while preserving application response quality.",
+          "Investigated operational interface latency using Prometheus and Grafana telemetry, contributing performance fixes that brought response times to 1.2 seconds while preserving access to trip audit and transaction-validation workflows.",
+          "Evaluated semantic matching behavior in the Python caching component against similarity thresholds above 0.85, checking fallback handling to distinguish reusable responses from requests that required fresh processing."
+        ]
+      },
+      {
+        "company": "KPMG",
+        "location": "India",
+        "title": "Java Full Stack Developer",
+        "dates": "September 2021 - July 2022",
+        "bullets": [
+          "Developed Java and Spring Boot API components within an integration spanning ten enterprise audit applications, using PostgreSQL and documented REST contracts to maintain consistent data exchange for reporting workflows.",
+          "Implemented Spring Security and JWT access checks in audit service endpoints supporting more than 50,000 monthly transactions, enforcing user-level permissions to protect sensitive records and preserve data integrity.",
+          "Implemented Python document-processing scripts connecting application workflows with AWS S3 storage for more than 15,000 compliance files, maintaining traceable handling and consistent retrieval for audit and reporting teams.",
+          "Developed JSP, HTML, and CSS dashboard views within reporting workflows tracking more than 120 operational KPIs, connecting Spring Boot controllers with audit data to improve visibility for business users.",
+          "Refactored Java backend classes and reusable rendering components within audit applications, contributing to more than 200 developer hours saved in bug resolution while simplifying maintenance of recurring workflows."
+        ]
+      },
+      {
+        "company": "Trigent Software",
+        "location": "India",
+        "title": "Frontend Developer",
+        "dates": "March 2020 - August 2021",
+        "bullets": [
+          "Migrated more than ten assigned legacy jQuery pages into reusable React components, preserving existing interface behavior and coordinating with senior developers to reduce errors during subsequent feature updates.",
+          "Implemented responsive interface components from more than fifteen Figma designs using CSS Grid and Bootstrap, validating layouts across five device types with designers to maintain consistent application presentation.",
+          "Created Jest unit and integration tests for assigned UI components, identifying more than fifteen regressions before release and coordinating fixes with QA to maintain reliable behavior across development branches."
+        ]
+      }
+    ],
+    "projects": [
+      {
+        "name": "Enterprise AI Document Assistant",
+        "bullets": [
+          "Built Python and LangChain document-processing workflows across more than 5,000 enterprise documents, combining structured parsing and retrieval evaluation to achieve 92% precision in relevant information retrieval.",
+          "Used GitHub Copilot and Cursor to develop FastAPI endpoints and React dashboards, reducing the end-to-end development cycle by 40% through AI-assisted implementation of document retrieval and application workflows."
+        ]
+      },
+      {
+        "name": "NotchSafe - macOS Productivity Utility",
+        "bullets": [
+          "Developed a native macOS utility using Swift and SwiftUI, combining encrypted file storage and clipboard management in a notch-based interface with no external dependencies and a binary under 5 MB.",
+          "Implemented AES-256-GCM encryption and Touch ID authentication for local file access, keeping sensitive content on-device while integrating secure storage with the application's everyday clipboard and file-management workflows."
+        ]
+      }
+    ],
+    "education": [
+      {
+        "degree": "Doctor of Business Administration, Artificial Intelligence (In Progress)",
+        "institution": "Belhaven University",
+        "dates": "September 2026 - Present"
+      },
+      {
+        "degree": "Master's in Computer Science",
+        "institution": "University of Alabama at Birmingham",
+        "dates": "August 2022 - December 2023"
+      },
+      {
+        "degree": "Bachelor of Engineering in Computer Science",
+        "institution": "K.S. Institute of Technology, Karnataka, India",
+        "dates": "June 2018 - May 2022"
+      }
+    ],
+    "certifications": [
+      "AWS Certified Solutions Architect - Associate"
+    ]
+  },
+  "output": {
+    "relative_directory": "Cisco/Software Engineer Smart Cameras - 2024876",
+    "docx_file_name": "Manikonda Tharun - Cisco 2024876.docx",
+    "json_file_name": "resume-content.json",
+    "format_profile": "outlook"
+  }
+}

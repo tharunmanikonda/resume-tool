@@ -3,6 +3,15 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 const emptyProfile = {
   name: "",
   contact: { location: "", phone: "", email: "" },
+  application: {},
+  academic_profile: {
+    degree: "Doctor of Business Administration (DBA)",
+    concentration: "Artificial Intelligence",
+    institution: "",
+    start_date: "",
+    expected_graduation_date: "",
+    status: "In progress",
+  },
   certifications: [],
   projects: [],
   experience_history: [],
@@ -12,11 +21,13 @@ const experienceKeys = ["mckinsey", "uber", "kpmg", "trigent"];
 
 const resumeModes = [
   { value: "professional", label: "Professional" },
-  { value: "internship", label: "Intern / Co-op" },
+  { value: "internship", label: "Internship" },
+  { value: "coop", label: "Co-op" },
+  { value: "new_grad", label: "New Grad" },
 ];
 
 function normalizeResumeMode(value) {
-  return value === "internship" ? "internship" : "professional";
+  return ["internship", "coop", "new_grad"].includes(value) ? value : "professional";
 }
 
 const outreachStatuses = [
@@ -175,6 +186,7 @@ const jobSourceTypes = [
   { value: "lever", label: "Lever" },
   { value: "ashby", label: "Ashby" },
   { value: "rippling", label: "Rippling" },
+  { value: "jobbie_internships", label: "Jobbie internships" },
 ];
 
 function cptLabel(status) {
@@ -276,6 +288,21 @@ function JobInbox() {
     } catch (err) {
       setError(err.message || "Source could not be saved.");
     }
+  }
+
+  function updateSourceType(sourceType) {
+    if (sourceType === "jobbie_internships") {
+      setSourceDraft({
+        source_type: sourceType,
+        name: "Jobbie internships",
+        company_name: "",
+        source_key: "public-internships",
+        url: "https://api.jobbie.bot/public/internships.json",
+        enabled: true,
+      });
+      return;
+    }
+    setSourceDraft((current) => ({ ...current, source_type: sourceType }));
   }
 
   async function toggleSource(source) {
@@ -421,8 +448,8 @@ function JobInbox() {
             </section>
             <section className="job-panel source-form">
               <h2>Add Source</h2>
-              <p className="muted-text">For ATS scans, use the exact company board token or slug, for example a Greenhouse board token like stripe or an Ashby slug like ramp.</p>
-              <select value={sourceDraft.source_type} onChange={(e) => setSourceDraft((current) => ({ ...current, source_type: e.target.value }))}>
+              <p className="muted-text">Choose Jobbie internships for the complete public feed, or add an ATS company using its exact board token or slug.</p>
+              <select value={sourceDraft.source_type} onChange={(e) => updateSourceType(e.target.value)}>
                 {jobSourceTypes.map((item) => <option key={item.value} value={item.value}>{item.label}</option>)}
               </select>
               <input value={sourceDraft.name} onChange={(e) => setSourceDraft((current) => ({ ...current, name: e.target.value }))} placeholder="Source name" />
@@ -501,7 +528,12 @@ function JobInbox() {
                       {currentLead.apply_url ? <a className="secondary-button link-button" href={currentLead.apply_url} target="_blank" rel="noreferrer">Apply page</a> : null}
                       <button className="secondary-button" onClick={() => updateLeadStatus(currentLead, "saved")}>Save</button>
                       <button className="secondary-button" onClick={() => updateLeadStatus(currentLead, "hidden")}>Hide</button>
-                      <button className="primary-button" disabled={loading} onClick={() => promoteLead(currentLead)}>Create resume</button>
+                      <button
+                        className="primary-button"
+                        disabled={loading || !currentLead.job_description}
+                        title={currentLead.job_description ? "Create a resume draft" : "Open this job and use the extension to capture its full description first"}
+                        onClick={() => promoteLead(currentLead)}
+                      >Create resume</button>
                     </div>
                     <div className="job-detail-scroll">
                       <div className="job-copy">{currentLead.job_description || "No full description was available from this source. Open the job page and use the extension reader."}</div>
@@ -632,7 +664,7 @@ function locationMentionsUnitedStates(value = "") {
 function allEnabledExperienceKeys(history = [], resumeModeValue = "professional") {
   let entries = normalizeInlineExperienceHistory(history)
     .filter((item) => isExperienceHistoryEnabled(item));
-  if (normalizeResumeMode(resumeModeValue) === "internship") {
+  if (normalizeResumeMode(resumeModeValue) !== "professional") {
     entries = entries
       .filter((item) => !locationMentionsIndia(item.location) && locationMentionsUnitedStates(item.location))
       .slice(0, 2);
@@ -2558,6 +2590,11 @@ export default function App() {
       });
 
       const nextSessionId = analyzeData.session_id || aiSessionId || null;
+      const routedEnabledKeys = analyzeData.enabled_experience_keys || activeEnabledKeys;
+      if (analyzeData.experience_history?.length) {
+        setEditableExperienceHistory(analyzeData.experience_history);
+        setEnabledExperienceKeys(routedEnabledKeys);
+      }
       setAiSessionId(nextSessionId);
       setLastGeneratedJd(jd);
       setLatestAnalysis(analyzeData.analysis || null);
@@ -2580,7 +2617,7 @@ export default function App() {
             pending: {
               sessionId: nextSessionId,
               baseThread: [...baseThread, soulThreadEntry(analyzeData.analysis)],
-              enabledKeys: activeEnabledKeys,
+              enabledKeys: routedEnabledKeys,
               advertisedJobTitle:
                 resumeJobContext?.title || analyzeData.analysis?.target_role || "",
             },
@@ -2594,7 +2631,7 @@ export default function App() {
       await continueAiGenerationFromAnalysis({
         sessionId: nextSessionId,
         baseThread: [...baseThread, soulThreadEntry(analyzeData.analysis)],
-        enabledKeys: activeEnabledKeys,
+        enabledKeys: routedEnabledKeys,
         advertisedJobTitle:
           resumeJobContext?.title || analyzeData.analysis?.target_role || "",
       });
@@ -2980,6 +3017,8 @@ export default function App() {
     const payload = {
       name: profileDraft.name || "",
       contact: profileDraft.contact || emptyProfile.contact,
+      application: profileDraft.application || {},
+      academic_profile: profileDraft.academic_profile || emptyProfile.academic_profile,
       certifications: (profileDraft.certificationsText || "")
         .split("\n")
         .map((line) => line.trim())
@@ -3834,6 +3873,36 @@ export default function App() {
             Email
             <input value={profileDraft.contact?.email || ""} onChange={(e) => setProfileDraft((current) => ({ ...current, contact: { ...(current.contact || {}), email: e.target.value } }))} />
           </label>
+        </div>
+        <div className="profile-experience-section">
+          <div className="section-label">Current DBA Program</div>
+          <div className="profile-experience-note">Used only for internship, co-op, and new-grad resumes. Enter the official program details exactly as the university lists them.</div>
+          <div className="profile-grid">
+            <label className="field">
+              Degree
+              <input value={profileDraft.academic_profile?.degree || ""} onChange={(e) => setProfileDraft((current) => ({ ...current, academic_profile: { ...(current.academic_profile || {}), degree: e.target.value } }))} />
+            </label>
+            <label className="field">
+              Concentration
+              <input value={profileDraft.academic_profile?.concentration || ""} onChange={(e) => setProfileDraft((current) => ({ ...current, academic_profile: { ...(current.academic_profile || {}), concentration: e.target.value } }))} />
+            </label>
+            <label className="field">
+              Institution
+              <input value={profileDraft.academic_profile?.institution || ""} placeholder="University name" onChange={(e) => setProfileDraft((current) => ({ ...current, academic_profile: { ...(current.academic_profile || {}), institution: e.target.value } }))} />
+            </label>
+            <label className="field">
+              Program Start
+              <input value={profileDraft.academic_profile?.start_date || ""} placeholder="Month YYYY" onChange={(e) => setProfileDraft((current) => ({ ...current, academic_profile: { ...(current.academic_profile || {}), start_date: e.target.value } }))} />
+            </label>
+            <label className="field">
+              Expected Graduation
+              <input value={profileDraft.academic_profile?.expected_graduation_date || ""} placeholder="Month YYYY" onChange={(e) => setProfileDraft((current) => ({ ...current, academic_profile: { ...(current.academic_profile || {}), expected_graduation_date: e.target.value } }))} />
+            </label>
+            <label className="field">
+              Status
+              <input value={profileDraft.academic_profile?.status || ""} placeholder="In progress" onChange={(e) => setProfileDraft((current) => ({ ...current, academic_profile: { ...(current.academic_profile || {}), status: e.target.value } }))} />
+            </label>
+          </div>
         </div>
         <label className="field">
           Certifications

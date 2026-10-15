@@ -156,6 +156,15 @@ def test_draft_persists_internship_resume_mode(tmp_path, monkeypatch):
     assert updated["resume_mode"] == "professional"
 
 
+def test_draft_preserves_coop_and_new_grad_modes(tmp_path, monkeypatch):
+    store = store_for_test(tmp_path, monkeypatch)
+    coop = store.create(context("333"), {**internship_snapshot(), "resume_mode": "coop"}, duplicate_count=0)
+    new_grad = store.create(context("444"), {**internship_snapshot(), "resume_mode": "new_grad"}, duplicate_count=0)
+
+    assert coop["resume_mode"] == "coop"
+    assert new_grad["resume_mode"] == "new_grad"
+
+
 def test_duplicate_review_creates_no_task_until_continue(tmp_path, monkeypatch):
     store = store_for_test(tmp_path, monkeypatch)
     draft = store.create(context(), snapshot(), duplicate_count=2)

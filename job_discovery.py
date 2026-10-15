@@ -15,11 +15,12 @@ import urllib.request
 
 from sqlalchemy import func, or_, select
 
-from cpt_checker import check_cpt_company
+from cpt_checker import check_cpt_companies
 from database import JobLead, JobSource, ResumeDraft, session_scope, utcnow
 
 
-SOURCE_TYPES = {"linkedin_search", "greenhouse", "lever", "ashby", "rippling"}
+JOBBIE_INTERNSHIPS_URL = "https://api.jobbie.bot/public/internships.json"
+SOURCE_TYPES = {"linkedin_search", "greenhouse", "lever", "ashby", "rippling", "jobbie_internships"}
 LEAD_STATUSES = {"new", "saved", "hidden", "draft_created", "applied", "stale", "closed"}
 ACTIVE_LEAD_STATUSES = {"new", "saved", "draft_created"}
 RELEVANCE_STATUSES = {"candidate", "filtered_out", "needs_review"}
@@ -29,8 +30,11 @@ DEFAULT_INCLUDE_KEYWORDS = (
 )
 TITLE_INCLUDE_KEYWORDS = (
     "software engineer", "backend", "full stack", "frontend", "data engineer",
-    "ai engineer", "machine learning engineer", "platform engineer", "devops",
-    "site reliability", "sre", "infrastructure engineer",
+    "data analyst", "data scientist", "analytics engineer", "business intelligence",
+    "ai engineer", "machine learning", "ml engineer", "platform engineer", "devops",
+    "site reliability", "sre", "infrastructure engineer", "cloud engineer",
+    "application engineer", "solutions engineer", "quality assurance", "qa engineer",
+    "test engineer", "software developer", "software intern", "web developer",
 )
 DEFAULT_EXCLUDE_KEYWORDS = (
     "staff", "principal", "director", "manager", "clearance", "security clearance",
@@ -140,6 +144,8 @@ def classify_relevance(candidate: JobCandidate) -> tuple[str, str]:
         return "candidate", f"Title matched: {title_match}{f' · {preferred}' if preferred else ''}."
     if any(keyword in haystack for keyword in DEFAULT_INCLUDE_KEYWORDS):
         return "needs_review", "Description matched a target keyword, but title needs review."
+    if candidate.source == "jobbie_internships":
+        return "filtered_out", "Outside the selected software, data, AI, cloud, application, and QA internship roles."
     return "needs_review", "No target role keyword matched."
 
 
@@ -155,6 +161,8 @@ def source_url_for(source_type: str, source_key: str, url: str = "") -> str:
         return f"https://api.ashbyhq.com/posting-api/job-board/{key}?includeCompensation=true"
     if source_type == "rippling":
         return f"https://api.rippling.com/platform/api/ats/v1/board/{key}/jobs"
+    if source_type == "jobbie_internships":
+        return JOBBIE_INTERNSHIPS_URL
     return url
 
 
@@ -269,12 +277,41 @@ def linkedin_candidates(_source: dict) -> list[JobCandidate]:
     return []
 
 
+def jobbie_internship_candidates(source: dict) -> list[JobCandidate]:
+    payload = fetch_json(source_url_for("jobbie_internships", source.get("source_key", ""), source.get("url", "")))
+    jobs = payload.get("jobs") if isinstance(payload, dict) else []
+    candidates = []
+    for job in jobs or []:
+        job_id = clean_text(job.get("id"))
+        title = clean_text(job.get("title"))
+        company = clean_text(job.get("company"))
+        jobbie_url = clean_text(job.get("url"))
+        apply_url = clean_text(job.get("apply_url"))
+        if not (job_id and title and company):
+            continue
+        candidates.append(JobCandidate(
+            source="jobbie_internships",
+            source_company_key=source.get("source_key") or "public-internships",
+            external_job_id=job_id,
+            company_name=company,
+            role_title=title,
+            location=clean_text(job.get("location")),
+            job_url=apply_url or jobbie_url,
+            apply_url=apply_url or jobbie_url,
+            posted_at=parse_datetime(job.get("posted_at")),
+            description="",
+            raw_snapshot={**job, "jobbie_url": jobbie_url},
+        ))
+    return candidates
+
+
 FETCHERS = {
     "greenhouse": greenhouse_candidates,
     "lever": lever_candidates,
     "ashby": ashby_candidates,
     "rippling": rippling_candidates,
     "linkedin_search": linkedin_candidates,
+    "jobbie_internships": jobbie_internship_candidates,
 }
 
 
@@ -337,6 +374,9 @@ def normalize_source_payload(payload: dict, existing: JobSource | None = None) -
     if not source_key and source_type == "linkedin_search" and url:
         parsed = urlparse(url)
         source_key = clean_text(parse_qs(parsed.query).get("keywords", [""])[0]) or parsed.netloc + parsed.path
+    if source_type == "jobbie_internships":
+        source_key = source_key or "public-internships"
+        url = url or JOBBIE_INTERNSHIPS_URL
     if not source_key:
         raise ValueError("Source key is required.")
     name = clean_text(payload.get("name") if "name" in payload else (existing.name if existing else ""))
@@ -474,8 +514,21 @@ def scan_source(source_id: str) -> dict:
     try:
         candidates = FETCHERS[source_payload["source_type"]](source_payload)
         result["fetched"] = len(candidates)
+        relevance_by_identity = {
+            identity_hash_for(candidate): classify_relevance(candidate)[0]
+            for candidate in candidates
+        }
+        companies_to_check = {
+            candidate.company_name
+            for candidate in candidates
+            if candidate.company_name and relevance_by_identity[identity_hash_for(candidate)] != "filtered_out"
+        }
+        cpt_results = check_cpt_companies(companies_to_check)
         enriched = [
-            (candidate, (check_cpt_company(candidate.company_name).get("status") if candidate.company_name else "unavailable") or "unavailable")
+            (
+                candidate,
+                (cpt_results.get(candidate.company_name, {}).get("status") if candidate.company_name else "unavailable") or "unavailable",
+            )
             for candidate in candidates
         ]
         seen_hashes: set[str] = set()

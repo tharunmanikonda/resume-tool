@@ -111,7 +111,8 @@ function JobFitStatus({ jobFit }) {
       <strong>{suitable ? "Suitable" : "Not suitable"}</strong>
       <p>{jobFit.message}</p>
       {!suitable && (jobFit.reasons || []).slice(1).map((reason) => <p className="job-fit-reason" key={reason}>{reason}</p>)}
-      <small>{jobFit.cached ? "Reused the result for this job and profile." : "Checked with OpenAI Decisions."}</small>
+      {jobFit.category_label ? <small>Category: {jobFit.category_label}</small> : null}
+      <small>{jobFit.cached ? "Reused the result for this job." : "Checked with OpenAI Decisions."}</small>
     </div>
   );
 }
@@ -381,11 +382,13 @@ const LINKEDIN_TIME_WINDOWS = [
 
 const RESUME_MODES = [
   { value: "professional", label: "Professional" },
-  { value: "internship", label: "Intern / Co-op" },
+  { value: "internship", label: "Internship" },
+  { value: "coop", label: "Co-op" },
+  { value: "new_grad", label: "New Grad" },
 ];
 
 function normalizeResumeMode(value) {
-  return value === "internship" ? "internship" : "professional";
+  return ["internship", "coop", "new_grad"].includes(value) ? value : "professional";
 }
 
 function isCompleteExperience(item) {
@@ -404,7 +407,7 @@ function locationMentionsUnitedStates(value = "") {
 
 function defaultExperienceKeys(history = [], resumeModeValue = "professional") {
   let entries = Array.isArray(history) ? history.filter(isCompleteExperience) : [];
-  if (normalizeResumeMode(resumeModeValue) === "internship") {
+  if (normalizeResumeMode(resumeModeValue) !== "professional") {
     entries = entries
       .filter((item) => !locationMentionsIndia(item.location) && locationMentionsUnitedStates(item.location))
       .slice(0, 2);
@@ -2009,6 +2012,7 @@ function App() {
           {draft ? (
             <section className="draft-workspace">
               <div className="draft-status-row"><strong>{STATUS_LABELS[draft.status] || draft.status}</strong><span>{draft.stage?.replaceAll("_", " ")}</span></div>
+              <JobFitStatus jobFit={draft.source_metadata?.job_fit || draft.analysis?.job_fit} />
               {draft.source_changed && viewingCurrent ? <div className="warning-band">{sourceLabel(draft)} changed this job description. Your current resume was preserved.<button disabled={!canRegenerateDraft(draft, busy)} onClick={() => window.confirm("Replace this draft using the latest job description?") && runDraftAction("regenerate", { context: contextForm, resume_mode: resumeMode })}>Regenerate</button></div> : null}
               {draft.status === "duplicate_review" ? (
                 <div className="decision-band"><strong>Previous applications found</strong><p>Generation has not called the AI yet. Choose whether to continue.</p><div className="button-row"><button className="primary" onClick={() => runDraftAction("duplicate-decision", { decision: "continue" })}>Continue</button><button onClick={() => runDraftAction("duplicate-decision", { decision: "skip" })}>Skip</button></div></div>

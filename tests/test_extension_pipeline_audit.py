@@ -101,6 +101,7 @@ def ready_pdf_draft(store, audit_status):
 
 
 def install_pipeline_mocks(monkeypatch, calls, *, audit_error=None):
+    monkeypatch.setattr(resume_app, "classify_resume_job", lambda *_args: {"category": "software_engineering", "suitable": True})
     analysis = {
         "target_role": "Backend Engineer",
         "role_family": "backend application engineering",
@@ -175,6 +176,35 @@ def install_pipeline_mocks(monkeypatch, calls, *, audit_error=None):
     monkeypatch.setattr(resume_app, "format_generated_resume_text", lambda *_args, **_kwargs: "Generated resume")
     monkeypatch.setattr(resume_app, "draft_resume_snapshot", lambda draft: {"title": draft["title_summary"]["updated_title"]})
     return preliminary
+
+
+def test_data_center_worker_classifies_before_generation_and_keeps_hpe(tmp_path, monkeypatch):
+    store = pipeline_store(tmp_path, monkeypatch)
+    draft, task = queued_task(store)
+    task["draft"] = store.update(draft["id"], {
+        "profile_snapshot": {"name": "Candidate", "contact": {"location": "Dallas, TX"}},
+    })
+    calls = []
+    install_pipeline_mocks(monkeypatch, calls)
+
+    def classify(*_args):
+        calls.append(("classification", None))
+        return {"category": "data_center_infrastructure", "suitable": True}
+
+    monkeypatch.setattr(resume_app, "classify_resume_job", classify)
+    resume_app.run_extension_generation_task(task)
+    completed = store.get(draft["id"])
+    assert completed["status"] == "ready", completed["error_message"]
+    assert calls[0][0] == "classification"
+    assert completed["analysis"]["prompt_family_key"] == "data_center_infrastructure"
+    assert completed["source_metadata"]["job_fit"]["category"] == "data_center_infrastructure"
+    history = completed["experience_history_snapshot"]
+    assert len(history) == 1
+    assert history[0]["company"] == "HPE"
+    assert history[0]["dates"] == "February 2024 - Present"
+    assert completed["enabled_experience_keys"] == [history[0]["key"]]
+    assert len(completed["experience_recent"]["experience"]) == 1
+    assert completed["experience_older"]["experience"] == {}
 
 
 def test_worker_makes_six_calls_and_audits_canonical_resume(tmp_path, monkeypatch):

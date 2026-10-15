@@ -53,7 +53,13 @@ def clean_text(value) -> str:
 
 def normalize_resume_mode(value) -> str:
     normalized = clean_text(value).lower().replace("-", "_")
-    return "internship" if normalized in {"intern", "internship", "co_op", "coop", "new_grad", "student"} else "professional"
+    if normalized in {"intern", "internship", "student"}:
+        return "internship"
+    if normalized in {"co_op", "coop"}:
+        return "coop"
+    if normalized in {"new_grad", "newgrad", "graduate"}:
+        return "new_grad"
+    return "professional"
 
 
 def description_hash(value: str) -> str:
@@ -400,7 +406,7 @@ class ExtensionDraftStore:
             "resume_snapshot", "title_summary", "skills", "analysis", "experience_recent", "experience_older",
             "status", "stage", "duplicate_decision", "pdf_path", "docx_path", "output_dir", "pdf_status_path",
             "pdf_stale", "resume_revision", "pdf_revision", "pdf_generated_at", "application_id", "job_lead_id", "error_stage", "error_message", "job_description", "description_hash",
-            "latest_description_hash", "contact_snapshot", "experience_history_snapshot",
+            "latest_description_hash", "profile_snapshot", "contact_snapshot", "experience_history_snapshot",
             "source_metadata",
             "audit_status", "audit_result", "audit_proposal", "audit_base_revision",
             "audit_base_hash", "audit_created_at", "audit_applied_at",

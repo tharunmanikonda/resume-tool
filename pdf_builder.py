@@ -258,6 +258,39 @@ def build_resume_docx(resume_data: dict, output_docx: str, format_profile: str =
             body.remove(child)
 
     d = resume_data if isinstance(resume_data, dict) else {}
+    resume_mode = str(d.get('_resume_mode', 'professional')).strip().lower()
+    student_layout = resume_mode in {'internship', 'coop', 'new_grad'}
+
+    def add_education_section() -> None:
+        education = d.get('education') if isinstance(d.get('education'), list) else []
+        education = [item for item in education if isinstance(item, dict)]
+        if not education:
+            return
+        p_h = doc.add_paragraph('EDUCATION', style='Heading 1')
+        _add_section_borders(p_h)
+        for edu in education:
+            degree = str(edu.get('degree', '')).strip()
+            if degree:
+                p = doc.add_paragraph(degree, style='Heading 2')
+                p.paragraph_format.space_before = Pt(1.9)
+
+            institution = str(edu.get('institution', '')).strip()
+            education_dates = str(edu.get('dates', '')).strip()
+            if institution or education_dates:
+                p = doc.add_paragraph(style='Normal')
+                p.paragraph_format.space_before = Pt(2.1)
+                p.paragraph_format.space_after = Pt(0)
+                p.paragraph_format.left_indent = Inches(0.053)
+                _add_right_tab(p, profile["text_width"])
+                if institution:
+                    r1 = p.add_run(institution)
+                    _format_run(r1, size=body_size, font_name=font_name)
+                if education_dates:
+                    p.add_run('\t')
+                    r2 = p.add_run(education_dates)
+                    _format_run(r2, size=body_size, font_name=font_name)
+                    r2.italic = True
+        _spacer(doc, after_pt=5)
 
     # ── NAME ──────────────────────────────────────────────────────────────
     name = str(d.get('name', '')).strip()
@@ -306,6 +339,9 @@ def build_resume_docx(resume_data: dict, output_docx: str, format_profile: str =
         _runs(p, summary, size=body_size, font_name=font_name)
 
         _spacer(doc, after_pt=6)
+
+    if student_layout:
+        add_education_section()
 
     # ── TECHNICAL SKILLS ──────────────────────────────────────────────────
     technical_skills = d.get('technical_skills') if isinstance(d.get('technical_skills'), list) else []
@@ -422,38 +458,10 @@ def build_resume_docx(resume_data: dict, output_docx: str, format_profile: str =
     if projects:
         _spacer(doc, after_pt=5)
 
-    # ── EDUCATION ─────────────────────────────────────────────────────────
-    education = d.get('education') if isinstance(d.get('education'), list) else []
-    education = [item for item in education if isinstance(item, dict)]
-    if education:
-        p_h = doc.add_paragraph('EDUCATION', style='Heading 1')
-        _add_section_borders(p_h)
-    for edu in education:
-        degree = str(edu.get('degree', '')).strip()
-        if degree:
-            p = doc.add_paragraph(degree, style='Heading 2')
-            p.paragraph_format.space_before = Pt(1.9)
-
-        # Institution [TAB] Dates
-        institution = str(edu.get('institution', '')).strip()
-        education_dates = str(edu.get('dates', '')).strip()
-        if institution or education_dates:
-            p = doc.add_paragraph(style='Normal')
-            p.paragraph_format.space_before = Pt(2.1)
-            p.paragraph_format.space_after = Pt(0)
-            p.paragraph_format.left_indent = Inches(0.053)
-            _add_right_tab(p, profile["text_width"])
-            if institution:
-                r1 = p.add_run(institution)
-                _format_run(r1, size=body_size, font_name=font_name)
-            if education_dates:
-                p.add_run('\t')
-                r2 = p.add_run(education_dates)
-                _format_run(r2, size=body_size, font_name=font_name)
-                r2.italic = True
-
-    if education:
-        _spacer(doc, after_pt=5)
+    # Student resumes establish enrollment near the top; professional resumes
+    # retain the existing education placement after projects.
+    if not student_layout:
+        add_education_section()
 
     # ── CERTIFICATIONS ────────────────────────────────────────────────────
     certifications = d.get('certifications') if isinstance(d.get('certifications'), list) else []

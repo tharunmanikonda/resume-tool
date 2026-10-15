@@ -218,12 +218,32 @@ def test_professional_resume_mode_keeps_existing_experience_guidance():
 def test_internship_resume_mode_uses_student_eligible_guidance():
     prompt = resume_app.build_ai_resume_title_summary_prompt(resume_mode="internship")
 
-    assert "RESUME MODE: Internship / Co-op / New Grad" in prompt
+    assert "RESUME MODE: Internship" in prompt
     assert "3+ years of software engineering experience" in prompt
     assert "lead with software engineering experience first for engineering roles" in prompt
     assert "for analyst/data roles, lead with data, SQL, reporting, process, and decision-support evidence" in prompt
     assert "Treat DBA as education/context" in prompt
+    assert "never use first-person or third-person pronouns" in prompt
     assert "4+ years of experience" not in prompt
+
+
+def test_student_resume_modes_have_distinct_guidance_and_shared_compaction():
+    assert "RESUME MODE: Co-op" in resume_app.build_ai_resume_title_summary_prompt(resume_mode="coop")
+    new_grad_prompt = resume_app.build_ai_resume_title_summary_prompt(resume_mode="new_grad")
+    assert "RESUME MODE: New Grad" in new_grad_prompt
+    assert "do not add Intern or Co-op unless the JD itself does" in new_grad_prompt
+
+    blueprints = resume_app.current_experience_blueprints(
+        {
+            "experience_history": [
+                {"key": "mckinsey", "company": "One", "location": "CA, USA", "title": "Engineer", "dates": "2025", "enabled": True},
+                {"key": "uber", "company": "Two", "location": "TX, USA", "title": "Engineer", "dates": "2024", "enabled": True},
+            ]
+        },
+        "coop",
+    )
+    assert (blueprints[0]["bullet_min"], blueprints[0]["bullet_max"]) == (4, 5)
+    assert (blueprints[1]["bullet_min"], blueprints[1]["bullet_max"]) == (3, 4)
 
 
 def test_internship_resume_mode_neutralizes_india_experience_locations():
@@ -343,7 +363,15 @@ def test_internship_resume_mode_adds_dba_education(monkeypatch):
         lambda: {
             "name": "Test User",
             "contact": {},
-            "application": {},
+            "application": {"graduationYear": "2023"},
+            "academic_profile": {
+                "degree": "Doctor of Business Administration (DBA)",
+                "concentration": "Artificial Intelligence",
+                "institution": "Example University",
+                "start_date": "August 2026",
+                "expected_graduation_date": "May 2029",
+                "status": "In progress",
+            },
             "projects": [],
             "certifications": [],
             "experience_history": [],
@@ -353,9 +381,39 @@ def test_internship_resume_mode_adds_dba_education(monkeypatch):
 
     updated = resume_app.apply_profile_overrides(resume, resume_mode="internship")
 
-    assert updated["education"][0]["degree"] == "Doctor of Business Administration (DBA), in progress"
-    assert updated["education"][0]["dates"] == "In progress"
+    assert updated["education"][0]["degree"] == "Doctor of Business Administration (DBA) in Artificial Intelligence"
+    assert updated["education"][0]["institution"] == "Example University"
+    assert updated["education"][0]["dates"] == "August 2026 - Expected May 2029"
+    assert "2023" not in updated["education"][0]["dates"]
     assert updated["education"][1]["degree"] == "Master's in Computer Science"
+
+
+def test_student_resume_structure_compacts_projects_and_certifications():
+    resume = {
+        "education": [],
+        "projects": [
+            {"name": "Primary", "bullets": ["One", "Two", "Three", "Four"]},
+            {"name": "Secondary", "bullets": ["One"]},
+        ],
+        "certifications": ["AWS Certified Solutions Architect", "Node.js Certified"],
+    }
+    updated = resume_app.apply_resume_mode_structure(resume, {"academic_profile": {}}, "new_grad")
+
+    assert updated["_resume_mode"] == "new_grad"
+    assert len(updated["projects"]) == 1
+    assert updated["projects"][0]["bullets"] == ["One", "Two", "Three"]
+    assert updated["certifications"] == ["AWS Certified Solutions Architect"]
+
+
+def test_student_summary_rejects_third_person_voice():
+    summary = "They have built reliable software systems with cloud services and APIs while collaborating across product and engineering teams to deliver measurable outcomes for customers in production environments. " \
+        "Current graduate study in artificial intelligence complements more than three years of practical software engineering experience across backend, frontend, testing, observability, and deployment workflows."
+    issues = resume_app.validate_title_summary_payload(
+        {"updated_title": "Software Engineer Intern", "updated_summary": summary},
+        resume_mode="internship",
+    )
+
+    assert any("without first-person or third-person pronouns" in issue for issue in issues)
 
 
 def test_preliminary_skills_retries_once_with_more_tokens_on_truncation(monkeypatch):

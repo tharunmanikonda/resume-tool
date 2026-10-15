@@ -7,7 +7,7 @@ import uuid
 from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
 from html.parser import HTMLParser
-from typing import Callable
+from typing import Callable, Iterable
 import urllib.request
 
 from sqlalchemy import select
@@ -340,3 +340,87 @@ def check_cpt_company(
             "source_snapshot": {"found": False, "error": str(exc)},
             "warning": str(exc),
         }
+
+
+def check_cpt_companies(
+    company_names: Iterable[str],
+    *,
+    now: datetime | None = None,
+    fetcher: Callable[[], str] | None = None,
+) -> dict[str, dict]:
+    """Check many companies while downloading the Day1CPT table at most once."""
+    current_time = now or utcnow()
+    names_by_normalized: dict[str, str] = {}
+    normalized_by_name: dict[str, str] = {}
+    for company_name in company_names:
+        clean_company = str(company_name or "").strip()
+        normalized = normalize_company_name(clean_company)
+        if clean_company and normalized:
+            names_by_normalized.setdefault(normalized, clean_company)
+            normalized_by_name[clean_company] = normalized
+    if not names_by_normalized:
+        return {}
+
+    cached_by_normalized: dict[str, dict] = {}
+    fresh_by_normalized: dict[str, dict] = {}
+    with session_scope() as db:
+        rows = db.scalars(
+            select(CptCompanyCheck)
+            .where(CptCompanyCheck.normalized_company_name.in_(tuple(names_by_normalized)))
+            .order_by(CptCompanyCheck.checked_at.desc())
+        ).all()
+        for row in rows:
+            normalized = row.normalized_company_name
+            if normalized in cached_by_normalized:
+                continue
+            payload = _serialize_check(row)
+            cached_by_normalized[normalized] = payload
+            expires_at = row.expires_at
+            if expires_at and expires_at.tzinfo is None:
+                expires_at = expires_at.replace(tzinfo=timezone.utc)
+            if expires_at and expires_at > current_time:
+                fresh_by_normalized[normalized] = payload
+
+    missing = [key for key in names_by_normalized if key not in fresh_by_normalized]
+    if missing:
+        try:
+            html = (fetcher or fetch_day1cpt_html)()
+            employer_rows = parse_day1cpt_employers(html)
+            if not employer_rows:
+                raise RuntimeError("Could not read the Day1CPT employers table.")
+            for normalized in missing:
+                company_name = names_by_normalized[normalized]
+                result = classify_cpt_row(
+                    company_name,
+                    find_cpt_employer(company_name, employer_rows),
+                    now=current_time,
+                )
+                fresh_by_normalized[normalized] = _upsert_check(result)
+        except Exception as exc:
+            for normalized in missing:
+                if normalized in cached_by_normalized:
+                    payload = dict(cached_by_normalized[normalized])
+                    payload["warning"] = f"Could not refresh Day1CPT; using the last saved CPT result. {exc}"
+                else:
+                    company_name = names_by_normalized[normalized]
+                    payload = {
+                        "status": "red",
+                        "blocked": False,
+                        "company_name": company_name,
+                        "matched_company_name": "",
+                        "cpt_friendly": False,
+                        "cpt_onboard": False,
+                        "cpt_agreement": "Unavailable",
+                        "source_url": DAY1CPT_EMPLOYERS_URL,
+                        "checked_at": current_time.isoformat(),
+                        "expires_at": current_time.isoformat(),
+                        "message": "CPT status is unavailable because Day1CPT could not be checked. Resume generation can continue.",
+                        "source_snapshot": {"found": False, "error": str(exc)},
+                        "warning": str(exc),
+                    }
+                fresh_by_normalized[normalized] = payload
+
+    return {
+        company_name: fresh_by_normalized[normalized]
+        for company_name, normalized in normalized_by_name.items()
+    }

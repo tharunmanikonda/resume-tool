@@ -19,10 +19,11 @@ Source: Official Tesla Careers search and official Tesla job-detail pages
 ## Freshness And Efficient Scanning
 
 - `285797` is the current high-water mark from the 2026-10-06 scan.
-- Tesla job IDs are identifiers, not guaranteed posting timestamps. For this monitor, the completed baseline lets us intentionally use the highest ID as the strict incremental boundary.
-- The complete known-ID set is the authoritative dedupe record. Known IDs are skipped before any job-detail request.
-- Only unseen IDs above the high-water mark are considered fresh and labeled `above_high_watermark`.
-- IDs at or below the high-water mark are ignored, including reopened older postings. This is an intentional speed-first policy after the full baseline review.
+- Tesla job IDs are identifiers, not guaranteed posting timestamps. The global highest ID is informational and must never be used as a cross-query exclusion boundary.
+- Tesla search is relevance-based. The monitor searches independent title families for software, SRE/reliability, platform, data, backend, full stack, QA/automation, systems analysis, database, integration, and production/release work.
+- Each search family has its own known-ID set and high-water mark. A higher ID found in one family cannot hide a lower, globally unseen ID later returned by another family.
+- The complete global known-ID set is the authoritative dedupe record. Any globally unseen result is classified even when its ID is below the global high-water mark.
+- `first_seen_at` is the freshness source of truth. Numeric ID order is only a supporting signal.
 - Each daily run should fetch lightweight search-result metadata first, compare IDs locally, and fetch full descriptions only for unseen jobs that pass the title filter.
 
 ## Trial Candidates

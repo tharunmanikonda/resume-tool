@@ -34,6 +34,14 @@
     "autoFillEnabled": true,
     "customAnswers": {}
   },
+  "academic_profile": {
+    "degree": "",
+    "concentration": "",
+    "institution": "",
+    "start_date": "",
+    "expected_graduation_date": "",
+    "status": ""
+  },
   "projects": [],
   "certifications": [],
   "experience_history": [

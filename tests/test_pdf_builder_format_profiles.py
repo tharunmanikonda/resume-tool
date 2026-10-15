@@ -76,6 +76,29 @@ def test_skill_item_arrays_render_as_comma_separated_text(tmp_path):
     assert "['TypeScript'" not in text
 
 
+def test_student_resume_places_education_before_skills_and_experience(tmp_path):
+    output_docx = Path(tmp_path) / "student.docx"
+    resume = sample_resume()
+    resume["_resume_mode"] = "internship"
+
+    build_resume_docx(resume, str(output_docx))
+
+    doc = Document(str(output_docx))
+    headings = [paragraph.text for paragraph in doc.paragraphs]
+    assert headings.index("EDUCATION") < headings.index("TECHNICAL SKILLS")
+    assert headings.index("EDUCATION") < headings.index("PROFESSIONAL EXPERIENCE")
+
+
+def test_professional_resume_keeps_education_after_projects(tmp_path):
+    output_docx = Path(tmp_path) / "professional.docx"
+
+    build_resume_docx(sample_resume(), str(output_docx))
+
+    doc = Document(str(output_docx))
+    headings = [paragraph.text for paragraph in doc.paragraphs]
+    assert headings.index("PROJECTS") < headings.index("EDUCATION")
+
+
 def test_sparse_resume_does_not_add_missing_sections_or_contact_defaults(tmp_path):
     output_docx = Path(tmp_path) / "sparse.docx"
 

@@ -1,7 +1,7 @@
 {
   "output_directory": "/Users/tharun/Documents/tharun-resume",
   "keep_docx": true,
-  "default_identity_id": "tmainkon",
+  "default_identity_id": "identity-1788554876891-hs2ek",
   "identities": [
     {
       "id": "outlook",
@@ -28,14 +28,6 @@
       "format_profile": "gmail"
     },
     {
-      "id": "tmainkon",
-      "label": "tmainkon Gmail",
-      "location": "Dallas, TX",
-      "phone": "(704)769-3338",
-      "email": "tmainkon.1@gmail.com",
-      "format_profile": "gmail"
-    },
-    {
       "id": "primary",
       "label": "Primary",
       "location": "California, USA",
@@ -48,8 +40,8 @@
       "label": "tmanikon.1",
       "location": "Dallas, TX",
       "phone": "(704)769-3338",
-      "email": "tmainkon.1@gmail.com",
-      "format_profile": "outlook"
+      "email": "tmanikon.1@gmail.com",
+      "format_profile": "gmail"
     }
   ],
   "allow_security_clearance_jobs": false

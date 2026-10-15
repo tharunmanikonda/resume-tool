@@ -12,6 +12,8 @@ for (const expected of [
   "/promote-to-draft",
   "Fresh Jobs",
   "Create resume",
+  "Jobbie internships",
+  "https://api.jobbie.bot/public/internships.json",
 ]) {
   assert.ok(source.includes(expected), `Job Inbox UI should include ${expected}`);
 }

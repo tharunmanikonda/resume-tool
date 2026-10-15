@@ -63,6 +63,7 @@ from resume_document_renderer import (
 )
 from extension_drafts import ActiveDraftTaskError, AuditStaleError, ExtensionDraftStore, normalize_context, normalize_resume_mode, validate_context
 from database import AiStageCache, init_db, session_scope
+import data_center_resume
 
 # Configuration
 app = Flask(__name__)
@@ -202,7 +203,7 @@ OPENAI_BACKGROUND_POLL_INTERVAL_SECONDS = float(
 OPENAI_API_URL = "https://api.openai.com/v1/responses"
 OPENAI_DECISIONS_API_URL = "https://api.openai.com/v1/decisions"
 JOB_FIT_MODEL = os.getenv("OPENAI_JOB_FIT_MODEL", "gpt-6-luna")
-JOB_FIT_PROMPT_VERSION = "job-fit-v4"
+JOB_FIT_PROMPT_VERSION = "job-fit-v5-data-center"
 JOB_FIT_TIMEOUT_SECONDS = int(os.getenv("OPENAI_JOB_FIT_TIMEOUT_SECONDS", "60"))
 JOB_FIT_THRESHOLD = float(os.getenv("OPENAI_JOB_FIT_THRESHOLD", "0.70"))
 
@@ -257,6 +258,7 @@ EXPERIENCE_BULLET_WORD_MAX = 30
 EXPERIENCE_NUMERIC_EVIDENCE_TARGET = 0.80
 
 ALLOWED_SKILL_CATEGORIES = {
+    *data_center_resume.SKILL_CATEGORIES,
     "Programming Languages",
     "Frontend Engineering",
     "Backend Engineering",
@@ -287,6 +289,7 @@ ALLOWED_SKILL_CATEGORIES = {
 }
 
 SKILL_CATEGORY_ORDER_TEMPLATES = {
+    "data_center_infrastructure": list(data_center_resume.SKILL_CATEGORIES),
     "fullstack_product": [
         "Programming Languages",
         "Frontend Engineering",
@@ -531,6 +534,10 @@ ROLE_FAMILY_TO_PROMPT_FAMILY_KEY = {
 }
 
 GENERATION_ROUTE_CONFIG = {
+    "data_center_infrastructure": {
+        "skill_category_order_key": "data_center_infrastructure",
+        "prompt_family_key": "data_center_infrastructure",
+    },
     "fullstack_product": {
         "skill_category_order_key": "fullstack_product",
         "prompt_family_key": "software_engineering",
@@ -729,12 +736,20 @@ def clear_ai_session_audit(session: dict, *, status: str = "not_started") -> Non
     session["audit_applied_at"] = None
 
 
+STUDENT_RESUME_MODES = {"internship", "coop", "new_grad"}
+
+
 def is_internship_resume_mode(value) -> bool:
-    return normalize_resume_mode(value) == "internship"
+    """Return whether the mode uses the student/early-career resume profile."""
+    return normalize_resume_mode(value) in STUDENT_RESUME_MODES
 
 
 def resume_mode_label(value) -> str:
-    return "Internship / Co-op / New Grad" if is_internship_resume_mode(value) else "Professional"
+    return {
+        "internship": "Internship",
+        "coop": "Co-op",
+        "new_grad": "New Grad",
+    }.get(normalize_resume_mode(value), "Professional")
 
 
 def location_mentions_india(value: str) -> bool:
@@ -775,13 +790,26 @@ def internship_experience_history_defaults(history: list[dict] | None) -> list[d
     return result
 
 
-def intern_mode_degree_text(profile: dict | None = None) -> str:
+def intern_mode_academic_profile(profile: dict | None = None) -> dict:
     source = profile if isinstance(profile, dict) else current_profile()
-    application = source.get("application") if isinstance(source.get("application"), dict) else {}
-    configured = str(application.get("highestDegree", "")).strip()
-    if re.search(r"\b(dba|doctor of business administration)\b", configured, re.IGNORECASE):
-        return configured
-    return "Doctor of Business Administration (DBA), in progress"
+    configured = source.get("academic_profile") if isinstance(source.get("academic_profile"), dict) else {}
+    return {
+        "degree": str(configured.get("degree", "")).strip() or "Doctor of Business Administration (DBA)",
+        "concentration": str(configured.get("concentration", "")).strip(),
+        "institution": str(configured.get("institution", "")).strip(),
+        "start_date": str(configured.get("start_date", "")).strip(),
+        "expected_graduation_date": str(configured.get("expected_graduation_date", "")).strip(),
+        "status": str(configured.get("status", "")).strip() or "In progress",
+    }
+
+
+def intern_mode_degree_text(profile: dict | None = None) -> str:
+    academic = intern_mode_academic_profile(profile)
+    degree = academic["degree"]
+    concentration = academic["concentration"]
+    if concentration and concentration.lower() not in degree.lower():
+        return f"{degree} in {concentration}"
+    return degree
 
 
 def intern_mode_student_summary(profile: dict | None = None) -> str:
@@ -809,13 +837,21 @@ def ensure_internship_education(resume: dict, profile: dict | None = None) -> di
         return resume
 
     source = profile if isinstance(profile, dict) else current_profile()
-    application = source.get("application") if isinstance(source.get("application"), dict) else {}
-    graduation_year = str(application.get("graduationYear", "")).strip()
-    dates = f"Expected {graduation_year}" if graduation_year else "In progress"
+    academic = intern_mode_academic_profile(source)
+    start_date = academic["start_date"]
+    expected_date = academic["expected_graduation_date"]
+    if start_date and expected_date:
+        dates = f"{start_date} - Expected {expected_date}"
+    elif expected_date:
+        dates = f"Expected {expected_date}"
+    elif start_date:
+        dates = f"{start_date} - Present"
+    else:
+        dates = academic["status"]
     resume["education"] = [
         {
             "degree": intern_mode_degree_text(source),
-            "institution": "Current graduate program",
+            "institution": academic["institution"],
             "dates": dates,
         },
         *education,
@@ -834,8 +870,9 @@ def internship_profile_snapshot(profile: dict) -> dict:
         application["yearsOfExperience"] = "3+"
     if not str(application.get("currentTitle", "")).strip():
         application["currentTitle"] = "Software Engineer"
-    if not re.search(r"\b(dba|doctor of business administration)\b", str(application.get("highestDegree", "")), re.IGNORECASE):
-        application["highestDegree"] = "Doctor of Business Administration (DBA), in progress"
+    academic = intern_mode_academic_profile(next_profile)
+    application["highestDegree"] = intern_mode_degree_text(next_profile)
+    application["graduationYear"] = academic["expected_graduation_date"]
     next_profile["resume_mode"] = "internship"
     return next_profile
 
@@ -843,34 +880,53 @@ def internship_profile_snapshot(profile: dict) -> dict:
 def profile_for_resume_mode(profile: dict | None = None, resume_mode: str = "professional") -> dict:
     active_profile = copy.deepcopy(profile if isinstance(profile, dict) else current_profile())
     if is_internship_resume_mode(resume_mode):
-        return internship_profile_snapshot(active_profile)
+        snapshot = internship_profile_snapshot(active_profile)
+        snapshot["resume_mode"] = normalize_resume_mode(resume_mode)
+        return snapshot
     active_profile["resume_mode"] = "professional"
     return active_profile
 
 
 def resume_mode_prompt_lines(resume_mode: str) -> list[str]:
-    if not is_internship_resume_mode(resume_mode):
+    normalized_mode = normalize_resume_mode(resume_mode)
+    if not is_internship_resume_mode(normalized_mode):
         return [
             "RESUME MODE: Professional",
             "- Position the candidate as an experienced engineer for regular professional roles.",
             "- Preserve the existing professional tone and seniority guidance.",
+            "- Never prefix a numeric metric with ~, ≈, or ∼. Write 'approximately' or 'about' when the value is estimated.",
         ]
+    mode_specific = {
+        "internship": [
+            "RESUME MODE: Internship",
+            "- Position the candidate for the advertised internship and keep the top title closely aligned to the JD title.",
+        ],
+        "coop": [
+            "RESUME MODE: Co-op",
+            "- Position the candidate for the advertised co-op and keep the top title closely aligned to the JD title.",
+        ],
+        "new_grad": [
+            "RESUME MODE: New Grad",
+            "- Position the candidate for the advertised new-graduate role; do not add Intern or Co-op unless the JD itself does.",
+        ],
+    }[normalized_mode]
     return [
-        "RESUME MODE: Internship / Co-op / New Grad",
-        "- This mode is only for internship, co-op, and new graduate applications.",
+        *mode_specific,
         "- Position the candidate as a current graduate student with 3+ years of software engineering experience.",
         "- Make the resume student-eligible without sounding like an entry-level-only profile.",
         "- Prefer internship, co-op, new graduate, junior, and early-career language when it fits the JD.",
         "- Avoid senior-only phrasing, executive ownership language, and overqualified-sounding claims.",
         "- Keep the strongest engineering evidence from prior roles; do not delete experience because it happened outside the U.S.",
         "- Do not display India as a work location. If a prior role location is India, use the supplied neutral location value exactly.",
-        "- The candidate profile provides current DBA student status for intern mode; make the resume eligible for student roles without inventing a school name or graduation date.",
-        "- For software engineering target roles, keep the top title software-engineering-first, such as Software Engineer Intern, AI Software Engineer Intern, Backend Engineer Intern, or Full Stack Engineer Intern.",
+        "- Use the academic profile exactly for DBA institution and dates; never reuse another degree's graduation year or invent missing academic details.",
+        "- For software engineering target roles, keep the top title software-engineering-first and closely aligned to the advertised title.",
         "- For data analyst, business analyst, BI, ERP, WMS, operations analyst, or higher-ed systems roles, make the title and summary data/business-workflow-first while still showing technical strength through SQL, reporting, systems, automation, and stakeholder impact.",
         "- Do not make the top title DBA-focused, business-administration-focused, management-focused, or strategy-focused.",
         "- In the summary, lead with software engineering experience first for engineering roles; for analyst/data roles, lead with data, SQL, reporting, process, and decision-support evidence.",
         "- Treat DBA as education/context, not the candidate's primary professional identity.",
         "- If the summary mentions years of experience, it must say 3+ years.",
+        "- Write summary language directly and impersonally; never use first-person or third-person pronouns such as I, he, she, they, his, her, or their.",
+        "- Never prefix a numeric metric with ~, ≈, or ∼. Write 'approximately' or 'about' when the value is estimated.",
     ]
 
 
@@ -2212,7 +2268,38 @@ def prompt_family_key_for_analysis(analysis_payload: dict | None) -> str:
 
 
 def skill_category_order_for_key(order_key: str) -> list[str]:
+    if order_key == data_center_resume.CATEGORY:
+        return list(data_center_resume.SKILL_CATEGORIES)
     return list(SKILL_CATEGORY_ORDER_TEMPLATES.get(order_key, SKILL_CATEGORY_ORDER_TEMPLATES["fullstack_product"]))
+
+
+def classify_resume_job(api_key: str, job_description: str) -> dict:
+    return check_job_fit_decision(
+        api_key=api_key, company_name="", role_title="", location="",
+        job_description=job_description,
+    )
+
+
+def apply_resume_category(analysis: dict, decision: dict) -> dict:
+    result = dict(analysis)
+    result["job_fit"] = decision
+    if decision.get("category") == data_center_resume.CATEGORY:
+        result.update({
+            "generation_route_key": data_center_resume.CATEGORY,
+            "role_family": "data center IT infrastructure",
+            "skill_category_order_key": data_center_resume.CATEGORY,
+            "prompt_family_key": data_center_resume.CATEGORY,
+        })
+    return normalize_analysis_payload(result)
+
+
+def data_center_snapshot_values(profile: dict) -> dict:
+    snapshot = data_center_resume.profile_snapshot(profile, EXPERIENCE_BLUEPRINT_KEYS[0])
+    return {
+        "profile_snapshot": snapshot,
+        "experience_history_snapshot": snapshot["experience_history"],
+        "enabled_experience_keys": [EXPERIENCE_BLUEPRINT_KEYS[0]],
+    }
 
 
 def infer_prompt_family_key(role_family: str) -> str:
@@ -2605,6 +2692,8 @@ def build_ai_resume_core_prompt(resume_mode: str = "professional") -> str:
 
 
 def build_ai_resume_title_summary_prompt(prompt_family_key: str = "software_engineering", resume_mode: str = "professional") -> str:
+    if prompt_family_key == data_center_resume.CATEGORY:
+        return data_center_resume.prompt("title and summary")
     family_rules = {
         "software_engineering": [
             "- adapt by role family, culture signals, and the skills, responsibilities, and workflows mentioned in the analysis object",
@@ -2711,6 +2800,8 @@ def build_ai_resume_title_summary_prompt(prompt_family_key: str = "software_engi
 
 
 def build_ai_resume_skills_prompt(prompt_family_key: str = "software_engineering", resume_mode: str = "professional") -> str:
+    if prompt_family_key == data_center_resume.CATEGORY:
+        return data_center_resume.prompt("skills")
     family_rules = {
         "software_engineering": [
             "- prioritize named languages, frameworks, databases, cloud services, CI/CD tools, monitoring tools, and enterprise platforms",
@@ -2831,6 +2922,8 @@ def build_ai_resume_skills_prompt(prompt_family_key: str = "software_engineering
 
 
 def build_ai_resume_experience_prompt(prompt_family_key: str = "software_engineering", resume_mode: str = "professional") -> str:
+    if prompt_family_key == data_center_resume.CATEGORY:
+        return data_center_resume.prompt("experience")
     blueprint_lines = []
     for blueprint in current_experience_blueprints(resume_mode=resume_mode):
         bullet_rule = f"{blueprint['bullet_min']}" if blueprint["bullet_min"] == blueprint["bullet_max"] else f"{blueprint['bullet_min']}-{blueprint['bullet_max']}"
@@ -2968,6 +3061,8 @@ def build_ai_resume_experience_prompt(prompt_family_key: str = "software_enginee
 
 
 def build_ai_resume_experience_subset_prompt(blueprints: list[dict], prompt_family_key: str = "software_engineering", resume_mode: str = "professional") -> str:
+    if prompt_family_key == data_center_resume.CATEGORY:
+        return data_center_resume.prompt("experience") + "\nImmutable experience structure:\n" + json.dumps(blueprints)
     blueprint_lines = []
     for blueprint in blueprints:
         bullet_rule = f"{blueprint['bullet_min']}" if blueprint["bullet_min"] == blueprint["bullet_max"] else f"{blueprint['bullet_min']}-{blueprint['bullet_max']}"
@@ -3830,7 +3925,7 @@ def format_generated_resume_text(resume_payload: dict, experience_blueprints: li
     for blueprint in blueprints:
         entry = experience.get(blueprint["key"], {})
         title, _ = resolve_experience_title(entry.get("title") or "", blueprint, analysis_payload)
-        bullets = [bullet.strip() for bullet in entry.get("bullets", []) if bullet.strip()]
+        bullets = [normalize_metric_notation(bullet.strip()) for bullet in entry.get("bullets", []) if bullet.strip()]
         company = str(blueprint.get("company") or "").strip() or "Company"
         location = str(blueprint.get("location") or "").strip()
         dates = str(blueprint.get("dates") or "").strip()
@@ -4583,6 +4678,11 @@ def count_words(text: str) -> int:
     return len(re.findall(r"\b[\w%&.+#/-]+\b", text or ""))
 
 
+def normalize_metric_notation(text: str) -> str:
+    """Replace ATS-unfriendly approximation symbols before numeric metrics."""
+    return re.sub(r"(?<!\w)[~≈∼]\s*(?=\d)", "approximately ", str(text or ""))
+
+
 ANALYST_EXPLICIT_TOOL_TERMS = {
     "excel",
     "power bi",
@@ -4826,17 +4926,27 @@ def sanitize_unsupported_analyst_tools_in_text(text: str, analysis_payload: dict
 
 
 def sanitize_experience_payload_for_prompt_family(experience_payload: dict, analysis_payload: dict) -> dict:
-    if not is_analyst_prompt_family(analysis_payload):
-        return experience_payload
     experience = experience_payload.get("experience") or {}
     for entry in experience.values():
         bullets = [str(bullet).strip() for bullet in entry.get("bullets", []) if str(bullet).strip()]
-        entry["bullets"] = [sanitize_unsupported_analyst_tools_in_text(bullet, analysis_payload) for bullet in bullets]
+        normalized_bullets = [normalize_metric_notation(bullet) for bullet in bullets]
+        if is_analyst_prompt_family(analysis_payload):
+            normalized_bullets = [
+                sanitize_unsupported_analyst_tools_in_text(bullet, analysis_payload)
+                for bullet in normalized_bullets
+            ]
+        entry["bullets"] = normalized_bullets
     return experience_payload
 
 
-def validate_experience_numeric_coverage(experience_payload: dict, blueprints: list[dict]) -> list[str]:
-    """Require the configured share of generated bullets to include useful quantification."""
+def validate_experience_numeric_coverage(
+    experience_payload: dict,
+    blueprints: list[dict],
+    analysis_payload: dict | None = None,
+) -> list[str]:
+    """Enforce numerical coverage only for prompt families that require it."""
+    if analysis_payload and prompt_family_key_for_analysis(analysis_payload) == data_center_resume.CATEGORY:
+        return []
     issues: list[str] = []
     experience = experience_payload.get("experience") or {}
     for blueprint in blueprints:
@@ -5089,7 +5199,13 @@ def validate_core_payload(core_payload: dict, analysis_payload: dict) -> list[st
     return issues
 
 
-def validate_title_summary_payload(title_summary_payload: dict, analysis_payload: dict | None = None, *, summary_max_buffer: int = 0) -> list[str]:
+def validate_title_summary_payload(
+    title_summary_payload: dict,
+    analysis_payload: dict | None = None,
+    *,
+    summary_max_buffer: int = 0,
+    resume_mode: str = "professional",
+) -> list[str]:
     issues: list[str] = []
     title = str(title_summary_payload.get("updated_title", "")).strip()
     summary = str(title_summary_payload.get("updated_summary", "")).strip()
@@ -5112,6 +5228,12 @@ def validate_title_summary_payload(title_summary_payload: dict, analysis_payload
                 issues.append(
                     f"Updated summary must be {SUMMARY_WORD_MIN}-{SUMMARY_WORD_MAX} words; buffer allows up to {summary_word_max}. Got {summary_word_count}."
                 )
+        if is_internship_resume_mode(resume_mode) and re.search(
+            r"\b(i|me|my|mine|we|our|ours|he|him|his|she|her|hers|they|them|their|theirs)\b",
+            summary,
+            re.IGNORECASE,
+        ):
+            issues.append("Student-mode summary must use direct resume language without first-person or third-person pronouns.")
 
     if analysis_payload and is_analyst_prompt_family(analysis_payload):
         unsupported_tools = analyst_tool_mentions_not_in_jd(summary, analysis_payload)
@@ -5354,7 +5476,7 @@ def check_job_fit_decision(
         "location": location.strip(),
         "job_description": job_description.strip(),
     }
-    source_hash = normalized_prompt_source_hash(json.dumps(evidence, sort_keys=True, separators=(",", ":")))
+    source_hash = normalized_prompt_source_hash(job_description)
     cache_key = ai_stage_cache_key(
         stage="job_fit_decision",
         model=JOB_FIT_MODEL,
@@ -5378,10 +5500,18 @@ def check_job_fit_decision(
             "engineering may qualify. A role titled Application Engineer or Software Engineer does not qualify "
             "when its work is primarily HVAC, mechanical, civil, electrical hardware, construction, manufacturing "
             "process, field maintenance/service, or unrelated sales. Specialized software stacks such as Android, "
-            "iOS, embedded, ERP, or security still qualify when the work is fundamentally software engineering.\n\nJob posting:\n"
+            "iOS, embedded, ERP, or security still qualify when the work is fundamentally software engineering. "
+            "Data center IT operations are also supported: server hardware deployment, rack-and-stack, break-fix, "
+            "remote hands, networking/cabling, operating-system support and infrastructure incident management. "
+            "Distinguish these from facilities-only HVAC, electrical power, cooling or construction work.\n\nJob posting:\n"
             + json.dumps(evidence, ensure_ascii=True, sort_keys=True)
         ),
         "questions": [
+            {
+                "type": "predicate",
+                "name": "data_center_related",
+                "instructions": "Are the primary duties hands-on data center IT infrastructure operations, server hardware support, rack-and-stack, remote hands, cabling or infrastructure support? Software development merely hosted in a data center and facilities-only power/cooling/HVAC do not qualify.",
+            },
             {
                 "type": "predicate",
                 "name": "software_related",
@@ -5415,6 +5545,7 @@ def check_job_fit_decision(
         if isinstance(answer, dict) and answer.get("type") == "predicate" and answer.get("name") and isinstance(answer.get("probability"), (int, float))
     }
     required = {
+        "data_center_related",
         "software_related",
         "over_six_years_required",
         "advanced_seniority_scope",
@@ -5423,8 +5554,9 @@ def check_job_fit_decision(
         raise RuntimeError("OpenAI returned an incomplete job fit decision.")
 
     reasons = []
-    if probabilities["software_related"] < JOB_FIT_THRESHOLD:
-        reasons.append("The primary responsibilities are not sufficiently software, data, AI, or cloud engineering focused.")
+    category = data_center_resume.CATEGORY if probabilities["data_center_related"] >= JOB_FIT_THRESHOLD else "software_engineering"
+    if probabilities["software_related"] < JOB_FIT_THRESHOLD and category != data_center_resume.CATEGORY:
+        reasons.append("The primary responsibilities are outside supported software and data center IT infrastructure roles.")
     if probabilities["over_six_years_required"] >= JOB_FIT_THRESHOLD:
         reasons.append("The job requires more than six years of relevant professional experience.")
     if probabilities["advanced_seniority_scope"] >= JOB_FIT_THRESHOLD:
@@ -5433,8 +5565,10 @@ def check_job_fit_decision(
     result = {
         "status": "suitable" if suitable else "not_suitable",
         "suitable": suitable,
+        "category": category,
+        "category_label": "Data Center / IT Infrastructure" if category == data_center_resume.CATEGORY else "Software / Data Engineering",
         "message": (
-            "This is a software-engineering-related role within the supported seniority range."
+            "This is a supported technical role within the supported seniority range."
             if suitable
             else reasons[0]
         ),
@@ -5619,16 +5753,19 @@ def generate_title_summary_from_analysis(
         )
 
     title_summary_payload = run_generation()
-    validation_issues = validate_title_summary_payload(title_summary_payload, analysis_payload)
+    validation_issues = validate_title_summary_payload(title_summary_payload, analysis_payload, resume_mode=resume_mode)
     unsupported_tool_issues = [
         issue for issue in validation_issues
-        if "introduces analyst tools not named in the JD" in issue or "introduces GTM tools not named in the JD" in issue
+        if "introduces analyst tools not named in the JD" in issue
+        or "introduces GTM tools not named in the JD" in issue
+        or "without first-person or third-person pronouns" in issue
     ]
     if unsupported_tool_issues:
         retry_lines = [
-            "Previous attempt used named tools in the summary that are not supported by the JD.",
-            "Rewrite the summary using JD-grounded tools or generic workflow language.",
+            "Previous attempt failed one or more summary constraints.",
+            "Rewrite the summary using direct resume language and JD-grounded tools or generic workflow language.",
             "If the JD does not mention a named tool, do not introduce one in the summary.",
+            "Do not use first-person or third-person pronouns.",
             "Fix these exact issues:",
             *[f"- {issue}" for issue in unsupported_tool_issues],
         ]
@@ -5864,11 +6001,17 @@ def generate_final_synthesis_from_analysis(
         f"Raw job description:\n{job_description.strip()}",
     ]
     append_revision_context_to_prompt(user_parts, revision_context)
+    if prompt_family_key_for_analysis(analysis_payload) == data_center_resume.CATEGORY:
+        user_parts.append("Actual candidate education:\n" + json.dumps(load_base_resume().get("education", [])))
     result = call_openai_structured_output(
         api_key=api_key,
         model=model,
         temperature=RESUME_TEMPERATURE,
-        developer_prompt=build_ai_final_synthesis_prompt(resume_mode),
+        developer_prompt=(
+            data_center_resume.prompt("final synthesis: title, summary, final skills and experience titles")
+            if prompt_family_key_for_analysis(analysis_payload) == data_center_resume.CATEGORY
+            else build_ai_final_synthesis_prompt(resume_mode)
+        ),
         user_prompt="\n\n".join(user_parts),
         schema_name="resume_final_synthesis",
         schema=ai_final_synthesis_schema(ordered_categories, active_blueprints),
@@ -7344,6 +7487,7 @@ def build_ai_resume_quality_audit_prompt() -> str:
             "2. Hiring manager: direct evidence for the role's real outcomes, ownership, collaboration, and business or customer value.",
             "3. Principal engineer: technical accuracy, system depth, believable scope, engineering judgment, and coherent growth across roles.",
             "Return one unified patch-only decision. Never repeat the full resume.",
+            "For data_center_infrastructure, preserve the single user-confirmed HPE entry, February 2024 to Present, and technician/IT operations framing. Do not restore software-role history or software skill categories.",
             "",
             "INPUT AUTHORITY:",
             "- read the authoritative advertised job title and raw JD before reviewing the resume",
@@ -9240,7 +9384,7 @@ def generate_resume_experience_from_analysis(
         if "introduces analyst tools not named in the JD" in issue
         or "introduces GTM tools not named in the JD" in issue
     ]
-    coverage_issues = validate_experience_numeric_coverage(experience_payload, blueprints)
+    coverage_issues = validate_experience_numeric_coverage(experience_payload, blueprints, analysis_payload)
     repair_issues = unsupported_tool_issues + coverage_issues
     if repair_issues:
         retry_lines = [
@@ -9256,7 +9400,7 @@ def generate_resume_experience_from_analysis(
         experience_payload = run_generation("\n".join(retry_lines))
 
     experience_payload = sanitize_experience_payload_for_prompt_family(experience_payload, analysis_payload)
-    final_evidence_issues = validate_experience_numeric_coverage(experience_payload, blueprints)
+    final_evidence_issues = validate_experience_numeric_coverage(experience_payload, blueprints, analysis_payload)
     if final_evidence_issues:
         raise ValueError("Experience evidence validation failed: " + " | ".join(final_evidence_issues[:3]))
     experience_payload["_enabled_experience_keys"] = [blueprint["key"] for blueprint in blueprints]
@@ -9333,7 +9477,7 @@ def generate_experience_subset_from_analysis(
         if "introduces analyst tools not named in the JD" in issue
         or "introduces GTM tools not named in the JD" in issue
     ]
-    coverage_issues = validate_experience_numeric_coverage(experience_payload, blueprints)
+    coverage_issues = validate_experience_numeric_coverage(experience_payload, blueprints, analysis_payload)
     repair_issues = unsupported_tool_issues + coverage_issues
     if repair_issues:
         retry_lines = [
@@ -9347,7 +9491,8 @@ def generate_experience_subset_from_analysis(
             *[f"- {issue}" for issue in repair_issues],
         ]
         experience_payload = run_generation("\n".join(retry_lines))
-    final_evidence_issues = validate_experience_numeric_coverage(experience_payload, blueprints)
+    experience_payload = sanitize_experience_payload_for_prompt_family(experience_payload, analysis_payload)
+    final_evidence_issues = validate_experience_numeric_coverage(experience_payload, blueprints, analysis_payload)
     if final_evidence_issues:
         raise ValueError("Experience evidence validation failed: " + " | ".join(final_evidence_issues[:3]))
     experience_payload["_enabled_experience_keys"] = [blueprint["key"] for blueprint in blueprints]
@@ -9533,6 +9678,14 @@ def load_profile_template() -> dict:
         "name": "",
         "contact": {"location": "", "phone": "", "email": ""},
         "application": {},
+        "academic_profile": {
+            "degree": "",
+            "concentration": "",
+            "institution": "",
+            "start_date": "",
+            "expected_graduation_date": "",
+            "status": "",
+        },
         "projects": [],
         "certifications": [],
         "experience_history": [
@@ -9653,6 +9806,13 @@ def merge_profile_docs(base: dict, override: dict | None) -> dict:
             **override_application,
         }
 
+    override_academic_profile = override.get("academic_profile")
+    if isinstance(override_academic_profile, dict):
+        merged["academic_profile"] = {
+            **(merged.get("academic_profile") or {}),
+            **override_academic_profile,
+        }
+
     for field in ("projects", "certifications"):
         if field in override and isinstance(override.get(field), list):
             merged[field] = override.get(field)
@@ -9720,6 +9880,13 @@ def current_experience_blueprints(profile: dict | None = None, resume_mode: str 
     proof of a particular tool, responsibility, or result.
     """
     active_profile = profile_for_resume_mode(profile, resume_mode) if is_internship_resume_mode(resume_mode) else (profile if isinstance(profile, dict) else current_profile())
+    if active_profile.get("resume_category") == data_center_resume.CATEGORY:
+        saved = active_profile["experience_history"][0]
+        return [{
+            **EXPERIENCE_BLUEPRINTS[0], **saved,
+            "default_title": saved["title"], "bullet_min": 10, "bullet_max": 13,
+            "anchor": "User-confirmed HPE data center infrastructure support: server hardware, rack-and-stack, break-fix, networking, operating systems, incidents and documentation",
+        }]
     saved_history = active_profile.get("experience_history") if isinstance(active_profile.get("experience_history"), list) else []
     saved_history_by_key = {
         str(entry.get("key", "")).strip(): entry
@@ -9728,7 +9895,7 @@ def current_experience_blueprints(profile: dict | None = None, resume_mode: str 
     }
 
     blueprints: list[dict] = []
-    for blueprint in EXPERIENCE_BLUEPRINTS:
+    for blueprint_index, blueprint in enumerate(EXPERIENCE_BLUEPRINTS):
         override = saved_history_by_key.get(blueprint["key"])
         merged = dict(blueprint)
         if isinstance(override, dict):
@@ -9745,6 +9912,11 @@ def current_experience_blueprints(profile: dict | None = None, resume_mode: str 
             merged["default_title"] = ""
             merged["title"] = ""
             merged["enabled"] = is_experience_blueprint_complete(merged)
+        if is_internship_resume_mode(resume_mode):
+            if blueprint_index == 0:
+                merged["bullet_min"], merged["bullet_max"] = 4, 5
+            elif blueprint_index == 1:
+                merged["bullet_min"], merged["bullet_max"] = 3, 4
         blueprints.append(merged)
     return blueprints
 
@@ -9759,6 +9931,8 @@ def normalize_enabled_experience_keys(payload: list[str] | None) -> list[str]:
 
 
 def normalize_ai_enabled_experience_keys(payload: list[str] | None, session: dict | None = None) -> list[str]:
+    if isinstance(session, dict) and (session.get("profile_snapshot") or {}).get("resume_category") == data_center_resume.CATEGORY:
+        return [EXPERIENCE_BLUEPRINT_KEYS[0]]
     keys = normalize_enabled_experience_keys(payload)
     session_mode = normalize_resume_mode(session.get("resume_mode") if isinstance(session, dict) else None)
     if is_internship_resume_mode(session_mode):
@@ -10130,8 +10304,25 @@ def apply_profile_overrides(resume: dict, resume_mode: str = "professional") -> 
             current_title = str(entry.get("title", "")).strip()
             if override_title and not current_title:
                 entry["title"] = override_title
-    if is_internship_resume_mode(resume_mode):
-        resume = ensure_internship_education(resume, profile)
+    return apply_resume_mode_structure(resume, profile, resume_mode)
+
+
+def apply_resume_mode_structure(resume: dict, profile: dict | None, resume_mode: str) -> dict:
+    normalized_mode = normalize_resume_mode(resume_mode)
+    resume["_resume_mode"] = normalized_mode
+    if not is_internship_resume_mode(normalized_mode):
+        return resume
+
+    resume = ensure_internship_education(resume, profile)
+    projects = resume.get("projects") if isinstance(resume.get("projects"), list) else []
+    if projects:
+        selected_project = copy.deepcopy(projects[0])
+        bullets = selected_project.get("bullets") if isinstance(selected_project.get("bullets"), list) else []
+        selected_project["bullets"] = bullets[:3]
+        resume["projects"] = [selected_project]
+    certifications = resume.get("certifications") if isinstance(resume.get("certifications"), list) else []
+    aws_certifications = [item for item in certifications if re.search(r"\bAWS\b", str(item), re.IGNORECASE)]
+    resume["certifications"] = aws_certifications[:1]
     return resume
 
 
@@ -10141,6 +10332,7 @@ def normalize_profile(payload: dict) -> dict:
     projects = payload.get("projects") if isinstance(payload.get("projects"), list) else []
     certifications = payload.get("certifications") if isinstance(payload.get("certifications"), list) else []
     experience_history = payload.get("experience_history") if isinstance(payload.get("experience_history"), list) else []
+    academic_profile = payload.get("academic_profile") if isinstance(payload.get("academic_profile"), dict) else {}
 
     normalized_projects = []
     for project in projects:
@@ -10161,10 +10353,21 @@ def normalize_profile(payload: dict) -> dict:
             "email": str(contact.get("email", "")).strip(),
         },
         "application": application,
+        "academic_profile": normalize_academic_profile(academic_profile),
         "projects": normalized_projects,
         "certifications": [str(item).strip() for item in certifications if str(item).strip()],
         "experience_history": normalized_history,
     }
+
+
+ACADEMIC_PROFILE_FIELDS = (
+    "degree", "concentration", "institution", "start_date", "expected_graduation_date", "status",
+)
+
+
+def normalize_academic_profile(payload: dict | None) -> dict:
+    raw = payload if isinstance(payload, dict) else {}
+    return {field: str(raw.get(field, "")).strip() for field in ACADEMIC_PROFILE_FIELDS}
 
 
 APPLICATION_PROFILE_FIELDS = (
@@ -10315,6 +10518,9 @@ def extension_generation_worker_count(value: str | None = None) -> int:
 
 
 def experience_blueprints_from_snapshot(draft: dict) -> list[dict]:
+    profile = draft.get("profile_snapshot") or {}
+    if profile.get("resume_category") == data_center_resume.CATEGORY:
+        return current_experience_blueprints(profile)
     resume_mode = normalize_resume_mode(draft.get("resume_mode"))
     history = draft.get("experience_history_snapshot") if isinstance(draft.get("experience_history_snapshot"), list) else []
     by_key = {
@@ -10323,7 +10529,7 @@ def experience_blueprints_from_snapshot(draft: dict) -> list[dict]:
         if isinstance(item, dict) and str(item.get("key", "")).strip()
     }
     blueprints: list[dict] = []
-    for blueprint in EXPERIENCE_BLUEPRINTS:
+    for blueprint_index, blueprint in enumerate(EXPERIENCE_BLUEPRINTS):
         saved = by_key.get(blueprint["key"])
         merged = dict(blueprint)
         if isinstance(saved, dict):
@@ -10340,6 +10546,11 @@ def experience_blueprints_from_snapshot(draft: dict) -> list[dict]:
             merged["default_title"] = ""
             merged["title"] = ""
             merged["enabled"] = is_experience_blueprint_complete(merged)
+        if is_internship_resume_mode(resume_mode):
+            if blueprint_index == 0:
+                merged["bullet_min"], merged["bullet_max"] = 4, 5
+            elif blueprint_index == 1:
+                merged["bullet_min"], merged["bullet_max"] = 3, 4
         blueprints.append(merged)
     return blueprints
 
@@ -10390,7 +10601,8 @@ def draft_resume_snapshot(draft: dict) -> dict:
         if not str(entry.get("title", "")).strip() and str(saved.get("title", "")).strip():
             entry["title"] = str(saved["title"]).strip()
 
-    return apply_enabled_experience_filter(resume, enabled_keys)
+    resume = apply_enabled_experience_filter(resume, enabled_keys)
+    return apply_resume_mode_structure(resume, profile, resume_mode)
 
 
 def extension_draft_payload(draft: dict | None) -> dict | None:
@@ -10513,6 +10725,17 @@ def run_extension_generation_task(task: dict) -> None:
         if not api_key:
             raise AIStageError("analysis", "OPENAI_API_KEY is not configured")
 
+        stage = "job_classification"
+        decision = run_extension_ai_stage(lambda: classify_resume_job(api_key, draft["job_description"]))
+        metadata = {**(draft.get("source_metadata") or {}), "job_fit": decision}
+        values = {"source_metadata": metadata}
+        if decision.get("category") == data_center_resume.CATEGORY:
+            values.update(data_center_snapshot_values(draft.get("profile_snapshot") or current_profile()))
+        elif (draft.get("profile_snapshot") or {}).get("resume_category") == data_center_resume.CATEGORY:
+            values.update(extension_profile_snapshot(draft.get("identity_id", ""), None, draft.get("resume_mode")))
+        draft = extension_drafts.update(draft_id, values)
+        stage = "analysis"
+
         resume_mode = normalize_resume_mode(draft.get("resume_mode"))
         enabled_keys = normalize_enabled_experience_keys(draft.get("enabled_experience_keys"))
         blueprints = filter_blueprints_by_enabled_keys(experience_blueprints_from_snapshot(draft), enabled_keys)
@@ -10526,7 +10749,7 @@ def run_extension_generation_task(task: dict) -> None:
                     job_description=draft["job_description"],
                 )
             )
-            analysis_payload = normalize_analysis_payload(analysis_payload)
+            analysis_payload = apply_resume_category(analysis_payload, decision)
             draft = extension_drafts.checkpoint(task_id, draft_id, "core", {
                 "analysis": analysis_payload,
                 "status": "generating_core",
@@ -10534,7 +10757,7 @@ def run_extension_generation_task(task: dict) -> None:
 
         original_skill_route = str(analysis_payload.get("skill_category_order_key", "")).strip()
         original_prompt_route = str(analysis_payload.get("prompt_family_key", "")).strip()
-        normalized_analysis = normalize_analysis_payload(analysis_payload)
+        normalized_analysis = apply_resume_category(analysis_payload, decision)
         route_changed = (
             bool(original_skill_route or original_prompt_route)
             and (
@@ -12718,6 +12941,11 @@ def analyze_ai_content():
             timing = {"analysis_ms": elapsed, "total_ms": elapsed}
             session["analysis"] = analysis_payload
 
+        decision = classify_resume_job(api_key, job_description)
+        analysis_payload = apply_resume_category(analysis_payload, decision)
+        session["analysis"] = analysis_payload
+        if decision.get("category") == data_center_resume.CATEGORY:
+            session.update(data_center_snapshot_values(session.get("profile_snapshot") or current_profile()))
         session["updated_at"] = time.time()
 
         return jsonify({
@@ -12726,6 +12954,9 @@ def analyze_ai_content():
             "memory_count": len(session.get("turns", [])),
             "memory_limit": AI_MEMORY_LIMIT,
             "analysis": analysis_payload,
+            "job_fit": decision,
+            "enabled_experience_keys": session.get("enabled_experience_keys", []),
+            "experience_history": (session.get("profile_snapshot") or {}).get("experience_history", []),
             "preflight": preflight,
             "resume_mode": normalize_resume_mode(session.get("resume_mode")),
             "model": ANALYSIS_MODEL,
@@ -12950,7 +13181,7 @@ def generate_ai_title_summary():
         timing = {"title_summary_ms": int((time.perf_counter() - started) * 1000)}
         timing["total_ms"] = timing["title_summary_ms"]
 
-        issues = validate_title_summary_payload(title_summary, analysis_payload)
+        issues = validate_title_summary_payload(title_summary, analysis_payload, resume_mode=session_mode)
         if issues:
             raise AIStageError("title_summary_generation", "Title and summary generation failed validation: " + " | ".join(issues[:3]), analysis=analysis_payload, timing=timing)
 
@@ -13079,7 +13310,12 @@ def review_ai_core():
             ordered_categories,
         )
 
-        summary_issues = validate_title_summary_payload(corrected_title_summary, analysis_payload, summary_max_buffer=10)
+        summary_issues = validate_title_summary_payload(
+            corrected_title_summary,
+            analysis_payload,
+            summary_max_buffer=10,
+            resume_mode=session_mode,
+        )
         skills_issues = validate_skills_only_payload(corrected_skills, analysis_payload)
         title_review_issues = []
         if experience_payload:

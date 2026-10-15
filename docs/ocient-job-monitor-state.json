@@ -1,0 +1,29 @@
+{
+  "company": "ocient",
+  "known_job_ids": [
+    "am9icG9zdDoG4UzA36jIyuP_xXPNzCoE",
+    "am9icG9zdDoOaLMvocrUd1cuTZMf4Xbe",
+    "am9icG9zdDoSZRhfRFSX4uPin3ZELp9s",
+    "am9icG9zdDo_3FuX91jmFcxX6zy1Weqt",
+    "am9icG9zdDofYHqc8zr7rfB1gqt1KQj9",
+    "am9icG9zdDp3DadDGd_3uBwvG0EBWmo9",
+    "am9icG9zdDp9BrHlqr7myFyRPR_fw9UL",
+    "am9icG9zdDpFl5QFYmMzBVmY5ILWDpHv",
+    "am9icG9zdDqRbvqAGpMQYQZdQPuS_3w3",
+    "am9icG9zdDqUzWDI7nPB-1ai3jJbFdxp",
+    "am9icG9zdDr1ivF4Z83dxwMxjYehfXDd",
+    "am9icG9zdDrjs1cXAvxZfz7oqTg028nU"
+  ],
+  "candidate_catalog": {
+    "am9icG9zdDr1ivF4Z83dxwMxjYehfXDd": {
+      "title": "Senior Software Engineer (Tools)",
+      "location": "Remote, USA, Remote",
+      "url": "https://jobs.gem.com/ocient-inc-/am9icG9zdDr1ivF4Z83dxwMxjYehfXDd",
+      "posted_at": "",
+      "first_seen_at": "2026-10-12T00:22:11-05:00",
+      "priority": "medium",
+      "category": "software"
+    }
+  },
+  "last_successful_scan_at": "2026-10-15T12:04:49-05:00"
+}

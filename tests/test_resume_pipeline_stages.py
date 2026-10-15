@@ -46,6 +46,24 @@ def test_numeric_evidence_detection_distinguishes_versions_from_metrics():
     ) == {"35%", "2.0x", "5000+", "500"}
 
 
+def test_metric_approximation_symbols_are_normalized_for_resume_output():
+    assert resume_app.normalize_metric_notation("Reduced latency by ~40%.") == "Reduced latency by approximately 40%."
+    assert resume_app.normalize_metric_notation("Improved throughput by 40%.") == "Improved throughput by 40%."
+
+    payload = {
+        "experience": {
+            "mckinsey": {
+                "title": "Software Engineer",
+                "bullets": ["Reduced latency by ~40% through query optimization."],
+            }
+        }
+    }
+    normalized = resume_app.sanitize_experience_payload_for_prompt_family(payload, ANALYSIS)
+    assert normalized["experience"]["mckinsey"]["bullets"] == [
+        "Reduced latency by approximately 40% through query optimization."
+    ]
+
+
 def test_numeric_coverage_requires_eighty_percent_of_generated_bullets():
     blueprint = dict(active_blueprints(1)[0])
     blueprint.update({
@@ -108,6 +126,7 @@ def test_experience_prompts_match_the_actual_blueprint_contract():
         assert "verified" in prompt
         assert "exact number is grounded" not in prompt
         assert "never invent, estimate" not in prompt.lower()
+        assert "Never prefix a numeric metric with ~" in prompt
 
 
 def valid_final_skills():
