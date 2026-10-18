@@ -1,9 +1,12 @@
+import copy
+from collections import Counter
 from pathlib import Path
 
+import pytest
 from docx import Document
 from docx.shared import Inches
 
-from pdf_builder import _move_converted_pdf_to_requested_path, build_resume_docx
+from pdf_builder import FORMAT_PROFILES, _move_converted_pdf_to_requested_path, build_resume_docx
 
 
 def assert_near(actual, expected, tolerance=200):
@@ -87,6 +90,32 @@ def test_student_resume_places_education_before_skills_and_experience(tmp_path):
     headings = [paragraph.text for paragraph in doc.paragraphs]
     assert headings.index("EDUCATION") < headings.index("TECHNICAL SKILLS")
     assert headings.index("EDUCATION") < headings.index("PROFESSIONAL EXPERIENCE")
+
+
+@pytest.mark.parametrize("mode", ["internship", "coop", "new_grad"])
+@pytest.mark.parametrize("format_profile", ["outlook", "gmail"])
+def test_student_layout_compacts_spacing_without_dropping_content_or_shrinking_font(tmp_path, mode, format_profile):
+    resume = sample_resume()
+    profiles_before = copy.deepcopy(FORMAT_PROFILES)
+    professional_path = tmp_path / "professional.docx"
+    student_path = tmp_path / "student.docx"
+    build_resume_docx(resume, str(professional_path), format_profile)
+    build_resume_docx({**resume, "_resume_mode": mode}, str(student_path), format_profile)
+    professional = Document(professional_path)
+    student = Document(student_path)
+    assert Counter(p.text for p in student.paragraphs if p.text) == Counter(p.text for p in professional.paragraphs if p.text)
+    student_blanks = [p for p in student.paragraphs if not p.text]
+    assert student_blanks
+    assert all(p.paragraph_format.line_spacing.pt == 3 for p in student_blanks)
+    assert all(p.paragraph_format.space_after.pt == 0 for p in student_blanks)
+    professional_blanks = [p for p in professional.paragraphs if not p.text]
+    assert all(p.paragraph_format.line_spacing is None for p in professional_blanks)
+    professional_sizes = {p.text: [run.font.size for run in p.runs] for p in professional.paragraphs if p.text}
+    for paragraph in student.paragraphs:
+        if paragraph.text:
+            assert [run.font.size for run in paragraph.runs] == professional_sizes[paragraph.text]
+    assert student.styles["Normal"].paragraph_format.line_spacing == 1
+    assert FORMAT_PROFILES == profiles_before
 
 
 def test_professional_resume_keeps_education_after_projects(tmp_path):

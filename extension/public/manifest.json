@@ -75,6 +75,13 @@
     },
     {
       "matches": [
+        "https://my.greenhouse.io/jobs/search*"
+      ],
+      "js": ["greenhouse-search-content-script.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
         "*://jobs.lever.co/*", "*://*.lever.co/*",
         "*://boards.greenhouse.io/*", "*://*.greenhouse.io/*",
         "*://jobs.ashbyhq.com/*", "*://*.ashbyhq.com/*", "*://*.ashby.com/*",

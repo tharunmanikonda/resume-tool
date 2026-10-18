@@ -563,6 +563,17 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     return true;
   }
 
+  if (message?.type === "GREENHOUSE_SEARCH_RESULTS") {
+    apiRequest({
+      path: "/api/job-leads/import-greenhouse-search",
+      method: "POST",
+      body: { search_url: message.search_url || "", results: message.results || [] },
+    })
+      .then((payload) => sendResponse(payload))
+      .catch((error) => sendResponse({ success: false, error: error.message }));
+    return true;
+  }
+
   if (message?.type === "JOB_CONTEXT_CLEARED") {
     const tabId = sender.tab?.id;
     if (!tabId) return false;

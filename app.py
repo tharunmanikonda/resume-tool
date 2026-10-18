@@ -46,6 +46,7 @@ from job_discovery import (
     attach_lead_to_draft,
     create_source as create_job_source_record,
     get_lead as get_job_lead_record,
+    import_greenhouse_search_results,
     list_leads as list_job_lead_records,
     list_sources as list_job_source_records,
     mark_lead_applied_from_draft,
@@ -11999,6 +12000,19 @@ def get_job_leads():
     try:
         data = list_job_lead_records(request.args.to_dict())
         return jsonify({"success": True, **data})
+    except Exception as exc:
+        return jsonify({"success": False, "error": str(exc)}), 500
+
+
+@app.route("/api/job-leads/import-greenhouse-search", methods=["POST"])
+def import_greenhouse_search():
+    try:
+        payload = request.get_json() or {}
+        results = payload.get("results")
+        if not isinstance(results, list):
+            return jsonify({"success": False, "error": "Greenhouse search results must be a list."}), 400
+        imported = import_greenhouse_search_results(payload.get("search_url", ""), results)
+        return jsonify({"success": True, "result": imported})
     except Exception as exc:
         return jsonify({"success": False, "error": str(exc)}), 500
 

@@ -6,6 +6,7 @@ const manifest = JSON.parse(fs.readFileSync(path.join(root, "extension/public/ma
 const worker = fs.readFileSync(path.join(root, "extension/public/service-worker.js"), "utf8");
 const launcher = fs.readFileSync(path.join(root, "extension/src/launcher.js"), "utf8");
 const atsReader = fs.readFileSync(path.join(root, "extension/public/ats-content-script.js"), "utf8");
+const greenhouseSearchReader = fs.readFileSync(path.join(root, "extension/public/greenhouse-search-content-script.js"), "utf8");
 
 const scripts = manifest.content_scripts || [];
 const atsEntry = scripts.find((entry) => (entry.js || []).includes("ats-content-script.js"));
@@ -33,6 +34,9 @@ const expectations = [
   [atsReader, "lever", "ATS reader detects Lever"],
   [atsReader, "ashby", "ATS reader detects Ashby"],
   [atsReader, "rippling", "ATS reader detects Rippling"],
+  [greenhouseSearchReader, "GREENHOUSE_SEARCH_RESULTS", "Greenhouse search reader publishes results"],
+  [greenhouseSearchReader, "job-boards.greenhouse.io", "Greenhouse search reader canonicalizes job URLs"],
+  [greenhouseSearchReader, "relativePostedAt", "Greenhouse search reader preserves relative posted dates"],
 ];
 
 const missing = expectations

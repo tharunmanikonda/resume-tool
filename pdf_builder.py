@@ -182,11 +182,13 @@ def _runs(para, text, size=10, font_name=None):
                 r.font.bold = False
 
 
-def _spacer(doc, after_pt=5):
+def _spacer(doc, after_pt=5, compact=False):
     """Insert a blank Body Text paragraph used as vertical spacer."""
     p = doc.add_paragraph(style='Body Text')
     p.paragraph_format.space_before = Pt(0)
-    p.paragraph_format.space_after  = Pt(after_pt)
+    p.paragraph_format.space_after = Pt(0 if compact else after_pt)
+    if compact:
+        p.paragraph_format.line_spacing = Pt(3)
     return p
 
 
@@ -246,7 +248,20 @@ def _add_section_borders(para):
 def build_resume_docx(resume_data: dict, output_docx: str, format_profile: str = "outlook") -> None:
     # Load reference template — inherits ALL styles, A4 page, 0.197" margins
     doc  = Document(TEMPLATE_PATH)
-    profile = _format_profile(format_profile)
+    d = resume_data if isinstance(resume_data, dict) else {}
+    resume_mode = str(d.get('_resume_mode', 'professional')).strip().lower()
+    student_layout = resume_mode in {'internship', 'coop', 'new_grad'}
+    profile = dict(_format_profile(format_profile))
+    if student_layout:
+        profile.update(summary_spacing_before=3, section_spacing_before=4,
+                       experience_gap=4, project_gap=3, bullet_spacing=1.2)
+        for style_name in ('Normal', 'Body Text', 'List Paragraph', 'p1'):
+            spacing = doc.styles[style_name].paragraph_format
+            spacing.line_spacing = 1
+            spacing.space_after = Pt(0)
+        for style_name in ('Heading 1', 'Heading 2'):
+            spacing = doc.styles[style_name].paragraph_format
+            spacing.space_after = Pt(0)
     font_name = profile.get("font_name")
     body_size = profile["body_size"]
     _apply_document_profile(doc, profile)
@@ -256,10 +271,6 @@ def build_resume_docx(resume_data: dict, output_docx: str, format_profile: str =
     for child in list(body):
         if child.tag != qn('w:sectPr'):
             body.remove(child)
-
-    d = resume_data if isinstance(resume_data, dict) else {}
-    resume_mode = str(d.get('_resume_mode', 'professional')).strip().lower()
-    student_layout = resume_mode in {'internship', 'coop', 'new_grad'}
 
     def add_education_section() -> None:
         education = d.get('education') if isinstance(d.get('education'), list) else []
@@ -290,7 +301,7 @@ def build_resume_docx(resume_data: dict, output_docx: str, format_profile: str =
                     r2 = p.add_run(education_dates)
                     _format_run(r2, size=body_size, font_name=font_name)
                     r2.italic = True
-        _spacer(doc, after_pt=5)
+        _spacer(doc, after_pt=5, compact=student_layout)
 
     # ── NAME ──────────────────────────────────────────────────────────────
     name = str(d.get('name', '')).strip()
@@ -324,7 +335,7 @@ def build_resume_docx(resume_data: dict, output_docx: str, format_profile: str =
         _format_run(r, size=profile["contact_size"], font_name=font_name)
 
     if name or title or contact_parts:
-        _spacer(doc, after_pt=6)
+        _spacer(doc, after_pt=6, compact=student_layout)
 
     # ── SUMMARY ───────────────────────────────────────────────────────────
     summary = str(d.get('summary', '')).strip()
@@ -338,7 +349,7 @@ def build_resume_docx(resume_data: dict, output_docx: str, format_profile: str =
         p.paragraph_format.space_after = Pt(0)
         _runs(p, summary, size=body_size, font_name=font_name)
 
-        _spacer(doc, after_pt=6)
+        _spacer(doc, after_pt=6, compact=student_layout)
 
     if student_layout:
         add_education_section()
@@ -428,7 +439,7 @@ def build_resume_docx(resume_data: dict, output_docx: str, format_profile: str =
             _runs(p, bullet_text, size=body_size, font_name=font_name)
 
     if experience:
-        _spacer(doc, after_pt=5)
+        _spacer(doc, after_pt=5, compact=student_layout)
 
     # ── PROJECTS ──────────────────────────────────────────────────────────
     projects = d.get('projects') if isinstance(d.get('projects'), list) else []
@@ -456,7 +467,7 @@ def build_resume_docx(resume_data: dict, output_docx: str, format_profile: str =
             _runs(p, bullet_text, size=body_size, font_name=font_name)
 
     if projects:
-        _spacer(doc, after_pt=5)
+        _spacer(doc, after_pt=5, compact=student_layout)
 
     # Student resumes establish enrollment near the top; professional resumes
     # retain the existing education placement after projects.
@@ -471,7 +482,7 @@ def build_resume_docx(resume_data: dict, output_docx: str, format_profile: str =
         _add_section_borders(p_h)
     for cert in certifications:
         p = doc.add_paragraph(style='List Paragraph')
-        p.paragraph_format.space_before = Pt(2.25)
+        p.paragraph_format.space_before = Pt(profile["bullet_spacing"] if student_layout else 2.25)
         _set_hanging_indent(p)  # Uses default: left=86 twips (0.06"), hanging=187 twips (0.13")
         r1 = p.add_run(f"{BULLET} ")
         _format_run(r1, size=body_size, font_name=font_name)

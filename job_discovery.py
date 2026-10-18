@@ -315,6 +315,51 @@ FETCHERS = {
 }
 
 
+def import_greenhouse_search_results(search_url: str, results: list[dict]) -> dict:
+    """Persist cards captured from the authenticated Greenhouse search page."""
+    now = utcnow()
+    candidates = []
+    for result in results or []:
+        if not isinstance(result, dict):
+            continue
+        external_job_id = clean_text(result.get("external_job_id"))
+        job_url = clean_text(result.get("job_url"))
+        if not external_job_id or not job_url:
+            continue
+        candidates.append(JobCandidate(
+            source="greenhouse",
+            source_company_key=clean_text(result.get("company_key")) or "unknown",
+            external_job_id=external_job_id,
+            company_name=clean_text(result.get("company_name")) or "Unknown company",
+            role_title=clean_text(result.get("role_title")) or "Untitled Greenhouse job",
+            location=clean_text(result.get("location")),
+            job_url=job_url,
+            apply_url=clean_text(result.get("apply_url")) or job_url,
+            posted_at=parse_datetime(result.get("posted_at")),
+            description=clean_text(result.get("description")),
+            raw_snapshot={
+                "search_url": clean_text(search_url),
+                "card_text": clean_text(result.get("card_text")),
+                "posted_label": clean_text(result.get("posted_label")),
+            },
+        ))
+
+    result_counts = {"fetched": len(candidates), "new": 0, "updated": 0, "unchanged": 0, "filtered_out": 0, "errors": 0}
+    companies_to_check = {
+        candidate.company_name
+        for candidate in candidates
+        if classify_relevance(candidate)[0] != "filtered_out"
+    }
+    cpt_results = check_cpt_companies(companies_to_check)
+    with session_scope() as db:
+        for candidate in candidates:
+            cpt_status = (cpt_results.get(candidate.company_name, {}).get("status") or "unavailable")
+            bucket, _lead_id = _upsert_candidate(db, candidate, now, cpt_status)
+            result_counts[bucket] = result_counts.get(bucket, 0) + 1
+        db.flush()
+    return result_counts
+
+
 def serialize_source(row: JobSource) -> dict:
     return {
         "id": row.id,

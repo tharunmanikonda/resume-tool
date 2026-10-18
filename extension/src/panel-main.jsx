@@ -286,7 +286,7 @@ function googleRecentSearchUrl(query) {
   return `https://www.google.com/search?${params.toString()}`;
 }
 
-function linkedinJobSearchUrl({ keywords, location = "United States", timeRange = "r86400", workType = "", experience = "1,2,3", jobType = "F,I" }) {
+function linkedinJobSearchUrl({ keywords, location = "United States", timeRange = "r86400", workType = "", experience = "", jobType = "" }) {
   const params = new URLSearchParams({
     keywords,
     location,
@@ -309,7 +309,10 @@ const LINKEDIN_JOB_SEARCHES = [
   {
     group: "Intern / New Grad",
     items: [
-      { label: "Intern/new grad SWE", keywords: '("Software Engineer Intern" OR "Software Developer Intern" OR "Software Engineering Intern" OR "New Grad Software Engineer" OR "Junior Software Engineer" OR "Associate Software Engineer")', workType: "", experience: "1,2", jobType: "F,I" },
+      { label: "SWE internships", keywords: '("Software Engineer" OR "Software Developer" OR "Software Development Engineer" OR "Software Engineering") AND ("Intern" OR "Internship")', workType: "", experience: "1,2", jobType: "I" },
+      { label: "SWE co-ops", keywords: '("Software Engineer" OR "Software Developer" OR "Software Development Engineer" OR "Software Engineering") AND ("Co-op" OR "Co op" OR "Coop" OR "Cooperative Education")', workType: "", experience: "1,2", jobType: "F,I" },
+      { label: "New grad SWE", keywords: '("Software Engineer" OR "Software Developer" OR "Software Development Engineer") AND ("New Grad" OR "New Graduate" OR "Recent Graduate")', workType: "", experience: "1,2", jobType: "F,I" },
+      { label: "Junior / associate SWE", keywords: '("Software Engineer" OR "Software Developer" OR "Software Development Engineer") AND ("Junior" OR "Associate")', workType: "", experience: "2,3", jobType: "F,I" },
     ],
   },
   {
@@ -327,7 +330,9 @@ const LINKEDIN_JOB_SEARCHES = [
   {
     group: "Enterprise Platforms",
     items: [
-      { label: "Workday / Salesforce / ServiceNow", keywords: '("Workday Engineer" OR "Workday Integration Engineer" OR "Workday Integration Developer" OR "Workday Developer" OR "Salesforce Developer" OR "Salesforce Engineer" OR "ServiceNow Developer" OR "ServiceNow Engineer" OR "ServiceNow Application Developer")', workType: "" },
+      { label: "Workday", keywords: '("Workday Engineer" OR "Workday Integration Engineer" OR "Workday Integration Developer" OR "Workday Developer")', workType: "" },
+      { label: "Salesforce", keywords: '("Salesforce Developer" OR "Salesforce Engineer")', workType: "" },
+      { label: "ServiceNow", keywords: '("ServiceNow Developer" OR "ServiceNow Engineer" OR "ServiceNow Application Developer")', workType: "" },
     ],
   },
   {
@@ -351,15 +356,15 @@ const LINKEDIN_JOB_SEARCHES = [
   {
     group: "Data / Analyst",
     items: [
-      { label: "Data analyst", keywords: '"Data Analyst" SQL', workType: "" },
-      { label: "Business analyst", keywords: '"Business Analyst" SQL', workType: "" },
-      { label: "BI analyst", keywords: '"BI Analyst" OR "Business Intelligence Analyst"', workType: "" },
-      { label: "Product analyst", keywords: '"Product Analyst" SQL', workType: "" },
-      { label: "Operations analyst", keywords: '"Operations Analyst" SQL', workType: "" },
-      { label: "ERP analyst", keywords: '"ERP Analyst" OR "Business Systems Analyst"', workType: "" },
-      { label: "WMS analyst", keywords: '"WMS Analyst" OR "Warehouse Management Analyst"', workType: "" },
-      { label: "Data analyst intern", keywords: '"Data Analyst Intern" OR "Analytics Intern"', workType: "", experience: "1", jobType: "I" },
-      { label: "New grad analyst", keywords: '"New Grad" ("Data Analyst" OR "Business Analyst")', workType: "" },
+      { label: "Data analyst", keywords: '"Data Analyst"', workType: "" },
+      { label: "Business analyst", keywords: '"Business Analyst"', workType: "" },
+      { label: "BI analyst", keywords: '("BI Analyst" OR "Business Intelligence Analyst")', workType: "" },
+      { label: "Product analyst", keywords: '"Product Analyst"', workType: "" },
+      { label: "Operations analyst", keywords: '"Operations Analyst"', workType: "" },
+      { label: "ERP analyst", keywords: '("ERP Analyst" OR "Business Systems Analyst")', workType: "" },
+      { label: "WMS analyst", keywords: '("WMS Analyst" OR "Warehouse Management Analyst")', workType: "" },
+      { label: "Data analyst internships / co-ops", keywords: '("Data Analyst" OR "Analytics") AND ("Intern" OR "Internship" OR "Co-op" OR "Co op" OR "Coop" OR "Cooperative Education")', workType: "", experience: "1,2", jobType: "F,I" },
+      { label: "New grad analyst", keywords: '("Data Analyst" OR "Business Analyst") AND ("New Grad" OR "New Graduate" OR "Recent Graduate")', workType: "", experience: "1,2", jobType: "F,I" },
     ],
   },
 ].map((group) => ({

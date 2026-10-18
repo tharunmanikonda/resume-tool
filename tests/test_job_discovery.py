@@ -94,6 +94,37 @@ def test_jobbie_source_uses_public_defaults():
     assert values["url"] == job_discovery.JOBBIE_INTERNSHIPS_URL
 
 
+def test_greenhouse_search_import_deduplicates_by_company_and_job_id(tmp_path, monkeypatch):
+    setup_discovery_db(tmp_path, monkeypatch)
+    monkeypatch.setattr(job_discovery, "check_cpt_companies", lambda companies: {
+        company: {"status": "green"} for company in companies
+    })
+    payload = {
+        "search_url": "https://my.greenhouse.io/jobs/search?query=Software%20intern",
+        "results": [{
+            "external_job_id": "123",
+            "company_key": "acme",
+            "company_name": "Acme",
+            "role_title": "Software Engineering Intern",
+            "location": "Dallas, TX",
+            "job_url": "https://job-boards.greenhouse.io/acme/jobs/123",
+            "posted_at": "2026-10-18T12:00:00Z",
+            "card_text": "Software Engineering Intern Acme Dallas, TX Posted today",
+        }],
+    }
+
+    first = job_discovery.import_greenhouse_search_results(payload["search_url"], payload["results"])
+    second = job_discovery.import_greenhouse_search_results(payload["search_url"], payload["results"])
+
+    assert first["new"] == 1
+    assert second["unchanged"] == 1
+    with session_scope() as db:
+        rows = db.query(JobLead).all()
+        assert len(rows) == 1
+        assert rows[0].source == "greenhouse"
+        assert rows[0].external_job_id == "123"
+
+
 def test_scan_repeated_job_does_not_duplicate_and_changed_content_updates(tmp_path, monkeypatch):
     setup_discovery_db(tmp_path, monkeypatch)
     create_source_row()
