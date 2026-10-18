@@ -149,13 +149,15 @@
     "34101",
     "34103",
     "34104",
+    "34109",
     "34111",
     "34173",
     "34291",
     "34389",
     "34394",
     "34395",
-    "34396"
+    "34396",
+    "34699"
   ],
   "candidate_catalog": {
     "30795": {
@@ -193,7 +195,427 @@
       "first_seen_at": "2026-10-10T12:20:20-05:00",
       "priority": "low",
       "category": "reliability"
+    },
+    "34067": {
+      "title": "Materials Engineer, Adhesives and Sealing",
+      "location": "Tustin, California",
+      "url": "https://careers.rivian.com/careers-home/jobs/34067",
+      "posted_at": "2026-10-02T16:56:00+0000",
+      "first_seen_at": "2026-10-18T14:13:37-05:00",
+      "priority": "low",
+      "category": "technical_review"
     }
   },
-  "last_successful_scan_at": "2026-10-15T10:07:26-05:00"
+  "last_successful_scan_at": "2026-10-18T14:13:37-05:00",
+  "filter_version": 2,
+  "rejected_catalog": {
+    "34699": {
+      "title": "Craftsmanship Auditor",
+      "location": "Normal, Illinois",
+      "url": "https://careers.rivian.com/careers-home/jobs/34699",
+      "posted_at": "2026-10-16T19:22:00+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:13:37-05:00",
+      "last_seen_at": "2026-10-18T14:13:37-05:00"
+    },
+    "34109": {
+      "title": "Sr. Manager, Enterprise Systems",
+      "location": "Normal, Illinois",
+      "url": "https://careers.rivian.com/careers-home/jobs/34109",
+      "posted_at": "2026-10-16T15:32:00+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:13:37-05:00",
+      "last_seen_at": "2026-10-18T14:13:37-05:00"
+    },
+    "34394": {
+      "title": "Senior Machine Learning, AI Infrastructure, Autonomy",
+      "location": "London, United Kingdom",
+      "url": "https://careers.rivian.com/careers-home/jobs/34394",
+      "posted_at": "2026-10-15T08:58:00+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:13:37-05:00",
+      "last_seen_at": "2026-10-18T14:13:37-05:00"
+    },
+    "34396": {
+      "title": "Tech Lead - Manager - ML training and infrastructure, Autonomy",
+      "location": "London, United Kingdom",
+      "url": "https://careers.rivian.com/careers-home/jobs/34396",
+      "posted_at": "2026-10-15T08:57:00+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:13:37-05:00",
+      "last_seen_at": "2026-10-18T14:13:37-05:00"
+    },
+    "34395": {
+      "title": "Staff Machine Learning, AI Infrastructure, Autonomy",
+      "location": "London, United Kingdom",
+      "url": "https://careers.rivian.com/careers-home/jobs/34395",
+      "posted_at": "2026-10-15T08:57:00+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:13:37-05:00",
+      "last_seen_at": "2026-10-18T14:13:37-05:00"
+    },
+    "34389": {
+      "title": "Triage Engineer, Autonomy (1 year contract, maternity leave cover)",
+      "location": "Belgrade, Serbia",
+      "url": "https://careers.rivian.com/careers-home/jobs/34389",
+      "posted_at": "2026-10-14T14:58:00+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "technical_review",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:13:37-05:00",
+      "last_seen_at": "2026-10-18T14:13:37-05:00"
+    },
+    "34008": {
+      "title": "Software Engineer II",
+      "location": "Vancouver, Canada",
+      "url": "https://careers.rivian.com/careers-home/jobs/34008",
+      "posted_at": "2026-10-13T16:58:00+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:13:37-05:00",
+      "last_seen_at": "2026-10-18T14:13:37-05:00"
+    },
+    "34173": {
+      "title": "Staff Software AI Engineer",
+      "location": "Palo Alto, California",
+      "url": "https://careers.rivian.com/careers-home/jobs/34173",
+      "posted_at": "2026-10-09T21:20:00+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior"
+      ],
+      "category": "ai_ml",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:13:37-05:00",
+      "last_seen_at": "2026-10-18T14:13:37-05:00"
+    },
+    "33679": {
+      "title": "Prototype Fabricator, Special Projects",
+      "location": "Irvine, California",
+      "url": "https://careers.rivian.com/careers-home/jobs/33679",
+      "posted_at": "2026-10-08T23:51:00+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:13:37-05:00",
+      "last_seen_at": "2026-10-18T14:13:37-05:00"
+    },
+    "30345": {
+      "title": "Sr. Software Analyst, Annotation Strategy, Autonomy",
+      "location": "Palo Alto, California",
+      "url": "https://careers.rivian.com/careers-home/jobs/30345",
+      "posted_at": "2026-10-06T18:13:00+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:13:37-05:00",
+      "last_seen_at": "2026-10-18T14:13:37-05:00"
+    },
+    "34111": {
+      "title": "Sr. Product Manager, Financial Systems",
+      "location": "Plymouth, Michigan",
+      "url": "https://careers.rivian.com/careers-home/jobs/34111",
+      "posted_at": "2026-10-05T17:55:00+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:13:37-05:00",
+      "last_seen_at": "2026-10-18T14:13:37-05:00"
+    },
+    "34095": {
+      "title": "Staff Technical Program Manager, Systems Integration & Validation",
+      "location": "Irvine, California; Plymouth, Michigan",
+      "url": "https://careers.rivian.com/careers-home/jobs/34095",
+      "posted_at": "2026-10-02T21:59:00+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:13:37-05:00",
+      "last_seen_at": "2026-10-18T14:13:37-05:00"
+    },
+    "34099": {
+      "title": "Vehicle Operator Specialist (1st Shift), Autonomy Systems Validation",
+      "location": "Chicago, Illinois",
+      "url": "https://careers.rivian.com/careers-home/jobs/34099",
+      "posted_at": "2026-10-02T17:55:00+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:13:37-05:00",
+      "last_seen_at": "2026-10-18T14:13:37-05:00"
+    },
+    "34101": {
+      "title": "Vehicle Operator Specialist (2nd Shift), Autonomy Systems Validation",
+      "location": "Chicago, Illinois",
+      "url": "https://careers.rivian.com/careers-home/jobs/34101",
+      "posted_at": "2026-10-02T17:55:00+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:13:37-05:00",
+      "last_seen_at": "2026-10-18T14:13:37-05:00"
+    },
+    "34098": {
+      "title": "Vehicle Operator Specialist (2nd Shift), Autonomy Systems Validation",
+      "location": "San Francisco, California",
+      "url": "https://careers.rivian.com/careers-home/jobs/34098",
+      "posted_at": "2026-10-01T22:13:00+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:13:37-05:00",
+      "last_seen_at": "2026-10-18T14:13:37-05:00"
+    },
+    "34103": {
+      "title": "Vehicle Operator Specialist (1st Shift), Autonomy Systems Validation",
+      "location": "Miami, Florida",
+      "url": "https://careers.rivian.com/careers-home/jobs/34103",
+      "posted_at": "2026-10-01T22:13:00+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:13:37-05:00",
+      "last_seen_at": "2026-10-18T14:13:37-05:00"
+    },
+    "34094": {
+      "title": "Sr. Engineering Technician II",
+      "location": "Plymouth, Michigan",
+      "url": "https://careers.rivian.com/careers-home/jobs/34094",
+      "posted_at": "2026-10-01T22:12:00+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:13:37-05:00",
+      "last_seen_at": "2026-10-18T14:13:37-05:00"
+    },
+    "33125": {
+      "title": "Materials Testing Technician, Raw Materials",
+      "location": "Normal, Illinois",
+      "url": "https://careers.rivian.com/careers-home/jobs/33125",
+      "posted_at": "2026-09-30T17:48:00+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:13:37-05:00",
+      "last_seen_at": "2026-10-18T14:13:37-05:00"
+    },
+    "34004": {
+      "title": "Sr. Product Manager, Enterprise Productivity & AI",
+      "location": "Atlanta, Georgia",
+      "url": "https://careers.rivian.com/careers-home/jobs/34004",
+      "posted_at": "2026-09-30T16:44:00+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:13:37-05:00",
+      "last_seen_at": "2026-10-18T14:13:37-05:00"
+    },
+    "33950": {
+      "title": "Staff Network Engineer",
+      "location": "Palo Alto, California",
+      "url": "https://careers.rivian.com/careers-home/jobs/33950",
+      "posted_at": "2026-09-30T16:17:00+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior"
+      ],
+      "category": "technical_review",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:13:37-05:00",
+      "last_seen_at": "2026-10-18T14:13:37-05:00"
+    },
+    "31384": {
+      "title": "Staff Autonomy Product Manager",
+      "location": "Palo Alto, California",
+      "url": "https://careers.rivian.com/careers-home/jobs/31384",
+      "posted_at": "2026-09-29T19:00:00+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:13:37-05:00",
+      "last_seen_at": "2026-10-18T14:13:37-05:00"
+    },
+    "33853": {
+      "title": "OTC Analyst",
+      "location": "Atlanta, Georgia",
+      "url": "https://careers.rivian.com/careers-home/jobs/33853",
+      "posted_at": "2026-09-24T13:57:00+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:13:37-05:00",
+      "last_seen_at": "2026-10-18T14:13:37-05:00"
+    },
+    "33675": {
+      "title": "Sr. Product Manager",
+      "location": "Palo Alto, California; Vancouver, Canada; Irvine, California; El Segundo, California",
+      "url": "https://careers.rivian.com/careers-home/jobs/33675",
+      "posted_at": "2026-09-22T21:42:00+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:13:37-05:00",
+      "last_seen_at": "2026-10-18T14:13:37-05:00"
+    },
+    "33871": {
+      "title": "Supplier Warranty Cost Lead",
+      "location": "Plymouth, Michigan; Normal, Illinois",
+      "url": "https://careers.rivian.com/careers-home/jobs/33871",
+      "posted_at": "2026-09-22T20:20:00+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:13:37-05:00",
+      "last_seen_at": "2026-10-18T14:13:37-05:00"
+    },
+    "34291": {
+      "title": "Sr. Electrical Engineer, Special Projects",
+      "location": "Irvine, California",
+      "url": "https://careers.rivian.com/careers-home/jobs/34291",
+      "posted_at": "2026-10-13T15:42:00+0000",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "technical_review",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:13:37-05:00",
+      "last_seen_at": "2026-10-18T14:13:37-05:00"
+    },
+    "31763": {
+      "title": "Senior Materials Engineer - Metals",
+      "location": "Tustin, California; Plymouth, Michigan; Normal, Illinois",
+      "url": "https://careers.rivian.com/careers-home/jobs/31763",
+      "posted_at": "2026-10-09T00:00:00+0000",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:13:37-05:00",
+      "last_seen_at": "2026-10-18T14:13:37-05:00"
+    },
+    "33203": {
+      "title": "Sr. People Analytics Engineer",
+      "location": "Atlanta, Georgia",
+      "url": "https://careers.rivian.com/careers-home/jobs/33203",
+      "posted_at": "2026-10-05T18:34:00+0000",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:13:37-05:00",
+      "last_seen_at": "2026-10-18T14:13:37-05:00"
+    },
+    "33852": {
+      "title": "Sr. Software Engineer, Engineering Applications",
+      "location": "Palo Alto, California; Irvine, California",
+      "url": "https://careers.rivian.com/careers-home/jobs/33852",
+      "posted_at": "2026-09-30T19:33:00+0000",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "software",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:13:37-05:00",
+      "last_seen_at": "2026-10-18T14:13:37-05:00"
+    }
+  }
 }

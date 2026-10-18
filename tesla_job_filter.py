@@ -12,7 +12,12 @@ from pathlib import Path
 TARGET_TITLE_PATTERNS = (
     ("database", r"\bdatabase (?:technician|administrator|analyst|coordinator|engineer)\b|\bjunior dba\b|\bsql developer\b"),
     ("debug_test", r"\bdebug technician\b|\bsoftware test technician\b|\bsystems? test technician\b"),
-    ("systems_analysis", r"\bapplication systems? analyst\b|\bprogrammer analyst\b|\bit systems? analyst\b|\bcomputer systems? analyst\b"),
+    ("systems_analysis", r"\bapplication systems? analyst\b|\bprogrammer analyst\b|\bit systems? analyst\b|\bcomputer systems? analyst\b|\bbusiness systems? analyst\b"),
+    ("support_development", r"\b(?:systems?|application|production|software) support developer\b|\bsupport systems? developer\b"),
+    ("systems_engineering", r"\bsystems? engineer\b|\bsystems? verification engineer\b|\bsystems? design engineer\b|\bstandards engineer\b"),
+    ("automation", r"\bautomation engineer\b|\bautomation developer\b"),
+    ("security", r"\b(?:cloud |information |application |software )?security (?:engineer|analyst)\b|\binformation security analyst\b"),
+    ("agent_engineering", r"\bagent (?:evaluation(?: and self-improvement)?|platform|systems?|self-improvement) engineer\b|\bagentic ai engineer\b"),
     ("integration", r"\b(?:application|systems?|software) integration engineer\b|\bintegration developer\b"),
     ("production", r"\bproduction engineer\b|\bsoftware operations engineer\b|\brelease engineer\b|\bbuild engineer\b|\bdeployment engineer\b"),
     ("backend", r"\bbackend\b"),
@@ -22,7 +27,9 @@ TARGET_TITLE_PATTERNS = (
     ("data", r"\bdata engineer\b|\bdata platform\b|\betl\b"),
     ("qa", r"\bsoftware qa\b|\bqa automation\b|\bsoftware validation\b|\btest automation\b|\bsoftware (?:test|quality) engineer\b|\bautomation tester\b|\bsoftware tester\b"),
     ("reliability", r"\bsite reliability\b|\bsre\b|\breliability engineer\b|\btelemetry engineer\b"),
+    ("development", r"\b(?:systems?|cloud|platform|api|as400|mainframe) developer\b"),
     ("software", r"\bsoftware engineer\b"),
+    ("technical_review", r"\b(?:engineer|developer|systems? analyst|technical analyst)\b"),
 )
 
 # Tesla search is relevance-based, so no single query is complete. Keep these
@@ -30,6 +37,15 @@ TARGET_TITLE_PATTERNS = (
 TESLA_SEARCH_QUERIES = {
     "software_engineer": "software engineer",
     "site_reliability": "site reliability engineer",
+    "systems_support_developer": "systems support developer",
+    "application_support_developer": "application support developer",
+    "production_support_developer": "production support developer",
+    "systems_engineer": "systems engineer",
+    "business_systems_analyst": "business systems analyst",
+    "automation_engineer": "automation engineer",
+    "security_engineer": "security engineer",
+    "cloud_engineer": "cloud engineer",
+    "devops_engineer": "devops engineer",
     "platform_engineer": "platform engineer",
     "data_engineer": "data engineer",
     "backend_engineer": "backend engineer",
@@ -61,10 +77,16 @@ TITLE_EXCLUSIONS = {
     "specialized_non_target": r"\bbim\b|\btax\b|\bplm\b|\bmes support\b",
 }
 
-SUPPORTABLE_CATEGORIES = {"database", "debug_test"}
+SUPPORTABLE_CATEGORIES = {"database", "debug_test", "support_development"}
 HARDWARE_DEBUG_PATTERN = (
     r"\bsolder(?:ing)?\b|\boscilloscope\b|\bmultimeter\b|\bpcb\b|\bcircuit boards?\b|"
     r"\bboard rework\b|\belectrical schematics?\b|\bbench equipment\b|\bcomponent-level\b"
+)
+NON_SOFTWARE_ENGINEERING_PATTERN = (
+    r"\bplc programming\b|\bscada\b|\bbuilding management systems?\b|\bhvac\b|\bups\b|"
+    r"\bpdu(?:s)?\b|\bpreventative maintenance\b|\brobotic maintenance\b|\bconveyor\b|"
+    r"\brtl simulation\b|\bpcb design\b|\bboard-level\b|\bbring-up\b|\blogic analyzers?\b|"
+    r"\boscilloscopes?\b|\bmultimeters?\b"
 )
 
 NON_US_LOCATION_PATTERNS = (
@@ -77,14 +99,18 @@ NON_US_LOCATION_PATTERNS = (
 
 PROFILE_SIGNALS = {
     "python": (2, r"\bpython\b"),
-    "go": (2, r"\bgo(?:lang)?\b"),
+    "go": (2, r"\bgolang\b|\bgo (?:programming|language|services?|backend)\b"),
     "java": (1, r"\bjava\b"),
     "javascript_react": (1, r"\bjavascript\b|\btypescript\b|\breact\b"),
-    "backend_apis": (2, r"\bbackend\b|\brest\b|\bgrpc\b|\bapi(?:s)?\b|\bmicroservices?\b"),
+    "backend_apis": (2, r"\bbackend\b|\brest(?:ful)?\s+api(?:s)?\b|\bgrpc\b|\bapi(?:s)?\b|\bmicroservices?\b"),
     "distributed_systems": (2, r"\bdistributed systems?\b|\bevent-driven\b|\basync(?:hronous)?\b"),
     "data_streaming": (2, r"\bkafka\b|\bflink\b|\betl\b|\bdata pipelines?\b|\bstream processing\b"),
     "databases": (1, r"\bpostgres(?:ql)?\b|\bredis\b|\bsql\b|\bnosql\b|\bclickhouse\b"),
-    "cloud_containers": (2, r"\baws\b|\bcloud\b|\bdocker\b|\bkubernetes\b|\bargocd\b"),
+    "cloud_containers": (
+        2,
+        r"\baws\b|\bazure\b|\bgcp\b|\bcloud (?:platform|infrastructure|services?)\b|"
+        r"\bdocker\b|\bkubernetes\b|\bargocd\b",
+    ),
     "observability": (1, r"\bobservability\b|\bprometheus\b|\bgrafana\b|\bopentelemetry\b"),
     "reliability_telemetry": (
         3,
@@ -309,6 +335,10 @@ def classify_tesla_job(job: dict) -> TeslaFilterResult:
             blockers.append(name)
     if preflight.category == "debug_test" and re.search(HARDWARE_DEBUG_PATTERN, haystack):
         blockers.append("hardware_debug_role")
+    if preflight.category in {"automation", "systems_engineering", "technical_review"} and re.search(
+        NON_SOFTWARE_ENGINEERING_PATTERN, haystack
+    ):
+        blockers.append("non_software_engineering_role")
 
     if blockers:
         return TeslaFilterResult("filtered_out", "none", preflight.category, score, reasons, blockers)

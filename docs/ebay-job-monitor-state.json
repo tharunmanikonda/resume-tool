@@ -2,8 +2,10 @@
   "company": "ebay",
   "known_job_ids": [
     "R0052824",
+    "R0060042",
     "R0062268",
     "R0065056",
+    "R0069489",
     "R0069578",
     "R0069582",
     "R0069616",
@@ -13,8 +15,11 @@
     "R0069694",
     "R0069928",
     "R0070341",
+    "R0070524",
+    "R0070569",
     "R0070761",
     "R0070917",
+    "R0071117",
     "R0071142",
     "R0071258",
     "R0071343",
@@ -22,14 +27,18 @@
     "R0071419",
     "R0071556",
     "R0072023",
+    "R0072055",
     "R0072057",
+    "R0072265",
     "R0072652",
     "R0072742",
+    "R0072799",
     "R0072836",
     "R0072843",
     "R0072844",
     "R0072996",
     "R0073001",
+    "R0073088",
     "R0073091",
     "R0073145",
     "R0073202",
@@ -37,11 +46,15 @@
     "R0073565",
     "R0073583",
     "R0073601",
+    "R0073626",
     "R0073767",
     "R0073812",
     "R0073827",
     "R0073895",
     "R0073949",
+    "R0073954",
+    "R0073955",
+    "R0073956",
     "R0073971",
     "R0074004",
     "R0074047",
@@ -54,6 +67,8 @@
     "R0074449",
     "R0074466",
     "R0074538",
+    "R0074546",
+    "R0074582",
     "R0074586",
     "R0074720",
     "R0074784",
@@ -86,8 +101,10 @@
     "R0075377",
     "R0075438",
     "R0075447",
+    "R0075448",
     "R0075449",
     "R0075473",
+    "R0075485",
     "R0075531",
     "R0075535",
     "R0075561",
@@ -104,14 +121,19 @@
     "R0075758",
     "R0075761",
     "R0075802",
+    "R0075827",
+    "R0075828",
     "R0075832",
     "R0075833",
     "R0075846",
     "R0075851",
     "R0075853",
     "R0075855",
+    "R0075864",
     "R0075865",
+    "R0075885",
     "R0075886",
+    "R0075889",
     "R0075890",
     "R0075891",
     "R0075892",
@@ -122,10 +144,13 @@
     "R0075947",
     "R0075961",
     "R0075981",
+    "R0075982",
     "R0075987",
+    "R0075997",
     "R0076033",
     "R0076062",
     "R0076068",
+    "R0076092",
     "R0076098",
     "R0076103",
     "R0076104",
@@ -136,9 +161,13 @@
     "R0076165",
     "R0076192",
     "R0076203",
+    "R0076211",
     "R0076215",
+    "R0076240",
+    "R0076246",
     "R0076247",
     "R0076249",
+    "R0076250",
     "R0076254",
     "R0076256",
     "R0076259",
@@ -154,6 +183,7 @@
     "R0076325",
     "R0076335",
     "R0076343",
+    "R0076348",
     "R0076352",
     "R0076353",
     "R0076356",
@@ -161,6 +191,7 @@
     "R0076358",
     "R0076363",
     "R0076364",
+    "R0076376",
     "R0076393",
     "R0076405",
     "R0076406",
@@ -174,7 +205,9 @@
     "R0076460",
     "R0076463",
     "R0076468",
+    "R0076481",
     "R0076491",
+    "R0076494",
     "R0076495",
     "R0076497",
     "R0076499",
@@ -194,6 +227,8 @@
     "R0076615",
     "R0076622",
     "R0076624",
+    "R0076632",
+    "R0076633",
     "R0076638",
     "R0076642",
     "R0076649",
@@ -217,15 +252,19 @@
     "R0076791",
     "R0076792",
     "R0076798",
+    "R0076799",
     "R0076802",
     "R0076807",
     "R0076812",
     "R0076819",
+    "R0076820",
     "R0076822",
     "R0076823",
     "R0076828",
     "R0076829",
     "R0076830",
+    "R0076840",
+    "R0076846",
     "R0076857",
     "R0076861",
     "R0076863",
@@ -235,6 +274,7 @@
     "R0076909",
     "R0076910",
     "R0076916",
+    "R0076920",
     "R0076926",
     "R0076937",
     "R0076944",
@@ -251,21 +291,27 @@
     "R0077013",
     "R0077015",
     "R0077016",
+    "R0077022",
+    "R0077030",
     "R0077041",
     "R0077049",
+    "R0077050",
     "R0077054",
     "R0077062",
     "R0077063",
     "R0077069",
+    "R0077075",
     "R0077076",
     "R0077085",
     "R0077099",
     "R0077108",
     "R0077110",
     "R0077111",
+    "R0077117",
     "R0077122",
     "R0077135",
     "R0077136",
+    "R0077145",
     "R0077182"
   ],
   "candidate_catalog": {
@@ -313,7 +359,3822 @@
       "first_seen_at": "2026-10-10T12:20:44-05:00",
       "priority": "medium",
       "category": "software"
+    },
+    "R0076916": {
+      "title": "Security Operations Engineer",
+      "location": "Austin, Texas, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076916/Security-Operations-Engineer",
+      "posted_at": "2026-10-09",
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "priority": "low",
+      "category": "technical_review"
     }
   },
-  "last_successful_scan_at": "2026-10-15T10:05:51-05:00"
+  "last_successful_scan_at": "2026-10-18T14:18:02-05:00",
+  "filter_version": 2,
+  "rejected_catalog": {
+    "R0077145": {
+      "title": "Manager, EU Affairs",
+      "location": "Brussels, Brussels-Capital Region, Belgium",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077145/Manager-EU-Affairs",
+      "posted_at": "2026-10-18T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0077050": {
+      "title": "Sr. Manager - Trust Strategy & Ops",
+      "location": "London, Surrey, United Kingdom",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077050/Sr-Manager-Trust-Strategy-Ops",
+      "posted_at": "2026-10-15T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076246": {
+      "title": "Senior Auditor, Internal Audit",
+      "location": "Dublin, Dublin, Ireland",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076246/Senior-Auditor-Internal-Audit",
+      "posted_at": "2026-10-15T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0073626": {
+      "title": "Lead Data Science",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0073626/Lead-Data-Science",
+      "posted_at": "2026-10-14T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0074546": {
+      "title": "Site Facilities Manager, Bengaluru",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0074546/Site-Facilities-Manager-Bengaluru",
+      "posted_at": "2026-10-08T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076799": {
+      "title": "Senior Product Designer - Tise",
+      "location": "Oslo, Oslo, Norway",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076799/Senior-Product-Designer-Tise",
+      "posted_at": "2026-09-29T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076840": {
+      "title": "EU Trade & Export Compliance Lead",
+      "location": "Amsterdam, North Holland, Netherlands",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076840/EU-Trade-Export-Compliance-Lead",
+      "posted_at": "2026-09-24T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0073956": {
+      "title": "Sr. Business Program Manager, Shipping",
+      "location": "Kleinmachnow, Brandenburg, Germany",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0073956/Sr-Business-Program-Manager-Shipping",
+      "posted_at": "2026-09-07T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0073955": {
+      "title": "Sr. Business Program Manager, Shipping",
+      "location": "Kleinmachnow, Brandenburg, Germany",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0073955/Sr-Business-Program-Manager-Shipping",
+      "posted_at": "2026-09-07T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076481": {
+      "title": "Payroll Specialist EMEA (f/m/d)",
+      "location": "Dublin, Dublin, Ireland",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076481/Payroll-Specialist-EMEA-f-m-d",
+      "posted_at": "2026-09-04T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0073954": {
+      "title": "Head of Managed Shipping and Labels",
+      "location": "Kleinmachnow, Brandenburg, Germany",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0073954/Head-of-Managed-Shipping-and-Labels",
+      "posted_at": "2026-08-24T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0060042": {
+      "title": "Rechtsreferendar*in",
+      "location": "Kleinmachnow, Brandenburg, Germany",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0060042/Rechtsreferendar-in",
+      "posted_at": "2026-08-12T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076250": {
+      "title": "Consignment Director, Sports/TCG Japan",
+      "location": "Tokyo, Tokyo, Japan",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076250/Consignment-Director-Sports-TCG-Japan",
+      "posted_at": "2026-08-11T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0075889": {
+      "title": "Greater China Investigations Lead",
+      "location": "Shanghai, Shanghai, China",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0075889/Greater-China-Investigations-Lead",
+      "posted_at": "2026-07-30T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0075828": {
+      "title": "Senior Manager - Analytics",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0075828/Senior-Manager-Analytics",
+      "posted_at": "2026-07-29T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0072265": {
+      "title": "\u30c1\u30b1\u30c3\u30c8\u4e8b\u696d\u958b\u767a\u30fb\u904b\u55b6\u62c5\u5f53",
+      "location": "Tokyo, Tokyo, Japan",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0072265/%E3%83%81%E3%82%B1%E3%83%83%E3%83%88%E4%BA%8B%E6%A5%AD%E9%96%8B%E7%99%BA%E3%83%BB%E9%81%8B%E5%96%B6%E6%8B%85%E5%BD%93",
+      "posted_at": "2026-06-30T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0070569": {
+      "title": "GCX Commercial Teammate",
+      "location": "Petaling Jaya, Selangor, Malaysia",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0070569/GCX-Commercial-Teammate",
+      "posted_at": "2025-11-26T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0069489": {
+      "title": "Top Seller Customer Support",
+      "location": "Petaling Jaya, Selangor, Malaysia",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0069489/Top-Seller-Customer-Support",
+      "posted_at": "2025-11-04T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0070524": {
+      "title": "Commercial Underwriting Investigations",
+      "location": "Petaling Jaya, Selangor, Malaysia",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0070524/Commercial-Underwriting-Investigations",
+      "posted_at": "2025-10-22T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076211": {
+      "title": "Strategy & Operations Lead",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076211/Strategy-Operations-Lead",
+      "posted_at": "2026-10-12T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0071117": {
+      "title": "Product Manager, Conversion Triggers",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0071117/Product-Manager-Conversion-Triggers",
+      "posted_at": "2026-09-29T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0075485": {
+      "title": "Associate Manager, Internal Audit",
+      "location": "Dublin, Dublin, Ireland",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0075485/Associate-Manager-Internal-Audit",
+      "posted_at": "2026-09-14T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076092": {
+      "title": "Product Manager, CRM Communications",
+      "location": "London, Surrey, United Kingdom",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076092/Product-Manager-CRM-Communications",
+      "posted_at": "2026-08-26T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0072799": {
+      "title": "Experience Designer III",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0072799/Experience-Designer-III",
+      "posted_at": "2026-07-29T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0074582": {
+      "title": "Manager, Data Science (Analytics)",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0074582/Manager-Data-Science-Analytics",
+      "posted_at": "2026-06-25T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0075448": {
+      "title": "Director, Design",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0075448/Director-Design",
+      "posted_at": "2026-06-22T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0073088": {
+      "title": "Commercial Dir, UK Parts & Accessories",
+      "location": "London, Surrey, United Kingdom",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0073088/Commercial-Dir-UK-Parts-Accessories",
+      "posted_at": "2026-06-18T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076376": {
+      "title": "Director of Software Engineering (d/f/m)",
+      "location": "Kleinmachnow, Brandenburg, Germany",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076376/Director-of-Software-Engineering-d-f-m",
+      "posted_at": "2026-10-16T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0075885": {
+      "title": "Senior SRE - Contact Center Platforms",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0075885/Senior-SRE-Contact-Center-Platforms",
+      "posted_at": "2026-10-16T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "reliability",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076920": {
+      "title": "iOS Tech Lead - Sr. MTS",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076920/iOS-Tech-Lead-Sr-MTS",
+      "posted_at": "2026-10-16T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076710": {
+      "title": "Unified Data Platform Manager",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076710/Unified-Data-Platform-Manager",
+      "posted_at": "2026-10-15T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management"
+      ],
+      "category": "data",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0077182": {
+      "title": "Watchmaker",
+      "location": "Sydney, New South Wales, Australia",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077182/Watchmaker",
+      "posted_at": "2026-10-14T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0077122": {
+      "title": "AI Engineer, Certilogo",
+      "location": "Milano, Milano, Italy",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077122/AI-Engineer-Certilogo",
+      "posted_at": "2026-10-14T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "ai_ml",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0075330": {
+      "title": "Software Engineer",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0075330/Software-Engineer",
+      "posted_at": "2026-10-13T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0075309": {
+      "title": "Senior Product Manager - Tise",
+      "location": "Oslo, Oslo, Norway",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0075309/Senior-Product-Manager-Tise",
+      "posted_at": "2026-10-13T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0077001": {
+      "title": "Software Engineer - Observability",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077001/Software-Engineer-Observability",
+      "posted_at": "2026-10-13T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076789": {
+      "title": "Principal Storage Software Engineer",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076789/Principal-Storage-Software-Engineer",
+      "posted_at": "2026-10-13T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "level_too_senior"
+      ],
+      "category": "software",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076807": {
+      "title": "MTS 2, AI Platform",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076807/MTS-2-AI-Platform",
+      "posted_at": "2026-10-12T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0072742": {
+      "title": "Software Engineer 3",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0072742/Software-Engineer-3",
+      "posted_at": "2026-10-12T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0075926": {
+      "title": "Sr MTS Software Engineer, Data Platforms",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0075926/Sr-MTS-Software-Engineer-Data-Platforms",
+      "posted_at": "2026-10-12T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0071416": {
+      "title": "Software Engineer - Cloud SRE",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0071416/Software-Engineer-Cloud-SRE",
+      "posted_at": "2026-10-09T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "reliability",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076352": {
+      "title": "Sr. Data Engineer - Depop",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076352/Sr-Data-Engineer-Depop",
+      "posted_at": "2026-10-09T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "data",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076675": {
+      "title": "Staff Hadoop Software Engineer",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076675/Staff-Hadoop-Software-Engineer",
+      "posted_at": "2026-10-08T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "level_too_senior"
+      ],
+      "category": "software",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076606": {
+      "title": "Senior Technical Lead - Traffic Security",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076606/Senior-Technical-Lead-Traffic-Security",
+      "posted_at": "2026-10-08T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076823": {
+      "title": "Principal MTS - Distributed Databases",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076823/Principal-MTS-Distributed-Databases",
+      "posted_at": "2026-10-08T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076411": {
+      "title": "iOS Engineer - SE3",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076411/iOS-Engineer-SE3",
+      "posted_at": "2026-10-08T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "mobile",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076460": {
+      "title": "Sr. MTS, AI & Agentic Architect",
+      "location": "Austin, Texas, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076460/Sr-MTS-AI-Agentic-Architect",
+      "posted_at": "2026-10-07T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076944": {
+      "title": "Software Architect - Cloud Security",
+      "location": "Austin, Texas, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076944/Software-Architect-Cloud-Security",
+      "posted_at": "2026-10-07T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076857": {
+      "title": "Software Engineer, MTS 1",
+      "location": "Amsterdam, North Holland, Netherlands",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076857/Software-Engineer-MTS-1",
+      "posted_at": "2026-10-06T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0075890": {
+      "title": "MTS1 - Platform Security",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0075890/MTS1-Platform-Security",
+      "posted_at": "2026-10-06T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0077076": {
+      "title": "Staff Eng, API Design & Governance",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077076/Staff-Eng-API-Design-Governance",
+      "posted_at": "2026-10-06T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0075891": {
+      "title": "Software Engineer 3 \u2013 Network Security",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0075891/Software-Engineer-3-Network-Security",
+      "posted_at": "2026-10-06T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0077010": {
+      "title": "Software Engineer - Cloud SRE",
+      "location": "Dublin, Dublin, Ireland",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077010/Software-Engineer-Cloud-SRE",
+      "posted_at": "2026-10-05T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "reliability",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076353": {
+      "title": "Data Engineer Manager - Depop",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076353/Data-Engineer-Manager-Depop",
+      "posted_at": "2026-10-05T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management"
+      ],
+      "category": "data",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076165": {
+      "title": "Sr. Software Engineer - Android",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076165/Sr-Software-Engineer-Android",
+      "posted_at": "2026-10-02T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076909": {
+      "title": "Software Engineer 3",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076909/Software-Engineer-3",
+      "posted_at": "2026-10-01T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076910": {
+      "title": "Software Engineer 3",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076910/Software-Engineer-3",
+      "posted_at": "2026-10-01T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0074959": {
+      "title": "Sr Manager, Cloud Engineering",
+      "location": "Dublin, Dublin, Ireland",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0074959/Sr-Manager-Cloud-Engineering",
+      "posted_at": "2026-10-01T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0073767": {
+      "title": "Principal Software Engineer",
+      "location": "Amsterdam, North Holland, Netherlands",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0073767/Principal-Software-Engineer",
+      "posted_at": "2026-10-01T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "level_too_senior"
+      ],
+      "category": "software",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0075473": {
+      "title": "Patent Drafting Attorney/Agent",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0075473/Patent-Drafting-Attorney-Agent",
+      "posted_at": "2026-09-30T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076260": {
+      "title": "MTS-1 Machine Learning Engineer",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076260/MTS-1-Machine-Learning-Engineer",
+      "posted_at": "2026-09-30T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "ai_ml",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0077015": {
+      "title": "Capacity Planning Engineer",
+      "location": "Dublin, Dublin, Ireland",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077015/Capacity-Planning-Engineer",
+      "posted_at": "2026-09-30T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "technical_review",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0077013": {
+      "title": "Senior Capacity Planning Engineer",
+      "location": "Dublin, Dublin, Ireland",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077013/Senior-Capacity-Planning-Engineer",
+      "posted_at": "2026-09-30T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "technical_review",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0075851": {
+      "title": "Sr. Software Engineer- Network",
+      "location": "Dublin, Dublin, Ireland",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0075851/Sr-Software-Engineer-Network",
+      "posted_at": "2026-09-30T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0075855": {
+      "title": "Sr. Distributed Systems Eng-Security",
+      "location": "Dublin, Dublin, Ireland",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0075855/Sr-Distributed-Systems-Eng-Security",
+      "posted_at": "2026-09-30T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0075853": {
+      "title": "Software Engineer - Network Segmentation",
+      "location": "Dublin, Dublin, Ireland",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0075853/Software-Engineer-Network-Segmentation",
+      "posted_at": "2026-09-29T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0073565": {
+      "title": "Cryptography & Platform Security SWE",
+      "location": "Austin, Texas, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0073565/Cryptography-Platform-Security-SWE",
+      "posted_at": "2026-09-29T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076607": {
+      "title": "Senior Technical Lead \u2013 Traffic",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076607/Senior-Technical-Lead-Traffic",
+      "posted_at": "2026-09-28T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076608": {
+      "title": "Technical Lead - Traffic",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076608/Technical-Lead-Traffic",
+      "posted_at": "2026-09-28T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0074168": {
+      "title": "IT Administrator (Email & Office 365)",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0074168/IT-Administrator-Email-Office-365",
+      "posted_at": "2026-09-26T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076610": {
+      "title": "Manager, Cloud Network Engineering",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076610/Manager-Cloud-Network-Engineering",
+      "posted_at": "2026-09-25T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0074004": {
+      "title": "Senior Manager, MLE - Gen AI",
+      "location": "Amsterdam, North Holland, Netherlands",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0074004/Senior-Manager-MLE-Gen-AI",
+      "posted_at": "2026-09-25T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0077099": {
+      "title": "Technical Program Manager",
+      "location": "Draper, Utah, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077099/Technical-Program-Manager",
+      "posted_at": "2026-10-08T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076846": {
+      "title": "Senior Business Developer",
+      "location": "Oslo, Oslo, Norway",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076846/Senior-Business-Developer",
+      "posted_at": "2026-09-28T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "technical_review",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076276": {
+      "title": "Indirect Tax Analyst",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076276/Indirect-Tax-Analyst",
+      "posted_at": "2026-10-09T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0072843": {
+      "title": "Platform Engineer \u2013 CI/CD Infrastructure",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0072843/Platform-Engineer-CI-CD-Infrastructure",
+      "posted_at": "2026-09-25T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "platform",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076062": {
+      "title": "Agentic Analytics Products Developer",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076062/Agentic-Analytics-Products-Developer",
+      "posted_at": "2026-09-23T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "technical_review",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0074466": {
+      "title": "Security Compliance Engineer",
+      "location": "London, Surrey, United Kingdom",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0074466/Security-Compliance-Engineer",
+      "posted_at": "2026-09-23T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "technical_review",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0069578": {
+      "title": "Traffic Tech Lead",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0069578/Traffic-Tech-Lead",
+      "posted_at": "2026-09-18T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0071142": {
+      "title": "Engineering Manager (Cloud Infra)",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0071142/Engineering-Manager-Cloud-Infra",
+      "posted_at": "2026-09-18T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0069582": {
+      "title": "Traffic Engineer",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0069582/Traffic-Engineer",
+      "posted_at": "2026-09-18T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "technical_review",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0071258": {
+      "title": "Engineering Manager - Cloud Traffic",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0071258/Engineering-Manager-Cloud-Traffic",
+      "posted_at": "2026-09-18T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0071419": {
+      "title": "Software Engineer - Cloud SRE",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0071419/Software-Engineer-Cloud-SRE",
+      "posted_at": "2026-09-18T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "reliability",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0075892": {
+      "title": "Software Engineer 3 \u2013 Platform Security",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0075892/Software-Engineer-3-Platform-Security",
+      "posted_at": "2026-09-18T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0075938": {
+      "title": "Staff Streaming/Messaging Infra Engineer",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0075938/Staff-Streaming-Messaging-Infra-Engineer",
+      "posted_at": "2026-09-17T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "level_too_senior"
+      ],
+      "category": "technical_review",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076441": {
+      "title": "Staff Streaming/Messaging Infra Engineer",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076441/Staff-Streaming-Messaging-Infra-Engineer",
+      "posted_at": "2026-09-17T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "level_too_senior"
+      ],
+      "category": "technical_review",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076293": {
+      "title": "Architect, Federated GraphQL",
+      "location": "Portland, Oregon, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076293/Architect-Federated-GraphQL",
+      "posted_at": "2026-09-17T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076364": {
+      "title": "Platform Engineer, Java Fmwk",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076364/Platform-Engineer-Java-Fmwk",
+      "posted_at": "2026-09-17T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "platform",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076638": {
+      "title": "Sr. Software Engineer - Fullstack",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076638/Sr-Software-Engineer-Fullstack",
+      "posted_at": "2026-09-17T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "full_stack",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076709": {
+      "title": "Principal MTS, Software Engineer",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076709/Principal-MTS-Software-Engineer",
+      "posted_at": "2026-09-16T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "level_too_senior"
+      ],
+      "category": "software",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076436": {
+      "title": "Data Development Platform Engineer",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076436/Data-Development-Platform-Engineer",
+      "posted_at": "2026-09-16T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "platform",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076820": {
+      "title": "Principal, Corporate Strategy",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076820/Principal-Corporate-Strategy",
+      "posted_at": "2026-09-16T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076819": {
+      "title": "Principal, Corporate Strategy",
+      "location": "San Jose, California, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076819/Principal-Corporate-Strategy",
+      "posted_at": "2026-09-16T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076447": {
+      "title": "Sr. Technical Product Manager",
+      "location": "Austin, Texas, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076447/Sr-Technical-Product-Manager",
+      "posted_at": "2026-09-16T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0070761": {
+      "title": "Sr. MTS, Software Engineer - FullStack",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0070761/Sr-MTS-Software-Engineer-FullStack",
+      "posted_at": "2026-09-16T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "full_stack",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076356": {
+      "title": "Data Engineer - Depop",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076356/Data-Engineer-Depop",
+      "posted_at": "2026-09-16T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "data",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076802": {
+      "title": "Sr. MTS, AI Platform",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076802/Sr-MTS-AI-Platform",
+      "posted_at": "2026-09-16T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0075865": {
+      "title": "Global Markets Lead - Global Buyer CRM",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0075865/Global-Markets-Lead-Global-Buyer-CRM",
+      "posted_at": "2026-10-16T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0077016": {
+      "title": "Sr. Financial Planning Analyst",
+      "location": "Austin, Texas, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077016/Sr-Financial-Planning-Analyst",
+      "posted_at": "2026-10-16T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0077022": {
+      "title": "Warehouse Associate",
+      "location": "Moonachie, New Jersey, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077022/Warehouse-Associate",
+      "posted_at": "2026-10-15T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076798": {
+      "title": "Head of Movie Props, Goldin",
+      "location": "Burbank, California, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076798/Head-of-Movie-Props-Goldin",
+      "posted_at": "2026-10-14T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0077111": {
+      "title": "Head of State Gov Relations",
+      "location": "San Jose, California, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077111/Head-of-State-Gov-Relations",
+      "posted_at": "2026-10-13T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0075724": {
+      "title": "Senior Manager, Live Risk Strategy",
+      "location": "San Jose, California, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0075724/Senior-Manager-Live-Risk-Strategy",
+      "posted_at": "2026-10-13T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0075758": {
+      "title": "Senior Data Science Analyst - Shipping",
+      "location": "San Jose, California, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0075758/Senior-Data-Science-Analyst-Shipping",
+      "posted_at": "2026-10-13T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076937": {
+      "title": "Compliance Training Operations Lead",
+      "location": "Austin, Texas, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076937/Compliance-Training-Operations-Lead",
+      "posted_at": "2026-10-12T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0077085": {
+      "title": "Senior IT Auditor",
+      "location": "Austin, Texas, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077085/Senior-IT-Auditor",
+      "posted_at": "2026-10-08T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0075045": {
+      "title": "Sr Tech Product Manager, Advertising",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0075045/Sr-Tech-Product-Manager-Advertising",
+      "posted_at": "2026-10-08T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0075044": {
+      "title": "Sr. Product Manager, Ad Marketplace",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0075044/Sr-Product-Manager-Ad-Marketplace",
+      "posted_at": "2026-10-08T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0075171": {
+      "title": "Manager, Data Science - Analytics 1",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0075171/Manager-Data-Science-Analytics-1",
+      "posted_at": "2026-10-07T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076974": {
+      "title": "Onboarding Advisor - NL Speaking",
+      "location": "Dublin 15, Dublin, Ireland",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076974/Onboarding-Advisor-NL-Speaking",
+      "posted_at": "2026-10-07T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0071343": {
+      "title": "Sr. Product Mgr, eBay Live - Discovery",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0071343/Sr-Product-Mgr-eBay-Live-Discovery",
+      "posted_at": "2026-10-07T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0077069": {
+      "title": "Communications Systems & Ops. Specialist",
+      "location": "San Jose, California, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077069/Communications-Systems-Ops-Specialist",
+      "posted_at": "2026-10-06T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076745": {
+      "title": "Consignment Director, Private Sales",
+      "location": "Runnemede, New Jersey, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076745/Consignment-Director-Private-Sales",
+      "posted_at": "2026-10-06T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0077110": {
+      "title": "Corporate Development Associate",
+      "location": "San Jose, California, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077110/Corporate-Development-Associate",
+      "posted_at": "2026-10-06T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076969": {
+      "title": "Director & Chief of Staff-Design",
+      "location": "San Jose, California, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076969/Director-Chief-of-Staff-Design",
+      "posted_at": "2026-10-06T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076980": {
+      "title": "Contact Routing Analyst",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076980/Contact-Routing-Analyst",
+      "posted_at": "2026-10-05T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0075833": {
+      "title": "Sr. Manager, People Business Partner",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0075833/Sr-Manager-People-Business-Partner",
+      "posted_at": "2026-10-05T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0077054": {
+      "title": "Sr Product Mgr, eBay Live",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077054/Sr-Product-Mgr-eBay-Live",
+      "posted_at": "2026-10-05T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0075886": {
+      "title": "Director, Community, Social & Influencer",
+      "location": "San Jose, California, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0075886/Director-Community-Social-Influencer",
+      "posted_at": "2026-10-02T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076494": {
+      "title": "Sr. Product Manager, Digital Services AI",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076494/Sr-Product-Manager-Digital-Services-AI",
+      "posted_at": "2026-10-01T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0077009": {
+      "title": "Sr. Applied Researcher \u2014 AI/ML",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077009/Sr-Applied-Researcher-%E2%80%94-AI-ML",
+      "posted_at": "2026-10-01T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076997": {
+      "title": "Data Scientist",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076997/Data-Scientist",
+      "posted_at": "2026-10-01T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076692": {
+      "title": "Applied Researcher 1 - Multimodal AI",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076692/Applied-Researcher-1-Multimodal-AI",
+      "posted_at": "2026-09-30T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0072996": {
+      "title": "Senior AV Production Specialist",
+      "location": "San Jose, California, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0072996/Senior-AV-Production-Specialist",
+      "posted_at": "2026-09-30T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076984": {
+      "title": "Senior Analyst - US Direct Tax",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076984/Senior-Analyst-US-Direct-Tax",
+      "posted_at": "2026-09-30T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0075722": {
+      "title": "Sr. PM\u2013T, Shopping Intent & Conversion",
+      "location": "Bellevue, Washington, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0075722/Sr-PM-T-Shopping-Intent-Conversion",
+      "posted_at": "2026-09-29T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076706": {
+      "title": "Applied Researcher 2 - Multimodal AI",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076706/Applied-Researcher-2-Multimodal-AI",
+      "posted_at": "2026-09-29T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0075723": {
+      "title": "Sr. PM\u2013T, Offers & Mktplace Conversion",
+      "location": "New York, New York, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0075723/Sr-PM-T-Offers-Mktplace-Conversion",
+      "posted_at": "2026-09-29T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076764": {
+      "title": "Applied Researcher 3 - Multimodal AI",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076764/Applied-Researcher-3-Multimodal-AI",
+      "posted_at": "2026-09-29T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076987": {
+      "title": "Legal Operations Specialist",
+      "location": "Washington DC, District of Columbia, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076987/Legal-Operations-Specialist",
+      "posted_at": "2026-09-29T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076240": {
+      "title": "FP&A COE Finance Manager",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076240/FP-A-COE-Finance-Manager",
+      "posted_at": "2026-09-28T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0074900": {
+      "title": "Technical Program Manager",
+      "location": "Draper, Utah, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0074900/Technical-Program-Manager",
+      "posted_at": "2026-09-25T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076609": {
+      "title": "Architect - Traffic and Security",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076609/Architect-Traffic-and-Security",
+      "posted_at": "2026-09-25T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076358": {
+      "title": "Machine Learning Engineer - Depop",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076358/Machine-Learning-Engineer-Depop",
+      "posted_at": "2026-09-22T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "ai_ml",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076393": {
+      "title": "Sr. Full Stack Engineer - MTS 1 (Seller)",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076393/Sr-Full-Stack-Engineer-MTS-1-Seller",
+      "posted_at": "2026-09-21T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "full_stack",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0075997": {
+      "title": "Sr Mgr, CF/IP Policy Ops Lead",
+      "location": "Dublin, Dublin, Ireland",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0075997/Sr-Mgr-CF-IP-Policy-Ops-Lead",
+      "posted_at": "2026-09-18T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076828": {
+      "title": "Senior MTS - Distributed Databases",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076828/Senior-MTS-Distributed-Databases",
+      "posted_at": "2026-09-17T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076830": {
+      "title": "MTS 2 - Distributed Databases",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076830/MTS-2-Distributed-Databases",
+      "posted_at": "2026-09-17T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076899": {
+      "title": "Handbag Authentication Specialist",
+      "location": "Sydney, New South Wales, Australia",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076899/Handbag-Authentication-Specialist",
+      "posted_at": "2026-09-17T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076791": {
+      "title": "Senior Storage Software Engineer",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076791/Senior-Storage-Software-Engineer",
+      "posted_at": "2026-09-17T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076829": {
+      "title": "Senior MTS - Distributed Databases",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076829/Senior-MTS-Distributed-Databases",
+      "posted_at": "2026-09-16T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076792": {
+      "title": "Senior Storage Software Engineer",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076792/Senior-Storage-Software-Engineer",
+      "posted_at": "2026-09-16T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076790": {
+      "title": "Senior Storage Software Engineer",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076790/Senior-Storage-Software-Engineer",
+      "posted_at": "2026-09-16T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076357": {
+      "title": "Engineering Manager - Depop",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076357/Engineering-Manager-Depop",
+      "posted_at": "2026-09-16T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0074047": {
+      "title": "Applied Researcher, Generative AI",
+      "location": "Amsterdam, North Holland, Netherlands",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0074047/Applied-Researcher-Generative-AI",
+      "posted_at": "2026-09-16T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076787": {
+      "title": "Storage Software Engineer",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076787/Storage-Software-Engineer",
+      "posted_at": "2026-09-16T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076613": {
+      "title": "Engineer - Traffic",
+      "location": "Dublin, Dublin, Ireland",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076613/Engineer-Traffic",
+      "posted_at": "2026-09-16T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "technical_review",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076615": {
+      "title": "Tech Lead - Traffic",
+      "location": "Dublin, Dublin, Ireland",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076615/Tech-Lead-Traffic",
+      "posted_at": "2026-09-16T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076786": {
+      "title": "Storage Software Engineer",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076786/Storage-Software-Engineer",
+      "posted_at": "2026-09-16T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0075918": {
+      "title": "MTS 2,  Platform Reliability Engineer",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0075918/MTS-2-Platform-Reliability-Engineer",
+      "posted_at": "2026-09-16T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "reliability",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076325": {
+      "title": "Platform Engineer, Java Fmwk",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076325/Platform-Engineer-Java-Fmwk",
+      "posted_at": "2026-09-15T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "platform",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076664": {
+      "title": "Applied Researcher",
+      "location": "Aachen, North Rhine-Westphalia, Germany",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076664/Applied-Researcher",
+      "posted_at": "2026-09-15T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076611": {
+      "title": "Software Engineer - Traffic",
+      "location": "Dublin, Dublin, Ireland",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076611/Software-Engineer-Traffic",
+      "posted_at": "2026-09-15T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076405": {
+      "title": "Catalog Manager",
+      "location": "Runnemede, New Jersey, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076405/Catalog-Manager",
+      "posted_at": "2026-09-11T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0075531": {
+      "title": "Software Engineer 3 (Fullstack)",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0075531/Software-Engineer-3-Fullstack",
+      "posted_at": "2026-09-11T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "full_stack",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0069672": {
+      "title": "MTS-1, Site Reliability Engineer",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0069672/MTS-1-Site-Reliability-Engineer",
+      "posted_at": "2026-09-11T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "reliability",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0069928": {
+      "title": "MTS 1, Site Reliability Engineer",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0069928/MTS-1-Site-Reliability-Engineer",
+      "posted_at": "2026-09-11T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "reliability",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0075535": {
+      "title": "MTS-1 Software Engineer - Fullstack",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0075535/MTS-1-Software-Engineer-Fullstack",
+      "posted_at": "2026-09-11T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "full_stack",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0074049": {
+      "title": "Tech Lead Machine Learning Engineer",
+      "location": "Amsterdam, North Holland, Netherlands",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0074049/Tech-Lead-Machine-Learning-Engineer",
+      "posted_at": "2026-09-11T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "ai_ml",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076406": {
+      "title": "Photography & Editorial Manager",
+      "location": "Runnemede, New Jersey, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076406/Photography-Editorial-Manager",
+      "posted_at": "2026-09-11T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0074720": {
+      "title": "BI Dev/Ops Engineer, Sys Admin/Architect",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0074720/BI-Dev-Ops-Engineer-Sys-Admin-Architect",
+      "posted_at": "2026-09-11T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "level_too_senior"
+      ],
+      "category": "technical_review",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076335": {
+      "title": "Live Stream Associate Producer",
+      "location": "Burbank, California, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076335/Live-Stream-Associate-Producer",
+      "posted_at": "2026-09-11T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076822": {
+      "title": "Account Manager",
+      "location": "Runnemede, New Jersey, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076822/Account-Manager",
+      "posted_at": "2026-09-10T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076449": {
+      "title": "MTS 2, Backend Software Engineer",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076449/MTS-2-Backend-Software-Engineer",
+      "posted_at": "2026-09-10T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "backend",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076497": {
+      "title": "MTS 2, Software Engineer - FullStack",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076497/MTS-2-Software-Engineer-FullStack",
+      "posted_at": "2026-09-10T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "full_stack",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0073949": {
+      "title": "Lead Full Stack Engineer",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0073949/Lead-Full-Stack-Engineer",
+      "posted_at": "2026-09-10T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "full_stack",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076495": {
+      "title": "MTS-2 Software Engineer - Backend",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076495/MTS-2-Software-Engineer-Backend",
+      "posted_at": "2026-09-10T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "backend",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076499": {
+      "title": "Watch Authenticator",
+      "location": "Sydney, New South Wales, Australia",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076499/Watch-Authenticator",
+      "posted_at": "2026-09-09T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0075281": {
+      "title": "Principal, UX Research Systems",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0075281/Principal-UX-Research-Systems",
+      "posted_at": "2026-09-09T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0072652": {
+      "title": "MTS 2, Staff Full Stack Engineer",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0072652/MTS-2-Staff-Full-Stack-Engineer",
+      "posted_at": "2026-09-09T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "level_too_senior"
+      ],
+      "category": "full_stack",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076468": {
+      "title": "Sr Staff Software Engineer, MarTech",
+      "location": "Amsterdam, North Holland, Netherlands",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076468/Sr-Staff-Software-Engineer-MarTech",
+      "posted_at": "2026-09-09T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "level_too_senior"
+      ],
+      "category": "software",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076463": {
+      "title": "Staff Software Engineer, Marketing Tech",
+      "location": "Amsterdam, North Holland, Netherlands",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076463/Staff-Software-Engineer-Marketing-Tech",
+      "posted_at": "2026-09-09T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "level_too_senior"
+      ],
+      "category": "software",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0075658": {
+      "title": "Senior Software Engineer, AI Platform",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0075658/Senior-Software-Engineer-AI-Platform",
+      "posted_at": "2026-09-09T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0074327": {
+      "title": "Principal Architect",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0074327/Principal-Architect",
+      "posted_at": "2026-09-09T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076491": {
+      "title": "Product Strategy Manager",
+      "location": "Runnemede, New Jersey, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076491/Product-Strategy-Manager",
+      "posted_at": "2026-09-08T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0074784": {
+      "title": "Director, Internal Comms - Functions",
+      "location": "San Jose, California, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0074784/Director-Internal-Comms-Functions",
+      "posted_at": "2026-09-08T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076247": {
+      "title": "Senior Manager, Applied Research",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076247/Senior-Manager-Applied-Research",
+      "posted_at": "2026-09-08T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076249": {
+      "title": "Sr MTS Machine Learning Engineer",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076249/Sr-MTS-Machine-Learning-Engineer",
+      "posted_at": "2026-09-08T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "ai_ml",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0075947": {
+      "title": "SRE- Availability Engineer",
+      "location": "Dublin, Dublin, Ireland",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0075947/SRE-Availability-Engineer",
+      "posted_at": "2026-09-04T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "reliability",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0075827": {
+      "title": "Director, Corporate Strategy",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0075827/Director-Corporate-Strategy",
+      "posted_at": "2026-09-03T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0074968": {
+      "title": "Sr. Technical Product Manager, Anaplan",
+      "location": "Austin, Texas, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0074968/Sr-Technical-Product-Manager-Anaplan",
+      "posted_at": "2026-09-03T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076215": {
+      "title": "Employment Counsel Manager",
+      "location": "Dublin, Dublin, Ireland",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076215/Employment-Counsel-Manager",
+      "posted_at": "2026-08-31T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076363": {
+      "title": "Indirect Tax Manager, Americas",
+      "location": "Austin, Texas, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076363/Indirect-Tax-Manager-Americas",
+      "posted_at": "2026-08-31T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076320": {
+      "title": "Sr. Product Manager - Case Management",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076320/Sr-Product-Manager-Case-Management",
+      "posted_at": "2026-08-31T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076298": {
+      "title": "Electronics Specialist",
+      "location": "Hoppegarten, Brandenburg, Germany",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076298/Electronics-Specialist",
+      "posted_at": "2026-08-28T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0072057": {
+      "title": "Senior Eng. Manager, eBay Live",
+      "location": "San Jose, California, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0072057/Senior-Eng-Manager-eBay-Live",
+      "posted_at": "2026-08-28T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0075987": {
+      "title": "Product Manager, Assisted Service",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0075987/Product-Manager-Assisted-Service",
+      "posted_at": "2026-08-24T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0075624": {
+      "title": "Exec Assistant to Chief Legal Officer",
+      "location": "San Jose, California, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0075624/Exec-Assistant-to-Chief-Legal-Officer",
+      "posted_at": "2026-08-19T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076524": {
+      "title": "Sr. Director, Compensation",
+      "location": "San Jose, California, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076524/Sr-Director-Compensation",
+      "posted_at": "2026-08-19T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0065056": {
+      "title": "DoD SkillBridge - Finance & Accounting",
+      "location": "Austin, Texas, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0065056/DoD-SkillBridge-Finance-Accounting",
+      "posted_at": "2026-08-17T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0075633": {
+      "title": "Sr. Director, Global Benefits",
+      "location": "Draper, Utah, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0075633/Sr-Director-Global-Benefits",
+      "posted_at": "2026-08-17T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076103": {
+      "title": "Sr People Tech Analyst - Payroll & Tech",
+      "location": "Austin, Texas, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076103/Sr-People-Tech-Analyst-Payroll-Tech",
+      "posted_at": "2026-08-17T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0074176": {
+      "title": "Product Manager - Assisted Service",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0074176/Product-Manager-Assisted-Service",
+      "posted_at": "2026-08-11T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076157": {
+      "title": "Associate Tech Lead",
+      "location": "Milano, Milano, Italy",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076157/Associate-Tech-Lead",
+      "posted_at": "2026-08-07T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0075982": {
+      "title": "Technical Program Manager",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0075982/Technical-Program-Manager",
+      "posted_at": "2026-08-06T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076104": {
+      "title": "Sr. People Technology Analyst - Learning",
+      "location": "Draper, Utah, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076104/Sr-People-Technology-Analyst-Learning",
+      "posted_at": "2026-08-04T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076098": {
+      "title": "Senior People Technology Analyst - TA",
+      "location": "Draper, Utah, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076098/Senior-People-Technology-Analyst-TA",
+      "posted_at": "2026-08-03T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0075832": {
+      "title": "Product Manager - Marketplace Compliance",
+      "location": "Austin, Texas, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0075832/Product-Manager-Marketplace-Compliance",
+      "posted_at": "2026-08-03T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076033": {
+      "title": "Sr Mgr, U.S. Federal Govt. Relations",
+      "location": "Washington DC, District of Columbia, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076033/Sr-Mgr-U-S-Federal-Govt-Relations",
+      "posted_at": "2026-07-28T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0073827": {
+      "title": "Talent Acquisition Partner",
+      "location": "Tokyo, Tokyo, Japan",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0073827/Talent-Acquisition-Partner",
+      "posted_at": "2026-07-01T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0075229": {
+      "title": "MTS 2 Full Stack Engineer",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0075229/MTS-2-Full-Stack-Engineer",
+      "posted_at": "2026-06-17T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "full_stack",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0075227": {
+      "title": "Staff Full Stack Engineer \u2014 MTS 1",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0075227/Staff-Full-Stack-Engineer-%E2%80%94-MTS-1",
+      "posted_at": "2026-06-17T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "level_too_senior"
+      ],
+      "category": "full_stack",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0074934": {
+      "title": "Capacity Planning Engineer",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0074934/Capacity-Planning-Engineer",
+      "posted_at": "2026-06-03T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "technical_review",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0074538": {
+      "title": "Senior Manager, Data Science & Analytics",
+      "location": "San Jose, California, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0074538/Senior-Manager-Data-Science-Analytics",
+      "posted_at": "2026-06-01T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0070917": {
+      "title": "Senior Partnership Management Specialist",
+      "location": "Petaling Jaya, Selangor, Malaysia",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0070917/Senior-Partnership-Management-Specialist",
+      "posted_at": "2026-05-26T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0074935": {
+      "title": "OFAC and Sanctions Analyst",
+      "location": "Austin, Texas, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0074935/OFAC-and-Sanctions-Analyst",
+      "posted_at": "2026-05-26T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0074386": {
+      "title": "MTS 1 - Mobile Security Engineer",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0074386/MTS-1-Mobile-Security-Engineer",
+      "posted_at": "2026-05-14T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "security",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0074109": {
+      "title": "MTS 2, Software Engineer, Data Platforms",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0074109/MTS-2-Software-Engineer-Data-Platforms",
+      "posted_at": "2026-05-12T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0073971": {
+      "title": "Strategy & Operations, Beauty\u00a0",
+      "location": "Tokyo, Tokyo, Japan",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0073971/Strategy-Operations-Beauty%C2%A0",
+      "posted_at": "2026-04-03T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0073601": {
+      "title": "Distinguished MTS - Seller Engineering",
+      "location": "San Jose, California, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0073601/Distinguished-MTS-Seller-Engineering",
+      "posted_at": "2026-03-31T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0071556": {
+      "title": "Sr. Director Eng, Seller User Experience",
+      "location": "San Jose, California, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0071556/Sr-Director-Eng-Seller-User-Experience",
+      "posted_at": "2026-03-31T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0073202": {
+      "title": "****ONLY CURRENT CONTRACT EMPLOYEES**** Warehouse Associate",
+      "location": "Louisville, Kentucky, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0073202/-ONLY-CURRENT-CONTRACT-EMPLOYEES-Warehouse-Associate",
+      "posted_at": "2026-03-09T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0070341": {
+      "title": "Director, Corporate Strategy",
+      "location": "San Jose, California, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0070341/Director-Corporate-Strategy",
+      "posted_at": "2025-10-22T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0069617": {
+      "title": "Sr Platform Engineer, Java Fmwk",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0069617/Sr-Platform-Engineer-Java-Fmwk",
+      "posted_at": "2025-09-18T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "platform",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0069619": {
+      "title": "Sr. Platform Eng., Batch & Notifications",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0069619/Sr-Platform-Eng-Batch-Notifications",
+      "posted_at": "2025-09-18T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076689": {
+      "title": "Senior Manager eBay Live Data Science",
+      "location": "San Jose, California, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076689/Senior-Manager-eBay-Live-Data-Science",
+      "posted_at": "2026-09-18T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076688": {
+      "title": "Senior Manager eBay Live Data Science",
+      "location": "San Jose, California, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076688/Senior-Manager-eBay-Live-Data-Science",
+      "posted_at": "2026-09-18T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0077063": {
+      "title": "Senior Product Manager II",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077063/Senior-Product-Manager-II",
+      "posted_at": "2026-10-15T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0077062": {
+      "title": "Senior Product Manager - Core Risk",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077062/Senior-Product-Manager-Core-Risk",
+      "posted_at": "2026-10-15T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0077117": {
+      "title": "Sr. Product Marketing Manager",
+      "location": "San Jose, California, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077117/Sr-Product-Marketing-Manager",
+      "posted_at": "2026-10-15T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076151": {
+      "title": "Strategy & Operations Lead",
+      "location": "Austin, Texas, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076151/Strategy-Operations-Lead",
+      "posted_at": "2026-10-12T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076622": {
+      "title": "Manager, Data Science 1",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076622/Manager-Data-Science-1",
+      "posted_at": "2026-10-08T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076624": {
+      "title": "Manager, Data Science",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076624/Manager-Data-Science",
+      "posted_at": "2026-10-08T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076568": {
+      "title": "Sr Mgr, Transf & Gov Strategic Execution",
+      "location": "Austin, Texas, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076568/Sr-Mgr-Transf-Gov-Strategic-Execution",
+      "posted_at": "2026-10-01T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0077030": {
+      "title": "Manager, Data Science \u2013 Risk & Trust",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077030/Manager-Data-Science-Risk-Trust",
+      "posted_at": "2026-10-01T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076348": {
+      "title": "Data Scientist",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076348/Data-Scientist",
+      "posted_at": "2026-09-30T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076444": {
+      "title": "Sr. Technical Product Manager",
+      "location": "Austin, Texas, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076444/Sr-Technical-Product-Manager",
+      "posted_at": "2026-09-25T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0072844": {
+      "title": "Senior Director Eng, Buyer & Community",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0072844/Senior-Director-Eng-Buyer-Community",
+      "posted_at": "2026-09-09T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0073583": {
+      "title": "Applied Researcher",
+      "location": "Amsterdam, North Holland, Netherlands",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0073583/Applied-Researcher",
+      "posted_at": "2026-09-08T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076259": {
+      "title": "MTS-1 Machine Learning Engineer",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076259/MTS-1-Machine-Learning-Engineer",
+      "posted_at": "2026-09-08T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "ai_ml",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076268": {
+      "title": "MTS-2 Machine Learning Engineer",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076268/MTS-2-Machine-Learning-Engineer",
+      "posted_at": "2026-09-08T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "ai_ml",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076267": {
+      "title": "MTS-2 Backend Engineer, ML Systems",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076267/MTS-2-Backend-Engineer-ML-Systems",
+      "posted_at": "2026-09-08T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "backend",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076256": {
+      "title": "SWE-3 Backend Engineer, ML Systems",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076256/SWE-3-Backend-Engineer-ML-Systems",
+      "posted_at": "2026-09-08T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "backend",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076254": {
+      "title": "SWE-3 Machine Learning Engineer",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076254/SWE-3-Machine-Learning-Engineer",
+      "posted_at": "2026-09-08T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "ai_ml",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076549": {
+      "title": "Machine Learning Engineer - Agents",
+      "location": "Amsterdam, North Holland, Netherlands",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076549/Machine-Learning-Engineer-Agents",
+      "posted_at": "2026-09-07T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "ai_ml",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076547": {
+      "title": "Applied Researcher - Multi-Agent Systems",
+      "location": "Amsterdam, North Holland, Netherlands",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076547/Applied-Researcher-Multi-Agent-Systems",
+      "posted_at": "2026-09-07T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076632": {
+      "title": "Data Scientist (Analytics) - L24",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076632/Data-Scientist-Analytics-L24",
+      "posted_at": "2026-09-04T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076633": {
+      "title": "Manager, Data Science (Analytics) L25",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076633/Manager-Data-Science-Analytics-L25",
+      "posted_at": "2026-09-04T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0075761": {
+      "title": "Staff Software Engineer - MTS 2",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0075761/Staff-Software-Engineer-MTS-2",
+      "posted_at": "2026-09-04T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "level_too_senior"
+      ],
+      "category": "software",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0073812": {
+      "title": "Sr Director, Global Privacy Advisory",
+      "location": "San Jose, California, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0073812/Sr-Director-Global-Privacy-Advisory",
+      "posted_at": "2026-09-01T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076658": {
+      "title": "Sr. Staff Experience Designer - Payments",
+      "location": "San Jose, California, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076658/Sr-Staff-Experience-Designer-Payments",
+      "posted_at": "2026-08-28T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0075802": {
+      "title": "Sr. Product Manager, CRM Communications",
+      "location": "New York, New York, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0075802/Sr-Product-Manager-CRM-Communications",
+      "posted_at": "2026-08-26T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0075287": {
+      "title": "Director, Design Systems",
+      "location": "Portland, Oregon, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0075287/Director-Design-Systems",
+      "posted_at": "2026-08-24T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076068": {
+      "title": "Senior Product Manager II",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076068/Senior-Product-Manager-II",
+      "posted_at": "2026-08-17T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076143": {
+      "title": "Director, Agentic Shopping",
+      "location": "San Jose, California, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076143/Director-Agentic-Shopping",
+      "posted_at": "2026-08-04T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0075846": {
+      "title": "General Manager, Ads",
+      "location": "San Jose, California, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0075846/General-Manager-Ads",
+      "posted_at": "2026-07-20T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0075331": {
+      "title": "Site Reliability Engineer 3",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0075331/Site-Reliability-Engineer-3",
+      "posted_at": "2026-06-26T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "reliability",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0075447": {
+      "title": "Principal, Design",
+      "location": "San Jose, California, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0075447/Principal-Design",
+      "posted_at": "2026-06-22T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0075291": {
+      "title": "Principal, Design",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0075291/Principal-Design",
+      "posted_at": "2026-06-22T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0075449": {
+      "title": "Director, Design",
+      "location": "San Jose, California, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0075449/Director-Design",
+      "posted_at": "2026-06-22T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076863": {
+      "title": "Applied Researcher - Query Science",
+      "location": "Kleinmachnow, Brandenburg, Germany",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076863/Applied-Researcher-Query-Science",
+      "posted_at": "2026-09-25T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076866": {
+      "title": "Senior Applied Researcher - Search",
+      "location": "Kleinmachnow, Brandenburg, Germany",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076866/Senior-Applied-Researcher-Search",
+      "posted_at": "2026-09-22T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076900": {
+      "title": "Cataloguer",
+      "location": "Runnemede, New Jersey, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076900/Cataloguer",
+      "posted_at": "2026-09-24T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0074586": {
+      "title": "Senior Software Engineer - Go/Golang",
+      "location": "San Jose, California, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0074586/Senior-Software-Engineer-Go-Golang",
+      "posted_at": "2026-10-17",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "software",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0076721": {
+      "title": "Lead Full Stack Platform Engineer",
+      "location": "Austin, Texas, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076721/Lead-Full-Stack-Platform-Engineer",
+      "posted_at": "2026-10-10",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "full_stack",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0075438": {
+      "title": "GitHub Enterprise Platform Engineer",
+      "location": "San Jose, California, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0075438/GitHub-Enterprise-Platform-Engineer",
+      "posted_at": "2026-09-27",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "platform",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    },
+    "R0075646": {
+      "title": "MTS-2, Android Engineer",
+      "location": "Portland, Oregon, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0075646/MTS-2-Android-Engineer",
+      "posted_at": "2026-10-17",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "mobile",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:18:02-05:00",
+      "last_seen_at": "2026-10-18T14:18:02-05:00"
+    }
+  }
 }

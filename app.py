@@ -737,6 +737,7 @@ def clear_ai_session_audit(session: dict, *, status: str = "not_started") -> Non
 
 
 STUDENT_RESUME_MODES = {"internship", "coop", "new_grad"}
+STUDENT_EXPERIENCE_END_DATE = "September 2026"
 
 
 def is_internship_resume_mode(value) -> bool:
@@ -771,11 +772,21 @@ def intern_mode_location(value: str) -> str:
     return "Location omitted" if location_mentions_india(location) else location
 
 
+def student_experience_dates(value: str) -> str:
+    return re.sub(
+        r"\b(?:present|current|now|ongoing|till date|to date)\s*$",
+        STUDENT_EXPERIENCE_END_DATE,
+        str(value or "").strip(),
+        flags=re.IGNORECASE,
+    )
+
+
 def internship_experience_history_defaults(history: list[dict] | None) -> list[dict]:
     result: list[dict] = []
     kept_us_roles = 0
     for item in history if isinstance(history, list) else []:
         entry = dict(item) if isinstance(item, dict) else {}
+        entry["dates"] = student_experience_dates(entry.get("dates", ""))
         original_location = str(entry.get("location", "")).strip()
         enabled = is_experience_history_entry_enabled(entry)
         if location_mentions_india(original_location):
@@ -925,6 +936,7 @@ def resume_mode_prompt_lines(resume_mode: str) -> list[str]:
         "- In the summary, lead with software engineering experience first for engineering roles; for analyst/data roles, lead with data, SQL, reporting, process, and decision-support evidence.",
         "- Treat DBA as education/context, not the candidate's primary professional identity.",
         "- If the summary mentions years of experience, it must say 3+ years.",
+        f"- End formerly ongoing work experience in {STUDENT_EXPERIENCE_END_DATE}, not Present; preserve supplied start dates and already completed role dates. Describe completed responsibilities in past tense.",
         "- Write summary language directly and impersonally; never use first-person or third-person pronouns such as I, he, she, they, his, her, or their.",
         "- Never prefix a numeric metric with ~, ≈, or ∼. Write 'approximately' or 'about' when the value is estimated.",
     ]
@@ -10012,6 +10024,7 @@ def apply_experience_history_override(
             {
                 **entry,
                 "location": intern_mode_location(entry.get("location", "")),
+                "dates": student_experience_dates(entry.get("dates", "")),
             }
             for entry in overrides
         ]
@@ -10313,6 +10326,9 @@ def apply_resume_mode_structure(resume: dict, profile: dict | None, resume_mode:
     if not is_internship_resume_mode(normalized_mode):
         return resume
 
+    for entry in resume.get("experience", []) if isinstance(resume.get("experience"), list) else []:
+        if isinstance(entry, dict):
+            entry["dates"] = student_experience_dates(entry.get("dates", ""))
     resume = ensure_internship_education(resume, profile)
     projects = resume.get("projects") if isinstance(resume.get("projects"), list) else []
     if projects:

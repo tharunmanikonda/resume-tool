@@ -21,6 +21,7 @@
     "JR9241",
     "JR9247",
     "JR9261",
+    "JR9275",
     "JR9283",
     "JR9284",
     "JR9290",
@@ -41,5 +42,5 @@
     "JR9392"
   ],
   "candidate_catalog": {},
-  "last_successful_scan_at": "2026-10-15T09:58:56-05:00"
+  "last_successful_scan_at": "2026-10-17T20:19:57-05:00"
 }

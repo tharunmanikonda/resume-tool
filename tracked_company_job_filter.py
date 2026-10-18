@@ -8,10 +8,18 @@ from dataclasses import dataclass
 from tesla_job_filter import PROFILE_SIGNALS, TeslaFilterResult
 
 
+FILTER_VERSION = 2
+
+
 TARGET_TITLES = (
     ("database", r"\bdatabase (?:technician|administrator|analyst|coordinator|engineer)\b|\bjunior dba\b|\bsql developer\b"),
     ("debug_test", r"\bdebug technician\b|\bsoftware test technician\b|\bsystems? test technician\b"),
-    ("systems_analysis", r"\bapplication systems? analyst\b|\bprogrammer analyst\b|\bit systems? analyst\b|\bcomputer systems? analyst\b"),
+    ("systems_analysis", r"\bapplication systems? analyst\b|\bprogrammer analyst\b|\bit systems? analyst\b|\bcomputer systems? analyst\b|\bbusiness systems? analyst\b"),
+    ("support_development", r"\b(?:systems?|application|production|software) support developer\b|\bsupport systems? developer\b"),
+    ("systems_engineering", r"\bsystems? engineer\b|\bsystems? verification engineer\b|\bsystems? design engineer\b|\bstandards engineer\b"),
+    ("automation", r"\bautomation engineer\b|\bautomation developer\b"),
+    ("security", r"\b(?:cloud |information |application |software )?security (?:engineer|analyst)\b|\binformation security analyst\b"),
+    ("agent_engineering", r"\bagent (?:evaluation(?: and self-improvement)?|platform|systems?|self-improvement) engineer\b|\bagentic ai engineer\b"),
     ("integration", r"\b(?:application|systems?|software) integration engineer\b|\bintegration developer\b"),
     ("production", r"\bproduction engineer\b|\bsoftware operations engineer\b|\brelease engineer\b|\bbuild engineer\b|\bdeployment engineer\b"),
     ("backend", r"\bbackend\b"),
@@ -24,7 +32,11 @@ TARGET_TITLES = (
     ("reliability", r"\bsite reliability\b|\bsre\b|\breliability engineer\b"),
     ("platform", r"\bplatform engineer\b|\bdevops engineer\b|\bcloud engineer\b|\bkubernetes.*engineer\b"),
     ("application", r"\bapplication (?:software )?(?:engineer|developer)\b"),
+    ("development", r"\b(?:systems?|cloud|platform|api|as400|mainframe) developer\b"),
     ("software", r"\bsoftware (?:engineer|developer)\b|\bsoftware development engineer\b"),
+    # Unknown engineering titles still deserve one description-level review.
+    # Detailed scoring and domain blockers decide whether they are relevant.
+    ("technical_review", r"\b(?:engineer|developer|systems? analyst|technical analyst)\b"),
 )
 
 TITLE_EXCLUSIONS = {
@@ -41,10 +53,16 @@ TITLE_EXCLUSIONS = {
     "not_an_open_role": r"\btalent community\b|\bexpression of interest\b",
 }
 
-SUPPORTABLE_CATEGORIES = {"database", "debug_test"}
+SUPPORTABLE_CATEGORIES = {"database", "debug_test", "support_development"}
 HARDWARE_DEBUG_PATTERN = (
     r"\bsolder(?:ing)?\b|\boscilloscope\b|\bmultimeter\b|\bpcb\b|\bcircuit boards?\b|"
     r"\bboard rework\b|\belectrical schematics?\b|\bbench equipment\b|\bcomponent-level\b"
+)
+NON_SOFTWARE_ENGINEERING_PATTERN = (
+    r"\bplc programming\b|\bscada\b|\bbuilding management systems?\b|\bhvac\b|\bups\b|"
+    r"\bpdu(?:s)?\b|\bpreventative maintenance\b|\brobotic maintenance\b|\bconveyor\b|"
+    r"\brtl simulation\b|\bpcb design\b|\bboard-level\b|\bbring-up\b|\blogic analyzers?\b|"
+    r"\boscilloscopes?\b|\bmultimeters?\b"
 )
 
 NON_US = (
@@ -139,6 +157,12 @@ def classify_company_job(job: dict) -> TeslaFilterResult:
     if preflight.category == "debug_test" and re.search(HARDWARE_DEBUG_PATTERN, description, re.IGNORECASE):
         return TeslaFilterResult(
             "filtered_out", "none", preflight.category, 0, preflight.reasons, ["hardware_debug_role"]
+        )
+    if preflight.category in {"automation", "systems_engineering", "technical_review"} and re.search(
+        NON_SOFTWARE_ENGINEERING_PATTERN, description, re.IGNORECASE
+    ):
+        return TeslaFilterResult(
+            "filtered_out", "none", preflight.category, 0, preflight.reasons, ["non_software_engineering_role"]
         )
 
     haystack = f"{_text(job.get('title'))} {description}"

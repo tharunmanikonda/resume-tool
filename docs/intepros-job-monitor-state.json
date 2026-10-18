@@ -178,8 +178,297 @@
     "a0Hcw00000AZ7vJEAT",
     "a0Hcw00000AZFT3EAP",
     "a0Hcw00000AZJZtEAP",
-    "a0Hcw00000AZMeDEAX"
+    "a0Hcw00000AZMeDEAX",
+    "a0Hcw00000AZPVdEAP",
+    "a0Hcw00000AZUa9EAH",
+    "a0Hcw00000AaAUXEA3",
+    "a0Hcw00000AaAUYEA3",
+    "a0Hcw00000AcCVSEA3",
+    "a0Hcw00000AcglFEAR",
+    "a0Hcw00000Acn5BEAR",
+    "a0Hcw00000Aco1FEAR",
+    "a0Hcw00000Acpa1EAB"
   ],
-  "last_successful_scan_at": "2026-10-15T10:08:04-05:00",
-  "candidate_catalog": {}
+  "last_successful_scan_at": "2026-10-18T14:19:27-05:00",
+  "candidate_catalog": {
+    "a0Hcw000006tdYLEAY": {
+      "title": "Operational Excellence Engineer",
+      "location": "Smithfield, Ut",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw000006tdYLEAY/operational-excellence-engineer",
+      "posted_at": "Oct 16, 2026",
+      "first_seen_at": "2026-10-18T14:19:27-05:00",
+      "priority": "low",
+      "category": "technical_review"
+    },
+    "a0Hcw00000AZFT3EAP": {
+      "title": "Field Sales Engineer",
+      "location": "Denver, CO",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000AZFT3EAP/field-sales-engineer",
+      "posted_at": "Oct 15, 2026",
+      "first_seen_at": "2026-10-18T14:19:27-05:00",
+      "priority": "low",
+      "category": "technical_review"
+    }
+  },
+  "filter_version": 2,
+  "rejected_catalog": {
+    "a0Hcw00000AcglFEAR": {
+      "title": "Program Manager, Trade Enablement",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000AcglFEAR/program-manager-trade-enablement",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:19:27-05:00",
+      "last_seen_at": "2026-10-18T14:19:27-05:00"
+    },
+    "a0Hcw00000Aco1FEAR": {
+      "title": "Lead Business Analyst - Healthcare Operations",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000Aco1FEAR/lead-business-analyst---healthcare-operations",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:19:27-05:00",
+      "last_seen_at": "2026-10-18T14:19:27-05:00"
+    },
+    "a0Hcw00000AaAUYEA3": {
+      "title": "Cybersecurity Risk Analyst III",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000AaAUYEA3/cybersecurity-risk-analyst-iii",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:19:27-05:00",
+      "last_seen_at": "2026-10-18T14:19:27-05:00"
+    },
+    "a0Hcw00000AaAUXEA3": {
+      "title": "Cybersecurity Risk Analyst III",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000AaAUXEA3/cybersecurity-risk-analyst-iii",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:19:27-05:00",
+      "last_seen_at": "2026-10-18T14:19:27-05:00"
+    },
+    "a0Hcw00000Acpa1EAB": {
+      "title": "Project Coordinator- Medical Device/Supply Chain",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000Acpa1EAB/project-coordinator--medical-devicesupply-chain",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:19:27-05:00",
+      "last_seen_at": "2026-10-18T14:19:27-05:00"
+    },
+    "a0Hcw00000AZUa9EAH": {
+      "title": "Senior Regulatory Affairs Specialist",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000AZUa9EAH/senior-regulatory-affairs-specialist",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:19:27-05:00",
+      "last_seen_at": "2026-10-18T14:19:27-05:00"
+    },
+    "a0Hcw00000AZMeDEAX": {
+      "title": "Automation Technician Lead",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000AZMeDEAX/automation-technician-lead",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:19:27-05:00",
+      "last_seen_at": "2026-10-18T14:19:27-05:00"
+    },
+    "a0Hcw00000AZJZtEAP": {
+      "title": "Supply Chain Operations Manager",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000AZJZtEAP/supply-chain-operations-manager",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:19:27-05:00",
+      "last_seen_at": "2026-10-18T14:19:27-05:00"
+    },
+    "a0Hcw00000AZ7vJEAT": {
+      "title": "Senior Project Manager \u2013 Human Resources",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000AZ7vJEAT/senior-project-manager--human-resources",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:19:27-05:00",
+      "last_seen_at": "2026-10-18T14:19:27-05:00"
+    },
+    "a0Hcw00000AZPVdEAP": {
+      "title": "Automation Technician Supervisor",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000AZPVdEAP/automation-technician-supervisor",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:19:27-05:00",
+      "last_seen_at": "2026-10-18T14:19:27-05:00"
+    },
+    "a0Hcw00000AWsU9EAL": {
+      "title": "Project Administrator",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000AWsU9EAL/project-administrator",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:19:27-05:00",
+      "last_seen_at": "2026-10-18T14:19:27-05:00"
+    },
+    "a0Hcw00000AWNtNEAX": {
+      "title": "Maintenance Engineering Technician",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000AWNtNEAX/maintenance-engineering-technician",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:19:27-05:00",
+      "last_seen_at": "2026-10-18T14:19:27-05:00"
+    },
+    "a0Hcw00000ATrZREA1": {
+      "title": "SOX Auditor",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000ATrZREA1/sox-auditor",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:19:27-05:00",
+      "last_seen_at": "2026-10-18T14:19:27-05:00"
+    },
+    "a0Hcw000008c7FBEAY": {
+      "title": "Operational Excellence Engineer",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw000008c7FBEAY/operational-excellence-engineer",
+      "posted_at": "",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "technical_review",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:19:27-05:00",
+      "last_seen_at": "2026-10-18T14:19:27-05:00"
+    },
+    "a0Hcw00000Acn5BEAR": {
+      "title": "Sr Engineer as400 Developer",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000Acn5BEAR/sr-engineer-as400-developer",
+      "posted_at": "Oct 16, 2026",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "development",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:19:27-05:00",
+      "last_seen_at": "2026-10-18T14:19:27-05:00"
+    },
+    "a0Hcw00000AcCVSEA3": {
+      "title": "Senior Information Security Analyst",
+      "location": "Philadelphia, PA",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000AcCVSEA3/senior-information-security-analyst",
+      "posted_at": "Oct 16, 2026",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "security",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:19:27-05:00",
+      "last_seen_at": "2026-10-18T14:19:27-05:00"
+    },
+    "a0Hcw00000AX2TVEA1": {
+      "title": "Senior Quality Assurance Engineer",
+      "location": "Portage, MI",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000AX2TVEA1/senior-quality-assurance-engineer",
+      "posted_at": "Oct 15, 2026",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "technical_review",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:19:27-05:00",
+      "last_seen_at": "2026-10-18T14:19:27-05:00"
+    },
+    "a0Hcw00000AQozVEAT": {
+      "title": "Senior Process Engineer",
+      "location": "Kalamazoo, MI",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000AQozVEAT/senior-process-engineer",
+      "posted_at": "Oct 15, 2026",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "technical_review",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-18T14:19:27-05:00",
+      "last_seen_at": "2026-10-18T14:19:27-05:00"
+    }
+  }
 }

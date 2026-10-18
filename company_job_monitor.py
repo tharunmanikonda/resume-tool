@@ -9,7 +9,7 @@ from dataclasses import asdict
 from datetime import datetime
 from pathlib import Path
 
-from tracked_company_job_filter import classify_company_job, prefilter_company_job
+from tracked_company_job_filter import FILTER_VERSION, classify_company_job, prefilter_company_job
 
 
 ROOT = Path(__file__).resolve().parent
@@ -65,6 +65,22 @@ def _write_json_atomic(path: Path, value: dict) -> None:
     temporary.replace(path)
 
 
+def _rejection_summary(job: dict, stage: str) -> dict:
+    result = job.get("prefilter") if stage == "prefilter" else job.get("filter")
+    return {
+        "external_job_id": job.get("external_job_id"),
+        "title": job.get("title"),
+        "location": job.get("location"),
+        "posted_at": job.get("posted_at"),
+        "url": job.get("url"),
+        "stage": stage,
+        "category": (result or {}).get("category", "other"),
+        "score": (result or {}).get("score", 0),
+        "blockers": (result or {}).get("blockers", []),
+        "reasons": (result or {}).get("reasons", []),
+    }
+
+
 def run_company_scan(
     company: str,
     state_path: Path | None = None,
@@ -77,14 +93,26 @@ def run_company_scan(
     state_path = state_path or default_state_path(company)
     state = json.loads(state_path.read_text()) if state_path.exists() else {}
     known_ids = {str(value) for value in state.get("known_job_ids", [])}
+    rules_changed = int(state.get("filter_version") or 0) != FILTER_VERSION
+    # Keep each source's normal newest-first stopping boundary during a rules
+    # migration. Known jobs returned inside that bounded window are rechecked
+    # below without forcing a full historical catalog download.
     listings = fetch_listings(company, known_ids)
     if not listings:
         raise RuntimeError(f"{company.title()} returned no listings; state was not changed.")
 
+    candidate_ids = {str(value) for value in state.get("candidate_catalog", {})}
     unseen = [job for job in listings if str(job.get("external_job_id") or "") not in known_ids]
+    recheck = [
+        job for job in listings
+        if rules_changed
+        and str(job.get("external_job_id") or "") in known_ids
+        and str(job.get("external_job_id") or "") not in candidate_ids
+    ]
+    jobs_to_evaluate = [*unseen, *recheck]
     survivors = []
     prefilter_rejections = []
-    for job in unseen:
+    for job in jobs_to_evaluate:
         result = prefilter_company_job(job)
         enriched = {**job, "prefilter": asdict(result)}
         (survivors if result.decision == "needs_detail" else prefilter_rejections).append(enriched)
@@ -119,24 +147,51 @@ def run_company_scan(
             str(job.get("external_job_id")) for job in listings if job.get("external_job_id")
         }
         candidate_catalog = dict(state.get("candidate_catalog", {}))
+        rejected_catalog = dict(state.get("rejected_catalog", {}))
         for job in [*candidates, *needs_ai_review]:
             external_id = str(job.get("external_job_id") or "")
             if external_id:
+                previous = candidate_catalog.get(external_id, {})
                 candidate_catalog[external_id] = {
                     "title": job.get("title"),
                     "location": job.get("location"),
                     "url": job.get("url"),
                     "posted_at": job.get("posted_at"),
-                    "first_seen_at": timestamp,
+                    "first_seen_at": previous.get("first_seen_at", timestamp),
                     "priority": job.get("filter", {}).get("priority"),
                     "category": job.get("filter", {}).get("category"),
                 }
+                rejected_catalog.pop(external_id, None)
+        rejected_jobs = [
+            *[(job, "prefilter") for job in prefilter_rejections],
+            *[(job, "detail") for job in filtered_after_detail],
+        ]
+        for job, stage in rejected_jobs:
+            external_id = str(job.get("external_job_id") or "")
+            if not external_id:
+                continue
+            result = job.get("prefilter") if stage == "prefilter" else job.get("filter")
+            previous = rejected_catalog.get(external_id, {})
+            rejected_catalog[external_id] = {
+                "title": job.get("title"),
+                "location": job.get("location"),
+                "url": job.get("url"),
+                "posted_at": job.get("posted_at"),
+                "stage": stage,
+                "blockers": (result or {}).get("blockers", []),
+                "category": (result or {}).get("category", "other"),
+                "filter_version": FILTER_VERSION,
+                "first_seen_at": previous.get("first_seen_at", timestamp),
+                "last_seen_at": timestamp,
+            }
         compact_state = {key: value for key, value in state.items() if key != "catalog"}
         _write_json_atomic(state_path, {
             **compact_state,
             "company": company,
+            "filter_version": FILTER_VERSION,
             "known_job_ids": sorted(all_ids),
             "candidate_catalog": candidate_catalog,
+            "rejected_catalog": rejected_catalog,
             "last_successful_scan_at": timestamp,
         })
 
@@ -149,12 +204,17 @@ def run_company_scan(
         "scanned_at": timestamp,
         "fetched": len(listings),
         "unseen": len(unseen),
+        "rechecked_after_filter_change": len(recheck),
+        "filter_version": FILTER_VERSION,
+        "filter_rules_changed": rules_changed,
         "prefilter_survivors": len(survivors),
         "detail_pages_fetched": len(details),
         "candidates": candidates,
         "needs_ai_review": needs_ai_review,
         "filtered_before_detail": len(prefilter_rejections),
         "filtered_after_detail": len(filtered_after_detail),
+        "prefilter_rejections": [_rejection_summary(job, "prefilter") for job in prefilter_rejections],
+        "detail_rejections": [_rejection_summary(job, "detail") for job in filtered_after_detail],
         "errors": errors,
         "state_updated": not dry_run and not errors,
         "ai_calls": 0,

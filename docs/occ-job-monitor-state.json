@@ -77,7 +77,8 @@
     "REQ-4886",
     "REQ-4887",
     "REQ-4888",
-    "REQ-4889"
+    "REQ-4889",
+    "REQ-4896"
   ],
   "candidate_catalog": {
     "REQ-4807": {
@@ -90,5 +91,5 @@
       "category": "qa"
     }
   },
-  "last_successful_scan_at": "2026-10-15T09:58:04-05:00"
+  "last_successful_scan_at": "2026-10-17T20:25:59-05:00"
 }

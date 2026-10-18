@@ -48,8 +48,24 @@ def test_prefilter_keeps_target_application_roles():
         "Systems Integration Engineer",
         "Release Engineer",
         "Debug Technician",
+        "Systems Support Developer",
+        "Business Systems Analyst",
+        "System Verification Engineer",
+        "Automation Engineer",
+        "Senior Information Security Analyst",
+        "Agent Evaluation Engineer",
     ]
     assert all(prefilter_tesla_job(job(title)).decision == "needs_detail" for title in titles)
+
+
+def test_ambiguous_systems_role_is_rejected_after_hardware_details():
+    result = classify_tesla_job(job(
+        "System Verification Engineer",
+        requirements="2+ years performing RTL simulation and PCB design with oscilloscopes and multimeters.",
+    ))
+
+    assert result.decision == "filtered_out"
+    assert "non_software_engineering_role" in result.blockers
 
 
 def test_hardware_debug_technician_is_rejected():

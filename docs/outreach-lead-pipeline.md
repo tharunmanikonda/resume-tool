@@ -816,6 +816,103 @@ integration, evaluation, and implementation experience.
 3-4 business days with a specific workflow observation or small product idea;
 then mark the contact `No response` rather than continuing a sequence.
 
+## 2026-10-18 Contact-First Leads
+
+Today's pass focuses on five fresh US small-company targets with concrete
+product or hiring signals and a named person or company LinkedIn route. No
+messages were sent automatically.
+
+| Company | Website | Company LinkedIn | Company X | Score | Contact | Role | Contact LinkedIn | Contact X | Contact Email | Contact Route | Status | Notes |
+| --- | --- | --- | --- | ---: | --- | --- | --- | --- | --- | --- | --- | --- |
+| ThirdAI Automation | https://www.thirdaiautomation.com/ | https://www.linkedin.com/company/thirdai-automation/ |  | 24/25 | Sainyam Galhotra | Co-founder / AI reliability and product route | https://www.linkedin.com/in/sainyam |  |  | LinkedIn DM | Ready to send | 2-10, San Francisco. Builds agentic root-cause analysis and knowledge-mining systems for industrial operations; recent hiring and funding signals point to active product development. |
+| Cooper Technology LLC | https://coopertechnology.com | https://www.linkedin.com/company/cooper-technology-llc |  | 23/25 | Mikael Weiss | Full-stack developer / technical team route | https://www.linkedin.com/in/mikael-weiss |  |  | LinkedIn DM; company hiring post | Ready to send | 2-10, Burley, Idaho. Recently highlighted a Full Stack Engineer opening for software connected to batching, material handling, and plant operations; unusually direct fit for ownership across software and real-world workflows. |
+| docAnalyzer.ai | https://docanalyzer.ai | https://www.linkedin.com/company/docanalyzer |  | 22/25 | Victoria Aleksanyan | Product / company route | https://uk.linkedin.com/in/victoria-aleksanyan-53a44218 |  |  | LinkedIn DM; company page | Ready to send | 2-10, Staten Island, New York. Recently rebuilt from document chat into an agentic workspace that produces reusable PDFs, Word files, spreadsheets, slides, and charts from source material. |
+| DecryptCode Inc | https://www.decryptcode.com | https://www.linkedin.com/company/decryptcode-inc |  | 21/25 | Johnathan Parker | Technical team route |  |  |  | Company LinkedIn; named employee route | Ready to send | 2-10, White Plains, New York. AI engineering firm focused on production agents, RAG, voice AI, document intelligence, and workflow automation; recent post emphasizes shipping reliable AI rather than demos. |
+| Opportunity AI | https://opportunityai.co/ | https://www.linkedin.com/company/opportunityaico |  | 20/25 | Eric Hillerbrand | Company / product route |  |  |  | Company LinkedIn; named employee route | Ready to send | 11-50, Evanston, Illinois. FoodSMARTS applies predictive and generative AI to demand planning, procurement, category management, and revenue decisions in food service. |
+
+### 2026-10-18 Outreach Queue
+
+These are ready to send manually. They ask for a short conversation about a
+real workflow or product need, not a job application.
+
+| Priority | Contact | Company | Route | Status | First-touch message |
+| ---: | --- | --- | --- | --- | --- |
+| 1 | Sainyam Galhotra | ThirdAI Automation | LinkedIn DM | Ready to send | Hi Sainyam, ThirdAI's focus on agentic root-cause analysis and knowledge mining for industrial operations stood out to me. I've been building full-stack AI workflows around tool integrations, documents, browser automation, and evaluation/review loops. I’d be interested in how you’re making agent traces useful to operators, not just technically impressive. Would you be open to a short conversation about the product and engineering challenges you’re solving? |
+| 2 | Mikael Weiss | Cooper Technology | LinkedIn DM | Ready to send | Hi Mikael, I saw Cooper’s recent Full Stack Engineer post and the connection between software, plant controls, batching, and material handling. I like that kind of work where a product has to survive real operational constraints. My recent work combines full-stack development with browser, document, and workflow automation. Would you be open to a short conversation about what the team is building around Command and the SaaS side? |
+| 3 | Victoria Aleksanyan | docAnalyzer.ai | LinkedIn DM | Ready to send | Hi Victoria, docAnalyzer’s shift from “chat with documents” to reusable files and agentic workflows caught my attention. I’ve been building document/PDF processing, structured outputs, tool integrations, and human-review flows, so the step from an answer to a dependable deliverable is especially interesting to me. Would you be open to a short conversation about the workflows users are asking for next? |
+| 4 | Johnathan Parker | DecryptCode Inc | Company LinkedIn; address to Johnathan | Ready to send | Hi Johnathan, DecryptCode’s focus on production-ready agents, RAG, voice AI, and document intelligence really caught my attention. I’ve been building full-stack automation around documents, browser workflows, tool integrations, and reviewable AI outputs. The last mile between a promising prototype and something a client can trust is the part I enjoy most. Would you be open to a short conversation about the systems your team is shipping? |
+| 5 | Eric Hillerbrand | Opportunity AI | Company LinkedIn; address to Eric | Ready to send | Hi Eric, Opportunity AI’s FoodSMARTS work stood out because it connects AI to concrete food-service decisions like demand planning, procurement, and category management. I build workflow automation that turns messy inputs into structured, reviewable actions, including document and API integrations. Would you be open to a short conversation about where the product is seeing the most implementation friction right now? |
+
+**Follow-up rule:** If there is no response, send one useful follow-up after
+3-4 business days with a specific workflow observation or small product idea;
+then mark the contact `No response` rather than continuing a sequence.
+
+## 2026-10-17 Contact-First Leads
+
+Today's pass prioritizes five fresh US-based targets with visible operating
+signals, named technical or leadership routes, and a realistic conversation
+angle. No YC companies are included. These are conversation targets, not
+job-board applications.
+
+| Company | Website | Company LinkedIn | Company X | Score | Contact | Role | Contact LinkedIn | Contact X | Contact Email | Contact Route | Status | Notes |
+| --- | --- | --- | --- | ---: | --- | --- | --- | --- | --- | --- | --- | --- |
+| ShooflyAI | https://shooflyai.com/ | https://www.linkedin.com/company/shooflyai |  | 24/25 | Jonathan Hessing | Managing Partner / technical operator | https://www.linkedin.com/in/jonathanhessing |  |  | LinkedIn DM | Ready to send | 2-10, Cumming, Georgia. Recent activity reports 11,100 agent runs, 47,600 tool actions, 97.8% completion, 253 coached runs, and 214 meeting summaries across the team's own Slack workflows. |
+| AidiN Health | https://www.aidin.health | https://www.linkedin.com/company/aidin-health |  | 23/25 | Trent McCallson | Founder / healthcare-operations operator | https://www.linkedin.com/in/trent-mccallson |  |  | LinkedIn DM | Ready to send | 2-10, Las Vegas. Builds AI-supported laboratory order qualification and payer-aligned documentation; recent posts focus on missing information, ICD-10 errors, medical necessity, validation, and preventing revenue-cycle rework. |
+| LunateAI | http://www.lunateai.com | https://www.linkedin.com/company/lunateai |  | 22/25 | Marge Cole | Senior engineer / business-development operator | https://www.linkedin.com/in/marge-cole-engit |  |  | LinkedIn DM | Ready to send | 2-10, Washington, DC. Guides AI-first startups, government agencies, and enterprises through geospatial and Earth-observation workflows; recent activity covers GeoAI, digital twins, risk analytics, and production-ready AI strategy. |
+| Workflow AI Suite | https://workflowaisuite.com/ | https://www.linkedin.com/company/workflow-ai-suite |  | 21/25 | Liam Dean | AI workflow operator | https://www.linkedin.com/in/liam-dean-6bb337173 |  |  | LinkedIn DM | Ready to send | 2-10, New York City. Founded in 2026; fresh posts cover AI operations management, business rules, human oversight, invoice processing, customer-request routing, client onboarding, and workflow-security risks. |
+| AITLAS | https://www.aitlas.us | https://www.linkedin.com/company/aitlas-us |  | 20/25 | Abhishek Chaudhary | AI agent and automation developer | https://in.linkedin.com/in/abhishekchaudhary004 |  |  | LinkedIn DM or company page | Ready to send | 2-10, Cedar Park, Texas, with a distributed delivery team. Recent product activity includes an AI assistant and an AI HR agent connected to documents, CRM, recruitment, customer support, and business workflows. |
+
+### 2026-10-17 Outreach Queue
+
+These are the five actions for today. Each message uses a concrete company
+signal and connects it to Tharun's full-stack automation, browser/tool
+integrations, documents, structured outputs, and human-review workflow work.
+
+| Priority | Contact | Company | Route | Status | First-touch message |
+| ---: | --- | --- | --- | --- | --- |
+| 1 | Jonathan Hessing | ShooflyAI | LinkedIn DM | Ready to send | Hi Jonathan, your recent breakdown of Shoofly’s internal agent usage really stood out: 11,100 runs, 47,600 tool actions, 97.8% completing without an error, and humans coaching agents directly inside Slack. I’ve been building browser/tool automation, document workflows, structured outputs, and human-in-the-loop evaluation, so the wiring and feedback layer behind those numbers is exactly the kind of problem I enjoy. Would you be open to a short conversation about what you’re building next? |
+| 2 | Trent McCallson | AidiN Health | LinkedIn DM | Ready to send | Hi Trent, your point that AI should not accelerate an undisciplined healthcare process really resonated with me. I saw AidiN’s work around missing lab-order information, ICD-10 errors, medical-necessity documentation, and payer-aligned validation. I’ve been building document/PDF processing, structured extraction, workflow automation, and human review, so the challenge of turning messy inputs into a defensible next action feels very close to my work. Would you be open to a short conversation? |
+| 3 | Marge Cole | LunateAI | LinkedIn DM | Ready to send | Hi Marge, I saw LunateAI’s recent discussion of the Geo/AI shift across AI-first startups, government data, and production-ready enterprise solutions. I’ve been building full-stack workflows around documents, structured data, browser/tool integrations, and evaluation loops, so the challenge of making complex authoritative data useful without losing trust is especially interesting to me. Would you be open to a short conversation about the systems your team is implementing? |
+| 4 | Liam Dean | Workflow AI Suite | LinkedIn DM | Ready to send | Hi Liam, your recent post about AI operations needing business rules and human oversight, rather than blind automation, caught my attention. I’ve been building browser, email, document, and API workflows with structured outputs and review steps, so the practical layer behind invoice routing, client onboarding, and customer-request workflows is very familiar. Would you be open to a short conversation about the workflow systems you’re building? |
+| 5 | Abhishek Chaudhary | AITLAS | LinkedIn DM or company page | Ready to send | Hi Abhishek, I saw AITLAS’s recent AI assistant and HR-agent work across documents, recruitment, CRM, and business workflows. I’ve been building full-stack automation around browser actions, documents, email, tool integrations, and human review, so I’m interested in how you make these agents dependable across different customer systems instead of leaving them as isolated demos. Would you be open to a short conversation about the engineering challenges you’re seeing? |
+
+**Follow-up rule:** If there is no response, send one useful follow-up after
+3-4 business days with a specific workflow observation or small product idea;
+then mark the contact `No response` rather than continuing a sequence.
+
+## 2026-10-16 Contact-First Leads
+
+Today's pass prioritizes five fresh US-based companies with named founders or
+operators, concrete workflow signals, and a realistic path to a conversation.
+No YC companies are included. These are conversation targets, not job-board
+applications.
+
+| Company | Website | Company LinkedIn | Company X | Score | Contact | Role | Contact LinkedIn | Contact X | Contact Email | Contact Route | Status | Notes |
+| --- | --- | --- | --- | ---: | --- | --- | --- | --- | --- | --- | --- | --- |
+| Harbor Labs AI | https://harborlabsai.com/ | https://www.linkedin.com/company/harbor-labs-ai |  | 24/25 | Jeremy Braddock | Co-founder / customer-workflow route |  |  |  | Company website or LinkedIn page, address Jeremy | Ready to send | 2-10, Boston/New England. Founder-built AI front desks, websites, and automations; current site offers a five-client founding program with a 14-day launch guarantee and describes the founders personally tuning each system. |
+| Transcendent Software | https://transcendentsoftware.com | https://www.linkedin.com/company/transcendent-software |  | 24/25 | Jake Dubin | Founder / technical operator | https://www.linkedin.com/in/jakedubin |  |  | LinkedIn DM | Ready to send | 2-10, Lee's Summit, Missouri. Recent site relaunch highlights AI workflow automation, systems integration, custom software, and CoffeeBreakAI, a multi-agent developer workflow with GitHub, Azure DevOps, Jira, CI/CD, structured results, and human approval. |
+| Operum AI | https://operum.ai | https://www.linkedin.com/company/operum-ai |  | 23/25 | Olga Primak | Founder and product operator | https://www.linkedin.com/in/olga-primak |  |  | LinkedIn DM | Ready to send | 2-10, Lithia/Tampa, Florida. Builds an AI team for nontechnical founders; recent founder posts show PM, engineering, tester, marketing, and community agents coordinating real product work with explicit human review and task handoffs. |
+| Anchor AI | https://getanchorai.com/ | https://www.linkedin.com/company/getanchorai |  | 22/25 | Beckey Gallamore | Co-founder / implementation route | https://www.linkedin.com/in/beckeygallamore |  |  | LinkedIn DM | Ready to send | 2-10, Orlando. Implements practical AI systems for service businesses, backed by Argus monitoring; recent posts describe cleaning-company workflows for intake, job cards, crew notes, reschedules, supply tracking, and invoice follow-up. |
+| ideaNova Co. | https://ideanova.co/ | https://www.linkedin.com/company/ideanova-co |  | 21/25 | Nabila Rahman | Product and automation operator | https://www.linkedin.com/in/nabilar |  |  | LinkedIn DM | Ready to send | 2-10, Austin. Product-management, web/mobile/API, UX, and AI workflow consultancy; recent Austin Tech Week activity discusses agentic coding, AI-assisted product development, and using AI for critical feedback grounded in real product data. |
+
+### 2026-10-16 Outreach Queue
+
+These are the five actions for today. Each message uses a specific company
+signal and connects it to Tharun's full-stack automation, browser/tool
+integrations, documents, structured outputs, and human-review workflow work.
+
+| Priority | Contact | Company | Route | Status | First-touch message |
+| ---: | --- | --- | --- | --- | --- |
+| 1 | Jeremy Braddock | Harbor Labs AI | Company website or LinkedIn page, address Jeremy | Ready to send | Hi Jeremy, I saw Harbor’s founding-client program and the promise that the founders personally build, tune, and support each AI front desk. I’ve been building full-stack automation around browser actions, email and document workflows, integrations, and human review, so the practical work of making an AI system reliable inside a real service business is exactly what interests me. Would you be open to a short conversation about the systems Harbor is building for its first clients? |
+| 2 | Jake Dubin | Transcendent Software | LinkedIn DM | Ready to send | Hi Jake, I came across CoffeeBreakAI and liked the focus on coordinating specialized agents across GitHub, Azure DevOps, Jira, and CI/CD while keeping structured results and human approval in the loop. I’ve been building browser/tool automation, document workflows, MCP-style integrations, and evaluation paths, so that developer-workflow layer is especially relevant to my work. Would you be open to a short conversation about what you’re building next? |
+| 3 | Olga Primak | Operum AI | LinkedIn DM | Ready to send | Hi Olga, your description of Operum’s agents creating a task list for the founder, explaining credentials and configuration steps, and continuing only after human approval really stood out to me. I’ve been building full-stack automation, structured agent handoffs, browser/tool integrations, and review workflows, so I’m interested in the product decisions behind making an AI team useful without removing the founder’s judgment. Would you be open to a short conversation? |
+| 4 | Beckey Gallamore | Anchor AI | LinkedIn DM | Ready to send | Hi Beckey, I saw Anchor AI’s concrete examples for cleaning companies: turning inquiries into job cards, summarizing crew notes, tracking reschedules and supplies, and prompting invoice follow-up. I’ve been building document, email, browser, and API automation with human escalation paths, so the opportunity to fit AI into the workflow a business already uses is very close to my work. Would you be open to a short conversation about the implementations you’re prioritizing? |
+| 5 | Nabila Rahman | ideaNova Co. | LinkedIn DM | Ready to send | Hi Nabila, I saw ideaNova’s recent Austin Tech Week activity and the focus on human-centered product work, AI-assisted development, and using AI for feedback grounded in what a product has actually learned. I’ve been building full-stack automation with structured outputs, browser/tool integrations, documents, and evaluation loops, so I’m interested in how you’re bringing AI into real product strategy and delivery. Would you be open to a short conversation? |
+
+**Follow-up rule:** If there is no response, send one useful follow-up after
+3-4 business days with a specific workflow observation or small product idea;
+then mark the contact `No response` rather than continuing a sequence.
+
 ## 2026-10-15 Contact-First Leads
 
 Today's pass prioritizes five fresh US-based companies with unusually clear

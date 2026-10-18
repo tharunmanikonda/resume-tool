@@ -26,8 +26,46 @@ def test_broader_software_titles_are_supported():
         "Release Engineer",
         "Software Test Engineer",
         "Debug Technician",
+        "Systems Support Developer",
+        "Application Support Developer",
+        "Production Support Developer",
+        "Business Systems Analyst",
+        "System Verification Engineer",
+        "Automation Engineer",
+        "Senior Information Security Analyst",
+        "Agent Evaluation and Self-Improvement Engineer",
+        "Sr Engineer AS400 Developer",
     ):
         assert prefilter_company_job(job(title=title)).decision == "needs_detail"
+
+
+def test_systems_support_developer_reaches_description_review():
+    result = classify_company_job(job(
+        title="Systems Support Developer",
+        description="1-3 years supporting Linux systems with shell scripting, SQL, Python automation, and production incident management.",
+    ))
+
+    assert result.decision == "needs_review"
+    assert result.category == "support_development"
+
+
+def test_ambiguous_automation_and_systems_titles_reject_hardware_work():
+    for title, description in (
+        ("Automation Engineer", "Program PLC and SCADA controls for conveyors and robotic maintenance."),
+        ("System Verification Engineer", "Perform RTL simulation and PCB design using oscilloscopes and multimeters."),
+    ):
+        result = classify_company_job(job(title=title, description=description))
+        assert result.decision == "filtered_out"
+        assert "non_software_engineering_role" in result.blockers
+
+
+def test_software_automation_engineer_can_qualify():
+    result = classify_company_job(job(
+        title="Automation Engineer",
+        description="3+ years building Python test automation, REST APIs, AWS services, Docker, Kubernetes, and CI/CD pipelines.",
+    ))
+
+    assert result.decision == "candidate"
 
 
 def test_hardware_debug_technician_is_rejected_after_detail_fetch():
