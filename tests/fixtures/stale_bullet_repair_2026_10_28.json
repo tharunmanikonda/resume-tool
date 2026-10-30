@@ -1,0 +1,62 @@
+[
+  {
+    "change": {
+      "target": "bullet",
+      "role_key": "kpmg",
+      "bullet_number": 1,
+      "old_text": "Developed role-based access controls using Spring Security and DB roles, increasing admin auth success rate to 87% while enforcing least-privilege operations.",
+      "replacement": {
+        "measurement": {
+          "kind": "improvement",
+          "value": "87",
+          "unit": "%",
+          "context": "auth success rate",
+          "status": "illustrative_unverified"
+        },
+        "contribution_number": 1,
+        "text": "Developed role-based access controls using Spring Security and database roles, implementing least-privilege rules and increasing admin auth success rate to 87% for secure administrative operations."
+      }
+    },
+    "actual": {
+      "measurement": {
+        "kind": "improvement",
+        "value": "87",
+        "unit": "%",
+        "context": "auth success rate",
+        "status": "illustrative_unverified"
+      },
+      "contribution_number": 1,
+      "text": "Developed role-based access controls using Spring Security and database roles, increasing admin auth success rate to 87% while enforcing least-privilege operations."
+    }
+  },
+  {
+    "change": {
+      "target": "bullet",
+      "role_key": "trigent",
+      "bullet_number": 2,
+      "old_text": "Built enrollment flow UI with client-side validation and API calls, improving sign-up conversion by 12% and lowering form abandonment during checkout.",
+      "replacement": {
+        "measurement": {
+          "kind": "improvement",
+          "value": "12",
+          "unit": "%",
+          "context": "enrollment conversion uplift",
+          "status": "illustrative_unverified"
+        },
+        "contribution_number": 2,
+        "text": "Built enrollment flow UI with client-side validation, resilient API retries and clear error states, improving sign-up conversion by 12% and lowering form abandonment during checkout."
+      }
+    },
+    "actual": {
+      "measurement": {
+        "kind": "improvement",
+        "value": "12",
+        "unit": "%",
+        "context": "enrollment conversion uplift",
+        "status": "illustrative_unverified"
+      },
+      "contribution_number": 2,
+      "text": "Built enrollment flow UI with client-side validation and resilient API calls, improving sign-up conversion by 12% and lowering form abandonment during checkout."
+    }
+  }
+]

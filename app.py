@@ -65,6 +65,16 @@ from resume_document_renderer import (
 from extension_drafts import ActiveDraftTaskError, AuditStaleError, ExtensionDraftStore, normalize_context, normalize_resume_mode, validate_context
 from database import AiStageCache, init_db, session_scope
 import data_center_resume
+from resume_bullet_quality import (
+    ROLE_EVIDENCE_FIELDS, role_evidence, project_characteristics, project_writing_rules,
+    quality_issue_messages, bullet_quality_findings, experience_entry_schema, requirement_link_issues,
+    claim_evidence_issues, role_source_map, pending_confirmation_findings, CONFIRMATION_RE, prepare_experience_draft, resume_body_issues,
+)
+
+from resume_generation_context import PROFILE_CONTEXT_FIELDS, profile_with_resume_context, candidate_generation_context, role_matches, refresh_profile_evidence
+from resume_target_work import target_work_schema, target_work_rules, target_work_issues, target_work_context, jd_source_spans, normalize_target_work
+from resume_measurements import measurement_rules, normalize_number_words, canonical_quantity
+import jd_draft_experiment as jd_experiment
 
 # Configuration
 app = Flask(__name__)
@@ -91,6 +101,7 @@ def load_settings():
     loaded_settings.setdefault("identities", [])
     loaded_settings.setdefault(DEFAULT_IDENTITY_SETTING, "primary")
     loaded_settings.setdefault(ALLOW_CLEARANCE_JOBS_SETTING, False)
+    loaded_settings.setdefault("experimental_jd_drafting", False)
     return loaded_settings
 
 def save_settings(settings_dict):
@@ -177,7 +188,7 @@ ANALYSIS_MODEL = os.getenv("OPENAI_ANALYSIS_MODEL", "gpt-4o-mini")
 RESUME_MODEL = os.getenv("OPENAI_RESUME_MODEL", "gpt-5-mini")
 SYNTHESIS_MODEL = os.getenv("OPENAI_SYNTHESIS_MODEL", "gpt-5.6-luna")
 AUDIT_MODEL = os.getenv("OPENAI_AUDIT_MODEL", "gpt-5.6-luna")
-ANALYSIS_PROMPT_VERSION = os.getenv("OPENAI_ANALYSIS_PROMPT_VERSION", "jd_analysis_v1")
+ANALYSIS_PROMPT_VERSION = os.getenv("OPENAI_ANALYSIS_PROMPT_VERSION", "jd_analysis_v1") + ":target_work_v3_source_spans"
 SYNTHESIS_REASONING_EFFORT = os.getenv("OPENAI_SYNTHESIS_REASONING_EFFORT", "medium")
 AUDIT_REASONING_EFFORT = os.getenv("OPENAI_AUDIT_REASONING_EFFORT", "medium")
 ANALYSIS_TEMPERATURE = 0.2
@@ -216,7 +227,7 @@ EXPERIENCE_BLUEPRINTS = [
         "dates": "",
         "bullet_min": 6,
         "bullet_max": 7,
-        "anchor": "enterprise delivery, applied AI workflows, ingestion and retrieval systems, customer-facing software",
+        "anchor": "",
     },
     {
         "key": "uber",
@@ -225,7 +236,7 @@ EXPERIENCE_BLUEPRINTS = [
         "dates": "",
         "bullet_min": 5,
         "bullet_max": 6,
-        "anchor": "operational tooling, transaction validation, real-time workflows, internal product systems",
+        "anchor": "",
     },
     {
         "key": "kpmg",
@@ -234,7 +245,7 @@ EXPERIENCE_BLUEPRINTS = [
         "dates": "",
         "bullet_min": 5,
         "bullet_max": 5,
-        "anchor": "audit and compliance systems, Java backend services, document processing, reporting workflows",
+        "anchor": "",
     },
     {
         "key": "trigent",
@@ -243,7 +254,7 @@ EXPERIENCE_BLUEPRINTS = [
         "dates": "",
         "bullet_min": 3,
         "bullet_max": 3,
-        "anchor": "frontend engineering, UI migration, responsive web delivery, QA-oriented implementation",
+        "anchor": "",
     },
 ]
 
@@ -254,8 +265,8 @@ TITLE_WORD_MIN = 2
 TITLE_WORD_MAX = 8
 SUMMARY_WORD_MIN = 65
 SUMMARY_WORD_MAX = 95
-EXPERIENCE_BULLET_WORD_MIN = 25
-EXPERIENCE_BULLET_WORD_MAX = 30
+EXPERIENCE_BULLET_WORD_MIN = 18
+EXPERIENCE_BULLET_WORD_MAX = 35
 EXPERIENCE_NUMERIC_EVIDENCE_TARGET = 0.80
 
 ALLOWED_SKILL_CATEGORIES = {
@@ -890,7 +901,7 @@ def internship_profile_snapshot(profile: dict) -> dict:
 
 
 def profile_for_resume_mode(profile: dict | None = None, resume_mode: str = "professional") -> dict:
-    active_profile = copy.deepcopy(profile if isinstance(profile, dict) else current_profile())
+    active_profile = profile_with_resume_context(profile if isinstance(profile, dict) else current_profile(), load_base_resume())
     if is_internship_resume_mode(resume_mode):
         snapshot = internship_profile_snapshot(active_profile)
         snapshot["resume_mode"] = normalize_resume_mode(resume_mode)
@@ -993,6 +1004,8 @@ def ensure_ai_session_state(session: dict) -> dict:
     session.setdefault("advertised_job_title", "")
     session.setdefault("has_manual_resume_edits", False)
     session.setdefault("profile_snapshot", {})
+    if session["profile_snapshot"]:
+        session["profile_snapshot"] = profile_with_resume_context(session["profile_snapshot"], load_base_resume())
     session.setdefault("resume_versions", {})
     session.setdefault("active_resume_version", "")
     if session.get("audit_status") == "failed":
@@ -1625,11 +1638,12 @@ def update_tracker_status_record(application_id: str, status: str, note: str, ef
 
 
 class AIStageError(RuntimeError):
-    def __init__(self, stage: str, message: str, *, analysis: dict | None = None, timing: dict | None = None):
+    def __init__(self, stage: str, message: str, *, analysis: dict | None = None, timing: dict | None = None, validation: bool = False):
         super().__init__(message)
         self.stage = stage
         self.analysis = analysis
         self.timing = timing or {}
+        self.validation = validation
 
 
 def with_output_headroom(base_tokens: int, extra_tokens: int) -> int:
@@ -1860,6 +1874,7 @@ def compact_analysis_for_generation(analysis_payload: dict) -> dict:
         "evidence_terms": compact_list(analysis_payload.get("evidence_terms", []), 8),
         "domain_terms": compact_list(analysis_payload.get("domain_terms", []), 8),
         "system_description": str(analysis_payload.get("system_description", "")).strip(),
+        "target_work": target_work_context(analysis_payload),
         "responsibilities": compact_list(analysis_payload.get("responsibilities", []), 5),
         "workflows": compact_list(analysis_payload.get("workflows", []), 5),
         "skills_mentioned": compact_list(analysis_payload.get("skills_mentioned", []), 20),
@@ -2341,6 +2356,8 @@ def infer_prompt_family_key(role_family: str) -> str:
 
 def normalize_skills_for_order(skills_payload: dict, ordered_categories: list[str]) -> dict:
     normalized = normalize_updated_skills(skills_payload.get("updated_skills", []))
+    for row in normalized:
+        row["items"] = [item for item in row.get("items", []) if str(item).strip().lower() not in {"none", "not applicable", "n/a", "unknown"}]
     allowed_categories = set(ordered_categories)
     by_category = {
         str(entry.get("category", "")).strip(): entry.get("items", [])
@@ -2360,13 +2377,13 @@ def build_ai_analysis_prompt() -> str:
     return "\n".join(
         [
             "You are a resume role analyzer.",
-            "Assume the candidate has 4+ years of experience.",
+            target_work_rules(),
             "Analyze the JD and return a compact role model for downstream resume generation.",
             "Do not mirror the JD or invent unsupported domain expertise.",
             "Rank the job requirements instead of trying to preserve everything equally.",
             "Infer the company context, role family, problem, system, skills and technologies mentioned, and behavioral signals.",
             "Role family must describe the actual job shape, not a generic software-engineer label.",
-            "Prefer precise role-family labels such as: full-stack product engineering, backend application engineering, data engineering, analytics engineering, data science, machine learning engineering, platform engineering, distributed systems engineering, cloud infrastructure engineering, security engineering, application security engineering, cloud security engineering, solutions engineering, implementation engineering, AI application engineering, agentic AI engineering, AI agent engineering, data analyst, business analyst, marketing analyst, product analyst, operations analyst, or GTM engineering.",
+            "Prefer precise role-family labels such as: native application engineering, mobile application engineering, full-stack product engineering, backend application engineering, data engineering, analytics engineering, data science, machine learning engineering, platform engineering, distributed systems engineering, cloud infrastructure engineering, security engineering, application security engineering, cloud security engineering, solutions engineering, implementation engineering, AI application engineering, agentic AI engineering, AI agent engineering, data analyst, business analyst, marketing analyst, product analyst, operations analyst, or GTM engineering.",
             "Choose exactly one generation_route_key from the fixed schema.",
             "The generation route is the single downstream routing decision; do not make separate prompt or skill-category routing decisions.",
             "Use growth_product for product engineers who build activation funnels, experimentation, instrumentation, attribution, lifecycle product infrastructure, or marketplace growth systems with production backend/frontend code.",
@@ -2407,6 +2424,7 @@ def build_ai_resume_prompt(enabled_experience_keys: list[str] | None = None, res
     return "\n".join(
         [
             "You are a resume reconstruction engine.",
+            project_writing_rules(),
             "Your job is to build a realistic, production-level targeted resume aligned to a given job description.",
             "This resume is a targeted fit document, not a full professional biography.",
             "Its job is to help a recruiter quickly see why this candidate is a strong fit and move to the next step.",
@@ -2512,17 +2530,17 @@ def build_ai_resume_prompt(enabled_experience_keys: list[str] | None = None, res
             "",
             "BULLET STRUCTURE (MANDATORY):",
             "Each bullet must follow:",
-            "[Strong Verb] + [System built/optimized] + using [1-3 tools] + under [constraint or engineering decision] + resulting in [grounded measurable impact or a concrete qualitative outcome].",
+            "A specific accomplishment (X), a defined measure (Y), and the actual action that produced it (Z); use natural sentence order.",
             "",
             "Each bullet must include:",
             "- Real system context",
             "- 1-3 tools or relevant technical skills",
             "- At least one:",
-            "  - constraint such as scale, latency, concurrency, failures",
-            "  - or engineering decision such as caching, batching, async, indexing",
+            "  - an implementation change that explains the outcome",
+            "  - or an engineering decision such as caching, batching, async or indexing; no mandatory constraint clause",
             "- Include numerical evidence in at least 80% of bullets within each company",
-            "- Because the profile does not supply work-experience bullets or metrics, draft conservative and interview-defensible estimates for quantifiable accomplishments",
-            "- Prefer modest rounded percentages, counts, time saved, frequency, scale, latency, throughput, adoption, coverage, or reduction figures that fit the role scope and company anchor",
+            "- Missing metrics belong in review metadata; retain supported qualitative accomplishments without placeholders or fabricated results",
+            "- Preserve the original measurement, baseline, scope and time period of each supplied metric",
             "- Never copy a number from the JD and present it as the candidate's result",
             "- Avoid revenue claims, precise financial impact, exact customer counts, or unusually large improvements unless supplied separately as candidate evidence",
             "- Distribute different metrics across distinct accomplishments; do not repeat one number merely to reach the 80% target",
@@ -2535,7 +2553,7 @@ def build_ai_resume_prompt(enabled_experience_keys: list[str] | None = None, res
             "\"Can this apply to 1000 engineers?\"",
             "If yes, rewrite with:",
             "- specific system",
-            "- real constraint",
+            "- an actual implementation decision; include a constraint only if supplied and relevant",
             "- technical decision",
             "",
             "TOOL USAGE RULE:",
@@ -2584,12 +2602,12 @@ def build_ai_resume_prompt(enabled_experience_keys: list[str] | None = None, res
             "SUMMARY AND BULLET IMPACT RULE:",
             "- Focus on accomplishments more than responsibilities",
             "- Include conservative numerical evidence in at least 80% of each company's bullets",
-            "- Treat generated metrics as realistic drafting estimates that the candidate could explain in an interview, not as facts copied from the JD",
+            "- Generated metrics are not evidence; use supplied measurements and report missing measurements outside the resume",
             "- Keep the remaining bullets concrete through outcomes such as reliability, clarity, adoption, maintainability, safer delivery, or reduced manual effort",
             "- Be specific instead of hand-wavy whenever the candidate could realistically defend the detail",
             "- Do not force exact years of experience into the summary unless that count is explicitly grounded by the candidate profile or clearly implied by the fixed timeline",
             "- Prefer a compact positioning summary over a dense stack summary",
-            "- Preserve an explicitly supplied candidate metric exactly; otherwise prefer conservative rounded estimates over suspicious precision",
+            "- Preserve supplied candidate metrics and their meaning exactly; report missing measurements in review metadata, never inside the resume",
             "- Avoid hyper-specific business impact numbers, revenue figures, or scale claims unless they feel strongly defensible from the candidate's role and company context",
             "",
             "HUMANIZATION RULE:",
@@ -2629,7 +2647,7 @@ def build_ai_resume_prompt(enabled_experience_keys: list[str] | None = None, res
             "Do not output validation steps. Only output the final result matching the schema.",
             "",
             "Fixed experience blueprints:",
-            "The blueprint fixes role identity, company, location, dates, bullet count, and broad story anchor. It does not contain prior work bullets or verified achievement metrics.",
+            "The blueprint fixes employment identity and includes supplied source accomplishments where available. Use those sources; a broad anchor is not evidence.",
             "Use the anchor to keep the generated story realistic; do not treat it as proof of a specific tool, responsibility, or result.",
             *blueprint_lines,
         ]
@@ -2663,6 +2681,7 @@ def build_ai_resume_core_prompt(resume_mode: str = "professional") -> str:
             "- Do not dump tools or force exact years unless clearly grounded",
             "- Use nondramatic, recruiter-readable language",
             "- Keep the writing easy to scan in one pass; avoid dense multi-clause phrasing and stacked jargon",
+            "- never write audit commentary about supplied records, missing evidence, verification or what this resume does not contain; state supported professional strengths only",
             "- Match the summary style to the JD family: systems/reliability for platform roles, ownership/delivery for senior backend roles, and customer-facing integration/adoption support for solutions or pre-sales roles",
             "- Align to the company's domain without pretending direct domain specialization when the evidence is only adjacent or transferable",
             "- For customer-facing solutions / FAE / technical pre-sales roles, pivot the summary without pretending the candidate held that exact title historically",
@@ -2911,14 +2930,14 @@ def build_ai_resume_skills_prompt(prompt_family_key: str = "software_engineering
             "- each item must be one concrete tool, platform, language, framework, database, cloud service, enterprise system, or concise capability name",
             "- no explanations, no qualifier text, no mini-sentences",
             "- derive skills from demonstrated work and believable transferable evidence, not just JD wording",
-            "- prefer exact product and technology names over abstract wording whenever the JD supports them",
-            "- include tools explicitly named in the JD first",
+            "- prefer exact product and technology names when candidate evidence supports them and they are relevant to the JD",
+            "- prioritize JD tools only when supported by supplied candidate evidence; do not infer proficiency from the JD",
             "- only keep a JD term when it would still look honest if a recruiter asked where it shows up in the experience",
-            "- include closely related enterprise tools only when they fit the JD's domain, category, and role family",
+            "- include closely related enterprise tools only when supplied candidate evidence supports them",
             "- do not use vague filler like 'data-driven solutions', 'deployment strategies', or 'technical discussions'",
             "- do not add broad software concepts such as software design, system design, event-driven systems, debugging, or stakeholder communication unless the exact phrase appears in the JD or it is clearly needed as a standard skill label",
             "- do not repeat the same concept across categories",
-            "- skip a category only if it is truly irrelevant; otherwise fill it with 2-5 strong items",
+            "- include a category only when at least two relevant candidate-supported items fit it; never return None, Not applicable, padding, or misplaced skills",
             "- each item must read like a real recruiter-searchable skill, not a broken fragment or half sentence",
             "- if an item looks truncated, awkward, abstract, or too descriptive, rewrite it into a clean recruiter-scan term or remove it",
             "- if a domain-specific term is not supported by the candidate story, leave it out instead of forcing coverage",
@@ -3003,6 +3022,7 @@ def build_ai_resume_experience_prompt(prompt_family_key: str = "software_enginee
     return "\n".join(
         [
             "You are a resume reconstruction engine.",
+            project_writing_rules(),
             "Build only the Professional Experience section for a tailored target-fit resume.",
             "Assume the candidate has 3+ years of experience." if is_internship_resume_mode(resume_mode) else "Assume the candidate has 4+ years of experience.",
             "Use the JD analysis as targeting guidance and the existing core resume sections as consistency guidance.",
@@ -3019,7 +3039,7 @@ def build_ai_resume_experience_prompt(prompt_family_key: str = "software_enginee
             "- Valid title example: 'Integration Engineer'",
             "- Preserve natural title phrasing",
             "- Do not rewrite historical titles to imitate the target role family",
-            "- Keep experience titles coherent with the overall career lane, but allow JD-aligned retitling when the bullets credibly support it",
+            "- Keep experience titles coherent with the overall career lane, and preserve supplied historical titles; generated bullets do not authorize retitling",
             "- Bullet count per company must match exactly",
             f"- Each bullet must be {EXPERIENCE_BULLET_WORD_MIN}-{EXPERIENCE_BULLET_WORD_MAX} words",
             "- Recent and relevant roles should do more of the selling",
@@ -3028,14 +3048,14 @@ def build_ai_resume_experience_prompt(prompt_family_key: str = "software_enginee
             *family_rules.get(prompt_family_key, family_rules["software_engineering"]),
             "",
             "BULLET FORMULA:",
-            "[Strong Verb] + [System built/optimized] + using [1-3 tools] + under [constraint or engineering decision] + resulting in [grounded measurable impact or a concrete qualitative outcome].",
+            "A specific accomplishment (X), a defined measure (Y), and the actual action that produced it (Z); use natural sentence order.",
             "",
             "Each bullet must include:",
             "- real system context",
             "- 1-3 tools or relevant technical skills",
-            "- a constraint or engineering decision",
+            "- an implementation mechanism; explain a constraint only when it affected the decision",
             "- conservative numerical evidence in at least 80% of each company's bullets",
-            "- realistic, rounded estimates for quantifiable accomplishments because work-experience metrics are not stored in the profile",
+            "- supplied measurements only; if missing keep the accomplishment qualitative and report the measurement gap in review metadata",
             "- different metrics across distinct accomplishments rather than repeating a number to satisfy the target",
             "- a concrete qualitative outcome only when quantification would be unnatural or misleading",
             "- never borrow a number from the JD or use suspiciously precise, extreme, financial, or exact-customer claims",
@@ -3054,7 +3074,7 @@ def build_ai_resume_experience_prompt(prompt_family_key: str = "software_enginee
             "- Prefer proving a smaller number of important requirements over weakly name-checking many requirements",
             "- If the target role is FAE, solutions engineering, sales engineering, or technical pre-sales, preserve believable engineering titles and shift the bullets toward demos, integrations, troubleshooting, customer communication, and adoption support only where that remains grounded",
             "- Keep each company aligned to its own realistic role family and time period instead of forcing perfect JD symmetry across all roles",
-            "- Preserve supplied candidate metrics exactly; otherwise use modest rounded estimates that remain plausible for the role scope",
+            "- Preserve supplied candidate metrics and their accomplishment exactly; missing metrics belong in review metadata, not resume text",
             "- Avoid revenue, dollar-value, exact-user-count, or very sharp throughput claims unless they are especially well-supported by the candidate's role context",
             "",
             "PROJECT STORY RULE:",
@@ -3085,63 +3105,64 @@ def build_ai_resume_experience_subset_prompt(blueprints: list[dict], prompt_fami
 
     family_rules = {
         "software_engineering": [
-            "- preliminary skills should guide the stack used in bullets; do not invent a different stack from the skills section",
+            "- preliminary skills are targeting suggestions, not proof of candidate experience; use supplied role evidence for historical tools",
         ],
         "data_engineering": [
-            "- preliminary skills should guide the stack used in bullets; prioritize SQL, pipelines, warehousing, orchestration, and data-quality workflows",
+            "- prioritize candidate-supported SQL, pipelines, warehousing, orchestration, and data-quality workflows",
             "- describe systems and impacts in data workflow terms",
         ],
         "data_science": [
-            "- preliminary skills should guide the stack used in bullets; prioritize model development, experimentation, feature work, evaluation, ML platforms, and grounded decision or product impact",
+            "- prioritize candidate-supported model development, experimentation, feature work, evaluation, ML platforms, and grounded decision or product impact",
             "- use ML or data-science framing rather than pipeline-engineering framing unless pipelines are central to the JD",
             "- do not introduce ML libraries or model platforms unless they appear in the JD or preliminary skills",
         ],
         "agentic_ai_engineering": [
-            "- preliminary skills should guide the stack used in bullets; prioritize agent orchestration, LLM APIs, MCP or tool protocols, governance controls, retrieval or memory, evals, tracing, and production reliability",
+            "- prioritize candidate-supported agent orchestration, LLM APIs, MCP or tool protocols, governance controls, retrieval or memory, evals, tracing, and production reliability",
             "- use agentic AI infrastructure framing rather than generic backend or distributed-systems framing",
             "- do not introduce MCP, agent frameworks, vector databases, or governance tools unless they appear in the JD or preliminary skills",
         ],
         "platform_systems": [
-            "- preliminary skills should guide the stack used in bullets; prioritize infrastructure, reliability, observability, scale, and system tradeoffs",
+            "- prioritize candidate-supported infrastructure, reliability, observability, scale, and system tradeoffs",
         ],
         "security_engineering": [
-            "- preliminary skills should guide the stack used in bullets; prioritize security controls, IAM, vulnerability management, cloud security, SIEM or detection, compliance, and incident response",
+            "- prioritize candidate-supported security controls, IAM, vulnerability management, cloud security, SIEM or detection, compliance, and incident response",
             "- use security-engineering framing rather than backend feature-delivery framing",
             "- do not introduce backend frameworks unless they already appear in the JD or preliminary skills",
             "- do not introduce compliance frameworks unless they already appear in the JD or preliminary skills",
         ],
         "analyst_data": [
-            "- preliminary skills should guide the stack used in bullets; prioritize reporting, SQL analysis, dashboards, experimentation, and insight delivery",
+            "- prioritize candidate-supported reporting, SQL analysis, dashboards, experimentation, and insight delivery",
             "- use workflow, stakeholder, and business-impact framing rather than engineering implementation framing when appropriate",
             "- prefer analyst proof points such as reporting adoption, accuracy, time saved, reconciliation, KPI visibility, and decision support impact",
             "- do not introduce named BI or analyst tools in bullets unless the JD or preliminary skills already include them",
         ],
         "analyst_business": [
-            "- preliminary skills should guide the stack used in bullets; prioritize requirements, process analysis, reporting, KPI tracking, and stakeholder communication",
+            "- prioritize candidate-supported requirements, process analysis, reporting, KPI tracking, and stakeholder communication",
             "- use business workflow framing rather than engineering implementation framing when appropriate",
             "- prefer analyst proof points such as UAT, requirements clarity, process-cycle reduction, reporting accuracy, exception handling, and stakeholder alignment",
             "- do not introduce named ERP, WMS, CRM, or enterprise tools in bullets unless the JD or preliminary skills already include them",
         ],
         "analyst_marketing": [
-            "- preliminary skills should guide the stack used in bullets; prioritize campaign reporting, attribution, funnel analysis, experimentation, and growth insights",
+            "- prioritize candidate-supported campaign reporting, attribution, funnel analysis, experimentation, and growth insights",
             "- use marketing workflow framing rather than engineering implementation framing when appropriate",
             "- prefer analyst proof points such as campaign lift, funnel conversion, cohort trends, reporting adoption, and experiment outcomes",
             "- do not introduce named CRM, BI, or marketing platforms in bullets unless the JD or preliminary skills already include them",
         ],
         "gtm_engineering": [
-            "- preliminary skills should guide the stack used in bullets; prioritize CRM workflows, GTM automation, routing, enrichment, outbound systems, reporting, and revops coordination",
+            "- prioritize candidate-supported CRM workflows, GTM automation, routing, enrichment, outbound systems, reporting, and revops coordination",
             "- use GTM workflow framing rather than generic product-engineering language when appropriate",
             "- prefer GTM proof points such as routing accuracy, enrichment coverage, pipeline visibility, campaign or outbound efficiency, adoption, and stakeholder alignment outcomes",
             "- do not introduce named GTM, CRM, sequencing, or enrichment platforms in bullets unless the JD or preliminary skills already include them",
             "- if a named GTM tool is not already present in the JD or preliminary skills, rewrite it as a generic workflow or platform reference instead of adding the tool name",
         ],
         "solutions_customer": [
-            "- preliminary skills should guide the stack used in bullets; prioritize integrations, troubleshooting, customer enablement, and adoption support",
+            "- prioritize candidate-supported integrations, troubleshooting, customer enablement, and adoption support",
         ],
     }
     return "\n".join(
         [
             "You are a resume reconstruction engine.",
+            project_writing_rules(),
             "Build only the Professional Experience entries requested.",
             "Assume the candidate has 3+ years of experience." if is_internship_resume_mode(resume_mode) else "Assume the candidate has 4+ years of experience.",
             "Use the analysis object for target-role guidance, preliminary skills for stack consistency, and blueprint metadata for fixed employment structure.",
@@ -3158,16 +3179,16 @@ def build_ai_resume_experience_subset_prompt(blueprints: list[dict], prompt_fami
             "- invalid title example: 'Company Name | Location | Date Range'",
             "- valid title example: 'Integration Engineer'",
             "- do not rewrite titles to imitate the target role",
-            "- keep experience titles coherent with the overall career lane, but allow JD-aligned retitling when the bullets credibly support it",
+            "- keep experience titles coherent with the overall career lane, and preserve supplied historical titles; generated bullets do not authorize retitling",
             "- recent roles should sell harder than older roles",
             f"- each bullet must be {EXPERIENCE_BULLET_WORD_MIN}-{EXPERIENCE_BULLET_WORD_MAX} words",
             "- prioritize the top_requirements first instead of trying to mention the whole JD",
             "",
             "BULLET DESIGN:",
-            "- the first bullet under each company is a simple summary bullet in plain language",
-            "- the first bullet must be 25-40 words; the ideal range is 25-30 words",
-            "- the first bullet should describe the role and scope clearly without becoming dense",
-            "- do not make the first bullet shorter than 25 words",
+            "- the first bullet under each company is the strongest distinct supported accomplishment in plain language; do not use a summary that repeats later bullets",
+            f"- the first bullet should be {EXPERIENCE_BULLET_WORD_MIN}-{EXPERIENCE_BULLET_WORD_MAX} words; keep only useful, supported details",
+            "- the first bullet should establish context through its distinct accomplishment, without restating the entire role or later results",
+            "- never pad a sentence to a word target with repeated context, vague benefits or unsupported mechanisms",
             "- do not treat the first bullet like a compact fragment; write it as a full accomplishment sentence",
             "- for recent relevant roles, the first two bullets should carry the strongest evidence for the most important JD requirements",
             "- all later bullets should follow:",
@@ -3176,14 +3197,14 @@ def build_ai_resume_experience_subset_prompt(blueprints: list[dict], prompt_fami
             "  - Why: why it mattered or what changed",
             "",
             "BULLET FORMULA:",
-            "[Strong Verb] + [System or workflow] + using [1-3 tools] + under [constraint or engineering decision] + resulting in [grounded measurable impact or a concrete qualitative outcome].",
+            "A specific accomplishment (X), a defined measure (Y), and the actual action that produced it (Z); use natural sentence order.",
             "",
             "Each bullet must include:",
             "- real system or workflow context",
-            "- 1-3 tools or technical skills from the preliminary skills or supporting stack",
-            "- a constraint or engineering decision",
+            "- relevant tools from candidate evidence; preliminary skills alone do not authorize a historical tool claim",
+            "- an implementation mechanism; explain a constraint only when it affected the decision",
             "- conservative numerical evidence in at least 80% of each company's bullets",
-            "- realistic, rounded estimates for quantifiable accomplishments because work-experience metrics are not stored in the profile",
+            "- supplied measurements only; if missing keep the accomplishment qualitative and report the measurement gap in review metadata",
             "- different metrics across distinct accomplishments rather than repeating a number to satisfy the target",
             "- a concrete qualitative outcome only when quantification would be unnatural or misleading",
             "- never borrow a number from the JD or use suspiciously precise, extreme, financial, or exact-customer claims",
@@ -3199,7 +3220,7 @@ def build_ai_resume_experience_subset_prompt(blueprints: list[dict], prompt_fami
             "- prefer proving fewer important requirements strongly over loosely name-checking many requirements",
             "",
             "Keep each company as one coherent project story.",
-            "Preserve explicitly supplied candidate metrics exactly; otherwise use conservative rounded estimates for quantifiable outcomes.",
+            "Preserve supplied metrics and their meaning exactly. Missing metrics belong in review metadata; resume bullets must not contain placeholders or invented numbers.",
             "Keep company sections realistic to their role family and time period.",
             "",
             "Fixed experience blueprints:",
@@ -3341,9 +3362,9 @@ def build_ai_core_correction_prompt() -> str:
             "Make the writing sound human and recruiter-natural, not optimized or assembled.",
             "Break up dense phrasing, remove stacked jargon, and rewrite truncated skill items into clean terms.",
             "Review experience titles together as one career story.",
-            "Experience titles may differ, but they must stay in the same semantic lane for the detected role family.",
+            "Historical experience titles must match the supplied active blueprint default_title exactly; do not rename jobs to the target role.",
             "Avoid abrupt lane switching across companies unless the bullet context clearly forces it.",
-            "Top resume title and experience titles should support the same overall career narrative.",
+            "Use the top headline for target positioning; preserve historical titles even when they differ from the target role.",
             "Do not rewrite experience bullets, company names, locations, or dates.",
             "Return only the final result matching the schema.",
         ]
@@ -3374,15 +3395,18 @@ def build_ai_final_synthesis_prompt(resume_mode: str = "professional") -> str:
     return "\n".join(
         [
             "You perform the final synthesis for a tailored resume after all experience bullets have been generated.",
+            measurement_rules(),
             "Use the raw job description and JD analysis as targeting context, preliminary skills for stack consistency, complete generated experience for the candidate narrative, and active blueprint metadata for fixed employment structure.",
-            "Return a top resume title, summary, final skills, and one coherent work title for every active stable role key.",
+            "Return a top resume title, summary, final skills, and each original historical work title for every active stable role key.",
+            "Never promote confirmation-marked project proposals or missing metric slots into factual summary or skill claims. Keep the summary limited to supplied work and strengths. Evidence gaps belong only in separate review notes, never in the summary.",
             "",
             *resume_mode_prompt_lines(resume_mode),
             "",
             *resume_word_count_prompt_rules(),
             "SUMMARY:",
             "- write in a simple, natural human tone",
-            "- ground every claim in the generated experience bullets or separately supplied candidate-profile evidence",
+            "- write only professional candidate positioning grounded in supplied work; never discuss supplied records, missing evidence, verification, or what this resume does not contain; those belong in review notes",
+            "- ground every factual claim in supplied role sources; generated bullets and preliminary skills are fallible drafts, not evidence",
             "- transferable capabilities may be discussed when the experience demonstrates them",
             "- treat a vertical or domain named by the JD as target context, not proof that the candidate previously worked in it",
             "- never claim prior experience, expertise, ownership, or results in a JD vertical or domain merely because the JD mentions it",
@@ -3391,14 +3415,14 @@ def build_ai_final_synthesis_prompt(resume_mode: str = "professional") -> str:
             "",
             "TOP TITLE AND WORK TITLES:",
             "- use standard market titles containing only role-title text",
-            "- make all work titles read as one coherent career family and believable hierarchy across the fixed dates",
+            "- return each historical work title exactly as supplied in active blueprint default_title; target positioning belongs in the top headline",
             "- align emphasis toward the target role without rewriting history into unrelated role families",
             "- preserve believable seniority progression and the technical or functional lane proven by each role's bullets",
             "- do not include companies, locations, dates, separators, or explanatory text in a title",
             "",
             "FINAL SKILLS:",
             "- use only the supplied categories and return them in the exact supplied category order",
-            "- ground skills in the generated experience and preliminary skills; JD wording alone is not evidence",
+            "- include only skills supported by supplied role sources; exclude proposed or confirmation-marked claims and never infer skills from the JD alone",
             "- keep concrete recruiter-searchable tools and capabilities, with at least two items per included category",
             "- do not introduce unsupported named tools, platforms, or domain expertise",
             "",
@@ -3412,7 +3436,7 @@ def build_ai_final_synthesis_prompt(resume_mode: str = "professional") -> str:
     )
 
 
-def ai_analysis_schema() -> dict:
+def ai_analysis_schema(job_description=None) -> dict:
     return {
         "type": "object",
         "additionalProperties": False,
@@ -3423,6 +3447,7 @@ def ai_analysis_schema() -> dict:
             "culture_signals": {"type": "array", "items": {"type": "string"}},
             "target_role": {"type": "string"},
             "role_family": {"type": "string"},
+            "target_work": target_work_schema(job_description),
             "generation_route_key": {"type": "string", "enum": sorted(GENERATION_ROUTE_CONFIG.keys())},
             "core_problem": {"type": "string"},
             "hire_problem": {"type": "string"},
@@ -3445,6 +3470,7 @@ def ai_analysis_schema() -> dict:
             "culture_signals",
             "target_role",
             "role_family",
+            "target_work",
             "generation_route_key",
             "core_problem",
             "hire_problem",
@@ -3463,7 +3489,7 @@ def ai_analysis_schema() -> dict:
     }
 
 
-def ai_resume_schema(blueprints: list[dict] | None = None) -> dict:
+def ai_resume_schema(blueprints: list[dict] | None = None, analysis: dict | None = None) -> dict:
     allowed_skill_categories = sorted(ALLOWED_SKILL_CATEGORIES)
     skill_item_schema = {
         "type": "string",
@@ -3475,20 +3501,7 @@ def ai_resume_schema(blueprints: list[dict] | None = None) -> dict:
     experience_properties = {}
     required_experience_keys = []
     for blueprint in blueprints:
-        experience_properties[blueprint["key"]] = {
-            "type": "object",
-            "additionalProperties": False,
-            "properties": {
-                "title": {"type": "string"},
-                "bullets": {
-                    "type": "array",
-                    "items": {"type": "string"},
-                    "minItems": blueprint["bullet_min"],
-                    "maxItems": blueprint["bullet_max"],
-                },
-            },
-            "required": ["title", "bullets"],
-        }
+        experience_properties[blueprint["key"]] = experience_entry_schema(blueprint, analysis)
         required_experience_keys.append(blueprint["key"])
 
     return {
@@ -3499,7 +3512,7 @@ def ai_resume_schema(blueprints: list[dict] | None = None) -> dict:
             "updated_summary": {"type": "string"},
             "updated_skills": {
                 "type": "array",
-                "minItems": 6,
+                "minItems": 0,
                 "items": {
                     "type": "object",
                     "additionalProperties": False,
@@ -3541,7 +3554,7 @@ def ai_resume_core_schema() -> dict:
             "updated_summary": {"type": "string"},
             "updated_skills": {
                 "type": "array",
-                "minItems": 6,
+                "minItems": 0,
                 "items": {
                     "type": "object",
                     "additionalProperties": False,
@@ -3587,7 +3600,7 @@ def ai_skills_schema(allowed_skill_categories: list[str] | None = None) -> dict:
         "properties": {
             "updated_skills": {
                 "type": "array",
-                "minItems": min(6, len(allowed_skill_categories)),
+                "minItems": 0,
                 "maxItems": len(allowed_skill_categories),
                 "items": {
                     "type": "object",
@@ -3604,25 +3617,12 @@ def ai_skills_schema(allowed_skill_categories: list[str] | None = None) -> dict:
     }
 
 
-def ai_experience_schema(blueprints: list[dict] | None = None) -> dict:
+def ai_experience_schema(blueprints: list[dict] | None = None, analysis: dict | None = None) -> dict:
     blueprints = blueprints or current_experience_blueprints()
     experience_properties = {}
     required_experience_keys = []
     for blueprint in blueprints:
-        experience_properties[blueprint["key"]] = {
-            "type": "object",
-            "additionalProperties": False,
-            "properties": {
-                "title": {"type": "string"},
-                "bullets": {
-                    "type": "array",
-                    "items": {"type": "string"},
-                    "minItems": blueprint["bullet_min"],
-                    "maxItems": blueprint["bullet_max"],
-                },
-            },
-            "required": ["title", "bullets"],
-        }
+        experience_properties[blueprint["key"]] = experience_entry_schema(blueprint, analysis)
         required_experience_keys.append(blueprint["key"])
 
     return {
@@ -3640,24 +3640,11 @@ def ai_experience_schema(blueprints: list[dict] | None = None) -> dict:
     }
 
 
-def ai_experience_subset_schema(blueprints: list[dict]) -> dict:
+def ai_experience_subset_schema(blueprints: list[dict], analysis: dict | None = None) -> dict:
     experience_properties = {}
     required_experience_keys = []
     for blueprint in blueprints:
-        experience_properties[blueprint["key"]] = {
-            "type": "object",
-            "additionalProperties": False,
-            "properties": {
-                "title": {"type": "string"},
-                "bullets": {
-                    "type": "array",
-                    "items": {"type": "string"},
-                    "minItems": blueprint["bullet_min"],
-                    "maxItems": blueprint["bullet_max"],
-                },
-            },
-            "required": ["title", "bullets"],
-        }
+        experience_properties[blueprint["key"]] = experience_entry_schema(blueprint, analysis)
         required_experience_keys.append(blueprint["key"])
 
     return {
@@ -3711,7 +3698,7 @@ def ai_core_correction_schema(allowed_skill_categories: list[str] | None = None,
         "pattern": r"^[A-Za-z0-9+#.&' -]+$",
     }
     title_properties = {
-        blueprint["key"]: {"type": "string"}
+        blueprint["key"]: {"type": "string", **({"enum": [blueprint["default_title"]]} if blueprint.get("default_title") else {})}
         for blueprint in blueprints
     }
     required_title_keys = [blueprint["key"] for blueprint in blueprints]
@@ -3723,7 +3710,7 @@ def ai_core_correction_schema(allowed_skill_categories: list[str] | None = None,
             "updated_summary": {"type": "string"},
             "updated_skills": {
                 "type": "array",
-                "minItems": min(6, len(allowed_skill_categories)),
+                "minItems": 0,
                 "items": {
                     "type": "object",
                     "additionalProperties": False,
@@ -3903,7 +3890,12 @@ def resolve_experience_title(raw_title: str, blueprint: dict, analysis_payload: 
 
 
 def format_generated_resume_text(resume_payload: dict, experience_blueprints: list[dict] | None = None) -> str:
+    body_issues = resume_body_issues(resume_payload, experience_blueprints or [])
+    if body_issues:
+        raise ValueError("Resume content needs repair before display: " + body_issues[0])
     normalized_skills = normalize_updated_skills(resume_payload.get("updated_skills", []))
+    if experience_blueprints and any(bp.get("_generation_context_version") == 2 for bp in experience_blueprints) and not normalized_skills:
+        raise ValueError("No supported skills were generated. Check the candidate resume context and regenerate; an empty Skills section is not a completed resume.")
     lines = [
         "Updated Title",
         resume_payload["updated_title"].strip(),
@@ -4968,11 +4960,11 @@ def validate_experience_numeric_coverage(
         if not bullets:
             continue
         required_count = math.ceil(len(bullets) * EXPERIENCE_NUMERIC_EVIDENCE_TARGET)
-        metric_bullet_count = sum(bool(_numeric_tokens(bullet)) for bullet in bullets)
-        if metric_bullet_count < required_count:
+        metric_bullet_count = sum(bool(_numeric_tokens(bullet)) or bool(re.search(r"\[Confirm metric:", bullet, re.I)) for bullet in bullets)
+        if metric_bullet_count < required_count and not (blueprint.get("_generation_context_version") == 2 and entry.get("bullet_evidence")):
             issues.append(
                 f"{blueprint['company']} has numerical evidence in {metric_bullet_count} of {len(bullets)} bullets; "
-                f"use conservative numerical evidence in at least {required_count} bullets (80%)."
+                f"retain the 80% target in at least {required_count} bullets (80%) using supplied improvement or scale measurements. Keep unsupported accomplishments qualitative and report measurement shortfalls outside resume text; never invent numbers or insert confirmation slots."
             )
     return issues
 
@@ -5002,6 +4994,8 @@ def gtm_tool_mentions_not_in_jd(text: str, analysis_payload: dict) -> list[str]:
     unsupported: list[str] = []
     for tool in sorted(GTM_EXPLICIT_TOOL_TERMS):
         if tool in GTM_AMBIGUOUS_COMMON_NOUN_TOOLS:
+            if not (re.search(r"\bOutreach\b", text) or re.search(r"\boutreach(?:\.io|\s+(?:api|platform|sdk|integration))\b", text, re.I)):
+                continue
             if not re.search(rf"\b{re.escape(tool)}\b", lowered_text):
                 continue
         elif tool not in lowered_text:
@@ -5031,14 +5025,13 @@ def validate_model_payload(model_payload: dict, enabled_experience_keys: list[st
     if title and not (TITLE_WORD_MIN <= title_word_count <= TITLE_WORD_MAX):
         issues.append(f"Updated title must be {TITLE_WORD_MIN}-{TITLE_WORD_MAX} words; got {title_word_count}.")
 
+    issues.extend(resume_body_issues({"updated_summary": summary}, []))
     summary_word_count = count_words(summary)
     if not summary or not (SUMMARY_WORD_MIN <= summary_word_count <= SUMMARY_WORD_MAX):
         issues.append(f"Updated summary must be {SUMMARY_WORD_MIN}-{SUMMARY_WORD_MAX} words; got {summary_word_count}.")
     if summary.lower().startswith(("results-driven", "experienced professional", "seasoned professional")):
         issues.append("Updated summary starts with generic filler.")
 
-    if len(skills) < 6:
-        issues.append("Updated skills must contain at least 6 categories.")
 
     seen_categories: set[str] = set()
     all_skill_items: list[str] = []
@@ -5153,6 +5146,7 @@ def validate_core_payload(core_payload: dict, analysis_payload: dict) -> list[st
     if title and not (TITLE_WORD_MIN <= title_word_count <= TITLE_WORD_MAX):
         issues.append(f"Updated title must be {TITLE_WORD_MIN}-{TITLE_WORD_MAX} words; got {title_word_count}.")
 
+    issues.extend(resume_body_issues({"updated_summary": summary}, []))
     summary_word_count = count_words(summary)
     if not summary or not (SUMMARY_WORD_MIN <= summary_word_count <= SUMMARY_WORD_MAX):
         issues.append(f"Updated summary must be {SUMMARY_WORD_MIN}-{SUMMARY_WORD_MAX} words; got {summary_word_count}.")
@@ -5169,8 +5163,6 @@ def validate_core_payload(core_payload: dict, analysis_payload: dict) -> list[st
                 "Updated summary introduces GTM tools not named in the JD: " + ", ".join(sorted(set(unsupported_tools))) + "."
             )
 
-    if len(skills) < 6:
-        issues.append("Updated skills must contain at least 6 categories.")
 
     seen_categories: set[str] = set()
     for entry in skills:
@@ -5223,6 +5215,7 @@ def validate_title_summary_payload(
     title = str(title_summary_payload.get("updated_title", "")).strip()
     summary = str(title_summary_payload.get("updated_summary", "")).strip()
     title_word_count = count_words(title)
+    issues.extend(resume_body_issues({"updated_summary": summary}, []))
     summary_word_count = count_words(summary)
 
     if not title:
@@ -5267,8 +5260,6 @@ def validate_title_summary_payload(
 def validate_skills_only_payload(skills_payload: dict, analysis_payload: dict) -> list[str]:
     issues: list[str] = []
     skills = normalize_updated_skills(skills_payload.get("updated_skills") or [])
-    if len(skills) < 6:
-        issues.append("Updated skills must contain at least 6 categories.")
     seen_categories: set[str] = set()
     for entry in skills:
         category = str(entry.get("category", "")).strip()
@@ -5320,6 +5311,10 @@ def validate_experience_subset_payload(experience_payload: dict, blueprints: lis
 
 def validate_experience_subset_payload_with_analysis(experience_payload: dict, blueprints: list[dict], analysis_payload: dict) -> list[str]:
     issues = validate_experience_subset_payload(experience_payload, blueprints)
+    issues.extend(quality_issue_messages(experience_payload, blueprints))
+    issues.extend(requirement_link_issues(experience_payload, blueprints, analysis_payload))
+    issues.extend(claim_evidence_issues(experience_payload, blueprints, _numeric_tokens))
+    issues.extend(resume_body_issues(experience_payload, blueprints))
     if not is_analyst_prompt_family(analysis_payload):
         if not is_gtm_prompt_family(analysis_payload):
             return issues
@@ -5617,25 +5612,47 @@ def analyze_job_description(
     )
     cached_result = get_cached_ai_stage_result(cache_key)
     if cached_result is not None:
-        return normalize_analysis_payload(cached_result)
+        grounded_cache = normalize_target_work(cached_result, job_description)
+        if not target_work_issues(grounded_cache, job_description):
+            return normalize_analysis_payload(grounded_cache)
 
-    analysis_user_parts = [
-        f"Job description:\n{job_description.strip()}",
-        "Return the full JD intelligence analysis aligned to the required schema.",
-    ]
-
-    result = call_openai_structured_output(
-        api_key=api_key,
-        model=ANALYSIS_MODEL,
-        temperature=ANALYSIS_TEMPERATURE,
-        developer_prompt=build_ai_analysis_prompt(),
-        user_prompt="\n\n".join(analysis_user_parts),
-        schema_name="jd_analysis",
-        schema=ai_analysis_schema(),
-        max_output_tokens=with_output_headroom(ANALYSIS_MAX_OUTPUT_TOKENS, MEDIUM_OUTPUT_HEADROOM),
-        request_timeout_seconds=OPENAI_ANALYSIS_TIMEOUT_SECONDS,
-        reasoning_effort="low",
-    )
+    user_prompt = json.dumps({"job_description_spans": jd_source_spans(job_description),
+        "instruction": "Return the full JD intelligence analysis. Select specialist source_span_id values from this original posting text."}, ensure_ascii=False)
+    schema = ai_analysis_schema(job_description)
+    prompt = build_ai_analysis_prompt()
+    trace_id = uuid.uuid4().hex
+    started = time.perf_counter()
+    trace = {"stage": "jd_analysis", "model": ANALYSIS_MODEL, "prompt_version": ANALYSIS_PROMPT_VERSION,
+             "started_at": datetime.now(timezone.utc).isoformat(), "inputs": json.loads(user_prompt),
+             "developer_prompt": prompt, "schema": schema}
+    def save_analysis_trace():
+        try:
+            folder = Path(__file__).resolve().parent / "tmp" / "jd-analysis-traces"
+            folder.mkdir(parents=True, exist_ok=True)
+            (folder / (trace_id + ".json")).write_text(json.dumps(trace, ensure_ascii=False, indent=2))
+        except OSError as exc:
+            print(f"JD analysis trace could not be saved: {exc}", flush=True)
+    try:
+        raw_result = call_openai_structured_output(
+            api_key=api_key, model=ANALYSIS_MODEL, temperature=ANALYSIS_TEMPERATURE,
+            developer_prompt=prompt, user_prompt=user_prompt,
+            schema_name="jd_analysis", schema=schema,
+            max_output_tokens=with_output_headroom(ANALYSIS_MAX_OUTPUT_TOKENS, MEDIUM_OUTPUT_HEADROOM),
+            request_timeout_seconds=OPENAI_ANALYSIS_TIMEOUT_SECONDS, reasoning_effort="low",
+        )
+        trace["raw_output"] = raw_result
+        result = normalize_target_work(raw_result, job_description)
+        work_issues = target_work_issues(result, job_description)
+        trace.update(output=result, validation_issues=work_issues,
+                     elapsed_seconds=round(time.perf_counter() - started, 3))
+        if work_issues:
+            raise ValueError("JD target-work validation failed: " + " | ".join(work_issues))
+        trace["status"] = "completed"
+    except Exception as exc:
+        trace.update(status="failed", error=str(exc), elapsed_seconds=round(time.perf_counter() - started, 3))
+        raise
+    finally:
+        save_analysis_trace()
     normalized_result = normalize_analysis_payload(result)
     save_cached_ai_stage_result(
         stage="jd_analysis",
@@ -5663,8 +5680,12 @@ def generate_resume_from_analysis(
     compact_analysis = compact_analysis_for_generation(analysis_payload)
     blueprints = filter_blueprints_by_enabled_keys(current_experience_blueprints(resume_mode=resume_mode), enabled_experience_keys)
     resume_user_parts = [
+        "Candidate resume context:",
+        json.dumps(candidate_generation_context(profile_for_resume_mode(resume_mode=resume_mode)), ensure_ascii=False),
         "Active experience structure (immutable metadata, bullet counts, and stable role keys; anchors are broad narrative guidance, not verified achievement evidence):",
         json.dumps(blueprints, ensure_ascii=False, separators=(",", ":")),
+        "Target project characteristics (not applicant history):",
+        json.dumps(project_characteristics(analysis_payload, job_description), ensure_ascii=False),
         "Use the full JD analysis below as target-role guidance. It is not candidate-history evidence. Generate only the final resume object matching the required schema.",
         "JD analysis:",
         json.dumps(compact_analysis, ensure_ascii=False, separators=(",", ":")),
@@ -5677,18 +5698,29 @@ def generate_resume_from_analysis(
     if memory_block:
         resume_user_parts.append(f"Previous session memory (maximum two turns):\n{memory_block}")
 
-    return call_openai_structured_output(
-        api_key=api_key,
-        model=RESUME_MODEL,
-        temperature=RESUME_TEMPERATURE,
-        developer_prompt=build_ai_resume_prompt(enabled_experience_keys, resume_mode),
-        user_prompt="\n\n".join(resume_user_parts),
-        schema_name="resume_generation",
-        schema=ai_resume_schema(blueprints),
-        max_output_tokens=with_output_headroom(RESUME_MAX_OUTPUT_TOKENS, LARGE_OUTPUT_HEADROOM),
-        request_timeout_seconds=OPENAI_RESUME_TIMEOUT_SECONDS,
-        reasoning_effort="low",
-    )
+    def run_generation(extra_instruction: str = "") -> dict:
+        return call_openai_structured_output(
+            api_key=api_key,
+            model=RESUME_MODEL,
+            temperature=RESUME_TEMPERATURE,
+            developer_prompt=build_ai_resume_prompt(enabled_experience_keys, resume_mode),
+            user_prompt="\n\n".join(resume_user_parts + ([extra_instruction] if extra_instruction else [])),
+            schema_name="resume_generation",
+            schema=ai_resume_schema(blueprints, analysis_payload),
+            max_output_tokens=with_output_headroom(RESUME_MAX_OUTPUT_TOKENS, LARGE_OUTPUT_HEADROOM),
+            request_timeout_seconds=OPENAI_RESUME_TIMEOUT_SECONDS,
+            reasoning_effort="low",
+        )
+
+    result = prepare_experience_draft(run_generation(), blueprints, _numeric_tokens)
+    issues = quality_issue_messages(result, blueprints) + requirement_link_issues(result, blueprints, analysis_payload) + claim_evidence_issues(result, blueprints, _numeric_tokens) + resume_body_issues(result, blueprints)
+    if issues:
+        result = run_generation("Repair this exact draft without adding unsupported claims:\n" + json.dumps(result, ensure_ascii=False) + "\nDefects:\n" + "\n".join(issues))
+        result = prepare_experience_draft(result, blueprints, _numeric_tokens)
+        issues = quality_issue_messages(result, blueprints) + requirement_link_issues(result, blueprints, analysis_payload) + claim_evidence_issues(result, blueprints, _numeric_tokens) + resume_body_issues(result, blueprints)
+    if issues:
+        raise ValueError("Resume bullet validation failed: " + " | ".join(issues[:3]))
+    return result
 
 
 def generate_resume_core_from_analysis(
@@ -5703,6 +5735,8 @@ def generate_resume_core_from_analysis(
 ) -> dict:
     compact_analysis = compact_analysis_for_generation(analysis_payload)
     user_parts = [
+        "Candidate resume context:",
+        json.dumps(candidate_generation_context(profile_for_resume_mode(resume_mode=resume_mode)), ensure_ascii=False),
         f"Job description:\n{job_description.strip()}",
         "Use the JD analysis below as target-role guidance, not candidate-history evidence. Generate only Updated Title, Updated Summary, and Updated Skills.",
         "JD analysis:",
@@ -5741,10 +5775,14 @@ def generate_title_summary_from_analysis(
     api_key: str,
     analysis_payload: dict,
     resume_mode: str = "professional",
+    candidate_profile: dict | None = None,
 ) -> dict:
     compact_analysis = compact_analysis_for_generation(analysis_payload)
     prompt_family_key = prompt_family_key_for_analysis(analysis_payload)
+    profile = profile_with_resume_context(candidate_profile if isinstance(candidate_profile, dict) else profile_for_resume_mode(resume_mode=resume_mode), load_base_resume())
     user_parts = [
+        "Candidate resume context (source material, distinct from JD requirements):",
+        json.dumps(candidate_generation_context(profile), ensure_ascii=False),
         "Analysis:\n" + json.dumps(compact_analysis, ensure_ascii=False, separators=(",", ":")),
     ]
 
@@ -5772,6 +5810,7 @@ def generate_title_summary_from_analysis(
         if "introduces analyst tools not named in the JD" in issue
         or "introduces GTM tools not named in the JD" in issue
         or "without first-person or third-person pronouns" in issue
+        or "internal review commentary" in issue
     ]
     if unsupported_tool_issues:
         retry_lines = [
@@ -5792,20 +5831,28 @@ def generate_skills_from_analysis(
     analysis_payload: dict,
     revision_context: dict | None = None,
     resume_mode: str = "professional",
+    candidate_profile: dict | None = None,
 ) -> dict:
     compact_analysis = compact_analysis_for_generation(analysis_payload)
     prompt_family_key = prompt_family_key_for_analysis(analysis_payload)
     order_key = skill_category_order_key_for_analysis(analysis_payload)
     ordered_categories = skill_category_order_for_key(order_key)
+    profile = candidate_profile if isinstance(candidate_profile, dict) else profile_for_resume_mode(resume_mode=resume_mode)
+    profile = profile_with_resume_context(profile, load_base_resume())
+    candidate_evidence = candidate_generation_context(profile)
     user_parts = [
+        "Candidate-supplied evidence (use this, not JD mentions, to support skill claims):",
+        json.dumps(candidate_evidence, ensure_ascii=False, separators=(",", ":")),
+        "Target project characteristics (not applicant history):",
+        json.dumps(project_characteristics(analysis_payload), ensure_ascii=False, separators=(",", ":")),
         "Analysis:\n" + json.dumps(compact_analysis, ensure_ascii=False, separators=(",", ":")),
         f"Skill category order key: {order_key}",
-        "Fill these categories in this exact order:",
+        "Include only supported categories from this order; skip categories without two supported items:",
         json.dumps(ordered_categories, ensure_ascii=False),
     ]
     append_revision_context_to_prompt(user_parts, revision_context)
 
-    def run_generation(extra_instruction: str = "", *, output_token_base: int = 2600) -> dict:
+    def run_generation(extra_instruction: str = "", *, output_token_base: int = 4500) -> dict:
         prompt_parts = list(user_parts)
         if extra_instruction:
             prompt_parts.append(extra_instruction)
@@ -5830,8 +5877,13 @@ def generate_skills_from_analysis(
             raise
         skills_payload = run_generation(
             "The previous response exhausted its output budget. Return compact schema-valid JSON with 2-5 concise items per included category.",
-            output_token_base=4500,
+            output_token_base=7000,
         )
+    has_skill_context = bool(candidate_evidence.get("technical_skills")) or any(role_evidence(entry) for entry in candidate_evidence.get("experience_history", []) if isinstance(entry, dict))
+    if has_skill_context and not skills_payload.get("updated_skills"):
+        skills_payload = run_generation("The response omitted all skills despite supplied candidate sources. Select relevant supported skills from the source accomplishments and technical_skills; do not infer hardware or industry tools from the JD.")
+        if not skills_payload.get("updated_skills"):
+            raise ValueError("Skills generation returned an empty section despite available candidate resume context. Regenerate using the supplied source skills and accomplishments.")
     skill_issues = validate_skills_only_payload(skills_payload, analysis_payload)
     unsupported_tool_issues = [
         issue for issue in skill_issues
@@ -5865,7 +5917,7 @@ def generate_skills_from_analysis(
     if retryable_skill_issues:
         retry_lines = [
             "Previous attempt used unsupported tools, generic skill phrases, or weak category placement.",
-            "Replace unsupported vendor names with JD-grounded tools or closely related enterprise tools when the JD clearly supports them.",
+            "Remove unsupported vendor names; only candidate evidence can support replacement tools. Skip a category rather than inventing items.",
             "If the JD does not mention a named tool for Tools & Platforms, use strong generic items only for analyst or GTM roles where vendor names would be invented.",
             "Replace abstract, generic, or process-style skill phrases with concrete named tools, platforms, languages, frameworks, databases, cloud services, or enterprise systems.",
             "Fix category placement issues by moving the item to the right category or replacing it with a concrete tool that fits the current category.",
@@ -5954,7 +6006,7 @@ def refine_core_sections(
         json.dumps(compact_analysis, ensure_ascii=False, separators=(",", ":")),
         "Use the role family and skills_mentioned list directly.",
         f"Skill category order key: {order_key}",
-        "Fill these categories in this exact order:",
+        "Include only supported categories from this order; skip categories without two supported items:",
         json.dumps(ordered_categories, ensure_ascii=False),
         "Candidate experience framing: 4+ years. If the summary mentions years of experience at all, use 4+ years and never anything higher.",
         "Current core:",
@@ -5985,6 +6037,7 @@ def generate_final_synthesis_from_analysis(
     combined_experience_payload: dict,
     active_blueprints: list[dict],
     revision_context: dict | None = None,
+    candidate_profile: dict | None = None,
     model: str = SYNTHESIS_MODEL,
     timeout_seconds: int = OPENAI_RESUME_TIMEOUT_SECONDS,
     reasoning_effort: str = SYNTHESIS_REASONING_EFFORT,
@@ -5999,7 +6052,10 @@ def generate_final_synthesis_from_analysis(
         blueprint["key"]: experience_by_key.get(blueprint["key"], {})
         for blueprint in active_blueprints
     }
+    profile = profile_with_resume_context(candidate_profile if isinstance(candidate_profile, dict) else {}, load_base_resume())
     user_parts = [
+        "Candidate resume context (source material; generated text is not independent evidence):",
+        json.dumps(candidate_generation_context(profile, active_blueprints), ensure_ascii=False),
         "Active experience structure (immutable metadata and stable role keys; anchors are broad narrative guidance, not verified achievement evidence):",
         json.dumps(active_blueprints, ensure_ascii=False, separators=(",", ":")),
         f"Skill category order key: {order_key}",
@@ -6016,7 +6072,7 @@ def generate_final_synthesis_from_analysis(
     append_revision_context_to_prompt(user_parts, revision_context)
     if prompt_family_key_for_analysis(analysis_payload) == data_center_resume.CATEGORY:
         user_parts.append("Actual candidate education:\n" + json.dumps(load_base_resume().get("education", [])))
-    result = call_openai_structured_output(
+    synthesis_request = dict(
         api_key=api_key,
         model=model,
         temperature=RESUME_TEMPERATURE,
@@ -6032,12 +6088,20 @@ def generate_final_synthesis_from_analysis(
         request_timeout_seconds=timeout_seconds,
         reasoning_effort=reasoning_effort,
     )
+    result = call_openai_structured_output(**synthesis_request)
+    if resume_body_issues(result, []) or (not result.get("updated_skills") and preliminary_skills.get("updated_skills")):
+        repaired_request = {**synthesis_request, "user_prompt": synthesis_request["user_prompt"] + "\nRepair the previous result: " + json.dumps(result, ensure_ascii=False) + "\nReturn a professional summary of actual candidate work, with no audit commentary or evidence disclaimers, and retain relevant supported skills. Missing JD experience belongs in review notes, not the summary."}
+        result = call_openai_structured_output(**repaired_request)
+    if resume_body_issues(result, []):
+        raise ValueError("Final summary still contains internal review commentary; regenerate before display.")
+    if not result.get("updated_skills") and preliminary_skills.get("updated_skills"):
+        raise ValueError("Final synthesis removed all supported skills; regenerate before display.")
     normalized_skills = normalize_skills_for_order(result, ordered_categories)
     result["updated_title"] = str(result.get("updated_title", "")).strip()
     result["updated_summary"] = str(result.get("updated_summary", "")).strip()
     result["updated_skills"] = normalized_skills["updated_skills"]
     result["experience_titles"] = {
-        blueprint["key"]: str((result.get("experience_titles") or {}).get(blueprint["key"], "")).strip()
+        blueprint["key"]: str(blueprint.get("default_title") or (result.get("experience_titles") or {}).get(blueprint["key"], "")).strip()
         for blueprint in active_blueprints
     }
     return result
@@ -6149,7 +6213,7 @@ def _legacy_ai_resume_quality_audit_schema(
                     },
                     "required": ["category", "items"],
                 },
-                "minItems": min(6, len(allowed_skill_categories)),
+                "minItems": 0,
             },
             "experience": {
                 "type": "object",
@@ -6503,18 +6567,18 @@ def _validate_quality_audit_structure(audit_result: dict, active_blueprints: lis
 
 
 _AUDIT_NUMERIC_TOKEN_RE = re.compile(
-    r"(?<![\w])(?:[$€£]\s*)?\d[\d,]*(?:\.\d+)?(?:\s*(?:%|percent(?:age)?s?|[xX]|\+))?",
+    r"(?<![\w])(?:[$€£]\s*)?\d[\d,]*(?:\.\d+)?(?:\s*[kmb]\b)?(?:\s*(?:%|percent(?:age)?s?|[xX]|\+))?",
     flags=re.IGNORECASE,
 )
 
 _AUDIT_METRIC_UNIT_RE = re.compile(
-    r"^\s*(?:"
+    r"^(?:\s*[-–]\s*|\s*)(?:(?:monthly|weekly|daily|annual|active|telemetry|enterprise|operational|audit|compliance|developer|ui|testable|supported|incremental|major|core|typed|validated|automated|security|regression|api)\s+){0,3}(?:"
     r"milliseconds?|msecs?|ms|seconds?|secs?|minutes?|mins?|hours?|days?|weeks?|months?|years?|"
     r"bytes?|kb|mb|gb|tb|kib|mib|gib|tib|"
     r"users?|customers?|clients?|accounts?|requests?|queries?|transactions?|events?|records?|rows?|"
     r"documents?|files?|messages?|calls?|jobs?|tasks?|workflows?|pipelines?|services?|apis?|endpoints?|"
     r"deployments?|releases?|incidents?|defects?|bugs?|tickets?|teams?|regions?|markets?|portfolios?|"
-    r"applications?|systems?|nodes?|containers?|instances?|models?|experiments?|tests?"
+    r"applications?|systems?|nodes?|containers?|instances?|models?|experiments?|tests?|metrics?|regressions?|pages?|mockups?|devices?|kpis?|stories|story|families|family|versions?|sprints?|components?|modules?|products?"
     r")\b",
     flags=re.IGNORECASE,
 )
@@ -6550,7 +6614,11 @@ def _numeric_match_is_metric(text: str, match: re.Match) -> bool:
     after = text[match.end():match.end() + 48]
     if re.search(r"[$€£]|%|percent(?:age)?s?|\d\s*[xX+]\s*$", raw, flags=re.IGNORECASE):
         return True
+    if re.search(r"(?:\b(?:oauth|tls|http|java|python|swift|node(?:\.js)?|react|postgres(?:ql)?|windows)|\.net)\s*[/v]?\s*$", before, re.I):
+        return False
     if _AUDIT_METRIC_UNIT_RE.search(after):
+        return True
+    if re.search(r"(?:at least|at most|up to|more than|greater than|less than|fewer than|over|under|above|below|approximately|about|roughly|[<>≥≤≈~]=?)\s*$", before, re.I):
         return True
     return bool(_AUDIT_METRIC_RELATION_RE.search(before))
 
@@ -6558,11 +6626,11 @@ def _numeric_match_is_metric(text: str, match: re.Match) -> bool:
 def _numeric_tokens(value) -> set[str]:
     tokens: set[str] = set()
     for text_value in _numeric_text_values(value):
+        text_value = normalize_number_words(text_value)
         for match in _AUDIT_NUMERIC_TOKEN_RE.finditer(text_value):
             if not _numeric_match_is_metric(text_value, match):
                 continue
-            token = re.sub(r"\s+", "", match.group(0).lower()).replace(",", "")
-            token = re.sub(r"percent(?:age)?s?", "%", token)
+            token = canonical_quantity(match.group(0), text_value[max(0, match.start() - 48):match.start()])
             tokens.add(token)
     return tokens
 
@@ -7324,6 +7392,7 @@ def ai_resume_quality_audit_schema(
                     "application_condition",
                     "credential_or_duration",
                     "withheld_patch",
+                    "numerical_target",
                 ],
             },
             "gap": {"type": "string", "minLength": 1},
@@ -7496,6 +7565,7 @@ def build_ai_resume_quality_audit_prompt() -> str:
     return "\n".join(
         [
             "You are the final resume review panel. Work in one pass from three explicit points of view:",
+            measurement_rules(),
             "1. Technical recruiter: recruiter recognition, advertised-title alignment, ATS terminology, scan order, and credible career progression.",
             "2. Hiring manager: direct evidence for the role's real outcomes, ownership, collaboration, and business or customer value.",
             "3. Principal engineer: technical accuracy, system depth, believable scope, engineering judgment, and coherent growth across roles.",
@@ -7507,7 +7577,7 @@ def build_ai_resume_quality_audit_prompt() -> str:
             "- the advertised title is the primary title signal; actual JD responsibilities clarify its meaning",
             "- candidate evidence limits what may be claimed",
             "- the supplied JD analysis is advisory; override it when it conflicts with the advertised title or raw JD",
-            "- current generated titles are drafts to evaluate, not facts to preserve",
+            "- the top headline is positioning; historical experience titles must match active blueprint default_title exactly",
             "- user-edited content deserves extra preservation, but may still receive a material, evidence-supported patch",
             "",
             "MANDATORY TITLE AND CAREER REVIEW:",
@@ -7515,15 +7585,22 @@ def build_ai_resume_quality_audit_prompt() -> str:
             "- use a common real-world market title that a recruiter would search for and immediately connect to the posted role",
             "- prefer the advertised title when it is market-standard; otherwise use its closest standard equivalent",
             "- avoid creative hybrids, vague labels, domain invention, and titles selected only because some keywords overlap",
-            "- evaluate every experience title against the same target story and its own bullets",
-            "- titles may differ by level or specialization, but together must show a believable career path toward the target role",
+            "- verify every historical experience title against active blueprint default_title, regardless of the target role",
+            "- preserve historical role titles; career coherence comes from truthful contribution selection, not renaming jobs",
             "- recent roles should provide the strongest target alignment; older roles must remain truthful to their evidence",
-            "- suggest complete title replacements whenever the current titles fail these checks",
+            "- suggest a historical title replacement only to restore the supplied default_title; the top headline may reflect the target role",
             "",
             "FULL RESUME REVIEW:",
+            "- compare all bullet pairs for repeated accomplishments or recycled metrics; do not count a summary paraphrase as a separate contribution",
+            "- verify each metric against its original source accomplishment, measure, population, baseline and time period; matching numbers alone is insufficient",
+            "- repair natural grammar and concrete action/result causality without adding implementation details absent from sources",
+            "- delete tautological tails such as through repeatable processing of transaction records or through monitoring and retry handling after the bullet already names those actions; retain a short source-grounded sentence instead",
+            "- categorization must describe the skill itself: retry handling is reliability, reconciliation is not reporting by itself, and a UI library is not system design; omit categories that lack two actual supported items rather than padding them",
+            "- pending confirmation markers for unverified factual claims require manual_attention; numerical_target_notes are advisory and never require manual_attention or discarding otherwise safe patches",
+            "- keep the 80% numerical-evidence goal, but when source measurements are missing, report the shortfall as a non_blocking_gap of kind numerical_target; never invent measurements or block PDF export solely for this goal",
             "- build the review_basis first: normalized market title, explicit top-title and experience-title assessments with rationale, and the most important priorities from each point of view",
             "- derive the important JD requirements before proposing any resume change",
-            "- for every important requirement, search the complete candidate evidence manifest across all roles, projects, certifications, and upstream-validated claims",
+            "- for every important requirement, search the complete candidate evidence manifest across all roles, projects, certifications, and draft claims (which are not independent evidence)",
             "- classify each requirement by claim_type, evidence_fit, resume_action, and status before writing patches",
             "- engineering capabilities with direct or transferable evidence are resume-addressable and must use resume_action patch_required unless already covered",
             "- a patch-required requirement must return a complete title, summary, skill, or experience patch and link its exact change_ids",
@@ -7532,6 +7609,15 @@ def build_ai_resume_quality_audit_prompt() -> str:
             "- patched_transferable means the candidate evidence demonstrates the same underlying capability without pretending to have an unsupported exact tool, employer context, duration, or industry",
             "- unresolved is allowed only after the complete evidence manifest has been exhausted and no defensible wording can cover the requirement",
             "- then judge ATS alignment, technical credibility, natural human tone, evidence quality, and career coherence",
+            "- scores are internal diagnostics, not an employer ATS score, pass/fail result or hiring probability",
+            "- use the raw JD to identify required systems, users, workflow objects and personal responsibility; keyword presence alone is not evidence",
+            "- inspect every bullet for an identifiable work object, implementation mechanism, defined measure and causal connection between action and result",
+            "- repair vague routing objects, undefined percentage outcomes, platform analogies, broken grammar and plans credited with implemented gains",
+            "- treat deterministic_preflight.bullet_quality_findings as concrete repair targets; do not approve while those defects remain",
+            "- assess the recent opening against the top requirements; AI should lead only when it is relevant supported work, not because of a default story",
+            "- distinguish direct platform work from transferable capability and keep unresolved specialist depth visible",
+            "- check source evidence separately from draft_claim text; a generated story cannot validate its own historical facts",
+            "- draft_project_context is a fallible drafting plan; verify its requirement links against the actual bullets and do not treat its narrative as independent evidence",
             "- verify that title, summary, skills, and experience tell the same supported professional story",
             "- prioritize the strongest three or four JD requirements and place their best supported evidence early",
             "- skills must be supported by experience evidence and use useful, standard categories",
@@ -7550,11 +7636,11 @@ def build_ai_resume_quality_audit_prompt() -> str:
             "EVIDENCE RULES:",
             "- the job description is targeting context and never candidate evidence",
             "- blueprint metadata fixes employment identity and structure; a blueprint anchor is narrative guidance and cannot independently prove a specific tool, metric, responsibility, or result",
-            "- generated experience bullets are the current drafted candidate narrative; preserve or clarify their conservative metrics, but do not escalate them into stronger, more precise, financial, or broader claims",
+            "- compare every generated claim and metric against actual profile sources; unsupported existing claims require [Confirm: ...] or [Confirm metric: ...] and manual_attention, not preservation as facts",
             "- every added title, summary, skill, category, or bullet must cite supplied evidence ids",
             "- never introduce a new tool, platform, vertical, responsibility, or seniority absent from cited evidence",
-            "- new metrics added during review must be conservative, rounded, consistent with the existing bullet's accomplishment, and never copied from the JD",
-            "- upstream_validated evidence may be rephrased but not expanded into a stronger claim",
+            "- never add an estimated metric; use source-supported measurements with their original meaning or request confirmation",
+            "- draft_claim evidence may support wording edits, but cannot independently confirm experience or authorize a new factual claim; do not expand it",
             "- projects and certifications are valid evidence when explicitly supplied in the candidate evidence manifest",
             "- do not mistake an exact-tool gap for a capability gap when supported adjacent evidence can be framed truthfully",
             "- unsupported JD requirements belong in non_blocking_gaps only after evidence-first resolution; do not turn unsupported facts into resume claims",
@@ -7604,6 +7690,8 @@ def _quality_audit_evidence_manifest(
                     "source": "profile",
                     "value": copy.deepcopy(value),
                 }
+        for ref, value in role_source_map(blueprint).items():
+            manifest[f"profile.{role_key}.{ref}"] = {"source": "profile", "value": copy.deepcopy(value)}
         if blueprint.get("anchor"):
             manifest[f"profile.{role_key}.anchor"] = {
                 "source": "role_context",
@@ -7618,19 +7706,22 @@ def _quality_audit_evidence_manifest(
         role = ((current_resume.get("experience") or {}).get(role_key) or {})
         if str(role.get("title", "")).strip():
             manifest[f"upstream.{role_key}.title"] = {
-                "source": "upstream_validated",
+                "source": "draft_claim",
+                "limitations": "Generated or edited claim; not independently confirmed candidate evidence.",
                 "value": str(role["title"]).strip(),
             }
         for index, bullet in enumerate(role.get("bullets") or [], start=1):
             manifest[f"upstream.{role_key}.bullet.{index}"] = {
-                "source": "upstream_validated",
+                "source": "draft_claim",
+                "limitations": "Generated or edited claim; not independently confirmed candidate evidence.",
                 "value": str(bullet).strip(),
             }
     for category in normalize_updated_skills(current_resume.get("updated_skills") or []):
         category_key = re.sub(r"[^a-z0-9]+", "-", category["category"].lower()).strip("-")
         for index, skill in enumerate(category.get("items") or [], start=1):
             manifest[f"upstream.skills.{category_key}.{index}"] = {
-                "source": "upstream_validated",
+                "source": "draft_claim",
+                "limitations": "Generated or edited claim; not independently confirmed candidate evidence.",
                 "value": str(skill).strip(),
             }
     profile = candidate_profile if isinstance(candidate_profile, dict) else {}
@@ -7668,6 +7759,8 @@ def _quality_audit_evidence_manifest(
             for field in ("company", "location", "title", "dates")
             if str(entry.get(field, "")).strip()
         }
+        for field, value in role_evidence(entry).items():
+            manifest[f"profile.{role_key}.{field}"] = {"source": "profile", "value": value}
         if metadata:
             manifest[f"profile.{role_key}.history"] = {
                 "source": "profile",
@@ -7724,6 +7817,20 @@ def _quality_audit_gap_kind(claim_type: str) -> str:
     return "unsupported_engineering"
 
 
+def _numeric_target_confirmations(payload: dict, blueprints: list[dict]) -> list[dict]:
+    findings = []
+    for bp in blueprints:
+        if bp.get("_generation_context_version") != 2:
+            continue
+        bullets = ((payload.get("experience") or {}).get(bp["key"]) or {}).get("bullets") or []
+        actual = sum(bool(_numeric_tokens(b)) for b in bullets)
+        target = math.ceil(len(bullets) * EXPERIENCE_NUMERIC_EVIDENCE_TARGET)
+        if bullets and actual < target:
+            findings.append({"role_key": bp["key"], "numeric_bullets": actual, "target_bullets": target,
+                "confirmation": f"Supply measurements for {target - actual} more distinct accomplishments to reach the 80% target. Keep these questions outside resume content."})
+    return findings
+
+
 def _quality_audit_preflight(
     current_resume: dict,
     active_blueprints: list[dict],
@@ -7741,6 +7848,9 @@ def _quality_audit_preflight(
     return {
         "skill_categories": [entry["category"] for entry in skills],
         "duplicate_skills": duplicates,
+        "bullet_quality_findings": bullet_quality_findings(current_resume, active_blueprints),
+        "pending_confirmations": pending_confirmation_findings(current_resume, active_blueprints),
+        "numerical_target_notes": _numeric_target_confirmations(current_resume, active_blueprints),
         "experience": {
             blueprint["key"]: {
                 "company": blueprint.get("company", ""),
@@ -8161,8 +8271,6 @@ def _quality_audit_resume_validation_issues(
                 issues.append(
                     f"Skills category '{category or 'Unnamed'}' must retain at least 2 skills."
                 )
-        if len(raw_skills) < 6:
-            issues.append("Updated skills must retain at least 6 categories.")
     issues.extend(validate_core_payload(proposal, analysis_payload))
     issues.extend(validate_skills_only_payload(proposal, analysis_payload))
     issues.extend(validate_experience_subset_payload_with_analysis(
@@ -8229,6 +8337,10 @@ def _quality_audit_grounding_issue(
         for addition in additions
     )
     proposed_blob = "\n".join(proposed_values)
+    if CONFIRMATION_RE.search(grounded_evidence_blob) and section in {"experience", "summary"} and not CONFIRMATION_RE.search(proposed_blob):
+        independent = [item["value"] for item in evidence_manifest.values() if item.get("source") == "profile"]
+        if not independent:
+            return "Unconfirmed draft claims cannot become confirmed through a wording edit."
     unsupported_metrics = sorted(
         _numeric_tokens(proposed_blob) - _numeric_tokens(grounded_evidence_blob)
     )
@@ -8281,6 +8393,9 @@ def _quality_audit_patch_structure_issue(
         role_key = str(record.get("role_key", "")).strip()
         if role_key not in blueprint_by_key:
             return f"Unknown or inactive role key '{role_key}'."
+        historical_title = blueprint_by_key[role_key].get("default_title")
+        if historical_title and record.get("suggested") != historical_title:
+            return "Historical experience titles must match the supplied role title; tailor the headline and contributions instead."
     current_skills = {
         row["category"]: {
             normalize_skill_dedupe_key(item)
@@ -8376,6 +8491,50 @@ def _quality_audit_patch_structure_issue(
     return ""
 
 
+def _resolve_quality_audit_source_refs(payload: dict, manifest: dict) -> dict:
+    def visit(value, role_key=""):
+        if isinstance(value, list):
+            return [visit(item, role_key) for item in value]
+        if not isinstance(value, dict):
+            return value
+        role_key = str(value.get("role_key") or role_key)
+        output = {}
+        for key, item in value.items():
+            if key == "evidence_refs" and isinstance(item, list):
+                resolved = []
+                for ref in item:
+                    ref = str(ref)
+                    local = f"profile.{role_key}.{ref}"
+                    matches = [candidate for candidate in manifest if candidate.endswith("." + ref)]
+                    resolved.append(ref if ref in manifest else local if local in manifest else matches[0] if len(matches) == 1 else ref)
+                output[key] = resolved
+            else:
+                output[key] = visit(item, role_key)
+        return output
+    return visit(payload)
+
+
+def _normalize_advisory_numeric_findings(audit_result: dict, current_resume: dict) -> dict:
+    normalized = copy.deepcopy(audit_result)
+    if CONFIRMATION_RE.search(json.dumps(current_resume, ensure_ascii=False)):
+        return normalized
+    legacy_pattern = r"(?:Supply measurements for \d+ more distinct accomplishments? to reach the 80% target\. Keep these questions outside resume content\.\s*)+"
+    findings = normalized.get("manual_findings") or []
+    numeric_only = [finding for finding in findings if finding.get("id") == "confirmation.required" and re.fullmatch(legacy_pattern, str(finding.get("problem", "")).strip())]
+    if not numeric_only:
+        return normalized
+    normalized["manual_findings"] = [finding for finding in findings if finding not in numeric_only]
+    gaps = normalized.setdefault("non_blocking_gaps", [])
+    if not any(gap.get("id") == "numerical-target.legacy" for gap in gaps):
+        gaps.append({"id": "numerical-target.legacy", "path": "experience", "kind": "numerical_target",
+            "gap": "Some accomplishments lack measurements for the 80% numerical-evidence target.",
+            "impact": "Add source-supported measurements when available. This writing goal does not block PDF export.", "evidence_refs": []})
+    if normalized.get("decision") == "manual_attention" and not any(f.get("severity") == "error" for f in normalized["manual_findings"]):
+        normalized["decision"] = "changes_suggested" if _quality_audit_change_records(normalized.get("changes") or {}) else "approved"
+        normalized["review_summary"] = "Review complete. The numerical-evidence shortfall is advisory; it does not block PDF export."
+    return normalized
+
+
 def validate_resume_quality_audit_result(
     audit_result: dict,
     *,
@@ -8388,6 +8547,8 @@ def validate_resume_quality_audit_result(
     del max_change_fraction
     if not isinstance(audit_result, dict):
         raise ResumeQualityAuditValidationError(["Audit result must be an object."])
+    audit_result = _normalize_advisory_numeric_findings(audit_result, current_resume)
+    audit_result = _resolve_quality_audit_source_refs(audit_result, _quality_audit_evidence_manifest(current_resume, active_blueprints, candidate_profile))
     audit_result = _normalize_quality_audit_change_ids(audit_result)
     audit_result = _normalize_quality_audit_contract(
         audit_result,
@@ -8395,6 +8556,17 @@ def validate_resume_quality_audit_result(
         active_blueprints=active_blueprints,
     )
     audit_result = _normalize_quality_audit_change_ids(audit_result)
+    pending = pending_confirmation_findings(current_resume, active_blueprints)
+    if pending:
+        audit_result["decision"] = "manual_attention"
+        audit_result["changes"] = _empty_resume_quality_audit_changes()
+        audit_result["review_summary"] = "Draft requires confirmation of project details or measurements before it is ready to use."
+        audit_result["manual_findings"] = [{
+            "id": "confirmation.required", "severity": "error", "path": "experience",
+            "problem": " ".join(dict.fromkeys(item["confirmation"] for item in pending)),
+            "recommendation": "Supply the measurements requested in review notes or clarify unsupported details in Profile, then regenerate and review. Keep review questions outside resume text.",
+            "evidence_refs": [],
+        }]
     if str(audit_result.get("schema_version", "")) != RESUME_QUALITY_AUDIT_SCHEMA_VERSION:
         raise ResumeQualityAuditValidationError(["Unsupported quality audit schema version."])
     decision = str(audit_result.get("decision", "")).strip()
@@ -8412,6 +8584,8 @@ def validate_resume_quality_audit_result(
         structural_issues.append("Every patch change_id must be unique.")
     if decision == "approved" and records:
         structural_issues.append("approved requires empty changes.")
+    if decision == "approved":
+        structural_issues.extend(quality_issue_messages(current_resume, active_blueprints))
     if decision == "changes_suggested" and not records:
         structural_issues.append("changes_suggested requires at least one change.")
     if decision == "manual_attention" and records:
@@ -8476,6 +8650,17 @@ def validate_resume_quality_audit_result(
     for gap in non_blocking_gaps:
         if isinstance(gap, dict) and not str(gap.get("kind", "")).strip():
             gap["kind"] = "unsupported_engineering"
+
+    for note in _numeric_target_confirmations(current_resume, active_blueprints):
+        gap_id = f"numerical-target.{note['role_key']}"
+        if not any(g.get("id") == gap_id for g in non_blocking_gaps):
+            bp = next(bp for bp in active_blueprints if bp['key'] == note['role_key'])
+            non_blocking_gaps.append({
+                "id": gap_id, "path": f"experience.{note['role_key']}", "kind": "numerical_target",
+                "gap": f"{bp.get('company') or note['role_key']}: {note['numeric_bullets']} bullets contain numerical evidence; the 80% target calls for {note['target_bullets']}.",
+                "impact": "Add source-supported measurements when available. This writing goal does not block PDF export.",
+                "evidence_refs": [],
+            })
 
     current = _canonical_editable_resume(current_resume, active_blueprints)
     evidence_manifest = _quality_audit_evidence_manifest(
@@ -8768,9 +8953,29 @@ def validate_resume_quality_audit_result(
             "impact": str(item.get("reason", "")).strip(),
             "evidence_refs": [],
         } for item in withheld)
+    withheld_ids = {item['change_id'] for item in withheld}
+    unresolved_repairs = [record for record in records if record['change_id'] in withheld_ids and record.get('section') == 'experience' and record.get('removals')]
+    if unresolved_repairs:
+        final_decision = "manual_attention"
+        audit_result["review_summary"] = "A proposed correction could not be safely applied; review the affected original bullet before using this draft."
+        manual_findings.append({
+            "id": "repair.unresolved", "severity": "error", "path": "experience",
+            "problem": "A proposed correction was rejected, leaving its original bullet unresolved.",
+            "recommendation": "Repair or explicitly review the affected original bullet before marking this draft ready.",
+            "evidence_refs": [],
+        })
     if final_decision == "manual_attention":
         validated_changes = _empty_resume_quality_audit_changes()
         validated_records = []
+        accepted_ids = set()
+
+    if final_decision != "manual_attention":
+        reviewed_resume = _apply_quality_audit_changes(current, validated_changes, active_blueprints)
+        remaining_bullet_issues = quality_issue_messages(reviewed_resume, active_blueprints)
+        if remaining_bullet_issues:
+            # Withholding an unsafe patch must not turn a defective draft into
+            # an approved one. The user can repair it or retry the review.
+            raise ResumeQualityAuditValidationError(remaining_bullet_issues)
 
     normalized_requirement_resolutions: list[dict] = []
     existing_gap_ids = {
@@ -8830,7 +9035,7 @@ def validate_resume_quality_audit_result(
                 resolution["resume_action"] = "gap_only"
                 resolution["status"] = "unresolved"
                 resolution["change_ids"] = []
-                resolution["reason"] = reason + " Luna did not return a complete safe patch."
+                resolution["reason"] = "The review did not produce a safe wording change for this requirement. Existing supported content is retained; this note does not block PDF export."
                 resolution_diagnostics.append({
                     "requirement_id": str(resolution.get("requirement_id", "")).strip(),
                     "issue": "missing_linked_patch_downgraded",
@@ -9060,6 +9265,8 @@ def generate_resume_quality_audit(
     reasoning_effort: str = AUDIT_REASONING_EFFORT,
     max_change_fraction: float = RESUME_QUALITY_AUDIT_MAX_CHANGE_FRACTION,
 ) -> dict:
+    if analysis_payload.get("_generation_method") == "jd_only":
+        return review_jd_only_resume(job_description, analysis_payload, current_resume, active_blueprints)
     del max_change_fraction
     order_key = skill_category_order_key_for_analysis(analysis_payload)
     ordered_categories = skill_category_order_for_key(order_key)
@@ -9078,6 +9285,11 @@ def generate_resume_quality_audit(
         },
         "advisory_analysis": compact_analysis_for_generation(analysis_payload),
         "resume_under_review": canonical_resume,
+        "draft_project_context": {
+            key: {field: copy.deepcopy(role[field]) for field in ("contribution_plan", "project_narrative", "bullet_evidence", "requirement_evidence") if field in role}
+            for key, role in (current_resume.get("experience") or {}).items()
+            if isinstance(role, dict)
+        },
         "deterministic_preflight": _quality_audit_preflight(
             canonical_resume,
             active_blueprints,
@@ -9087,6 +9299,7 @@ def generate_resume_quality_audit(
             {
                 "key": blueprint["key"],
                 "company": blueprint.get("company", ""),
+                "default_title": blueprint.get("default_title", ""),
                 "bullet_min": blueprint["bullet_min"],
                 "bullet_max": blueprint["bullet_max"],
             }
@@ -9339,7 +9552,11 @@ def generate_resume_experience_from_analysis(
     }
     user_parts = [
         f"Job description:\n{job_description.strip()}",
-        "Use the JD analysis as target-role guidance and the core resume sections for stack consistency. Generate only the Professional Experience object matching the schema.",
+        "Target project characteristics (not applicant history):",
+        json.dumps(project_characteristics(analysis_payload, job_description), ensure_ascii=False),
+        "Candidate role evidence (list references use field.index, one-based; object references use field.key):",
+        json.dumps(filter_blueprints_by_enabled_keys(current_experience_blueprints(resume_mode=resume_mode), enabled_experience_keys), ensure_ascii=False),
+        "Use the JD analysis as target-role guidance and the core resume sections as draft suggestions, not candidate-history evidence. Generate only the Professional Experience object matching the schema.",
         "JD analysis:",
         json.dumps(compact_analysis, ensure_ascii=False, separators=(",", ":")),
         "Core resume sections:",
@@ -9365,13 +9582,13 @@ def generate_resume_experience_from_analysis(
             developer_prompt=build_ai_resume_experience_prompt(prompt_family_key, resume_mode),
             user_prompt="\n\n".join(prompt_parts),
             schema_name="resume_experience_generation",
-            schema=ai_experience_schema(blueprints),
+            schema=ai_experience_schema(blueprints, analysis_payload),
             max_output_tokens=with_output_headroom(5600, LARGE_OUTPUT_HEADROOM),
             request_timeout_seconds=OPENAI_RESUME_TIMEOUT_SECONDS,
             reasoning_effort="low",
         )
 
-    experience_payload = run_generation()
+    experience_payload = prepare_experience_draft(run_generation(), blueprints, _numeric_tokens)
     invalid_titles = collect_invalid_experience_titles(experience_payload, blueprints)
     if invalid_titles:
         retry_lines = [
@@ -9385,35 +9602,36 @@ def generate_resume_experience_from_analysis(
             retry_lines.append(
                 f"- {failure['company']}: returned '{raw_title}' ({failure['reason']}); replace it with only the job title."
             )
-        experience_payload = run_generation("\n".join(retry_lines))
+        experience_payload = prepare_experience_draft(run_generation("\n".join(retry_lines)), blueprints, _numeric_tokens)
 
     validation_issues = validate_experience_subset_payload_with_analysis(
         experience_payload,
         blueprints,
         analysis_payload,
     )
-    unsupported_tool_issues = [
-        issue for issue in validation_issues
-        if "introduces analyst tools not named in the JD" in issue
-        or "introduces GTM tools not named in the JD" in issue
-    ]
     coverage_issues = validate_experience_numeric_coverage(experience_payload, blueprints, analysis_payload)
-    repair_issues = unsupported_tool_issues + coverage_issues
+    repair_issues = validation_issues + coverage_issues
     if repair_issues:
         retry_lines = [
             "Previous attempt missed one or more experience quality constraints.",
+            "Repair the exact project, sentence or requirement-link defects below; preserve sound accomplishments and do not add unsupported facts.",
             "Use named tools only when they are grounded by the JD and supplied candidate evidence.",
             "Include conservative numerical evidence in at least 80% of each company's bullets.",
-            "Use modest rounded estimates that fit the role scope and can be explained in an interview.",
+            "Use supplied metrics. Keep missing measures in review metadata; never insert placeholders or invented numbers into resume sentences.",
             "Use distinct metrics for distinct accomplishments; do not repeat a number only to satisfy coverage.",
             "Never borrow metrics from the JD or create extreme, financial, or suspiciously precise claims.",
+            "Previous draft to repair (preserve sound content; these are drafts, not additional source evidence):",
+            json.dumps(experience_payload, ensure_ascii=False),
             "Fix these exact issues:",
             *[f"- {issue}" for issue in repair_issues],
         ]
-        experience_payload = run_generation("\n".join(retry_lines))
+        experience_payload = prepare_experience_draft(run_generation("\n".join(retry_lines)), blueprints, _numeric_tokens)
 
     experience_payload = sanitize_experience_payload_for_prompt_family(experience_payload, analysis_payload)
-    final_evidence_issues = validate_experience_numeric_coverage(experience_payload, blueprints, analysis_payload)
+    final_evidence_issues = (
+        validate_experience_subset_payload_with_analysis(experience_payload, blueprints, analysis_payload)
+        + validate_experience_numeric_coverage(experience_payload, blueprints, analysis_payload)
+    )
     if final_evidence_issues:
         raise ValueError("Experience evidence validation failed: " + " | ".join(final_evidence_issues[:3]))
     experience_payload["_enabled_experience_keys"] = [blueprint["key"] for blueprint in blueprints]
@@ -9431,12 +9649,17 @@ def generate_experience_subset_from_analysis(
     core_payload: dict | None = None,
     revision_context: dict | None = None,
     resume_mode: str = "professional",
+    job_description: str = "",
 ) -> dict:
     compact_analysis = compact_analysis_for_generation(analysis_payload)
     prompt_family_key = prompt_family_key_for_analysis(analysis_payload)
     skills_source = preliminary_skills_payload if preliminary_skills_payload is not None else (core_payload or {})
     preliminary_skills = {"updated_skills": normalize_updated_skills(skills_source.get("updated_skills", []))}
     user_parts = [
+        "Target project characteristics (not applicant history):",
+        json.dumps(project_characteristics(analysis_payload, job_description), ensure_ascii=False, separators=(",", ":")),
+        "Role source references (only these establish candidate facts):",
+        json.dumps({bp["key"]: role_source_map(bp) for bp in blueprints}, ensure_ascii=False),
         "Experience structure (immutable metadata and stable role keys; anchors are broad narrative guidance, not verified achievement evidence):",
         json.dumps(blueprints, ensure_ascii=False, separators=(",", ":")),
         "Preliminary skills:",
@@ -9458,13 +9681,13 @@ def generate_experience_subset_from_analysis(
             developer_prompt=build_ai_resume_experience_subset_prompt(blueprints, prompt_family_key, resume_mode),
             user_prompt="\n\n".join(prompt_parts),
             schema_name="resume_experience_subset_generation",
-            schema=ai_experience_subset_schema(blueprints),
-            max_output_tokens=with_output_headroom(5200 if len(blueprints) > 1 else 2800, LARGE_OUTPUT_HEADROOM if len(blueprints) > 1 else MEDIUM_OUTPUT_HEADROOM),
+            schema=ai_experience_subset_schema(blueprints, analysis_payload),
+            max_output_tokens=with_output_headroom(7600 if len(blueprints) > 1 else 4200, LARGE_OUTPUT_HEADROOM if len(blueprints) > 1 else MEDIUM_OUTPUT_HEADROOM),
             request_timeout_seconds=timeout_seconds,
             reasoning_effort="low",
         )
 
-    experience_payload = run_generation()
+    experience_payload = prepare_experience_draft(run_generation(), blueprints, _numeric_tokens)
     invalid_titles = collect_invalid_experience_titles(experience_payload, blueprints)
     if invalid_titles:
         retry_lines = [
@@ -9478,34 +9701,35 @@ def generate_experience_subset_from_analysis(
             retry_lines.append(
                 f"- {failure['company']}: returned '{raw_title}' ({failure['reason']}); replace it with only the job title."
             )
-        experience_payload = run_generation("\n".join(retry_lines))
+        experience_payload = prepare_experience_draft(run_generation("\n".join(retry_lines)), blueprints, _numeric_tokens)
 
     validation_issues = validate_experience_subset_payload_with_analysis(
         experience_payload,
         blueprints,
         analysis_payload,
     )
-    unsupported_tool_issues = [
-        issue for issue in validation_issues
-        if "introduces analyst tools not named in the JD" in issue
-        or "introduces GTM tools not named in the JD" in issue
-    ]
     coverage_issues = validate_experience_numeric_coverage(experience_payload, blueprints, analysis_payload)
-    repair_issues = unsupported_tool_issues + coverage_issues
+    repair_issues = validation_issues + coverage_issues
     if repair_issues:
         retry_lines = [
             "Previous attempt missed one or more experience quality constraints.",
+            "Repair the exact project, sentence or requirement-link defects below; preserve sound accomplishments and do not add unsupported facts.",
             "Use named tools only when they are grounded by the JD and supplied candidate evidence.",
             "Include conservative numerical evidence in at least 80% of each company's bullets.",
-            "Use modest rounded estimates that fit the role scope and can be explained in an interview.",
+            "Use supplied metrics. Keep missing measures in review metadata; never insert placeholders or invented numbers into resume sentences.",
             "Use distinct metrics for distinct accomplishments; do not repeat a number only to satisfy coverage.",
             "Never borrow metrics from the JD or create extreme, financial, or suspiciously precise claims.",
+            "Previous draft to repair (preserve sound content; these are drafts, not additional source evidence):",
+            json.dumps(experience_payload, ensure_ascii=False),
             "Fix these exact issues:",
             *[f"- {issue}" for issue in repair_issues],
         ]
-        experience_payload = run_generation("\n".join(retry_lines))
+        experience_payload = prepare_experience_draft(run_generation("\n".join(retry_lines)), blueprints, _numeric_tokens)
     experience_payload = sanitize_experience_payload_for_prompt_family(experience_payload, analysis_payload)
-    final_evidence_issues = validate_experience_numeric_coverage(experience_payload, blueprints, analysis_payload)
+    final_evidence_issues = (
+        validate_experience_subset_payload_with_analysis(experience_payload, blueprints, analysis_payload)
+        + validate_experience_numeric_coverage(experience_payload, blueprints, analysis_payload)
+    )
     if final_evidence_issues:
         raise ValueError("Experience evidence validation failed: " + " | ".join(final_evidence_issues[:3]))
     experience_payload["_enabled_experience_keys"] = [blueprint["key"] for blueprint in blueprints]
@@ -9783,13 +10007,20 @@ def merge_experience_history_lists(base_history: list[dict] | None, override_his
             "title": str(base_entry.get("title", "")).strip(),
             "dates": str(base_entry.get("dates", "")).strip(),
             "enabled": bool(base_entry.get("enabled", True)),
+            **role_evidence(base_entry),
         }
         if isinstance(raw_entry, dict):
+            if any(field in raw_entry and str(raw_entry[field]).strip() != str(base_entry.get(field, "")).strip() for field in ("company", "title", "dates")):
+                for evidence_field in ROLE_EVIDENCE_FIELDS:
+                    merged_entry.pop(evidence_field, None)
             for field in ("company", "location", "title", "dates"):
                 if field in raw_entry:
                     merged_entry[field] = str(raw_entry.get(field, "")).strip()
             if "enabled" in raw_entry:
                 merged_entry["enabled"] = bool(raw_entry.get("enabled", True))
+            for field in ROLE_EVIDENCE_FIELDS:
+                if field in raw_entry and isinstance(raw_entry[field], (str, list, dict)):
+                    merged_entry[field] = copy.deepcopy(raw_entry[field])
 
         merged_history.append(merged_entry)
 
@@ -9826,6 +10057,10 @@ def merge_profile_docs(base: dict, override: dict | None) -> dict:
             **override_academic_profile,
         }
 
+    for field in PROFILE_CONTEXT_FIELDS:
+        if field in override:
+            merged[field] = copy.deepcopy(override[field])
+
     for field in ("projects", "certifications"):
         if field in override and isinstance(override.get(field), list):
             merged[field] = override.get(field)
@@ -9852,6 +10087,8 @@ def profile_experience_history_from_resume(resume: dict) -> list[dict]:
                 "title": str(resume_entry.get("title", "")).strip(),
                 "dates": str(resume_entry.get("dates", "")).strip(),
                 "enabled": bool(resume_entry) and is_experience_history_entry_complete(resume_entry),
+                **role_evidence(resume_entry),
+                **({"source_bullets": copy.deepcopy(resume_entry["bullets"])} if "bullets" in resume_entry and "source_bullets" not in resume_entry else {}),
             }
         )
     return history
@@ -9888,9 +10125,9 @@ def complete_profile_experience_keys(profile: dict | None = None, resume_mode: s
 def current_experience_blueprints(profile: dict | None = None, resume_mode: str = "professional") -> list[dict]:
     """Return fixed employment structure plus broad generation anchors.
 
-    Profiles currently store role metadata, not work-experience bullets or verified
-    achievement metrics. An anchor constrains the generated story but is not factual
-    proof of a particular tool, responsibility, or result.
+    Include supplied source accomplishments and measurements alongside role metadata.
+    Matching base-resume context is backfilled before constructing the blueprint;
+    narrative anchors are never achievement evidence.
     """
     active_profile = profile_for_resume_mode(profile, resume_mode) if is_internship_resume_mode(resume_mode) else (profile if isinstance(profile, dict) else current_profile())
     if active_profile.get("resume_category") == data_center_resume.CATEGORY:
@@ -9900,6 +10137,7 @@ def current_experience_blueprints(profile: dict | None = None, resume_mode: str 
             "default_title": saved["title"], "bullet_min": 10, "bullet_max": 13,
             "anchor": "User-confirmed HPE data center infrastructure support: server hardware, rack-and-stack, break-fix, networking, operating systems, incidents and documentation",
         }]
+    active_profile = profile_with_resume_context(active_profile, load_base_resume())
     saved_history = active_profile.get("experience_history") if isinstance(active_profile.get("experience_history"), list) else []
     saved_history_by_key = {
         str(entry.get("key", "")).strip(): entry
@@ -9911,7 +10149,9 @@ def current_experience_blueprints(profile: dict | None = None, resume_mode: str 
     for blueprint_index, blueprint in enumerate(EXPERIENCE_BLUEPRINTS):
         override = saved_history_by_key.get(blueprint["key"])
         merged = dict(blueprint)
+        merged["_generation_context_version"] = 2
         if isinstance(override, dict):
+            merged.update(role_evidence(override))
             merged["company"] = str(override.get("company", "")).strip()
             merged["location"] = str(override.get("location", "")).strip()
             merged["dates"] = str(override.get("dates", "")).strip()
@@ -10009,6 +10249,7 @@ def normalize_experience_history_override(payload: list[dict] | None) -> list[di
                 "title": title,
                 "dates": dates,
                 "enabled": enabled and all((company, location, title, dates)),
+                **role_evidence(raw_item if isinstance(raw_item, dict) else blueprint),
             }
         )
     return normalized
@@ -10172,6 +10413,7 @@ def profile_from_resume(resume: dict) -> dict:
             "email": contact.get("email", ""),
         },
         "application": {},
+        **{field: copy.deepcopy(resume[field]) for field in PROFILE_CONTEXT_FIELDS if field in resume},
         "projects": resume.get("projects", []),
         "certifications": resume.get("certifications", []),
         "experience_history": profile_experience_history_from_resume(resume),
@@ -10184,7 +10426,7 @@ def current_profile() -> dict:
     permanent = normalize_profile(merge_profile_docs(default_profile, permanent_doc)) if permanent_doc else default_profile
     session_doc = load_session_profile_doc()
     session = normalize_profile(session_doc) if session_doc else None
-    return normalize_profile(merge_profile_docs(permanent, session))
+    return profile_with_resume_context(normalize_profile(merge_profile_docs(permanent, session)), load_base_resume())
 
 
 def _identity_id(value: str) -> str:
@@ -10374,6 +10616,7 @@ def normalize_profile(payload: dict) -> dict:
         "projects": normalized_projects,
         "certifications": [str(item).strip() for item in certifications if str(item).strip()],
         "experience_history": normalized_history,
+        **{field: copy.deepcopy(payload[field]) for field in PROFILE_CONTEXT_FIELDS if field in payload},
     }
 
 
@@ -10540,6 +10783,15 @@ def experience_blueprints_from_snapshot(draft: dict) -> list[dict]:
         return current_experience_blueprints(profile)
     resume_mode = normalize_resume_mode(draft.get("resume_mode"))
     history = draft.get("experience_history_snapshot") if isinstance(draft.get("experience_history_snapshot"), list) else []
+    profile_history = profile.get("experience_history", [])
+    history = copy.deepcopy(history or profile_history)
+    for saved in history:
+        matches = [entry for entry in profile_history if isinstance(entry, dict) and entry.get("key") == saved.get("key") and role_matches(saved, entry)]
+        if len(matches) == 1:
+            for field, value in role_evidence(matches[0]).items():
+                saved.setdefault(field, copy.deepcopy(value))
+    hydrated = profile_with_resume_context({**profile, "experience_history": history}, load_base_resume())
+    history = hydrated.get("experience_history", [])
     by_key = {
         str(item.get("key", "")).strip(): item
         for item in history
@@ -10549,7 +10801,9 @@ def experience_blueprints_from_snapshot(draft: dict) -> list[dict]:
     for blueprint_index, blueprint in enumerate(EXPERIENCE_BLUEPRINTS):
         saved = by_key.get(blueprint["key"])
         merged = dict(blueprint)
+        merged["_generation_context_version"] = 2
         if isinstance(saved, dict):
+            merged.update(role_evidence(saved))
             merged["company"] = str(saved.get("company", "")).strip()
             merged["location"] = intern_mode_location(saved.get("location", "")) if is_internship_resume_mode(resume_mode) else str(saved.get("location", "")).strip()
             merged["dates"] = str(saved.get("dates", "")).strip()
@@ -10682,7 +10936,7 @@ def run_extension_ai_stage(call):
         try:
             return call()
         except Exception as exc:
-            if attempt >= max_attempts or not _is_transient_audit_network_error(exc):
+            if getattr(exc, "validation", False) or attempt >= max_attempts or not _is_transient_audit_network_error(exc):
                 raise
             time.sleep(min(10.0, retry_base_seconds * attempt))
 
@@ -10758,6 +11012,16 @@ def run_extension_generation_task(task: dict) -> None:
         blueprints = filter_blueprints_by_enabled_keys(experience_blueprints_from_snapshot(draft), enabled_keys)
 
         analysis_payload = draft.get("analysis") or {}
+        if analysis_payload and target_work_issues(analysis_payload, draft["job_description"]):
+            # A resumed draft must not keep downstream outputs built from the
+            # old technology-only role model after the work-model upgrade.
+            draft = extension_drafts.update(draft_id, {
+                "analysis": {}, "skills": {}, "title_summary": {},
+                "experience_recent": {}, "experience_older": {},
+                "resume_content": "", "resume_snapshot": {},
+                "audit_status": "not_started", "audit_result": None, "audit_proposal": None,
+            })
+            analysis_payload = {}
         if not analysis_payload:
             extension_drafts.checkpoint(task_id, draft_id, "analysis", {"status": "analyzing"})
             analysis_payload = run_extension_ai_stage(
@@ -10851,235 +11115,54 @@ def run_extension_generation_task(task: dict) -> None:
                     {"source_metadata": source_metadata},
                 )
 
-        stage = "preliminary_skills"
-        skills_payload = draft.get("skills") or {}
-        if not skills_payload:
-            skills_payload = run_extension_ai_stage(
-                lambda: generate_skills_from_analysis(
-                    api_key=api_key,
-                    analysis_payload=analysis_payload,
-                    resume_mode=resume_mode,
-                )
-            )
-        skills_payload["updated_skills"] = normalize_updated_skills(skills_payload.get("updated_skills", []))
-        skill_issues = validate_skills_only_payload(skills_payload, analysis_payload)
-        if skill_issues:
-            raise AIStageError("preliminary_skills", "Preliminary skills failed validation: " + " | ".join(skill_issues[:3]))
-        draft = extension_drafts.checkpoint(task_id, draft_id, "experience", {
-            "skills": skills_payload,
-            "status": "generating_experience",
-        })
-
+        # Both app and extension use the same JD-first, headings-only generator.
         stage = "experience_generation"
-        recent_keys = set(EXPERIENCE_BLUEPRINT_KEYS[:2])
-        recent_blueprints = [item for item in blueprints if item["key"] in recent_keys]
-        older_blueprints = [item for item in blueprints if item["key"] not in recent_keys]
-        recent_payload = draft.get("experience_recent") or {}
-        older_payload = draft.get("experience_older") or {}
+        generation_metadata = dict(draft.get("source_metadata") or {})
 
-        def generate_subset(subset_blueprints: list[dict]) -> dict:
-            if not subset_blueprints:
-                return {"experience": {}}
-            return run_extension_ai_stage(
-                lambda: generate_experience_subset_from_analysis(
-                    api_key=api_key,
-                    analysis_payload=analysis_payload,
-                    preliminary_skills_payload=skills_payload,
-                    blueprints=subset_blueprints,
-                    model=RESUME_MODEL,
-                    timeout_seconds=OPENAI_RESUME_TIMEOUT_SECONDS,
-                    resume_mode=resume_mode,
-                )
-            )
+        def generation_progress(next_stage, state):
+            nonlocal stage
+            stage = next_stage
+            generation_metadata["jd_only_checkpoint"] = state
+            status = "reviewing" if next_stage == "jd_review" else "generating_core" if next_stage.startswith("jd_plan") or next_stage in {"jd_core", "jd_targeting"} else "generating_experience"
+            extension_drafts.checkpoint(task_id, draft_id, next_stage, {
+                "status": status, "source_metadata": copy.deepcopy(generation_metadata)})
 
-        with ThreadPoolExecutor(max_workers=2) as executor:
-            recent_future = None if recent_payload else executor.submit(generate_subset, recent_blueprints)
-            older_future = None if older_payload else executor.submit(generate_subset, older_blueprints)
-            if recent_future:
-                recent_payload = recent_future.result()
-            if older_future:
-                older_payload = older_future.result()
-
-        experience_issues = (
-            validate_experience_subset_payload_with_analysis(recent_payload, recent_blueprints, analysis_payload)
-            + validate_experience_subset_payload_with_analysis(older_payload, older_blueprints, analysis_payload)
-        )
-        if experience_issues:
-            raise AIStageError("experience_generation", "Experience generation failed validation: " + " | ".join(experience_issues[:3]))
-        combined_experience = {"experience": {}}
-        combined_experience["experience"].update(recent_payload.get("experience", {}))
-        combined_experience["experience"].update(older_payload.get("experience", {}))
-        combined_experience["_enabled_experience_keys"] = enabled_keys
-        draft = extension_drafts.checkpoint(task_id, draft_id, "synthesis", {
-            "experience_recent": recent_payload,
-            "experience_older": older_payload,
-            "status": "reviewing",
-        })
-
-        stage = "final_synthesis"
-        title_summary = draft.get("title_summary") or {}
-        if not title_summary:
-            synthesized = run_extension_ai_stage(
-                lambda: generate_final_synthesis_from_analysis(
-                    api_key=api_key,
-                    job_description=draft["job_description"],
-                    analysis_payload=analysis_payload,
-                    preliminary_skills_payload=skills_payload,
-                    combined_experience_payload=combined_experience,
-                    active_blueprints=blueprints,
-                    resume_mode=resume_mode,
-                )
-            )
-            synthesis_issues = validate_final_synthesis_payload(synthesized, blueprints, analysis_payload)
-            if synthesis_issues:
-                raise AIStageError("final_synthesis", "Final synthesis failed validation: " + " | ".join(synthesis_issues[:3]))
-            title_summary = {
-                "updated_title": synthesized["updated_title"],
-                "updated_summary": synthesized["updated_summary"],
-            }
-            skills_payload = {"updated_skills": synthesized["updated_skills"]}
-            recent_payload = apply_reviewed_titles_to_experience_payload(recent_payload, synthesized)
-            older_payload = apply_reviewed_titles_to_experience_payload(older_payload, synthesized)
-
-        reviewed_core = merge_core_sections(title_summary, skills_payload)
-        reviewed_core["_analysis"] = analysis_payload
-        reviewed_core["_enabled_experience_keys"] = enabled_keys
-        reviewed_experience = {"experience": {}}
-        reviewed_experience["experience"].update(recent_payload.get("experience", {}))
-        reviewed_experience["experience"].update(older_payload.get("experience", {}))
-        reviewed_experience["_enabled_experience_keys"] = enabled_keys
-        final_content = format_generated_resume_text(merge_resume_payloads(reviewed_core, reviewed_experience), blueprints)
-        draft = extension_drafts.checkpoint(task_id, draft_id, "audit", {
-            "title_summary": title_summary,
-            "skills": skills_payload,
-            "experience_recent": recent_payload,
-            "experience_older": older_payload,
-            "resume_content": final_content,
-            "audit_status": "running",
-            "status": "reviewing",
-        })
-        final_draft = {
-            **draft,
-            "resume_content": final_content,
-            "title_summary": title_summary,
-            "skills": skills_payload,
-            "experience_recent": recent_payload,
-            "experience_older": older_payload,
-        }
-        preview = draft_resume_snapshot(final_draft)
-        canonical_resume = extension_canonical_resume(final_draft, blueprints)
+        result = run_extension_ai_stage(lambda: generate_jd_only_resume(
+            draft["job_description"], blueprints, resume_mode,
+            skill_order_key=skill_category_order_key_for_analysis(analysis_payload),
+            saved_state=generation_metadata.get("jd_only_checkpoint"), checkpoint=generation_progress))
+        analysis_payload = {**analysis_payload, "_generation_method": "jd_only",
+                            "_resume_mode": resume_mode, "_jd_only_plan": result["plan"],
+                            "_jd_only_targeting": result.get("targeting_assessment", {})}
+        draft = {**draft, "analysis": analysis_payload, "source_metadata": generation_metadata}
         base_revision = int(draft.get("resume_revision") or 1)
-        original_draft = {
-            **final_draft,
-            "resume_snapshot": preview,
+
+        def values_for(resume):
+            recent, older = _split_ai_session_experience(resume["experience"])
+            values = {"title_summary": {"updated_title": resume["updated_title"], "updated_summary": resume["updated_summary"]},
+                      "skills": {"updated_skills": resume["updated_skills"]},
+                      "experience_recent": recent, "experience_older": older,
+                      "resume_content": format_generated_resume_text(resume, result["roles"])}
+            values["resume_snapshot"] = draft_resume_snapshot({**draft, **values})
+            return values
+
+        original_values = values_for(result["original_resume"])
+        final_values = values_for(result["resume"])
+        versions = {
+            "original": extension_resume_version_payload({**draft, **original_values}, result["original_resume"], revision=base_revision),
+            "luna_reviewed": extension_resume_version_payload({**draft, **final_values}, result["resume"], revision=base_revision),
         }
-        resume_versions = copy.deepcopy(draft.get("resume_versions") or {})
-        resume_versions["original"] = extension_resume_version_payload(
-            original_draft,
-            canonical_resume,
-            revision=base_revision,
-        )
-        active_resume_version = "original"
-        final_resume_values = {"resume_snapshot": preview}
-        stage = "quality_audit"
-        try:
-            audit_result = run_extension_ai_stage(
-                lambda: generate_resume_quality_audit(
-                    api_key=api_key,
-                    job_description=draft["job_description"],
-                    analysis_payload=analysis_payload,
-                    current_resume=canonical_resume,
-                    active_blueprints=blueprints,
-                    candidate_profile=draft.get("profile_snapshot") or {},
-                    advertised_job_title=draft.get("role_title", ""),
-                    user_edit_context={
-                        "has_manual_edits": int(draft.get("resume_revision") or 1) > 1,
-                        "edited_paths": [],
-                    },
-                )
-            )
-            if audit_result["decision"] == "changes_suggested":
-                reviewed_resume = apply_resume_quality_audit_proposal(
-                    expected_base_hash=audit_result["base_hash"],
-                    current_resume=canonical_resume,
-                    audit_result=audit_result,
-                    analysis_payload=analysis_payload,
-                    active_blueprints=blueprints,
-                    candidate_profile=draft.get("profile_snapshot") or {},
-                )
-                reviewed_values = extension_audit_values_from_resume(
-                    original_draft,
-                    reviewed_resume,
-                    enabled_keys,
-                )
-                reviewed_revision = base_revision + 1
-                reviewed_draft = {
-                    **original_draft,
-                    **reviewed_values,
-                    "resume_revision": reviewed_revision,
-                }
-                resume_versions["luna_reviewed"] = (
-                    extension_resume_version_payload(
-                        reviewed_draft,
-                        reviewed_resume,
-                        revision=reviewed_revision,
-                    )
-                )
-                active_resume_version = "luna_reviewed"
-                accepted_change_ids = [
-                    record["change_id"]
-                    for record in _quality_audit_change_records(
-                        audit_result.get("changes") or {}
-                    )
-                ]
-                audit_result = {
-                    **audit_result,
-                    "accepted_change_ids": accepted_change_ids,
-                    "rejected_change_ids": [],
-                    "auto_applied": True,
-                }
-                final_resume_values = {
-                    **reviewed_values,
-                    "resume_revision": reviewed_revision,
-                }
-                audit_status = "applied"
-                audit_applied_at = datetime.now(timezone.utc)
-            else:
-                resume_versions["luna_reviewed"] = (
-                    extension_resume_version_payload(
-                        original_draft,
-                        canonical_resume,
-                        revision=base_revision,
-                    )
-                )
-                active_resume_version = "luna_reviewed"
-                audit_status = audit_result["decision"]
-                audit_applied_at = None
-            audit_values = {
-                "audit_status": audit_status,
-                "audit_result": audit_result,
-                "audit_proposal": None,
-                "audit_base_revision": base_revision,
-                "audit_base_hash": audit_result["base_hash"],
-                "audit_created_at": datetime.now(timezone.utc),
-                "audit_applied_at": audit_applied_at,
-            }
-        except Exception as audit_exc:
-            audit_values = {
-                "audit_status": "technical_failed",
-                "audit_result": _quality_audit_failure_metadata(audit_exc),
-                "audit_proposal": None,
-                "audit_base_revision": base_revision,
-                "audit_base_hash": canonical_json_hash(canonical_resume),
-                "audit_created_at": datetime.now(timezone.utc),
-                "audit_applied_at": None,
-            }
+        audit = result["audit"]
+        if audit["decision"] == "technical_failed":
+            versions.pop("luna_reviewed", None)
         extension_drafts.complete_task(task_id, draft_id, {
-            **final_resume_values,
-            "resume_versions": resume_versions,
-            "active_resume_version": active_resume_version,
-            "pdf_stale": False,
-            **audit_values,
+            **final_values, "analysis": analysis_payload,
+            "source_metadata": {**(draft.get("source_metadata") or {}), "generation_method": "jd_only"},
+            "resume_versions": versions, "active_resume_version": "luna_reviewed" if "luna_reviewed" in versions else "original",
+            "pdf_stale": bool(draft.get("pdf_path")),
+            "audit_status": audit["decision"], "audit_result": audit, "audit_proposal": None,
+            "audit_base_revision": base_revision, "audit_base_hash": audit["base_hash"],
+            "audit_created_at": datetime.now(timezone.utc), "audit_applied_at": None,
         })
     except Exception as exc:
         error_stage = exc.stage if isinstance(exc, AIStageError) else stage
@@ -11151,6 +11234,8 @@ def extension_profile_snapshot(identity_id: str, enabled_keys_payload, resume_mo
 
 
 def generate_extension_pdf(draft: dict, *, preserve_docx: bool = False) -> dict:
+    if CONFIRMATION_RE.search(str(draft.get("resume_content") or "")):
+        raise ValueError("Confirm the marked project details and measurements before creating the final PDF.")
     audit_status = str(draft.get("audit_status") or "not_started").strip().lower()
     if audit_status not in AI_PDF_ALLOWED_AUDIT_STATUSES:
         raise ExtensionPdfAuditConflict(audit_status)
@@ -11159,6 +11244,11 @@ def generate_extension_pdf(draft: dict, *, preserve_docx: bool = False) -> dict:
     if not str(draft.get("resume_content", "")).strip():
         raise ValueError("Resume content is required.")
     resume = draft_resume_snapshot(draft)
+    if (draft.get('analysis') or {}).get('_generation_method') == 'jd_only' or (draft.get('audit_result') or {}).get('generation_method') == 'jd_only':
+        writing_errors = jd_experiment.bullet_writing_issues(resume)
+        if writing_errors:
+            raise ValueError('Resume writing rules failed before export: ' + ' | '.join(writing_errors[:4]))
+        resume['_writing_policy_version'] = jd_experiment.WRITING_POLICY_VERSION
     errors, _warnings = validate_updated_content(draft["resume_content"])
     if errors:
         raise ValueError(f"Validation failed: {errors[0]}")
@@ -11386,6 +11476,7 @@ def update_settings():
             settings.get(ALLOW_CLEARANCE_JOBS_SETTING, False),
         ))
         settings["identities"] = identities
+        settings["experimental_jd_drafting"] = bool(data.get("experimental_jd_drafting", settings.get("experimental_jd_drafting", False)))
         settings[DEFAULT_IDENTITY_SETTING] = default_identity_id
         save_settings(settings)
 
@@ -11393,6 +11484,7 @@ def update_settings():
             "success": True,
             "message": "Settings saved successfully",
             "output_directory": output_directory,
+            "experimental_jd_drafting": bool(settings.get("experimental_jd_drafting", False)),
             ALLOW_CLEARANCE_JOBS_SETTING: bool(settings.get(ALLOW_CLEARANCE_JOBS_SETTING, False)),
             "identities": identities,
             DEFAULT_IDENTITY_SETTING: current_default_identity_id(),
@@ -11622,7 +11714,8 @@ def run_extension_draft_audit(draft_id: str) -> dict:
     base_revision = int(draft.get("resume_revision") or 1)
     try:
         result = run_extension_ai_stage(
-            lambda: generate_resume_quality_audit(
+            lambda: review_jd_only_resume(draft["job_description"], draft.get("analysis") or {}, current_resume, blueprints, repair=True)
+            if (draft.get("analysis") or {}).get("_generation_method") == "jd_only" else generate_resume_quality_audit(
                 api_key=os.getenv("OPENAI_API_KEY", "").strip(),
                 job_description=draft["job_description"],
                 analysis_payload=draft.get("analysis") or {},
@@ -11636,12 +11729,15 @@ def run_extension_draft_audit(draft_id: str) -> dict:
                 },
             )
         )
+        repaired = result.pop("_repaired_resume", None)
+        values = extension_audit_values_from_resume(draft, repaired, enabled_keys) if repaired else None
         saved = extension_drafts.save_audit_result(
             draft_id,
             result,
             result["base_hash"],
             base_revision,
             run_token,
+            repaired_values=values,
         )
         if result.get("decision") == "changes_suggested":
             return apply_extension_draft_audit(draft_id)
@@ -11785,6 +11881,7 @@ def extension_status():
     return jsonify({
         "success": True,
         "server_ready": True,
+        "experimental_jd_drafting": bool(settings.get("experimental_jd_drafting", False)),
         "ai_ready": ai_ok,
         "ai_message": ai_message,
         "model": RESUME_MODEL,
@@ -12125,9 +12222,11 @@ def update_extension_draft_service(
         invalidate_pdf = True
     if "identity_id" in data:
         identity = identity_profile_by_id(str(data.get("identity_id", "")))
-        values.update({"identity_id": identity.get("id", ""), "contact_snapshot": identity})
+        values['identity_id'] = identity.get('id', '')
+        if values['identity_id'] != draft.get('identity_id'):
+            values['contact_snapshot'] = identity
         invalidate_pdf = True
-    if "resume_mode" in data:
+    if "resume_mode" in data and normalize_resume_mode(data.get("resume_mode")) != normalize_resume_mode(draft.get("resume_mode")):
         values["resume_mode"] = normalize_resume_mode(data.get("resume_mode"))
         profile_snapshot = profile_for_resume_mode(
             draft.get("profile_snapshot") if isinstance(draft.get("profile_snapshot"), dict) else None,
@@ -12207,11 +12306,17 @@ def update_extension_draft_service(
         if errors:
             raise ValueError(errors[0])
         values["resume_content"] = content
-        values.update(extension_payloads_from_content(content, {**draft, **values}, enabled_keys))
+        # Re-sending the same text must not regenerate canonical fields or
+        # refresh snapshots during an in-flight review.
+        content_context_changed = any(values.get(key, draft.get(key)) != draft.get(key) for key in (
+            'resume_mode', 'enabled_experience_keys', 'experience_history_snapshot', 'title_summary', 'skills',
+            'experience_recent', 'experience_older'))
+        if content != draft.get('resume_content') or content_context_changed:
+            values.update(extension_payloads_from_content(content, {**draft, **values}, enabled_keys))
         invalidate_pdf = True
 
     next_draft = {**draft, **values}
-    if values.get("resume_content"):
+    if values.get("resume_content") and any(value != draft.get(key) for key, value in values.items()):
         values["resume_snapshot"] = draft_resume_snapshot(next_draft)
     updated = extension_drafts.update(draft_id, values, invalidate_pdf=invalidate_pdf)
     return extension_draft_payload(updated)
@@ -12295,6 +12400,15 @@ def regenerate_extension_draft(draft_id: str):
             )
             draft = extension_drafts.create(context, snapshot, 0)
         else:
+            if current and current.get("status") in EXTENSION_GENERATING_STATUSES:
+                raise ActiveDraftTaskError("This resume draft is already queued or generating. Wait for it to finish before regenerating.")
+            if current:
+                old_profile = current.get("profile_snapshot") or {}
+                refreshed = refresh_profile_evidence(old_profile, profile_for_resume_mode(resume_mode=current.get("resume_mode", "professional")))
+                extension_drafts.update(draft_id, {
+                    "profile_snapshot": refreshed,
+                    "experience_history_snapshot": refreshed.get("experience_history") or current.get("experience_history_snapshot", []),
+                })
             if "resume_mode" in data:
                 extension_drafts.update(draft_id, {"resume_mode": normalize_resume_mode(data.get("resume_mode"))}, invalidate_pdf=True)
             draft = extension_drafts.regenerate(draft_id, data.get("context"))
@@ -12899,6 +13013,495 @@ def draft_outreach_lead_message(lead_id: str):
         return jsonify({"success": False, "error": str(e)}), 500
 
 
+jd_experiment_sessions: dict = {}
+jd_experiment_lock = threading.Lock()
+
+
+def _jd_experiment_call(stage, schema, prompt, inputs):
+    key = os.getenv("OPENAI_API_KEY", "").strip()
+    if not key:
+        raise ValueError("OPENAI_API_KEY is not configured")
+    count = sum(int(r.get("bullet_min") or 0) for r in inputs.get("employment_headings_only", []))
+    # Reasoning and JSON share the output budget. Size it for the selected roles,
+    # rather than assuming a full four-role resume fits a small fixed allowance.
+    limit = {"plan": max(12000, 5000 + count * 350), "targeting": 5000,
+             "draft": max(16000, 6000 + count * 650), "core": 6500,
+             "experience": max(10000, 3000 + count * 500), "repair": 8000, "review": 6000}[stage]
+    retry_limit = min(36000, limit * 2)
+    started = time.perf_counter()
+    request_inputs = copy.deepcopy(inputs)
+    if stage in {"plan", "targeting"} and request_inputs.get("job_description"):
+        description = request_inputs.pop("job_description")
+        request_inputs["job_description_clauses"] = jd_experiment.jd_clause_map(description)
+        request_inputs["job_description_clause_priorities"] = jd_experiment.jd_clause_priorities(description)
+    if stage == 'review' and request_inputs.get('review_contract') == 'typed_ids_v1':
+        request_inputs.pop('assembled_draft', None)
+        request_inputs.pop('review_targets', None)
+    trace_id = uuid.uuid4().hex
+    trace = {"id": trace_id, "stage": stage, "started_at": datetime.now(timezone.utc).isoformat(),
+             "model": SYNTHESIS_MODEL if stage in {"review", "targeting"} else RESUME_MODEL,
+             "developer_prompt": prompt, "schema": schema, "inputs": request_inputs, "attempts": []}
+
+    def save_trace():
+        try:
+            folder = Path(__file__).resolve().parent / "tmp" / "jd-generation-traces"
+            folder.mkdir(parents=True, exist_ok=True)
+            (folder / (trace_id + ".json")).write_text(json.dumps(trace, ensure_ascii=False, indent=2))
+        except OSError as exc:
+            print(f"JD trace could not be saved: {exc}", flush=True)
+
+    for attempt, budget in enumerate((limit, retry_limit), 1):
+        record = {"attempt": attempt, "output_limit": budget, "status": "running"}
+        trace["attempts"].append(record)
+        save_trace()
+        try:
+            result = call_openai_structured_output(
+                api_key=key, model=SYNTHESIS_MODEL if stage in {"review", "targeting"} else RESUME_MODEL, temperature=RESUME_TEMPERATURE,
+                developer_prompt=prompt, user_prompt=json.dumps(request_inputs, ensure_ascii=False),
+                schema_name="jd_experiment_" + stage, schema=schema,
+                max_output_tokens=budget,
+                request_timeout_seconds=OPENAI_RESUME_TIMEOUT_SECONDS, reasoning_effort="low",
+            )
+            record.update(status="completed", elapsed_seconds=round(time.perf_counter() - started, 3), output=result)
+            save_trace()
+            print(f"JD-only {stage}: completed attempt={attempt} output_limit={budget} elapsed={time.perf_counter()-started:.1f}s trace={trace_id}", flush=True)
+            return result
+        except Exception as exc:
+            record.update(status="failed", elapsed_seconds=round(time.perf_counter() - started, 3), error=str(exc))
+            save_trace()
+            print(f"JD-only {stage}: failed attempt={attempt} output_limit={budget} elapsed={time.perf_counter()-started:.1f}s trace={trace_id} error={exc}", flush=True)
+            if attempt == 1 and _is_max_output_tokens_error(exc):
+                continue
+            raise AIStageError("jd_" + stage, f"JD-only {stage} failed: {exc}") from exc
+
+
+def jd_only_audit_result(review, resume, notes=()):
+    """Use the existing review UI; approval here assesses writing, not facts."""
+    findings = [f for f in review.get("findings", []) if f.get("severity") != "advisory"]
+    advisory = [f for f in review.get("findings", []) if f.get("severity") == "advisory"]
+    return {
+        "schema_version": RESUME_QUALITY_AUDIT_SCHEMA_VERSION,
+        "decision": "manual_attention" if findings else "approved",
+        "generation_method": "jd_only", "assumptions_unverified": True,
+        "base_hash": canonical_json_hash(resume),
+        "review_summary": (str(review.get("summary") or "JD-based writing review complete.")
+                           + " Project details, technologies and measurements are proposed examples; confirm them against your actual work before use."),
+        "manual_findings": [{"id": f"jd-{i}",
+                             "path": f"experience.{f['role_key']}.bullets.{f['bullet_number'] - 1}"
+                             if f.get("role_key") and f.get("bullet_number", 0) > 0 else "",
+                             "problem": f.get("issue", ""), "recommendation": "Review this contribution in the editor."}
+                            for i, f in enumerate(findings)],
+        "non_blocking_gaps": ([{"kind": "numerical_target", "gap": "Numerical evidence", "impact": n} for n in notes]
+                              + [{"kind": "review_note", "gap": "Writing suggestion", "impact": f.get("issue", "")} for f in advisory]),
+        "changes": {}, "review_groups": [],
+    }
+
+
+def review_jd_only_resume(jd, analysis, resume, blueprints, *, repair=False):
+    draft = {"headline": resume["updated_title"], "summary": resume["updated_summary"],
+             "skills": copy.deepcopy(resume["updated_skills"]), "experience": {
+                 key: {"title": entry['title'], "bullets": [{"text": text, "contribution_number": i}
+                                   for i, text in enumerate(entry["bullets"], 1)]}
+                 for key, entry in resume["experience"].items()}}
+    inputs = {"job_description": jd, "checked_plan": analysis.get("_jd_only_plan") or {},
+              "targeting_assessment": analysis.get("_jd_only_targeting") or {},
+              "resume_mode_context": jd_experiment.mode_context(analysis.get("_resume_mode", "professional")),
+              "employment_headings_only": jd_experiment.headings_only(blueprints)}
+    state = {}
+    def write(extra):
+        findings = extra.get("review_findings")
+        current = extra["previous_draft"]
+        patch = extra["review_patch"]
+        if findings:
+            jd_experiment.validate_dispositions(patch, findings)
+        revised = jd_experiment.apply_repairs(current, patch)
+        errors = jd_experiment.resume_text_issues(revised) + jd_experiment.bullet_writing_issues(revised)
+        for change in patch["changes"]:
+            if change["target"] != "bullet":
+                continue
+            key = change["role_key"]
+            role = next(r for r in blueprints if r["key"] == key)
+            bullet = copy.deepcopy(change["replacement"])
+            bullet["contribution_number"] = 1
+            check = {**revised, "experience": {key: {"bullets": [bullet]}}}
+            errors.extend(jd_experiment.draft_issues(check, {}, [{**role, "bullet_min": 1}], _numeric_tokens)[0])
+        state["last_repair_patch"] = patch
+        # Existing unchanged prose has no typed measurement records. Only new
+        # replacements are checked for metadata consistency; goal notes still
+        # count all visible quantities.
+        _, notes = jd_experiment.draft_issues(revised, {}, blueprints, _numeric_tokens)
+        return revised, errors, notes
+    if repair:
+        revised, review, notes = coordinate_jd_writing_review(inputs, draft, write, lambda stage: None, state, [])
+    else:
+        review = _jd_experiment_call("review", jd_experiment.review_schema(draft),
+            jd_experiment.REVIEW_PROMPT + "\n" + jd_experiment.REVIEW_COORDINATION,
+            {**inputs, "assembled_draft": jd_experiment.review_text_view(draft), "review_targets": jd_experiment.review_targets(draft)})
+        review = jd_experiment.identify_findings(review, draft)
+        revised, notes = draft, []
+    canonical = {"updated_title": revised["headline"], "updated_summary": revised["summary"],
+                 "updated_skills": normalize_updated_skills(revised["skills"]), "experience": {
+                     key: {"title": entry.get("title", resume["experience"][key]["title"]), "bullets": [b["text"] for b in entry["bullets"]]}
+                     for key, entry in revised["experience"].items()}}
+    errors, _ = validate_updated_content(format_generated_resume_text(canonical, blueprints))
+    if errors:
+        raise ValueError("Reviewed resume needs revision: " + " | ".join(errors[:3]))
+    result = jd_only_audit_result(review, canonical, notes)
+    if canonical != resume:
+        result["_repaired_resume"] = canonical
+    result["review_application"] = state.get("review_rounds", [])
+    return result
+
+
+def coordinate_jd_writing_review(review_base, draft, write, progress, state, notes):
+    roles = review_base["employment_headings_only"]
+    categories = review_base.get("ordered_skill_categories") or ALLOWED_SKILL_CATEGORIES
+    saved = jd_experiment.resume_review_ids.snapshot(draft)
+    review_inputs = {**review_base, "review_contract": "typed_ids_v1", "snapshot_id": saved['snapshot_id'],
+                    "review_items": saved['items'], "numerical_goal_notes": notes,
+                    "writing_rules": jd_experiment.DRAFT_PROMPT,
+                    # Kept only for local stored-response compatibility; the
+                    # live request boundary strips this duplicate text view.
+                    "assembled_draft": jd_experiment.review_text_view(draft)}
+    state['review_snapshot_id'] = saved['snapshot_id']
+    progress("jd_review")
+    raw = _jd_experiment_call("review", jd_experiment.review_apply_schema(roles, draft, categories),
+        jd_experiment.REVIEW_PROMPT + "\n" + jd_experiment.REVIEW_APPLY_PROMPT, review_inputs)
+    patch, review = jd_experiment.decode_review_response(raw, saved, draft)
+    if patch['changes']:
+        revised, errors, notes = write({"previous_draft": draft, "review_patch": patch})
+        if errors:
+            raise ValueError("Reviewer replacements failed local validation: " + " | ".join(errors[:4]))
+        draft = revised
+    state["review_rounds"] = [{"findings": review['findings'], 'applied_findings': review['applied_findings'],
+                              'contract': 'typed_ids_v1', 'snapshot_id': saved['snapshot_id'],
+                              "patch": copy.deepcopy(patch), "application": "locally_validated"}]
+    state["draft"] = copy.deepcopy(draft)
+    progress("jd_review")
+    return draft, review, notes
+
+
+def generate_jd_only_resume(jd, blueprints, resume_mode, revision_context=None, *, saved_state=None, checkpoint=None, skill_order_key=None):
+    """One source-free workflow shared by Generate Resume in both clients."""
+    roles = jd_experiment.headings_only(blueprints)
+    if not roles:
+        raise ValueError("Select at least one employment heading.")
+    mode = jd_experiment.mode_context(normalize_resume_mode(resume_mode))
+    inputs = {"job_description": jd, "employment_headings_only": roles, "resume_mode_context": mode}
+    revision = (revision_context or {}).get("revision_request", "")
+    if revision:
+        inputs["requested_revision"] = str(revision)[:AI_REVISION_REQUEST_MAX_CHARS]
+    # Preserve edits only to a prior JD-only draft; callers never pass a source resume.
+    previous = (revision_context or {}).get("jd_only_current_resume")
+    if previous:
+        inputs["current_proposed_resume"] = str(previous)[:AI_REVISION_RESUME_MAX_CHARS]
+    fingerprint_input = {"workflow_version": 5, "jd_source_version": jd_experiment.JD_SOURCE_VERSION,
+                         "writing_policy_version": jd_experiment.WRITING_POLICY_VERSION,
+                         "inputs": inputs, "skill_order_key": skill_order_key}
+    fingerprint = canonical_json_hash(fingerprint_input)
+    state = copy.deepcopy(saved_state or {})
+    if state.get("fingerprint") != fingerprint:
+        legacy = canonical_json_hash({**fingerprint_input, 'jd_source_version': 4})
+        previous_plan = (state.get('plan') or state.get('pending_plan')) if state.get('fingerprint') == legacy else None
+        state = {"fingerprint": fingerprint}
+        if previous_plan:
+            # Re-ground saved quotes with the current parser, then recheck
+            # targeting. Do not discard an expensive completed planning call.
+            state['pending_plan'] = previous_plan
+
+    def progress(stage):
+        if checkpoint:
+            checkpoint(stage, copy.deepcopy(state))
+
+    plan = state.get("plan") or state.get("pending_plan")
+    if not plan:
+        progress("jd_plan")
+        plan = _jd_experiment_call("plan", jd_experiment.plan_schema(roles, jd), jd_experiment.PLAN_PROMPT, inputs)
+    plan = jd_experiment.ensure_plan_titles(jd_experiment.normalize_plan(plan, jd), roles)
+    issues = jd_experiment.plan_issues(plan, roles, jd)
+    if issues:
+        state["pending_plan"] = copy.deepcopy(plan)
+        state["plan_issues"] = issues
+        progress("jd_plan_repair")
+        plan = _jd_experiment_call("plan", jd_experiment.plan_schema(roles, jd), jd_experiment.PLAN_PROMPT,
+                                   {**inputs, "previous_plan": plan, "repair_issues": issues})
+        plan = jd_experiment.ensure_plan_titles(jd_experiment.normalize_plan(plan, jd), roles)
+        issues = jd_experiment.plan_issues(plan, roles, jd)
+    if issues:
+        state["pending_plan"] = copy.deepcopy(plan)
+        state["plan_issues"] = issues
+        progress("jd_plan_repair")
+        raise AIStageError("analysis", "Project plan needs revision: " + " | ".join(issues[:4]), validation=True)
+    state.pop("pending_plan", None)
+    state.pop("plan_issues", None)
+    state["plan"] = copy.deepcopy(plan)
+    if not state.get("targeting_assessment"):
+        progress("jd_targeting")
+        targeting = _jd_experiment_call("targeting", jd_experiment.targeting_schema(roles, jd), jd_experiment.TARGETING_PROMPT,
+                                       {**inputs, "proposed_plan": plan})
+        plan, assessment = jd_experiment.apply_targeting_check(plan, targeting, jd)
+        issues = jd_experiment.plan_issues(plan, roles, jd)
+        if issues:
+            raise AIStageError("analysis", "Targeted project plan needs revision: " + " | ".join(issues[:4]), validation=True)
+        state["targeting_assessment"] = assessment
+        state["targeting_check"] = targeting
+        # Old writing checkpoints were produced without this direction check.
+        for key in ("core_sections", "draft", "pending_draft", "draft_issues", "review_rounds"):
+            state.pop(key, None)
+    inputs["targeting_assessment"] = copy.deepcopy(state["targeting_assessment"])
+    state["plan"] = copy.deepcopy(plan)
+    progress("jd_targeting")
+    inputs["checked_plan"] = plan
+    ordered_skill_categories = skill_category_order_for_key(
+        skill_order_key or infer_skill_category_order_key(plan.get("role_positioning", "")))
+    inputs["ordered_skill_categories"] = ordered_skill_categories
+
+    def write(extra=None):
+        if extra:
+            progress("jd_draft_repair")
+            repair_inputs = {**inputs, **extra}
+            current = repair_inputs.pop("previous_draft")
+            repair_inputs.update(current_draft=current, review_targets=jd_experiment.review_targets(current), writing_rules=jd_experiment.DRAFT_PROMPT)
+            findings = extra.get("review_findings")
+            repair_prompt = jd_experiment.REPAIR_PROMPT
+            if findings:
+                repair_prompt += "\nAccount for EVERY finding_id in dispositions: patched with one-based change_indices, unchanged with a specific reason disputing the defect, or blocked with the actual unresolved fact. Link every replacement to a finding's exact target. Do not silently omit findings."
+            patch = extra.get("review_patch")
+            if patch is None:
+                patch = _jd_experiment_call("repair", jd_experiment.repair_schema(roles, ordered_skill_categories, findings, current_draft=current),
+                                           repair_prompt, repair_inputs)
+            if findings:
+                jd_experiment.validate_dispositions(patch, findings)
+            state["last_repair_patch"] = copy.deepcopy(patch)
+            draft = jd_experiment.apply_repairs(current, patch)
+        else:
+            core = state.get("core_sections")
+            if not core:
+                progress("jd_core")
+                generated_core = _jd_experiment_call("core", jd_experiment.core_schema(roles, ordered_skill_categories),
+                                                     jd_experiment.grouped_writing_prompt("core"), inputs)
+                core = {key: generated_core[key] for key in ("headline", "summary", "skills")}
+                core["skills"] = normalize_skills_for_order({"updated_skills": core["skills"]}, ordered_skill_categories)["updated_skills"]
+                state["core_sections"] = copy.deepcopy(core)
+                progress("jd_core")
+            progress("jd_experience")
+            experience = _jd_experiment_call("experience", jd_experiment.experience_schema(roles),
+                                             jd_experiment.grouped_writing_prompt("experience"),
+                                             {**inputs, "core_sections": core})
+            draft = {**copy.deepcopy(core), "experience": experience["experience"]}
+        draft = jd_experiment.apply_plan_titles(jd_experiment.normalize_draft(draft, _numeric_tokens), plan, roles)
+        errors, notes = jd_experiment.draft_issues(draft, plan, roles, _numeric_tokens, check_writing=True)
+        if not normalize_updated_skills(draft.get("skills", [])):
+            errors.append("Include supported skill categories with at least two relevant skills each, drawn from the proposed contributions.")
+        if not str(draft.get("headline") or "").strip() or not str(draft.get("summary") or "").strip():
+            errors.append("Include a normal role headline and professional summary.")
+        state["pending_draft"] = copy.deepcopy(draft)
+        state["draft_issues"] = list(errors)
+        state["numerical_notes"] = list(notes)
+        state["skill_style_notes"] = jd_experiment.skill_style_notes(draft)
+        # Persist the actual failed case before any repair or retry.
+        progress("jd_draft_repair" if errors else "jd_draft")
+        return draft, errors, notes
+
+    draft = state.get("draft") or state.get("pending_draft")
+    if draft:
+        draft = jd_experiment.apply_plan_titles(draft, plan, roles)
+        issues, notes = jd_experiment.draft_issues(draft, plan, roles, _numeric_tokens, check_writing=True)
+        if not normalize_updated_skills(draft.get("skills", [])):
+            issues.append("Saved draft is missing grouped skills.")
+    else:
+        draft, issues, notes = write()
+    if issues:
+        draft, issues, notes = write({"previous_draft": draft, "repair_issues": issues, "numerical_goal_notes": notes})
+    if issues:
+        raise AIStageError("experience_generation", "Draft needs revision: " + " | ".join(issues[:4]), validation=True)
+    state.pop("pending_draft", None)
+    state.pop("draft_issues", None)
+    state["draft"] = copy.deepcopy(draft)
+    original = copy.deepcopy(draft)
+    # The earlier draft is editing context for the writer only. A reviewer must
+    # inspect the assembled result, never rediscover defects in the old version.
+    review_base = {key: inputs[key] for key in (
+        "job_description", "employment_headings_only", "resume_mode_context", "checked_plan", "targeting_assessment")}
+    review_error = None
+    try:
+        draft, review, notes = coordinate_jd_writing_review(review_base, draft, write, progress, state, notes)
+    except Exception as exc:
+        review_error = exc
+        review = {"findings": []}
+        draft = original
+        state["draft"] = copy.deepcopy(original)
+        _, notes = jd_experiment.draft_issues(draft, plan, roles, _numeric_tokens, check_writing=True)
+
+    def canonical(proposed):
+        return {"updated_title": proposed["headline"], "updated_summary": proposed["summary"],
+                "updated_skills": normalize_updated_skills(proposed["skills"]),
+                "experience": {r["key"]: {"title": proposed["experience"][r["key"]].get("title") or plan["experience"][r["key"]].get("title") or r["default_title"],
+                    "bullets": [b["text"] for b in proposed["experience"][r["key"]]["bullets"]]} for r in roles}}
+    resume, original_resume = canonical(draft), canonical(original)
+    # Fail before changing the saved/editor state if the normal resume parser cannot consume it.
+    content = format_generated_resume_text(resume, roles)
+    errors, _ = validate_updated_content(content)
+    if errors:
+        raise ValueError("Generated resume needs revision: " + " | ".join(errors[:3]))
+    audit = jd_only_audit_result(review, resume, notes)
+    if review_error:
+        audit.update(_quality_audit_failure_metadata(review_error))
+    return {"resume": resume, "original_resume": original_resume, "content": content,
+            "plan": plan, "roles": roles,
+            "targeting_assessment": state["targeting_assessment"],
+            "audit": audit,
+            "resume_mode": mode["resume_mode"], "generation_method": "jd_only"}
+
+
+@app.route("/api/ai/generate-jd-resume", methods=["POST"])
+def generate_ai_jd_resume():
+    try:
+        data = request.get_json(silent=True) or {}
+        session_id = str(data.get("session_id") or "")
+        supplied_jd = str(data.get("job_description") or "").strip()
+        if (session_id not in ai_sessions or data.get("reset_memory")
+                or (supplied_jd and supplied_jd != ai_sessions[session_id].get("job_description"))):
+            jd = str(data.get("job_description") or "").strip()
+            if not jd or len(jd) > 20000:
+                return jsonify(success=False, error="Provide a job description of up to 20,000 characters."), 400
+            company = infer_company_name_for_preflight(jd, data)
+            preflight = current_job_preflight(jd, company, check_cpt=bool(data.get("enforce_cpt_company") or company))
+            if preflight.get("blocked"):
+                return job_preflight_blocked_response(preflight)
+            session_id, _ = get_ai_session(None, jd, True, request_resume_mode(data))
+            ai_sessions[session_id]["analysis"] = analyze_job_description(
+                api_key=os.getenv("OPENAI_API_KEY", "").strip(), job_description=jd)
+        session = ensure_ai_session_state(ai_sessions[session_id])
+        if data.get("revision_request"):
+            session["revision_context"] = normalize_revision_context(data["revision_request"], "")
+        if "resume_mode" in data and normalize_resume_mode(data["resume_mode"]) != session["resume_mode"]:
+            return jsonify(success=False, error="Profile mode changed. Analyze this JD again for the selected mode."), 409
+        if "enabled_experience_keys" in data:
+            session["enabled_experience_keys"] = normalize_ai_enabled_experience_keys(data["enabled_experience_keys"], session)
+        preflight = current_job_preflight(session["job_description"], "", check_cpt=False)
+        if preflight.get("blocked"):
+            return job_preflight_blocked_response(preflight)
+        blueprints = ai_session_active_blueprints(session)
+        revision = {"revision_request": (session.get("revision_context") or {}).get("revision_request", "")}
+        if (session.get("analysis") or {}).get("_generation_method") == "jd_only":
+            revision["jd_only_current_resume"] = (session.get("revision_context") or {}).get("current_resume_content", "")
+        def checkpoint(stage, state):
+            session["jd_only_checkpoint"] = state
+            session["generation_stage"] = stage
+            session["updated_at"] = time.time()
+
+        result = generate_jd_only_resume(session["job_description"], blueprints, session["resume_mode"], revision,
+                                        skill_order_key=skill_category_order_key_for_analysis(session.get("analysis")),
+                                        saved_state=session.get("jd_only_checkpoint"), checkpoint=checkpoint)
+        session["analysis"] = {**(session.get("analysis") or {}), "_generation_method": "jd_only",
+                               "_resume_mode": session["resume_mode"], "_jd_only_plan": result["plan"],
+                               "_jd_only_targeting": result.get("targeting_assessment", {})}
+        session["resume_versions"] = {}
+        session["resume_revision"] = int(session.get("resume_revision") or 1) + bool(session.get("resume_content"))
+        update_ai_session_structured_resume(session, result["original_resume"], blueprints)
+        capture_ai_session_resume_version(session, "original", blueprints)
+        update_ai_session_structured_resume(session, result["resume"], blueprints)
+        if result["audit"]["decision"] != "technical_failed":
+            capture_ai_session_resume_version(session, "luna_reviewed", blueprints)
+        session.update(audit_status=result["audit"]["decision"], audit_result=result["audit"], audit_proposal=None,
+                       audit_base_revision=session["resume_revision"], audit_base_hash=result["audit"]["base_hash"],
+                       audit_created_at=datetime.now(timezone.utc).isoformat(), audit_applied_at=None,
+                       has_manual_resume_edits=False, updated_at=time.time())
+        session["turns"] = (session.get("turns", []) + [{"revision_request": revision["revision_request"],
+            "analysis": session["analysis"], "resume_text": session["resume_content"],
+            "created_at": datetime.now(timezone.utc).isoformat()}])[-AI_MEMORY_LIMIT:]
+        return jsonify(success=True, session_id=session_id, content=session["resume_content"],
+                       resume=result["resume"], generation_method="jd_only", **ai_session_state_payload(session))
+    except Exception as exc:
+        return jsonify(success=False, error=str(exc)), 400
+
+
+@app.route("/api/ai/jd-draft/plan", methods=["POST"])
+def plan_jd_experiment():
+    if not settings.get("experimental_jd_drafting", False):
+        return jsonify(success=False, error="Enable Experimental JD-only drafts in Settings first."), 403
+    try:
+        data = request.get_json(silent=True) or {}
+        jd = str(data.get("job_description") or "").strip()
+        if not jd or len(jd) > 20000:
+            return jsonify(success=False, error="Provide a job description of up to 20,000 characters."), 400
+        preflight = current_job_preflight(jd, "", check_cpt=False)
+        if preflight.get("blocked"):
+            return job_preflight_blocked_response(preflight)
+        resume_mode = normalize_resume_mode(data.get("resume_mode"))
+        mode_context = jd_experiment.mode_context(resume_mode)
+        roles = jd_experiment.headings_only(filter_blueprints_by_enabled_keys(
+            current_experience_blueprints(resume_mode=resume_mode),
+            data.get("enabled_experience_keys"),
+        ))
+        if not roles:
+            return jsonify(success=False, error="Select at least one employment heading."), 400
+        inputs = {"job_description": jd, "employment_headings_only": roles, "resume_mode_context": mode_context}
+        plan = _jd_experiment_call("plan", jd_experiment.plan_schema(roles, jd), jd_experiment.PLAN_PROMPT, inputs)
+        plan = jd_experiment.ensure_plan_titles(jd_experiment.normalize_plan(plan, jd), roles)
+        issues = jd_experiment.plan_issues(plan, roles, jd)
+        if issues:
+            plan = _jd_experiment_call("plan", jd_experiment.plan_schema(roles, jd), jd_experiment.PLAN_PROMPT,
+                                       {**inputs, "previous_plan": plan, "repair_issues": issues})
+            plan = jd_experiment.ensure_plan_titles(jd_experiment.normalize_plan(plan, jd), roles)
+            issues = jd_experiment.plan_issues(plan, roles, jd)
+        if issues:
+            return jsonify(success=False, error="Project plan needs revision: " + " | ".join(issues[:4])), 422
+        plan_id = uuid.uuid4().hex
+        with jd_experiment_lock:
+            for expired in [k for k, v in jd_experiment_sessions.items() if time.time() - v["created_at"] > 3600]:
+                del jd_experiment_sessions[expired]
+            if len(jd_experiment_sessions) >= 32:
+                del jd_experiment_sessions[next(iter(jd_experiment_sessions))]
+            jd_experiment_sessions[plan_id] = {"created_at": time.time(), "jd": jd, "roles": roles, "plan": plan,
+                                               "resume_mode_context": mode_context}
+        return jsonify(success=True, mode="jd_only_experimental", resume_mode=resume_mode, plan_id=plan_id, plan=plan)
+    except Exception as exc:
+        return jsonify(success=False, error=str(exc)), 500
+
+
+@app.route("/api/ai/jd-draft/generate", methods=["POST"])
+def generate_jd_experiment():
+    if not settings.get("experimental_jd_drafting", False):
+        return jsonify(success=False, error="Experimental JD-only drafts are disabled."), 403
+    data = request.get_json(silent=True) or {}
+    with jd_experiment_lock:
+        context = copy.deepcopy(jd_experiment_sessions.get(str(data.get("plan_id") or "")))
+    if not context or time.time() - context["created_at"] > 3600:
+        return jsonify(success=False, error="Project plan expired. Generate a new plan."), 409
+    mode_context = context.get("resume_mode_context") or {}
+    if (mode_context.get("policy_version") != jd_experiment.MODE_POLICY_VERSION
+            or ("resume_mode" in data and normalize_resume_mode(data["resume_mode"]) != mode_context.get("resume_mode"))):
+        return jsonify(success=False, error="Profile mode changed. Generate a new project plan for the selected mode."), 409
+    try:
+        roles, plan = context["roles"], context["plan"]
+        inputs = {"job_description": context["jd"], "checked_plan": plan, "employment_headings_only": roles,
+                  "resume_mode_context": mode_context}
+        draft = _jd_experiment_call("draft", jd_experiment.draft_schema(roles), jd_experiment.DRAFT_PROMPT, inputs)
+        draft = jd_experiment.apply_plan_titles(jd_experiment.normalize_draft(draft, _numeric_tokens), plan, roles)
+        issues, notes = jd_experiment.draft_issues(draft, plan, roles, _numeric_tokens, check_writing=True)
+        if issues or notes:
+            # One targeted revision. A numerical shortfall alone remains advisory.
+            draft = _jd_experiment_call("draft", jd_experiment.draft_schema(roles), jd_experiment.DRAFT_PROMPT,
+                                       {**inputs, "previous_draft": draft, "repair_issues": issues, "numerical_goal_notes": notes})
+            draft = jd_experiment.apply_plan_titles(jd_experiment.normalize_draft(draft, _numeric_tokens), plan, roles)
+            issues, notes = jd_experiment.draft_issues(draft, plan, roles, _numeric_tokens, check_writing=True)
+        if issues:
+            return jsonify(success=False, error="Draft needs revision: " + " | ".join(issues[:4])), 422
+        review = _jd_experiment_call("review", jd_experiment.review_schema(), jd_experiment.REVIEW_PROMPT,
+                                    {**inputs, "assembled_draft": draft, "numerical_goal_notes": notes})
+        review["status"] = "changes_suggested" if review.get("findings") else "ready_for_assumption_review"
+        return jsonify(success=True, mode="jd_only_experimental", resume_mode=mode_context["resume_mode"],
+                       plan=plan, draft=draft, numerical_notes=notes,
+                       review=review,
+                       employment_headings=roles,
+                       markdown=jd_experiment.render_draft(plan, draft, roles, mode_context),
+                       assumptions_unverified=True)
+    except Exception as exc:
+        return jsonify(success=False, error=str(exc)), 500
+
+
 @app.route("/api/ai/status", methods=["GET"])
 def ai_status():
     ready, message = is_ai_generation_ready()
@@ -12959,7 +13562,7 @@ def analyze_ai_content():
             session["revision_context"] = incoming_revision_context
         cached_analysis = session.get("analysis")
         timing = {"analysis_ms": 0, "total_ms": 0}
-        if cached_analysis:
+        if cached_analysis and not target_work_issues(cached_analysis, job_description):
             analysis_payload = cached_analysis
         else:
             started = time.perf_counter()
@@ -12969,6 +13572,10 @@ def analyze_ai_content():
             )
             elapsed = int((time.perf_counter() - started) * 1000)
             timing = {"analysis_ms": elapsed, "total_ms": elapsed}
+            if cached_analysis:
+                for field in ("title_summary", "skills", "core_resume", "experience_recent", "experience_older"):
+                    session[field] = None
+                clear_ai_session_audit(session)
             session["analysis"] = analysis_payload
 
         decision = classify_resume_job(api_key, job_description)
@@ -13029,73 +13636,8 @@ def transcribe_audio():
 
 @app.route("/api/ai/generate", methods=["POST"])
 def generate_ai_content():
-    try:
-        data = request.get_json() or {}
-        job_description = str(data.get("job_description", "")).strip()
-        revision_request = str(data.get("revision_request", "")).strip()
-        current_resume_content = str(data.get("current_resume_content", "")).strip()
-        session_id = str(data.get("session_id", "")).strip() or None
-        reset_memory = bool(data.get("reset_memory", False))
-        resume_mode = request_resume_mode(data)
-        if not job_description:
-            return jsonify({"success": False, "error": "Job description is required"}), 400
-
-        if len(job_description) > 20000:
-            return jsonify({"success": False, "error": "Job description is too long"}), 400
-
-        preflight_company = infer_company_name_for_preflight(job_description, data)
-        enforce_cpt = bool(data.get("enforce_cpt_company") or preflight_company)
-        preflight = current_job_preflight(job_description, preflight_company, check_cpt=enforce_cpt)
-        if preflight.get("blocked"):
-            return job_preflight_blocked_response(preflight)
-
-        session_id, session = get_ai_session(session_id, job_description, reset_memory, resume_mode)
-        session_mode = normalize_resume_mode(session.get("resume_mode"))
-        enabled_experience_keys = normalize_ai_enabled_experience_keys(data.get("enabled_experience_keys"), session)
-        session["enabled_experience_keys"] = enabled_experience_keys
-        memory_turns = session.get("turns", [])[-AI_MEMORY_LIMIT:]
-        cached_analysis = session.get("analysis")
-
-        model_payload = call_openai_resume_engine(
-            job_description,
-            revision_request,
-            memory_turns,
-            current_resume_content,
-            cached_analysis=cached_analysis,
-            enabled_experience_keys=enabled_experience_keys,
-            resume_mode=session_mode,
-        )
-        resume_payload = model_payload["resume"]
-        analysis_payload = model_payload["analysis"]
-        resume_payload["_enabled_experience_keys"] = enabled_experience_keys
-        resume_text = format_generated_resume_text(resume_payload, call_current_experience_blueprints(resume_mode=session_mode))
-        timing = model_payload.get("timing", {})
-
-        turn = {
-            "revision_request": revision_request,
-            "analysis": analysis_payload,
-            "resume_text": resume_text,
-            "created_at": datetime.now(timezone.utc).isoformat(),
-        }
-        session["turns"] = (session.get("turns", []) + [turn])[-AI_MEMORY_LIMIT:]
-        session["analysis"] = analysis_payload
-        session["updated_at"] = time.time()
-
-        return jsonify({
-            "success": True,
-            "session_id": session_id,
-            "memory_count": len(session["turns"]),
-            "memory_limit": AI_MEMORY_LIMIT,
-            "analysis": analysis_payload,
-            "content": resume_text,
-            "model": RESUME_MODEL,
-            "analysis_model": ANALYSIS_MODEL,
-            "resume_model": RESUME_MODEL,
-            "resume_mode": session_mode,
-            "timing": timing,
-        })
-    except Exception as e:
-        return jsonify({"success": False, "error": str(e)}), 500
+    # Keep the existing public Generate endpoint on the same default workflow.
+    return generate_ai_jd_resume()
 
 
 @app.route("/api/ai/generate-core", methods=["POST"])
@@ -13207,6 +13749,7 @@ def generate_ai_title_summary():
             api_key=os.getenv("OPENAI_API_KEY", "").strip(),
             analysis_payload=analysis_payload,
             resume_mode=session_mode,
+            candidate_profile=session.get("profile_snapshot") or {},
         )
         timing = {"title_summary_ms": int((time.perf_counter() - started) * 1000)}
         timing["total_ms"] = timing["title_summary_ms"]
@@ -13258,6 +13801,7 @@ def generate_ai_skills():
         skills_payload = generate_skills_from_analysis(
             api_key=os.getenv("OPENAI_API_KEY", "").strip(),
             analysis_payload=analysis_payload,
+            candidate_profile=session.get("profile_snapshot") or {},
             revision_context=session.get("revision_context"),
             resume_mode=session_mode,
         )
@@ -13544,6 +14088,7 @@ def _generate_ai_experience_subset(*, recent: bool):
             api_key=os.getenv("OPENAI_API_KEY", "").strip(),
             analysis_payload=analysis_payload,
             preliminary_skills_payload=skills_payload,
+            job_description=session.get("job_description", ""),
             blueprints=blueprints,
             model=model,
             timeout_seconds=timeout_seconds,
@@ -13669,6 +14214,7 @@ def final_synthesize_ai_resume():
             preliminary_skills_payload=preliminary_skills,
             combined_experience_payload=combined_experience,
             active_blueprints=active_blueprints,
+            candidate_profile=session.get("profile_snapshot") or {},
             revision_context=session.get("revision_context"),
             resume_mode=session_mode,
         )
@@ -14192,6 +14738,13 @@ def regenerate_ai_resume():
         return jsonify({"success": False, "error": "AI session not found."}), 404
 
     session = ensure_ai_session_state(ai_sessions[session_id])
+    if "resume_mode" in data and normalize_resume_mode(data["resume_mode"]) != session.get("resume_mode"):
+        session["resume_mode"] = normalize_resume_mode(data["resume_mode"])
+        session["profile_snapshot"] = profile_for_resume_mode(resume_mode=session["resume_mode"])
+        session["enabled_experience_keys"] = complete_profile_experience_keys(resume_mode=session["resume_mode"])
+    session["profile_snapshot"] = refresh_profile_evidence(session.get("profile_snapshot") or {}, profile_for_resume_mode(resume_mode=session.get("resume_mode", "professional")))
+    session.pop("jd_only_checkpoint", None)
+    session.pop("generation_stage", None)
     session["turns"] = []
     session["title_summary"] = None
     session["skills"] = None
@@ -14424,6 +14977,9 @@ def generate():
                     "resume_revision": int(session.get("resume_revision") or 1),
                 }), 409
 
+        if CONFIRMATION_RE.search(content) or (validated_resume_override and CONFIRMATION_RE.search(json.dumps(validated_resume_override))):
+            return jsonify({"success": False, "error": "Confirm the marked project details and measurements before creating the final PDF."}), 409
+
         # Validate
         errors, warnings = validate_updated_content(content)
         if errors:
@@ -14462,6 +15018,11 @@ def generate():
             }
 
         # Create output directory
+        if has_resume_override and (session.get('analysis') or {}).get('_generation_method') == 'jd_only':
+            writing_errors = jd_experiment.bullet_writing_issues(merged_resume)
+            if writing_errors:
+                return jsonify(success=False, error='Resume writing rules failed before export: ' + ' | '.join(writing_errors[:4])), 400
+            merged_resume['_writing_policy_version'] = jd_experiment.WRITING_POLICY_VERSION
         title = merged_resume.get("title", "Resume")
         company_name = data.get("company_name", "").strip()
         # Use custom folder name if provided, otherwise generate from title
@@ -14678,6 +15239,11 @@ def health():
 @app.after_request
 def add_caching_headers(response):
     """Add caching headers for performance."""
+    if request.path.startswith("/static/react/"):
+        response.cache_control.no_cache = True
+        response.cache_control.max_age = 0
+        response.cache_control.must_revalidate = True
+        return response
     # Skip for file downloads and binary responses
     if response.direct_passthrough or response.is_streamed:
         return response

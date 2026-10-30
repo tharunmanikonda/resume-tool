@@ -31,6 +31,7 @@ def queued_task(store):
             "dates": blueprint["dates"] or "January 2024 - Present",
             "title": "Software Engineer",
             "enabled": True,
+            "source_bullets": ["PRIVATE_SAVED_BULLET"],
         }
         for blueprint in resume_app.EXPERIENCE_BLUEPRINTS
     ]
@@ -45,7 +46,7 @@ def queued_task(store):
         {
             "identity_id": "outlook",
             "enabled_experience_keys": [item["key"] for item in history],
-            "profile_snapshot": {"name": "Candidate"},
+            "profile_snapshot": {"name": "Candidate", "summary": "PRIVATE_SUMMARY", "skills": ["PRIVATE_SKILL"]},
             "contact_snapshot": {"email": "candidate@example.com"},
             "experience_history_snapshot": history,
         },
@@ -104,78 +105,109 @@ def install_pipeline_mocks(monkeypatch, calls, *, audit_error=None):
     monkeypatch.setattr(resume_app, "classify_resume_job", lambda *_args: {"category": "software_engineering", "suitable": True})
     analysis = {
         "target_role": "Backend Engineer",
+        "target_work": {"system_type": "Backend services", "primary_workflow": "Build and operate services",
+                        "engineering_changes": ["Implement services"], "evidence_expectations": ["Service implementation"]},
         "role_family": "backend application engineering",
         "skill_category_order_key": "backend_application",
         "prompt_family_key": "software_engineering",
         "skills_mentioned": ["Python"],
     }
-    preliminary = {"updated_skills": [{"category": "Programming Languages", "items": ["Python"]}]}
+    preliminary = {"updated_skills": [{"category": "Programming Languages", "items": ["Python", "Java"]}]}
 
     def analyze(**_kwargs):
         calls.append(("analysis", None))
         return analysis
 
-    def skills(**_kwargs):
-        calls.append(("skills", None))
-        return copy.deepcopy(preliminary)
-
-    def experience(**kwargs):
-        calls.append(("experience", copy.deepcopy(kwargs["preliminary_skills_payload"])))
-        return {
-            "experience": {
-                item["key"]: {"title": "Software Engineer", "bullets": ["Built reliable Python systems."]}
-                for item in kwargs["blueprints"]
-            }
-        }
-
-    def synthesis(**kwargs):
-        calls.append(("synthesis", copy.deepcopy(kwargs["combined_experience_payload"])))
-        return {
-            "updated_title": "Backend Engineer",
-            "updated_summary": "Backend engineer building reliable Python systems.",
-            "updated_skills": preliminary["updated_skills"],
-            "experience_titles": {
-                item["key"]: "Backend Software Engineer" for item in kwargs["active_blueprints"]
-            },
-        }
-
-    def audit(**kwargs):
-        calls.append(("audit", copy.deepcopy(kwargs["current_resume"])))
+    mechanisms = [
+        "Implement request validation with typed REST contracts",
+        "Reduce database round trips through batched query execution",
+        "Add regression tests for error handling and compatibility",
+        "Instrument service dashboards to isolate slow requests",
+        "Automate staged deployments with health checks",
+        "Resolve concurrency failures through idempotent message consumption",
+        "Improve form accessibility with keyboard navigation",
+        "Isolate infrastructure changes through deployment configuration checks",
+        "Document incident recovery procedures and service dependencies",
+        "Harden authentication boundaries using token validation",
+        "Tune process scheduling to reduce queue contention",
+    ]
+    def generate(stage, schema, prompt, inputs):
+        calls.append((stage, copy.deepcopy(inputs)))
+        assert "source_bullets" not in str(inputs)
+        assert "PRIVATE_" not in str(inputs)
+        roles = inputs["employment_headings_only"]
+        if stage == "targeting":
+            return {"decision": "aligned", "corrections": [], "assessment": {
+                "level_scope": "Feature-level IC", "team_path": "Backend services", "choice_basis": "conservative_assumption",
+                "primary_focus": [{"source_clause_id": "jd_1", "focus": "Build Python APIs"}],
+                "secondary_focus": [], "excluded_paths": [], "rationale": "Backend implementation scope"}}
+        if stage == "plan":
+            return {"role_positioning": "Backend Engineer", "target_system": "Backend APIs",
+                    "target_workflow": "Implement reliable request handling",
+                    "required": [{"capability": "Python APIs", "jd_quote": "Build reliable Python APIs"}],
+                    "optional": [], "unknowns": ["Product"],
+                    "experience": {r["key"]: {"system": "Proposed request service", "workflow": "Build and test requests",
+                        "scope": "Module implementation", "assumptions": ["Proposed system"],
+                        "contributions": mechanisms[:r["bullet_min"]]} for r in roles}}
+        if stage == "core":
+            skills = preliminary["updated_skills"]
+            if 'Programming Languages' not in inputs['ordered_skill_categories']:
+                skills = [{'category': inputs['ordered_skill_categories'][0], 'items': ['HPE ProLiant', 'Dell PowerEdge']}]
+            return {"headline": "Backend Engineer", "summary": "Backend engineer building reliable Python systems.",
+                    "skills": skills}
+        if stage == "experience":
+            assert inputs['core_sections']['headline'] == 'Backend Engineer'
+            return {"headline": "Backend Engineer", "summary": "Backend engineer building reliable Python systems.",
+                    "skills": preliminary["updated_skills"],
+                    "experience": {r["key"]: {"bullets": [{"contribution_number": i+1,
+                        "text": contribution + " across a workload of 500 requests, checking expected responses and failure cases during integration testing before releasing changes to shared service environments.",
+                        "measurement": {"kind": "scale", "value": "500", "unit": "requests",
+                                        "context": "Illustrative test workload", "status": "illustrative_unverified"}}
+                        for i, contribution in enumerate(mechanisms[:r["bullet_min"]])]} for r in roles}}
         if audit_error:
             raise audit_error
-        return {
-            "schema_version": "2",
-            "decision": "approved",
-            "overall_score": 95,
-            "review_summary": "The resume is ready.",
-            "component_scores": {
-                "ats_alignment": 95,
-                "technical_credibility": 95,
-                "human_tone": 95,
-                "evidence_quality": 95,
-                "career_coherence": 95,
-            },
-            "manual_findings": [],
-            "changes": resume_app._empty_resume_quality_audit_changes(),
-            "review_groups": [],
-            "withheld_changes": [],
-            "base_hash": resume_app.canonical_json_hash(kwargs["current_resume"]),
-        }
+        return {"summary": "Writing review complete.", "ready_for_assumption_review": True, "findings": []}
 
     monkeypatch.setenv("OPENAI_API_KEY", "test-key")
     monkeypatch.setattr(resume_app, "analyze_job_description", analyze)
-    monkeypatch.setattr(resume_app, "generate_skills_from_analysis", skills)
-    monkeypatch.setattr(resume_app, "generate_experience_subset_from_analysis", experience)
-    monkeypatch.setattr(resume_app, "generate_final_synthesis_from_analysis", synthesis)
-    monkeypatch.setattr(resume_app, "generate_resume_quality_audit", audit)
-    monkeypatch.setattr(resume_app, "generate_title_summary_from_analysis", lambda **_kwargs: pytest.fail("early title call"))
-    monkeypatch.setattr(resume_app, "normalize_updated_skills", lambda value: value)
-    monkeypatch.setattr(resume_app, "validate_skills_only_payload", lambda *_args, **_kwargs: [])
-    monkeypatch.setattr(resume_app, "validate_experience_subset_payload_with_analysis", lambda *_args, **_kwargs: [])
-    monkeypatch.setattr(resume_app, "validate_final_synthesis_payload", lambda *_args, **_kwargs: [])
-    monkeypatch.setattr(resume_app, "format_generated_resume_text", lambda *_args, **_kwargs: "Generated resume")
+    monkeypatch.setattr(resume_app, "_jd_experiment_call", generate)
+    monkeypatch.setattr(resume_app, "generate_skills_from_analysis", lambda **kwargs: pytest.fail("source skills generator used"))
+    monkeypatch.setattr(resume_app, "generate_experience_subset_from_analysis", lambda **kwargs: pytest.fail("source bullet generator used"))
     monkeypatch.setattr(resume_app, "draft_resume_snapshot", lambda draft: {"title": draft["title_summary"]["updated_title"]})
     return preliminary
+
+
+@pytest.mark.parametrize('edit_during_review', [False, True])
+def test_jd_retry_review_repairs_and_saves_atomically(tmp_path, monkeypatch, edit_during_review):
+    store = pipeline_store(tmp_path, monkeypatch)
+    draft, task = queued_task(store)
+    install_pipeline_mocks(monkeypatch, [])
+    resume_app.run_extension_generation_task(task)
+    before = store.get(draft['id'])
+    stages = []
+    def generate(stage, schema, prompt, inputs):
+        stages.append(stage)
+        assert stage == 'review'
+        assert 'PRIVATE_' not in str(inputs)
+        if edit_during_review:
+            store.update(draft['id'], {'title_summary': {'updated_title': 'User Edited Title', 'updated_summary': before['title_summary']['updated_summary']}}, invalidate_pdf=True)
+        return {'summary': 'Title corrected',
+                'findings': [{'target_id': 'headline', 'severity': 'repair', 'issue': 'Use standard positioning', 'change_indices': [1]}],
+                'changes': [{'target': 'headline', 'old_text': inputs['assembled_draft']['headline'], 'replacement': 'Backend Software Engineer'}]}
+    monkeypatch.setattr(resume_app, '_jd_experiment_call', generate)
+    if edit_during_review:
+        with pytest.raises(AuditStaleError):
+            resume_app.run_extension_draft_audit(draft['id'])
+        assert store.get(draft['id'])['title_summary']['updated_title'] == 'User Edited Title'
+    else:
+        result = resume_app.run_extension_draft_audit(draft['id'])
+        assert result['audit_status'] == 'approved'
+        assert result['title_summary']['updated_title'] == 'Backend Software Engineer'
+        assert result['resume_revision'] == before['resume_revision'] + 1
+        assert result['audit_base_revision'] == result['resume_revision']
+        assert result['resume_versions']['original'] == before['resume_versions']['original']
+        assert result['active_resume_version'] == 'luna_reviewed'
+    assert stages == ['review']
 
 
 def test_data_center_worker_classifies_before_generation_and_keeps_hpe(tmp_path, monkeypatch):
@@ -207,7 +239,7 @@ def test_data_center_worker_classifies_before_generation_and_keeps_hpe(tmp_path,
     assert completed["experience_older"]["experience"] == {}
 
 
-def test_worker_makes_six_calls_and_audits_canonical_resume(tmp_path, monkeypatch):
+def test_worker_uses_shared_jd_only_workflow_and_saves_normal_versions(tmp_path, monkeypatch):
     store = pipeline_store(tmp_path, monkeypatch)
     draft, task = queued_task(store)
     calls = []
@@ -215,18 +247,41 @@ def test_worker_makes_six_calls_and_audits_canonical_resume(tmp_path, monkeypatc
 
     resume_app.run_extension_generation_task(task)
 
-    assert [name for name, _payload in calls] == [
-        "analysis", "skills", "experience", "experience", "synthesis", "audit"
-    ], store.get(draft["id"])["error_message"]
-    assert calls[2][1] == preliminary
-    assert calls[3][1] == preliminary
-    assert set(calls[4][1]["experience"]) == set(draft["enabled_experience_keys"])
-    canonical = calls[5][1]
-    assert canonical["updated_title"] == "Backend Engineer"
-    assert set(canonical["experience"]) == set(draft["enabled_experience_keys"])
+    assert [name for name, _payload in calls] == ["analysis", "plan", "targeting", "core", "experience", "review"], store.get(draft["id"])["error_message"]
+    assert set(calls[-1][1]["assembled_draft"]["experience"]) == set(draft["enabled_experience_keys"])
     completed = store.get(draft["id"])
-    assert completed["status"] == "ready"
+    assert completed["status"] == "ready", completed["error_message"]
     assert completed["audit_status"] == "approved"
+
+
+def test_retry_uses_persisted_jd_plan_and_regenerate_discards_it(tmp_path, monkeypatch):
+    store = pipeline_store(tmp_path, monkeypatch)
+    draft, task = queued_task(store)
+    calls = []
+    install_pipeline_mocks(monkeypatch, calls)
+    original = resume_app._jd_experiment_call
+    fail_once = True
+    def interrupted(stage, schema, prompt, inputs):
+        nonlocal fail_once
+        if stage == 'experience' and fail_once:
+            fail_once = False
+            raise resume_app.AIStageError('jd_draft', 'max_output_tokens')
+        return original(stage, schema, prompt, inputs)
+    monkeypatch.setattr(resume_app, '_jd_experiment_call', interrupted)
+    resume_app.run_extension_generation_task(task)
+    failed = store.get(draft['id'])
+    assert failed['status'] == 'failed'
+    assert failed['error_stage'] == 'jd_draft'
+    assert failed['source_metadata']['jd_only_checkpoint']['plan']
+    assert [stage for stage, _ in calls].count('plan') == 1
+    store.retry(draft['id'])
+    resume_app.run_extension_generation_task(store.next_task())
+    completed = store.get(draft['id'])
+    assert completed['status'] == 'ready', completed['error_message']
+    assert [stage for stage, _ in calls].count('plan') == 1
+    assert completed['source_metadata']['jd_only_checkpoint']['draft']
+    regenerated = store.regenerate(draft['id'])
+    assert 'jd_only_checkpoint' not in regenerated['source_metadata']
 
 
 def test_mcp_jd_analysis_enriches_context_and_is_reused_after_duplicate_decision(tmp_path, monkeypatch):
@@ -235,8 +290,8 @@ def test_mcp_jd_analysis_enriches_context_and_is_reused_after_duplicate_decision
         {
             "key": blueprint["key"],
             "company": blueprint["company"],
-            "location": blueprint["location"],
-            "dates": blueprint["dates"],
+            "location": blueprint["location"] or "CA, USA",
+            "dates": blueprint["dates"] or "January 2024 - Present",
             "title": "Software Engineer",
             "enabled": True,
         }
@@ -288,7 +343,7 @@ def test_mcp_jd_analysis_enriches_context_and_is_reused_after_duplicate_decision
     resume_app.run_extension_generation_task(store.next_task())
 
     completed = store.get(draft["id"])
-    assert completed["status"] == "ready"
+    assert completed["status"] == "ready", completed["error_message"]
     assert [name for name, _payload in calls].count("analysis") == 1
 
 
@@ -301,8 +356,8 @@ def test_audit_failure_preserves_ready_resume(tmp_path, monkeypatch):
     resume_app.run_extension_generation_task(task)
 
     completed = store.get(draft["id"])
-    assert completed["status"] == "ready"
-    assert completed["resume_content"] == "Generated resume"
+    assert completed["status"] == "ready", completed["error_message"]
+    assert completed["resume_content"].startswith("Updated Title")
     assert completed["audit_status"] == "technical_failed"
     assert "audit unavailable" in completed["audit_result"]["error"]
 
@@ -313,21 +368,15 @@ def test_duplicate_review_does_not_block_quality_audit_stage(tmp_path, monkeypat
     calls = []
     install_pipeline_mocks(monkeypatch, calls)
     audit_started = threading.Event()
-    original_synthesis = resume_app.generate_final_synthesis_from_analysis
-    original_audit = resume_app.generate_resume_quality_audit
+    original_call = resume_app._jd_experiment_call
 
-    def synthesis_with_duplicate_review_present(**kwargs):
-        result = original_synthesis(**kwargs)
-        monkeypatch.setattr(store, "has_duplicate_review", lambda: True)
-        return result
-
-    def audited(**kwargs):
-        audit_started.set()
-        return original_audit(**kwargs)
+    def audited(stage, schema, prompt, inputs):
+        if stage == "review":
+            audit_started.set()
+        return original_call(stage, schema, prompt, inputs)
 
     monkeypatch.setattr(store, "has_duplicate_review", lambda: True)
-    monkeypatch.setattr(resume_app, "generate_final_synthesis_from_analysis", synthesis_with_duplicate_review_present)
-    monkeypatch.setattr(resume_app, "generate_resume_quality_audit", audited)
+    monkeypatch.setattr(resume_app, "_jd_experiment_call", audited)
 
     resume_app.run_extension_generation_task(task)
 
@@ -440,6 +489,17 @@ def test_ai_stage_retries_transient_network_failure(monkeypatch):
     assert resume_app.run_extension_ai_stage(flaky_call) == {"ok": True}
     assert attempts["count"] == 2
     assert sleeps == [0.01]
+
+
+def test_validation_mentioning_timeout_is_not_retried_as_network_failure(monkeypatch):
+    calls = []
+    monkeypatch.setattr(resume_app.time, 'sleep', lambda *_: pytest.fail('validation must not sleep/retry'))
+    def invalid_content():
+        calls.append(True)
+        raise resume_app.AIStageError('experience_generation', "Skills: clarify 'retry / timeout handling'", validation=True)
+    with pytest.raises(resume_app.AIStageError):
+        resume_app.run_extension_ai_stage(invalid_content)
+    assert len(calls) == 1
 
 
 def test_pdf_rejects_stale_audit():
@@ -610,3 +670,56 @@ def test_regenerate_api_conflicts_with_active_task_and_preserves_checkpoint(tmp_
     assert preserved["analysis"] == {"target_role": "Backend Engineer"}
     assert preserved["resume_content"] == "Partial checkpoint"
     assert preserved["company_name"] == "Acme"
+
+
+def test_identical_editor_save_keeps_inflight_review_revision(tmp_path, monkeypatch):
+    store = pipeline_store(tmp_path, monkeypatch)
+    draft, task = queued_task(store)
+    install_pipeline_mocks(monkeypatch, [])
+    resume_app.run_extension_generation_task(task)
+    ready = store.get(draft['id'])
+    running = store.start_audit(draft['id'])
+    monkeypatch.setattr(resume_app, 'profile_for_resume_mode', lambda *a, **kw: pytest.fail('Same-mode save refreshed profile'))
+    monkeypatch.setattr(resume_app, 'identity_profile_by_id', lambda *a: {'id': running['identity_id'], 'email': 'new-global@example.com'})
+    resume_app.update_extension_draft_service(draft['id'], {
+        'resume_content': running['resume_content'], 'company_name': running['company_name'],
+        'identity_id': running['identity_id'], 'resume_mode': running['resume_mode'],
+        'enabled_experience_keys': running['enabled_experience_keys'],
+        'experience_history': running['experience_history_snapshot'],
+    })
+    saved = store.get(draft['id'])
+    assert saved['resume_revision'] == ready['resume_revision']
+    assert saved['audit_status'] == 'running'
+    assert saved['contact_snapshot'] == ready['contact_snapshot']
+    result = store.save_audit_result(draft['id'], {'schema_version': '2', 'decision': 'approved', 'changes': {}},
+        'reviewed-hash', running['resume_revision'], running['audit_result']['run_token'])
+    assert result['audit_status'] == 'approved'
+
+
+def test_planned_experience_titles_persist_without_rewriting_profile(tmp_path, monkeypatch):
+    store = pipeline_store(tmp_path, monkeypatch)
+    draft, task = queued_task(store)
+    install_pipeline_mocks(monkeypatch, [])
+    generate = resume_app._jd_experiment_call
+    expected = {'mckinsey': 'Salesforce Developer', 'uber': 'Software Engineer',
+                'kpmg': 'Java Developer', 'trigent': 'Frontend Developer'}
+    def with_titles(stage, schema, prompt, inputs):
+        result = generate(stage, schema, prompt, inputs)
+        if stage == 'plan':
+            for key, entry in result['experience'].items():
+                entry['title'] = expected[key]
+        return result
+    monkeypatch.setattr(resume_app, '_jd_experiment_call', with_titles)
+    original_history = copy.deepcopy(draft['experience_history_snapshot'])
+    resume_app.run_extension_generation_task(task)
+    saved = store.get(draft['id'])
+    assert saved['audit_status'] == 'approved'
+    for key, title in expected.items():
+        group = 'experience_recent' if key in {'mckinsey', 'uber'} else 'experience_older'
+        assert saved[group]['experience'][key]['title'] == title
+        assert title in saved['resume_content']
+        assert saved['resume_versions']['luna_reviewed']['resume']['experience'][key]['title'] == title
+    assert saved['experience_history_snapshot'] == original_history
+    resume_app.update_extension_draft_service(draft['id'], {'resume_content': saved['resume_content']})
+    reopened = store.get(draft['id'])
+    assert reopened['experience_recent']['experience']['mckinsey']['title'] == 'Salesforce Developer'

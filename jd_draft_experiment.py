@@ -1,0 +1,930 @@
+"""Source-free, explicitly proposed JD drafting; independent of factual resumes."""
+from copy import deepcopy
+import resume_review_ids
+import math
+import re
+import unicodedata
+from difflib import SequenceMatcher
+from decimal import Decimal
+from resume_measurements import normalize_number_words, canonical_quantity, visible_ratio_matches_measurement
+
+HEADINGS = ('key', 'company', 'location', 'dates', 'default_title', 'bullet_min', 'bullet_max')
+MODE_POLICY_VERSION = 1
+JD_SOURCE_VERSION = 5
+WRITING_POLICY_VERSION = 2
+INTERNAL_LABEL_RE = re.compile(r'\b(?:illustrative(?:[_\s-]+unverified)?|unverified|needs[_-]user[_-]confirmation)\b', re.I)
+
+
+def mode_context(mode):
+    """Writing policy only: never hydrate source accomplishments into this mode."""
+    mode = mode if mode in {'professional', 'internship', 'coop', 'new_grad'} else 'professional'
+    label = {'professional': 'Professional', 'internship': 'Internship', 'coop': 'Co-op', 'new_grad': 'New Grad'}[mode]
+    rules = [
+        'Keep supplied employers and dates exactly. Treat supplied job titles as context, not locked draft labels: choose a proposed conventional functional title matching each role story, responsibility and timeline. Do not present a proposed functional title as a verified official title.',
+        'Match the target headline to the advertised role. A senior JD does not authorize inventing senior responsibilities.',
+        'Prioritize hands-on implementation, debugging, testing, delivery and collaboration; technical depth does not require leadership claims.',
+        'Use the same JD-first project planning, concise XYZ writing and 80% numerical-evidence goal in every mode.',
+        'Do not invent education, graduation dates, enrollment or eligibility. This draft does not include an education section.',
+    ]
+    if mode == 'professional':
+        rules += ['Use experienced professional positioning; calibrate ownership to each historical title and its planned scope.']
+    else:
+        rules += [
+            'Retain prior engineering experience and a mid-level individual-contributor tone; do not portray the candidate as a beginner.',
+            'Avoid senior, staff, principal, tech-lead, people-management, organization-wide architecture or team-leadership positioning. Independent feature ownership, technical problem solving and collaboration are appropriate.',
+            'If years of experience are mentioned in the summary, use 3+ years; do not invent a different total.',
+            'Use past tense for completed roles and follow supplied dates; do not turn ended roles into current employment.',
+        ]
+        rules += {
+            'internship': ['Target the advertised internship while retaining the substance of prior professional work.'],
+            'coop': ['Target the advertised co-op while retaining the substance of prior professional work.'],
+            'new_grad': ['Target the advertised new-graduate position with mid-level engineering substance. Do not add Intern or Co-op unless the JD itself does.'],
+        }[mode]
+    return {'resume_mode': mode, 'label': label, 'policy_version': MODE_POLICY_VERSION, 'writing_rules': rules}
+
+
+def headings_only(roles):
+    return [{key: deepcopy(role.get(key, '')) for key in HEADINGS} for role in roles]
+
+
+def obj(properties):
+    return {'type': 'object', 'additionalProperties': False, 'properties': properties, 'required': list(properties)}
+
+
+STRING = {'type': 'string'}
+STRINGS = {'type': 'array', 'items': STRING}
+REQUIREMENTS = {'type': 'array', 'items': obj({'capability': STRING, 'jd_quote': STRING})}
+
+
+_PREFERENCE = (r'\b(?:preferred|preferably|optional|not\s+(?:required|mandatory)|'
+               r'advantageous|desirable|strong plus|is a plus|bonus|nice.to.have)\b')
+_QUALIFICATION_MARKER = (r'\b(?:required|mandatory|preferred|preferably|optional|'
+                         r'desirable|advantageous|is a plus|bonus|nice.to.have)\b')
+
+
+def _top_level_positions(text):
+    """Offsets outside parentheses/brackets, without changing source text."""
+    depth, positions = 0, set()
+    for offset, char in enumerate(text):
+        if depth == 0:
+            positions.add(offset)
+        if char in '([':
+            depth += 1
+        elif char in ')]':
+            depth = max(0, depth - 1)
+    if depth == 0:
+        positions.add(len(text))
+    return positions
+
+
+def qualification_parts(text):
+    """Separate independently qualified requirements, preserving tool lists."""
+    boundary = r'[,;]\s*(?:(?:but|and)\s+)?'
+    top_level = _top_level_positions(text)
+    result, start = [], 0
+    for match in re.finditer(boundary, text, re.I):
+        if (match.start() in top_level
+                and not re.match(r'(?:including|using|such as|e\.g\.)\b', text[match.end():], re.I)
+                and re.search(_QUALIFICATION_MARKER, text[start:match.start()], re.I)
+                and re.search(_QUALIFICATION_MARKER, text[match.end():], re.I)):
+            result.append(text[start:match.start()].strip())
+            start = match.end()
+    result.append(text[start:].strip())
+    return result
+
+
+_JD_SECTION = re.compile(
+    r'(?<![a-z])(?:Preferred Qualifications|Preferred Skills|Bonus Skills|Bonus Qualifications|'
+    r'Desirable Skills|Desirable Qualifications|Optional Skills|Nice[- ]to[- ]Have(?:s)?|'
+    r'Basic Qualifications|Minimum Qualifications|Required Qualifications|Required Technical Skills|Must[- ]Have(?: Skills)?|'
+    r'Technical Skills Required|Required Experience|Required Skills(?: & Experience)?|Experience Required|'
+    r'Requirements(?: Qualifications)?|Qualifications|Responsibilities|'
+    r'What You[’\']ll Do|Essential Functions|Your experience and qualifications|Development Stack|Benefits(?: \+ Perks)?|'
+    r'Education and Work Experience|Knowledge,? Skills and Abilities|Job Overview|'
+    r'Compensation Information|Salary Range|Travel(?=:)|(?-i:Preferred))(?=\s|:|[*_#]|(?-i:[A-Z])|$)'
+    .replace('[- ]', r'(?:[-\u2010-\u2015]|\s+)').replace(' ', r'\s+'), re.I)
+_JD_ITEM_START = (
+    r'Design|Develop|Implement|Create|Maintain|Build|Integrate|Work|Write|Own|'
+    r'Simplify|Promote|Upgrade|Review|Document|Train|Contribute|Mentor|Lead|'
+    r'Experience|Knowledge|Understanding|Proficiency|Familiarity|Ability|'
+    r'Strong experience|Excellent communication|Evidence|Comfort|A collaborative|'
+    r'Cloud migration|Knowledgeable|Hands-on|Working knowledge|Solid understanding|'
+    r'Proven experience|Demonstrated experience')
+
+
+def _jd_section_matches(jd):
+    """Generic words in prose (e.g. customer requirements) are not headings."""
+    for match in _JD_SECTION.finditer(jd):
+        label = match.group()
+        if label.casefold() in {'requirements', 'qualifications', 'responsibilities', 'benefits', 'preferred'}:
+            tail = jd[match.end():]
+            line_start = not jd[:match.start()].rsplit('\n', 1)[-1].strip(' \t#*_+-0123456789.)')
+            delimiter = bool(re.match(r'[*_]*[ \t]*[:\r\n]', tail))
+            # Recover flattened headings only with heading casing and a list
+            # starter, not inside Business Requirements Documentation (BRD).
+            starter = re.match(r'\s*(?:' + _JD_ITEM_START + r'|[0-9]|EDI\b)', tail)
+            if label.casefold() == 'requirements':
+                starter = re.match(r'\s*(?:Experience|Knowledge|Understanding|Proficiency|Familiarity|'
+                                   r'Ability|Strong|Excellent|Working|Hands-on|Build|Develop|Design|[0-9])\b', tail)
+            if not (line_start or delimiter or (label[0].isupper() and starter)):
+                continue
+        yield match
+
+
+def _jd_clause_records(jd):
+    """Keep original text while recovering section and glued list boundaries."""
+    headings = list(_jd_section_matches(jd))
+    starts = sorted(set([0] + [m.start() for m in headings] + [len(jd)]))
+    records = []
+    for start, end in zip(starts, starts[1:]):
+        section = jd[start:end]
+        heading = next((m.group() for m in headings if m.start() == start), '')
+        semantic_heading = re.sub(r'\s+', ' ', heading)
+        if re.match(r'Preferred|Nice|Bonus|Desirable|Optional', semantic_heading, re.I):
+            priority = 'optional'
+        elif re.match(r'Benefits|Compensation|Salary|Travel|Job Overview|Education and Work Experience', semantic_heading, re.I):
+            priority = 'context'
+        elif heading.casefold() == 'development stack':
+            priority = 'required'
+        else:
+            priority = 'required' if heading else None
+        boundary = (
+            r'(?<=[.!?])\s+(?!\s*(?i:\((?:required|preferred)\)))|'
+            r'(?<=[.!?])(?=[A-Z][a-z])|[\r\n]+(?!\s*(?i:\((?:required|preferred)\)))|'
+            r'(?i:(?<=\(required\))[,;]?\s*|(?<=\(preferred\))[,;]?\s*)|'
+            r'(?<=[a-z0-9)])(?=(?:' + _JD_ITEM_START + r')\b)|'
+            r'(?<=[A-Z])(?=(?:Experience|Knowledge|Understanding|Proficiency)\b)')
+        # Do not split example sentences or technology lists inside parentheses.
+        # Split only the body, so a heading wrapped over lines stays intact.
+        body = section[len(heading):]
+        top_level = _top_level_positions(body)
+        cuts = [(m.start(), m.end()) for m in re.finditer(boundary, body) if m.start() in top_level]
+        spans, begin = [], 0
+        for split_start, split_end in cuts:
+            spans.append((begin, split_start))
+            begin = split_end
+        spans.append((begin, len(body)))
+        sentences = []
+        for begin, finish in spans:
+            sentence = body[begin:finish]
+            if not re.search(r'\w', sentence):
+                continue
+            if heading and not sentences:
+                sentence = section[:len(heading) + finish]
+            sentences.append(sentence)
+        for sentence in sentences:
+            for part in qualification_parts(sentence):
+                if part.strip():
+                    annotation = re.search(r'\((required|preferred)\)\s*$', part, re.I)
+                    local_priority = ('required' if annotation[1].casefold() == 'required' else 'optional') if annotation else priority
+                    records.append((part.strip(), local_priority))
+    return records
+
+
+def jd_clauses(jd):
+    return list(dict.fromkeys(text for text, _ in _jd_clause_records(jd)))
+
+
+def jd_clause_priorities(jd):
+    """Section context is separate from the exact evidence text."""
+    records = _jd_clause_records(jd)
+    return {key: next(priority for text, priority in records if text == quote)
+            for key, quote in jd_clause_map(jd).items()}
+
+
+def _label_terms(text):
+    stop = {'and', 'or', 'the', 'with', 'for', 'to', 'in', 'of', 'a', 'an', 'be',
+            'experience', 'using', 'work', 'knowledge', 'strong', 'implement', 'develop'}
+    return {word.rstrip('s') for word in re.findall(r'[\w#+]+', text.casefold())
+            if word not in stop and len(word) > 1}
+
+
+def _narrow_quote(quote, capability, clauses):
+    """Recover a local citation from a saved broad quote; never expand its label."""
+    norm = lambda text: re.sub(r'\s+', ' ', text).strip()
+    candidates = [text for text in clauses if norm(text) in norm(quote)]
+    if len(candidates) < 2:
+        return quote
+    if norm(capability) == norm(quote):
+        return quote
+    terms = _label_terms(capability)
+    scores = [(len(terms & _label_terms(text)), text) for text in candidates]
+    best = max(score for score, _ in scores)
+    winners = [text for score, text in scores if score == best]
+    return winners[0] if best and len(winners) == 1 else quote
+
+
+def jd_clause_map(jd):
+    return {f'jd_{i + 1}': text for i, text in enumerate(jd_clauses(jd))}
+
+
+def normalize_plan(plan, jd):
+    """Ground display labels in their selected source clause, without paraphrase gates."""
+    result = deepcopy(plan)
+    norm = lambda text: re.sub(r'\s+', ' ', str(text)).strip()
+    def typography(text):
+        text = unicodedata.normalize('NFKC', norm(text)).casefold()
+        text = text.translate(str.maketrans({'’': "'", '‘': "'", '–': '-', '—': '-', '‑': '-', '‐': '-'}))
+        return text.strip(' .!?:;')
+    clauses = jd_clauses(jd)
+    clause_map = jd_clause_map(jd)
+    for level in ('required', 'optional'):
+        for req in result.get(level, []):
+            if (req.get('source_clause_id') in clause_map
+                    and (not req.get('jd_quote') or norm(req['jd_quote']) not in norm(jd))):
+                req['jd_quote'] = clause_map[req['source_clause_id']]
+            quote = norm(req.get('jd_quote', ''))
+            if quote and quote not in norm(jd):
+                matches = [c for c in clauses if typography(c) == typography(quote)]
+                if len(matches) == 1:
+                    req['jd_quote'] = matches[0]
+                    quote = norm(matches[0])
+            if quote and quote in norm(jd):
+                req['jd_quote'] = _narrow_quote(req['jd_quote'], req.get('capability', ''), clauses)
+                # Clause numbering may change when a flattened posting is split.
+                matches = [key for key, text in clause_map.items() if norm(text) == norm(req['jd_quote'])]
+                if len(matches) == 1 and req.get('source_clause_id'):
+                    req['source_clause_id'] = matches[0]
+    return result
+
+
+def plan_schema(roles, jd=None):
+    requirements = REQUIREMENTS
+    if jd:
+        requirements = {'type': 'array', 'items': obj({
+            'capability': STRING, 'source_clause_id': {'type': 'string', 'enum': list(jd_clause_map(jd))}})}
+    return obj({
+        'role_positioning': STRING, 'target_system': STRING, 'target_workflow': STRING,
+        'required': {**requirements, 'minItems': 1}, 'optional': requirements, 'unknowns': STRINGS,
+        'experience': obj({role['key']: obj({
+            'title': STRING, 'system': STRING, 'workflow': STRING, 'scope': STRING, 'assumptions': STRINGS,
+            'contributions': {'type': 'array', 'items': STRING, 'minItems': role['bullet_min'], 'maxItems': role['bullet_min']},
+        }) for role in roles}),
+    })
+
+
+TARGETING_PROMPT = '''Independently check whether this proposed project plan targets the JOB, before resume writing. The proposed_plan is fallible; do not approve it merely because its stories are coherent. Read the original JD clauses and their separate section priorities first, then compare the proposed plan.
+First distinguish the advertised levels, alternative teams/platforms, core requirements and preferred strengths. Choose a conservative writing scope from the JD and supplied employment titles/dates. Dates alone do not establish expertise, leadership or eligibility. If the exact level/team is not established, explicitly label the choice a conservative assumption; choose a usable common core instead of blocking generation. Do not combine requirements from mutually alternative teams or apply senior-only requirements to all levels.
+Judge the primary project, headline positioning and recent contributions against the selected path's required work. Check whether preferred/bonus technologies used by the plan fit the actual proposed system, workflow, responsibility and timeline. Their omission is not a defect when they do not fit the story. If a capability naturally belongs to existing work but was excluded only because it was labelled optional, return an exact contribution replacement incorporating that use. Never manufacture a workflow or responsibility to cover a preferred keyword; remove forced uses instead. Do not remove a useful technology solely because the JD calls it preferred or a plus. Preserve the main job workflow rather than substituting an unrelated project. A JD mentioning AI tools, preferred RAG/MCP or an AI team does not automatically make the primary role AI engineering. Equally, preserve RAG/MCP as primary when the selected role explicitly requires that work; there is no blanket AI ban. Older roles retain period-appropriate responsibility and technology scope.
+Return a compact assessment: level_scope, team_path, choice_basis, primary_focus, secondary_focus, excluded_paths and rationale. Use at most 5 primary and 3 secondary focuses; each focus cites a source_clause_id and uses at most 10 words. Keep other assessment strings under 25 words and excluded_paths at most 3 short items.
+If the direction is wrong, return exact replacements for ONLY the affected plan fields and contribution notes. Correct stale role assumptions when changing project direction; do not leave an obsolete stack steering the writer. Do not return a whole new plan, rewrite sound work, add unrelated tools, or invent observed achievements/measurements. JD-preferred technologies can be incorporated through a concrete planned use only when they naturally fit the story; no preferred-skill coverage quota. Each contribution remains a compact action | mechanism | intended result | measurement opportunity note, at most 25 words. Preserve role keys, employers/dates, contribution counts and career progression. Check each proposed experience title against its own corrected story; return an exact title correction when the generic supplied label no longer describes that work. Choose meaningful work, not generic delivery claims or a technology inventory. Keep a role-level system/workflow narrative coherent after changes. Decision corrected needs replacements; aligned needs none. This assessment is a proposed writing direction, not verified candidate fit or a hiring prediction.'''
+
+
+def targeting_schema(roles, jd):
+    focus = obj({'source_clause_id': {'type': 'string', 'enum': list(jd_clause_map(jd))}, 'focus': STRING})
+    return obj({'decision': {'type': 'string', 'enum': ['aligned', 'corrected']},
+                'assessment': obj({
+                    'level_scope': STRING, 'team_path': STRING,
+                    'choice_basis': {'type': 'string', 'enum': ['explicit_jd_scope', 'conservative_assumption']},
+                    'primary_focus': {'type': 'array', 'items': focus, 'minItems': 1, 'maxItems': 5},
+                    'secondary_focus': {'type': 'array', 'items': focus, 'maxItems': 3},
+                    'excluded_paths': {'type': 'array', 'items': STRING, 'maxItems': 3}, 'rationale': STRING}),
+                'corrections': {'type': 'array', 'items': {'anyOf': [
+                    obj({'target': {'type': 'string', 'enum': ['role_positioning', 'target_system', 'target_workflow']},
+                         'old_text': STRING, 'replacement': STRING}),
+                    obj({'target': {'type': 'string', 'enum': ['title', 'system', 'workflow', 'scope']},
+                         'role_key': {'type': 'string', 'enum': [r['key'] for r in roles]},
+                         'old_text': STRING, 'replacement': STRING}),
+                    obj({'target': {'type': 'string', 'enum': ['contribution']},
+                         'role_key': {'type': 'string', 'enum': [r['key'] for r in roles]},
+                         'contribution_number': {'type': 'integer', 'minimum': 1}, 'old_text': STRING, 'replacement': STRING}),
+                    obj({'target': {'type': 'string', 'enum': ['assumptions']},
+                         'role_key': {'type': 'string', 'enum': [r['key'] for r in roles]},
+                         'old_assumptions': STRINGS, 'replacement': {'type': 'array', 'items': STRING, 'minItems': 1, 'maxItems': 3}}),
+                ]}}})
+
+
+def apply_targeting_check(plan, result, jd):
+    corrected = deepcopy(plan)
+    changes = result['corrections']
+    if result['decision'] not in {'aligned', 'corrected'} or (result['decision'] == 'aligned') != (not changes):
+        raise ValueError('Targeting decision must agree with its exact corrections.')
+    seen = set()
+    for change in changes:
+        field = change['target']
+        role = change.get('role_key')
+        if field in {'role_positioning', 'target_system', 'target_workflow'}:
+            container, key = corrected, field
+            identity = (field,)
+        else:
+            if role not in corrected.get('experience', {}):
+                raise ValueError('Targeting correction refers to a missing role.')
+            entry = corrected['experience'][role]
+            if field == 'contribution':
+                number = change['contribution_number']
+                if not isinstance(number, int) or not 1 <= number <= len(entry['contributions']):
+                    raise ValueError('Targeting correction refers to a missing contribution.')
+                container, key = entry['contributions'], number - 1
+                identity = (field, role, number)
+            elif field in {'title', 'system', 'workflow', 'scope', 'assumptions'}:
+                container, key = entry, field
+                identity = (field, role)
+            else:
+                raise ValueError('Unknown targeting correction field.')
+        replacement = change['replacement']
+        valid_replacement = (bool(replacement) and all(isinstance(v, str) and v.strip() for v in replacement)) if field == 'assumptions' else bool(replacement.strip())
+        if identity in seen or container[key] != change.get('old_text', change.get('old_assumptions')) or not valid_replacement:
+            raise ValueError('Targeting correction is duplicated, stale or empty.')
+        seen.add(identity)
+        container[key] = change['replacement']
+    assessment = deepcopy(result['assessment'])
+    clauses = jd_clause_map(jd)
+    for level in ('primary_focus', 'secondary_focus'):
+        for focus in assessment[level]:
+            if focus['source_clause_id'] not in clauses:
+                raise ValueError('Targeting focus must reference the actual JD.')
+            focus['jd_quote'] = clauses[focus['source_clause_id']]
+    return corrected, assessment
+
+
+def draft_schema(roles, skill_categories=None):
+    bullet = obj({'measurement': obj({'kind': {'type': 'string', 'enum': ['improvement', 'scale', 'qualitative']},
+                                      'value': STRING, 'unit': STRING, 'context': STRING,
+                                      'status': {'type': 'string', 'enum': ['illustrative_unverified', 'qualitative']}}),
+                  'contribution_number': {'type': 'integer', 'minimum': 1},
+                  'text': {'type': 'string', 'pattern': r'^\s*\S+(?:\s+\S+){24,29}\s*$',
+                           'description': 'One complete 25-30 word contribution, mechanism and outcome. Hyphenated words count as one.'}})
+    return obj({'headline': STRING, 'summary': STRING,
+        'skills': {'type': 'array', 'minItems': 1, 'items': obj({
+            'category': {'type': 'string', 'enum': sorted(skill_categories)} if skill_categories else STRING,
+            'items': {'type': 'array', 'items': STRING, 'minItems': 2}})},
+        'experience': obj({role['key']: obj({
+        'bullets': {'type': 'array', 'items': bullet, 'minItems': role['bullet_min'], 'maxItems': role['bullet_min']},
+    }) for role in roles})})
+
+
+def core_schema(roles, skill_categories=None):
+    properties = draft_schema(roles, skill_categories)['properties']
+    properties['skills']['items']['properties']['items']['maxItems'] = 5
+    return obj({key: properties[key] for key in ('headline', 'summary', 'skills')})
+
+
+def experience_schema(roles):
+    return obj({'experience': draft_schema(roles)['properties']['experience']})
+
+
+def grouped_writing_prompt(section):
+    scope = {
+        'core': 'Generate only headline, summary and technical skills in one response. Do not generate experience bullets. Use the checked plan to represent planned work, not unsupplied candidate history.',
+        'experience': 'Generate only the experience object for all selected roles. Do not regenerate headline, summary or skills. core_sections contains proposed positioning and skills for consistency, not evidence or permission to invent work. The checked plan controls each project, scope and contribution. If core_sections conflicts with the plan, follow the plan. Convert Work/Result/Measurement opportunity planning notes into natural bullets; never copy their labels. Preserve contribution order and apply the measurement rules below.',
+    }[section]
+    return scope + '\n\n' + DRAFT_PROMPT + '\n\nOutput scope for this call: ' + scope
+
+
+PLAN_PROMPT = '''Plan proposed work from the JD; no source accomplishments, projects, skills or measurements are supplied. Employment headings establish chronology and titles, not verified achievements. Follow JD -> required project characteristics -> distinct contributions -> coherent role-level project. Do not write resume bullets.
+Apply resume_mode_context.writing_rules. Calibrate EACH historical role using its supplied dates, title and available career context: earlier-career work has narrower implementation scope and fewer tools; later work may show greater independence and depth. Do not determine seniority from employer name, array position, number of selected roles or JD demands. A single selected role is not automatically the start of a career. Dates alone do not prove expertise or leadership; where career start is unknown, avoid claiming it. Mode positioning applies to the overall resume, not equal seniority across all historical roles. Keep technologies plausible for each period. Recent relevant work aligns most strongly to the JD; earlier work shows credible foundations rather than the entire target stack.
+Required and optional arrays describe the posting, not a filter for which skills may appear in the project. Keep both arrays grounded in the supplied JD: select source_clause_id from job_description_clauses and use job_description_clause_priorities for section context. Keep capability a short descriptive label, separate from its exact source evidence. Cite one requirement, not a passage spanning required and preferred sections. If a jd_quote field is requested, copy the quote exactly. Required qualifications stay required unless individually qualified as preferred, advantageous, desirable, bonus or nice-to-have. Do not rank an essential duty optional because it is a supporting task or split required and optional labels for the same mandatory work. A preferred named language does not make the surrounding years of backend experience optional. Include relevant technical capabilities described as preferred, a plus, bonus, nice-to-have, desirable, advantageous, familiarity, exposure or similar language in the proposed project work too. For each such capability that naturally fits the chosen system, workflow, responsibility and timeline, plan its concrete use in an existing contribution. Listing a capability in optional does not itself mean it must be used. If it does not fit the project story, omit it from the planned work instead of forcing an integration, changing the story or inventing a responsibility. Do not treat preferred-skill coverage as a quota. Example: Python APIs required and Snowflake a plus -> use Snowflake in a reporting-data contribution if reporting naturally belongs to the chosen service; omit Snowflake if the service has no natural reporting or warehouse workflow. Group related capabilities naturally within existing contributions; do not add bullets or copy the entire stack into every historical role. Retain the main job's system/workflow, chronology and responsibility scope. Choose compatible alternatives instead of stacking every alternative tool. Degrees, certifications and eligibility are credentials, not project activities to invent. Keep proposed work distinct from verified history and do not invent observed measurements. Preserve AI coding assistance separately from agent-building when both appear; show the applicable tools through planned mechanisms.
+Output compact planning notes, not explanatory paragraphs. Preserve all schema fields without repeating information across them. role_positioning: one sentence, at most 25 words. target_system: at most 25 words describing what is built and its purpose. target_workflow: at most 20 words describing its use. Capability labels: at most 8 words; combine related requirements from the same clause without losing mandatory coverage. unknowns: at most 3 short items, each at most 8 words, for missing overall facts only.
+For each selected role, title: one short conventional functional job title matching that role's proposed project and responsibility. Supplied default_title is context, not a mandatory label. For Salesforce/Apex/LWC project work, Salesforce Developer is appropriate; do not keep Full Stack Developer merely because the profile says so. For an earlier React UI project, Frontend Developer can remain appropriate. Choose titles independently from the story, timeline and scope, not employer name or the target JD alone. Show growth through wider responsibility and relevant specialization; identical titles across roles are acceptable when justified. Never force every role into the target specialization, add Senior/Lead just to create progression, or invent promotions. These are proposed functional resume labels, not verified official titles. Keep employers and dates unchanged. system: at most 20 words describing its proposed project; workflow: at most 12 words; scope: at most 15 words stating responsibility boundaries appropriate to that period. assumptions: at most 3 items of at most 10 words each, grouping essential proposed product/tool/responsibility choices; do not repeat unknowns or narrate a fictional history. Distinct employers need distinct work, not copies of one project. Earlier roles demonstrate transferable foundations in their own workflow; do not transplant the target employer's specialist product/domain into every historical project. Use only relevant platforms and tools; frontend roles remain frontend.
+Return exactly the requested contribution count and order. Each contribution is ONE compact note, at most 25 words, using: action | mechanism | intended result | measurement opportunity and unit. Example: Implement assigned forms | existing Angular components and API contracts | reliable data entry | validation error rate (%). These are writer directions, not finished bullets; keep project narrative at role level. For unsuitable quantities, use qualitative plus a brief reason in the final segment.
+Plan meaningful measurement opportunities for ceil(0.8 * contribution count) contributions per role: 5/6, 4/5 or 3/3. Distinguish workload from improvement, keep attribution within the contribution, and state any unavoidable shortfall briefly in assumptions. Identify what could be measured, without inventing observed values. Never pad with one service/pipeline/runbook, versions, employer headcounts or arbitrary percentages. Check brevity, career progression, distinct work and measurement coverage before returning only the schema.'''
+
+DRAFT_PROMPT = '''Write an experimental proposed resume from the checked JD plan, not verified work history. There are no candidate source accomplishments or measurements. Do not invent source citations or claim these are confirmed facts.
+Use targeting_assessment when supplied: primary_focus controls headline, summary and strongest recent contributions; secondary_focus stays supporting. Respect its selected level/team and excluded paths. Do not treat an optional technology as the role identity merely because a historical title mentions it.
+Apply resume_mode_context.writing_rules to headline, summary and every bullet, including repairs. Student/new-graduate modes retain mid-level engineering substance without senior or leadership positioning.
+Write a normal advertised-role headline and professional summary. Resume-facing headline, summary, skills and bullet text must never contain illustrative_unverified, illustrative, unverified, confirmation requests or internal status labels. Factual status belongs ONLY in measurement.status and the application's review notes, never in a sentence. Write 'reduced workflow exceptions by 37%', NEVER 'by an illustrative_unverified 37%'. A clean sentence does not mean the example has been factually verified.
+SKILLS: Answer what languages and technologies this person would be hands-on with in the checked project plan. Include only the strongest relevant, believable day-to-day skills. Do not overfill with every plausible JD-adjacent tool. Use only ordered_skill_categories when supplied, keep their order, and omit categories without two strong relevant items. Do not fill every allowed category. Use 2-5 short items per included category. Each item names exactly one conventional language, framework, database, tool, platform, protocol or concise capability: no explanations, qualifiers, mini-sentences, packed lists or project descriptions. Keep established names such as CI/CD intact. Example: Programming Languages: Java, SQL, JavaScript; Backend Engineering: Spring Boot, REST APIs; Testing & Quality: Unit testing, Integration testing. Avoid repeating a skill or concept across categories. Prefer exact technology names over abstract phrases; show collaboration and routine process activities in experience, not extra skill categories. Select the primary JD-aligned stack from the planned mechanisms; do not add tools merely because they occur in the JD, and do not invent frameworks or infer source skills. These remain proposed skills, not verified history.
+Follow the contribution plan: one bullet per numbered contribution, same order, no extra accomplishments to fill space. Keep every role within its planned project and scope. Do not turn every role into leadership or assign every platform to every role.
+Use concise natural XYZ bullets: important implemented contribution, relevant technical mechanism, and impact or scale where useful. Do not require an entire architecture, baseline methodology or proof of every intermediate step inside a sentence. Flag misleading attribution, not brevity.
+Aim for numerical evidence in at least 80% of bullets per role. Every generated measurement is a proposed example: set ONLY the separate measurement.status field to illustrative_unverified. Never copy that field's value or its explanation into text. Use useful scale or improvement quantities, never JD company membership/employee counts. Do not count 'one service/schema/sync/toolset' as evidence of scale merely to reach the goal. Counts of multiple integrations, services or tests can be meaningful scope when their purpose is clear; a count is not automatically padding. Software versions are not measurement evidence. Do not fabricate sources or call illustrative values observed outcomes. If meaningful quantification is unsuitable, retain qualitative work and accept an advisory shortfall.
+Measurements must preserve meaning, units and qualifiers within this draft. A final-state latency is scale/performance evidence, not necessarily an improvement. A qualitative record has empty value/unit and status qualitative. A quantitative record names its value, unit, context and status illustrative_unverified. Its numbers must appear in the bullet. Never put confirmation questions or measurement placeholders in bullets.
+Choose the measurement record before composing text. Include that illustrative value in the actual bullet sentence, not only in metadata; the whole draft is already labelled proposed/unverified. If you choose qualitative text instead, clear the measurement value/unit and use qualitative kind/status. Do not retain an invisible number in metadata. In a repair, either insert the already proposed illustrative quantity naturally or explicitly demote the record to qualitative; preserve the contribution and never add a second accomplishment just to fit a number.
+Every experience bullet must contain 25-30 whitespace-separated words, inclusive. Hyphenated expressions count as one word. Count and revise each bullet before returning, including repairs. Use the space for the important work, technical mechanism and useful outcome; never add filler, another accomplishment or an invented tool to meet length. A test or pipeline pass rate alone is not evidence that a change prevented regressions or improved reliability. Earlier roles show transferable foundations rather than repeating the target product/domain everywhere. Do not add authority such as Led or Owned beyond the plan. AI-assisted development can be relevant without agentic AI becoming the main professional identity. Realize the concrete preferred/bonus technology uses already selected in the checked contributions as natural experience bullets; do not omit them merely because their JD priority is optional, and do not add unplanned preferred technologies or force a use to cover a keyword. Preserve the project scope and main workflow. Return only the schema.'''
+
+REVIEW_PROMPT = '''Review the complete experimental proposed resume against its raw JD and project plan. These are hypothetical scenarios and illustrative measurements, not confirmed candidate history. Do not demand source citations or declare the work factual.
+The application already displays one overall factual-status notice. Do not create repeated findings asking to confirm each proposed percentage, technology or project simply because no source history exists. Assess the usefulness and meaning of a measure, causal wording and technical consistency. A count of multiple services, integrations or tests is not automatically numerical padding. Internal status labels inside resume text are a writing error that must be repaired, not retained next to every number.
+Check that technical skills use concrete conventional skill names rather than vague descriptions of projects, and that important required technologies are represented by the proposed work. Flag missing technical substance, but do not demand keyword stuffing or a full project explanation inside each bullet.
+Check headline, summary, experience titles, project scope and bullets against resume_mode_context.writing_rules. Each experience title must be a conventional label for that role's actual proposed story and responsibility. Correct a generic Full Stack Developer title when its planned work is specifically Salesforce development. Do not force the target title onto unrelated older projects or invent seniority/promotion. Flag senior/leadership inflation in student/new-graduate modes, but preserve mid-level implementation depth, independent feature ownership and prior experience. Do not demand beginner wording merely because the target is New Grad, Internship or Co-op.
+Judge whether the main job workflow is represented, preferred/bonus technologies selected for a natural fit appear through their uses in the checked plan, with no penalty for omitting those that do not fit, each role has a coherent project, contributions are distinct and scope fits the heading. Do not remove planned technical work solely because the JD described it as preferred or a plus. Check for excessive platforms/tools/leadership, repeated accomplishments, numerical padding and misleading action/result attribution. Every experience bullet must contain 25-30 whitespace-separated words, inclusive; apply the same limit to every replacement. Inspect per-role numerical_goal_notes and do not remove useful measurements without checking the remaining coverage and explaining a genuine shortfall. Do not repeat the specialist target project in every early-career role. Test pass rates alone do not establish regression prevention.
+A concise resume bullet is not a case study: do not demand the whole architecture, every intermediate step, missing baselines or measurement methodology. A clear contribution, credible mechanism and relevant impact/scale can be sufficient. Missing intermediate detail alone is not a finding.
+Return concise, actionable findings only. Preserve sound bullets. Do not invent additional project facts or measurements to repair the story. ready_for_assumption_review means suitable for reviewing proposed facts, never verified or ready to submit. No ATS score or hiring prediction.'''
+
+
+HEADLINE_POLICY = """MAIN RESUME TITLE: Use one short, conventional job title naturally used for this role. Prefer the advertised JD title; if it contains a recruitment slogan, company/team/location text or a technology inventory, use its standard role equivalent. Examples: Software Engineer, Software Engineer II, Full Stack Developer, Backend Engineer, AI Engineer. Preserve a specialization or level that belongs to the actual title and follows the selected mode; do not invent extra seniority. Do not append a stack, pipe-separated keywords, selling points, project descriptions, multiple alternative titles or extra specialties. Keep technical detail in summary, skills and bullets. The plan's role_positioning describes direction and is not a sentence to copy into the headline. This headline rule is separate from experience titles: choose each proposed functional experience title from its own planned project and scope. Preserve explicit user title overrides."""
+DRAFT_PROMPT += '\n' + HEADLINE_POLICY
+REVIEW_PROMPT += '\n' + HEADLINE_POLICY + '\nIf the main title is expanded or unnatural, return an exact headline replacement with the conventional JD-aligned title. Do not expand an already suitable title.'
+
+
+def review_targets(draft):
+    targets = {key: str(draft.get(key, '')) for key in ('headline', 'summary')}
+    targets['skills'] = '\n'.join(g['category'] + ': ' + ', '.join(g['items']) for g in draft.get('skills', []))
+    for i, group in enumerate(draft.get('skills', []), 1):
+        targets[f'skills:{i}'] = group['category'] + ': ' + ', '.join(group['items'])
+    for key, entry in draft.get('experience', {}).items():
+        if entry.get('title'):
+            targets[f'title:{key}'] = entry['title']
+        for i, bullet in enumerate(entry.get('bullets', []), 1):
+            targets[f'bullet:{key}:{i}'] = bullet.get('text', '') if isinstance(bullet, dict) else str(bullet)
+    return targets
+
+
+def finding_schema(draft):
+    return obj({'target_id': {'type': 'string', 'enum': list(review_targets(draft))},
+                'severity': {'type': 'string', 'enum': ['repair', 'advisory', 'factual_blocker']}, 'issue': STRING})
+
+
+def review_schema(draft=None):
+    if draft is not None:
+        return obj({'summary': STRING, 'ready_for_assumption_review': {'type': 'boolean'},
+                    'findings': {'type': 'array', 'items': finding_schema(draft)}})
+    return obj({'summary': STRING, 'ready_for_assumption_review': {'type': 'boolean'},
+                'findings': {'type': 'array', 'items': obj({'role_key': STRING, 'bullet_number': {'type': 'integer', 'minimum': 0}, 'issue': STRING})}})
+
+
+def review_apply_schema(roles, draft, skill_categories=None):
+    bullet = draft_schema(roles, skill_categories)['properties']['experience']['properties'][roles[0]['key']]['properties']['bullets']['items']
+    return resume_review_ids.response_schema(resume_review_ids.snapshot(draft), bullet, skill_categories)
+
+
+REVIEW_APPLY_PROMPT = """Review and return only necessary replacements using the supplied review_items and snapshot_id. Copy the snapshot_id and the item's integer ID exactly. IDs have separate types: tid for a title (main headline or a role title as labelled in review_items), psid for the professional summary, sid for a skills group, bid for an experience bullet. bid values are unique across all selected roles. Never calculate a new ID, restart bullet IDs for each company, or use an item position as its ID.
+Return titles, summaries, skills and bullets arrays; use empty arrays for unchanged sections. Each replacement carries its own reason. Do not return findings, change_indices, role_key, bullet_number, old_text, a whole resume, or a separate replacement-link table. Copy the ID from the item being corrected, even when returning only bids 12, 15 and 18 or returning them out of order.
+For tid and psid, replacement is the complete corrected title or summary. tid 1 is the main headline; additional tids identify experience titles by the supplied role_key. Never derive a tid from bid numbering. For sid, replacement is the complete corrected category/items group. For bid, replacement is one complete corrected bullet, with consistent measurement metadata; the code supplies its contribution number. Preserve sound wording, useful quantities, project scope, selected mode, contribution count and career progression. Do not add/delete/reorder items. All replacement bullets follow the supplied writing rules, including 25-30 words. Measurement status stays in metadata, not visible prose.
+Put optional advice and genuine unresolved factual blockers in notes using the same typed IDs; ordinary writing defects belong directly in replacements. Do not demand the whole project story or a full measurement methodology inside a bullet. Do not remove useful measurements merely to prefer qualitative wording. Conventional technical skills are valid even if they are not product names. Hypothetical project assumptions alone are not factual blockers. No extra repair writer or second review call is needed: the application validates and applies these replacements directly."""
+
+
+def decode_review_response(response, saved, draft):
+    if 'snapshot_id' in response:
+        return resume_review_ids.decode(response, saved, draft)
+    # Read-only compatibility for stored pre-migration responses. New API
+    # schemas never request the legacy finding/index contract.
+    legacy = identify_findings(response, draft)
+    changes = legacy.get('changes', [])
+    revised = apply_repairs(draft, {'changes': changes})
+    targets = {patch_target(change) for change in changes}
+    for finding in legacy.get('findings', []):
+        if finding['severity'] == 'repair' and not any(target_matches(finding, target) for target in targets):
+            raise ValueError('Review omitted a replacement for a repair finding.')
+    wire = {'snapshot_id': saved['snapshot_id'], 'review_summary': legacy.get('summary', ''),
+            'titles': [], 'summaries': [], 'skills': [], 'bullets': [], 'notes': []}
+    bid_by_location = {location: bid for bid, location in saved['locations'].items()}
+    def typed_target(target):
+        if target == 'headline': return 'tid', 1
+        if target == 'summary': return 'psid', 1
+        if target.startswith('skills:'): return 'sid', int(target.split(':')[1])
+        if target.startswith('bullet:'):
+            _, role, number = target.split(':')
+            return 'bid', bid_by_location[(role, int(number)-1)]
+        return 'psid', 1  # Old whole-skills advice remains a non-editing note.
+    summary_done = False
+    for change in changes:
+        target = patch_target(change)
+        kind, value = typed_target(target)
+        owners = [f for f in legacy.get('findings', []) if target_matches(f, target)]
+        if any(f['severity'] == 'factual_blocker' for f in owners):
+            raise ValueError('A factual blocker cannot be silently replaced.')
+        reason = owners[0]['issue'] if owners else 'Review correction'
+        item = {kind: value, 'reason': reason}
+        if kind == 'bid':
+            item.update(replacement=change['replacement']['text'], measurement=deepcopy(change['replacement']['measurement']))
+            wire['bullets'].append(item)
+        elif kind == 'sid':
+            item['replacement'] = {key: deepcopy(change[key]) for key in ('category', 'items')}
+            wire['skills'].append(item)
+        elif kind == 'tid':
+            item['replacement'] = change['replacement'];wire['titles'].append(item)
+        elif not summary_done:
+            item['replacement'] = revised['summary'];wire['summaries'].append(item);summary_done = True
+    for finding in legacy.get('findings', []):
+        if any(target_matches(finding, target) for target in targets): continue
+        kind, value = typed_target(finding['target_id'])
+        wire['notes'].append({kind: value, 'severity': finding['severity'], 'issue': finding['issue']})
+    return resume_review_ids.decode(wire, saved, draft)
+
+
+def identify_findings(review, draft, prefix='finding'):
+    targets = review_targets(draft)
+    result = deepcopy(review)
+    for i, finding in enumerate(result.get('findings', []), 1):
+        target = finding.get('target_id')
+        if not target:  # Compatibility with previously saved review objects.
+            role, number = finding.get('role_key'), finding.get('bullet_number', 0)
+            target = f'bullet:{role}:{number}' if role in draft.get('experience', {}) and number else role
+        if target not in targets:
+            raise ValueError('Review finding must identify an existing exact target.')
+        if finding.get('severity', 'repair') not in {'repair', 'advisory', 'factual_blocker'}:
+            raise ValueError('Unknown review finding severity.')
+        finding.update(finding_id=f'{prefix}-{i}', target_id=target, current_text=targets[target],
+                       severity=finding.get('severity', 'repair'))
+        if target.startswith('bullet:'):
+            _, role, number = target.split(':')
+            finding.update(role_key=role, bullet_number=int(number))
+        else:
+            finding.update(role_key=target.split(':')[0], bullet_number=0)
+    return result
+
+
+REVIEW_COORDINATION = '''Use review_targets as the authoritative target table. Copy target_id exactly; bullet IDs are explicitly ONE-BASED. Do not calculate a bullet position from an unnumbered list. Report all material issues in this first pass, including technical consistency and incorrect project scope. Use repair for a concrete writing defect, advisory for optional improvements or JD coverage gaps, and factual_blocker only for an actual unresolved factual/candidacy conflict. Hypothetical project assumptions alone are not factual blockers. Conventional skills such as performance tuning are not defects merely because they are not product names. Do not require an entire baseline, denominator, comparison period or methodology when a concise metric already has clear meaning. A stated achieved latency or workload can stand without a baseline. Do not remove useful quantitative evidence solely to prefer qualitative wording. No invented requirements or requests for a full project story inside a bullet.'''
+
+
+def patch_target(change):
+    if change['target'] == 'bullet':
+        return f"bullet:{change['role_key']}:{change['bullet_number']}"
+    if change['target'] == 'experience_title':
+        return f"title:{change['role_key']}"
+    if change['target'] == 'skills':
+        return f"skills:{change['group_number']}"
+    return change['target']
+
+
+def target_matches(finding, target):
+    return finding['target_id'] == target or (finding['target_id'] == 'skills' and target.startswith('skills:'))
+
+
+def reconcile_review_links(review):
+    """Derive links from unique exact targets, never model list numbering.
+
+    Do not infer semantic targets, invent changes, override factual blockers,
+    or choose between ambiguous owners. Normal validation still rejects those.
+    """
+    result = deepcopy(review)
+    findings = result.get('findings', [])
+    resolved = {}
+    for index, change in enumerate(result.get('changes', []), 1):
+        owners = [i for i, finding in enumerate(findings) if target_matches(finding, patch_target(change))]
+        if len(owners) == 1 and findings[owners[0]].get('severity') in {'repair', 'advisory'}:
+            resolved[index] = owners[0]
+    for owner_index, finding in enumerate(findings):
+        owned = [index for index, owner in resolved.items() if owner == owner_index]
+        # Remove a resolved change's incorrect old claims before attaching it
+        # to its authoritative target. Unresolvable claims remain errors.
+        retained = [index for index in finding.get('change_indices', []) if index not in resolved]
+        finding['change_indices'] = list(dict.fromkeys(retained + owned))
+        if owned:
+            finding['severity'] = 'repair'
+    return result
+
+
+def validate_dispositions(patch, findings):
+    expected = {f['finding_id']: f for f in findings}
+    seen, linked = set(), set()
+    for item in patch.get('dispositions', []):
+        fid = item['finding_id']
+        if (fid not in expected or fid in seen or not item.get('reason', '').strip()
+                or item.get('status') not in {'patched', 'unchanged', 'blocked'}):
+            raise ValueError('Repair must account for each finding exactly once with a reason.')
+        seen.add(fid)
+        indices = item.get('change_indices', [])
+        if item['status'] == 'patched' and not indices:
+            raise ValueError('A patched finding must link its replacement.')
+        if item['status'] != 'patched' and indices:
+            raise ValueError('Unchanged or blocked findings cannot claim replacements.')
+        for index in indices:
+            if not 1 <= index <= len(patch['changes']) or not target_matches(expected[fid], patch_target(patch['changes'][index - 1])):
+                raise ValueError('Repair replacement does not match its finding target.')
+            linked.add(index)
+    if seen != set(expected) or linked != set(range(1, len(patch['changes']) + 1)):
+        raise ValueError('Repair omitted a finding or returned an unrelated replacement.')
+
+
+REPAIR_PROMPT = '''Return only replacements needed to resolve repair_issues or review_findings in current_draft. An empty changes array means no change. Never return a complete resume or unchanged fields.
+Apply the supplied writing_rules and resume_mode_context.writing_rules. Preserve the checked project plan, contribution order, planned functional experience titles, sound wording and measurements. Do not add responsibilities or numbers merely to make a patch.
+For headline, return its exact old_text and replacement title. For summary, old_text must be the exact unique sentence or passage to replace; replacement contains only the new passage. Do not repeat the rest of the summary. Multiple summary edits must not overlap.
+For a bullet, identify role_key and its one-based bullet_number, copy its exact old_text and return one complete replacement bullet including consistent measurement metadata and the same contribution_number. This replaces only that bullet. Internal measurement labels belong in metadata, never prose.
+For skills, return only an affected group using its one-based group_number, exact expected_category, and replacement category/items. Preserve useful existing items in that group. Do not add, remove or reorder groups. Category must be an allowed category.
+Use no duplicate targets, unrelated edits, missing targets, confirmation questions or placeholders. Changes are checked and merged locally before the assembled resume is reviewed.'''
+
+
+def repair_schema(roles, skill_categories=None, findings=None, *, current_draft=None):
+    schema = draft_schema(roles, skill_categories)
+    bullet = schema['properties']['experience']['properties'][roles[0]['key']]['properties']['bullets']['items']
+    category = {'type': 'string', 'enum': sorted(skill_categories)} if skill_categories else STRING
+    result = obj({'changes': {'type': 'array', 'items': {'anyOf': [
+        obj({'target': {'type': 'string', 'enum': ['headline', 'summary']}, 'old_text': STRING, 'replacement': STRING}),
+        obj({'target': {'type': 'string', 'enum': ['bullet']},
+             'role_key': {'type': 'string', 'enum': [r['key'] for r in roles]},
+             'bullet_number': {'type': 'integer', 'minimum': 1}, 'old_text': STRING, 'replacement': bullet}),
+        obj({'target': {'type': 'string', 'enum': ['skills']},
+             'group_number': {'type': 'integer', 'minimum': 1}, 'expected_category': STRING,
+             'category': category, 'items': {'type': 'array', 'items': STRING, 'minItems': 2, 'maxItems': 5}}),
+    ]}}})
+    if current_draft is not None:
+        # Bind each role, one-based position and old text together. Keep the
+        # exact-match guard in apply_repairs even with constrained output.
+        changes = result['properties']['changes']['items']['anyOf']
+        changes[:] = [
+            obj({'target': {'type': 'string', 'enum': ['headline']},
+                 'old_text': {'type': 'string', 'enum': [current_draft.get('headline', '')]}, 'replacement': STRING}),
+            obj({'target': {'type': 'string', 'enum': ['summary']}, 'old_text': STRING, 'replacement': STRING}),
+        ]
+        result['$defs'] = {'measurement': bullet['properties']['measurement']}
+        for role, entry in current_draft.get('experience', {}).items():
+            for number, original in enumerate(entry.get('bullets', []), 1):
+                replacement = obj({'measurement': {'$ref': '#/$defs/measurement'},
+                    'contribution_number': {'type': 'integer', 'enum': [number]},
+                    'text': deepcopy(bullet['properties']['text'])})
+                changes.append(obj({'target': {'type': 'string', 'enum': ['bullet']},
+                    'role_key': {'type': 'string', 'enum': [role]},
+                    'bullet_number': {'type': 'integer', 'enum': [number]},
+                    'old_text': {'type': 'string', 'enum': [original['text']]},
+                    'replacement': replacement}))
+        for number, group in enumerate(current_draft.get('skills', []), 1):
+            changes.append(obj({'target': {'type': 'string', 'enum': ['skills']},
+                'group_number': {'type': 'integer', 'enum': [number]},
+                'expected_category': {'type': 'string', 'enum': [group['category']]},
+                'category': category, 'items': {'type': 'array', 'items': STRING, 'minItems': 2, 'maxItems': 5}}))
+    if findings:
+        result['properties']['dispositions'] = {'type': 'array', 'minItems': len(findings), 'maxItems': len(findings), 'items': obj({
+            'finding_id': {'type': 'string', 'enum': [f['finding_id'] for f in findings]},
+            'status': {'type': 'string', 'enum': ['patched', 'unchanged', 'blocked']},
+            'change_indices': {'type': 'array', 'items': {'type': 'integer', 'minimum': 1}}, 'reason': STRING})}
+        result['required'].append('dispositions')
+    return result
+
+
+def apply_repairs(draft, patch):
+    """Apply exact, indexed replacements atomically; never guess a target."""
+    result = deepcopy(draft)
+    seen, summary_spans = set(), []
+    for change in patch['changes']:
+        target = change['target']
+        if target in {'headline', 'summary'}:
+            old, new = change['old_text'], change['replacement']
+            text = str(draft.get(target, ''))
+            if not new.strip() or (target == 'headline' and old != text):
+                raise ValueError('Repair title/summary replacement is empty or targets stale text.')
+            if target == 'summary':
+                if not old or text.count(old) != 1:
+                    raise ValueError('Repair summary passage must match exactly once.')
+                start = text.index(old)
+                if any(start < end and start + len(old) > begin for begin, end, _ in summary_spans):
+                    raise ValueError('Repair summary passages overlap.')
+                summary_spans.append((start, start + len(old), new))
+                continue
+            key = (target,)
+            result[target] = new
+        elif target == 'experience_title':
+            role = change['role_key']
+            entry = result.get('experience', {}).get(role)
+            if entry is None or entry.get('title', '') != change['old_text']:
+                raise ValueError('Repair experience title is stale or missing.')
+            if not isinstance(change['replacement'], str) or not change['replacement'].strip():
+                raise ValueError('Experience title replacement must be nonempty text.')
+            entry['title'] = change['replacement'].strip()
+            key = (target, role)
+        elif target == 'bullet':
+            role, number = change['role_key'], change['bullet_number']
+            bullets = result.get('experience', {}).get(role, {}).get('bullets', [])
+            if not isinstance(number, int) or not 1 <= number <= len(bullets):
+                raise ValueError('Repair bullet target does not exist.')
+            if bullets[number - 1]['text'] != change['old_text']:
+                raise ValueError('Repair bullet text is stale.')
+            if change['replacement']['contribution_number'] != number:
+                raise ValueError('Repair must preserve the contribution number.')
+            key = (target, role, number)
+            bullets[number - 1] = deepcopy(change['replacement'])
+        elif target == 'skills':
+            number = change['group_number']
+            groups = result.get('skills', [])
+            if not isinstance(number, int) or not 1 <= number <= len(groups):
+                raise ValueError('Repair skill group does not exist.')
+            if groups[number - 1]['category'] != change['expected_category']:
+                raise ValueError('Repair skill category is stale.')
+            key = (target, number)
+            groups[number - 1] = {'category': change['category'], 'items': deepcopy(change['items'])}
+        else:
+            raise ValueError('Unknown repair target.')
+        if key in seen:
+            raise ValueError('Duplicate repair target.')
+        seen.add(key)
+    for begin, end, new in sorted(summary_spans, reverse=True):
+        result['summary'] = result['summary'][:begin] + new + result['summary'][end:]
+    return result
+
+
+def skill_style_notes(draft):
+    notes = []
+    for group in draft.get('skills', []):
+        for item in group.get('items', []):
+            text = str(item).strip()
+            if ((len(text.split()) >= 3 and re.search(r'\b(?:adapters?|prototypes?)\b', text, re.I))
+                    or (len(text.split()) >= 4 and re.search(r'\b(?:for|using|via|export|patterns)\b', text, re.I))):
+                notes.append(f"Skills: prefer conventional technical names to the description '{text}'.")
+    return notes
+
+
+def resume_text_issues(draft):
+    """Only hard content errors, not preferences about skill formatting."""
+    fields = [('headline', draft.get('headline', '')), ('summary', draft.get('summary', ''))]
+    issues = []
+    for group in draft.get('skills', []):
+        fields.append(('skills category', group.get('category', '')))
+        fields.extend(('skill', item) for item in group.get('items', []))
+    for key, role in draft.get('experience', {}).items():
+        fields.extend((f'{key} bullet {i}', b.get('text', '')) for i, b in enumerate(role.get('bullets', []), 1))
+    for field, text in fields:
+        if INTERNAL_LABEL_RE.search(str(text)):
+            issues.append(f'{field}: internal review/status labels must stay in metadata only; write clean resume text and preserve measurement values and units.')
+    return issues
+
+
+def review_text_view(draft):
+    """Review visible writing, not per-bullet status records from the writer."""
+    return {key: deepcopy(draft.get(key)) for key in ('headline', 'summary', 'skills')} | {
+        'experience': {key: {**({'title': role['title']} if role.get('title') else {}),
+                            'bullets': [b.get('text', '') for b in role.get('bullets', [])]}
+                       for key, role in draft.get('experience', {}).items()}}
+
+
+def plan_issues(plan, roles, jd):
+    issues = []
+    norm = lambda s: re.sub(r'\s+', ' ', str(s)).strip()
+    source = norm(jd)
+    for level in ('required', 'optional'):
+        for index, req in enumerate(plan.get(level, []), 1):
+            quote, capability = norm(req.get('jd_quote', '')), norm(req.get('capability', ''))
+            if not quote or quote not in source or not capability:
+                issues.append(f'{level} {index}: use an exact JD quote and a nonempty capability label. Label={capability!r}; quote={quote!r}')
+                continue
+    if not plan.get('required'):
+        issues.append('Identify the required engineering work before choosing projects.')
+    if set(plan.get('experience', {})) != {r['key'] for r in roles}:
+        issues.append('Plan must contain exactly the selected employment headings.')
+    for role in roles:
+        entry = plan.get('experience', {}).get(role['key'], {})
+        contributions = entry.get('contributions', [])
+        if len(contributions) != role['bullet_min']:
+            issues.append(f"{role['key']}: use exactly {role['bullet_min']} distinct contributions.")
+        if not entry.get('system') or not entry.get('workflow') or not entry.get('scope') or not entry.get('assumptions'):
+            issues.append(f"{role['key']}: describe the proposed system, workflow, scope and assumptions.")
+        for i, text in enumerate(contributions):
+            if any(SequenceMatcher(None, str(text).lower(), str(other).lower()).ratio() > .9 for other in contributions[:i]):
+                issues.append(f"{role['key']}: remove duplicate contributions.")
+    return issues
+
+
+def normalize_draft(draft, numeric_tokens):
+    """Do not let 'one component' padding masquerade as numerical impact.
+
+    Demote unused measurement metadata and trivial scope counts. Never insert
+    a measurement or change project responsibility to satisfy metadata.
+    """
+    result = deepcopy(draft)
+    # Separate clearly spaced lists locally. CI/CD, TCP/IP, etc. stay intact.
+    # Formatting a valid technical term must never trigger another model call.
+    for group in result.get('skills', []):
+        group['items'] = [part.strip() for item in group.get('items', [])
+                          for part in re.split(r'\s+/\s+', str(item)) if part.strip()]
+    for role in result.get('experience', {}).values():
+        for bullet in role.get('bullets', []):
+            measure = bullet.get('measurement', {})
+            if not proposed_numbers(str(bullet.get('text', '')), numeric_tokens):
+                # The visible sentence is authoritative. An invisible count or
+                # N/A is not evidence and does not justify a full model repair.
+                measure.update(kind='qualitative', value='', unit='', status='qualitative')
+                continue
+            if measure.get('kind') != 'scale' or str(measure.get('value', '')).strip().lower() not in {'1', 'one'}:
+                continue
+            nouns = r'components?|modules?|products?|portals?|features?|strateg(?:y|ies)|widgets?|integrations?|services?|schemas?|syncs?|toolsets?'
+            if not re.search(r'\b(?:' + nouns + r')\b', str(measure.get('unit', '')), re.I):
+                continue
+            text = str(bullet.get('text', ''))
+            if numeric_tokens(text) - {'1'}:
+                continue
+            text = re.sub(r'\b(?:1|one)\s+(?=(?:[a-z-]+\s+){0,5}(?:' + nouns + r')\b)',
+                          lambda m: 'an ' if text[m.end():m.end() + 1].lower() in 'aeiou' else 'a ', text, flags=re.I)
+            bullet['text'] = text
+            measure.update(kind='qualitative', value='', unit='', status='qualitative')
+    return result
+
+
+def proposed_numbers(text, numeric_tokens):
+    """Read explicit quantities in a proposed sentence without a unit whitelist.
+
+    This mode has no source-provenance decision. Version identifiers and known
+    language/protocol versions still do not constitute numerical evidence.
+    """
+    values = set(numeric_tokens(text))
+    normalized = normalize_number_words(text)
+    for match in re.finditer(r'(?<![\w.])\d[\d,]*(?:\.\d+)?(?:\s*(?:%|percent|x|\+))?(?![\w.])', normalized, re.I):
+        before = normalized[max(0, match.start() - 40):match.start()]
+        if re.search(r'(?:\b(?:java|python|swift|node(?:\.js)?|react|oauth|tls|http)|\.net)\s*[/v]?\s*$', before, re.I):
+            continue
+        values.add(canonical_quantity(match.group(), before))
+    return values
+
+
+def bullet_writing_issues(resume, numeric_tokens=None):
+    """Check final prose, including manual/editor changes and renderer payloads.
+
+    Metadata/measurement tests can run independently through draft_issues;
+    normal generation and PDF export explicitly apply this writing contract.
+    """
+    issues = []
+    experience = resume.get('experience') or {}
+    entries = experience.items() if isinstance(experience, dict) else enumerate(experience)
+    for key, entry in entries:
+        label = entry.get('company') or str(key)
+        bullets = entry.get('bullets') or []
+        quantitative = 0
+        for index, bullet in enumerate(bullets, 1):
+            text = str(bullet.get('text', '') if isinstance(bullet, dict) else bullet)
+            words = len(text.split())
+            if not 25 <= words <= 30:
+                issues.append(f'{label} bullet {index}: {words} words; use 25-30 words with a contribution, technical mechanism and outcome, not filler.')
+            if numeric_tokens is not None and proposed_numbers(text, numeric_tokens):
+                quantitative += 1
+        target = math.ceil(.8 * len(bullets))
+        if numeric_tokens is not None and quantitative < target:
+            issues.append(f'{label}: numerical evidence in {quantitative}/{len(bullets)} bullets; target {target}/{len(bullets)} (80%). Use meaningful quantities, not versions or invented factual evidence.')
+    return issues
+
+
+def ensure_plan_titles(plan, roles):
+    result = deepcopy(plan)
+    for role in roles:
+        entry = result.get('experience', {}).get(role['key'])
+        if entry is not None and not str(entry.get('title') or '').strip():
+            entry['title'] = str(role.get('default_title') or 'Software Engineer').strip()
+    return result
+
+
+def apply_plan_titles(draft, plan, roles):
+    result = deepcopy(draft)
+    for role in roles:
+        entry = result.get('experience', {}).get(role['key'])
+        if entry is not None and not str(entry.get('title') or '').strip():
+            proposed = (plan.get('experience') or {}).get(role['key'], {})
+            entry['title'] = str(proposed.get('title') or role.get('default_title') or 'Software Engineer').strip()
+    return result
+
+
+def draft_issues(draft, plan, roles, numeric_tokens, *, check_writing=False):
+    issues, notes = resume_text_issues(draft), []
+    if check_writing:
+        issues.extend(bullet_writing_issues(draft))
+    if set(draft.get('experience', {})) != {r['key'] for r in roles}:
+        issues.append('Draft must contain exactly the selected employment headings.')
+    for role in roles:
+        bullets = draft.get('experience', {}).get(role['key'], {}).get('bullets', [])
+        if len(bullets) != role['bullet_min']:
+            issues.append(f"{role['key']}: preserve the contribution count.")
+        count = 0
+        for i, bullet in enumerate(bullets, 1):
+            text = str(bullet.get('text', ''))
+            measurement = bullet.get('measurement', {})
+            numbers = proposed_numbers(text, numeric_tokens)
+            if bullet.get('contribution_number') != i:
+                issues.append(f"{role['key']} {i}: keep the original contribution order.")
+            if not text.strip() or len(text.split()) > 55 or re.search(r'\[Confirm|\[(?:metric|number|value)\]|\?', text, re.I):
+                issues.append(f"{role['key']} {i}: write a concise finished sentence without questions/placeholders.")
+            if numbers:
+                count += 1
+                if measurement.get('status') != 'illustrative_unverified' or measurement.get('kind') == 'qualitative':
+                    issues.append(f"{role['key']} {i}: numerical evidence must be labelled illustrative and quantitative.")
+                values = numeric_tokens(str(measurement.get('value', '')) + ' ' + str(measurement.get('unit', '')))
+                # This is an explicitly typed measurement field, so extraction
+                # need not guess whether its unit noun is on a prose whitelist.
+                if not values:
+                    declared = normalize_number_words(str(measurement.get('value', '')))
+                    for match in re.finditer(r'(?<![\w])\d[\d,]*(?:\.\d+)?(?:\s*(?:%|percent|x|\+))?', declared, re.I):
+                        token = canonical_quantity(match.group(), declared[:match.start()])
+                        if re.search(r'\bpercent\b|%', str(measurement.get('unit', '')), re.I) and '%' not in token:
+                            token += '%'
+                        values.add(token)
+                # Here value/unit fields describe illustrative magnitudes, not
+                # independently verified exactness. Preserve the qualifier in
+                # the visible prose; do not confuse '~30%' with a new value.
+                magnitude = lambda token: re.sub(r'^[~<>=]+|\+$', '', token)
+                visible_values = {magnitude(n) for n in numbers}
+                metadata_values = {magnitude(n) for n in values}
+                # A unit such as "authentication success rate" can describe
+                # the exact percentage already visible in the sentence. Accept
+                # only an identical magnitude with an explicit visible percent;
+                # never convert fractions or infer a missing numeric value.
+                if re.search(r'\b(?:rate|percentage|percent)\b', str(measurement.get('unit', '')), re.I):
+                    metadata_values = {value + '%' if not value.endswith('%') and value + '%' in visible_values else value
+                                       for value in metadata_values}
+                missing = metadata_values - visible_values
+                if missing and len(metadata_values) == 1 and visible_ratio_matches_measurement(text, measurement):
+                    missing = set()
+                # A record may state a delta while the sentence gives its two
+                # endpoints. Accept only a demonstrable numeric subtraction.
+                if missing and len(missing) == 1 and re.search(r'\bfrom\b.+\bto\b', text, re.I):
+                    unit_free = lambda n: re.sub(r'[%x]$', '', n)
+                    try:
+                        operands = [Decimal(unit_free(n)) for n in visible_values]
+                        delta = Decimal(unit_free(next(iter(missing))))
+                        if len(operands) == 2 and abs(operands[0] - operands[1]) == delta:
+                            missing = set()
+                    except Exception:
+                        pass
+                if not measurement.get('value') or not measurement.get('unit') or not values or missing:
+                    issues.append(f"{role['key']} {i}: measurement value/unit must agree with the visible bullet.")
+            elif measurement.get('status') != 'qualitative' or measurement.get('kind') != 'qualitative' or measurement.get('value') or measurement.get('unit'):
+                issues.append(f"{role['key']} {i}: the proposed measurement is absent from the sentence. Include its illustrative value naturally to support the 80% goal, or set kind/status qualitative and clear value/unit. Do not leave numeric metadata attached to qualitative prose.")
+        target = math.ceil(len(bullets) * .8)
+        if count < target:
+            notes.append(f"{role['company']}: {count}/{len(bullets)} numerical examples; target {target}. Prefer concrete qualitative work to filler numbers.")
+    return issues, notes
+
+
+def render_draft(plan, draft, roles, mode=None):
+    lines = ['# ' + draft['headline'], '', '**Experimental proposed draft — project details and measurements are unverified.**', '', draft['summary'], '']
+    if mode:
+        lines += ['**Profile mode:** ' + mode['label'], '']
+    for role in roles:
+        entry = plan['experience'][role['key']]
+        lines += ['## ' + role['company'] + ' — ' + draft['experience'][role['key']].get('title', role['default_title']), '', role['dates'], '', '**Proposed project:** ' + entry['system'], '']
+        lines.extend('- ' + b['text'] for b in draft['experience'][role['key']]['bullets'])
+        lines += ['', '**Assumptions to review:**', ''] + ['- ' + s for s in entry['assumptions']] + ['']
+    return '\n'.join(lines)

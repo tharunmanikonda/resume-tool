@@ -1,0 +1,52 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import {chromium} from 'playwright';
+
+const history = [{key:'mckinsey',company:'Example Company',location:'CA, USA',dates:'2024 - Present',title:'Software Engineer',enabled:true}];
+const bullet = 'Implemented request validation for 500 requests using typed API contracts.';
+const content = `Updated Title\nSoftware Engineer\n\nUpdated Summary\nSoftware engineer delivering reliable application features.\n\nUpdated Skills\nBackend Engineering: REST APIs, Request validation.\n\nProfessional Experience\n\nExample Company | CA, USA\nSoftware Engineer | 2024 - September 2026\n• ${bullet}`;
+const resume = {updated_title:'Software Engineer',updated_summary:'Software engineer delivering reliable application features.',updated_skills:[{category:'Backend Engineering',items:['REST APIs','Request validation']}],experience:{mckinsey:{title:'Software Engineer',bullets:[bullet]}}};
+const preview = {title:resume.updated_title,summary:resume.updated_summary,technical_skills:[{category:'Backend Engineering',items:'REST APIs, Request validation'}],experience:[{company:'Example Company',title:'Software Engineer',dates:'2024 - September 2026',bullets:[bullet]}]};
+const version = {resume,resume_content:content,resume_snapshot:preview,revision:1};
+const analysis = {company_name:'Example Hiring Company',target_role:'Software Engineer',role_family:'Application engineering',skills_mentioned:['REST APIs'],responsibilities:['Implement features']};
+const requests=[];
+const browser = await chromium.launch({headless:true});
+try {
+  const page=await browser.newPage({viewport:{width:1440,height:1000}});
+  const errors=[];
+  page.on('pageerror', e=>errors.push(e.message));
+  await page.route('http://resume.test/**',async route=>{
+    const req=route.request();const pathname=new URL(req.url()).pathname;
+    if(pathname==='/') return route.fulfill({contentType:'text/html',body:fs.readFileSync('static/react/index.html','utf8')});
+    if(pathname==='/static/react/app.js'||pathname==='/static/react/app.css') return route.fulfill({contentType:pathname.endsWith('.js')?'text/javascript':'text/css',body:fs.readFileSync('.'+pathname)});
+    const body=req.postDataJSON();
+    if(req.method()==='POST') requests.push({path:pathname,body});
+    let payload={success:true};
+    if(pathname==='/api/settings') payload={identities:[{id:'test',label:'Test',email:'test@example.com'}],default_identity_id:'test',pdf_conversion_ready:true};
+    else if(pathname==='/api/profile') payload={onboarding_required:false,profile:{name:'Candidate',contact:{email:'test@example.com'},experience_history:history}};
+    else if(pathname==='/api/ai/status') payload={ready:true};
+    else if(pathname==='/api/tracker') payload={applications:[],summary:{counts:{},total:0},statuses:['Applied']};
+    else if(pathname==='/api/outreach/leads') payload={leads:[]};
+    else if(pathname==='/api/ai/analyze') payload={success:true,session_id:'session-1',analysis,enabled_experience_keys:['mckinsey'],experience_history:history};
+    else if(pathname.startsWith('/api/tracker/company-history')) payload={count:0,applications:[]};
+    else if(pathname==='/api/ai/generate-jd-resume') payload={success:true,session_id:'session-1',content,analysis,resume_mode:body.resume_mode,generation_method:'jd_only',resume_versions:{original:version,luna_reviewed:version},active_resume_version:'luna_reviewed',audit_status:'approved',audit_result:{schema_version:'2',decision:'approved',assumptions_unverified:true,review_summary:'Writing checked. Project details and measurements remain proposed examples.',manual_findings:[]}};
+    else if(pathname==='/api/preview') payload={valid:true,errors:[],preview};
+    return route.fulfill({contentType:'application/json',body:JSON.stringify(payload)});
+  });
+  await page.goto('http://resume.test/');
+  await page.getByRole('combobox',{name:'Resume mode'}).first().selectOption('new_grad');
+  await page.getByPlaceholder('Paste the full job description here').fill('Build reliable web applications and REST APIs with automated testing.');
+  await page.getByRole('button',{name:'Generate content',exact:true}).click();
+  await page.locator('.experience-bullet-text').filter({hasText:bullet}).first().waitFor();
+  const generating=requests.filter(r=>r.path.startsWith('/api/ai/')&&r.path!=='/api/ai/reset');
+  assert.deepEqual(generating.map(r=>r.path),['/api/ai/analyze','/api/ai/generate-jd-resume']);
+  assert.equal(generating[1].body.resume_mode,'new_grad');
+  assert.equal(await page.getByLabel('Experimental JD-only draft').count(),0);
+  assert.equal(await page.getByRole('button',{name:'Explore JD-only draft'}).count(),0);
+  assert.ok(await page.getByRole('button',{name:'Regenerate',exact:true}).isVisible());
+  assert.ok(await page.getByText('JD-based project details and measurements need your review.',{exact:true}).isVisible());
+  assert.equal(errors.length,0,errors.join('\n'));
+  fs.mkdirSync('tmp',{recursive:true});
+  await page.screenshot({path:'tmp/jd-only-normal-flow.png',fullPage:true});
+  console.log('Normal app flow: one Generate action, New Grad mode, direct resume preview, versions, no experiment panel passed.');
+} finally {await browser.close();}

@@ -627,6 +627,7 @@ def test_regenerate_preserves_inputs_and_link_without_model_call(monkeypatch, on
     session["extension_draft_id"] = "draft-123"
     session["audit_status"] = "approved"
     session["audit_result"] = {"decision": "approved"}
+    session["jd_only_checkpoint"] = {"fingerprint": "previous", "plan": {"old": True}}
     before_revision = session["resume_revision"]
     for name in (
         "analyze_job_description",
@@ -656,6 +657,7 @@ def test_regenerate_preserves_inputs_and_link_without_model_call(monkeypatch, on
     assert session["experience_recent"] is None
     assert session["experience_older"] is None
     assert session["resume_content"] == ""
+    assert "jd_only_checkpoint" not in session
     assert session["audit_status"] == "not_started"
     assert session["resume_revision"] == before_revision + 1
 

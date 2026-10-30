@@ -126,8 +126,8 @@
     for (const selector of selectorsList) {
       for (const element of document.querySelectorAll(selector)) {
         if (!isVisible(element)) continue;
-        const rawValue = preferTextContent ? element.textContent : (element.innerText || element.textContent);
-        const value = cleanText(rawValue).replace(/\s+/g, " ");
+        const rawValue = element.innerText || (preferTextContent ? stripHtml(element.innerHTML) : element.textContent);
+        const value = preferTextContent ? cleanText(rawValue) : cleanText(rawValue).replace(/\s+/g, " ");
         if (value.length >= minimumLength) return { value, element, selector };
       }
     }
@@ -176,6 +176,8 @@
     if (!value) return "";
     const holder = document.createElement("div");
     holder.innerHTML = String(value);
+    for (const node of holder.querySelectorAll("br")) node.replaceWith("\n");
+    for (const node of holder.querySelectorAll("p, div, li, h1, h2, h3, h4, section, ul, ol")) node.append("\n");
     return String(holder.innerText || holder.textContent || "").replace(/\n{3,}/g, "\n\n").trim();
   }
 

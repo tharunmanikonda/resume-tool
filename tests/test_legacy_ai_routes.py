@@ -145,15 +145,15 @@ def test_legacy_generate_resolves_enabled_experience_keys(
 ):
     captured = {}
 
-    def fake_engine(*_args, **kwargs):
-        captured.update(kwargs)
-        return {
-            "analysis": copy.deepcopy(ANALYSIS),
-            "resume": generated_resume_payload(),
-            "timing": {"total_ms": 1},
-        }
+    def fake_generator(jd, blueprints, mode, revision_context=None, **kwargs):
+        captured["enabled_experience_keys"] = [r["key"] for r in blueprints]
+        resume = generated_resume_payload()
+        resume["experience"] = {k: v for k, v in resume["experience"].items() if k in captured["enabled_experience_keys"]}
+        return {"resume": resume, "original_resume": resume, "plan": {},
+                "audit": resume_app.jd_only_audit_result({"findings": []}, resume)}
 
-    monkeypatch.setattr(resume_app, "call_openai_resume_engine", fake_engine)
+    monkeypatch.setattr(resume_app, "generate_jd_only_resume", fake_generator)
+    monkeypatch.setattr(resume_app, "analyze_job_description", lambda **kwargs: copy.deepcopy(ANALYSIS))
     request_payload = {"job_description": JOB_DESCRIPTION}
     if request_keys is not None:
         request_payload["enabled_experience_keys"] = request_keys

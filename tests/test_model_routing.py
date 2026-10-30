@@ -9,6 +9,12 @@ ANALYSIS = {
     "skill_category_order_key": "backend_application",
     "prompt_family_key": "software_engineering",
     "skills_mentioned": ["Python", "FastAPI"],
+    "target_work": {
+        "system_type": "Backend services", "primary_workflow": "Implement and operate backend services",
+        "users": [], "work_objects": [], "engineering_changes": ["Build reliable services"],
+        "evidence_expectations": ["Implemented backend services"], "unknowns": ["Product is unspecified"],
+        "specialist_requirements": [{"capability": "backend", "jd_quote": "backend"}],
+    },
 }
 
 
@@ -199,6 +205,7 @@ def test_preliminary_skills_forwards_resume_stage_configuration(monkeypatch):
     resume_app.generate_skills_from_analysis(
         api_key="test-key",
         analysis_payload=ANALYSIS,
+        candidate_profile={},
     )
 
     assert captured["model"] == resume_app.RESUME_MODEL
@@ -434,11 +441,12 @@ def test_preliminary_skills_retries_once_with_more_tokens_on_truncation(monkeypa
     resume_app.generate_skills_from_analysis(
         api_key="test-key",
         analysis_payload=ANALYSIS,
+        candidate_profile={},
     )
 
     assert len(calls) == 2
-    assert calls[0]["max_output_tokens"] == 2900
-    assert calls[1]["max_output_tokens"] == 4800
+    assert calls[0]["max_output_tokens"] == 4800
+    assert calls[1]["max_output_tokens"] == 7300
     assert "exhausted its output budget" in calls[1]["user_prompt"]
 
 

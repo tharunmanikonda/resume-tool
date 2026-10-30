@@ -246,6 +246,11 @@ def _add_section_borders(para):
 # ── Resume builder ─────────────────────────────────────────────────────────────
 
 def build_resume_docx(resume_data: dict, output_docx: str, format_profile: str = "outlook") -> None:
+    if resume_data.get('_writing_policy_version'):
+        from jd_draft_experiment import bullet_writing_issues
+        issues = bullet_writing_issues(resume_data)
+        if issues:
+            raise ValueError('Resume writing rules failed before export: ' + ' | '.join(issues[:4]))
     # Load reference template — inherits ALL styles, A4 page, 0.197" margins
     doc  = Document(TEMPLATE_PATH)
     d = resume_data if isinstance(resume_data, dict) else {}
@@ -397,6 +402,7 @@ def build_resume_docx(resume_data: dict, output_docx: str, format_profile: str =
         )
         if company_line:
             p = doc.add_paragraph(company_line, style='Heading 2')
+            p.paragraph_format.keep_with_next = True
             p.paragraph_format.space_before = Pt(profile["experience_gap"] if i > 0 else 1.9)
 
         # Title [TAB] Dates  — right-tab aligned, bold-italic
@@ -404,6 +410,7 @@ def build_resume_docx(resume_data: dict, output_docx: str, format_profile: str =
         dates = str(exp.get('dates', '')).strip()
         if experience_title or dates:
             p = doc.add_paragraph(style='Normal')
+            p.paragraph_format.keep_with_next = True
             p.paragraph_format.space_before = Pt(1.9)
             p.paragraph_format.space_after = Pt(0)
             p.paragraph_format.left_indent = Inches(0.085)

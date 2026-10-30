@@ -160,6 +160,8 @@ def test_section_and_project_headings_stay_with_following_content(tmp_path):
     by_text = {paragraph.text: paragraph for paragraph in doc.paragraphs}
     assert by_text["PROJECTS"].paragraph_format.keep_with_next is True
     assert by_text["Resume Tool"].paragraph_format.keep_with_next is True
+    assert by_text["Example | Remote"].paragraph_format.keep_with_next is True
+    assert by_text["Engineer\t2024 - Present"].paragraph_format.keep_with_next is True
 
 
 def test_converted_pdf_is_moved_to_exact_requested_file_name(tmp_path):

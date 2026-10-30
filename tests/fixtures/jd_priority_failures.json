@@ -1,0 +1,226 @@
+[
+  {
+    "name": "CHAMP",
+    "jd": "About the job At CHAMP, we are redefining the technology used by Motor Vehicle Agencies and their stakeholders. We do so with innovative, cloud-based software that enhances efficiency, security, and interoperability. Our solutions replace outdated processes with modern, scalable platforms, enabling organizations to operate with greater speed and accuracy in an increasingly digital world.Backend Engineer (Mid to Senior Level)Location: Cleveland (Onsite \u2013 4 days in office)Department: EngineeringTravel: <10%Sponsorship: This position is not eligible for Visa SponsorshipRelocation:This position is not eligible for RelocationAs a Backend Engineer (Mid to Senior Level), you will work in a distributed team on multiple backend services using Agile methodology to support our product suite. This is a highly interactive role that requires the skills of a team player who can analyze business requirements and handle technical challenges. You will need to be able to switch contexts based on business requirements. You will be involved in our application design and architecture. You will assist in the continuous improvement of our processes.We welcome candidates from all backgrounds. If you meet most of the qualifications below, we encourage you to apply, even if you don\u2019t meet every single one.What You\u2019ll Do Design and implement backend services and APIs while continuously improving code quality, keeping scalability and maintainability in mindDevelop RESTful APIs and integrate with external systems including state DMV platformsImplement message-driven architectures using RabbitMQ for inter-service communicationDesign and develop Core modules, State plugins, and SDK components following CHAMP reference architectureCreate and maintain system documentationWork with database design, optimization, and data modelingImplement security best practices for sensitive government and financial dataContribute to code reviews and establish coding standardsMentor and coach junior developers on best practicesLead technical design discussions and architecture decisionsMaintain code standards and development processesLead a team of engineers on feature projects Development Stack Programming languages: Java (including Java 21)Frameworks: Spring Boot 3.x, Apache Camel 4.4.x, Spring Security, JPA/HibernateArchitecture: Multi-module Maven projects, Message-driven architecture with RabbitMQBuild Tools: Maven, champ-parent-pomTesting: JUnit 5, Mockito, Spring Boot Test, Integration TestingInfrastructure: Docker, AWS, Terraform, GitHub ActionsCollaboration Tools: Jira, Confluence, GitHub, Slack Requirements Qualifications 3-5+ years designing, testing, and implementing Java applications and microservicesStrong experience with Spring Boot and Spring Framework ecosystemExperience with Apache Camel for integration and routing patternsProficiency in RESTful API design and developmentExperience with message queues and event-driven architectures (preferably RabbitMQ)Knowledge of relational databases and SQLExperience with multi-module Maven projects and dependency managementExperience mentoring/coaching other software engineersExcellent communication and collaboration skills to work effectively with cross-functional teams, other developers, backend services, Product teams, and QA engineersUnderstanding of cloud platforms, preferably AWS Preferred Qualifications Experience working with offshore software engineersExperience with government or regulatory system integrationsKnowledge of vehicle title and registration processesExperience with Apache Camel 4.x and modern integration patternsDocker containerization and orchestrationTerraform infrastructure as codeExperience with high-availability and fault-tolerant system designKnowledge of SOAP web services and legacy system integration Benefits + PerksCompetitive SalaryAnnual Bonus PotentialHealth, Dental & Vision InsuranceUnlimited PTO PolicyMatching 401K with immediate vestingSubsidized Lunches at our Cleveland HeadquartersFast Paced work environment in a growth companyNewly Renovated Office SpaceSalary RangeThe expected salary range for this position is $120,000 to $160,000 annually. This is a good faith estimate, and final compensation may vary based on experience and skills.We celebrate diversity and are committed to creating an inclusive environment for all employees. We welcome applicants of all backgrounds, including veterans and individuals with disabilities. If you need accommodations during the application or interview process, please let us know. We\u2019re here to help.By joining CHAMP, you will be an integral member of our team with many opportunities for personal growth and upward mobility in a growing organization. We have a great culture that is flexible, collaborative and welcoming.",
+    "old_clauses": {
+      "jd_1": "About the job At CHAMP, we are redefining the technology used by Motor Vehicle Agencies and their stakeholders.",
+      "jd_2": "We do so with innovative, cloud-based software that enhances efficiency, security, and interoperability.",
+      "jd_3": "Our solutions replace outdated processes with modern, scalable platforms, enabling organizations to operate with greater speed and accuracy in an increasingly digital world.",
+      "jd_4": "Backend Engineer (Mid to Senior Level)Location: Cleveland (Onsite \u2013 4 days in office)Department: EngineeringTravel: <10%Sponsorship: This position is not eligible for Visa SponsorshipRelocation:This position is not eligible for RelocationAs a Backend Engineer (Mid to Senior Level), you will work in a distributed team on multiple backend services using Agile methodology to support our product suite.",
+      "jd_5": "This is a highly interactive role that requires the skills of a team player who can analyze business requirements and handle technical challenges.",
+      "jd_6": "You will need to be able to switch contexts based on business requirements.",
+      "jd_7": "You will be involved in our application design and architecture.",
+      "jd_8": "You will assist in the continuous improvement of our processes.",
+      "jd_9": "We welcome candidates from all backgrounds.",
+      "jd_10": "If you meet most of the qualifications below, we encourage you to apply, even if you don\u2019t meet every single one.",
+      "jd_11": "What You\u2019ll Do Design and implement backend services and APIs while continuously improving code quality, keeping scalability and maintainability in mindDevelop RESTful APIs and integrate with external systems including state DMV platformsImplement message-driven architectures using RabbitMQ for inter-service communicationDesign and develop Core modules, State plugins, and SDK components following CHAMP reference architectureCreate and maintain system documentationWork with database design, optimization, and data modelingImplement security best practices for sensitive government and financial dataContribute to code reviews and establish coding standardsMentor and coach junior developers on best practicesLead technical design discussions and architecture decisionsMaintain code standards and development processesLead a team of engineers on feature projects Development Stack Programming languages: Java (including Java 21)Frameworks: Spring Boot 3.x, Apache Camel 4.4.x, Spring Security, JPA/HibernateArchitecture: Multi-module Maven projects, Message-driven architecture with RabbitMQBuild Tools: Maven, champ-parent-pomTesting: JUnit 5, Mockito, Spring Boot Test, Integration TestingInfrastructure: Docker, AWS, Terraform, GitHub ActionsCollaboration Tools: Jira, Confluence, GitHub, Slack Requirements Qualifications 3-5+ years designing, testing, and implementing Java applications and microservicesStrong experience with Spring Boot and Spring Framework ecosystemExperience with Apache Camel for integration and routing patternsProficiency in RESTful API design and developmentExperience with message queues and event-driven architectures (preferably RabbitMQ)Knowledge of relational databases and SQLExperience with multi-module Maven projects and dependency managementExperience mentoring/coaching other software engineersExcellent communication and collaboration skills to work effectively with cross-functional teams, other developers, backend services, Product teams, and QA engineersUnderstanding of cloud platforms, preferably AWS Preferred Qualifications Experience working with offshore software engineersExperience with government or regulatory system integrationsKnowledge of vehicle title and registration processesExperience with Apache Camel 4.x and modern integration patternsDocker containerization and orchestrationTerraform infrastructure as codeExperience with high-availability and fault-tolerant system designKnowledge of SOAP web services and legacy system integration Benefits + PerksCompetitive SalaryAnnual Bonus PotentialHealth, Dental & Vision InsuranceUnlimited PTO PolicyMatching 401K with immediate vestingSubsidized Lunches at our Cleveland HeadquartersFast Paced work environment in a growth companyNewly Renovated Office SpaceSalary RangeThe expected salary range for this position is $120,000 to $160,000 annually.",
+      "jd_12": "This is a good faith estimate, and final compensation may vary based on experience and skills.",
+      "jd_13": "We celebrate diversity and are committed to creating an inclusive environment for all employees.",
+      "jd_14": "We welcome applicants of all backgrounds, including veterans and individuals with disabilities.",
+      "jd_15": "If you need accommodations during the application or interview process, please let us know.",
+      "jd_16": "We\u2019re here to help.",
+      "jd_17": "By joining CHAMP, you will be an integral member of our team with many opportunities for personal growth and upward mobility in a growing organization.",
+      "jd_18": "We have a great culture that is flexible, collaborative and welcoming."
+    },
+    "required": [
+      {
+        "capability": "Design and implement backend services and APIs; improve code quality, scalability, maintainability",
+        "source_clause_id": "jd_11"
+      },
+      {
+        "capability": "Develop RESTful APIs and integrate with external systems including state DMV platforms",
+        "source_clause_id": "jd_11"
+      },
+      {
+        "capability": "Implement message-driven architectures using RabbitMQ for inter-service communication",
+        "source_clause_id": "jd_11"
+      },
+      {
+        "capability": "Design and develop Core modules, State plugins, and SDK components following CHAMP reference architecture",
+        "source_clause_id": "jd_11"
+      },
+      {
+        "capability": "Work with database design, optimization, and data modeling",
+        "source_clause_id": "jd_11"
+      },
+      {
+        "capability": "Implement security best practices for sensitive government and financial data",
+        "source_clause_id": "jd_11"
+      },
+      {
+        "capability": "Be involved in application design and architecture",
+        "source_clause_id": "jd_7"
+      }
+    ],
+    "optional": [
+      {
+        "capability": "Experience with Apache Camel for integration and routing patterns",
+        "source_clause_id": "jd_11"
+      }
+    ]
+  },
+  {
+    "name": "ITW",
+    "jd": "About the job Job DescriptionThis position will be located in Troy, Ohio. We run the business on Microsoft Dynamics 365 Finance and Operations. With the implementation behind us, the work ahead is to make the system fit the way the business actually works: simpler processes, fewer manual steps, legacy applications retired, and the features people are still waiting for.A small internal team owns all of it: the code, the integrations, the reports it produces, and the people who depend on them. Each of us owns an area, and we build, review and support the whole thing together.Work starts as a conversation with the people who do the job. The developer who picks it up sees it through: learn the real process, design the change with the team, build it, test it, deploy it, and support the people using it. We own outcomes, not tickets.Responsibilities Own business requests end to end: discovery, design, build, test, deployment, supportWork with users to learn the real process before changing itSimplify existing processes and remove the manual steps around themDevelop and extend Dynamics 365 Finance and Operations (X++, extensions, integrations)Write and support SSRS reports and the documents the system produces for daily operationsBuild and support EDI transactions with customers and trading partnersPromote code through the standard LCS release process, with a deployment and rollback planUpgrade and retire legacy code and applications, including VBScript utilities and classic ASP pagesWrite the test cases for your own work and get user sign-off before releaseReview the team's work and have your own reviewedDocument what you build and share what you learn, so the next person does not start overTrain and support end users directly, in business language Minimum Qualifications Experience developing on Microsoft Dynamics 365 Finance and OperationsExperience promoting code through LCS or a comparable release processSSRS report development and supportEvidence of carrying work from request to production use, not just the build stepComfort working with non-technical users, and clear writingA collaborative way of working: shared standards, reviewed code, help asked for early Preferred EDI experience with trading partners Support of legacy web or scripting applications (classic ASP, VBScript)Manufacturing or distribution backgroundExperience on a small team that owned a system end to end Compensation InformationThe starting salary will be determined based on the individuals' qualifications and experience.$95,000 - $125,000ITW is an equal opportunity employer. We value our colleagues\u2019 unique perspectives, experiences and ideas and create workplaces where everyone can develop their careers and perform to their full potential. As an equal employment opportunity employer, ITW is committed to equal employment opportunity and fair treatment for employees, beginning with the hiring process and continuing through all aspects of the employment relationship. All qualified applicants will receive consideration for employment without regard to race, color, sex, gender identity, sexual orientation, religion, national origin, age, disability, protected Veteran status or any other characteristic protected by applicable federal, state, or local laws.",
+    "old_clauses": {
+      "jd_1": "About the job Job DescriptionThis position will be located in Troy, Ohio.",
+      "jd_2": "We run the business on Microsoft Dynamics 365 Finance and Operations.",
+      "jd_3": "With the implementation behind us, the work ahead is to make the system fit the way the business actually works: simpler processes, fewer manual steps, legacy applications retired, and the features people are still waiting for.A small internal team owns all of it: the code, the integrations, the reports it produces, and the people who depend on them.",
+      "jd_4": "Each of us owns an area, and we build, review and support the whole thing together.",
+      "jd_5": "Work starts as a conversation with the people who do the job.",
+      "jd_6": "The developer who picks it up sees it through: learn the real process, design the change with the team, build it, test it, deploy it, and support the people using it.",
+      "jd_7": "We own outcomes, not tickets.",
+      "jd_8": "Responsibilities Own business requests end to end: discovery, design, build, test, deployment, supportWork with users to learn the real process before changing itSimplify existing processes and remove the manual steps around themDevelop and extend Dynamics 365 Finance and Operations (X++, extensions, integrations)Write and support SSRS reports and the documents the system produces for daily operationsBuild and support EDI transactions with customers and trading partnersPromote code through the standard LCS release process, with a deployment and rollback planUpgrade and retire legacy code and applications, including VBScript utilities and classic ASP pagesWrite the test cases for your own work and get user sign-off before releaseReview the team's work and have your own reviewedDocument what you build and share what you learn, so the next person does not start overTrain and support end users directly, in business language Minimum Qualifications Experience developing on Microsoft Dynamics 365 Finance and OperationsExperience promoting code through LCS or a comparable release processSSRS report development and supportEvidence of carrying work from request to production use, not just the build stepComfort working with non-technical users, and clear writingA collaborative way of working: shared standards, reviewed code, help asked for early Preferred EDI experience with trading partners Support of legacy web or scripting applications (classic ASP, VBScript)Manufacturing or distribution backgroundExperience on a small team that owned a system end to end Compensation InformationThe starting salary will be determined based on the individuals' qualifications and experience.$95,000 - $125,000ITW is an equal opportunity employer.",
+      "jd_9": "We value our colleagues\u2019 unique perspectives, experiences and ideas and create workplaces where everyone can develop their careers and perform to their full potential.",
+      "jd_10": "As an equal employment opportunity employer, ITW is committed to equal employment opportunity and fair treatment for employees, beginning with the hiring process and continuing through all aspects of the employment relationship.",
+      "jd_11": "All qualified applicants will receive consideration for employment without regard to race, color, sex, gender identity, sexual orientation, religion, national origin, age, disability, protected Veteran status or any other characteristic protected by applicable federal, state, or local laws."
+    },
+    "required": [
+      {
+        "capability": "Own business requests end\u2011to\u2011end: discovery, design, build, test, deploy, support",
+        "source_clause_id": "jd_8"
+      },
+      {
+        "capability": "Work from user conversations; learn real process before changing it",
+        "source_clause_id": "jd_5"
+      },
+      {
+        "capability": "Develop and extend Dynamics 365 Finance and Operations (X++, extensions, integrations)",
+        "source_clause_id": "jd_8"
+      },
+      {
+        "capability": "Write and support SSRS reports and operational documents",
+        "source_clause_id": "jd_8"
+      },
+      {
+        "capability": "Build and support EDI transactions with trading partners",
+        "source_clause_id": "jd_8"
+      },
+      {
+        "capability": "Promote code through LCS or comparable release process; include rollback plan",
+        "source_clause_id": "jd_8"
+      },
+      {
+        "capability": "Upgrade/retire legacy scripts and web utilities (classic ASP, VBScript)",
+        "source_clause_id": "jd_8"
+      },
+      {
+        "capability": "Write test cases, get user sign\u2011off, and participate in peer review",
+        "source_clause_id": "jd_8"
+      },
+      {
+        "capability": "Document work and train/support end users in business language",
+        "source_clause_id": "jd_8"
+      }
+    ],
+    "optional": [
+      {
+        "capability": "Small team ownership of code, reports and integrations",
+        "source_clause_id": "jd_3"
+      },
+      {
+        "capability": "Owner\u2011oriented delivery: build, review, support together",
+        "source_clause_id": "jd_4"
+      },
+      {
+        "capability": "Location noted (Troy, Ohio) but remote/collab flexible",
+        "source_clause_id": "jd_1"
+      }
+    ]
+  },
+  {
+    "name": "T-Mobile",
+    "jd": "About the job At T-Mobile, we invest in YOU! Our Total Rewards Package ensures that employees get the same big love we give our customers. All team members receive a competitive base salary and compensation package - this is Total Rewards. Employees enjoy multiple wealth-building opportunities through our annual stock grant, employee stock purchase plan, 401(k), and access to free, year-round money coaches. That\u2019s how we\u2019re UNSTOPPABLE for our employees!Job OverviewThis role supports the development and deployment of software solutions that meet customer requirements and operate in scalable, highly available environments. The role involves designing, implementing, and testing software components using technologies such as virtualization, microservices, software-defined networking, network functions virtualization, and big data platforms. The position requires collaboration with engineering teams and adherence to detailed instructions under close supervision to complete routine technical assignments. Success is measured by the ability to deliver functional software stacks, maintain clear documentation, and contribute to continuous system improvements. The work impacts organizational capabilities by enabling advanced software solutions that enhance system performance and support business objectives.Job Responsibilities: Develop and implement software solutions to meet customer requirements and support scalable, highly available environments Maintain clear and accurate documentation for software code, system designs, and business requirements Collaborate with technical teams to deliver software solutions and communicate technical ideas effectively Contribute to the understanding and application of current and emerging technologies to support business goals Identify and share ideas for system analysis and continuous improvement of existing processes and services Also responsible for other duties/projects as assigned by business management as needed Education and Work Experience: Bachelor's Degree OR combination of education and experience deemed equivalent (Required) Acceptable areas of study include Computer Science or Engineering (Preferred) Less than 2 years Technical engineering experience. (Preferred) Knowledge, Skills and Abilities: Analytical Thinking (Required)Analytics (Required)Business Requirements Documentation (BRD) (Required)Collaboration (Required)Communication (Required)Customer Service (Required)Programming Languages (Required)Software Development (Required)Source Code Management (Required)Technical Writing (Required)At least 18 years of ageLegally authorized to work in the United States Travel:Travel Required (Yes/No): YesDOT Regulated:DOT Regulated Position (Yes/No): NoSafety Sensitive Position (Yes/No): NoTotal Target Cash Earnings Opportunity: $73,590 - $132,660National Base Pay Range: $66,900 - $120,600The Total Target Cash Earnings Opportunity represents the expected total cash compensation for this role at target performance, combining base salary and annual incentive opportunity. Actual earnings may be higher or lower depending on individual performance and overall company results.The base pay range reflects the compensation component of this opportunity. The candidate\u2019s actual pay will be based on various factors, such as work location, qualifications, and experience, so the actual starting pay will vary within this range. To find the pay range for this role based on hiring location, copy and paste this link into your browser: https://paylookup.t-mobile.com/paylookup?reqID=REQ375195At T-Mobile, employees in regular, non-temporary roles are eligible for an annual bonus or periodic sales incentive or bonus, based on their role. Corporate employees are eligible for a year-end bonus based on individual and/or company performance and which is set at a percentage of the employee\u2019s eligible earnings in the prior year. Certain positions in Customer Care are eligible for monthly bonuses based on individual and/or team performance. The incentive component included in the Total Target Cash Earnings Opportunity reflects target performance. Actual earnings included in the Total Target Cash Earnings Opportunity reflect target performance; actual payouts may vary.At T-Mobile, our benefits exemplify the spirit of One Team, Together! A big part of how we care for one another is working to ensure our benefits evolve to meet the needs of our team members. Full and part-time employees have access to the same benefits when eligible. We cover all of the bases, offering medical, dental and vision insurance, a flexible spending account, 401(k), employee stock grants, employee stock purchase plan, paid time off and up to 12 paid holidays - which total about 4 weeks for new full-time employees and about 2.5 weeks for new part-time employees annually - paid parental and family leave, family building benefits, back-up care, enhanced family support, childcare subsidy, tuition assistance, college coaching, short- and long-term disability, voluntary AD&D coverage, voluntary accident coverage, voluntary life insurance, voluntary disability insurance, and voluntary long-term care insurance. We don't stop there - eligible employees can also receive mobile service & home internet discounts, pet insurance, and access to commuter and transit programs! To learn about T-Mobile\u2019s amazing benefits, check out www.t-mobilebenefits.com.Never stop growing!As part of the T-Mobile team, you know the Un-carrier doesn\u2019t have a corporate ladder\u2013it\u2019s more like a jungle gym of possibilities! We love helping our employees grow in their careers, because it\u2019s that shared drive to aim high that drives our business and our culture forward. By applying for this career opportunity, you\u2019re living our values while investing in your career growth\u2013and we applaud it. You\u2019re unstoppable!T-Mobile USA, Inc. is an Equal Opportunity Employer. All decisions concerning the employment relationship will be made without regard to age, race, ethnicity, color, religion, creed, sex, sexual orientation, gender identity or expression, genetic information, national origin, religious affiliation, marital status, citizenship status, veteran status, the presence of any physical or mental disability, or any other status or characteristic protected by federal, state, or local law. Discrimination, retaliation or harassment based upon any of these factors is wholly inconsistent with how we do business and will not be tolerated.Talent comes in all forms at the Un-carrier. If you are an individual with a disability and need reasonable accommodation at any point in the application or interview process, please let us know by emailing ApplicantAccommodation@t-mobile.com or calling 1-844-873-9500. Please note, this contact channel is not a means to apply for or inquire about a position and we are unable to respond to non-accommodation related requests.",
+    "old_clauses": {
+      "jd_1": "About the job At T-Mobile, we invest in YOU!",
+      "jd_2": "Our Total Rewards Package ensures that employees get the same big love we give our customers.",
+      "jd_3": "All team members receive a competitive base salary and compensation package - this is Total Rewards.",
+      "jd_4": "Employees enjoy multiple wealth-building opportunities through our annual stock grant, employee stock purchase plan, 401(k), and access to free, year-round money coaches.",
+      "jd_5": "That\u2019s how we\u2019re UNSTOPPABLE for our employees!",
+      "jd_6": "Job OverviewThis role supports the development and deployment of software solutions that meet customer",
+      "jd_7": "requirements and operate in scalable, highly available environments.",
+      "jd_8": "The role involves designing, implementing, and testing software components using technologies such as virtualization, microservices, software-defined networking, network functions virtualization, and big data platforms.",
+      "jd_9": "The position requires collaboration with engineering teams and adherence to detailed instructions under close supervision to complete routine technical assignments.",
+      "jd_10": "Success is measured by the ability to deliver functional software stacks, maintain clear documentation, and contribute to continuous system improvements.",
+      "jd_11": "The work impacts organizational capabilities by enabling advanced software solutions that enhance system performance and support business objectives.",
+      "jd_12": "Job",
+      "jd_13": "Responsibilities: Develop and implement software solutions to meet customer",
+      "jd_14": "requirements and support scalable, highly available environments Maintain clear and accurate documentation for software code, system designs, and business",
+      "jd_15": "requirements Collaborate with technical teams to deliver software solutions and communicate technical ideas effectively Contribute to the understanding and application of current and emerging technologies to support business goals Identify and share ideas for system analysis and continuous improvement of existing processes and services Also responsible for other duties/projects as assigned by business management as needed Education and Work Experience: Bachelor's Degree OR combination of education and experience deemed equivalent (Required) Acceptable areas of study include Computer Science or Engineering (Preferred) Less than 2 years Technical engineering experience.",
+      "jd_16": "(Preferred) Knowledge, Skills and Abilities: Analytical Thinking (Required)Analytics (Required)Business",
+      "jd_17": "Requirements Documentation (BRD) (Required)Collaboration (Required)Communication (Required)Customer Service (Required)Programming Languages (Required)Software Development (Required)Source Code Management (Required)Technical Writing (Required)At least 18 years of ageLegally authorized to work in the United States Travel:Travel Required (Yes/No): YesDOT Regulated:DOT Regulated Position (Yes/No): NoSafety Sensitive Position (Yes/No): NoTotal Target Cash Earnings Opportunity: $73,590 - $132,660National Base Pay Range: $66,900 - $120,600The Total Target Cash Earnings Opportunity represents the expected total cash compensation for this role at target performance, combining base salary and annual incentive opportunity.",
+      "jd_18": "Actual earnings may be higher or lower depending on individual performance and overall company results.",
+      "jd_19": "The base pay range reflects the compensation component of this opportunity.",
+      "jd_20": "The candidate\u2019s actual pay will be based on various factors, such as work location, qualifications, and experience, so the actual starting pay will vary within this range.",
+      "jd_21": "To find the pay range for this role based on hiring location, copy and paste this link into your browser: https://paylookup.t-mobile.com/paylookup?reqID=REQ375195At T-Mobile, employees in regular, non-temporary roles are eligible for an annual bonus or periodic sales incentive or bonus, based on their role.",
+      "jd_22": "Corporate employees are eligible for a year-end bonus based on individual and/or company performance and which is set at a percentage of the employee\u2019s eligible earnings in the prior year.",
+      "jd_23": "Certain positions in Customer Care are eligible for monthly bonuses based on individual and/or team performance.",
+      "jd_24": "The incentive component included in the Total Target Cash Earnings Opportunity reflects target performance.",
+      "jd_25": "Actual earnings included in the Total Target Cash Earnings Opportunity reflect target performance; actual payouts may vary.",
+      "jd_26": "At T-Mobile, our",
+      "jd_27": "benefits exemplify the spirit of One Team, Together!",
+      "jd_28": "A big part of how we care for one another is working to ensure our",
+      "jd_29": "benefits evolve to meet the needs of our team members.",
+      "jd_30": "Full and part-time employees have access to the same",
+      "jd_31": "benefits when eligible.",
+      "jd_32": "We cover all of the bases, offering medical, dental and vision insurance, a flexible spending account, 401(k), employee stock grants, employee stock purchase plan, paid time off and up to 12 paid holidays - which total about 4 weeks for new full-time employees and about 2.5 weeks for new part-time employees annually - paid parental and family leave, family building benefits, back-up care, enhanced family support, childcare subsidy, tuition assistance, college coaching, short- and long-term disability, voluntary AD&D coverage, voluntary accident coverage, voluntary life insurance, voluntary disability insurance, and voluntary long-term care insurance.",
+      "jd_33": "We don't stop there - eligible employees can also receive mobile service & home internet discounts, pet insurance, and access to commuter and transit programs!",
+      "jd_34": "To learn about T-Mobile\u2019s amazing benefits, check out www.t-mobilebenefits.com.",
+      "jd_35": "Never stop growing!",
+      "jd_36": "As part of the T-Mobile team, you know the Un-carrier doesn\u2019t have a corporate ladder\u2013it\u2019s more like a jungle gym of possibilities!",
+      "jd_37": "We love helping our employees grow in their careers, because it\u2019s that shared drive to aim high that drives our business and our culture forward.",
+      "jd_38": "By applying for this career opportunity, you\u2019re living our values while investing in your career growth\u2013and we applaud it.",
+      "jd_39": "You\u2019re unstoppable!T-Mobile USA, Inc.",
+      "jd_40": "is an Equal Opportunity Employer.",
+      "jd_41": "All decisions concerning the employment relationship will be made without regard to age, race, ethnicity, color, religion, creed, sex, sexual orientation, gender identity or expression, genetic information, national origin, religious affiliation, marital status, citizenship status, veteran status, the presence of any physical or mental disability, or any other status or characteristic protected by federal, state, or local law.",
+      "jd_42": "Discrimination, retaliation or harassment based upon any of these factors is wholly inconsistent with how we do business and will not be tolerated.",
+      "jd_43": "Talent comes in all forms at the Un-carrier.",
+      "jd_44": "If you are an individual with a disability and need reasonable accommodation at any point in the application or interview process, please let us know by emailing ApplicantAccommodation@t-mobile.com or calling 1-844-873-9500.",
+      "jd_45": "Please note, this contact channel is not a means to apply for or inquire about a position and we are unable to respond to non-accommodation related requests."
+    },
+    "required": [
+      {
+        "capability": "Build scalable, highly available services",
+        "source_clause_id": "jd_7"
+      },
+      {
+        "capability": "Design and implement microservices and virtualization-based components",
+        "source_clause_id": "jd_8"
+      },
+      {
+        "capability": "Follow detailed instructions and collaborate under supervision",
+        "source_clause_id": "jd_9"
+      },
+      {
+        "capability": "Deliver functional software stacks with documentation",
+        "source_clause_id": "jd_10"
+      },
+      {
+        "capability": "Contribute to system improvements and business objectives",
+        "source_clause_id": "jd_11"
+      },
+      {
+        "capability": "Implement software to meet customer requirements",
+        "source_clause_id": "jd_13"
+      },
+      {
+        "capability": "Maintain code, system design, and BRD documentation",
+        "source_clause_id": "jd_14"
+      },
+      {
+        "capability": "Analytics, technical writing, source control and collaboration",
+        "source_clause_id": "jd_16"
+      }
+    ],
+    "optional": [
+      {
+        "capability": "Work with big data platforms and NFV concepts",
+        "source_clause_id": "jd_8"
+      },
+      {
+        "capability": "Support travel-required operational tasks",
+        "source_clause_id": "jd_17"
+      }
+    ]
+  }
+]

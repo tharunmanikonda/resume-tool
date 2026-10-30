@@ -1,0 +1,329 @@
+[
+  {
+    "name": "HuntingCube",
+    "jd": "About the job\n\nJob Description\n\nAbout the Role:\n\nWe\u2019re looking for scrappy self-starter backend developers familiar with high throughput distributed\n\nsystems. You\u2019ll be part of the team that hardens our core order management engine, optimizes TPS,\n\ndevelops new features, expands to new asset classes, and builds core trading strategies vis-\u00e0-vis retail\n\norder flow. You will work closely with the founders and be a key part of the technical leadership team.\n\nQualifications\n\nA firefighter with a few burns and scars, but not burnt out! \ufe0f \ud83d\udd25\nExpertise building real-time high-throughput systems at 99.9%+ uptime SLA\nGolang experience (or Rust or Python & C++ if no direct Golang experience)\nExperience building async queuing systems, batch processing, pub-sub architecture, websockets,\n\netc.\n\nDatabase scalability & systems-level performance optimization\nFamiliarity with infra-as-code, especially in AWS (e.g. configuring with Terraform, docker container\n\norchestration, CI/CD pipelines, etc.)\n\nMust be able to problem-solve from a \u201csolutions-first\u201d and \u201cproduct-first\u201d perspective, rather than\n\n\u201ccode-first\u201d or \u201ctechnology-first\u201d\n\nInterest or prior experience in finance (e.g. trading, quant research, banking, brokerage, crypto\n\nexchange, etc.)\n\nSome devops/SRE experience, especially with Terraform + AWS Cloudwatch stack, is a bonus!\n\nRequired Skills\n\n['C++', 'Python']\n\nAdditional Information\n\nEducation: B.Tech from top IITs with CSE branch and 9+ cgpa Qualification Criteria:\n\nQuantitative Developer from top HFTs of India",
+    "required": [
+      {
+        "capability": "High-throughput systems design and 99.9%+ uptime",
+        "source_clause_id": "jd_11",
+        "jd_quote": "Expertise building real-time high-throughput systems at 99.9%+ uptime SLA"
+      },
+      {
+        "capability": "Golang or systems language implementation",
+        "source_clause_id": "jd_12",
+        "jd_quote": "Golang experience (or Rust or Python & C++ if no direct Golang experience)"
+      },
+      {
+        "capability": "Async queuing, batch processing, pub-sub, websockets",
+        "source_clause_id": "jd_13",
+        "jd_quote": "Experience building async queuing systems, batch processing, pub-sub architecture, websockets,"
+      },
+      {
+        "capability": "Database scalability and performance optimization",
+        "source_clause_id": "jd_15",
+        "jd_quote": "Database scalability & systems-level performance optimization"
+      },
+      {
+        "capability": "Terraform + AWS infra-as-code and CI/CD",
+        "source_clause_id": "jd_16",
+        "jd_quote": "Familiarity with infra-as-code, especially in AWS (e.g. configuring with Terraform, docker container\n\norchestration, CI/CD pipelines, etc.)"
+      },
+      {
+        "capability": "Solutions-first, product-first problem solving",
+        "source_clause_id": "jd_17",
+        "jd_quote": "Must be able to problem-solve from a \u201csolutions-first\u201d and \u201cproduct-first\u201d perspective, rather than"
+      },
+      {
+        "capability": "Interest/experience in trading or finance",
+        "source_clause_id": "jd_19",
+        "jd_quote": "Interest or prior experience in finance (e.g. trading, quant research, banking, brokerage, crypto\n\nexchange, etc.)"
+      },
+      {
+        "capability": "C++ and Python coding proficiency",
+        "source_clause_id": "jd_21",
+        "jd_quote": "Required Skills\n\n['C++', 'Python']"
+      },
+      {
+        "capability": "DevOps/SRE with CloudWatch/Terraform (bonus retained required priority)",
+        "source_clause_id": "jd_20",
+        "jd_quote": "Some devops/SRE experience, especially with Terraform + AWS Cloudwatch stack, is a bonus!"
+      }
+    ],
+    "optional": [
+      {
+        "capability": "Low-latency performance engineering",
+        "source_clause_id": "jd_11",
+        "jd_quote": "Expertise building real-time high-throughput systems at 99.9%+ uptime SLA"
+      },
+      {
+        "capability": "Batch processing and stream batching",
+        "source_clause_id": "jd_13",
+        "jd_quote": "Experience building async queuing systems, batch processing, pub-sub architecture, websockets,"
+      },
+      {
+        "capability": "Container orchestration and docker pipelines",
+        "source_clause_id": "jd_16",
+        "jd_quote": "Familiarity with infra-as-code, especially in AWS (e.g. configuring with Terraform, docker container\n\norchestration, CI/CD pipelines, etc.)"
+      }
+    ]
+  },
+  {
+    "name": "Atlassian",
+    "jd": "About the job\n\nOverview\n\nWorking at Atlassian\n\nAtlassians can choose where they work \u2013 whether in an office, from home, or a combination of the two. That way, Atlassians have more control over supporting their family, personal goals, and other priorities. We can hire people in any country where we have a legal entity.\n\nResponsibilities\n\nContribute to code reviews, documentation, and complex debugging with a strong focus on security, performance, and reliability. Guide the technical direction and implementation of large-scale product features. Evaluate trade-offs between correctness, robustness, performance, and customer impact to deliver the right solutions. Collaborate closely with product, design, and engineering teams to influence product strategy while shipping well-tested, secure, reliable, and maintainable code, responding to real-world product usage, and resolving bugs and production issues. Work with designers to build dynamic user experiences. Support the full engineering stack within a complex system.\n\n40 hrs/week, Mon-Fri, 8:30 a.m. - 5:30 p.m. Salary Range: $221,187 to $235,000/yr.\n\nCompensation\n\nAt Atlassian, we strive to design equitable, explainable, and competitive compensation programs. We follow consistent hiring practices and account for each candidate's skills, knowledge, and experience when setting base pay within the range.\n\nPlease visit go.atlassian.com/payzones for more information on which locations are included in each of our geographic pay zones. However, please confirm the zone for your specific location with your recruiter.\n\nThis role may also be eligible for benefits, bonuses, commissions, and equity.\n\nQualifications\n\nMINIMUM REQUIREMENTS:\n\nMaster's degree or foreign equivalent degree in Computer Science, Computer Engineering, Information Technology, or a related field, and three (3) years of related work experience.\n\nIn the alternative, the employer will accept Bachelor's degree or foreign equivalent degree in Computer Science, Computer Engineering, Information Technology, or a related field, and five (5) years of post-bachelor's, progressive related work experience.\n\nMust Have Three (3) Years Of Experience With/in\n\nDebugging, production support, and complex issue resolution\nCode reviews, documentation, and quality assurance best practices\nWorking with JavaScript (ES6), HTML5, and CSS with modern frameworks such as React, AngularJS, or Vue\nServer-side development with Java and Node.js using object-oriented design\nTesting frameworks and practices such as Jest, Cypress, Mocha, or Chai\nA/B testing, data-driven development, and front-end architecture\nBuilding and integrating REST APIs, GraphQL, SQL, and basic data and numerical analysis\n\nEmployer will accept any suitable combination of education, training, or experience.\n\n100% Telecommuting permitted.\n\nPlease email resume to: postings@atlassian.com and must reference Job code: \"CA016\" to be considered.\u201d\n\nBenefits & Perks\n\nAtlassian offers a wide range of perks and benefits designed to support you, your family and to help you engage with your local community. Our offerings include health and wellbeing resources, paid volunteer days, and so much more. To learn more, visit go.atlassian.com/perksandbenefits .\n\nAbout Atlassian\n\nAt Atlassian, we're motivated by a common goal: to unleash the potential of every team. Our software products help teams all over the planet and our solutions are designed for all types of work. Team collaboration through our tools makes what may be impossible alone, possible together.\n\nWe believe that the unique contributions of all Atlassians create our success. To ensure that our products and culture continue to incorporate everyone's perspectives and experience, we never discriminate based on race, religion, national origin, gender identity or expression, sexual orientation, age, or marital, veteran, or disability status. All your information will be kept confidential according to EEO guidelines.\n\nTo provide you the best experience, we can support with accommodations or adjustments at any stage of the recruitment process. Simply inform our Recruitment team during your conversation with them.\n\nTo learn more about our culture and hiring process, visit go.atlassian.com/crh .\n\nIn line with local law, identity verification (which may include use of biometric data) is a condition of employment with Atlassian for employment fraud purposes.",
+    "required": [
+      {
+        "capability": "Code reviews, documentation, QA best practices",
+        "source_clause_id": "jd_26",
+        "jd_quote": "Code reviews, documentation, and quality assurance best practices"
+      },
+      {
+        "capability": "Debugging, production support, complex issue resolution",
+        "source_clause_id": "jd_25",
+        "jd_quote": "Debugging, production support, and complex issue resolution"
+      },
+      {
+        "capability": "Modern JS (ES6), HTML5, CSS, React/Angular/Vue",
+        "source_clause_id": "jd_27",
+        "jd_quote": "Working with JavaScript (ES6), HTML5, and CSS with modern frameworks such as React, AngularJS, or Vue"
+      },
+      {
+        "capability": "Server-side Java and Node.js development",
+        "source_clause_id": "jd_28",
+        "jd_quote": "Server-side development with Java and Node.js using object-oriented design"
+      },
+      {
+        "capability": "Testing frameworks and practices (Jest/Cypress/Mocha/Chai)",
+        "source_clause_id": "jd_29",
+        "jd_quote": "Testing frameworks and practices such as Jest, Cypress, Mocha, or Chai"
+      },
+      {
+        "capability": "A/B testing and data-driven front-end architecture",
+        "source_clause_id": "jd_30",
+        "jd_quote": "A/B testing, data-driven development, and front-end architecture"
+      },
+      {
+        "capability": "Build and integrate REST, GraphQL, SQL; basic data analysis",
+        "source_clause_id": "jd_31",
+        "jd_quote": "Building and integrating REST APIs, GraphQL, SQL, and basic data and numerical analysis"
+      },
+      {
+        "capability": "Collaborate with product/design; ship secure reliable maintainable code",
+        "source_clause_id": "jd_9",
+        "jd_quote": "Collaborate closely with product, design, and engineering teams to influence product strategy while shipping well-tested, secure, reliable, and maintainable code, responding to real-world product usage, and resolving bugs and production issues."
+      },
+      {
+        "capability": "Support full engineering stack within complex system",
+        "source_clause_id": "jd_11",
+        "jd_quote": "Support the full engineering stack within a complex system."
+      },
+      {
+        "capability": "Work schedule and telecommuting allowance",
+        "source_clause_id": "jd_12",
+        "jd_quote": "40 hrs/week, Mon-Fri, 8:30 a.m."
+      },
+      {
+        "capability": "Education/experience baseline (degree + years)",
+        "source_clause_id": "jd_22",
+        "jd_quote": "REQUIREMENTS:\n\nMaster's degree or foreign equivalent degree in Computer Science, Computer Engineering, Information Technology, or a related field, and three (3) years of related work experience."
+      },
+      {
+        "capability": "Accept alternate combinations of education/experience",
+        "source_clause_id": "jd_32",
+        "jd_quote": "Employer will accept any suitable combination of education, training, or experience."
+      }
+    ],
+    "optional": [
+      {
+        "capability": "Guide technical direction for large features",
+        "source_clause_id": "jd_7",
+        "jd_quote": "Guide the technical direction and implementation of large-scale product features."
+      },
+      {
+        "capability": "Design dynamic user experiences with designers",
+        "source_clause_id": "jd_10",
+        "jd_quote": "Work with designers to build dynamic user experiences."
+      },
+      {
+        "capability": "Design equitable compensation awareness (context)",
+        "source_clause_id": "jd_20",
+        "jd_quote": "This role may also be eligible for benefits, bonuses, commissions, and equity."
+      }
+    ]
+  },
+  {
+    "name": "Vynca",
+    "jd": "Join the dynamic journey at Vynca, where we're passionate about transforming care for individuals with complex needs.\n\nWe\u2019re more than just a team; we're a close-knit community. Our shared commitment to caring for each other and those we serve is what sets us apart. Guided by our unwavering core values: Excellence, Compassion, Curiosity, and Integrity, we forge paths of success together. Join us in this transformative movement where you can contribute to making a profound difference every day.\n\nAt Vynca, our mission is to provide comprehensive care for more quality days at home.\n\nAbout the job\nWe are looking for a Senior Full Stack Engineer with 5+ years of experience building production-grade applications across the stack. You will work on our Vynca Clinical solution, collaborating closely with design, product, and engineering teammates to deliver performant, secure, and user-friendly software that improves the delivery of high-touch care.\nYou\u2019ll own features end-to-end\u2014from backend APIs to frontend UI\u2014and work across a modern stack that includes React, TypeScript, FastAPI, and GraphQL. We are looking for someone excited by clean code, thoughtful design, and a strong sense of ownership in building product-focused software.\n\nThis is a hybrid position based in San Mateo, CA, with an expectation of working from the office 2 days per week.\n\nEvergreen Posting \nVynca hires for this role on an ongoing basis throughout the year. This posting stays open because we regularly have openings for Senior Full Stack Engineers, but we don\u2019t have a fixed start date or hiring timeline. We review applications as positions become available, and not every applicant will be contacted right away. Submitting an application doesn\u2019t guarantee an interview or offer. If your background strongly matches a current or upcoming opening, a member of our team will reach out. Applications may be kept on file for 6 months for future openings.\n\nWhat you\u2019ll do\n\nBackend (Python + FastAPI)\nDesign and implement GraphQL and RESTful APIs using FastAPI and Strawberry GraphQL.\n\nBuild and maintain backend services to support UI features, authentication flows, and patient/provider workflows.\n\nModel data with SQLAlchemy and manage schema changes with Alembic.\n\nIntegrate with third-party APIs (e.g., HealthGorilla, Salesforce, PVerify, Google APIs, Slack).\n\nWrite unit and integration tests using Pytest and testcontainers.\n\nMaintain API security, access control, and logging practices.\n\nEvent driven architecture, CQRS design patterns, HAPI FHIR Server, Full Text/Fuzzy Search & Semantic Search.\n\n \nFrontend (React + TypeScript)\nBuild and maintain features in a React + TypeScript codebase using functional components and hooks.\n\nImplement responsive UI components using Material UI (MUI) and Emotion for styling.\n\nManage client-side state using Redux Toolkit, Formik, and Yup.\n\nIntegrate with backend services via GraphQL (Apollo Client) and REST APIs (Axios).\n\nHandle authentication flows with Auth0.\n\nBuild protected and dynamic routes with react-router-dom.\n\nWrite unit and integration tests using tools like Vitest, React Testing Library, Playwright and MSW.\n\nImplement features like file uploads, PDF generation (pdf-lib), digital signature capture, and custom surveys.\n\nUse LaunchDarkly for feature flagging and Vite for builds and local dev.\n\n \nYour experience and qualifications\nBachelor\u2019s degree in Computer Science or related field (advanced degree preferred).\n\n5+ years of experience in full stack or frontend/backend development roles.\n\nProficient in React and TypeScript.\n\nExperience integrating GraphQL and REST APIs.\n\nFamiliarity with backend frameworks such as FastAPI or similar.\n\nKnowledge of relational databases (PostgreSQL, MySQL) and ORMs like SQLAlchemy.\n\nComfortable with git, monorepos, and Yarn or similar package managers.\n\nTesting experience on both frontend (Vitest, Testing Library) and backend (Pytest).\n\nExperience working in Agile teams using Jira and Scrum ceremonies.\n\n \nPreferred Qualifications\nExperience with Strawberry GraphQL or Apollo Server, HAPI FHIR.\n\nFamiliarity with Auth0 and OAuth-based authentication.\n\nExperience with document generation or PDF handling (e.g., pdf-lib, fpdf2, survey.js).\n\nExposure to Slack bots, email validation, or healthcare-specific data models (FHIR, HL7).\n\nExperience with semantic search (e.g. typesense).\n\nKnowledge of building secure systems adhering to law governance standards like HIPPA.\n\n \nTech Stack You\u2019ll Work With\n\nFrontend:\nReact 18+, TypeScript, Redux Toolkit, Apollo Client, Formik, Yup, MUI, Emotion, Axios, Vite, MSW, Testing Library, Vitest, pdf-lib, LaunchDarkly\n\nBackend:\nPython 3.11+, FastAPI, Strawberry GraphQL, SQLAlchemy, Alembic, Pydantic v2, Pytest, Auth0, Redis, PostgreSQL, MySQL, Typer, HAPI, Typesense\n\nDev & Infra:\nDocker, GitHub Actions, Poetry, testcontainers, Jira, Scrum\n\n \nWho You Are\n\n\u25cf Curious and eager to learn\u2014especially from principal engineers.\n\u25cf Thoughtful about UX and backend reliability.\n\u25cf A proactive communicator and collaborator.\n\u25cf Excited by healthcare complexity and impact.\n\u25cf Comfortable asking for help and giving/receiving feedback.\n\nAdditional Information\nThe hiring process for this role may consist of applying, followed by a phone screen, online assessment(s), interview(s), an offer, and background/reference checks.\n\nBackground Screening: A background check, which may include a drug test or other health screenings depending on the role, will be required prior to employment.\n\nJob Description Scope: This job description is not exhaustive and may include additional activities, duties, and responsibilities not listed herein.\n\nVaccination Requirement: Employees in patient, client, or customer-facing roles must be vaccinated against influenza. Requests for religious or medical accommodations will be considered but may not always be approved.\n\nEmployment Eligibility: Compliance with federal law requires identity and work eligibility verification using E-Verify upon hire.\n\nEqual Opportunity Employer: At Vynca Inc., we embrace diversity and are committed to fostering an inclusive workplace. We value all applicants regardless of race, color, religion, age, national origin, ancestry, ethnicity, gender, gender identity, gender expression, sexual orientation, marital status, veteran status, disability, genetic information, citizenship status, or membership in any other protected group under federal, state, or local law.\n\nEnvironmental Conditions and Physical Requirements: Works with Vynca patients/clients remotely and/or in-person. Successfully performs the essential duties and responsibilities of the position through the use of physical activities as described below:\nRegularly requires sitting, standing, walking, talking, use of hands, listening, and observing.\n\nRegularly requires working at a computer for an entire shift (with appropriate breaks).\n\nRegularly requires use of laptop and video-conferencing technology.\n\nOccasionally requires reaching, stooping, bending, kneeling, and lifting items weighing 25 pounds or less.\n\nOccasional travel may be required to perform job duties, attend training, or company events.",
+    "required": [
+      {
+        "capability": "Design and implement GraphQL and REST APIs with FastAPI",
+        "source_clause_id": "jd_21",
+        "jd_quote": "Design and implement GraphQL and RESTful APIs using FastAPI and Strawberry GraphQL."
+      },
+      {
+        "capability": "Build backend services supporting auth and workflows",
+        "source_clause_id": "jd_22",
+        "jd_quote": "Build and maintain backend services to support UI features, authentication flows, and patient/provider workflows."
+      },
+      {
+        "capability": "Model data with SQLAlchemy and Alembic",
+        "source_clause_id": "jd_23",
+        "jd_quote": "Model data with SQLAlchemy and manage schema changes with Alembic."
+      },
+      {
+        "capability": "Integrate with third-party healthcare APIs",
+        "source_clause_id": "jd_24",
+        "jd_quote": "Integrate with third-party APIs (e.g., HealthGorilla, Salesforce, PVerify, Google APIs, Slack)."
+      },
+      {
+        "capability": "Write unit and integration tests with Pytest",
+        "source_clause_id": "jd_25",
+        "jd_quote": "Write unit and integration tests using Pytest and testcontainers."
+      },
+      {
+        "capability": "Maintain API security, access control, logging",
+        "source_clause_id": "jd_26",
+        "jd_quote": "Maintain API security, access control, and logging practices."
+      },
+      {
+        "capability": "Implement React + TypeScript UI components and hooks",
+        "source_clause_id": "jd_29",
+        "jd_quote": "Build and maintain features in a React + TypeScript codebase using functional components and hooks."
+      },
+      {
+        "capability": "Manage client-side state using Redux Toolkit, Formik, Yup",
+        "source_clause_id": "jd_31",
+        "jd_quote": "Manage client-side state using Redux Toolkit, Formik, and Yup."
+      },
+      {
+        "capability": "Integrate GraphQL and REST on frontend (Apollo/Axios)",
+        "source_clause_id": "jd_32",
+        "jd_quote": "Integrate with backend services via GraphQL (Apollo Client) and REST APIs (Axios)."
+      },
+      {
+        "capability": "Implement responsive UIs with MUI/Emotion",
+        "source_clause_id": "jd_30",
+        "jd_quote": "Implement responsive UI components using Material UI (MUI) and Emotion for styling."
+      },
+      {
+        "capability": "Build protected/dynamic routes with react-router-dom",
+        "source_clause_id": "jd_34",
+        "jd_quote": "Build protected and dynamic routes with react-router-dom."
+      },
+      {
+        "capability": "Frontend + backend testing (Vitest, Testing Library, Pytest)",
+        "source_clause_id": "jd_35",
+        "jd_quote": "Write unit and integration tests using tools like Vitest, React Testing Library, Playwright and MSW."
+      },
+      {
+        "capability": "File uploads, PDF generation, digital signature flows",
+        "source_clause_id": "jd_36",
+        "jd_quote": "Implement features like file uploads, PDF generation (pdf-lib), digital signature capture, and custom surveys."
+      },
+      {
+        "capability": "Works with patients/clients remotely and/or in-person",
+        "source_clause_id": "jd_77",
+        "jd_quote": "Requirements: Works with Vynca patients/clients remotely and/or in-person."
+      }
+    ],
+    "optional": [
+      {
+        "capability": "Use Apollo Client for GraphQL integration",
+        "source_clause_id": "jd_32",
+        "jd_quote": "Integrate with backend services via GraphQL (Apollo Client) and REST APIs (Axios)."
+      },
+      {
+        "capability": "Feature flags with LaunchDarkly",
+        "source_clause_id": "jd_37",
+        "jd_quote": "Use LaunchDarkly for feature flagging and Vite for builds and local dev."
+      },
+      {
+        "capability": "Dev infra with Docker and GitHub Actions",
+        "source_clause_id": "jd_59",
+        "jd_quote": "Dev & Infra:"
+      },
+      {
+        "capability": "PDF generation (pdf-lib) and file uploads",
+        "source_clause_id": "jd_36",
+        "jd_quote": "Implement features like file uploads, PDF generation (pdf-lib), digital signature capture, and custom surveys."
+      }
+    ]
+  },
+  {
+    "name": "VibeIQ",
+    "jd": "About the job\n\nPosition Summary\n\nWe're looking for a Sr. Full Stack Engineer to join the Core Apps team. Core Apps builds the products our customers use every day: the collaboration board, the planning grid, and the showcases they share with partners and buyers. We also own the services and shared libraries behind them, covering line planning, item search, assortments, documents, presentations and previews, projects, custom entities, and AI-assisted line and item generation.\n\nThis is a true full stack team, and this role leans backend. You'll own API services across the domain, from the data model and service architecture through the AWS infrastructure they run on. You'll also work in the Angular apps that consume those services.\n\nEssential Functions\n\nDesign, build, and maintain the backend services behind our core apps.\nRun those services on AWS and stay accountable for their reliability, performance, observability, and cost.\nBuild AI-assisted generation features, such as generating lines and items from customer data, along with the services that support them.\nOwn features end to end, from technical design through deployment and monitoring, including the Angular work when the feature calls for it.\nModel data for large customer catalogs and multi-tenant workloads, and keep it fast as those catalogs grow.\nWork with product managers, designers, and other engineers to define what we build, and bring your own ideas to that conversation.\nDiagnose and fix production issues across distributed systems.\nImprove how we work: code quality, code review, continuous integration, and testing.\nMentor other engineers, lead design reviews, and raise the technical bar on the team.\nCollaborate with teams across VibeIQ to improve our product, architecture, and engineering practices.\n\nRequired Experience\n\n5+ years building and running production backend services, TypeScript and Node.js preferred.\nHands-on AWS depth across Lambda, API Gateway, DynamoDB, S3, IAM, and event-driven services such as SQS and SNS. You've operated what you built.\nA track record of API design and data modeling in reliable, high-traffic systems.\nWorking proficiency in a modern frontend framework, Angular preferred or React.\nStrong debugging skills in distributed systems. You can research a problem, weigh the options, and design a fix that spans the stack.\nClear technical writing: design docs, runbooks, and decisions others can act on without follow-up.\nProactive communication. You care about learning, growing, and helping others do the same.\nStartup mentality: comfort with ownership, fast iteration, and wearing multiple hats\n\nNICE TO HAVE\n\nDomain experience in retail, apparel, or consumer products: line planning, assortments, merchandising, or PLM.\nExperience shipping LLM-backed product features, including prompt design, evaluation, and cost and latency tradeoffs.\nFamiliarity with SaaS integrations such as PLM, DAM, PIM, or ERP systems.\nExperience with real-time sync, WebSockets, or collaborative editing.\nDepth in Angular, NgRx/RxJS, or browser performance work.\nExperience with OpenSearch or Elasticsearch at scale.\nExperience with automated testing and testable system design.\nExperience managing cloud spend.\nAn interest in security.\nA strong intuition for UX.\n\nWHY JOIN US\n\nTransform how companies work by empowering the collaboration behind every great product\nWork on challenging, high-impact projects with enterprise clients.\nCollaborate with top talent in a dynamic, growth-oriented company.\nEnjoy flexibility, autonomy, and opportunities for career advancement.\nBe part of a Professional Services team that values innovation, customer success, and continuous learning.\n\nBenefits\n\n401(k), Health, Dental, Vision\n\n12 Paid Holidays per Year\n\nDiscretionary Time Off\n\nPaid Parental Leave\n\nAbout Vibeiq\n\nAt VibeIQ, we pioneer the future of digital collaboration with our innovative suite of apps built specifically for product teams. Our mission is helping companies that design, manufacture, or sell products work more effectively, enable a better work-life balance, and reduce their environmental impact.\n\nVibeIQ, Inc. values a diverse team and is an equal opportunity employer.\n\nIMPORTANT NOTICE: We do not use WhatsApp, Telegram, or personal Gmail/Yahoo accounts to recruit or conduct interviews.\n\nFRAUD ALERT: VibeIQ never charges fees at any stage of the recruitment process and will never ask for your banking details or personal financial information.\n\nOUR PROCESS: VibeIQ's interview process always includes live video or in-person conversations with our team. We will never extend a job offer via text message or chat application, or without a formal interview.\n\nCompensation Range: $150K - $200K",
+    "required": [
+      {
+        "capability": "Build and operate backend services on AWS",
+        "source_clause_id": "jd_11",
+        "jd_quote": "Design, build, and maintain the backend services behind our core apps."
+      },
+      {
+        "capability": "Accountable for service reliability, performance, observability, cost",
+        "source_clause_id": "jd_12",
+        "jd_quote": "Run those services on AWS and stay accountable for their reliability, performance, observability, and cost."
+      },
+      {
+        "capability": "Design and implement AI-assisted generation features",
+        "source_clause_id": "jd_13",
+        "jd_quote": "Build AI-assisted generation features, such as generating lines and items from customer data, along with the services that support them."
+      },
+      {
+        "capability": "Model data for large multi-tenant catalogs",
+        "source_clause_id": "jd_15",
+        "jd_quote": "Model data for large customer catalogs and multi-tenant workloads, and keep it fast as those catalogs grow."
+      },
+      {
+        "capability": "Work across stack including Angular frontend",
+        "source_clause_id": "jd_14",
+        "jd_quote": "Own features end to end, from technical design through deployment and monitoring, including the Angular work when the feature calls for it."
+      },
+      {
+        "capability": "5+ years backend experience; Node/TypeScript preferred",
+        "source_clause_id": "jd_22",
+        "jd_quote": "5+ years building and running production backend services, TypeScript and Node.js preferred."
+      },
+      {
+        "capability": "Hands-on AWS: Lambda, API Gateway, DynamoDB, S3, IAM, SQS/SNS",
+        "source_clause_id": "jd_23",
+        "jd_quote": "Hands-on AWS depth across Lambda, API Gateway, DynamoDB, S3, IAM, and event-driven services such as SQS and SNS."
+      },
+      {
+        "capability": "Strong debugging across distributed systems",
+        "source_clause_id": "jd_27",
+        "jd_quote": "Strong debugging skills in distributed systems."
+      },
+      {
+        "capability": "Clear technical writing and runbooks",
+        "source_clause_id": "jd_29",
+        "jd_quote": "Clear technical writing: design docs, runbooks, and decisions others can act on without follow-up."
+      }
+    ],
+    "optional": [
+      {
+        "capability": "Shipping LLM-backed product features",
+        "source_clause_id": "jd_34",
+        "jd_quote": "Experience shipping LLM-backed product features, including prompt design, evaluation, and cost and latency tradeoffs."
+      },
+      {
+        "capability": "Real-time sync / collaborative editing",
+        "source_clause_id": "jd_36",
+        "jd_quote": "Experience with real-time sync, WebSockets, or collaborative editing."
+      },
+      {
+        "capability": "Angular, NgRx/RxJS performance work",
+        "source_clause_id": "jd_37",
+        "jd_quote": "Depth in Angular, NgRx/RxJS, or browser performance work."
+      },
+      {
+        "capability": "OpenSearch/Elasticsearch experience",
+        "source_clause_id": "jd_38",
+        "jd_quote": "Experience with OpenSearch or Elasticsearch at scale."
+      },
+      {
+        "capability": "Cloud cost / spend management",
+        "source_clause_id": "jd_40",
+        "jd_quote": "Experience managing cloud spend."
+      }
+    ]
+  }
+]

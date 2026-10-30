@@ -616,6 +616,10 @@ function ParsedPreview({ preview, loadingExperience }) {
   );
 }
 
+function preserveRoleEvidence(item) {
+  return Object.fromEntries(["source_bullets", "achievements", "evidence", "metric_evidence"].filter((field) => item && Object.hasOwn(item, field)).map((field) => [field, structuredClone(item[field])]));
+}
+
 function normalizeExperienceHistory(history = []) {
   return Array.isArray(history)
     ? history.map((item) => ({
@@ -625,6 +629,7 @@ function normalizeExperienceHistory(history = []) {
         title: item?.title || "",
         dates: item?.dates || "",
         enabled: item?.enabled !== false,
+        ...preserveRoleEvidence(item),
       }))
     : [];
 }
@@ -638,6 +643,7 @@ function normalizeInlineExperienceHistory(history = []) {
         title: item?.title || "",
         dates: item?.dates || "",
         enabled: item?.enabled !== false,
+        ...preserveRoleEvidence(item),
       }))
     : [];
 }
@@ -1179,7 +1185,7 @@ function AuditChangeReview({ audit, loading, onOpenEditor, onRetry }) {
       ) : null}
       {resumeEvidenceGaps.length ? (
         <div className="audit-non-blocking-gaps">
-          <strong>Requirements not supported by profile evidence</strong>
+          <strong>Review notes (do not block PDF export)</strong>
           {resumeEvidenceGaps.map((gap, index) => (
             <p key={gap.id || index}>
               <b>{gap.gap || "Unsupported requirement"}</b>
@@ -1454,6 +1460,9 @@ export default function App() {
   const previewRequestSeqRef = useRef(0);
   const extensionDraftHydratedRef = useRef(false);
   const extensionDraftLastSavedRef = useRef("");
+  const extensionDraftSaveTimerRef = useRef(null);
+  const extensionDraftSavePromiseRef = useRef(null);
+  const extensionDraftReviewStartingRef = useRef(false);
   const extensionReviewAutoOpenedRef = useRef(false);
   const auditStaleSuppressionRef = useRef(false);
   const previewEditorRef = useRef(null);
@@ -1627,6 +1636,7 @@ export default function App() {
           identities,
           default_identity_id,
           allow_security_clearance_jobs: !!data.allow_security_clearance_jobs,
+          experimental_jd_drafting: !!data.experimental_jd_drafting,
         });
         setPdfStatus({
           ready: !!data.pdf_conversion_ready,
@@ -1642,14 +1652,16 @@ export default function App() {
         setSessionProfileActive(!!data.session_active);
         setProfile(profileData);
         const history = normalizeExperienceHistory(profileData.experience_history || []);
-        setEditableExperienceHistory(history);
-        setEnabledExperienceKeys(allEnabledExperienceKeys(history, resumeMode));
+        if (!extensionDraftHydratedRef.current) {
+          setEditableExperienceHistory(history);
+          setEnabledExperienceKeys(allEnabledExperienceKeys(history, resumeMode));
+        }
         setProfileDraft({
           ...profileData,
           contact: { ...(profileData.contact || emptyProfile.contact) },
           experience_history: history,
         });
-        setContact(profileData.contact || emptyProfile.contact);
+        if (!extensionDraftHydratedRef.current) setContact(profileData.contact || emptyProfile.contact);
         if (data.onboarding_required) {
           setModals((current) => ({ ...current, profile: true }));
         }
@@ -1792,7 +1804,7 @@ export default function App() {
   }, [activeResumeVersion, generatedContent, preview]);
 
   useEffect(() => {
-    if (!extensionDraftId || !extensionDraftHydratedRef.current || extensionDraftLocked || !generatedContent.trim() || generatingAi) return undefined;
+    if (!extensionDraftId || !extensionDraftHydratedRef.current || extensionDraftLocked || !generatedContent.trim() || generatingAi || extensionDraftReviewStartingRef.current) return undefined;
     const fingerprint = JSON.stringify({
       content: generatedContent,
       company: companyName,
@@ -1804,8 +1816,9 @@ export default function App() {
     if (fingerprint === extensionDraftLastSavedRef.current) return undefined;
     setExtensionDraftSaveState("Saving draft...");
     const timer = window.setTimeout(() => {
+      if (fingerprint === extensionDraftLastSavedRef.current) return;
       extensionDraftLastSavedRef.current = fingerprint;
-      fetchJson(`/api/extension/drafts/${encodeURIComponent(extensionDraftId)}`, {
+      const savePromise = fetchJson(`/api/extension/drafts/${encodeURIComponent(extensionDraftId)}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -1829,7 +1842,9 @@ export default function App() {
           extensionDraftLastSavedRef.current = "";
           setExtensionDraftSaveState(error.message || "Draft save failed");
         });
+      extensionDraftSavePromiseRef.current = savePromise;
     }, 800);
+    extensionDraftSaveTimerRef.current = timer;
     return () => window.clearTimeout(timer);
   }, [extensionDraftId, extensionDraftLocked, generatedContent, companyName, identity, resumeMode, enabledExperienceKeys, editableExperienceHistory, generatingAi]);
 
@@ -1976,6 +1991,7 @@ export default function App() {
           identities,
           default_identity_id,
           allow_security_clearance_jobs: !!data.allow_security_clearance_jobs,
+          experimental_jd_drafting: !!data.experimental_jd_drafting,
         });
       }).catch(() => {});
     }
@@ -2435,92 +2451,24 @@ export default function App() {
     resetAuditState();
     resetResumeVersionState();
     invalidatePdfState();
-    setAiStage("skills");
-    const skillsData = await fetchJson("/api/ai/generate-skills", {
+    setAiStage("experience");
+    const data = await fetchJson("/api/ai/generate-jd-resume", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ session_id: sessionId, enabled_experience_keys: activeEnabledKeys, resume_mode: resumeMode }),
     });
-    const sessionAfterSkills = skillsData.session_id || sessionId;
-    setAiSessionId(sessionAfterSkills);
-
-    setAiStage("experience");
-    await Promise.all([
-      fetchJson("/api/ai/generate-experience-recent", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ session_id: sessionAfterSkills, enabled_experience_keys: activeEnabledKeys, resume_mode: resumeMode }),
-      }),
-      fetchJson("/api/ai/generate-experience-older", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ session_id: sessionAfterSkills, enabled_experience_keys: activeEnabledKeys, resume_mode: resumeMode }),
-      }),
-    ]);
-
-    setAiStage("final_synthesis");
-    const synthesisData = await fetchJson("/api/ai/final-synthesis", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ session_id: sessionAfterSkills, enabled_experience_keys: activeEnabledKeys, resume_mode: resumeMode }),
-    });
-    const synthesizedSessionId = synthesisData.session_id || sessionAfterSkills;
-    setAiSessionId(synthesizedSessionId);
-    if (!hydrateResumeVersionState(synthesisData)) {
-      setGeneratedContentProgrammatically(synthesisData.content);
-    }
+    setAiSessionId(data.session_id || sessionId);
+    setLatestAnalysis(data.analysis || latestAnalysis);
+    hydrateAuditState(data);
+    if (!hydrateResumeVersionState(data)) setGeneratedContentProgrammatically(data.content);
     setShowGeneratedArea(true);
     setComposerInput("");
     setTab("parsed");
     setPreviewEditMode(false);
-
-    setAiStage("quality_review");
-    setAudit({ ...initialAuditState, status: "reviewing" });
-    let auditData = null;
-    try {
-      auditData = await fetchJson("/api/ai/quality-audit", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          session_id: synthesizedSessionId,
-          enabled_experience_keys: activeEnabledKeys,
-          resume_mode: resumeMode,
-          advertised_job_title:
-            advertisedJobTitle || resumeJobContext?.title || latestAnalysis?.target_role || "",
-        }),
-      });
-      hydrateAuditState(auditData);
-      hydrateResumeVersionState(auditData);
-    } catch (error) {
-      setAudit({
-        ...initialAuditState,
-        status: "technical_failed",
-        error: error.message || "Quality review failed.",
-        result: error.data?.audit_result || { error: error.message || "Quality review failed." },
-      });
-    }
-
-    setAiThread((current) => {
-      const next = [
-        ...(current?.length ? current : baseThread),
-        {
-          kind: "assistant",
-          title: "Resume Complete",
-          lines: [auditData?.audit_status === "approved"
-            ? "The resume is ready and passed quality review."
-            : "The resume is ready. Check the quality review beside the preview tabs."],
-        },
-      ];
-      if (synthesisData.title_warnings?.length) {
-        next.push({
-          kind: "assistant",
-          title: "Experience Titles Adjusted",
-          lines: ["A few historical job titles were normalized to fit the detected role family."],
-          list: synthesisData.title_warnings,
-        });
-      }
-      return next;
-    });
+    setAiThread((current) => [
+      ...(current?.length ? current : baseThread),
+      { kind: "assistant", title: "Resume Complete", lines: ["Your resume is ready in the editor. Review the project details and measurements before use."] },
+    ]);
   }
 
   async function submitAiGeneration() {
@@ -2724,17 +2672,21 @@ export default function App() {
 
   async function retryAudit() {
     if (!generatedContent.trim() || auditActionLoading) return;
+    extensionDraftReviewStartingRef.current = true;
+    window.clearTimeout(extensionDraftSaveTimerRef.current);
     setAuditActionLoading(true);
     setAiError("");
     setAudit((current) => ({ ...current, status: "reviewing", proposal: null, error: "" }));
     try {
       let data;
       if (extensionDraftId) {
+        await extensionDraftSavePromiseRef.current;
         const latestHistory = deriveExperienceHistoryFromContent(
           generatedContent,
           editableExperienceHistory,
           sanitizedEnabledExperienceKeys,
         );
+        setEditableExperienceHistory(latestHistory);
         const saved = await fetchJson(`/api/extension/drafts/${encodeURIComponent(extensionDraftId)}`, {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
@@ -2756,6 +2708,7 @@ export default function App() {
           history: latestHistory,
         });
         setPreview(saved.draft?.preview || saved.draft?.resume_snapshot || preview);
+        extensionDraftReviewStartingRef.current = false;
         data = await fetchJson(`/api/extension/drafts/${encodeURIComponent(extensionDraftId)}/audit`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -2779,6 +2732,7 @@ export default function App() {
     } catch (error) {
       markAuditActionError(error);
     } finally {
+      extensionDraftReviewStartingRef.current = false;
       setAuditActionLoading(false);
     }
   }
@@ -2866,7 +2820,7 @@ export default function App() {
       const data = await fetchJson("/api/ai/regenerate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ session_id: aiSessionId }),
+        body: JSON.stringify({ session_id: aiSessionId, resume_mode: resumeMode }),
       });
       const sessionId = data.session_id || aiSessionId;
       setAiSessionId(sessionId);
@@ -2988,6 +2942,7 @@ export default function App() {
       body: JSON.stringify({
         output_directory: settingsDraft.output_directory,
         allow_security_clearance_jobs: !!settingsDraft.allow_security_clearance_jobs,
+        experimental_jd_drafting: !!settingsDraft.experimental_jd_drafting,
         default_identity_id,
         identities,
       }),
@@ -3001,12 +2956,14 @@ export default function App() {
           identities,
           default_identity_id,
           allow_security_clearance_jobs: !!data.allow_security_clearance_jobs,
+          experimental_jd_drafting: !!data.experimental_jd_drafting,
         }));
         setSettingsDraft({
           output_directory: data.output_directory || "",
           identities,
           default_identity_id,
           allow_security_clearance_jobs: !!data.allow_security_clearance_jobs,
+          experimental_jd_drafting: !!data.experimental_jd_drafting,
         });
         closeModal("settings");
       })
@@ -3056,7 +3013,13 @@ export default function App() {
     setProfileDraft((current) => {
       const history = normalizeExperienceHistory(current.experience_history || []);
       const nextHistory = history.map((item, itemIndex) => (
-        itemIndex === index ? { ...item, [field]: value } : item
+        itemIndex === index ? (() => {
+          const next = { ...item, [field]: value };
+          if (["company", "title", "dates"].includes(field) && item[field] !== value) {
+            ["source_bullets", "achievements", "evidence", "metric_evidence"].forEach((key) => delete next[key]);
+          }
+          return next;
+        })() : item
       ));
       return { ...current, experience_history: nextHistory };
     });
@@ -3571,6 +3534,7 @@ export default function App() {
               <div className="quality-review-copy">
                 <strong>{auditStatusLabel}</strong>
                 <span>{auditStatusMessage}</span>
+                {audit.result?.assumptions_unverified ? <span>JD-based project details and measurements need your review.</span> : null}
               </div>
               <div className="quality-review-actions">
                 {hasChangesView ? (
@@ -3966,6 +3930,14 @@ export default function App() {
                 {!isExperienceHistoryComplete(item) ? (
                   <div className="profile-experience-warning">This role is incomplete and will be excluded until all fields are filled.</div>
                 ) : null}
+                <label className="field">
+                  Work accomplishments (one per line)
+                  <textarea
+                    value={Array.isArray(item.source_bullets) ? item.source_bullets.join("\n") : String(item.source_bullets || "")}
+                    placeholder="What you built, the tools you used, and any measured results"
+                    onChange={(e) => updateExperienceHistory(index, "source_bullets", e.target.value.split("\n").filter((line) => line.trim()))}
+                  />
+                </label>
               </div>
             ))}
           </div>

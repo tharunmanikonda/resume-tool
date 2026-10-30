@@ -109,8 +109,19 @@ def test_data_center_qualitative_bullets_do_not_trigger_numeric_retries(monkeypa
     payload = {"experience": {key: {
         "title": "Data Center Technician",
         "bullets": [
-            "Diagnosed server hardware failures, replaced faulty components, validated system health, and documented corrective actions within approved maintenance procedures."
-        ] * 12,
+            "Diagnosed server hardware failures and recorded corrective actions in maintenance tickets.",
+            "Replaced faulty memory modules and validated server health after maintenance.",
+            "Traced network cabling and corrected patch-panel labels for rack connectivity.",
+            "Inspected storage health and escalated drive warnings through operations procedures.",
+            "Coordinated maintenance windows with infrastructure engineers to protect active workloads.",
+            "Checked power feeds and rack connections before returning equipment to service.",
+            "Updated asset inventory records after equipment installation and removal.",
+            "Followed access control procedures when entering secured infrastructure areas.",
+            "Reviewed environmental alerts and escalated cooling issues to facility teams.",
+            "Prepared replacement hardware and verified component compatibility before installation.",
+            "Performed remote-hands checks for engineers investigating connectivity failures.",
+            "Documented shift handoffs and unresolved hardware issues for operations staff."
+        ],
     }}}
     calls = []
 

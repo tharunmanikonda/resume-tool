@@ -81,6 +81,8 @@
     if (!value) return "";
     const holder = document.createElement("div");
     holder.innerHTML = String(value);
+    for (const node of holder.querySelectorAll("br")) node.replaceWith("\n");
+    for (const node of holder.querySelectorAll("p, div, li, h1, h2, h3, h4, section, ul, ol")) node.append("\n");
     return cleanText(holder.innerText || holder.textContent || "");
   }
 

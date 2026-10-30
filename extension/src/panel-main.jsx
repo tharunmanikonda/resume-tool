@@ -21,6 +21,16 @@ const STATUS_LABELS = {
   skipped: "Skipped",
   applied: "Applied",
 };
+const GENERATION_STAGE_LABELS = {
+  jd_plan: "Planning project stories…",
+  jd_targeting: "Checking the project direction…",
+  jd_plan_repair: "Refining project stories…",
+  jd_draft: "Generating your resume…",
+  jd_core: "Writing title, summary and skills…",
+  jd_experience: "Writing experience bullets…",
+  jd_draft_repair: "Refining resume content…",
+  jd_review: "Reviewing your resume…",
+};
 
 function send(message) {
   try {
@@ -580,9 +590,12 @@ function ReviewChanges({ draft }) {
       {reviewBasis.normalized_market_title ? <ReviewBasis basis={reviewBasis} /> : null}
       {Number.isFinite(result.overall_score) || componentScores.length ? (
         <div className="quality-scores">
-          {Number.isFinite(result.overall_score) ? <span><strong>{result.overall_score}</strong> Overall</span> : null}
-          {componentScores.map(([name, score]) => <span key={name}><strong>{score}</strong> {name.replaceAll("_", " ")}</span>)}
+          {Number.isFinite(result.overall_score) ? <span><strong>{result.overall_score}</strong> Draft quality</span> : null}
+          {componentScores.map(([name, score]) => <span key={name}><strong>{score}</strong> {name === "ats_alignment" ? "Requirement alignment" : name.replaceAll("_", " ")}</span>)}
         </div>
+      ) : null}
+      {Number.isFinite(result.overall_score) || componentScores.length ? (
+        <p className="quality-review-explanation">These scores assess this draft. They do not indicate whether an employer has reviewed or advanced your application.</p>
       ) : null}
       {findings.length ? (
         <div className="quality-findings">
@@ -664,17 +677,21 @@ function QualityReviewBand({ draft, busy, onRetry, onOpenEditor }) {
     <section className={`quality-review-band quality-${state.status}`} data-audit-status={state.status}>
       <div className="quality-review-summary">
         <div><span>Quality review</span><strong>{state.label}</strong></div>
+        {result.assumptions_unverified ? <small>JD-based project details and measurements need your review.</small> : null}
         <div className="quality-review-controls">
           {["technical_failed", "stale"].includes(state.status) ? <button disabled={actionBusy} onClick={onRetry}>{busy === "audit-retry" ? "Reviewing..." : "Retry review"}</button> : null}
           {state.status === "manual_attention" ? (
             <>
-              <button disabled={actionBusy} onClick={onRetry}>{busy === "audit-retry" ? "Reviewing..." : "Retry review"}</button>
+              <button disabled={actionBusy} onClick={onRetry}>{busy === "audit-retry" ? "Reviewing..." : result.generation_method === "jd_only" ? "Review and apply" : "Retry review"}</button>
               <button onClick={onOpenEditor}>Open Full Editor</button>
             </>
           ) : null}
         </div>
       </div>
       {state.status === "technical_failed" && result.error ? <small className="quality-review-error">{result.error}</small> : null}
+      {state.status !== "manual_attention" && nonBlockingGaps.length ? (
+        <details className="quality-review-panel"><summary>Review notes — PDF export is available after review</summary><ReviewGaps gaps={nonBlockingGaps} /></details>
+      ) : null}
       {state.status === "manual_attention" ? (
         <div className="quality-review-panel quality-blocked-panel">
           {result.review_summary ? <p className="quality-review-explanation">{result.review_summary}</p> : null}
@@ -710,13 +727,15 @@ function ReviewBasis({ basis }) {
 }
 
 function ReviewGaps({ gaps }) {
-  const visibleGaps = (Array.isArray(gaps) ? gaps : []).filter((gap) => ![
+  const measurementNotes = (Array.isArray(gaps) ? gaps : []).filter((gap) => gap?.kind === "numerical_target");
+  const visibleGaps = (Array.isArray(gaps) ? gaps : []).filter((gap) => gap?.kind !== "numerical_target").filter((gap) => ![
     "domain_context", "application_condition", "credential_or_duration",
   ].includes(String(gap?.kind || "")));
-  if (!visibleGaps.length) return null;
+  if (!visibleGaps.length && !measurementNotes.length) return null;
   return (
     <div className="quality-review-gaps">
-      <strong>Requirements not supported by profile evidence</strong>
+      {measurementNotes.length ? <><strong>Measurement target (advisory)</strong>{measurementNotes.map((note, index) => <p key={note.id || index}><b>{note.gap}</b> {note.impact}</p>)}</> : null}
+      {visibleGaps.length ? <strong>Requirements not supported by profile evidence</strong> : null}
       {visibleGaps.map((gap, index) => (
         <p key={gap.id || index}>
           <b>{gap.gap || "Unsupported requirement"}</b>
@@ -1992,6 +2011,7 @@ function App() {
 
           <History history={resolution.history} />
 
+
           {!draft ? (
             <section className="setup-band">
               <div className="field-row">
@@ -2023,7 +2043,7 @@ function App() {
                 <div className="decision-band"><strong>Previous applications found</strong><p>Generation has not called the AI yet. Choose whether to continue.</p><div className="button-row"><button className="primary" onClick={() => runDraftAction("duplicate-decision", { decision: "continue" })}>Continue</button><button onClick={() => runDraftAction("duplicate-decision", { decision: "skip" })}>Skip</button></div></div>
               ) : null}
               {draft.status === "failed" ? <div className="error-band"><strong>{draft.error_stage}</strong><p>{draft.error_message}</p><button onClick={() => runDraftAction("retry")}>Retry from checkpoint</button></div> : null}
-              {ACTIVE_STATUSES.has(draft.status) ? <div className="progress-line"><span /></div> : null}
+              {ACTIVE_STATUSES.has(draft.status) ? <><div className="progress-line"><span /></div><small role="status">{GENERATION_STAGE_LABELS[draft.stage] || STATUS_LABELS[draft.status]}</small></> : null}
 
               <div className="draft-settings">
                 <select value={identityId} disabled={draft.locked || ACTIVE_STATUSES.has(draft.status)} onChange={(event) => changeIdentity(event.target.value)}>{(server.identities || []).map((item) => <option key={item.id} value={item.id}>{item.label}</option>)}</select>

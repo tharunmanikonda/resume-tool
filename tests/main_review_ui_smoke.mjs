@@ -16,47 +16,14 @@ const generationFlow = functionSource(
   "submitAiGeneration",
 );
 
-for (const route of [
-  "/api/ai/generate-skills",
-  "/api/ai/generate-experience-recent",
-  "/api/ai/generate-experience-older",
-  "/api/ai/final-synthesis",
-  "/api/ai/quality-audit",
-]) {
-  assert.ok(generationFlow.includes(route), `generation flow must call ${route}`);
+assert.ok(generationFlow.includes("/api/ai/generate-jd-resume"), "Generate Resume must use the shared JD-only workflow");
+for (const oldRoute of ["/api/ai/generate-skills", "/api/ai/generate-experience-recent", "/api/ai/final-synthesis"]) {
+  assert.ok(!generationFlow.includes(oldRoute), `normal generation must not use source-based route ${oldRoute}`);
 }
-
-assert.ok(
-  generationFlow.includes("Promise.all(["),
-  "experience endpoints must run in parallel",
-);
-assert.ok(
-  generationFlow.indexOf("/api/ai/generate-skills")
-    < generationFlow.indexOf("/api/ai/generate-experience-recent"),
-  "skills must run before experience",
-);
-assert.ok(
-  generationFlow.indexOf("/api/ai/generate-experience-older")
-    < generationFlow.indexOf("/api/ai/final-synthesis"),
-  "final synthesis must run after experience",
-);
-assert.ok(
-  generationFlow.indexOf("/api/ai/final-synthesis")
-    < generationFlow.lastIndexOf("/api/ai/quality-audit"),
-  "quality audit must run after final synthesis",
-);
-assert.ok(
-  generationFlow.includes("resumeJobContext?.title"),
-  "pasted-JD review must tolerate a missing page job context",
-);
-assert.ok(
-  !generationFlow.includes("generate-title-summary"),
-  "generation flow must not call generate-title-summary",
-);
-assert.ok(
-  !generationFlow.includes("review-core"),
-  "generation flow must not call review-core",
-);
+assert.ok(generationFlow.includes("hydrateAuditState(data)"), "generation must load its completed review into the existing UI");
+assert.ok(generationFlow.includes("hydrateResumeVersionState(data)"), "generation must open normal resume versions");
+assert.ok(!appSource.includes("<JdDraftExperiment"), "separate experiment panel must be removed");
+assert.ok(!appSource.includes("Experimental JD-only drafts</strong>"), "separate experiment setting must be removed");
 
 for (const control of [
   "Original",

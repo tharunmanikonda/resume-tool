@@ -500,6 +500,8 @@ class ExtensionDraftStore:
         base_hash: str,
         base_revision: int,
         run_token: str,
+        *,
+        repaired_values: dict | None = None,
     ) -> dict:
         decision = clean_text(result.get("decision"))
         if decision not in {"approved", "changes_suggested", "manual_attention"}:
@@ -515,15 +517,23 @@ class ExtensionDraftStore:
                 row.audit_proposal = None
                 stale = True
             else:
+                if repaired_values:
+                    _preserve_original_version(row)
+                    for key in ("title_summary", "skills", "experience_recent", "experience_older", "resume_content", "resume_snapshot"):
+                        if key in repaired_values:
+                            setattr(row, key, deepcopy(repaired_values[key]))
+                    row.resume_revision = int(row.resume_revision or 1) + 1
+                    row.pdf_stale = bool(row.pdf_path)
+                    row.status = "ready"
                 row.audit_status = decision
                 row.audit_result = result
                 row.audit_proposal = result.get("changes") if decision == "changes_suggested" else None
-                row.audit_base_revision = int(base_revision)
+                row.audit_base_revision = int(row.resume_revision or base_revision)
                 row.audit_base_hash = clean_text(base_hash)
                 row.audit_created_at = utcnow()
                 row.audit_applied_at = None
                 _preserve_original_version(row)
-                if decision == "approved" and _has_versionable_resume(row):
+                if (decision == "approved" or repaired_values) and _has_versionable_resume(row):
                     _save_resume_version(row, "luna_reviewed")
                 row.updated_at = utcnow()
             db.flush()
@@ -811,6 +821,8 @@ class ExtensionDraftStore:
                     row.latest_description_hash = context["description_hash"]
                     row.source_metadata = context["source_metadata"]
                 row.analysis = {}
+                row.source_metadata = {key: value for key, value in (row.source_metadata or {}).items()
+                                       if key != "jd_only_checkpoint"}
                 row.title_summary = {}
                 row.skills = {}
                 row.experience_recent = {}

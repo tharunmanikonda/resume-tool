@@ -294,7 +294,7 @@ def test_rejecting_every_patch_preserves_current_resume():
     assert resolved == current_resume()
 
 
-def test_unsupported_patch_is_withheld_without_discarding_valid_patch():
+def test_unsafe_bullet_repair_requires_review_even_with_another_valid_patch():
     changes = title_change()
     unsafe = bullet_change(
         change_id="experience.mckinsey.unsupported",
@@ -307,10 +307,9 @@ def test_unsupported_patch_is_withheld_without_discarding_valid_patch():
 
     validated = validate(audit_result("changes_suggested", changes))
 
-    assert validated["decision"] == "changes_suggested"
-    assert [group["change_id"] for group in validated["review_groups"]] == [
-        "title.market-standard"
-    ]
+    assert validated["decision"] == "manual_attention"
+    assert validated["review_groups"] == []
+    assert validated["manual_findings"][0]["id"] == "repair.unresolved"
     assert validated["withheld_changes"] == [{
         "change_id": "experience.mckinsey.unsupported",
         "section": "experience",
@@ -318,7 +317,7 @@ def test_unsupported_patch_is_withheld_without_discarding_valid_patch():
     }]
 
 
-def test_all_unsupported_patches_become_non_blocking_gaps():
+def test_withheld_bullet_repair_remains_blocking():
     validated = validate(audit_result(
         "changes_suggested",
         bullet_change(
@@ -329,9 +328,9 @@ def test_all_unsupported_patches_become_non_blocking_gaps():
         ),
     ))
 
-    assert validated["decision"] == "approved"
+    assert validated["decision"] == "manual_attention"
     assert validated["review_groups"] == []
-    assert validated["manual_findings"] == []
+    assert validated["manual_findings"][0]["id"] == "repair.unresolved"
     assert validated["non_blocking_gaps"][0]["id"].startswith("withheld.")
 
 
@@ -358,7 +357,7 @@ def test_required_patch_rejected_by_grounding_becomes_gap_without_repair():
 
     validated = validate(result)
 
-    assert validated["decision"] == "approved"
+    assert validated["decision"] == "manual_attention"
     resolution = validated["requirement_resolutions"][0]
     assert resolution["resume_action"] == "gap_only"
     assert resolution["status"] == "unresolved"
@@ -551,7 +550,7 @@ def test_invalid_bullet_position_is_withheld_instead_of_clamped():
 
     validated = validate(audit_result("changes_suggested", changes))
 
-    assert validated["decision"] == "approved"
+    assert validated["decision"] == "manual_attention"
     assert validated["withheld_changes"][0]["reason"] == (
         "An added bullet has an invalid final position."
     )
@@ -764,7 +763,7 @@ def test_generation_does_not_retry_deterministically_withheld_patch(monkeypatch)
     assert len(calls) == 1
     assert generated["attempt_count"] == 1
     assert generated["repair_attempted"] is False
-    assert generated["decision"] == "approved"
+    assert generated["decision"] == "manual_attention"
 
 
 def test_generation_retries_once_after_transient_network_failure(monkeypatch):
