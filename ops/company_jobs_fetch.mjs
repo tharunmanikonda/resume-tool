@@ -16,6 +16,8 @@ const RIVIAN_CATEGORIES = [
 ].join("|");
 const EBAY_SEARCH_BASE = "https://jobs.ebayinc.com/us/en/search-results";
 const EBAY_SEARCH_TERMS = [
+  "software engineer intern",
+  "software engineering co-op",
   "software engineer",
   "software developer",
   "application developer",
@@ -58,6 +60,8 @@ const WORKDAY_COMPANIES = {
     tenant: "iqvia",
     site: "IQVIA",
     searchTexts: [
+      "software engineer intern",
+      "software engineering co-op",
       "software engineer",
       "software developer",
       "application developer",
@@ -90,6 +94,8 @@ const WORKDAY_COMPANIES = {
 const NBCU_API = "https://api.smartrecruiters.com/v1/companies/NBCUniversal3/postings";
 const CBRE_SEARCH = "https://careers.cbre.com/en_US/careers/SearchJobs";
 const CBRE_SEARCH_TERMS = [
+  "software engineer intern",
+  "software engineering co-op",
   "software engineer",
   "software developer",
   "application developer",
@@ -117,6 +123,28 @@ const CBRE_SEARCH_TERMS = [
   "debug technician",
 ];
 const OCIENT_URL = "https://jobs.gem.com/ocient-inc-";
+const CRUNCHYROLL_GREENHOUSE_API = "https://boards-api.greenhouse.io/v1/boards/crunchyroll";
+const TIKTOK_API = "https://api.lifeattiktok.com/api/v1/public/supplier/search/job/posts";
+const TIKTOK_SEARCH_TERMS = [
+  "software engineer intern",
+  "software engineering internship",
+  "software engineer",
+  "software developer",
+  "backend engineer",
+  "full stack engineer",
+  "frontend engineer",
+  "mobile engineer",
+  "data engineer",
+  "platform engineer",
+  "site reliability engineer",
+  "devops engineer",
+  "cloud engineer",
+  "security engineer",
+  "test automation engineer",
+  "systems engineer",
+  "database engineer",
+  "machine learning engineer",
+];
 
 async function readStdin() {
   let value = "";
@@ -155,6 +183,78 @@ async function fetchJson(url, options = {}) {
   const response = await fetch(url, options);
   if (!response.ok) throw new Error(`${response.status} ${response.statusText}: ${url}`);
   return response.json();
+}
+
+function tiktokLocation(cityInfo = {}) {
+  const values = [];
+  let current = cityInfo;
+  while (current && typeof current === "object") {
+    const name = current.name || current.en_name;
+    if (name && !values.includes(name)) values.push(name);
+    current = current.parent;
+  }
+  return values.join(", ");
+}
+
+async function tiktokListings() {
+  const jobs = new Map();
+  const limit = 100;
+  const headers = {
+    "accept-language": "en",
+    "content-type": "application/json",
+    origin: "https://lifeattiktok.com",
+    "website-path": "tiktok",
+  };
+  for (const keyword of TIKTOK_SEARCH_TERMS) {
+    let total = Infinity;
+    for (let offset = 0; offset < total; offset += limit) {
+      const payload = await fetchJson(TIKTOK_API, {
+        method: "POST",
+        headers,
+        body: JSON.stringify({
+          keyword,
+          limit,
+          offset,
+          job_category_id_list: [],
+          location_code_list: [],
+          recruitment_id_list: [],
+          subject_id_list: [],
+          tag_id_list: [],
+        }),
+      });
+      if (Number(payload.code) !== 0) throw new Error(`TikTok API error ${payload.code}: ${payload.message || "unknown error"}`);
+      const data = payload.data || {};
+      total = Number(data.count || 0);
+      const pageJobs = data.job_post_list || [];
+      for (const item of pageJobs) {
+        const id = String(item.id || "");
+        if (!id) continue;
+        const description = [stripHtml(item.description), "Qualifications", stripHtml(item.requirement)]
+          .filter(Boolean)
+          .join("\n\n");
+        jobs.set(id, {
+          source: "tiktok",
+          external_job_id: id,
+          title: item.title || "",
+          location: tiktokLocation(item.city_info),
+          job_type: item.recruit_type?.en_name === "Regular" ? "Full time" : (item.recruit_type?.en_name || ""),
+          posted_at: "",
+          url: `https://lifeattiktok.com/search/${id}`,
+          description_snapshot: description,
+        });
+      }
+      if (!pageJobs.length || offset + pageJobs.length >= total) break;
+    }
+  }
+  return [...jobs.values()];
+}
+
+async function tiktokDetails(jobs) {
+  return jobs.map((job) => ({
+    ...job,
+    description: job.description_snapshot || "",
+    error: job.description_snapshot ? null : "Empty TikTok description",
+  }));
 }
 
 async function rivianListings(knownJobIds = []) {
@@ -347,8 +447,6 @@ async function nvidiaListings(knownJobIds = []) {
   let consecutiveKnownPages = 0;
   const appliedFacets = {
     jobFamilyGroup: ["0c40f6bd1d8f10ae43ffaefd46dc7e78", "0c40f6bd1d8f10ae43ffbd1459047e84"],
-    workerSubType: ["0c40f6bd1d8f10adf6dae161b1844a15", "ab40a98049581037a3ada55b087049b7"],
-    timeType: ["5509c0b5959810ac0029943377d47364"],
     locationHierarchy1: ["2fcb99c455831013ea52fb338f2932d8"],
   };
   for (let offset = 0; offset < total; offset += limit) {
@@ -363,7 +461,7 @@ async function nvidiaListings(knownJobIds = []) {
       external_job_id: String(job.bulletFields?.[0] || job.externalPath?.match(/_(JR\d+(?:-\d+)?)$/i)?.[1] || ""),
       title: job.title || "",
       location: job.locationsText || "",
-      job_type: "Full time",
+      job_type: job.timeType || "",
       posted_at: job.postedOn || "",
       external_path: job.externalPath || "",
       url: `${NVIDIA_BASE}${job.externalPath || ""}`,
@@ -533,7 +631,6 @@ async function nbcuListings(knownJobIds = []) {
     if (offset === 0) total = Number(payload.totalFound || 0);
     const pageJobs = (payload.content || [])
       .filter((job) => String(job.location?.country || "").toLowerCase() === "us")
-      .filter((job) => /full.?time|regular/i.test(job.typeOfEmployment?.label || "Full-time"))
       .map((job) => ({
         source: "nbcu",
         external_job_id: String(job.id || job.refNumber || ""),
@@ -574,6 +671,46 @@ async function nbcuDetails(jobs) {
           description,
           url: payload.postingUrl || job.url,
           error: description ? null : "Empty NBCUniversal description",
+        };
+      } catch (error) {
+        return { external_job_id: job.external_job_id, description: "", error: String(error?.message || error) };
+      }
+    }));
+    details.push(...batch);
+  }
+  return details;
+}
+
+async function crunchyrollListings() {
+  const payload = await fetchJson(`${CRUNCHYROLL_GREENHOUSE_API}/jobs`);
+  return (payload.jobs || []).map((job) => ({
+    source: "crunchyroll",
+    external_job_id: String(job.id || ""),
+    title: job.title || "",
+    location: job.location?.name || "",
+    job_type: "",
+    posted_at: "",
+    source_updated_at: job.updated_at || "",
+    url: job.absolute_url || `https://job-boards.greenhouse.io/crunchyroll/jobs/${job.id}`,
+  })).filter((job) => job.external_job_id);
+}
+
+async function crunchyrollDetails(jobs) {
+  const details = [];
+  for (let offset = 0; offset < jobs.length; offset += 8) {
+    const batch = await Promise.all(jobs.slice(offset, offset + 8).map(async (job) => {
+      try {
+        const payload = await fetchJson(`${CRUNCHYROLL_GREENHOUSE_API}/jobs/${job.external_job_id}`);
+        const description = stripHtml(decodeHtmlEntities(payload.content));
+        return {
+          external_job_id: job.external_job_id,
+          title: payload.title || job.title,
+          location: payload.location?.name || job.location,
+          posted_at: job.posted_at,
+          source_updated_at: payload.updated_at || job.source_updated_at || "",
+          description,
+          url: payload.absolute_url || job.url,
+          error: description ? null : "Empty Crunchyroll description",
         };
       } catch (error) {
         return { external_job_id: job.external_job_id, description: "", error: String(error?.message || error) };
@@ -678,6 +815,12 @@ async function main() {
       : { details: await nbcuDetails(payload.jobs || []) }));
     return;
   }
+  if (company === "crunchyroll") {
+    process.stdout.write(JSON.stringify(mode === "list"
+      ? { jobs: await crunchyrollListings() }
+      : { details: await crunchyrollDetails(payload.jobs || []) }));
+    return;
+  }
   if (company === "cisco") {
     process.stdout.write(JSON.stringify(mode === "list" ? { jobs: await ciscoListings(payload.known_job_ids || []) } : { details: await ciscoDetails(payload.jobs || []) }));
     return;
@@ -688,6 +831,12 @@ async function main() {
   }
   if (company === "rivian") {
     process.stdout.write(JSON.stringify(mode === "list" ? { jobs: await rivianListings(payload.known_job_ids || []) } : { details: await rivianDetails(payload.jobs || []) }));
+    return;
+  }
+  if (company === "tiktok") {
+    process.stdout.write(JSON.stringify(mode === "list"
+      ? { jobs: await tiktokListings() }
+      : { details: await tiktokDetails(payload.jobs || []) }));
     return;
   }
   if (company === "ebay") {

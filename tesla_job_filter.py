@@ -28,7 +28,7 @@ TARGET_TITLE_PATTERNS = (
     ("qa", r"\bsoftware qa\b|\bqa automation\b|\bsoftware validation\b|\btest automation\b|\bsoftware (?:test|quality) engineer\b|\bautomation tester\b|\bsoftware tester\b"),
     ("reliability", r"\bsite reliability\b|\bsre\b|\breliability engineer\b|\btelemetry engineer\b"),
     ("development", r"\b(?:systems?|cloud|platform|api|as400|mainframe) developer\b"),
-    ("software", r"\bsoftware engineer\b"),
+    ("software", r"\bsoftware engineer(?:ing)?\b"),
     ("technical_review", r"\b(?:engineer|developer|systems? analyst|technical analyst)\b"),
 )
 
@@ -62,10 +62,11 @@ TESLA_SEARCH_QUERIES = {
     "release_engineer": "release engineer",
     "build_engineer": "build engineer",
     "deployment_engineer": "deployment engineer",
+    "software_engineering_intern": "software engineer intern",
+    "software_engineering_coop": "software engineering co-op",
 }
 
 TITLE_EXCLUSIONS = {
-    "internship": r"\bintern(?:ship)?\b|\bco-?op\b|\bapprentice\b",
     "management": r"\bmanager\b|\bdirector\b|\btechnical program manager\b|\bprogram manager\b",
     "recruiting": r"\brecruiter\b|\bsourcer\b|\btalent acquisition\b",
     "support": r"\bapplication support\b|\bsupport engineer\b|\bhelp desk\b|\btechnician\b",
@@ -287,7 +288,7 @@ def prefilter_tesla_job(job: dict) -> TeslaFilterResult:
 
     blockers = []
     category = _first_match(TARGET_TITLE_PATTERNS, title)
-    if job_type and not any(term in job_type for term in ("full-time", "full time")):
+    if job_type and not any(term in job_type for term in ("full-time", "full time", "intern", "co-op", "coop", "apprentice")):
         blockers.append("not_full_time")
     if any(re.search(pattern, location) for pattern in NON_US_LOCATION_PATTERNS):
         blockers.append("non_us_location")

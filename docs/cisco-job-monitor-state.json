@@ -26,6 +26,7 @@
     "2003686",
     "2003969",
     "2004009",
+    "2004012",
     "2004130",
     "2004135",
     "2004180",
@@ -101,6 +102,7 @@
     "2012214",
     "2012219",
     "2012249",
+    "2012260",
     "2012314",
     "2012317",
     "2012320",
@@ -146,6 +148,7 @@
     "2014239",
     "2014522",
     "2014523",
+    "2014526",
     "2014641",
     "2014670",
     "2014720",
@@ -263,6 +266,7 @@
     "2018229",
     "2018237",
     "2018240",
+    "2018241",
     "2018255",
     "2018284",
     "2018299",
@@ -298,6 +302,7 @@
     "2018778",
     "2018789",
     "2018807",
+    "2018837",
     "2018888",
     "2018892",
     "2018898",
@@ -322,6 +327,7 @@
     "2019206",
     "2019277",
     "2019339",
+    "2019343",
     "2019369",
     "2019371",
     "2019389",
@@ -441,6 +447,7 @@
     "2020819",
     "2020823",
     "2020826",
+    "2020831",
     "2020833",
     "2020850",
     "2020879",
@@ -486,6 +493,7 @@
     "2021180",
     "2021186",
     "2021187",
+    "2021192",
     "2021196",
     "2021197",
     "2021200",
@@ -727,6 +735,7 @@
     "2023187",
     "2023198",
     "2023201",
+    "2023202",
     "2023210",
     "2023213",
     "2023214",
@@ -773,6 +782,7 @@
     "2023429",
     "2023445",
     "2023451",
+    "2023452",
     "2023453",
     "2023454",
     "2023479",
@@ -950,6 +960,7 @@
     "2024519",
     "2024523",
     "2024535",
+    "2024550",
     "2024552",
     "2024553",
     "2024556",
@@ -1064,6 +1075,7 @@
     "2025127",
     "2025137",
     "2025140",
+    "2025149",
     "2025155",
     "2025168",
     "2025180",
@@ -1250,6 +1262,7 @@
     "2026341",
     "2026347",
     "2026354",
+    "2026355",
     "2026363",
     "2026365",
     "2026366",
@@ -1343,6 +1356,7 @@
     "2027137",
     "2027145",
     "2027160",
+    "2027162",
     "2027165",
     "2027249",
     "2027254",
@@ -1359,8 +1373,12 @@
     "2027536",
     "2027546",
     "2027547",
+    "2027553",
+    "2027558",
+    "2027560",
     "2027563",
     "2027581",
+    "2027583",
     "2027595",
     "2027610",
     "2027611",
@@ -1369,6 +1387,7 @@
     "2027642",
     "2027662",
     "2027695",
+    "2027715",
     "2027718",
     "2027721",
     "2027730",
@@ -1380,22 +1399,1968 @@
     "2027808",
     "2027863",
     "2027869",
+    "2027875",
     "2027896",
     "2027922",
     "2027934",
     "2028001",
     "2028009",
+    "2028011",
     "2028048",
     "2028080",
     "2028084",
+    "2028145",
+    "2028164",
     "2028166",
     "2028178",
+    "2028208",
+    "2028210",
     "2028211",
     "2028217",
+    "2028364",
+    "2028387",
     "2028428",
+    "2028596",
+    "2028609",
+    "2028669",
     "2028670",
-    "2028673"
+    "2028671",
+    "2028673",
+    "2028719",
+    "2028757",
+    "2028834",
+    "2028913",
+    "2028918",
+    "2028919",
+    "2028921",
+    "2028922",
+    "2028928",
+    "2028929",
+    "2029023",
+    "2029193",
+    "2029243",
+    "2029245",
+    "2029276",
+    "2029288",
+    "2029455",
+    "2029584",
+    "2029655",
+    "2029917",
+    "2030022",
+    "2030081",
+    "2030087"
   ],
-  "last_successful_scan_at": "2026-10-17T20:17:27-05:00",
-  "candidate_catalog": {}
+  "last_successful_scan_at": "2026-10-31T11:57:39-05:00",
+  "candidate_catalog": {
+    "2024998": {
+      "title": "AI Security Engineer",
+      "location": "RTP, North Carolina, US; San Jose, California, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/RTP-North-Carolina-US/AI-Security-Engineer_2024998",
+      "posted_at": "2026-09-18",
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "priority": "high",
+      "category": "security"
+    }
+  },
+  "filter_version": 3,
+  "rejected_catalog": {
+    "2028210": {
+      "title": "ASIC DFT Technical Leader",
+      "location": "2 Locations",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/ASIC-DFT-Technical-Leader_2028210",
+      "posted_at": "Posted 3 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "specialized_low_level",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2028208": {
+      "title": "ASIC Technical Leader- RTL",
+      "location": "2 Locations",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/ASIC-DFT-Technical-Leader_2028208",
+      "posted_at": "Posted Yesterday",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2027162": {
+      "title": "Senior Cloud Engineering Technical Leader",
+      "location": "4 Locations",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/Senior-Cloud-Engineering-Technical-Leader_2027162",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-19T11:56:49-05:00"
+    },
+    "2024116": {
+      "title": "Software Technical Leader",
+      "location": "4 Locations",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Calgary-Alberta-Canada/Software-Technical-Leader_2024116",
+      "posted_at": "Posted 6 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2026365": {
+      "title": "System Hardware Board Design Engineering Lead (PCB) (Onsite)",
+      "location": "Milpitas, California, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Milpitas-California-US/System-Hardware-Board-Design-Engineering-Lead--PCB---Onsite-_2026365",
+      "posted_at": "Posted 6 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "embedded_or_hardware",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2028673": {
+      "title": "Senior Software Engineer - Webex Web Client",
+      "location": "Bratislava, Slovakia",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Bratislava-Slovakia/Senior-Software-Engineer---Webex-Web-Client_2028673",
+      "posted_at": "Posted 6 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2020685": {
+      "title": "Software Engineer",
+      "location": "Stockholm, Sweden",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Stockholm-Sweden/Software-Engineer_2020685",
+      "posted_at": "Posted 3 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-19T11:56:49-05:00"
+    },
+    "2020686": {
+      "title": "Software Engineer",
+      "location": "Stockholm, Sweden",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Stockholm-Sweden/Software-Engineer_2020686",
+      "posted_at": "Posted 6 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2027662": {
+      "title": "Full-stack Software Engineer",
+      "location": "Lysaker, Norway",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Lysaker-Norway/Full-stack-Software-Engineer_2027662",
+      "posted_at": "Posted 6 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "full_stack",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2028670": {
+      "title": "Software Engineer - Mobile",
+      "location": "Bratislava, Slovakia",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Bratislava-Slovakia/Software-Engineer---Mobile_2028670",
+      "posted_at": "Posted 4 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-19T11:56:49-05:00"
+    },
+    "2021748": {
+      "title": "Functional Safety Technical Leader (Hybrid)",
+      "location": "Austin, Texas, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Austin-Texas-US/Functional-Safety-Technical-Leader--Hybrid-_2021748",
+      "posted_at": "Posted 7 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2027721": {
+      "title": "Senior ASIC DFT DV Engineer (Hybrid)",
+      "location": "2 Locations",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/Senior-ASIC-DFT-DV-Engineer--Hybrid-_2027721",
+      "posted_at": "Posted 8 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "specialized_low_level"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2027718": {
+      "title": "ASIC DFT DV Technical Leader (Hybrid)",
+      "location": "San Jose, California, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/ASIC-DFT-DV-Technical-Leader--Hybrid-_2027718",
+      "posted_at": "Posted 9 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "specialized_low_level",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2027869": {
+      "title": "Senior ASIC DFT DV Engineer (Hybrid)",
+      "location": "San Jose, California, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/Senior-ASIC-DFT-DV-Engineer--Hybrid-_2027869",
+      "posted_at": "Posted 9 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "specialized_low_level"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2024292": {
+      "title": "Sr Hardware Engineer",
+      "location": "2 Locations",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/Sr-Hardware-Engineer_2024292",
+      "posted_at": "Posted 9 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "embedded_or_hardware"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2028211": {
+      "title": "ASIC Post silicon DFT Technical Leader",
+      "location": "2 Locations",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Austin-Texas-US/ASIC-Post-silicon-DFT-Technical-Leader_2028211",
+      "posted_at": "Posted 9 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "embedded_or_hardware",
+        "specialized_low_level",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2024745": {
+      "title": "Software Engineering Technical Leader",
+      "location": "2 Locations",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Boulder-Colorado-US/Software-Engineering-Technical-Leader_2024745",
+      "posted_at": "Posted 9 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2017935": {
+      "title": "ASIC DFT Technical Leader - CDC",
+      "location": "3 Locations",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/ASIC-Engineering-Technical-Leader---CDC_2017935",
+      "posted_at": "Posted 9 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "specialized_low_level",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2012616": {
+      "title": "ASIC Technical Leader- CAD",
+      "location": "San Jose, California, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/ASIC-DFT-CAD-Technical-Leader_2012616",
+      "posted_at": "Posted 9 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2025809": {
+      "title": "Software Engineering Technical Leader",
+      "location": "2 Locations",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Krakow-Poland/Software-Engineering-Technical-Leader_2025809",
+      "posted_at": "Posted 9 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2027896": {
+      "title": "Embedded Software Engineer",
+      "location": "Lysaker, Norway",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Lysaker-Norway/Embedded-Software-Engineer_2027896",
+      "posted_at": "Posted 9 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "embedded_or_hardware"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2025874": {
+      "title": "Software Engineer Technical Leader \u2013 Network Data Plane \u2013 Hypershield",
+      "location": "52 Locations",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/Software-Engineer-Technical-Leader---Network-Data-Plane---Hypershield_2025874",
+      "posted_at": "Posted 10 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2027160": {
+      "title": "Hardware Design Engineer",
+      "location": "2 Locations",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Milpitas-California-US/PCB-Hardware-Engineer_2027160",
+      "posted_at": "Posted 10 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "embedded_or_hardware"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2026895": {
+      "title": "AI Networking Hardware-Mechanical Technical Leader",
+      "location": "San Jose, California, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/AI-Networking-Hardware-Mechanical-Technical-Leader_2026895",
+      "posted_at": "Posted 10 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "embedded_or_hardware",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2028009": {
+      "title": "ASIC DFT Engineer",
+      "location": "San Jose, California, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/ASIC-DFT-Engineer_2028009",
+      "posted_at": "Posted 7 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "specialized_low_level"
+      ],
+      "category": "technical_review",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-19T11:56:49-05:00"
+    },
+    "2027413": {
+      "title": "Software Engineer",
+      "location": "Lysaker, Norway",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Lysaker-Norway/Software-Engineer_2027413",
+      "posted_at": "Posted 10 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2027642": {
+      "title": "Engineering Product Manager",
+      "location": "Lysaker, Norway",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Lysaker-Norway/Engineering-Product-Manager_2027642",
+      "posted_at": "Posted 10 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2023453": {
+      "title": "Hardware Engineering Technical Leader",
+      "location": "2 Locations",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Hsinchu-Taiwan/Hardware-Engineering-Technical-Leader_2023453",
+      "posted_at": "Posted 13 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "embedded_or_hardware",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2014523": {
+      "title": "Hardware Engineering Technical Leader",
+      "location": "2 Locations",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/Hardware-Engineering-Technical-Leader_2014523-1",
+      "posted_at": "Posted 14 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "embedded_or_hardware",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2027546": {
+      "title": "Embedded Software Engineer",
+      "location": "Lysaker, Norway",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Lysaker-Norway/Embedded-Software-Engineer_2027546",
+      "posted_at": "Posted 14 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "embedded_or_hardware"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2023864": {
+      "title": "Senior Software Engineer (Shared Components)",
+      "location": "Galway, Ireland",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Galway-Ireland/Senior-Software-Engineer--Shared-Components-_2023864",
+      "posted_at": "Posted 14 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2016228": {
+      "title": "Hardware Engineer (Transceiver Module Group)",
+      "location": "San Jose, California, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/Hardware-Engineer--Transceiver-Module-Group-_2016228",
+      "posted_at": "Posted 15 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "embedded_or_hardware"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2020301": {
+      "title": "IC Package Layout Team Leader",
+      "location": "San Jose, California, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/IC-Package-Layout-Team-Leader_2020301",
+      "posted_at": "Posted 15 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2016219": {
+      "title": "Senior Cloud Engineer - Infrastructure Operations / Network Platform Reliability",
+      "location": "Galway, Ireland",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Galway-Ireland/Senior-Cloud-Engineer---Infrastructure-Operations---Network-Platform-Reliability_2016219",
+      "posted_at": "Posted 15 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "platform",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2012219": {
+      "title": "ASIC High Speed AMS Technical Leader",
+      "location": "2 Locations",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Carlsbad-California-US/ASIC-High-Speed-AMS-Technical-Leader_2012219",
+      "posted_at": "Posted 16 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2012338": {
+      "title": "ASIC Link Modeling Technical Leader",
+      "location": "2 Locations",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Carlsbad-California-US/ASIC-Link-Modeling-Technical-Leader_2012338",
+      "posted_at": "Posted 16 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2023217": {
+      "title": "Principal AI Researcher, AISWP (Hybrid)",
+      "location": "2 Locations",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Seattle-Washington-US/Principal-AI-Researcher--AISWP--Hybrid-_2023217",
+      "posted_at": "Posted 16 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2027076": {
+      "title": "Leader, Business Product Management",
+      "location": "San Jose, California, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/Leader--Business-Product-Management_2027076",
+      "posted_at": "Posted 16 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2026363": {
+      "title": "Hardware Engineering Technical Leader",
+      "location": "Milpitas, California, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Milpitas-California-US/Hardware-Engineering-Technical-Leader_2026363",
+      "posted_at": "Posted 17 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "embedded_or_hardware",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2022041": {
+      "title": "Detection Engineering Technical Leader",
+      "location": "16 Locations",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Denver-Colorado-US/Detection-Engineering-Technical-Leader_2022041-1",
+      "posted_at": "Posted 17 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2026474": {
+      "title": "Hardware Engineering Project Manager",
+      "location": "San Jose, California, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/Hardware-Engineering-Project-Manager_2026474",
+      "posted_at": "Posted 17 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "embedded_or_hardware",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2024574": {
+      "title": "Test Chip Administrator",
+      "location": "Amsterdam, Netherlands",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Amsterdam-Netherlands/Test-Chip-Administrator_2024574",
+      "posted_at": "Posted 20 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2027449": {
+      "title": "Senior AI Researcher, AISWP (Hybrid)",
+      "location": "2 Locations",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Milpitas-California-US/Senior-AI-Researcher--AISWP--Hybrid-_2027449-1",
+      "posted_at": "Posted 20 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2018628": {
+      "title": "Software Engineer (Shared Components)",
+      "location": "Galway, Ireland",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Galway-Ireland/Software-Engineer--Shared-Components-_2018628",
+      "posted_at": "Posted 20 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2014522": {
+      "title": "Hardware Design Engineer Technical Lead",
+      "location": "2 Locations",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/Hardware-Design-Engineer-Technical-Lead_2014522-1",
+      "posted_at": "Posted 21 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "embedded_or_hardware"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2004763": {
+      "title": "Hardware Systems Engineering Technical Leader",
+      "location": "Milpitas, California, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Milpitas-California-US/Hardware-Systems-Engineering-Technical-Lead---Milpitas-San-Jose--CA_2004763",
+      "posted_at": "Posted 21 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "embedded_or_hardware",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2021051": {
+      "title": "Enterprise Hardware Engineering Technical Lead",
+      "location": "RTP, North Carolina, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/RTP-North-Carolina-US/Enterprise-Hardware-Engineering-Technical-Lead_2021051",
+      "posted_at": "Posted 21 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "embedded_or_hardware",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2010961": {
+      "title": "Emulation Engineer, Technical Leader",
+      "location": "San Jose, California, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/Emulation-Engineer--Technical-Leader_2010961",
+      "posted_at": "Posted 21 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2018630": {
+      "title": "Senior Site Reliability Engineer",
+      "location": "Galway, Ireland",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Galway-Ireland/Senior-Site-Reliability-Engineer_2018630-1",
+      "posted_at": "Posted 21 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "reliability",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2026256": {
+      "title": "Software Engineer",
+      "location": "Galway, Ireland",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Galway-Ireland/Software-Engineer_2026256",
+      "posted_at": "Posted 21 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2012214": {
+      "title": "ASIC Design Verification Technical Leader",
+      "location": "2 Locations",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Carlsbad-California-US/ASIC-Design-Verification-Technical-Leader_2012214",
+      "posted_at": "Posted 22 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2021705": {
+      "title": "Software Engineering Technical Leader",
+      "location": "Boxborough, Massachusetts, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Boxborough-Massachusetts-US/Software-Engineering-Technical-Leader_2021705",
+      "posted_at": "Posted 22 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2025414": {
+      "title": "Hardware Engineer",
+      "location": "RTP, North Carolina, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/RTP-North-Carolina-US/Hardware-Engineer_2025414",
+      "posted_at": "Posted 20 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "embedded_or_hardware"
+      ],
+      "category": "technical_review",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-19T11:56:49-05:00"
+    },
+    "2008236": {
+      "title": "ASIC Design Verification Engineer  - 5 years to 13Years - Bangalore",
+      "location": "Bangalore, India",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Bangalore-India/ASIC-Verification-Engineer--Emulation----5-years-to-13Years---Bangalore_2008236",
+      "posted_at": "Posted 21 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "technical_review",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-19T11:56:49-05:00"
+    },
+    "2004135": {
+      "title": "Principal Software Engineer",
+      "location": "Milpitas, California, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Milpitas-California-US/Principal-Software-Engineer_2004135",
+      "posted_at": "Posted 26 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior"
+      ],
+      "category": "software",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-19T11:56:49-05:00"
+    },
+    "2019470": {
+      "title": "Software Technical Leader",
+      "location": "14 Locations",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Vancouver-British-Columbia-Canada/Software-Technical-Leader_2019470",
+      "posted_at": "Posted 26 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-19T11:56:49-05:00"
+    },
+    "2021697": {
+      "title": "Hardware Engineer",
+      "location": "San Jose, California, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/Hardware-Engineer_2021697-1",
+      "posted_at": "Posted 26 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "embedded_or_hardware"
+      ],
+      "category": "technical_review",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-19T11:56:49-05:00"
+    },
+    "2018229": {
+      "title": "Principal Engineering, Hardware Project & Program Management",
+      "location": "San Jose, California, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/Principal-Engineering-Project---Program-Management_2018229",
+      "posted_at": "Posted 28 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "embedded_or_hardware",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-19T11:56:49-05:00"
+    },
+    "2022010": {
+      "title": "Lead AI Researcher (Hybrid)",
+      "location": "2 Locations",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Milpitas-California-US/Lead-AI-Researcher--Hybrid-_2022010",
+      "posted_at": "Posted 30+ Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-19T11:56:49-05:00"
+    },
+    "2028011": {
+      "title": "Senior ASIC RTL Engineer",
+      "location": "San Jose, California, US; Austin, Texas, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/Senior-ASIC-RTL-Engineer_2028011",
+      "posted_at": "2026-10-21",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2023296": {
+      "title": "Senior Software Engineer (Identity Engineering - SSO)",
+      "location": "Ann Arbor, Michigan, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Ann-Arbor-Michigan-US/Senior-Software-Engineer--Identity-Engineering---SSO-_2023296",
+      "posted_at": "2026-10-14",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2027581": {
+      "title": "ASIC Design Verification Engineer",
+      "location": "San Jose, California, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/ASIC-Design-Verification-Engineer_2027581",
+      "posted_at": "2026-10-14",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2019369": {
+      "title": "2019369 Customer Delivery Consulting Engineer - Security",
+      "location": "Herndon, Virginia, US; Fulton, Maryland, US; Washington, District of Columbia, US; Charleston, West Virginia, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Herndon-Virginia-US/XMLNAME-2019369-Customer-Delivery-Consulting-Engineer---Security_2019369",
+      "posted_at": "2026-10-13",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2025096": {
+      "title": "ASIC Physical Design Engineer",
+      "location": "Armenia",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Armenia/ASIC-Physical-Design-Engineer_2025096",
+      "posted_at": "2026-10-13",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2025798": {
+      "title": "Senior AI Software Engineer",
+      "location": "Krakow, Poland; Warsaw, Poland",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Krakow-Poland/AI-Software-Engineer_2025798",
+      "posted_at": "2026-10-21",
+      "stage": "detail",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2025795": {
+      "title": "Senior Data Engineer",
+      "location": "Krakow, Poland; Warsaw, Poland",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Krakow-Poland/Senior-Data-Engineer_2025795-1",
+      "posted_at": "2026-10-13",
+      "stage": "detail",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "data",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2025797": {
+      "title": "Software Engineer",
+      "location": "Krakow, Poland; Warsaw, Poland",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Krakow-Poland/Software-Engineer_2025797",
+      "posted_at": "2026-10-13",
+      "stage": "detail",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2025792": {
+      "title": "Data Engineer",
+      "location": "Krakow, Poland; Warsaw, Poland",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Krakow-Poland/Data-Engineer_2025792",
+      "posted_at": "2026-10-13",
+      "stage": "detail",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "data",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2010971": {
+      "title": "ASIC Design Verification Engineer",
+      "location": "San Jose, California, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/ASIC-Design-Verification-Engineer_2010971-1",
+      "posted_at": "2026-10-12",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2021423": {
+      "title": "Distinguished Machine Learning Engineer, AISWP  (Hybrid)",
+      "location": "San Jose, California, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/Distinguished-Machine-Learning-Engineer--AISWP---Hybrid-_2021423",
+      "posted_at": "2026-10-05",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "ai_ml",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2026849": {
+      "title": "Memory Layout Design Engineer",
+      "location": "Armenia",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Armenia/Memory-Layout-Design-Engineer_2026849",
+      "posted_at": "2026-10-05",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2008454": {
+      "title": "Photonic Test Engineer",
+      "location": "Carlsbad, California, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Carlsbad-California-US/Photonic-Test-Engineer_2008454",
+      "posted_at": "2026-10-02",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2002242": {
+      "title": "Photonic Packaging Engineer",
+      "location": "Carlsbad, California, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Carlsbad-California-US/Photonic-Packaging-Engineer_2002242",
+      "posted_at": "2026-10-02",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2022971": {
+      "title": "Sr Software Engineer--Routing Platform & Infrastructure",
+      "location": "Milpitas, California, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Milpitas-California-US/Sr-Software-Engineer--Routing-Platform---Infrastructure_2022971-1",
+      "posted_at": "2026-10-02",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2026372": {
+      "title": "Senior Hardware Board Design Engineer - High-Speed",
+      "location": "Milpitas, California, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Milpitas-California-US/Hardware-Engineer_2026372",
+      "posted_at": "Posted 2 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "embedded_or_hardware"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2024203": {
+      "title": "Structural Test Engineer",
+      "location": "Hanoi, Vietnam; Penang, Malaysia",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Hanoi-Vietnam/Structural-Test-Engineer_2024203-1",
+      "posted_at": "2026-09-23",
+      "stage": "detail",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "technical_review",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-19T11:56:49-05:00"
+    },
+    "2024205": {
+      "title": "Structural Test Engineer",
+      "location": "Hanoi, Vietnam; Penang, Malaysia",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Hanoi-Vietnam/Structural-Test-Engineer_2024205",
+      "posted_at": "2026-09-23",
+      "stage": "detail",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "technical_review",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-19T11:56:49-05:00"
+    },
+    "2024999": {
+      "title": "AI Application Security Engineer",
+      "location": "RTP, North Carolina, US; San Jose, California, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/RTP-North-Carolina-US/AI-Application-Security-Engineer_2024999",
+      "posted_at": "2026-09-18",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "security",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-19T11:56:49-05:00"
+    },
+    "2011083": {
+      "title": "IC Package Design Engineer",
+      "location": "San Jose, California, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/IC-Package-Design-Engineer_2011083",
+      "posted_at": "2026-09-18",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-19T11:56:49-05:00",
+      "last_seen_at": "2026-10-19T11:56:49-05:00"
+    },
+    "2027558": {
+      "title": "Hardware Engineer",
+      "location": "2 Locations",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Hsinchu-Taiwan/Hardware-Engineer_2027558",
+      "posted_at": "Posted 2 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "embedded_or_hardware"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-20T08:40:16-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2028145": {
+      "title": "ASIC DFT Engineering Technical Leader",
+      "location": "3 Locations",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/ASIC-DFT-Engineering-Technical-Leader_2028145",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "specialized_low_level",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-22T08:25:53-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2028669": {
+      "title": "Software Engineer - Mobile",
+      "location": "Bratislava, Slovakia",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Bratislava-Slovakia/Software-Engineer---Mobile_2028669",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-22T08:25:53-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2027560": {
+      "title": "Hardware Engineer",
+      "location": "2 Locations",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Hsinchu-Taiwan/Hardware-Engineer_2027560",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "embedded_or_hardware"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-22T08:25:53-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2028609": {
+      "title": "Lead Product Designer - AI and Platform Experience",
+      "location": "51 Locations",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/Lead-Product-Designer---AI-and-Platform-Experience_2028609",
+      "posted_at": "Posted Yesterday",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-22T08:25:53-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2028928": {
+      "title": "Software Engineer - App Development",
+      "location": "Galway, Ireland",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Galway-Ireland/Software-Engineer---App-Development_2028928",
+      "posted_at": "Posted Yesterday",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-22T08:25:53-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2028671": {
+      "title": "Software Engineer - Webex Web Clients",
+      "location": "Bratislava, Slovakia",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Bratislava-Slovakia/Software-Engineer---Webex-Web-Clients_2028671",
+      "posted_at": "Posted Yesterday",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-22T08:25:53-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2028387": {
+      "title": "Chief of Staff",
+      "location": "San Jose, California, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/Chief-of-Staff_2028387",
+      "posted_at": "Posted 2 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-22T08:25:53-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2021192": {
+      "title": "Engineering Program Manager",
+      "location": "2 Locations",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/Engineering-Program-Manager_2021192-1",
+      "posted_at": "Posted 2 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-22T08:25:53-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2028929": {
+      "title": "Senior Software Engineer - App Development",
+      "location": "Galway, Ireland",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Galway-Ireland/Senior-Software-Engineer---App-Development_2028929",
+      "posted_at": "Posted 2 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-22T08:25:53-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2028922": {
+      "title": "Senior Software Engineer - Application Development",
+      "location": "Galway, Ireland",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Galway-Ireland/Senior-Software-Engineer---Application-Development_2028922-1",
+      "posted_at": "Posted 2 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-22T08:25:53-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2022755": {
+      "title": "Engineering Product Manager",
+      "location": "13 Locations",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Houston-Texas-US/Engineering-Product-Manager_2022755-1",
+      "posted_at": "Posted 2 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-22T08:25:53-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2025551": {
+      "title": "Engineering Product Manager",
+      "location": "2 Locations",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Milpitas-California-US/Engineering-Product-Manager_2025551",
+      "posted_at": "Posted 2 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-22T08:25:53-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2028913": {
+      "title": "Senior QA Engineer",
+      "location": "New York, New York, US; San Jose, California, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/New-York-New-York-US/Senior-QA-Engineer_2028913-1",
+      "posted_at": "2026-10-21",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-22T08:25:53-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2027583": {
+      "title": "Senior ASIC Design Verification Engineer",
+      "location": "San Jose, California, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/Senior-ASIC-Design-Verification-Engineer_2027583",
+      "posted_at": "2026-10-21",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-22T08:25:53-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2023202": {
+      "title": "Leader, Software Engineering",
+      "location": "Milpitas, California, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Milpitas-California-US/Leader--Software-Engineering_2023202",
+      "posted_at": "2026-10-20",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-22T08:25:53-05:00",
+      "last_seen_at": "2026-10-22T08:25:53-05:00"
+    },
+    "2019343": {
+      "title": "Hardware Project Manager",
+      "location": "2 Locations",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/Hardware-Project-Manager_2019343",
+      "posted_at": "Posted Yesterday",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "embedded_or_hardware",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-24T12:26:11-05:00",
+      "last_seen_at": "2026-10-24T12:26:11-05:00"
+    },
+    "2018837": {
+      "title": "FPGA Hardware Engineer",
+      "location": "2 Locations",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Milpitas-California-US/Hardware-Engineer---FPGA_2018837",
+      "posted_at": "Posted Yesterday",
+      "stage": "prefilter",
+      "blockers": [
+        "embedded_or_hardware"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-24T12:26:11-05:00",
+      "last_seen_at": "2026-10-24T12:26:11-05:00"
+    },
+    "2029584": {
+      "title": "Sr Product Manager (Remote)",
+      "location": "San Jose, California, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/Sr-Product-Manager--Remote-_2029584-1",
+      "posted_at": "Posted Yesterday",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-24T12:26:11-05:00",
+      "last_seen_at": "2026-10-24T12:26:11-05:00"
+    },
+    "2028834": {
+      "title": "Audio Signal Processing Engineer",
+      "location": "Lysaker, Norway",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Lysaker-Norway/Audio-Signal-Processing-Engineer_2028834",
+      "posted_at": "Posted Yesterday",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-24T12:26:11-05:00",
+      "last_seen_at": "2026-10-24T12:26:11-05:00"
+    },
+    "2027715": {
+      "title": "ASIC DFT STA Engineer",
+      "location": "San Jose, California, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/ASIC-DFT-STA-Engineer_2027715",
+      "posted_at": "Posted 2 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "specialized_low_level"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-24T12:26:11-05:00",
+      "last_seen_at": "2026-10-24T12:26:11-05:00"
+    },
+    "2012260": {
+      "title": "IC Package Design Technical Team Leader",
+      "location": "San Jose, California, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/IC-Package-Design-Technical-Leader_2012260-1",
+      "posted_at": "Posted 2 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-24T12:26:11-05:00",
+      "last_seen_at": "2026-10-24T12:26:11-05:00"
+    },
+    "2027875": {
+      "title": "Software Engineer",
+      "location": "San Francisco, California, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Francisco-California-US/Software-Engineer_2027875",
+      "posted_at": "2026-10-23",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-24T12:26:11-05:00",
+      "last_seen_at": "2026-10-24T12:26:11-05:00"
+    },
+    "2028364": {
+      "title": "Software Test Automation Engineer \u2013 Embedded Linux & Networking",
+      "location": "Lysaker, Norway",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Lysaker-Norway/Software-Test-Automation-Engineer---Embedded-Linux---Networking_2028364",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "embedded_or_hardware"
+      ],
+      "category": "automation",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-26T12:34:59-05:00",
+      "last_seen_at": "2026-10-26T12:34:59-05:00"
+    },
+    "2028921": {
+      "title": "Software Engineer - Application Development",
+      "location": "Galway, Ireland",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Galway-Ireland/Software-Engineer---Application-Development_2028921",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-26T12:34:59-05:00",
+      "last_seen_at": "2026-10-26T12:34:59-05:00"
+    },
+    "2028919": {
+      "title": "Software Engineer - Application Development",
+      "location": "Galway, Ireland",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Galway-Ireland/Software-Engineer---Application-Development_2028919",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-26T12:34:59-05:00",
+      "last_seen_at": "2026-10-26T12:34:59-05:00"
+    },
+    "2028918": {
+      "title": "Software Engineer - Application Engineer",
+      "location": "Galway, Ireland",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Galway-Ireland/Software-Engineer---Application-Engineer_2028918",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "application",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-26T12:34:59-05:00",
+      "last_seen_at": "2026-10-26T12:34:59-05:00"
+    },
+    "2027553": {
+      "title": "Hardware Engineering Technical Leader",
+      "location": "2 Locations",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Hsinchu-Taiwan/Hardware-Engineering-Technical-Leader_2027553",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "embedded_or_hardware",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-26T12:34:59-05:00",
+      "last_seen_at": "2026-10-26T12:34:59-05:00"
+    },
+    "2029655": {
+      "title": "Thermal Engineering Technical Leader",
+      "location": "2 Locations",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Taipei-Taiwan/Thermal-Engineering-Technical-Leader_2029655",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-27T08:30:32-05:00",
+      "last_seen_at": "2026-10-27T08:30:32-05:00"
+    },
+    "2029193": {
+      "title": "Lead Backend Engineer,  Studio (Hybrid)",
+      "location": "Milpitas, California, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Milpitas-California-US/Lead-Backend-Engineer---Studio--Hybrid-_2029193-1",
+      "posted_at": "2026-10-26",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "backend",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-27T08:30:32-05:00",
+      "last_seen_at": "2026-10-27T08:30:32-05:00"
+    },
+    "2018241": {
+      "title": "ASIC DFT Engineer",
+      "location": "2 Locations",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Austin-Texas-US/ASIC-DFT-Engineer_2018241",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "specialized_low_level"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-28T09:12:31-05:00",
+      "last_seen_at": "2026-10-28T09:12:31-05:00"
+    },
+    "2023452": {
+      "title": "Senior Hardware Engineer (Datacenter Switch)",
+      "location": "2 Locations",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Hsinchu-Taiwan/Senior-Hardware-Engineer--Datacenter-Switch-_2023452",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "embedded_or_hardware"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-28T09:12:31-05:00",
+      "last_seen_at": "2026-10-28T09:12:31-05:00"
+    },
+    "2029288": {
+      "title": "Backend Software Engineer",
+      "location": "Lysaker, Norway",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Lysaker-Norway/Backend-Software-Engineer_2029288",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "backend",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-28T09:12:31-05:00",
+      "last_seen_at": "2026-10-28T09:12:31-05:00"
+    },
+    "2026355": {
+      "title": "Hardware Design Engineer System Lead / SI/ System Architecture",
+      "location": "Milpitas, California, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Milpitas-California-US/ASIC-Board-Design-Engineer---System-Lead--PCB-Layout--Signal-Integrity--and-System-Architecture--Onsite-_2026355",
+      "posted_at": "Posted Yesterday",
+      "stage": "prefilter",
+      "blockers": [
+        "embedded_or_hardware"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-28T09:12:31-05:00",
+      "last_seen_at": "2026-10-28T09:12:31-05:00"
+    },
+    "2014526": {
+      "title": "Hardware Engineering Technical Leader",
+      "location": "2 Locations",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/Hardware-Engineering-Technical-Leader_2014526-1",
+      "posted_at": "Posted Yesterday",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "embedded_or_hardware",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-28T09:12:31-05:00",
+      "last_seen_at": "2026-10-28T09:12:31-05:00"
+    },
+    "2029243": {
+      "title": "Senior ASIC Layout Engineer",
+      "location": "Armenia",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Armenia/Senior-ASIC-Layout-Engineer_2029243",
+      "posted_at": "2026-10-27",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-28T09:12:31-05:00",
+      "last_seen_at": "2026-10-28T09:12:31-05:00"
+    },
+    "2030087": {
+      "title": "Software Engineer",
+      "location": "Galway, Ireland",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Galway-Ireland/Software-Engineer_2030087-1",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-29T09:42:47-05:00",
+      "last_seen_at": "2026-10-29T09:42:47-05:00"
+    },
+    "2028164": {
+      "title": "Engineering Technician",
+      "location": "Milpitas, California, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Milpitas-California-US/Engineering-Technician_2028164",
+      "posted_at": "Posted Yesterday",
+      "stage": "prefilter",
+      "blockers": [
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-29T09:42:47-05:00",
+      "last_seen_at": "2026-10-29T09:42:47-05:00"
+    },
+    "2028596": {
+      "title": "Principal Hardware Engineer",
+      "location": "San Jose, California, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/Principal-Hardware-Engineer_2028596",
+      "posted_at": "Posted Yesterday",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "embedded_or_hardware"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-29T09:42:47-05:00",
+      "last_seen_at": "2026-10-29T09:42:47-05:00"
+    },
+    "2030022": {
+      "title": "Engineering Manager (Remote)",
+      "location": "4 Locations",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/Engineering-Manager--Remote-_2030022",
+      "posted_at": "Posted Yesterday",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-29T09:42:47-05:00",
+      "last_seen_at": "2026-10-29T09:42:47-05:00"
+    },
+    "2025149": {
+      "title": "Sr Director, Product Marketing",
+      "location": "5 Locations",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/Sr-Director--Product-Marketing_2025149-1",
+      "posted_at": "Posted Yesterday",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-29T09:42:47-05:00",
+      "last_seen_at": "2026-10-29T09:42:47-05:00"
+    },
+    "2029917": {
+      "title": "Desktop Applications Engineer, Duo Desktop",
+      "location": "Syracuse, New York, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Syracuse-New-York-US/Desktop-Applications-Engineer--Duo-Desktop_2029917",
+      "posted_at": "2026-10-28",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-29T09:42:47-05:00",
+      "last_seen_at": "2026-10-29T09:42:47-05:00"
+    },
+    "2028757": {
+      "title": "Senior Full-Stack Software Engineer",
+      "location": "San Jose, California, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/Senior-Full-Stack-Software-Engineer_2028757",
+      "posted_at": "2026-10-28",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "full_stack",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-29T09:42:47-05:00",
+      "last_seen_at": "2026-10-29T09:42:47-05:00"
+    },
+    "2024550": {
+      "title": "CX Machine Learning Engineer",
+      "location": "San Jose, California, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/CX-Machine-Learning-Engineer_2024550",
+      "posted_at": "2026-10-28",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "ai_ml",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-29T09:42:47-05:00",
+      "last_seen_at": "2026-10-29T09:42:47-05:00"
+    },
+    "2028719": {
+      "title": "Software Engineer",
+      "location": "Milpitas, California, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Milpitas-California-US/Software-Engineer_2028719",
+      "posted_at": "2026-10-28",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-29T09:42:47-05:00",
+      "last_seen_at": "2026-10-29T09:42:47-05:00"
+    },
+    "2030081": {
+      "title": "Data Engineering Technical Leader - CX AI",
+      "location": "San Jose, California, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/Data-Engineering-Technical-Leader---CX-AI_2030081",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-30T11:05:43-05:00",
+      "last_seen_at": "2026-10-30T11:05:43-05:00"
+    },
+    "2029276": {
+      "title": "Senior Circuit Design Engineer",
+      "location": "Armenia",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Armenia/Senior-Circuit-Design-Engineer_2029276",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "specialized_low_level"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-30T11:05:43-05:00",
+      "last_seen_at": "2026-10-30T11:05:43-05:00"
+    },
+    "2029455": {
+      "title": "Software Engineer",
+      "location": "Stockholm, Sweden",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Stockholm-Sweden/Software-Engineer_2029455",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-30T11:05:43-05:00",
+      "last_seen_at": "2026-10-30T11:05:43-05:00"
+    },
+    "2029023": {
+      "title": "Silicon Validation Engineer",
+      "location": "San Jose, California, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/Silicon-Validation-Engineer_2029023",
+      "posted_at": "Posted Yesterday",
+      "stage": "prefilter",
+      "blockers": [
+        "embedded_or_hardware"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-30T11:05:43-05:00",
+      "last_seen_at": "2026-10-30T11:05:43-05:00"
+    },
+    "2029245": {
+      "title": "ASIC Layout Engineer",
+      "location": "Armenia",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Armenia/ASIC-Layout-Engineer_2029245",
+      "posted_at": "2026-10-30",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-30T11:05:43-05:00",
+      "last_seen_at": "2026-10-30T11:05:43-05:00"
+    },
+    "2020831": {
+      "title": "Senior ASIC Engineer - Post Silicon Validation",
+      "location": "San Jose, California, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/Senior-ASIC-Engineer---Post-Silicon-Validation_2020831-1",
+      "posted_at": "Posted Yesterday",
+      "stage": "prefilter",
+      "blockers": [
+        "embedded_or_hardware"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-31T11:57:39-05:00",
+      "last_seen_at": "2026-10-31T11:57:39-05:00"
+    },
+    "2004012": {
+      "title": "Embedded Software Technical Leader",
+      "location": "Milpitas, California, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Milpitas-California-US/Software-Engineering-Technical-Leader_2004012",
+      "posted_at": "Posted Yesterday",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "embedded_or_hardware",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-31T11:57:39-05:00",
+      "last_seen_at": "2026-10-31T11:57:39-05:00"
+    }
+  },
+  "source_updated_at_by_id": {}
 }

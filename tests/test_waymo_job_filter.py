@@ -23,10 +23,10 @@ def test_known_listing_is_skipped_before_detail_fetch():
     assert [job["url"] for job in select_new_listing_urls(jobs, state)] == [jobs[1]["url"]]
 
 
-def test_waymo_listing_prefilter_rejects_intern_and_staff_roles():
+def test_waymo_listing_prefilter_keeps_intern_and_rejects_staff_roles():
     intern = {"title": "2027 Software Engineer Intern", "metadata": ["United States", "Intern"]}
     staff = {"title": "Staff Software Engineer", "metadata": ["California", "Full-Time"]}
-    assert prefilter_waymo_listing(intern).decision == "filtered_out"
+    assert prefilter_waymo_listing(intern).decision == "needs_detail"
     assert prefilter_waymo_listing(staff).decision == "filtered_out"
 
 

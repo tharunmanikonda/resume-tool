@@ -103,3 +103,8 @@ def test_all_configured_companies_are_supported(tmp_path, monkeypatch):
         assert result["success"] is True
         assert result["candidates"][0]["external_job_id"] == company
 
+
+def test_crunchyroll_is_registered():
+    assert "crunchyroll" in company_job_monitor.COMPANIES
+    assert company_job_monitor.default_state_path("crunchyroll").name == "crunchyroll-job-monitor-state.json"
+

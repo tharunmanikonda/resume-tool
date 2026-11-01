@@ -39,6 +39,13 @@ def test_broader_software_titles_are_supported():
         assert prefilter_company_job(job(title=title)).decision == "needs_detail"
 
 
+def test_software_internships_are_supported():
+    role = job(title="Software Engineer Intern", job_type="Internship")
+    assert prefilter_company_job(role).decision == "needs_detail"
+    engineering_role = job(title="Software Engineering Intern", job_type="Internship")
+    assert prefilter_company_job(engineering_role).decision == "needs_detail"
+
+
 def test_systems_support_developer_reaches_description_review():
     result = classify_company_job(job(
         title="Systems Support Developer",

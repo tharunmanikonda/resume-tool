@@ -17,6 +17,7 @@
     "28607",
     "28772",
     "29068",
+    "29572",
     "29591",
     "29912",
     "29961",
@@ -41,6 +42,7 @@
     "31336",
     "31384",
     "31447",
+    "31465",
     "31509",
     "31559",
     "31566",
@@ -65,6 +67,7 @@
     "32183",
     "32184",
     "32186",
+    "32305",
     "32314",
     "32316",
     "32319",
@@ -152,12 +155,31 @@
     "34109",
     "34111",
     "34173",
+    "34249",
+    "34280",
     "34291",
     "34389",
     "34394",
     "34395",
     "34396",
-    "34699"
+    "34498",
+    "34528",
+    "34561",
+    "34565",
+    "34567",
+    "34569",
+    "34570",
+    "34571",
+    "34573",
+    "34699",
+    "34937",
+    "34945",
+    "34947",
+    "34948",
+    "34950",
+    "34953",
+    "34995",
+    "35126"
   ],
   "candidate_catalog": {
     "30795": {
@@ -204,10 +226,19 @@
       "first_seen_at": "2026-10-18T14:13:37-05:00",
       "priority": "low",
       "category": "technical_review"
+    },
+    "34249": {
+      "title": "Software Engineer",
+      "location": "Palo Alto, California",
+      "url": "https://careers.rivian.com/careers-home/jobs/34249",
+      "posted_at": "2026-10-19T18:17:00+0000",
+      "first_seen_at": "2026-10-20T09:15:09-05:00",
+      "priority": "medium",
+      "category": "software"
     }
   },
-  "last_successful_scan_at": "2026-10-18T14:13:37-05:00",
-  "filter_version": 2,
+  "last_successful_scan_at": "2026-10-31T11:55:39-05:00",
+  "filter_version": 3,
   "rejected_catalog": {
     "34699": {
       "title": "Craftsmanship Auditor",
@@ -219,9 +250,9 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:13:37-05:00",
-      "last_seen_at": "2026-10-18T14:13:37-05:00"
+      "last_seen_at": "2026-10-22T09:16:41-05:00"
     },
     "34109": {
       "title": "Sr. Manager, Enterprise Systems",
@@ -234,9 +265,9 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:13:37-05:00",
-      "last_seen_at": "2026-10-18T14:13:37-05:00"
+      "last_seen_at": "2026-10-22T09:16:41-05:00"
     },
     "34394": {
       "title": "Senior Machine Learning, AI Infrastructure, Autonomy",
@@ -249,9 +280,9 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:13:37-05:00",
-      "last_seen_at": "2026-10-18T14:13:37-05:00"
+      "last_seen_at": "2026-10-22T09:16:41-05:00"
     },
     "34396": {
       "title": "Tech Lead - Manager - ML training and infrastructure, Autonomy",
@@ -265,9 +296,9 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:13:37-05:00",
-      "last_seen_at": "2026-10-18T14:13:37-05:00"
+      "last_seen_at": "2026-10-22T09:16:41-05:00"
     },
     "34395": {
       "title": "Staff Machine Learning, AI Infrastructure, Autonomy",
@@ -281,9 +312,9 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:13:37-05:00",
-      "last_seen_at": "2026-10-18T14:13:37-05:00"
+      "last_seen_at": "2026-10-22T09:16:41-05:00"
     },
     "34389": {
       "title": "Triage Engineer, Autonomy (1 year contract, maternity leave cover)",
@@ -295,9 +326,9 @@
         "non_us_location"
       ],
       "category": "technical_review",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:13:37-05:00",
-      "last_seen_at": "2026-10-18T14:13:37-05:00"
+      "last_seen_at": "2026-10-22T09:16:41-05:00"
     },
     "34008": {
       "title": "Software Engineer II",
@@ -309,9 +340,9 @@
         "non_us_location"
       ],
       "category": "software",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:13:37-05:00",
-      "last_seen_at": "2026-10-18T14:13:37-05:00"
+      "last_seen_at": "2026-10-22T09:16:41-05:00"
     },
     "34173": {
       "title": "Staff Software AI Engineer",
@@ -323,9 +354,9 @@
         "level_too_senior"
       ],
       "category": "ai_ml",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:13:37-05:00",
-      "last_seen_at": "2026-10-18T14:13:37-05:00"
+      "last_seen_at": "2026-10-22T09:16:41-05:00"
     },
     "33679": {
       "title": "Prototype Fabricator, Special Projects",
@@ -337,9 +368,9 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:13:37-05:00",
-      "last_seen_at": "2026-10-18T14:13:37-05:00"
+      "last_seen_at": "2026-10-22T09:16:41-05:00"
     },
     "30345": {
       "title": "Sr. Software Analyst, Annotation Strategy, Autonomy",
@@ -351,9 +382,9 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:13:37-05:00",
-      "last_seen_at": "2026-10-18T14:13:37-05:00"
+      "last_seen_at": "2026-10-22T09:16:41-05:00"
     },
     "34111": {
       "title": "Sr. Product Manager, Financial Systems",
@@ -366,9 +397,9 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:13:37-05:00",
-      "last_seen_at": "2026-10-18T14:13:37-05:00"
+      "last_seen_at": "2026-10-22T09:16:41-05:00"
     },
     "34095": {
       "title": "Staff Technical Program Manager, Systems Integration & Validation",
@@ -382,9 +413,9 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:13:37-05:00",
-      "last_seen_at": "2026-10-18T14:13:37-05:00"
+      "last_seen_at": "2026-10-22T09:16:41-05:00"
     },
     "34099": {
       "title": "Vehicle Operator Specialist (1st Shift), Autonomy Systems Validation",
@@ -396,9 +427,9 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:13:37-05:00",
-      "last_seen_at": "2026-10-18T14:13:37-05:00"
+      "last_seen_at": "2026-10-22T09:16:41-05:00"
     },
     "34101": {
       "title": "Vehicle Operator Specialist (2nd Shift), Autonomy Systems Validation",
@@ -410,9 +441,9 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:13:37-05:00",
-      "last_seen_at": "2026-10-18T14:13:37-05:00"
+      "last_seen_at": "2026-10-22T09:16:41-05:00"
     },
     "34098": {
       "title": "Vehicle Operator Specialist (2nd Shift), Autonomy Systems Validation",
@@ -453,9 +484,9 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:13:37-05:00",
-      "last_seen_at": "2026-10-18T14:13:37-05:00"
+      "last_seen_at": "2026-10-22T09:16:41-05:00"
     },
     "33125": {
       "title": "Materials Testing Technician, Raw Materials",
@@ -468,9 +499,9 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:13:37-05:00",
-      "last_seen_at": "2026-10-18T14:13:37-05:00"
+      "last_seen_at": "2026-10-22T09:16:41-05:00"
     },
     "34004": {
       "title": "Sr. Product Manager, Enterprise Productivity & AI",
@@ -483,9 +514,9 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:13:37-05:00",
-      "last_seen_at": "2026-10-18T14:13:37-05:00"
+      "last_seen_at": "2026-10-22T09:16:41-05:00"
     },
     "33950": {
       "title": "Staff Network Engineer",
@@ -497,9 +528,9 @@
         "level_too_senior"
       ],
       "category": "technical_review",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:13:37-05:00",
-      "last_seen_at": "2026-10-18T14:13:37-05:00"
+      "last_seen_at": "2026-10-22T09:16:41-05:00"
     },
     "31384": {
       "title": "Staff Autonomy Product Manager",
@@ -513,9 +544,9 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:13:37-05:00",
-      "last_seen_at": "2026-10-18T14:13:37-05:00"
+      "last_seen_at": "2026-10-22T09:16:41-05:00"
     },
     "33853": {
       "title": "OTC Analyst",
@@ -527,9 +558,9 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:13:37-05:00",
-      "last_seen_at": "2026-10-18T14:13:37-05:00"
+      "last_seen_at": "2026-10-22T09:16:41-05:00"
     },
     "33675": {
       "title": "Sr. Product Manager",
@@ -543,9 +574,9 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:13:37-05:00",
-      "last_seen_at": "2026-10-18T14:13:37-05:00"
+      "last_seen_at": "2026-10-22T09:16:41-05:00"
     },
     "33871": {
       "title": "Supplier Warranty Cost Lead",
@@ -557,9 +588,9 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:13:37-05:00",
-      "last_seen_at": "2026-10-18T14:13:37-05:00"
+      "last_seen_at": "2026-10-22T09:16:41-05:00"
     },
     "34291": {
       "title": "Sr. Electrical Engineer, Special Projects",
@@ -571,9 +602,9 @@
         "insufficient_profile_overlap"
       ],
       "category": "technical_review",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:13:37-05:00",
-      "last_seen_at": "2026-10-18T14:13:37-05:00"
+      "last_seen_at": "2026-10-22T09:16:41-05:00"
     },
     "31763": {
       "title": "Senior Materials Engineer - Metals",
@@ -585,9 +616,9 @@
         "minimum_experience_at_least_5_years"
       ],
       "category": "technical_review",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:13:37-05:00",
-      "last_seen_at": "2026-10-18T14:13:37-05:00"
+      "last_seen_at": "2026-10-22T09:16:41-05:00"
     },
     "33203": {
       "title": "Sr. People Analytics Engineer",
@@ -599,9 +630,9 @@
         "minimum_experience_at_least_5_years"
       ],
       "category": "technical_review",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:13:37-05:00",
-      "last_seen_at": "2026-10-18T14:13:37-05:00"
+      "last_seen_at": "2026-10-22T09:16:41-05:00"
     },
     "33852": {
       "title": "Sr. Software Engineer, Engineering Applications",
@@ -613,9 +644,308 @@
         "minimum_experience_at_least_5_years"
       ],
       "category": "software",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:13:37-05:00",
-      "last_seen_at": "2026-10-18T14:13:37-05:00"
+      "last_seen_at": "2026-10-22T09:16:41-05:00"
+    },
+    "34567": {
+      "title": "Vehicle Operator II, Autonomy Systems Validation (1st Shift)",
+      "location": "Miami, Florida",
+      "url": "https://careers.rivian.com/careers-home/jobs/34567",
+      "posted_at": "2026-10-19T16:42:00+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-20T09:15:09-05:00",
+      "last_seen_at": "2026-10-22T09:16:41-05:00"
+    },
+    "34569": {
+      "title": "Vehicle Operator II, Autonomy Systems Validation (2nd Shift)",
+      "location": "Miami, Florida",
+      "url": "https://careers.rivian.com/careers-home/jobs/34569",
+      "posted_at": "2026-10-19T16:31:00+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-20T09:15:09-05:00",
+      "last_seen_at": "2026-10-22T09:16:41-05:00"
+    },
+    "34571": {
+      "title": "Vehicle Operator II, Autonomy Systems Validation (1st Shift)",
+      "location": "Chicago, Illinois",
+      "url": "https://careers.rivian.com/careers-home/jobs/34571",
+      "posted_at": "2026-10-19T16:30:00+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-20T09:15:09-05:00",
+      "last_seen_at": "2026-10-22T09:16:41-05:00"
+    },
+    "34570": {
+      "title": "Vehicle Operator II, Autonomy Systems Validation (2nd Shift)",
+      "location": "Chicago, Illinois",
+      "url": "https://careers.rivian.com/careers-home/jobs/34570",
+      "posted_at": "2026-10-19T16:29:00+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-20T09:15:09-05:00",
+      "last_seen_at": "2026-10-22T09:16:41-05:00"
+    },
+    "34573": {
+      "title": "Sr. Autonomy Systems Validation Engineer - TAPG",
+      "location": "Wittmann, Arizona",
+      "url": "https://careers.rivian.com/careers-home/jobs/34573",
+      "posted_at": "2026-10-19T16:08:00+0000",
+      "stage": "detail",
+      "blockers": [
+        "non_software_engineering_role"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-20T09:15:09-05:00",
+      "last_seen_at": "2026-10-22T09:16:41-05:00"
+    },
+    "34528": {
+      "title": "Operations Coordinator, Autonomy Systems Validation (1st Shift)",
+      "location": "North Las Vegas, Nevada",
+      "url": "https://careers.rivian.com/careers-home/jobs/34528",
+      "posted_at": "2026-10-21T17:18:00+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-22T09:16:41-05:00",
+      "last_seen_at": "2026-10-22T09:16:41-05:00"
+    },
+    "34561": {
+      "title": "Vehicle Operator II, Autonomy Systems Validation (1st Shift)",
+      "location": "San Francisco, California",
+      "url": "https://careers.rivian.com/careers-home/jobs/34561",
+      "posted_at": "2026-10-20T22:12:00+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-22T09:16:41-05:00",
+      "last_seen_at": "2026-10-22T09:16:41-05:00"
+    },
+    "34565": {
+      "title": "Vehicle Operator II, Autonomy Systems Validation (2nd Shift)",
+      "location": "San Francisco, California",
+      "url": "https://careers.rivian.com/careers-home/jobs/34565",
+      "posted_at": "2026-10-20T22:12:00+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-22T09:16:41-05:00",
+      "last_seen_at": "2026-10-22T09:16:41-05:00"
+    },
+    "29572": {
+      "title": "Staff Machine Learning Engineer- Large Driving Model (LDM), Motion Planning, Autonomy",
+      "location": "Palo Alto, California; Irvine, California",
+      "url": "https://careers.rivian.com/careers-home/jobs/29572",
+      "posted_at": "2026-10-20T21:24:00+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior"
+      ],
+      "category": "ai_ml",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-22T09:16:41-05:00",
+      "last_seen_at": "2026-10-22T09:16:41-05:00"
+    },
+    "34498": {
+      "title": "AI Data Operation Lead,  Autonomy",
+      "location": "Palo Alto, California",
+      "url": "https://careers.rivian.com/careers-home/jobs/34498",
+      "posted_at": "2026-10-20T18:32:00+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-22T09:16:41-05:00",
+      "last_seen_at": "2026-10-22T09:16:41-05:00"
+    },
+    "34280": {
+      "title": "Sta\ufb00 Machine Learning Engineer, End-to-End Autonomy",
+      "location": "London, United Kingdom",
+      "url": "https://careers.rivian.com/careers-home/jobs/34280",
+      "posted_at": "2026-10-20T15:45:00+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "ai_ml",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-22T09:16:41-05:00",
+      "last_seen_at": "2026-10-22T09:16:41-05:00"
+    },
+    "31465": {
+      "title": "Senior Platform Engineer, Data Platforms",
+      "location": "Belgrade, Serbia",
+      "url": "https://careers.rivian.com/careers-home/jobs/31465",
+      "posted_at": "2026-10-27T13:12:00+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "platform",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-27T09:18:32-05:00",
+      "last_seen_at": "2026-10-27T09:18:32-05:00"
+    },
+    "34953": {
+      "title": "Staff Operations Engineer",
+      "location": "Tustin, California",
+      "url": "https://careers.rivian.com/careers-home/jobs/34953",
+      "posted_at": "2026-10-26T18:18:00+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-27T09:18:32-05:00",
+      "last_seen_at": "2026-10-27T09:18:32-05:00"
+    },
+    "34950": {
+      "title": "Vehicle Engineering Labs, Sr. Engineering Technician III",
+      "location": "Tustin, California",
+      "url": "https://careers.rivian.com/careers-home/jobs/34950",
+      "posted_at": "2026-10-26T18:16:00+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-27T09:18:32-05:00",
+      "last_seen_at": "2026-10-27T09:18:32-05:00"
+    },
+    "34948": {
+      "title": "Vehicle Engineering Labs, Sr. Engineering Technician II",
+      "location": "Tustin, California",
+      "url": "https://careers.rivian.com/careers-home/jobs/34948",
+      "posted_at": "2026-10-26T18:15:00+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-27T09:18:32-05:00",
+      "last_seen_at": "2026-10-27T09:18:32-05:00"
+    },
+    "34945": {
+      "title": "Program Manager",
+      "location": "Tustin, California",
+      "url": "https://careers.rivian.com/careers-home/jobs/34945",
+      "posted_at": "2026-10-27T17:48:00+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-28T09:16:31-05:00",
+      "last_seen_at": "2026-10-28T09:16:31-05:00"
+    },
+    "34937": {
+      "title": "Sr. Software Engineer, Embedded, Autonomy",
+      "location": "Palo Alto, California",
+      "url": "https://careers.rivian.com/careers-home/jobs/34937",
+      "posted_at": "2026-10-27T16:09:00+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "embedded_or_hardware"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-28T09:16:31-05:00",
+      "last_seen_at": "2026-10-28T09:16:31-05:00"
+    },
+    "34947": {
+      "title": "EVOC Triage Engineer",
+      "location": "Tustin, California",
+      "url": "https://careers.rivian.com/careers-home/jobs/34947",
+      "posted_at": "2026-10-27T17:47:00+0000",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-28T09:16:31-05:00",
+      "last_seen_at": "2026-10-28T09:16:31-05:00"
+    },
+    "34995": {
+      "title": "Sr. Staff Systems Engineer Autonomy",
+      "location": "Palo Alto, California",
+      "url": "https://careers.rivian.com/careers-home/jobs/34995",
+      "posted_at": "2026-10-28T17:26:00+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior"
+      ],
+      "category": "systems_engineering",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-29T09:41:15-05:00",
+      "last_seen_at": "2026-10-29T09:41:15-05:00"
+    },
+    "32305": {
+      "title": "Staff SAP ABAP Developer",
+      "location": "Normal, Illinois",
+      "url": "https://careers.rivian.com/careers-home/jobs/32305",
+      "posted_at": "2026-10-28T16:02:00+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "specialized_low_level"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-29T09:41:15-05:00",
+      "last_seen_at": "2026-10-29T09:41:15-05:00"
+    },
+    "35126": {
+      "title": "Sr. Systems Engineer Autonomy",
+      "location": "Palo Alto, California",
+      "url": "https://careers.rivian.com/careers-home/jobs/35126",
+      "posted_at": "2026-10-29T23:11:00+0000",
+      "stage": "detail",
+      "blockers": [
+        "non_software_engineering_role"
+      ],
+      "category": "systems_engineering",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-30T10:50:38-05:00",
+      "last_seen_at": "2026-10-30T10:50:38-05:00"
     }
-  }
+  },
+  "source_updated_at_by_id": {}
 }

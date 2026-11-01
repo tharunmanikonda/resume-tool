@@ -19,7 +19,6 @@ def job(title, *, job_type="Full-Time", location="Palo Alto, California", requir
 
 def test_prefilter_rejects_trial_noise():
     cases = [
-        job("Internship, Software Engineer, Data Platforms", job_type="Intern/Apprentice"),
         job("Technical Sourcer, Software Engineering"),
         job("Software Engineering Manager, Analytics Platform"),
         job("Staff Software Engineer, Infrastructure Engineering"),
@@ -28,6 +27,13 @@ def test_prefilter_rejects_trial_noise():
         job("BIM Software Engineer"),
     ]
     assert all(prefilter_tesla_job(item).decision == "filtered_out" for item in cases)
+
+
+def test_prefilter_keeps_software_engineering_internships():
+    role = job("Internship, Software Engineer, Data Platforms", job_type="Intern/Apprentice")
+    assert prefilter_tesla_job(role).decision == "needs_detail"
+    engineering_role = job("2027 Summer Intern, BS/MS, Software Engineering, Maneuvering Tech", job_type="Intern")
+    assert prefilter_tesla_job(engineering_role).decision == "needs_detail"
 
 
 def test_prefilter_rejects_additional_non_us_locations():

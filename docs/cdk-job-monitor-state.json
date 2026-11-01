@@ -7,6 +7,8 @@
     "JR8736",
     "JR8930",
     "JR8932",
+    "JR9000",
+    "JR9003",
     "JR9025",
     "JR9081",
     "JR9121",
@@ -14,6 +16,7 @@
     "JR9148",
     "JR9158",
     "JR9177",
+    "JR9204",
     "JR9218",
     "JR9220",
     "JR9221",
@@ -25,22 +28,759 @@
     "JR9283",
     "JR9284",
     "JR9290",
+    "JR9298",
     "JR9307",
     "JR9308",
     "JR9310",
     "JR9312",
     "JR9315",
     "JR9316",
+    "JR9324",
+    "JR9327",
+    "JR9330",
+    "JR9331",
     "JR9333",
     "JR9354",
     "JR9361",
+    "JR9363",
     "JR9365",
     "JR9366",
     "JR9371",
+    "JR9373",
+    "JR9375",
+    "JR9376",
+    "JR9377",
     "JR9381",
+    "JR9382",
+    "JR9384",
     "JR9387",
-    "JR9392"
+    "JR9392",
+    "JR9395",
+    "JR9400",
+    "JR9409",
+    "JR9418"
   ],
-  "candidate_catalog": {},
-  "last_successful_scan_at": "2026-10-17T20:19:57-05:00"
+  "candidate_catalog": {
+    "JR8008": {
+      "title": "Security Engineer",
+      "location": "Hyderabad, TG, IND",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Hyderabad-TG-IND/Sr-Security-Engineer---Platform_JR8008-1",
+      "posted_at": "2026-10-07",
+      "first_seen_at": "2026-10-19T12:29:13-05:00",
+      "priority": "high",
+      "category": "security"
+    },
+    "JR9204": {
+      "title": "Associate Software Engineer",
+      "location": "Austin, TX, USA",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Austin-TX-USA/Associate-Software-Engineer_JR9204",
+      "posted_at": "2026-10-22",
+      "first_seen_at": "2026-10-24T12:24:41-05:00",
+      "priority": "high",
+      "category": "software"
+    },
+    "JR9409": {
+      "title": "Security Analyst, DR",
+      "location": "Hyderabad, TG, IND",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Hyderabad-TG-IND/Security-Analyst--DR_JR9409-1",
+      "posted_at": "2026-10-23",
+      "first_seen_at": "2026-10-24T12:24:41-05:00",
+      "priority": "low",
+      "category": "security"
+    }
+  },
+  "last_successful_scan_at": "2026-10-31T12:04:05-05:00",
+  "filter_version": 3,
+  "rejected_catalog": {
+    "JR9003": {
+      "title": "Sr. Technology Project Manager",
+      "location": "2 Locations",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Hyderabad-TG-IND/Sr-Technology-Project-Manager_JR9003-1",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-19T12:29:13-05:00",
+      "last_seen_at": "2026-10-19T12:29:13-05:00"
+    },
+    "JR9000": {
+      "title": "Network support Specialist",
+      "location": "Hyderabad, TG, IND",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Hyderabad-TG-IND/Associate-Network-Engineer_JR9000",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-19T12:29:13-05:00",
+      "last_seen_at": "2026-10-19T12:29:13-05:00"
+    },
+    "JR9298": {
+      "title": "Associate Product Manager",
+      "location": "Hyderabad, TG, IND",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Hyderabad-TG-IND/Associate-Product-Manager_JR9298-1",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-19T12:29:13-05:00",
+      "last_seen_at": "2026-10-19T12:29:13-05:00"
+    },
+    "JR9221": {
+      "title": "OEM Account Manager - Canada",
+      "location": "2 Locations",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Canada---Ontario---Home-Office/OEM-Account-Manager---Canada_JR9221-1",
+      "posted_at": "Posted 13 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T12:29:13-05:00",
+      "last_seen_at": "2026-10-22T09:24:42-05:00"
+    },
+    "JR9316": {
+      "title": "OEM Account Manager",
+      "location": "8 Locations",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Newark-NJ-USA/OEM-Account-Manager_JR9316-1",
+      "posted_at": "Posted 14 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T12:29:13-05:00",
+      "last_seen_at": "2026-10-22T09:24:42-05:00"
+    },
+    "JR9381": {
+      "title": "Director of Sales, OEM",
+      "location": "4 Locations",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/US---California---Home-Office/Director-of-Sales--OEM_JR9381-1",
+      "posted_at": "Posted 21 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T12:29:13-05:00",
+      "last_seen_at": "2026-10-22T09:24:42-05:00"
+    },
+    "JR9139": {
+      "title": "New Account Development Executive - Automotive Software/SaaS",
+      "location": "3 Locations",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Chicago-IL-USA/New-Account-Development-Executive---Automotive-Software-SaaS_JR9139",
+      "posted_at": "Posted 24 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T12:29:13-05:00",
+      "last_seen_at": "2026-10-22T09:24:42-05:00"
+    },
+    "JR9025": {
+      "title": "Territory Development Executive - Software/SaaS",
+      "location": "3 Locations",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Boise-ID-USA/Territory-Development-Executive---Heavy-Truck-Software_JR9025-1",
+      "posted_at": "Posted 25 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-19T12:29:13-05:00",
+      "last_seen_at": "2026-10-19T12:29:13-05:00"
+    },
+    "JR9333": {
+      "title": "New Business Sales Executive - Automotive Software/SaaS",
+      "location": "3 Locations",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Phoenix-AZ-USA/New-Business-Sales-Executive---Automotive-Software-SaaS_JR9333",
+      "posted_at": "Posted 30+ Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T12:29:13-05:00",
+      "last_seen_at": "2026-10-22T09:24:42-05:00"
+    },
+    "JR9121": {
+      "title": "Group Product Manager, Fortellis Marketplace & API Platform",
+      "location": "Austin, TX, USA",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Austin-TX-USA/Group-Product-Manager--Fortellis-Marketplace---API-Platform_JR9121-1",
+      "posted_at": "Posted 30+ Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T12:29:13-05:00",
+      "last_seen_at": "2026-10-22T09:24:42-05:00"
+    },
+    "JR9312": {
+      "title": "New Business Sales - Vehicle Inventory Solutions",
+      "location": "10 Locations",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Orlando-FL-USA/New-Business-Sales---Vehicle-Inventory-Solutions_JR9312",
+      "posted_at": "Posted 30+ Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-19T12:29:13-05:00",
+      "last_seen_at": "2026-10-19T12:29:13-05:00"
+    },
+    "JR9158": {
+      "title": "New Account Sales Executive - Vehicle Inventory Solutions",
+      "location": "8 Locations",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Austin-TX-USA/New-Account-Sales-Executive---Vehicle-Inventory-Solutions_JR9158",
+      "posted_at": "Posted 30+ Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T12:29:13-05:00",
+      "last_seen_at": "2026-10-22T09:24:42-05:00"
+    },
+    "JR9148": {
+      "title": "New Account Sales - Automotive Software",
+      "location": "7 Locations",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Austin-TX-USA/New-Account-Sales---Automotive-Software_JR9148",
+      "posted_at": "Posted 30+ Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T12:29:13-05:00",
+      "last_seen_at": "2026-10-22T09:24:42-05:00"
+    },
+    "JR8932": {
+      "title": "New Account Sales - Automotive Software",
+      "location": "4 Locations",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Minneapolis-MN-USA/Account-Development-Executive---Small-Dealer_JR8932",
+      "posted_at": "Posted 30+ Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T12:29:13-05:00",
+      "last_seen_at": "2026-10-22T09:24:42-05:00"
+    },
+    "JR9235": {
+      "title": "Strategic National Account Development Director",
+      "location": "8 Locations",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Hoffman-Estates-IL-USA/Strategic-National-Account-Development-Director_JR9235-1",
+      "posted_at": "Posted 30+ Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T12:29:13-05:00",
+      "last_seen_at": "2026-10-22T09:24:42-05:00"
+    },
+    "JR9275": {
+      "title": "Associate Cloud Operations Analyst",
+      "location": "Hyderabad, TG, IND",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Hyderabad-TG-IND/Associate-Cloud-Operations-Analyst_JR9275",
+      "posted_at": "Posted 3 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T12:29:13-05:00",
+      "last_seen_at": "2026-10-22T09:24:42-05:00"
+    },
+    "JR9387": {
+      "title": "Associate Technical Support Analyst - Drive Service",
+      "location": "2 Locations",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Cincinnati-OH-USA/Associate-Technical-Support-Analyst---Drive-Service_JR9387-1",
+      "posted_at": "Posted 13 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T12:29:13-05:00",
+      "last_seen_at": "2026-10-22T09:24:42-05:00"
+    },
+    "JR8736": {
+      "title": "Manager, Software Engineering",
+      "location": "Hyderabad, TG, IND",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Hyderabad-TG-IND/Manager--Software-Engineering_JR8736",
+      "posted_at": "Posted 13 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "management"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T12:29:13-05:00",
+      "last_seen_at": "2026-10-22T09:24:42-05:00"
+    },
+    "JR9392": {
+      "title": "Manager, Learning and Talent Development",
+      "location": "3 Locations",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/US---Illinois---Chicago-Hoffman-Estates/Manager--Learning-and-Talent-Development_JR9392-1",
+      "posted_at": "Posted 16 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T12:29:13-05:00",
+      "last_seen_at": "2026-10-22T09:24:42-05:00"
+    },
+    "JR9307": {
+      "title": "Customer Success Manager",
+      "location": "6 Locations",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Chicago-IL-USA/Customer-Success-Manager_JR9307-1",
+      "posted_at": "Posted 21 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T12:29:13-05:00",
+      "last_seen_at": "2026-10-22T09:24:42-05:00"
+    },
+    "JR9261": {
+      "title": "Customer Success Manager",
+      "location": "Remote, USA",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Remote-USA/Customer-Success-Manager_JR9261-1",
+      "posted_at": "Posted 23 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T12:29:13-05:00",
+      "last_seen_at": "2026-10-22T09:24:42-05:00"
+    },
+    "JR9361": {
+      "title": "Sr. Customer Operations Program Manager",
+      "location": "2 Locations",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/US---Illinois---Chicago-Hoffman-Estates/Sr-Customer-Operations-Program-Manager_JR9361-1",
+      "posted_at": "Posted 20 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-19T12:29:13-05:00",
+      "last_seen_at": "2026-10-19T12:29:13-05:00"
+    },
+    "JR9308": {
+      "title": "Associate Customer Success Specialist - Modern Retail",
+      "location": "Remote, USA",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Remote-USA/Associate-Customer-Success-Specialist---Modern-Retail_JR9308-1",
+      "posted_at": "Posted 24 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T12:29:13-05:00",
+      "last_seen_at": "2026-10-22T09:24:42-05:00"
+    },
+    "JR9310": {
+      "title": "Associate Customer Success Specialist - Service",
+      "location": "Remote, USA",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Remote-USA/Associate-Customer-Success-Specialist---Service_JR9310-1",
+      "posted_at": "Posted 24 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T12:29:13-05:00",
+      "last_seen_at": "2026-10-22T09:24:42-05:00"
+    },
+    "JR9366": {
+      "title": "Sr. Manager, Identity and Access Management",
+      "location": "Remote, USA",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Remote-USA/Sr-Manager--Identity-and-Access-Management_JR9366-1",
+      "posted_at": "Posted 28 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T12:29:13-05:00",
+      "last_seen_at": "2026-10-22T09:24:42-05:00"
+    },
+    "JR9371": {
+      "title": "Senior Accountant, Consolidations and Reporting",
+      "location": "37 Locations",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Chicago-IL-USA/Senior-Accountant--Consolidations-and-Reporting_JR9371-1",
+      "posted_at": "Posted 28 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T12:29:13-05:00",
+      "last_seen_at": "2026-10-22T09:24:42-05:00"
+    },
+    "JR9315": {
+      "title": "Manager, Renewal Platform Specialist",
+      "location": "Remote, USA",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Remote-USA/Manager--Renewal-Platform-Specialist_JR9315",
+      "posted_at": "Posted 30+ Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T12:29:13-05:00",
+      "last_seen_at": "2026-10-22T09:24:42-05:00"
+    },
+    "JR9354": {
+      "title": "Staff Software Engineer",
+      "location": "Austin, TX, USA",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Austin-TX-USA/Staff-Software-Engineer_JR9354",
+      "posted_at": "Posted 30+ Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T12:29:13-05:00",
+      "last_seen_at": "2026-10-22T09:24:42-05:00"
+    },
+    "JR9218": {
+      "title": "Sr. Product Manager, OEM Integrations",
+      "location": "Austin, TX, USA",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Austin-TX-USA/Sr-Product-Manager--OEM-Integrations_JR9218-1",
+      "posted_at": "Posted 30+ Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T12:29:13-05:00",
+      "last_seen_at": "2026-10-22T09:24:42-05:00"
+    },
+    "JR9081": {
+      "title": "Sr. Poduct Manager",
+      "location": "2 Locations",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/US---Texas---Austin-Domain-North/Sr-Poduct-Manager_JR9081-1",
+      "posted_at": "Posted 30+ Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T12:29:13-05:00",
+      "last_seen_at": "2026-10-22T09:24:42-05:00"
+    },
+    "JR9177": {
+      "title": "Customer Success Specialist - Modern Retail",
+      "location": "4 Locations",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/US---Maryland---Home-Office/Customer-Success-Specialist---Modern-Retail_JR9177",
+      "posted_at": "Posted 30+ Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T12:29:13-05:00",
+      "last_seen_at": "2026-10-22T09:24:42-05:00"
+    },
+    "JR8930": {
+      "title": "CDK Global Returnship Talent Community",
+      "location": "4 Locations",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Austin-TX-USA/CDK-Global-Returnship-Talent-Community_JR8930",
+      "posted_at": "Posted 30+ Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "not_an_open_role",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T12:29:13-05:00",
+      "last_seen_at": "2026-10-22T09:24:42-05:00"
+    },
+    "JR9247": {
+      "title": "Payments Sales Engineer",
+      "location": "Remote, USA",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Remote-USA/Payments-Sales-Engineer_JR9247-1",
+      "posted_at": "2026-08-14",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T12:29:13-05:00",
+      "last_seen_at": "2026-10-22T09:24:42-05:00"
+    },
+    "JR8719": {
+      "title": "Sr. Software Engineer",
+      "location": "Austin, TX, USA",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Austin-TX-USA/Sr-Software-Engineer_JR8719",
+      "posted_at": "2026-03-02",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-19T12:29:13-05:00",
+      "last_seen_at": "2026-10-22T09:24:42-05:00"
+    },
+    "JR9377": {
+      "title": "Lead Product Manager",
+      "location": "2 Locations",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Portland-OR-USA/Lead-Product-Manager_JR9377-1",
+      "posted_at": "Posted Yesterday",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-22T09:24:42-05:00",
+      "last_seen_at": "2026-10-22T09:24:42-05:00"
+    },
+    "JR9382": {
+      "title": "Dir, Field Business Process Consulting",
+      "location": "37 Locations",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Austin-TX-USA/Dir--Field-Business-Process-Consulting_JR9382-1",
+      "posted_at": "Posted 2 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-24T12:24:41-05:00",
+      "last_seen_at": "2026-10-24T12:24:41-05:00"
+    },
+    "JR9376": {
+      "title": "Associate Account Sales Exec - Automotive Software",
+      "location": "2 Locations",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Atlanta-GA-USA/Associate-Account-Sales-Exec---Automotive-Software_JR9376",
+      "posted_at": "Posted 2 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-24T12:24:41-05:00",
+      "last_seen_at": "2026-10-24T12:24:41-05:00"
+    },
+    "JR9330": {
+      "title": "Customer Success Coordinator",
+      "location": "2 Locations",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Austin-TX-USA/Customer-Success-Coordinator_JR9330",
+      "posted_at": "Posted Yesterday",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-24T12:24:41-05:00",
+      "last_seen_at": "2026-10-24T12:24:41-05:00"
+    },
+    "JR9384": {
+      "title": "Associate Course Designer",
+      "location": "Hyderabad, TG, IND",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Hyderabad-TG-IND/Associate-Course-Designer_JR9384-1",
+      "posted_at": "Posted Yesterday",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-24T12:24:41-05:00",
+      "last_seen_at": "2026-10-24T12:24:41-05:00"
+    },
+    "JR9375": {
+      "title": "Associate Course Developer",
+      "location": "Hyderabad, TG, IND",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Hyderabad-TG-IND/Associate-Course-Developer_JR9375",
+      "posted_at": "2026-10-23",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-24T12:24:41-05:00",
+      "last_seen_at": "2026-10-24T12:24:41-05:00"
+    },
+    "JR9324": {
+      "title": "Associate Network Security Engineer",
+      "location": "Hyderabad, TG, IND",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Hyderabad-TG-IND/Associate-Network-Security-Engineer_JR9324",
+      "posted_at": "2026-10-23",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "security",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-24T12:24:41-05:00",
+      "last_seen_at": "2026-10-24T12:24:41-05:00"
+    },
+    "JR9395": {
+      "title": "National Trainer - Field",
+      "location": "Destin, FL, USA",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Destin-FL-USA/National-Trainer---Field_JR9395",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-26T12:17:29-05:00",
+      "last_seen_at": "2026-10-26T12:17:29-05:00"
+    },
+    "JR9331": {
+      "title": "Customer Success Coordinator",
+      "location": "3 Locations",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/US---Illinois---Home-Office/Customer-Success-Coordinator_JR9331-1",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-26T12:17:29-05:00",
+      "last_seen_at": "2026-10-26T12:17:29-05:00"
+    },
+    "JR9363": {
+      "title": "National Trainer Field",
+      "location": "Remote, USA",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Remote-USA/National-Trainer-Field_JR9363",
+      "posted_at": "Posted Yesterday",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-28T09:21:57-05:00",
+      "last_seen_at": "2026-10-28T09:21:57-05:00"
+    },
+    "JR9327": {
+      "title": "National Trainer Field",
+      "location": "Remote, USA",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Remote-USA/National-Trainer-Field_JR9327",
+      "posted_at": "Posted Yesterday",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-28T09:21:57-05:00",
+      "last_seen_at": "2026-10-28T09:21:57-05:00"
+    },
+    "JR9373": {
+      "title": "Associate Implementation Support Rep",
+      "location": "Hyderabad, TG, IND",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Hyderabad-TG-IND/Associate-Implementation-Support-Rep_JR9373",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-29T09:40:11-05:00",
+      "last_seen_at": "2026-10-29T09:40:11-05:00"
+    },
+    "JR9418": {
+      "title": "Materials Handler",
+      "location": "Portland, OR, USA",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Portland-OR-USA/Materials-Handler_JR9418-1",
+      "posted_at": "Posted Yesterday",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-29T09:40:11-05:00",
+      "last_seen_at": "2026-10-29T09:40:11-05:00"
+    },
+    "JR9400": {
+      "title": "Technical Support Associate - Accounting",
+      "location": "4 Locations",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Hoffman-Estates-IL-USA/Technical-Support-Associate---Accounting_JR9400-1",
+      "posted_at": "Posted Yesterday",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-30T11:04:10-05:00",
+      "last_seen_at": "2026-10-30T11:04:10-05:00"
+    }
+  },
+  "source_updated_at_by_id": {}
 }

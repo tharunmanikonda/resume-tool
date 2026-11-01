@@ -18,6 +18,7 @@ COMPANIES = {
     "cbre",
     "cdk",
     "cisco",
+    "crunchyroll",
     "ebay",
     "intepros",
     "iqvia",
@@ -26,6 +27,7 @@ COMPANIES = {
     "occ",
     "ocient",
     "rivian",
+    "tiktok",
 }
 
 
@@ -185,6 +187,12 @@ def run_company_scan(
                 "last_seen_at": timestamp,
             }
         compact_state = {key: value for key, value in state.items() if key != "catalog"}
+        source_updated_at_by_id = dict(state.get("source_updated_at_by_id", {}))
+        for job in listings:
+            external_id = str(job.get("external_job_id") or "")
+            source_updated_at = str(job.get("source_updated_at") or "")
+            if external_id and source_updated_at:
+                source_updated_at_by_id[external_id] = source_updated_at
         _write_json_atomic(state_path, {
             **compact_state,
             "company": company,
@@ -192,6 +200,7 @@ def run_company_scan(
             "known_job_ids": sorted(all_ids),
             "candidate_catalog": candidate_catalog,
             "rejected_catalog": rejected_catalog,
+            "source_updated_at_by_id": source_updated_at_by_id,
             "last_successful_scan_at": timestamp,
         })
 

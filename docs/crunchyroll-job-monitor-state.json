@@ -1,0 +1,1869 @@
+{
+  "company": "crunchyroll",
+  "filter_version": 3,
+  "known_job_ids": [
+    "6452478",
+    "6584220",
+    "6696781",
+    "6696809",
+    "7309294",
+    "7669099",
+    "7687574",
+    "7688329",
+    "7895580",
+    "7950813",
+    "7950858",
+    "7985640",
+    "7990689",
+    "7990735",
+    "8026531",
+    "8042374",
+    "8042525",
+    "8047064",
+    "8074590",
+    "8079951",
+    "8082256",
+    "8092597",
+    "8092626",
+    "8094802",
+    "8103939",
+    "8139414",
+    "8139474",
+    "8168093",
+    "8168095",
+    "8168263",
+    "8168540",
+    "8168778",
+    "8170567",
+    "8171662",
+    "8177475",
+    "8177594",
+    "8186885",
+    "8201396",
+    "8201486",
+    "8201542",
+    "8204263",
+    "8208306",
+    "8209864",
+    "8211391",
+    "8213408",
+    "8214390",
+    "8220865",
+    "8221097",
+    "8221252",
+    "8221358",
+    "8221413",
+    "8223660",
+    "8227304",
+    "8233171",
+    "8237929",
+    "8244730",
+    "8244795",
+    "8244816",
+    "8248157",
+    "8248337",
+    "8248350",
+    "8248378",
+    "8248396",
+    "8248417",
+    "8248443",
+    "8248459",
+    "8248477",
+    "8250457",
+    "8250498",
+    "8250511",
+    "8255494",
+    "8255505",
+    "8255517",
+    "8255535",
+    "8255544",
+    "8256461",
+    "8256515",
+    "8256583",
+    "8256644",
+    "8256696",
+    "8257915",
+    "8258893",
+    "8282053",
+    "8282157",
+    "8282310",
+    "8282379",
+    "8282446",
+    "8282480",
+    "8282553",
+    "8282618",
+    "8282735",
+    "8282773",
+    "8282849",
+    "8282883",
+    "8283142",
+    "8283204",
+    "8286408",
+    "8286617",
+    "8302387",
+    "8305197",
+    "8305219",
+    "8305224",
+    "8306661",
+    "8310656",
+    "8310701",
+    "8310771",
+    "8324692",
+    "8328077",
+    "8328731",
+    "8332368"
+  ],
+  "candidate_catalog": {
+    "8221413": {
+      "title": "Software Engineer II, Android",
+      "location": "San Francisco, CA, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8221413?gh_jid=8221413",
+      "posted_at": "",
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "priority": "medium",
+      "category": "software"
+    }
+  },
+  "rejected_catalog": {
+    "6584220": {
+      "title": "\u30b7\u30cb\u30a2\u30fb\u30d7\u30ed\u30c7\u30e5\u30fc\u30b5\u30fc\u3001\u30a2\u30cb\u30e1\u30b3\u30fc\u30d7\u30ed\u30c0\u30af\u30b7\u30e7\u30f3",
+      "location": "Tokyo, Japan",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/6584220?gh_jid=6584220",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8204263": {
+      "title": "Accounts Payable Analyst",
+      "location": "Mexico City, Mexico City, Mexico",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8204263?gh_jid=8204263",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8256461": {
+      "title": "Associate Producer I",
+      "location": "Tokyo, Japan",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8256461?gh_jid=8256461",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8248477": {
+      "title": "Brand Marketing Senior Manager",
+      "location": "Los Angeles, California, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8248477?gh_jid=8248477",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8282053": {
+      "title": "Content Operations, Senior Manager Asia and MENA",
+      "location": "Hyderabad, Telangana, India; Mumbai, Maharashtra, India",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8282053?gh_jid=8282053",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8170567": {
+      "title": "Corporate Strategy Senior Analyst",
+      "location": "Los Angeles, California, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8170567?gh_jid=8170567",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8201486": {
+      "title": "Creative Executive",
+      "location": "Tokyo, Japan",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8201486?gh_jid=8201486",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8282157": {
+      "title": "Creative Producer, Senior Manager Asia",
+      "location": "Central Region, Singapore, Singapore",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8282157?gh_jid=8282157",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8305197": {
+      "title": "CX Incident Response Manager",
+      "location": "Hyderabad, Telangana, India",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8305197?gh_jid=8305197",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8177475": {
+      "title": "Deal Management Analyst",
+      "location": "Los Angeles, California, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8177475?gh_jid=8177475",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8177594": {
+      "title": "Deal Management Senior Analyst",
+      "location": "Los Angeles, California, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8177594?gh_jid=8177594",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8211391": {
+      "title": "Delivery Operations Coordinator- Contract",
+      "location": "Hyderabad, Telangana, India",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8211391?gh_jid=8211391",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8213408": {
+      "title": "Director, AI Enablement",
+      "location": "Los Angeles, California, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8213408?gh_jid=8213408",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8223660": {
+      "title": "Director, AI Enablement",
+      "location": "Dallas, Texas, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8223660?gh_jid=8223660",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8256515": {
+      "title": "Director, Global Engagement Strategy and Planning",
+      "location": "Dallas, Texas, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8256515?gh_jid=8256515",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8248396": {
+      "title": "Director, Global PMO",
+      "location": "Los Angeles, California, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8248396?gh_jid=8248396",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8256583": {
+      "title": "Director, Integrated Partnerships and Promotion Growth Campaigns",
+      "location": "Dallas, Texas, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8256583?gh_jid=8256583",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8257915": {
+      "title": "Director, Lifecycle Technology & Operations",
+      "location": "Dallas, Texas, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8257915?gh_jid=8257915",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8250498": {
+      "title": "Director, Lifecycle Technology & Operations",
+      "location": "Los Angeles, California, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8250498?gh_jid=8250498",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8282310": {
+      "title": "Director, Localisation & Operations - Europe",
+      "location": "London, England, United Kingdom",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8282310?gh_jid=8282310",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8256696": {
+      "title": "Director Membership and Operational Planning",
+      "location": "Dallas, Texas, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8256696?gh_jid=8256696",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8256644": {
+      "title": " Director, Membership, Performance Marketing, Media and Budget Reviews ",
+      "location": "Dallas, Texas, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8256644?gh_jid=8256644",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8248417": {
+      "title": "Director, Membership Planning - Membership Value & LTV",
+      "location": "Dallas, Texas, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8248417?gh_jid=8248417",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "7669099": {
+      "title": "Director, Product Security",
+      "location": "Los Angeles, California, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/7669099?gh_jid=7669099",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8248443": {
+      "title": "Director, Regional Operations - Asia + MENA",
+      "location": "Mumbai, Maharashtra, India",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8248443?gh_jid=8248443",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8248337": {
+      "title": "EMEA Social Media Manager",
+      "location": "London, England, United Kingdom",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8248337?gh_jid=8248337",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8255505": {
+      "title": "Finance Transformation Manager",
+      "location": "Los Angeles, California, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8255505?gh_jid=8255505",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8244795": {
+      "title": "FP&A Senior Analyst - Consumer Products",
+      "location": "Los Angeles, California, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8244795?gh_jid=8244795",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8214390": {
+      "title": "General Manager, Latin America (LATAM)",
+      "location": "Mexico City, Mexico City, Mexico",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8214390?gh_jid=8214390",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8258893": {
+      "title": "\u30a2\u30bd\u30b7\u30a8\u30a4\u30c8\u30fb\u30d7\u30ed\u30c7\u30e5\u30fc\u30b5\u30fc I",
+      "location": "Tokyo, Japan",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8258893?gh_jid=8258893",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8186885": {
+      "title": "Lead Finance Data Analyst",
+      "location": "Los Angeles, California, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8186885?gh_jid=8186885",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8282379": {
+      "title": "Lifecycle Growth Marketing Senior Manager - Onboarding",
+      "location": "Los Angeles, California, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8282379?gh_jid=8282379",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8282446": {
+      "title": "Localization and Dubbing, Senior Manager",
+      "location": "Mumbai, Maharashtra, India",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8282446?gh_jid=8282446",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8282480": {
+      "title": "Manager, LatAm Curation",
+      "location": "Mexico City, Mexico City, Mexico",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8282480?gh_jid=8282480",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8255494": {
+      "title": "Manager of Corporate Communications (Contract Role)",
+      "location": "Los Angeles, California, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8255494?gh_jid=8255494",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8250511": {
+      "title": "Manager, Rights Management",
+      "location": "Hyderabad, Telangana, India",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8250511?gh_jid=8250511",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8282618": {
+      "title": "Marketing Operations, Senior Manager",
+      "location": "Mumbai, Maharashtra, India",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8282618?gh_jid=8282618",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8283142": {
+      "title": "Marketing Operations, Senior Manager, UCANZ ",
+      "location": "Dallas, Texas, United States; Los Angeles, California, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8283142?gh_jid=8283142",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8283204": {
+      "title": "Membership Value, Senior Manager, UCANZ ",
+      "location": "Los Angeles, California, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8283204?gh_jid=8283204",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8082256": {
+      "title": "Principal Engineer, Engineering Practices",
+      "location": "San Francisco, CA, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8082256?gh_jid=8082256",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "7950813": {
+      "title": "Principal Technical Program Manager, Enterprise Technology",
+      "location": "Dallas, Texas, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/7950813?gh_jid=7950813",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8306661": {
+      "title": "Senior Accountant",
+      "location": "Los Angeles, California, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8306661?gh_jid=8306661",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8171662": {
+      "title": "Senior CX Analytics Manager",
+      "location": "Dallas, Texas, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8171662?gh_jid=8171662",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8305219": {
+      "title": "Senior CX Insights Manager, APAC",
+      "location": "Mumbai, Maharashtra, India",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8305219?gh_jid=8305219",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8042374": {
+      "title": "Senior CX Insights Manager, LATAM",
+      "location": "Mexico City, Mexico City, Mexico",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8042374?gh_jid=8042374",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8282735": {
+      "title": "Senior Manager, Content Operations & QC, LATAM",
+      "location": "Mexico City, Mexico City, Mexico",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8282735?gh_jid=8282735",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "7688329": {
+      "title": "Senior Manager, CRM Marketing, Asia",
+      "location": "Central Region, Singapore, Singapore",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/7688329?gh_jid=7688329",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "7687574": {
+      "title": "Senior Manager, CRM Marketing, Europe",
+      "location": "London, England, United Kingdom",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/7687574?gh_jid=7687574",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8310701": {
+      "title": "Senior Manager, Enterprise Technology Operation",
+      "location": "Dallas, Texas, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8310701?gh_jid=8310701",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8248157": {
+      "title": "Senior Manager, Executive Initiatives ",
+      "location": "Los Angeles, California, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8248157?gh_jid=8248157",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8255517": {
+      "title": "Senior Manager, Global Engagement Strategy and Analytics",
+      "location": "Dallas, Texas, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8255517?gh_jid=8255517",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8233171": {
+      "title": "Senior Manager, Global Partnerships",
+      "location": "Los Angeles, California, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8233171?gh_jid=8233171",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8248459": {
+      "title": "Senior Manager, Internal Communications, Programs & Events",
+      "location": "Los Angeles, California, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8248459?gh_jid=8248459",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8282773": {
+      "title": "Senior Manager, Lifecycle Marketing and CRM, LATAM",
+      "location": "Mexico City, Mexico City, Mexico",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8282773?gh_jid=8282773",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8282849": {
+      "title": "Senior Manager, Marketing Operations - Europe",
+      "location": "London, England, United Kingdom",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8282849?gh_jid=8282849",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8282883": {
+      "title": "Senior Manager, Marketing Operations, LATAM",
+      "location": "Mexico City, Mexico City, Mexico",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8282883?gh_jid=8282883",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8250457": {
+      "title": "Senior Manager, Regional Events UCANZ",
+      "location": "Los Angeles, California, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8250457?gh_jid=8250457",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8255535": {
+      "title": "Senior Manager, Rights Management",
+      "location": "Hyderabad, Telangana, India",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8255535?gh_jid=8255535",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8248350": {
+      "title": "Senior Manager, User Acquisition \u2013 Paid Social",
+      "location": "Los Angeles, California, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8248350?gh_jid=8248350",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "6452478": {
+      "title": "Senior Producer, Anime Co-Production",
+      "location": "Tokyo, Japan",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/6452478?gh_jid=6452478",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8201542": {
+      "title": "Senior Program Manager",
+      "location": "Dallas, Texas, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8201542?gh_jid=8201542",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8168778": {
+      "title": "Senior Site Reliability Engineer",
+      "location": "Hyderabad, Telangana, India",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8168778?gh_jid=8168778",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "reliability",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8168540": {
+      "title": "Senior Software Engineer",
+      "location": "Hyderabad, Telangana, India",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8168540?gh_jid=8168540",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8026531": {
+      "title": "Senior Software Engineer - Android, Partner Engineering",
+      "location": "Hyderabad, Telangana, India",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8026531?gh_jid=8026531",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "6696809": {
+      "title": "Senior Software Engineer -Backend/Full Stack",
+      "location": "Hyderabad, Telangana, India",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/6696809?gh_jid=6696809",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "backend",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8221252": {
+      "title": "Senior Software Engineer, Roku Playback Engineering",
+      "location": "Mexico City, Mexico City, Mexico",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8221252?gh_jid=8221252",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8221097": {
+      "title": "Senior SOX Analyst",
+      "location": "Los Angeles, California, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8221097?gh_jid=8221097",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "7950858": {
+      "title": "Senior Specialist, Distribution Operations",
+      "location": "Mexico City, Mexico City, Mexico",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/7950858?gh_jid=7950858",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8139474": {
+      "title": "Senior Strategic Sourcing Manager, Marketing",
+      "location": "Los Angeles, California, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8139474?gh_jid=8139474",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8237929": {
+      "title": "Senior Tax Manager",
+      "location": "Dallas, Texas, United States; Los Angeles, California, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8237929?gh_jid=8237929",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8244730": {
+      "title": "Senior T&E Operations Analyst",
+      "location": "Los Angeles, California, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8244730?gh_jid=8244730",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "6696781": {
+      "title": "Software Engineer",
+      "location": "Hyderabad, Telangana, India",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/6696781?gh_jid=6696781",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "7990735": {
+      "title": "Software Engineer III",
+      "location": "Hyderabad, Telangana, India",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/7990735?gh_jid=7990735",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8092626": {
+      "title": "Software Engineer II, Playback Services",
+      "location": "Mexico City, Mexico City, Mexico",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8092626?gh_jid=8092626",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8286408": {
+      "title": "Sr. Manager, Workplace Experience - EMEA",
+      "location": "London, England, United Kingdom",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8286408?gh_jid=8286408",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8168095": {
+      "title": "Staff Site Reliability Engineer",
+      "location": "Los Angeles, California, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8168095?gh_jid=8168095",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior"
+      ],
+      "category": "reliability",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8168093": {
+      "title": "Staff Site Reliability Engineer",
+      "location": "San Francisco, CA, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8168093?gh_jid=8168093",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior"
+      ],
+      "category": "reliability",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8074590": {
+      "title": "Staff Software Engineer",
+      "location": "Hyderabad, Telangana, India",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8074590?gh_jid=8074590",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "level_too_senior"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "7985640": {
+      "title": "Staff Software Engineer, AI/ML",
+      "location": "Hyderabad, Telangana, India",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/7985640?gh_jid=7985640",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "level_too_senior"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8208306": {
+      "title": "Staff Software Engineer, Partner Engineering",
+      "location": "London, England, United Kingdom",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8208306?gh_jid=8208306",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "level_too_senior"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8302387": {
+      "title": "Staff Software Engineer, Shop (eCommerce)",
+      "location": "Hyderabad, Telangana, India",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8302387?gh_jid=8302387",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "level_too_senior"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "7990689": {
+      "title": "Standards & Practices Content Analyst",
+      "location": "London, England, United Kingdom",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/7990689?gh_jid=7990689",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8286617": {
+      "title": "Strategic Initiatives Director",
+      "location": "Los Angeles, California, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8286617?gh_jid=8286617",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8139414": {
+      "title": "Strategic Sourcing Manager, Technology",
+      "location": "Mexico City, Mexico City, Mexico",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8139414?gh_jid=8139414",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8220865": {
+      "title": "Supply Chain & Manufacturing Manager, Collectibles",
+      "location": "Dallas, Texas, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8220865?gh_jid=8220865",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8209864": {
+      "title": "SVP, Franchise & Title Strategy",
+      "location": "Tokyo, Japan",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8209864?gh_jid=8209864",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8255544": {
+      "title": "Vice President, Commercial Planning",
+      "location": "Los Angeles, California, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8255544?gh_jid=8255544",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8079951": {
+      "title": "Vice President, Content Protection & Anti-Piracy",
+      "location": "Los Angeles, California, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8079951?gh_jid=8079951",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8244816": {
+      "title": "Vice President, FP&A - GTM",
+      "location": "Los Angeles, California, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8244816?gh_jid=8244816",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8305224": {
+      "title": "VP, Product Counsel",
+      "location": "Los Angeles, California, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8305224?gh_jid=8305224",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8227304": {
+      "title": "VP, Product - Monetization, Identity & Core Services",
+      "location": "Dallas, Texas, United States; Los Angeles, California, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8227304?gh_jid=8227304",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8248378": {
+      "title": "Forward Deployed Engineer",
+      "location": "Los Angeles, California, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8248378?gh_jid=8248378",
+      "posted_at": "",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8042525": {
+      "title": "Senior AI Solutions Engineer",
+      "location": "Los Angeles, California, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8042525?gh_jid=8042525",
+      "posted_at": "",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8047064": {
+      "title": "Senior Identity Engineer",
+      "location": "Dallas, Texas, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8047064?gh_jid=8047064",
+      "posted_at": "",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8201396": {
+      "title": "Senior IT Engineer, SaaS Applications",
+      "location": "Los Angeles, California, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8201396?gh_jid=8201396",
+      "posted_at": "",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "7309294": {
+      "title": "Senior Machine Learning Engineer, Fraud Detection",
+      "location": "Los Angeles, California, United States; San Francisco, CA, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/7309294?gh_jid=7309294",
+      "posted_at": "",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "ai_ml",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8103939": {
+      "title": "Senior Software Engineer",
+      "location": "Los Angeles, California, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8103939?gh_jid=8103939",
+      "posted_at": "",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8168263": {
+      "title": "Senior Software Engineer, Infrastructure Engineering ",
+      "location": "Los Angeles, California, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8168263?gh_jid=8168263",
+      "posted_at": "",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8221358": {
+      "title": "Software Engineer III, Media Delivery",
+      "location": "San Francisco, CA, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8221358?gh_jid=8221358",
+      "posted_at": "",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8092597": {
+      "title": "Software Engineer III, Playback Services",
+      "location": "San Francisco, CA, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8092597?gh_jid=8092597",
+      "posted_at": "",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "8094802": {
+      "title": "Software Engineer III, Service Monetization",
+      "location": "Los Angeles, California, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8094802?gh_jid=8094802",
+      "posted_at": "",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-23T17:01:27-05:00",
+      "last_seen_at": "2026-10-23T17:01:27-05:00"
+    },
+    "7895580": {
+      "title": "People Business Partner",
+      "location": "Tokyo, Japan",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/7895580?gh_jid=7895580",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-27T09:28:31-05:00",
+      "last_seen_at": "2026-10-27T09:28:31-05:00"
+    },
+    "8328731": {
+      "title": "Membership Strategy Senior Manager",
+      "location": "Los Angeles, California, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8328731?gh_jid=8328731",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-28T09:20:24-05:00",
+      "last_seen_at": "2026-10-28T09:20:24-05:00"
+    },
+    "8328077": {
+      "title": "Senior Director, Membership Strategy",
+      "location": "Los Angeles, California, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8328077?gh_jid=8328077",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-28T09:20:24-05:00",
+      "last_seen_at": "2026-10-28T09:20:24-05:00"
+    },
+    "8324692": {
+      "title": "Associate Approvals Manager",
+      "location": "Tokyo, Japan",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8324692?gh_jid=8324692",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-29T09:32:14-05:00",
+      "last_seen_at": "2026-10-29T09:32:14-05:00"
+    },
+    "8282553": {
+      "title": "Manager, Marketing Versioning",
+      "location": "Los Angeles, California, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8282553?gh_jid=8282553",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-30T11:07:10-05:00",
+      "last_seen_at": "2026-10-30T11:07:10-05:00"
+    },
+    "8310771": {
+      "title": "Staff Technical Product Manager",
+      "location": "Dallas, Texas, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8310771?gh_jid=8310771",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-30T11:07:10-05:00",
+      "last_seen_at": "2026-10-30T11:07:10-05:00"
+    },
+    "8310656": {
+      "title": "Staff Technical Product Manager",
+      "location": "Los Angeles, California, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8310656?gh_jid=8310656",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-30T11:07:10-05:00",
+      "last_seen_at": "2026-10-30T11:07:10-05:00"
+    },
+    "8332368": {
+      "title": "Manager, Static Marketing Versioning ",
+      "location": "Los Angeles, California, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8332368?gh_jid=8332368",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-10-31T12:06:34-05:00",
+      "last_seen_at": "2026-10-31T12:06:34-05:00"
+    }
+  },
+  "last_successful_scan_at": "2026-10-31T12:06:34-05:00",
+  "source_updated_at_by_id": {
+    "6584220": "2026-10-28T01:57:26-04:00",
+    "8204263": "2026-10-14T13:46:30-04:00",
+    "8256461": "2026-10-28T23:51:49-04:00",
+    "8248477": "2026-10-19T17:04:53-04:00",
+    "8282053": "2026-10-26T06:54:05-04:00",
+    "8170567": "2026-10-28T15:55:06-04:00",
+    "8201486": "2026-10-14T13:46:30-04:00",
+    "8282157": "2026-10-15T10:51:06-04:00",
+    "8305197": "2026-10-21T02:59:32-04:00",
+    "8177475": "2026-10-14T13:46:30-04:00",
+    "8177594": "2026-10-14T13:46:30-04:00",
+    "8211391": "2026-10-22T16:08:21-04:00",
+    "8213408": "2026-10-14T13:46:30-04:00",
+    "8223660": "2026-10-14T13:46:30-04:00",
+    "8256515": "2026-10-14T13:46:30-04:00",
+    "8248396": "2026-10-23T16:17:24-04:00",
+    "8256583": "2026-10-14T13:46:30-04:00",
+    "8257915": "2026-10-14T13:46:30-04:00",
+    "8250498": "2026-10-14T13:46:30-04:00",
+    "8282310": "2026-10-19T07:59:08-04:00",
+    "8256696": "2026-10-14T13:46:30-04:00",
+    "8256644": "2026-10-14T13:46:30-04:00",
+    "8248417": "2026-10-14T13:46:30-04:00",
+    "7669099": "2026-10-14T13:46:30-04:00",
+    "8248443": "2026-10-14T13:46:30-04:00",
+    "8248337": "2026-10-14T13:46:30-04:00",
+    "8255505": "2026-10-14T13:46:30-04:00",
+    "8248378": "2026-10-26T12:27:58-04:00",
+    "8244795": "2026-10-14T13:46:30-04:00",
+    "8214390": "2026-10-14T21:28:24-04:00",
+    "8258893": "2026-10-28T01:56:11-04:00",
+    "8186885": "2026-10-14T13:46:30-04:00",
+    "8282379": "2026-10-20T00:24:30-04:00",
+    "8282446": "2026-10-15T10:58:23-04:00",
+    "8282480": "2026-10-19T19:41:01-04:00",
+    "8255494": "2026-10-14T13:46:30-04:00",
+    "8250511": "2026-10-14T13:46:30-04:00",
+    "8282618": "2026-10-15T10:59:01-04:00",
+    "8283142": "2026-10-23T13:56:31-04:00",
+    "8283204": "2026-10-23T13:52:53-04:00",
+    "8082256": "2026-10-14T13:46:30-04:00",
+    "7950813": "2026-10-19T15:01:12-04:00",
+    "8306661": "2026-10-22T19:28:36-04:00",
+    "8042525": "2026-10-26T12:28:12-04:00",
+    "8171662": "2026-10-14T13:46:30-04:00",
+    "8305219": "2026-10-22T05:13:04-04:00",
+    "8042374": "2026-10-14T13:46:30-04:00",
+    "8047064": "2026-10-14T13:46:30-04:00",
+    "8201396": "2026-10-14T13:46:30-04:00",
+    "7309294": "2026-10-14T13:46:30-04:00",
+    "8282735": "2026-10-20T22:30:36-04:00",
+    "7688329": "2026-10-14T13:46:30-04:00",
+    "7687574": "2026-10-14T13:46:30-04:00",
+    "8310701": "2026-10-23T16:40:59-04:00",
+    "8248157": "2026-10-20T20:56:28-04:00",
+    "8255517": "2026-10-14T13:46:30-04:00",
+    "8233171": "2026-10-14T13:46:30-04:00",
+    "8248459": "2026-10-19T19:22:07-04:00",
+    "8282773": "2026-10-19T19:38:55-04:00",
+    "8282849": "2026-10-15T12:00:38-04:00",
+    "8282883": "2026-10-20T22:33:32-04:00",
+    "8250457": "2026-10-23T16:35:45-04:00",
+    "8255535": "2026-10-14T13:46:30-04:00",
+    "8248350": "2026-10-14T13:46:30-04:00",
+    "6452478": "2026-10-14T13:46:30-04:00",
+    "8201542": "2026-10-14T13:46:30-04:00",
+    "8168778": "2026-10-26T03:59:56-04:00",
+    "8168540": "2026-10-14T13:46:30-04:00",
+    "8103939": "2026-10-14T13:46:30-04:00",
+    "8026531": "2026-10-14T13:46:30-04:00",
+    "6696809": "2026-10-14T13:46:30-04:00",
+    "8168263": "2026-10-14T13:46:30-04:00",
+    "8221252": "2026-10-14T13:46:30-04:00",
+    "8221097": "2026-10-14T13:46:30-04:00",
+    "7950858": "2026-10-14T13:46:30-04:00",
+    "8139474": "2026-10-14T13:46:30-04:00",
+    "8237929": "2026-10-14T13:46:30-04:00",
+    "8244730": "2026-10-19T15:43:57-04:00",
+    "6696781": "2026-10-14T13:46:30-04:00",
+    "8221413": "2026-10-14T13:46:30-04:00",
+    "7990735": "2026-10-14T13:46:30-04:00",
+    "8221358": "2026-10-14T13:46:30-04:00",
+    "8092597": "2026-10-29T15:52:52-04:00",
+    "8094802": "2026-10-14T13:46:30-04:00",
+    "8092626": "2026-10-14T13:46:30-04:00",
+    "8286408": "2026-10-15T12:05:23-04:00",
+    "8168095": "2026-10-14T13:46:30-04:00",
+    "8168093": "2026-10-14T13:46:30-04:00",
+    "8074590": "2026-10-14T13:46:30-04:00",
+    "7985640": "2026-10-14T13:46:30-04:00",
+    "8208306": "2026-10-14T13:46:30-04:00",
+    "8302387": "2026-10-21T04:45:36-04:00",
+    "7990689": "2026-10-15T12:46:55-04:00",
+    "8286617": "2026-10-22T18:59:31-04:00",
+    "8139414": "2026-10-14T13:46:30-04:00",
+    "8220865": "2026-10-14T13:46:30-04:00",
+    "8209864": "2026-10-14T13:46:30-04:00",
+    "8255544": "2026-10-14T13:46:30-04:00",
+    "8079951": "2026-10-14T13:46:30-04:00",
+    "8244816": "2026-10-14T13:46:30-04:00",
+    "8305224": "2026-10-21T13:00:32-04:00",
+    "8227304": "2026-10-14T13:46:30-04:00",
+    "7895580": "2026-10-26T20:13:39-04:00",
+    "8328731": "2026-10-27T15:35:32-04:00",
+    "8328077": "2026-10-27T13:32:58-04:00",
+    "8324692": "2026-10-28T23:59:57-04:00",
+    "8282553": "2026-10-29T13:07:02-04:00",
+    "8310771": "2026-10-29T15:07:55-04:00",
+    "8310656": "2026-10-29T15:03:17-04:00",
+    "8332368": "2026-10-30T13:08:34-04:00"
+  }
+}

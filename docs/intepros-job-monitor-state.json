@@ -187,9 +187,13 @@
     "a0Hcw00000AcglFEAR",
     "a0Hcw00000Acn5BEAR",
     "a0Hcw00000Aco1FEAR",
-    "a0Hcw00000Acpa1EAB"
+    "a0Hcw00000Acpa1EAB",
+    "a0Hcw00000AgF9lEAF",
+    "a0Hcw00000AgottEAB",
+    "a0Hcw00000Ah5ptEAB",
+    "a0Hcw00000AhAWDEA3"
   ],
-  "last_successful_scan_at": "2026-10-18T14:19:27-05:00",
+  "last_successful_scan_at": "2026-10-20T08:43:12-05:00",
   "candidate_catalog": {
     "a0Hcw000006tdYLEAY": {
       "title": "Operational Excellence Engineer",
@@ -469,6 +473,65 @@
       "filter_version": 2,
       "first_seen_at": "2026-10-18T14:19:27-05:00",
       "last_seen_at": "2026-10-18T14:19:27-05:00"
+    },
+    "a0Hcw00000AhAWDEA3": {
+      "title": "Application Production Support Engineer",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000AhAWDEA3/application-production-support-engineer",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "support"
+      ],
+      "category": "technical_review",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-20T08:43:12-05:00",
+      "last_seen_at": "2026-10-20T08:43:12-05:00"
+    },
+    "a0Hcw00000Ah5ptEAB": {
+      "title": "Technology Sourcing Manager",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000Ah5ptEAB/technology-sourcing-manager",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-20T08:43:12-05:00",
+      "last_seen_at": "2026-10-20T08:43:12-05:00"
+    },
+    "a0Hcw00000AgF9lEAF": {
+      "title": "Facility Manager - BioTech",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000AgF9lEAF/facility-manager---biotech",
+      "posted_at": "Posted This Week",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-20T08:43:12-05:00",
+      "last_seen_at": "2026-10-20T08:43:12-05:00"
+    },
+    "a0Hcw00000AgottEAB": {
+      "title": "Senior Project Manager \u2013 Physical Security Systems",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000AgottEAB/senior-project-manager--physical-security-systems",
+      "posted_at": "Posted This Week",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 2,
+      "first_seen_at": "2026-10-20T08:43:12-05:00",
+      "last_seen_at": "2026-10-20T08:43:12-05:00"
     }
   }
 }

@@ -8,7 +8,7 @@ from dataclasses import dataclass
 from tesla_job_filter import PROFILE_SIGNALS, TeslaFilterResult
 
 
-FILTER_VERSION = 2
+FILTER_VERSION = 3
 
 
 TARGET_TITLES = (
@@ -33,14 +33,13 @@ TARGET_TITLES = (
     ("platform", r"\bplatform engineer\b|\bdevops engineer\b|\bcloud engineer\b|\bkubernetes.*engineer\b"),
     ("application", r"\bapplication (?:software )?(?:engineer|developer)\b"),
     ("development", r"\b(?:systems?|cloud|platform|api|as400|mainframe) developer\b"),
-    ("software", r"\bsoftware (?:engineer|developer)\b|\bsoftware development engineer\b"),
+    ("software", r"\bsoftware engineer(?:ing)?\b|\bsoftware developer\b|\bsoftware development engineer\b"),
     # Unknown engineering titles still deserve one description-level review.
     # Detailed scoring and domain blockers decide whether they are relevant.
     ("technical_review", r"\b(?:engineer|developer|systems? analyst|technical analyst)\b"),
 )
 
 TITLE_EXCLUSIONS = {
-    "internship": r"\bintern(?:ship)?\b|\bco-?op\b|\bapprentice\b",
     "management": r"\bmanager\b|\bdirector\b|\bprogram manager\b",
     "support": r"\bsupport engineer\b|\bhelp desk\b|\bdesktop support\b|\btechnician\b",
     "level_too_senior": r"\bstaff\b|\bprincipal\b|\btechnical leader\b|\barchitect\b|\blead (?:software|site reliability|platform|data)\b",
@@ -93,7 +92,7 @@ def prefilter_company_job(job: dict) -> TeslaFilterResult:
     blockers = []
     category = _category(title)
 
-    if job_type and not any(value in job_type for value in ("full time", "full-time", "contract")):
+    if job_type and not any(value in job_type for value in ("full time", "full-time", "contract", "intern", "co-op", "coop", "apprentice")):
         blockers.append("not_target_employment_type")
     # A multi-location label needs the detail page before its country can be decided.
     if location and "location" not in location and any(re.search(pattern, location) for pattern in NON_US):

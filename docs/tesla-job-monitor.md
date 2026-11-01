@@ -44,7 +44,7 @@ Source: Official Tesla Careers search and official Tesla job-detail pages
 
 | Noise type | Count | Handling |
 | --- | ---: | --- |
-| Internship or apprentice | 40 | Exclude while internship mode is disabled. |
+| Internship, co-op, or apprentice | Eligible | Include when the technical role otherwise matches. |
 | Embedded, firmware, controls, silicon, or hardware-heavy | 24 | Exclude unless the description is primarily application software. |
 | Management or program management | 7 | Exclude. |
 | Staff or principal level | 6 | Exclude by default. |
