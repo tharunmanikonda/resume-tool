@@ -1,6 +1,6 @@
 {
   "success": false,
-  "scanned_at": "2026-11-01T21:53:41+00:00",
+  "scanned_at": "2026-11-01T22:36:41+00:00",
   "monitor_count": 14,
   "successful_monitors": [
     "cdk",
@@ -8,6 +8,7 @@
     "crunchyroll",
     "ebay",
     "intepros",
+    "iqvia",
     "nbcu",
     "nvidia",
     "occ",
@@ -17,25 +18,84 @@
     "waymo"
   ],
   "failed_monitors": [
-    "cbre",
-    "iqvia"
+    "cbre"
   ],
-  "candidate_count": 3,
-  "needs_ai_review_count": 0,
+  "candidate_count": 6,
+  "needs_ai_review_count": 5,
   "candidates": [
     {
-      "monitor": "occ",
-      "job_id": "REQ-4888",
-      "title": "Senior Associate, Software Engineering: Java",
-      "location": "Chicago - 125 S Franklin; Dallas, TX",
-      "posted_at": "2026-10-27",
-      "url": "https://theocc.wd5.myworkdayjobs.com/job/Chicago---125-S-Franklin/Associate-Principal--Software-Engineering--Java_REQ-4888-2",
+      "monitor": "iqvia",
+      "job_id": "R1572581",
+      "title": "Application Security Analyst I",
+      "location": "Kathmandu, Nepal",
+      "posted_at": "2026-10-30",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Kathmandu-Nepal/Application-Security-Analyst-I_R1572581",
+      "priority": "high",
+      "matching_requirements": [
+        "target_title:security",
+        "profile_signal:python:+2",
+        "profile_signal:java:+1",
+        "profile_signal:javascript_react:+1",
+        "profile_signal:backend_apis:+2",
+        "profile_signal:cloud_containers:+2",
+        "profile_signal:qa_automation:+2"
+      ],
+      "material_gaps": []
+    },
+    {
+      "monitor": "iqvia",
+      "job_id": "R1574719",
+      "title": "Senior Software Engineer (Python and Java)",
+      "location": "Kathmandu, Nepal",
+      "posted_at": "2026-10-29",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Kathmandu-Nepal/Software-Development-Engineer--Python-and-Java-_R1574719",
       "priority": "high",
       "matching_requirements": [
         "target_title:software",
+        "profile_signal:python:+2",
         "profile_signal:java:+1",
         "profile_signal:backend_apis:+2",
         "profile_signal:distributed_systems:+2",
+        "profile_signal:data_streaming:+2",
+        "profile_signal:databases:+1",
+        "profile_signal:cloud_containers:+2",
+        "profile_signal:observability:+1",
+        "profile_signal:qa_automation:+2"
+      ],
+      "material_gaps": []
+    },
+    {
+      "monitor": "iqvia",
+      "job_id": "R1574712",
+      "title": "Software Development Engineer (Python and Java)",
+      "location": "Kathmandu, Nepal",
+      "posted_at": "2026-10-29",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Kathmandu-Nepal/Software-Development-Engineer--Python-and-Java-_R1574712",
+      "priority": "high",
+      "matching_requirements": [
+        "target_title:software",
+        "profile_signal:python:+2",
+        "profile_signal:java:+1",
+        "profile_signal:backend_apis:+2",
+        "profile_signal:distributed_systems:+2",
+        "profile_signal:data_streaming:+2",
+        "profile_signal:databases:+1",
+        "profile_signal:cloud_containers:+2",
+        "profile_signal:observability:+1",
+        "profile_signal:qa_automation:+2"
+      ],
+      "material_gaps": []
+    },
+    {
+      "monitor": "iqvia",
+      "job_id": "R1574701",
+      "title": "Senior Data QA Engineer",
+      "location": "Kathmandu, Nepal",
+      "posted_at": "2026-10-28",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Kathmandu-Nepal/Senior-Data-QA-Engineer_R1574701",
+      "priority": "medium",
+      "matching_requirements": [
+        "target_title:technical_review",
         "profile_signal:data_streaming:+2",
         "profile_signal:databases:+1",
         "profile_signal:cloud_containers:+2",
@@ -44,48 +104,127 @@
       "material_gaps": []
     },
     {
-      "monitor": "occ",
-      "job_id": "REQ-4789",
-      "title": "Senior Associate, Software Engineering",
-      "location": "Dallas, TX",
-      "posted_at": "2026-08-24",
-      "url": "https://theocc.wd5.myworkdayjobs.com/job/Dallas-TX/Senior-Associate--Software-Engineering_REQ-4789",
-      "priority": "high",
+      "monitor": "iqvia",
+      "job_id": "R1574663",
+      "title": "Full Stack Engineer",
+      "location": "Kathmandu, Nepal",
+      "posted_at": "2026-10-26",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Kathmandu-Nepal/Full-Stack-Engineer_R1574663",
+      "priority": "medium",
       "matching_requirements": [
-        "target_title:software",
+        "target_title:full_stack",
+        "profile_signal:python:+2",
         "profile_signal:java:+1",
         "profile_signal:backend_apis:+2",
-        "profile_signal:distributed_systems:+2",
-        "profile_signal:data_streaming:+2",
-        "profile_signal:databases:+1",
-        "profile_signal:cloud_containers:+2"
+        "profile_signal:cloud_containers:+2",
+        "profile_signal:qa_automation:+2"
       ],
       "material_gaps": []
     },
     {
-      "monitor": "ocient",
-      "job_id": "am9icG9zdDpCyK1l7ZPiGpgGYcGcXV41",
-      "title": "Software Engineer II - Query Processing",
-      "location": "Remote, USA, Remote",
-      "posted_at": "",
-      "url": "https://jobs.gem.com/ocient-inc-/am9icG9zdDpCyK1l7ZPiGpgGYcGcXV41",
-      "priority": "medium",
+      "monitor": "iqvia",
+      "job_id": "R1573508",
+      "title": "AI Engineer",
+      "location": "Athens, Greece",
+      "posted_at": "2026-10-23",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Athens-Greece/AI-Engineer_R1573508",
+      "priority": "high",
       "matching_requirements": [
-        "target_title:software",
+        "target_title:ai_ml",
         "profile_signal:python:+2",
-        "profile_signal:java:+1",
+        "profile_signal:backend_apis:+2",
         "profile_signal:databases:+1",
+        "profile_signal:cloud_containers:+2",
+        "profile_signal:qa_automation:+2",
         "profile_signal:agentic_tooling:+3"
       ],
       "material_gaps": []
     }
   ],
-  "needs_ai_review": [],
+  "needs_ai_review": [
+    {
+      "monitor": "iqvia",
+      "job_id": "R1574622",
+      "title": "Software Engineer (Java)",
+      "location": "Kathmandu, Nepal",
+      "posted_at": "2026-10-28",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Kathmandu-Nepal/Software-Engineer--Java-_R1574622",
+      "priority": "low",
+      "matching_requirements": [
+        "target_title:software",
+        "profile_signal:java:+1",
+        "profile_signal:cloud_containers:+2",
+        "profile_signal:qa_automation:+2"
+      ],
+      "material_gaps": []
+    },
+    {
+      "monitor": "iqvia",
+      "job_id": "R1574605",
+      "title": ".NET Software Engineer",
+      "location": "Kathmandu, Nepal",
+      "posted_at": "2026-10-27",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Kathmandu-Nepal/XMLNAME-NET-Software-Engineer_R1574605",
+      "priority": "low",
+      "matching_requirements": [
+        "target_title:software",
+        "profile_signal:javascript_react:+1",
+        "profile_signal:backend_apis:+2",
+        "profile_signal:databases:+1"
+      ],
+      "material_gaps": []
+    },
+    {
+      "monitor": "iqvia",
+      "job_id": "R1571372",
+      "title": "Senior Cloud Security Analyst",
+      "location": "Kathmandu, Nepal",
+      "posted_at": "2026-10-27",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Kathmandu-Nepal/Senior-Cloud-Security-Analyst_R1571372",
+      "priority": "low",
+      "matching_requirements": [
+        "target_title:security",
+        "profile_signal:python:+2",
+        "profile_signal:cloud_containers:+2"
+      ],
+      "material_gaps": []
+    },
+    {
+      "monitor": "iqvia",
+      "job_id": "R1571369",
+      "title": "Cloud Security Analyst",
+      "location": "Kathmandu, Nepal",
+      "posted_at": "2026-10-27",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Kathmandu-Nepal/Cloud-Security-Analyst_R1571369",
+      "priority": "low",
+      "matching_requirements": [
+        "target_title:security",
+        "profile_signal:python:+2",
+        "profile_signal:cloud_containers:+2"
+      ],
+      "material_gaps": []
+    },
+    {
+      "monitor": "iqvia",
+      "job_id": "R1574942",
+      "title": "Senior AI Solutions Engineer",
+      "location": "Athens, Greece",
+      "posted_at": "2026-10-22",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Athens-Greece/Senior-AI-Solutions-Engineer_R1574942",
+      "priority": "low",
+      "matching_requirements": [
+        "target_title:technical_review",
+        "profile_signal:backend_apis:+2",
+        "profile_signal:agentic_tooling:+3"
+      ],
+      "material_gaps": []
+    }
+  ],
   "results": [
     {
       "monitor": "cbre",
       "success": false,
-      "scanned_at": "2026-11-01T21:53:41+00:00",
+      "scanned_at": "2026-11-01T22:36:41+00:00",
       "fetched": 0,
       "unseen": 0,
       "state_updated": false,
@@ -93,14 +232,14 @@
       "needs_ai_review": [],
       "errors": [
         {
-          "error": "Command '['node', '/home/runner/work/resume-tool/resume-tool/ops/company_jobs_fetch.mjs', 'cbre', 'list']' timed out after 300 seconds"
+          "error": "page.goto: net::ERR_ABORTED at https://careers.cbre.com/en_US/careers/SearchJobs?search=platform+engineer&jobRecordsPerPage=25&jobOffset=25&jobSort=postedDate&jobSortDirection=DESC\nCall log:\n  - navigating to \"https://careers.cbre.com/en_US/careers/SearchJobs?search=platform+engineer&jobRecordsPerPage=25&jobOffset=25&jobSort=postedDate&jobSortDirection=DESC\", waiting until \"domcontentloaded\"\n\n    at cbreSearchListings (/home/runner/work/resume-tool/resume-tool/ops/company_jobs_fetch.mjs:758:16)\n    at async file:///home/runner/work/resume-tool/resume-tool/ops/company_jobs_fetch.mjs:795:14\n    at async worker (/home/runner/work/resume-tool/resume-tool/ops/company_jobs_fetch.mjs:193:24)\n    at async mapWithConcurrency (/home/runner/work/resume-tool/resume-tool/ops/company_jobs_fetch.mjs:196:3)\n    at async cbreListings (/home/runner/work/resume-tool/resume-tool/ops/company_jobs_fetch.mjs:800:15)\n    at async main (/home/runner/work/resume-tool/resume-tool/ops/company_jobs_fetch.mjs:922:13)"
         }
       ]
     },
     {
       "monitor": "cdk",
       "success": true,
-      "scanned_at": "2026-11-01T21:53:41+00:00",
+      "scanned_at": "2026-11-01T22:36:41+00:00",
       "fetched": 38,
       "unseen": 0,
       "state_updated": true,
@@ -111,7 +250,7 @@
     {
       "monitor": "cisco",
       "success": true,
-      "scanned_at": "2026-11-01T21:53:41+00:00",
+      "scanned_at": "2026-11-01T22:36:41+00:00",
       "fetched": 60,
       "unseen": 0,
       "state_updated": true,
@@ -122,7 +261,7 @@
     {
       "monitor": "crunchyroll",
       "success": true,
-      "scanned_at": "2026-11-01T21:53:41+00:00",
+      "scanned_at": "2026-11-01T22:36:41+00:00",
       "fetched": 101,
       "unseen": 0,
       "state_updated": true,
@@ -133,7 +272,7 @@
     {
       "monitor": "ebay",
       "success": true,
-      "scanned_at": "2026-11-01T21:53:41+00:00",
+      "scanned_at": "2026-11-01T22:36:41+00:00",
       "fetched": 145,
       "unseen": 0,
       "state_updated": true,
@@ -144,9 +283,9 @@
     {
       "monitor": "intepros",
       "success": true,
-      "scanned_at": "2026-11-01T21:53:41+00:00",
-      "fetched": 60,
-      "unseen": 27,
+      "scanned_at": "2026-11-01T22:36:41+00:00",
+      "fetched": 20,
+      "unseen": 0,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -154,23 +293,204 @@
     },
     {
       "monitor": "iqvia",
-      "success": false,
-      "scanned_at": "2026-11-01T21:53:41+00:00",
-      "fetched": 0,
-      "unseen": 0,
-      "state_updated": false,
-      "candidates": [],
-      "needs_ai_review": [],
-      "errors": [
+      "success": true,
+      "scanned_at": "2026-11-01T22:36:41+00:00",
+      "fetched": 1694,
+      "unseen": 426,
+      "state_updated": true,
+      "candidates": [
         {
-          "error": "Command '['node', '/home/runner/work/resume-tool/resume-tool/ops/company_jobs_fetch.mjs', 'iqvia', 'list']' timed out after 300 seconds"
+          "job_id": "R1572581",
+          "title": "Application Security Analyst I",
+          "location": "Kathmandu, Nepal",
+          "posted_at": "2026-10-30",
+          "url": "https://iqvia.wd1.myworkdayjobs.com/job/Kathmandu-Nepal/Application-Security-Analyst-I_R1572581",
+          "priority": "high",
+          "matching_requirements": [
+            "target_title:security",
+            "profile_signal:python:+2",
+            "profile_signal:java:+1",
+            "profile_signal:javascript_react:+1",
+            "profile_signal:backend_apis:+2",
+            "profile_signal:cloud_containers:+2",
+            "profile_signal:qa_automation:+2"
+          ],
+          "material_gaps": []
+        },
+        {
+          "job_id": "R1574719",
+          "title": "Senior Software Engineer (Python and Java)",
+          "location": "Kathmandu, Nepal",
+          "posted_at": "2026-10-29",
+          "url": "https://iqvia.wd1.myworkdayjobs.com/job/Kathmandu-Nepal/Software-Development-Engineer--Python-and-Java-_R1574719",
+          "priority": "high",
+          "matching_requirements": [
+            "target_title:software",
+            "profile_signal:python:+2",
+            "profile_signal:java:+1",
+            "profile_signal:backend_apis:+2",
+            "profile_signal:distributed_systems:+2",
+            "profile_signal:data_streaming:+2",
+            "profile_signal:databases:+1",
+            "profile_signal:cloud_containers:+2",
+            "profile_signal:observability:+1",
+            "profile_signal:qa_automation:+2"
+          ],
+          "material_gaps": []
+        },
+        {
+          "job_id": "R1574712",
+          "title": "Software Development Engineer (Python and Java)",
+          "location": "Kathmandu, Nepal",
+          "posted_at": "2026-10-29",
+          "url": "https://iqvia.wd1.myworkdayjobs.com/job/Kathmandu-Nepal/Software-Development-Engineer--Python-and-Java-_R1574712",
+          "priority": "high",
+          "matching_requirements": [
+            "target_title:software",
+            "profile_signal:python:+2",
+            "profile_signal:java:+1",
+            "profile_signal:backend_apis:+2",
+            "profile_signal:distributed_systems:+2",
+            "profile_signal:data_streaming:+2",
+            "profile_signal:databases:+1",
+            "profile_signal:cloud_containers:+2",
+            "profile_signal:observability:+1",
+            "profile_signal:qa_automation:+2"
+          ],
+          "material_gaps": []
+        },
+        {
+          "job_id": "R1574701",
+          "title": "Senior Data QA Engineer",
+          "location": "Kathmandu, Nepal",
+          "posted_at": "2026-10-28",
+          "url": "https://iqvia.wd1.myworkdayjobs.com/job/Kathmandu-Nepal/Senior-Data-QA-Engineer_R1574701",
+          "priority": "medium",
+          "matching_requirements": [
+            "target_title:technical_review",
+            "profile_signal:data_streaming:+2",
+            "profile_signal:databases:+1",
+            "profile_signal:cloud_containers:+2",
+            "profile_signal:qa_automation:+2"
+          ],
+          "material_gaps": []
+        },
+        {
+          "job_id": "R1574663",
+          "title": "Full Stack Engineer",
+          "location": "Kathmandu, Nepal",
+          "posted_at": "2026-10-26",
+          "url": "https://iqvia.wd1.myworkdayjobs.com/job/Kathmandu-Nepal/Full-Stack-Engineer_R1574663",
+          "priority": "medium",
+          "matching_requirements": [
+            "target_title:full_stack",
+            "profile_signal:python:+2",
+            "profile_signal:java:+1",
+            "profile_signal:backend_apis:+2",
+            "profile_signal:cloud_containers:+2",
+            "profile_signal:qa_automation:+2"
+          ],
+          "material_gaps": []
+        },
+        {
+          "job_id": "R1573508",
+          "title": "AI Engineer",
+          "location": "Athens, Greece",
+          "posted_at": "2026-10-23",
+          "url": "https://iqvia.wd1.myworkdayjobs.com/job/Athens-Greece/AI-Engineer_R1573508",
+          "priority": "high",
+          "matching_requirements": [
+            "target_title:ai_ml",
+            "profile_signal:python:+2",
+            "profile_signal:backend_apis:+2",
+            "profile_signal:databases:+1",
+            "profile_signal:cloud_containers:+2",
+            "profile_signal:qa_automation:+2",
+            "profile_signal:agentic_tooling:+3"
+          ],
+          "material_gaps": []
         }
-      ]
+      ],
+      "needs_ai_review": [
+        {
+          "job_id": "R1574622",
+          "title": "Software Engineer (Java)",
+          "location": "Kathmandu, Nepal",
+          "posted_at": "2026-10-28",
+          "url": "https://iqvia.wd1.myworkdayjobs.com/job/Kathmandu-Nepal/Software-Engineer--Java-_R1574622",
+          "priority": "low",
+          "matching_requirements": [
+            "target_title:software",
+            "profile_signal:java:+1",
+            "profile_signal:cloud_containers:+2",
+            "profile_signal:qa_automation:+2"
+          ],
+          "material_gaps": []
+        },
+        {
+          "job_id": "R1574605",
+          "title": ".NET Software Engineer",
+          "location": "Kathmandu, Nepal",
+          "posted_at": "2026-10-27",
+          "url": "https://iqvia.wd1.myworkdayjobs.com/job/Kathmandu-Nepal/XMLNAME-NET-Software-Engineer_R1574605",
+          "priority": "low",
+          "matching_requirements": [
+            "target_title:software",
+            "profile_signal:javascript_react:+1",
+            "profile_signal:backend_apis:+2",
+            "profile_signal:databases:+1"
+          ],
+          "material_gaps": []
+        },
+        {
+          "job_id": "R1571372",
+          "title": "Senior Cloud Security Analyst",
+          "location": "Kathmandu, Nepal",
+          "posted_at": "2026-10-27",
+          "url": "https://iqvia.wd1.myworkdayjobs.com/job/Kathmandu-Nepal/Senior-Cloud-Security-Analyst_R1571372",
+          "priority": "low",
+          "matching_requirements": [
+            "target_title:security",
+            "profile_signal:python:+2",
+            "profile_signal:cloud_containers:+2"
+          ],
+          "material_gaps": []
+        },
+        {
+          "job_id": "R1571369",
+          "title": "Cloud Security Analyst",
+          "location": "Kathmandu, Nepal",
+          "posted_at": "2026-10-27",
+          "url": "https://iqvia.wd1.myworkdayjobs.com/job/Kathmandu-Nepal/Cloud-Security-Analyst_R1571369",
+          "priority": "low",
+          "matching_requirements": [
+            "target_title:security",
+            "profile_signal:python:+2",
+            "profile_signal:cloud_containers:+2"
+          ],
+          "material_gaps": []
+        },
+        {
+          "job_id": "R1574942",
+          "title": "Senior AI Solutions Engineer",
+          "location": "Athens, Greece",
+          "posted_at": "2026-10-22",
+          "url": "https://iqvia.wd1.myworkdayjobs.com/job/Athens-Greece/Senior-AI-Solutions-Engineer_R1574942",
+          "priority": "low",
+          "matching_requirements": [
+            "target_title:technical_review",
+            "profile_signal:backend_apis:+2",
+            "profile_signal:agentic_tooling:+3"
+          ],
+          "material_gaps": []
+        }
+      ],
+      "errors": []
     },
     {
       "monitor": "nbcu",
       "success": true,
-      "scanned_at": "2026-11-01T21:53:41+00:00",
+      "scanned_at": "2026-11-01T22:36:41+00:00",
       "fetched": 201,
       "unseen": 0,
       "state_updated": true,
@@ -181,7 +501,7 @@
     {
       "monitor": "nvidia",
       "success": true,
-      "scanned_at": "2026-11-01T21:53:41+00:00",
+      "scanned_at": "2026-11-01T22:36:41+00:00",
       "fetched": 100,
       "unseen": 0,
       "state_updated": true,
@@ -192,84 +512,29 @@
     {
       "monitor": "occ",
       "success": true,
-      "scanned_at": "2026-11-01T21:53:41+00:00",
-      "fetched": 68,
-      "unseen": 5,
+      "scanned_at": "2026-11-01T22:36:41+00:00",
+      "fetched": 60,
+      "unseen": 0,
       "state_updated": true,
-      "candidates": [
-        {
-          "job_id": "REQ-4888",
-          "title": "Senior Associate, Software Engineering: Java",
-          "location": "Chicago - 125 S Franklin; Dallas, TX",
-          "posted_at": "2026-10-27",
-          "url": "https://theocc.wd5.myworkdayjobs.com/job/Chicago---125-S-Franklin/Associate-Principal--Software-Engineering--Java_REQ-4888-2",
-          "priority": "high",
-          "matching_requirements": [
-            "target_title:software",
-            "profile_signal:java:+1",
-            "profile_signal:backend_apis:+2",
-            "profile_signal:distributed_systems:+2",
-            "profile_signal:data_streaming:+2",
-            "profile_signal:databases:+1",
-            "profile_signal:cloud_containers:+2",
-            "profile_signal:qa_automation:+2"
-          ],
-          "material_gaps": []
-        },
-        {
-          "job_id": "REQ-4789",
-          "title": "Senior Associate, Software Engineering",
-          "location": "Dallas, TX",
-          "posted_at": "2026-08-24",
-          "url": "https://theocc.wd5.myworkdayjobs.com/job/Dallas-TX/Senior-Associate--Software-Engineering_REQ-4789",
-          "priority": "high",
-          "matching_requirements": [
-            "target_title:software",
-            "profile_signal:java:+1",
-            "profile_signal:backend_apis:+2",
-            "profile_signal:distributed_systems:+2",
-            "profile_signal:data_streaming:+2",
-            "profile_signal:databases:+1",
-            "profile_signal:cloud_containers:+2"
-          ],
-          "material_gaps": []
-        }
-      ],
+      "candidates": [],
       "needs_ai_review": [],
       "errors": []
     },
     {
       "monitor": "ocient",
       "success": true,
-      "scanned_at": "2026-11-01T21:53:41+00:00",
+      "scanned_at": "2026-11-01T22:36:41+00:00",
       "fetched": 15,
-      "unseen": 3,
+      "unseen": 0,
       "state_updated": true,
-      "candidates": [
-        {
-          "job_id": "am9icG9zdDpCyK1l7ZPiGpgGYcGcXV41",
-          "title": "Software Engineer II - Query Processing",
-          "location": "Remote, USA, Remote",
-          "posted_at": "",
-          "url": "https://jobs.gem.com/ocient-inc-/am9icG9zdDpCyK1l7ZPiGpgGYcGcXV41",
-          "priority": "medium",
-          "matching_requirements": [
-            "target_title:software",
-            "profile_signal:python:+2",
-            "profile_signal:java:+1",
-            "profile_signal:databases:+1",
-            "profile_signal:agentic_tooling:+3"
-          ],
-          "material_gaps": []
-        }
-      ],
+      "candidates": [],
       "needs_ai_review": [],
       "errors": []
     },
     {
       "monitor": "rivian",
       "success": true,
-      "scanned_at": "2026-11-01T21:53:41+00:00",
+      "scanned_at": "2026-11-01T22:36:41+00:00",
       "fetched": 30,
       "unseen": 0,
       "state_updated": true,
@@ -280,7 +545,7 @@
     {
       "monitor": "tiktok",
       "success": true,
-      "scanned_at": "2026-11-01T21:53:41+00:00",
+      "scanned_at": "2026-11-01T22:36:41+00:00",
       "fetched": 1871,
       "unseen": 0,
       "state_updated": true,
@@ -291,7 +556,7 @@
     {
       "monitor": "waymo",
       "success": true,
-      "scanned_at": "2026-11-01T21:53:41+00:00",
+      "scanned_at": "2026-11-01T22:36:41+00:00",
       "fetched": 169,
       "unseen": 0,
       "state_updated": true,
