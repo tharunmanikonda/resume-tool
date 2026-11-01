@@ -755,7 +755,19 @@ async function cbreSearchListings(page, search, known) {
       jobSort: "postedDate",
       jobSortDirection: "DESC",
     });
-    await page.goto(`${CBRE_SEARCH}?${params}`, { waitUntil: "domcontentloaded", timeout: 45_000 });
+    const url = `${CBRE_SEARCH}?${params}`;
+    let navigationError;
+    for (let attempt = 1; attempt <= 3; attempt += 1) {
+      try {
+        await page.goto(url, { waitUntil: "domcontentloaded", timeout: 45_000 });
+        navigationError = null;
+        break;
+      } catch (error) {
+        navigationError = error;
+        if (attempt < 3) await page.waitForTimeout(attempt * 1_000);
+      }
+    }
+    if (navigationError) throw navigationError;
     const firstCard = page.locator("article.article--result").first();
     const found = await firstCard.waitFor({ state: "attached", timeout: 12_000 }).then(() => true).catch(() => false);
     if (!found) break;
