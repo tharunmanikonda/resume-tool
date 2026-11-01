@@ -1,0 +1,306 @@
+{
+  "success": false,
+  "scanned_at": "2026-11-01T21:53:41+00:00",
+  "monitor_count": 14,
+  "successful_monitors": [
+    "cdk",
+    "cisco",
+    "crunchyroll",
+    "ebay",
+    "intepros",
+    "nbcu",
+    "nvidia",
+    "occ",
+    "ocient",
+    "rivian",
+    "tiktok",
+    "waymo"
+  ],
+  "failed_monitors": [
+    "cbre",
+    "iqvia"
+  ],
+  "candidate_count": 3,
+  "needs_ai_review_count": 0,
+  "candidates": [
+    {
+      "monitor": "occ",
+      "job_id": "REQ-4888",
+      "title": "Senior Associate, Software Engineering: Java",
+      "location": "Chicago - 125 S Franklin; Dallas, TX",
+      "posted_at": "2026-10-27",
+      "url": "https://theocc.wd5.myworkdayjobs.com/job/Chicago---125-S-Franklin/Associate-Principal--Software-Engineering--Java_REQ-4888-2",
+      "priority": "high",
+      "matching_requirements": [
+        "target_title:software",
+        "profile_signal:java:+1",
+        "profile_signal:backend_apis:+2",
+        "profile_signal:distributed_systems:+2",
+        "profile_signal:data_streaming:+2",
+        "profile_signal:databases:+1",
+        "profile_signal:cloud_containers:+2",
+        "profile_signal:qa_automation:+2"
+      ],
+      "material_gaps": []
+    },
+    {
+      "monitor": "occ",
+      "job_id": "REQ-4789",
+      "title": "Senior Associate, Software Engineering",
+      "location": "Dallas, TX",
+      "posted_at": "2026-08-24",
+      "url": "https://theocc.wd5.myworkdayjobs.com/job/Dallas-TX/Senior-Associate--Software-Engineering_REQ-4789",
+      "priority": "high",
+      "matching_requirements": [
+        "target_title:software",
+        "profile_signal:java:+1",
+        "profile_signal:backend_apis:+2",
+        "profile_signal:distributed_systems:+2",
+        "profile_signal:data_streaming:+2",
+        "profile_signal:databases:+1",
+        "profile_signal:cloud_containers:+2"
+      ],
+      "material_gaps": []
+    },
+    {
+      "monitor": "ocient",
+      "job_id": "am9icG9zdDpCyK1l7ZPiGpgGYcGcXV41",
+      "title": "Software Engineer II - Query Processing",
+      "location": "Remote, USA, Remote",
+      "posted_at": "",
+      "url": "https://jobs.gem.com/ocient-inc-/am9icG9zdDpCyK1l7ZPiGpgGYcGcXV41",
+      "priority": "medium",
+      "matching_requirements": [
+        "target_title:software",
+        "profile_signal:python:+2",
+        "profile_signal:java:+1",
+        "profile_signal:databases:+1",
+        "profile_signal:agentic_tooling:+3"
+      ],
+      "material_gaps": []
+    }
+  ],
+  "needs_ai_review": [],
+  "results": [
+    {
+      "monitor": "cbre",
+      "success": false,
+      "scanned_at": "2026-11-01T21:53:41+00:00",
+      "fetched": 0,
+      "unseen": 0,
+      "state_updated": false,
+      "candidates": [],
+      "needs_ai_review": [],
+      "errors": [
+        {
+          "error": "Command '['node', '/home/runner/work/resume-tool/resume-tool/ops/company_jobs_fetch.mjs', 'cbre', 'list']' timed out after 300 seconds"
+        }
+      ]
+    },
+    {
+      "monitor": "cdk",
+      "success": true,
+      "scanned_at": "2026-11-01T21:53:41+00:00",
+      "fetched": 38,
+      "unseen": 0,
+      "state_updated": true,
+      "candidates": [],
+      "needs_ai_review": [],
+      "errors": []
+    },
+    {
+      "monitor": "cisco",
+      "success": true,
+      "scanned_at": "2026-11-01T21:53:41+00:00",
+      "fetched": 60,
+      "unseen": 0,
+      "state_updated": true,
+      "candidates": [],
+      "needs_ai_review": [],
+      "errors": []
+    },
+    {
+      "monitor": "crunchyroll",
+      "success": true,
+      "scanned_at": "2026-11-01T21:53:41+00:00",
+      "fetched": 101,
+      "unseen": 0,
+      "state_updated": true,
+      "candidates": [],
+      "needs_ai_review": [],
+      "errors": []
+    },
+    {
+      "monitor": "ebay",
+      "success": true,
+      "scanned_at": "2026-11-01T21:53:41+00:00",
+      "fetched": 145,
+      "unseen": 0,
+      "state_updated": true,
+      "candidates": [],
+      "needs_ai_review": [],
+      "errors": []
+    },
+    {
+      "monitor": "intepros",
+      "success": true,
+      "scanned_at": "2026-11-01T21:53:41+00:00",
+      "fetched": 60,
+      "unseen": 27,
+      "state_updated": true,
+      "candidates": [],
+      "needs_ai_review": [],
+      "errors": []
+    },
+    {
+      "monitor": "iqvia",
+      "success": false,
+      "scanned_at": "2026-11-01T21:53:41+00:00",
+      "fetched": 0,
+      "unseen": 0,
+      "state_updated": false,
+      "candidates": [],
+      "needs_ai_review": [],
+      "errors": [
+        {
+          "error": "Command '['node', '/home/runner/work/resume-tool/resume-tool/ops/company_jobs_fetch.mjs', 'iqvia', 'list']' timed out after 300 seconds"
+        }
+      ]
+    },
+    {
+      "monitor": "nbcu",
+      "success": true,
+      "scanned_at": "2026-11-01T21:53:41+00:00",
+      "fetched": 201,
+      "unseen": 0,
+      "state_updated": true,
+      "candidates": [],
+      "needs_ai_review": [],
+      "errors": []
+    },
+    {
+      "monitor": "nvidia",
+      "success": true,
+      "scanned_at": "2026-11-01T21:53:41+00:00",
+      "fetched": 100,
+      "unseen": 0,
+      "state_updated": true,
+      "candidates": [],
+      "needs_ai_review": [],
+      "errors": []
+    },
+    {
+      "monitor": "occ",
+      "success": true,
+      "scanned_at": "2026-11-01T21:53:41+00:00",
+      "fetched": 68,
+      "unseen": 5,
+      "state_updated": true,
+      "candidates": [
+        {
+          "job_id": "REQ-4888",
+          "title": "Senior Associate, Software Engineering: Java",
+          "location": "Chicago - 125 S Franklin; Dallas, TX",
+          "posted_at": "2026-10-27",
+          "url": "https://theocc.wd5.myworkdayjobs.com/job/Chicago---125-S-Franklin/Associate-Principal--Software-Engineering--Java_REQ-4888-2",
+          "priority": "high",
+          "matching_requirements": [
+            "target_title:software",
+            "profile_signal:java:+1",
+            "profile_signal:backend_apis:+2",
+            "profile_signal:distributed_systems:+2",
+            "profile_signal:data_streaming:+2",
+            "profile_signal:databases:+1",
+            "profile_signal:cloud_containers:+2",
+            "profile_signal:qa_automation:+2"
+          ],
+          "material_gaps": []
+        },
+        {
+          "job_id": "REQ-4789",
+          "title": "Senior Associate, Software Engineering",
+          "location": "Dallas, TX",
+          "posted_at": "2026-08-24",
+          "url": "https://theocc.wd5.myworkdayjobs.com/job/Dallas-TX/Senior-Associate--Software-Engineering_REQ-4789",
+          "priority": "high",
+          "matching_requirements": [
+            "target_title:software",
+            "profile_signal:java:+1",
+            "profile_signal:backend_apis:+2",
+            "profile_signal:distributed_systems:+2",
+            "profile_signal:data_streaming:+2",
+            "profile_signal:databases:+1",
+            "profile_signal:cloud_containers:+2"
+          ],
+          "material_gaps": []
+        }
+      ],
+      "needs_ai_review": [],
+      "errors": []
+    },
+    {
+      "monitor": "ocient",
+      "success": true,
+      "scanned_at": "2026-11-01T21:53:41+00:00",
+      "fetched": 15,
+      "unseen": 3,
+      "state_updated": true,
+      "candidates": [
+        {
+          "job_id": "am9icG9zdDpCyK1l7ZPiGpgGYcGcXV41",
+          "title": "Software Engineer II - Query Processing",
+          "location": "Remote, USA, Remote",
+          "posted_at": "",
+          "url": "https://jobs.gem.com/ocient-inc-/am9icG9zdDpCyK1l7ZPiGpgGYcGcXV41",
+          "priority": "medium",
+          "matching_requirements": [
+            "target_title:software",
+            "profile_signal:python:+2",
+            "profile_signal:java:+1",
+            "profile_signal:databases:+1",
+            "profile_signal:agentic_tooling:+3"
+          ],
+          "material_gaps": []
+        }
+      ],
+      "needs_ai_review": [],
+      "errors": []
+    },
+    {
+      "monitor": "rivian",
+      "success": true,
+      "scanned_at": "2026-11-01T21:53:41+00:00",
+      "fetched": 30,
+      "unseen": 0,
+      "state_updated": true,
+      "candidates": [],
+      "needs_ai_review": [],
+      "errors": []
+    },
+    {
+      "monitor": "tiktok",
+      "success": true,
+      "scanned_at": "2026-11-01T21:53:41+00:00",
+      "fetched": 1871,
+      "unseen": 0,
+      "state_updated": true,
+      "candidates": [],
+      "needs_ai_review": [],
+      "errors": []
+    },
+    {
+      "monitor": "waymo",
+      "success": true,
+      "scanned_at": "2026-11-01T21:53:41+00:00",
+      "fetched": 169,
+      "unseen": 0,
+      "state_updated": true,
+      "candidates": [],
+      "needs_ai_review": [],
+      "errors": []
+    }
+  ],
+  "not_automated": {
+    "tesla": "Tesla still requires a dedicated virtual-list browser runner with complete index coverage."
+  }
+}

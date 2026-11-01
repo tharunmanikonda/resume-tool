@@ -189,11 +189,38 @@
     "a0Hcw00000Aco1FEAR",
     "a0Hcw00000Acpa1EAB",
     "a0Hcw00000AgF9lEAF",
+    "a0Hcw00000AgeuXEAR",
     "a0Hcw00000AgottEAB",
     "a0Hcw00000Ah5ptEAB",
-    "a0Hcw00000AhAWDEA3"
+    "a0Hcw00000AhAWDEA3",
+    "a0Hcw00000AjXlFEAV",
+    "a0Hcw00000AjbvJEAR",
+    "a0Hcw00000AjpmzEAB",
+    "a0Hcw00000AlkfxEAB",
+    "a0Hcw00000AlyhJEAR",
+    "a0Hcw00000AnRnfEAF",
+    "a0Hcw00000AnW0zEAF",
+    "a0Hcw00000AnfgzEAB",
+    "a0Hcw00000AqGpJEAV",
+    "a0Hcw00000AsdQ1EAJ",
+    "a0Hcw00000Asq0fEAB",
+    "a0Hcw00000Ax2WHEAZ",
+    "a0Hcw00000AxNFlEAN",
+    "a0Hcw00000AxgwjEAB",
+    "a0Hcw00000AxzOIEAZ",
+    "a0Hcw00000B06BxEAJ",
+    "a0Hcw00000B0TTmEAN",
+    "a0Hcw00000B11lJEAR",
+    "a0Hcw00000B3hbaEAB",
+    "a0Hcw00000B3qOjEAJ",
+    "a0Hcw00000B6TH7EAN",
+    "a0Hcw00000B6VpKEAV",
+    "a0Hcw00000B6hlXEAR",
+    "a0Hcw00000B74LVEAZ",
+    "a0Hcw00000B7MDZEA3",
+    "a0Hcw00000B8msLEAR"
   ],
-  "last_successful_scan_at": "2026-10-20T08:43:12-05:00",
+  "last_successful_scan_at": "2026-11-01T21:53:41+00:00",
   "candidate_catalog": {
     "a0Hcw000006tdYLEAY": {
       "title": "Operational Excellence Engineer",
@@ -214,7 +241,7 @@
       "category": "technical_review"
     }
   },
-  "filter_version": 2,
+  "filter_version": 3,
   "rejected_catalog": {
     "a0Hcw00000AcglFEAR": {
       "title": "Program Manager, Trade Enablement",
@@ -227,9 +254,9 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:19:27-05:00",
-      "last_seen_at": "2026-10-18T14:19:27-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "a0Hcw00000Aco1FEAR": {
       "title": "Lead Business Analyst - Healthcare Operations",
@@ -255,9 +282,9 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:19:27-05:00",
-      "last_seen_at": "2026-10-18T14:19:27-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "a0Hcw00000AaAUXEA3": {
       "title": "Cybersecurity Risk Analyst III",
@@ -269,9 +296,9 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:19:27-05:00",
-      "last_seen_at": "2026-10-18T14:19:27-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "a0Hcw00000Acpa1EAB": {
       "title": "Project Coordinator- Medical Device/Supply Chain",
@@ -297,9 +324,9 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:19:27-05:00",
-      "last_seen_at": "2026-10-18T14:19:27-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "a0Hcw00000AZMeDEAX": {
       "title": "Automation Technician Lead",
@@ -312,9 +339,9 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:19:27-05:00",
-      "last_seen_at": "2026-10-18T14:19:27-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "a0Hcw00000AZJZtEAP": {
       "title": "Supply Chain Operations Manager",
@@ -327,9 +354,9 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:19:27-05:00",
-      "last_seen_at": "2026-10-18T14:19:27-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "a0Hcw00000AZ7vJEAT": {
       "title": "Senior Project Manager \u2013 Human Resources",
@@ -357,9 +384,9 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:19:27-05:00",
-      "last_seen_at": "2026-10-18T14:19:27-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "a0Hcw00000AWsU9EAL": {
       "title": "Project Administrator",
@@ -371,9 +398,9 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:19:27-05:00",
-      "last_seen_at": "2026-10-18T14:19:27-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "a0Hcw00000AWNtNEAX": {
       "title": "Maintenance Engineering Technician",
@@ -386,9 +413,9 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:19:27-05:00",
-      "last_seen_at": "2026-10-18T14:19:27-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "a0Hcw00000ATrZREA1": {
       "title": "SOX Auditor",
@@ -406,17 +433,17 @@
     },
     "a0Hcw000008c7FBEAY": {
       "title": "Operational Excellence Engineer",
-      "location": "",
+      "location": "Monett, Mi",
       "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw000008c7FBEAY/operational-excellence-engineer",
-      "posted_at": "",
+      "posted_at": "Oct 16, 2026",
       "stage": "detail",
       "blockers": [
-        "insufficient_profile_overlap"
+        "minimum_experience_at_least_5_years"
       ],
       "category": "technical_review",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:19:27-05:00",
-      "last_seen_at": "2026-10-18T14:19:27-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "a0Hcw00000Acn5BEAR": {
       "title": "Sr Engineer as400 Developer",
@@ -428,9 +455,9 @@
         "minimum_experience_at_least_5_years"
       ],
       "category": "development",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:19:27-05:00",
-      "last_seen_at": "2026-10-18T14:19:27-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "a0Hcw00000AcCVSEA3": {
       "title": "Senior Information Security Analyst",
@@ -442,9 +469,9 @@
         "insufficient_profile_overlap"
       ],
       "category": "security",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:19:27-05:00",
-      "last_seen_at": "2026-10-18T14:19:27-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "a0Hcw00000AX2TVEA1": {
       "title": "Senior Quality Assurance Engineer",
@@ -456,9 +483,9 @@
         "insufficient_profile_overlap"
       ],
       "category": "technical_review",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:19:27-05:00",
-      "last_seen_at": "2026-10-18T14:19:27-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "a0Hcw00000AQozVEAT": {
       "title": "Senior Process Engineer",
@@ -484,9 +511,9 @@
         "support"
       ],
       "category": "technical_review",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-20T08:43:12-05:00",
-      "last_seen_at": "2026-10-20T08:43:12-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "a0Hcw00000Ah5ptEAB": {
       "title": "Technology Sourcing Manager",
@@ -499,24 +526,24 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-20T08:43:12-05:00",
-      "last_seen_at": "2026-10-20T08:43:12-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "a0Hcw00000AgF9lEAF": {
       "title": "Facility Manager - BioTech",
       "location": "",
       "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000AgF9lEAF/facility-manager---biotech",
-      "posted_at": "Posted This Week",
+      "posted_at": "",
       "stage": "prefilter",
       "blockers": [
         "management",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-20T08:43:12-05:00",
-      "last_seen_at": "2026-10-20T08:43:12-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "a0Hcw00000AgottEAB": {
       "title": "Senior Project Manager \u2013 Physical Security Systems",
@@ -532,6 +559,609 @@
       "filter_version": 2,
       "first_seen_at": "2026-10-20T08:43:12-05:00",
       "last_seen_at": "2026-10-20T08:43:12-05:00"
+    },
+    "a0Hcw00000B8msLEAR": {
+      "title": "Sr Regulatory Affairs Specialist",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000B8msLEAR/sr-regulatory-affairs-specialist",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-01T21:53:41+00:00",
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
+    },
+    "a0Hcw00000B6TH7EAN": {
+      "title": "Accounts Receivable Specialist",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000B6TH7EAN/accounts-receivable-specialist",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-01T21:53:41+00:00",
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
+    },
+    "a0Hcw00000B3qOjEAJ": {
+      "title": "Data Governance Consultant",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000B3qOjEAJ/data-governance-consultant",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-01T21:53:41+00:00",
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
+    },
+    "a0Hcw00000B74LVEAZ": {
+      "title": "Senior Genetec System Administrator",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000B74LVEAZ/senior-genetec-system-administrator",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-01T21:53:41+00:00",
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
+    },
+    "a0Hcw00000B6VpKEAV": {
+      "title": "Data Architect \u2013 Infor LN ERP Data Migration",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000B6VpKEAV/data-architect--infor-ln-erp-data-migration",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-01T21:53:41+00:00",
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
+    },
+    "a0Hcw00000B7MDZEA3": {
+      "title": "Audit Manager",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000B7MDZEA3/audit-manager",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-01T21:53:41+00:00",
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
+    },
+    "a0Hcw00000B3hbaEAB": {
+      "title": "Data Governance and Retention Specialist",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000B3hbaEAB/data-governance-and-retention-specialist",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-01T21:53:41+00:00",
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
+    },
+    "a0Hcw00000AxzOIEAZ": {
+      "title": "Change Control & Data Retrieval/Collection Specialist",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000AxzOIEAZ/change-control--data-retrievalcollection-specialist",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "embedded_or_hardware",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-01T21:53:41+00:00",
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
+    },
+    "a0Hcw00000B11lJEAR": {
+      "title": "B2B Integration Architect",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000B11lJEAR/b2b-integration-architect",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-01T21:53:41+00:00",
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
+    },
+    "a0Hcw00000B0TTmEAN": {
+      "title": "Customer Logistics Analyst",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000B0TTmEAN/customer-logistics-analyst",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-01T21:53:41+00:00",
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
+    },
+    "a0Hcw00000Asq0fEAB": {
+      "title": "Retail Merchandising Operations Coordinator",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000Asq0fEAB/retail-merchandising-operations-coordinator",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-01T21:53:41+00:00",
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
+    },
+    "a0Hcw00000AxNFlEAN": {
+      "title": "Pre ID candidate",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000AxNFlEAN/pre-id-candidate",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-01T21:53:41+00:00",
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
+    },
+    "a0Hcw00000AqGpJEAV": {
+      "title": "Business Analyst \u2013 Financial Systems & Forecasting",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000AqGpJEAV/business-analyst--financial-systems--forecasting",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-01T21:53:41+00:00",
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
+    },
+    "a0Hcw00000AnRnfEAF": {
+      "title": "Operations Systems/Controls Developer",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000AnRnfEAF/operations-systemscontrols-developer",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "embedded_or_hardware"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-01T21:53:41+00:00",
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
+    },
+    "a0Hcw00000AjbvJEAR": {
+      "title": "CONFIDENTIAL: Product Manager- Salesforce CRM",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000AjbvJEAR/confidential-product-manager--salesforce-crm",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-01T21:53:41+00:00",
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
+    },
+    "a0Hcw00000AlyhJEAR": {
+      "title": "Sr Client Services Manager",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000AlyhJEAR/sr-client-services-manager",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-01T21:53:41+00:00",
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
+    },
+    "a0Hcw00000AnW0zEAF": {
+      "title": "Controls Engineer",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000AnW0zEAF/controls-engineer",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "embedded_or_hardware"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-01T21:53:41+00:00",
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
+    },
+    "a0Hcw00000AlkfxEAB": {
+      "title": "Automation Engineer - Controls, PLC",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000AlkfxEAB/automation-engineer---controls-plc",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "embedded_or_hardware"
+      ],
+      "category": "automation",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-01T21:53:41+00:00",
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
+    },
+    "a0Hcw00000AnfgzEAB": {
+      "title": "Security Project Manager \u2013 Physical Security Systems",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000AnfgzEAB/security-project-manager--physical-security-systems",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-01T21:53:41+00:00",
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
+    },
+    "a0Hcw00000AjpmzEAB": {
+      "title": "QA Analyst - AI Solutions",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000AjpmzEAB/qa-analyst---ai-solutions",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-01T21:53:41+00:00",
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
+    },
+    "a0Hcw00000AjXlFEAV": {
+      "title": "Health Informatics Specialist- ED and Inpatient Experience",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000AjXlFEAV/health-informatics-specialist--ed-and-inpatient-experience",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-01T21:53:41+00:00",
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
+    },
+    "a0Hcw00000AgeuXEAR": {
+      "title": "Executive Assistant",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000AgeuXEAR/executive-assistant",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-01T21:53:41+00:00",
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
+    },
+    "a0Hcw00000A9jRZEAZ": {
+      "title": "Senior Manager, NPI & Strategic Initiatives",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000A9jRZEAZ/senior-manager-npi--strategic-initiatives",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-01T21:53:41+00:00",
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
+    },
+    "a0Hcw000009jZNpEAM": {
+      "title": "Production Supervisor - 3rd Shift",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw000009jZNpEAM/production-supervisor---3rd-shift",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-01T21:53:41+00:00",
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
+    },
+    "a0Hcw00000AM9YLEA1": {
+      "title": "Senior Network Solutions Architect",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000AM9YLEA1/senior-network-solutions-architect",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-01T21:53:41+00:00",
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
+    },
+    "a0Hcw00000AX1KXEA1": {
+      "title": "Program Manager \u2013 Public Policy & Community Engagement",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000AX1KXEA1/program-manager--public-policy--community-engagement",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-01T21:53:41+00:00",
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
+    },
+    "a0Hcw00000ATgm6EAD": {
+      "title": "NPI Project Manager",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000ATgm6EAD/npi-project-manager",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-01T21:53:41+00:00",
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
+    },
+    "a0Hcw00000AT4AYEA1": {
+      "title": "Logistics Specialist",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000AT4AYEA1/logistics-specialist",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-01T21:53:41+00:00",
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
+    },
+    "a0Hcw00000AR1gbEAD": {
+      "title": "Production Supervisor - 3rd Shift",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000AR1gbEAD/production-supervisor---3rd-shift",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-01T21:53:41+00:00",
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
+    },
+    "a0Hcw00000AT7ErEAL": {
+      "title": "Principal IT Technologist \u2013 SAP Master Data Governance (MDG)",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000AT7ErEAL/principal-it-technologist--sap-master-data-governance-mdg",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-01T21:53:41+00:00",
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
+    },
+    "a0Hcw000009v7PNEAY": {
+      "title": "Principal Manufacturing Engineer - Pressure Decay Leak Testing & Test Systems",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw000009v7PNEAY/principal-manufacturing-engineer---pressure-decay-leak-testing--test-systems",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-01T21:53:41+00:00",
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
+    },
+    "a0Hcw00000AJdzBEAT": {
+      "title": "Quality Systems Manager",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000AJdzBEAT/quality-systems-manager",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-01T21:53:41+00:00",
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
+    },
+    "a0Hcw00000AJCirEAH": {
+      "title": "Data Center Engineering Operations Technician",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000AJCirEAH/data-center-engineering-operations-technician",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-01T21:53:41+00:00",
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
+    },
+    "a0Hcw00000B6hlXEAR": {
+      "title": "REMOTE--Senior DevSecOps Engineer \u2013 AI Security & Application Security Automatio",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000B6hlXEAR/remote--senior-devsecops-engineer--ai-security--application-security-automatio",
+      "posted_at": "",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-01T21:53:41+00:00",
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
+    },
+    "a0Hcw00000Ax2WHEAZ": {
+      "title": "M365 Collaboration & AI Automation Engineer",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000Ax2WHEAZ/m365-collaboration--ai-automation-engineer",
+      "posted_at": "",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "automation",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-01T21:53:41+00:00",
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
+    },
+    "a0Hcw00000AsdQ1EAJ": {
+      "title": "Senior Analytics Engineer \u2013 Snowflake & dbt",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000AsdQ1EAJ/senior-analytics-engineer--snowflake--dbt",
+      "posted_at": "",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-01T21:53:41+00:00",
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
+    },
+    "a0Hcw00000B06BxEAJ": {
+      "title": "Senior Laboratory Systems Engineer",
+      "location": "Exton, PA",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000B06BxEAJ/senior-laboratory-systems-engineer",
+      "posted_at": "Oct 27, 2026",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "systems_engineering",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-01T21:53:41+00:00",
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
+    },
+    "a0Hcw00000AxgwjEAB": {
+      "title": "Quality Assurance Engineer",
+      "location": "Portage, MI",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000AxgwjEAB/quality-assurance-engineer",
+      "posted_at": "Oct 26, 2026",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-01T21:53:41+00:00",
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
+    },
+    "a0Hcw000006tVZBEA2": {
+      "title": "Senior Process Engineer",
+      "location": "Beloit, Wi",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw000006tVZBEA2/senior-process-engineer",
+      "posted_at": "Oct 20, 2026",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-01T21:53:41+00:00",
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
+    },
+    "a0Hcw000006ZdsfEAC": {
+      "title": "Senior Process Engineer",
+      "location": "Monett, Mi",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw000006ZdsfEAC/senior-process-engineer",
+      "posted_at": "Oct 20, 2026",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-01T21:53:41+00:00",
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
+    },
+    "a0Hcw00000AMrntEAD": {
+      "title": "AI Data Science Engineer II",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000AMrntEAD/ai-data-science-engineer-ii",
+      "posted_at": "Oct 12, 2026",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "data",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-01T21:53:41+00:00",
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
+    },
+    "a0Hcw00000AJKtJEAX": {
+      "title": "Software Development Engineer in Test (SDET)",
+      "location": "Pittsburgh, PA",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000AJKtJEAX/software-development-engineer-in-test-sdet",
+      "posted_at": "Oct 08, 2026",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "qa",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-01T21:53:41+00:00",
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     }
-  }
+  },
+  "source_updated_at_by_id": {}
 }

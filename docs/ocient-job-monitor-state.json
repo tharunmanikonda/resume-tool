@@ -8,13 +8,16 @@
     "am9icG9zdDofYHqc8zr7rfB1gqt1KQj9",
     "am9icG9zdDp3DadDGd_3uBwvG0EBWmo9",
     "am9icG9zdDp9BrHlqr7myFyRPR_fw9UL",
+    "am9icG9zdDpCyK1l7ZPiGpgGYcGcXV41",
     "am9icG9zdDpFdZTUveC6g8q8G7CRDYkt",
     "am9icG9zdDpFl5QFYmMzBVmY5ILWDpHv",
+    "am9icG9zdDqJgzf2Bu_0qefQ3TIPESmw",
     "am9icG9zdDqRbvqAGpMQYQZdQPuS_3w3",
     "am9icG9zdDqUzWDI7nPB-1ai3jJbFdxp",
     "am9icG9zdDqfghXX1xUaQY4pt_-uA4Jn",
     "am9icG9zdDqtEWCmgMmEa7pK_vw23dgP",
     "am9icG9zdDr1ivF4Z83dxwMxjYehfXDd",
+    "am9icG9zdDrbM9PPT4b0PBJLnZzIwPYm",
     "am9icG9zdDrjs1cXAvxZfz7oqTg028nU"
   ],
   "candidate_catalog": {
@@ -26,10 +29,19 @@
       "first_seen_at": "2026-10-12T00:22:11-05:00",
       "priority": "medium",
       "category": "software"
+    },
+    "am9icG9zdDpCyK1l7ZPiGpgGYcGcXV41": {
+      "title": "Software Engineer II - Query Processing",
+      "location": "Remote, USA, Remote",
+      "url": "https://jobs.gem.com/ocient-inc-/am9icG9zdDpCyK1l7ZPiGpgGYcGcXV41",
+      "posted_at": "",
+      "first_seen_at": "2026-11-01T21:53:41+00:00",
+      "priority": "medium",
+      "category": "software"
     }
   },
-  "last_successful_scan_at": "2026-10-19T11:54:15-05:00",
-  "filter_version": 2,
+  "last_successful_scan_at": "2026-11-01T21:53:41+00:00",
+  "filter_version": 3,
   "rejected_catalog": {
     "am9icG9zdDoSZRhfRFSX4uPin3ZELp9s": {
       "title": "Enterprise Business Development Representative",
@@ -56,9 +68,9 @@
         "support"
       ],
       "category": "technical_review",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:28:11-05:00",
-      "last_seen_at": "2026-10-18T14:28:11-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "am9icG9zdDofYHqc8zr7rfB1gqt1KQj9": {
       "title": "Demand Generation Manager",
@@ -71,9 +83,9 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:28:11-05:00",
-      "last_seen_at": "2026-10-18T14:28:11-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "am9icG9zdDoOaLMvocrUd1cuTZMf4Xbe": {
       "title": "Senior Product Manager - Database",
@@ -100,9 +112,9 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:28:11-05:00",
-      "last_seen_at": "2026-10-18T14:28:11-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "am9icG9zdDqRbvqAGpMQYQZdQPuS_3w3": {
       "title": "Senior Solutions Architect, CSP",
@@ -115,9 +127,9 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:28:11-05:00",
-      "last_seen_at": "2026-10-18T14:28:11-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "am9icG9zdDp3DadDGd_3uBwvG0EBWmo9": {
       "title": "Solutions Architect, CSP",
@@ -130,9 +142,9 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:28:11-05:00",
-      "last_seen_at": "2026-10-18T14:28:11-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "am9icG9zdDqtEWCmgMmEa7pK_vw23dgP": {
       "title": "Senior Software QA Engineer",
@@ -144,9 +156,9 @@
         "non_us_location"
       ],
       "category": "qa",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:28:11-05:00",
-      "last_seen_at": "2026-10-18T14:28:11-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "am9icG9zdDqfghXX1xUaQY4pt_-uA4Jn": {
       "title": "Senior Software QA Engineer (UI)",
@@ -158,12 +170,12 @@
         "non_us_location"
       ],
       "category": "qa",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:28:11-05:00",
-      "last_seen_at": "2026-10-18T14:28:11-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "am9icG9zdDoG4UzA36jIyuP_xXPNzCoE": {
-      "title": "Executive Director, ONSS",
+      "title": "Executive Sales Director, ONSS",
       "location": "Remote, USA, Remote",
       "url": "https://jobs.gem.com/ocient-inc-/am9icG9zdDoG4UzA36jIyuP_xXPNzCoE",
       "posted_at": "",
@@ -173,9 +185,9 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:28:11-05:00",
-      "last_seen_at": "2026-10-18T14:28:11-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "am9icG9zdDqUzWDI7nPB-1ai3jJbFdxp": {
       "title": "Technical Project Manager",
@@ -188,9 +200,9 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:28:11-05:00",
-      "last_seen_at": "2026-10-18T14:28:11-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "am9icG9zdDp9BrHlqr7myFyRPR_fw9UL": {
       "title": "Senior Software Engineer - Geospatial",
@@ -202,9 +214,9 @@
         "minimum_experience_at_least_5_years"
       ],
       "category": "software",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:28:11-05:00",
-      "last_seen_at": "2026-10-18T14:28:11-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "am9icG9zdDrjs1cXAvxZfz7oqTg028nU": {
       "title": "Senior Software Engineer - Machine Learning",
@@ -216,9 +228,38 @@
         "minimum_experience_at_least_5_years"
       ],
       "category": "software",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:28:11-05:00",
-      "last_seen_at": "2026-10-18T14:28:11-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
+    },
+    "am9icG9zdDqJgzf2Bu_0qefQ3TIPESmw": {
+      "title": "Senior UI/UX Engineer",
+      "location": "Remote, India, Remote",
+      "url": "https://jobs.gem.com/ocient-inc-/am9icG9zdDqJgzf2Bu_0qefQ3TIPESmw",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-01T21:53:41+00:00",
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
+    },
+    "am9icG9zdDrbM9PPT4b0PBJLnZzIwPYm": {
+      "title": "Site Reliability Engineer",
+      "location": "Remote (United Kingdom or Europe), Remote",
+      "url": "https://jobs.gem.com/ocient-inc-/am9icG9zdDrbM9PPT4b0PBJLnZzIwPYm",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "reliability",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-01T21:53:41+00:00",
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     }
-  }
+  },
+  "source_updated_at_by_id": {}
 }

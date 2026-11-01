@@ -79,7 +79,12 @@
     "REQ-4888",
     "REQ-4889",
     "REQ-4896",
-    "REQ-4899"
+    "REQ-4899",
+    "REQ-4901",
+    "REQ-4907",
+    "REQ-4908",
+    "REQ-4909",
+    "REQ-4910"
   ],
   "candidate_catalog": {
     "REQ-4807": {
@@ -90,159 +95,160 @@
       "first_seen_at": "2026-10-12T00:21:01-05:00",
       "priority": "medium",
       "category": "qa"
+    },
+    "REQ-4888": {
+      "title": "Senior Associate, Software Engineering: Java",
+      "location": "Chicago - 125 S Franklin; Dallas, TX",
+      "url": "https://theocc.wd5.myworkdayjobs.com/job/Chicago---125-S-Franklin/Associate-Principal--Software-Engineering--Java_REQ-4888-2",
+      "posted_at": "2026-10-27",
+      "first_seen_at": "2026-11-01T21:53:41+00:00",
+      "priority": "high",
+      "category": "software"
+    },
+    "REQ-4789": {
+      "title": "Senior Associate, Software Engineering",
+      "location": "Dallas, TX",
+      "url": "https://theocc.wd5.myworkdayjobs.com/job/Dallas-TX/Senior-Associate--Software-Engineering_REQ-4789",
+      "posted_at": "2026-08-24",
+      "first_seen_at": "2026-11-01T21:53:41+00:00",
+      "priority": "high",
+      "category": "software"
     }
   },
-  "last_successful_scan_at": "2026-10-20T09:24:39-05:00",
-  "filter_version": 2,
+  "last_successful_scan_at": "2026-11-01T21:53:41+00:00",
+  "filter_version": 3,
   "rejected_catalog": {
     "REQ-4896": {
       "title": "Senior Associate, Third Party Risk Management",
       "location": "Chicago - 125 S Franklin",
       "url": "https://theocc.wd5.myworkdayjobs.com/job/Chicago---125-S-Franklin/Senior-Associate--Third-Party-Risk-Management_REQ-4896",
-      "posted_at": "Posted 3 Days Ago",
+      "posted_at": "Posted 16 Days Ago",
       "stage": "prefilter",
       "blockers": [
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-19T12:22:40-05:00",
-      "last_seen_at": "2026-10-19T12:22:40-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "REQ-4887": {
       "title": "Associate Principal, Internal Audit, Information Technology & Security",
       "location": "2 Locations",
       "url": "https://theocc.wd5.myworkdayjobs.com/job/Chicago---125-S-Franklin/Associate-Principal--Internal-Audit--Information-Technology---Security_REQ-4887-2",
-      "posted_at": "Posted 6 Days Ago",
+      "posted_at": "Posted 19 Days Ago",
       "stage": "prefilter",
       "blockers": [
         "level_too_senior",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-19T12:22:40-05:00",
-      "last_seen_at": "2026-10-19T12:22:40-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "REQ-4799": {
       "title": "Lead Associate Principal, Software Engineering: Java",
       "location": "Dallas, TX",
       "url": "https://theocc.wd5.myworkdayjobs.com/job/Dallas-TX/Lead-Associate-Principal--Software-Engineering--Java_REQ-4799",
-      "posted_at": "Posted 6 Days Ago",
+      "posted_at": "Posted 19 Days Ago",
       "stage": "prefilter",
       "blockers": [
-        "level_too_senior",
-        "title_not_targeted"
+        "level_too_senior"
       ],
-      "category": "other",
-      "filter_version": 2,
+      "category": "software",
+      "filter_version": 3,
       "first_seen_at": "2026-10-19T12:22:40-05:00",
-      "last_seen_at": "2026-10-19T12:22:40-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "REQ-4879": {
       "title": "Senior Associate, Help Desk",
       "location": "2 Locations",
       "url": "https://theocc.wd5.myworkdayjobs.com/job/Dallas-TX/Senior-Associate--Help-Desk_REQ-4879-1",
-      "posted_at": "Posted 11 Days Ago",
+      "posted_at": "Posted 24 Days Ago",
       "stage": "prefilter",
       "blockers": [
         "support",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-19T12:22:40-05:00",
-      "last_seen_at": "2026-10-19T12:22:40-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "REQ-4878": {
       "title": "Associate Principal, Network Engineering",
       "location": "2 Locations",
       "url": "https://theocc.wd5.myworkdayjobs.com/job/Chicago---125-S-Franklin/Associate-Principal--Network-Engineering_REQ-4878-1",
-      "posted_at": "Posted 11 Days Ago",
+      "posted_at": "Posted 24 Days Ago",
       "stage": "prefilter",
       "blockers": [
         "level_too_senior",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-19T12:22:40-05:00",
-      "last_seen_at": "2026-10-19T12:22:40-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "REQ-4808": {
       "title": "Lead Associate Principal, Infrastructure Innovation & Automation",
       "location": "Chicago - 125 S Franklin",
       "url": "https://theocc.wd5.myworkdayjobs.com/job/Chicago---125-S-Franklin/Lead-Associate-Principal--Infrastructure-Innovation---Automation_REQ-4808-2",
-      "posted_at": "Posted 11 Days Ago",
+      "posted_at": "Posted 24 Days Ago",
       "stage": "prefilter",
       "blockers": [
         "level_too_senior",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-19T12:22:40-05:00",
-      "last_seen_at": "2026-10-19T12:22:40-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "REQ-4782": {
       "title": "Associate Principal, Network Engineering",
       "location": "Chicago - 125 S Franklin",
       "url": "https://theocc.wd5.myworkdayjobs.com/job/Chicago---125-S-Franklin/Associate-Principal--Network-Engineering_REQ-4782-4",
-      "posted_at": "Posted 11 Days Ago",
+      "posted_at": "Posted 24 Days Ago",
       "stage": "prefilter",
       "blockers": [
         "level_too_senior",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-19T12:22:40-05:00",
-      "last_seen_at": "2026-10-19T12:22:40-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "REQ-4678": {
       "title": "Manager, Database Administration",
       "location": "Dallas, TX",
       "url": "https://theocc.wd5.myworkdayjobs.com/job/Dallas-TX/Manager--Database-Administration_REQ-4678-5",
-      "posted_at": "Posted 11 Days Ago",
+      "posted_at": "Posted 24 Days Ago",
       "stage": "prefilter",
       "blockers": [
         "management",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-19T12:22:40-05:00",
-      "last_seen_at": "2026-10-19T12:22:40-05:00"
-    },
-    "REQ-4888": {
-      "title": "Associate Principal, Software Engineering: Java",
-      "location": "2 Locations",
-      "url": "https://theocc.wd5.myworkdayjobs.com/job/Chicago---125-S-Franklin/Associate-Principal--Software-Engineering--Java_REQ-4888-2",
-      "posted_at": "Posted 11 Days Ago",
-      "stage": "prefilter",
-      "blockers": [
-        "level_too_senior",
-        "title_not_targeted"
-      ],
-      "category": "other",
-      "filter_version": 2,
-      "first_seen_at": "2026-10-19T12:22:40-05:00",
-      "last_seen_at": "2026-10-19T12:22:40-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "REQ-4889": {
       "title": "Summer Intern - Market Risk",
       "location": "Chicago - 125 S Franklin",
       "url": "https://theocc.wd5.myworkdayjobs.com/job/Chicago---125-S-Franklin/Summer-Intern---Market-Risk_REQ-4889",
-      "posted_at": "Posted 11 Days Ago",
+      "posted_at": "Posted 24 Days Ago",
       "stage": "prefilter",
       "blockers": [
-        "internship",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-19T12:22:40-05:00",
-      "last_seen_at": "2026-10-19T12:22:40-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "REQ-4783": {
       "title": "Associate Principal, Business Analysis",
@@ -263,16 +269,16 @@
       "title": "Lead Associate Principal, Quantitative Risk Management",
       "location": "Chicago - 125 S Franklin",
       "url": "https://theocc.wd5.myworkdayjobs.com/job/Chicago---125-S-Franklin/Lead-Associate-Principal--Quantitative-Risk-Management_REQ-4886",
-      "posted_at": "Posted 13 Days Ago",
+      "posted_at": "Posted 26 Days Ago",
       "stage": "prefilter",
       "blockers": [
         "level_too_senior",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-19T12:22:40-05:00",
-      "last_seen_at": "2026-10-19T12:22:40-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "REQ-4884": {
       "title": "Senior Associate, Operational Risk Management, IT and Security",
@@ -292,61 +298,59 @@
       "title": "Associate Principal, Operational Risk Management, IT & Security",
       "location": "Chicago - 125 S Franklin",
       "url": "https://theocc.wd5.myworkdayjobs.com/job/Chicago---125-S-Franklin/Associate-Principal--Operational-Risk-Management--IT---Security_REQ-4885",
-      "posted_at": "Posted 14 Days Ago",
+      "posted_at": "Posted 27 Days Ago",
       "stage": "prefilter",
       "blockers": [
         "level_too_senior",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-19T12:22:40-05:00",
-      "last_seen_at": "2026-10-19T12:22:40-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "REQ-4882": {
       "title": "Summer Intern - Strategy",
       "location": "Chicago - 125 S Franklin",
       "url": "https://theocc.wd5.myworkdayjobs.com/job/Chicago---125-S-Franklin/Summer-Intern---Strategy_REQ-4882",
-      "posted_at": "Posted 14 Days Ago",
+      "posted_at": "Posted 27 Days Ago",
       "stage": "prefilter",
       "blockers": [
-        "internship",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-19T12:22:40-05:00",
-      "last_seen_at": "2026-10-19T12:22:40-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "REQ-4881": {
       "title": "Director, Platform Engineering",
       "location": "Chicago - 125 S Franklin",
       "url": "https://theocc.wd5.myworkdayjobs.com/job/Chicago---125-S-Franklin/Principal--Platform-Engineering_REQ-4881",
-      "posted_at": "Posted 18 Days Ago",
+      "posted_at": "Posted 30+ Days Ago",
       "stage": "prefilter",
       "blockers": [
         "management",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-19T12:22:40-05:00",
-      "last_seen_at": "2026-10-19T12:22:40-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "REQ-4841": {
       "title": "Summer Intern \u2013 Credit Risk Management",
       "location": "Chicago - 125 S Franklin",
       "url": "https://theocc.wd5.myworkdayjobs.com/job/Chicago---125-S-Franklin/Summer-Intern---Credit-Risk-Management_REQ-4841",
-      "posted_at": "Posted 18 Days Ago",
+      "posted_at": "Posted 30+ Days Ago",
       "stage": "prefilter",
       "blockers": [
-        "internship",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-19T12:22:40-05:00",
-      "last_seen_at": "2026-10-19T12:22:40-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "REQ-4758": {
       "title": "Senior Associate, Pricing & Margins",
@@ -366,16 +370,15 @@
       "title": "Summer Intern - Diversity, Equity and Inclusion",
       "location": "Chicago - 125 S Franklin",
       "url": "https://theocc.wd5.myworkdayjobs.com/job/Chicago---125-S-Franklin/Summer-Intern---Diversity--Equity-and-Inclusion_REQ-4848",
-      "posted_at": "Posted 27 Days Ago",
+      "posted_at": "Posted 30+ Days Ago",
       "stage": "prefilter",
       "blockers": [
-        "internship",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-19T12:22:40-05:00",
-      "last_seen_at": "2026-10-19T12:22:40-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "REQ-4786": {
       "title": "Lead Associate Principal, AI Solutions",
@@ -396,105 +399,103 @@
       "title": "Principal, AI Enablement & Change",
       "location": "Chicago - 125 S Franklin",
       "url": "https://theocc.wd5.myworkdayjobs.com/job/Chicago---125-S-Franklin/Principal--AI-Enablement---Change_REQ-4788",
-      "posted_at": "Posted 28 Days Ago",
+      "posted_at": "Posted 30+ Days Ago",
       "stage": "prefilter",
       "blockers": [
         "level_too_senior",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-19T12:22:40-05:00",
-      "last_seen_at": "2026-10-19T12:22:40-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "REQ-4825": {
       "title": "Principal, Transformation Communications & Business Partnerships",
       "location": "Chicago - 125 S Franklin",
       "url": "https://theocc.wd5.myworkdayjobs.com/job/Chicago---125-S-Franklin/Principal--Transformation-Communications---Business-Partnerships_REQ-4825",
-      "posted_at": "Posted 28 Days Ago",
+      "posted_at": "Posted 30+ Days Ago",
       "stage": "prefilter",
       "blockers": [
         "level_too_senior",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-19T12:22:40-05:00",
-      "last_seen_at": "2026-10-19T12:22:40-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "REQ-4831": {
       "title": "Summer Intern - Agile Management Solutions",
       "location": "Chicago - 125 S Franklin",
       "url": "https://theocc.wd5.myworkdayjobs.com/job/Chicago---125-S-Franklin/Summer-Intern---Agile-Management-Solutions_REQ-4831",
-      "posted_at": "Posted 28 Days Ago",
+      "posted_at": "Posted 30+ Days Ago",
       "stage": "prefilter",
       "blockers": [
-        "internship",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-19T12:22:40-05:00",
-      "last_seen_at": "2026-10-19T12:22:40-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "REQ-4667": {
       "title": "Associate Principal, Security Engineering - Hashi Vault",
       "location": "Chicago - 125 S Franklin",
       "url": "https://theocc.wd5.myworkdayjobs.com/job/Chicago---125-S-Franklin/Associate-Principal--Security-Engineering_REQ-4667-1",
-      "posted_at": "Posted 28 Days Ago",
+      "posted_at": "Posted 30+ Days Ago",
       "stage": "prefilter",
       "blockers": [
         "level_too_senior",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-19T12:22:40-05:00",
-      "last_seen_at": "2026-10-19T12:22:40-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "REQ-4776": {
       "title": "Senior Associate, Security Engineering - Hashi Vault",
       "location": "Chicago - 125 S Franklin",
       "url": "https://theocc.wd5.myworkdayjobs.com/job/Chicago---125-S-Franklin/Senior-Associate--Security-Engineering_REQ-4776",
-      "posted_at": "Posted 28 Days Ago",
+      "posted_at": "Posted 30+ Days Ago",
       "stage": "prefilter",
       "blockers": [
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-19T12:22:40-05:00",
-      "last_seen_at": "2026-10-19T12:22:40-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "REQ-4827": {
       "title": "Associate Principal, Security Engineering - Hashi Vault",
       "location": "Chicago - 125 S Franklin",
       "url": "https://theocc.wd5.myworkdayjobs.com/job/Chicago---125-S-Franklin/Associate-Principal--Security-Engineering_REQ-4827",
-      "posted_at": "Posted 28 Days Ago",
+      "posted_at": "Posted 30+ Days Ago",
       "stage": "prefilter",
       "blockers": [
         "level_too_senior",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-19T12:22:40-05:00",
-      "last_seen_at": "2026-10-19T12:22:40-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "REQ-4840": {
       "title": "Year-Round Intern - Business Operations",
       "location": "Dallas, TX",
       "url": "https://theocc.wd5.myworkdayjobs.com/job/Dallas-TX/Year-Round-Intern---Corporate-Actions_REQ-4840",
-      "posted_at": "Posted 28 Days Ago",
+      "posted_at": "Posted 30+ Days Ago",
       "stage": "prefilter",
       "blockers": [
-        "internship",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-19T12:22:40-05:00",
-      "last_seen_at": "2026-10-19T12:22:40-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "REQ-4815": {
       "title": "Associate, Paralegal",
@@ -521,9 +522,9 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-19T12:22:40-05:00",
-      "last_seen_at": "2026-10-19T12:22:40-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "REQ-4843": {
       "title": "Year-Round Intern - Cyber Operations",
@@ -532,13 +533,12 @@
       "posted_at": "Posted 30+ Days Ago",
       "stage": "prefilter",
       "blockers": [
-        "internship",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-19T12:22:40-05:00",
-      "last_seen_at": "2026-10-19T12:22:40-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "REQ-4473": {
       "title": "Associate Principal, Artificial Intelligence Engineering",
@@ -551,24 +551,23 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-19T12:22:40-05:00",
-      "last_seen_at": "2026-10-19T12:22:40-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "REQ-4869": {
       "title": "Year-Round Intern - Stress Testing & Liquidity Management",
-      "location": "Dallas, TX",
-      "url": "https://theocc.wd5.myworkdayjobs.com/job/Dallas-TX/Year-Round-Intern---Stress-Testing---Liquidity-Management_REQ-4869",
-      "posted_at": "Posted 30+ Days Ago",
+      "location": "2 Locations",
+      "url": "https://theocc.wd5.myworkdayjobs.com/job/Chicago---125-S-Franklin/Year-Round-Intern---Stress-Testing---Liquidity-Management_REQ-4869",
+      "posted_at": "Posted 12 Days Ago",
       "stage": "prefilter",
       "blockers": [
-        "internship",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-19T12:22:40-05:00",
-      "last_seen_at": "2026-10-19T12:22:40-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "REQ-4866": {
       "title": "Year-Round Intern - Service Management",
@@ -577,13 +576,12 @@
       "posted_at": "Posted 30+ Days Ago",
       "stage": "prefilter",
       "blockers": [
-        "internship",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-19T12:22:40-05:00",
-      "last_seen_at": "2026-10-19T12:22:40-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "REQ-4863": {
       "title": "Summer Intern - Quantitative Risk Management",
@@ -592,13 +590,12 @@
       "posted_at": "Posted 30+ Days Ago",
       "stage": "prefilter",
       "blockers": [
-        "internship",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-19T12:22:40-05:00",
-      "last_seen_at": "2026-10-19T12:22:40-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "REQ-4864": {
       "title": "Summer Intern - Quantitative Risk Management",
@@ -607,13 +604,12 @@
       "posted_at": "Posted 30+ Days Ago",
       "stage": "prefilter",
       "blockers": [
-        "internship",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-19T12:22:40-05:00",
-      "last_seen_at": "2026-10-19T12:22:40-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "REQ-4861": {
       "title": "Summer Intern - Model Risk Management",
@@ -622,13 +618,12 @@
       "posted_at": "Posted 30+ Days Ago",
       "stage": "prefilter",
       "blockers": [
-        "internship",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-19T12:22:40-05:00",
-      "last_seen_at": "2026-10-19T12:22:40-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "REQ-4862": {
       "title": "Summer Intern - Quantitative Risk Management",
@@ -637,13 +632,12 @@
       "posted_at": "Posted 30+ Days Ago",
       "stage": "prefilter",
       "blockers": [
-        "internship",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-19T12:22:40-05:00",
-      "last_seen_at": "2026-10-19T12:22:40-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "REQ-4857": {
       "title": "Year-Round Intern - Internet Services",
@@ -652,13 +646,12 @@
       "posted_at": "Posted 30+ Days Ago",
       "stage": "prefilter",
       "blockers": [
-        "internship",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-19T12:22:40-05:00",
-      "last_seen_at": "2026-10-19T12:22:40-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "REQ-4860": {
       "title": "Year-Round Intern - Member Services",
@@ -667,13 +660,12 @@
       "posted_at": "Posted 30+ Days Ago",
       "stage": "prefilter",
       "blockers": [
-        "internship",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-19T12:22:40-05:00",
-      "last_seen_at": "2026-10-19T12:22:40-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "REQ-4849": {
       "title": "Summer Intern - Enterprise Quality Governance & Transformation",
@@ -682,13 +674,12 @@
       "posted_at": "Posted 30+ Days Ago",
       "stage": "prefilter",
       "blockers": [
-        "internship",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-19T12:22:40-05:00",
-      "last_seen_at": "2026-10-19T12:22:40-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "REQ-4844": {
       "title": "Summer Intern - Data",
@@ -697,13 +688,12 @@
       "posted_at": "Posted 30+ Days Ago",
       "stage": "prefilter",
       "blockers": [
-        "internship",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-19T12:22:40-05:00",
-      "last_seen_at": "2026-10-19T12:22:40-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "REQ-4846": {
       "title": "Year-Round Intern - Data",
@@ -727,13 +717,12 @@
       "posted_at": "Posted 30+ Days Ago",
       "stage": "prefilter",
       "blockers": [
-        "internship",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-19T12:22:40-05:00",
-      "last_seen_at": "2026-10-19T12:22:40-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "REQ-4839": {
       "title": "Year-Round Intern - Cloud Engineering",
@@ -742,13 +731,12 @@
       "posted_at": "Posted 30+ Days Ago",
       "stage": "prefilter",
       "blockers": [
-        "internship",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-19T12:22:40-05:00",
-      "last_seen_at": "2026-10-19T12:22:40-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "REQ-4834": {
       "title": "Year-Round Intern - Automation Testing Frameworks",
@@ -757,13 +745,12 @@
       "posted_at": "Posted 30+ Days Ago",
       "stage": "prefilter",
       "blockers": [
-        "internship",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-19T12:22:40-05:00",
-      "last_seen_at": "2026-10-19T12:22:40-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "REQ-4838": {
       "title": "Year-Round Intern - Application Security",
@@ -772,13 +759,12 @@
       "posted_at": "Posted 30+ Days Ago",
       "stage": "prefilter",
       "blockers": [
-        "internship",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-19T12:22:40-05:00",
-      "last_seen_at": "2026-10-19T12:22:40-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "REQ-4833": {
       "title": "Year-Round Intern - AI Research & Engineering",
@@ -806,9 +792,9 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-19T12:22:40-05:00",
-      "last_seen_at": "2026-10-19T12:22:40-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "REQ-4859": {
       "title": "Summer Intern - Legal Department",
@@ -817,13 +803,12 @@
       "posted_at": "Posted 30+ Days Ago",
       "stage": "prefilter",
       "blockers": [
-        "internship",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-19T12:22:40-05:00",
-      "last_seen_at": "2026-10-19T12:22:40-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "REQ-4855": {
       "title": "Summer Intern - Internal Audit",
@@ -832,13 +817,12 @@
       "posted_at": "Posted 30+ Days Ago",
       "stage": "prefilter",
       "blockers": [
-        "internship",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-19T12:22:40-05:00",
-      "last_seen_at": "2026-10-19T12:22:40-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "REQ-4854": {
       "title": "Summer Intern - Internal Audit",
@@ -847,13 +831,12 @@
       "posted_at": "Posted 30+ Days Ago",
       "stage": "prefilter",
       "blockers": [
-        "internship",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-19T12:22:40-05:00",
-      "last_seen_at": "2026-10-19T12:22:40-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "REQ-4853": {
       "title": "Summer Intern - HR Analytics & HRIS",
@@ -862,13 +845,12 @@
       "posted_at": "Posted 30+ Days Ago",
       "stage": "prefilter",
       "blockers": [
-        "internship",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-19T12:22:40-05:00",
-      "last_seen_at": "2026-10-19T12:22:40-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "REQ-4851": {
       "title": "Summer Intern - Enterprise Project Management Office",
@@ -877,13 +859,12 @@
       "posted_at": "Posted 30+ Days Ago",
       "stage": "prefilter",
       "blockers": [
-        "internship",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-19T12:22:40-05:00",
-      "last_seen_at": "2026-10-19T12:22:40-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "REQ-4858": {
       "title": "Year-Round Intern - Investor Education",
@@ -892,13 +873,12 @@
       "posted_at": "Posted 30+ Days Ago",
       "stage": "prefilter",
       "blockers": [
-        "internship",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-19T12:22:40-05:00",
-      "last_seen_at": "2026-10-19T12:22:40-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "REQ-4835": {
       "title": "Year-Round Intern - Business Systems Analysis",
@@ -907,13 +887,12 @@
       "posted_at": "Posted 30+ Days Ago",
       "stage": "prefilter",
       "blockers": [
-        "internship",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-19T12:22:40-05:00",
-      "last_seen_at": "2026-10-19T12:22:40-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "REQ-4870": {
       "title": "Year-Round Intern - CX",
@@ -922,13 +901,12 @@
       "posted_at": "Posted 30+ Days Ago",
       "stage": "prefilter",
       "blockers": [
-        "internship",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-19T12:22:40-05:00",
-      "last_seen_at": "2026-10-19T12:22:40-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "REQ-4830": {
       "title": "Summer Intern - Accounting",
@@ -955,9 +933,9 @@
         "level_too_senior"
       ],
       "category": "qa",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-19T12:22:40-05:00",
-      "last_seen_at": "2026-10-19T12:22:40-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "REQ-4823": {
       "title": "Associate Principal, Quantitative Risk Management",
@@ -981,28 +959,231 @@
       "posted_at": "Posted 30+ Days Ago",
       "stage": "prefilter",
       "blockers": [
-        "level_too_senior",
-        "title_not_targeted"
+        "level_too_senior"
       ],
-      "category": "other",
-      "filter_version": 2,
+      "category": "software",
+      "filter_version": 3,
       "first_seen_at": "2026-10-19T12:22:40-05:00",
-      "last_seen_at": "2026-10-19T12:22:40-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     },
     "REQ-4899": {
       "title": "Associate Principal, Enterprise Project Management Office",
       "location": "Chicago - 125 S Franklin",
       "url": "https://theocc.wd5.myworkdayjobs.com/job/Chicago---125-S-Franklin/Associate-Principal--Enterprise-Project-Management-Office_REQ-4899-1",
-      "posted_at": "Posted Yesterday",
+      "posted_at": "Posted 13 Days Ago",
       "stage": "prefilter",
       "blockers": [
         "level_too_senior",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-20T09:24:39-05:00",
-      "last_seen_at": "2026-10-20T09:24:39-05:00"
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
+    },
+    "REQ-4910": {
+      "title": "Lead Associate Principal, Software Engineering SDET",
+      "location": "Chicago - 125 S Franklin",
+      "url": "https://theocc.wd5.myworkdayjobs.com/job/Chicago---125-S-Franklin/Lead-Associate-Principal--Software-Engineering-SDET_REQ-4910-1",
+      "posted_at": "Posted 3 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior"
+      ],
+      "category": "qa",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-01T21:53:41+00:00",
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
+    },
+    "REQ-4907": {
+      "title": "Associate, Financial Risk Oversight",
+      "location": "Chicago - 125 S Franklin",
+      "url": "https://theocc.wd5.myworkdayjobs.com/job/Chicago---125-S-Franklin/Associate--Financial-Risk-Oversight_REQ-4907-1",
+      "posted_at": "Posted 3 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-01T21:53:41+00:00",
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
+    },
+    "REQ-4908": {
+      "title": "Associate, Data Governance",
+      "location": "Chicago - 125 S Franklin",
+      "url": "https://theocc.wd5.myworkdayjobs.com/job/Chicago---125-S-Franklin/Associate--Data-Governance_REQ-4908",
+      "posted_at": "Posted 3 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-01T21:53:41+00:00",
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
+    },
+    "REQ-4909": {
+      "title": "Principal, Software Engineering: Java",
+      "location": "Chicago - 125 S Franklin",
+      "url": "https://theocc.wd5.myworkdayjobs.com/job/Chicago---125-S-Franklin/Principal--Software-Engineering--Java_REQ-4909",
+      "posted_at": "Posted 4 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-01T21:53:41+00:00",
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
+    },
+    "REQ-4901": {
+      "title": "Senior Associate, Pricing & Margins",
+      "location": "Dallas, TX",
+      "url": "https://theocc.wd5.myworkdayjobs.com/job/Dallas-TX/Senior-Associate--Pricing---Margins_REQ-4901",
+      "posted_at": "Posted 10 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-01T21:53:41+00:00",
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
+    },
+    "REQ-4821": {
+      "title": "Director, Software Engineering: Java",
+      "location": "Dallas, TX",
+      "url": "https://theocc.wd5.myworkdayjobs.com/job/Dallas-TX/Director--Software-Engineering--Java_REQ-4821",
+      "posted_at": "Posted 30+ Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "management"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-01T21:53:41+00:00",
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
+    },
+    "REQ-4806": {
+      "title": "Associate Principal, Business Analysis",
+      "location": "Chicago - 125 S Franklin",
+      "url": "https://theocc.wd5.myworkdayjobs.com/job/Chicago---125-S-Franklin/Associate-Principal--Business-Analysis_REQ-4806",
+      "posted_at": "Posted 30+ Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-01T21:53:41+00:00",
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
+    },
+    "REQ-4805": {
+      "title": "Associate Principal, Data Analytics Engineering",
+      "location": "Chicago - 125 S Franklin",
+      "url": "https://theocc.wd5.myworkdayjobs.com/job/Chicago---125-S-Franklin/Associate-Principal--Data-Analytics-Engineering_REQ-4805",
+      "posted_at": "Posted 30+ Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-01T21:53:41+00:00",
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
+    },
+    "REQ-4803": {
+      "title": "Associate Principal, Software Engineering: DevOps",
+      "location": "Dallas, TX",
+      "url": "https://theocc.wd5.myworkdayjobs.com/job/Dallas-TX/Associate-Principal--Software-Engineering--DevOps_REQ-4803",
+      "posted_at": "Posted 30+ Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-01T21:53:41+00:00",
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
+    },
+    "REQ-4784": {
+      "title": "Associate Principal, Investor Education, Creative & Digital Operations",
+      "location": "Chicago - 125 S Franklin",
+      "url": "https://theocc.wd5.myworkdayjobs.com/job/Chicago---125-S-Franklin/Associate-Principal--Investor-Education--Creative---Digital-Operations_REQ-4784",
+      "posted_at": "Posted 30+ Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-01T21:53:41+00:00",
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
+    },
+    "REQ-4780": {
+      "title": "Principal, Real Estate and Projects",
+      "location": "Chicago - 125 S Franklin",
+      "url": "https://theocc.wd5.myworkdayjobs.com/job/Chicago---125-S-Franklin/Principal--Real-Estate-and-Projects_REQ-4780",
+      "posted_at": "Posted 30+ Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-01T21:53:41+00:00",
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
+    },
+    "REQ-4757": {
+      "title": "Associate Principal, Pricing & Margins",
+      "location": "Chicago - 125 S Franklin",
+      "url": "https://theocc.wd5.myworkdayjobs.com/job/Chicago---125-S-Franklin/Associate-Principal--Pricing---Margins_REQ-4757",
+      "posted_at": "Posted 30+ Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-01T21:53:41+00:00",
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
+    },
+    "REQ-4725": {
+      "title": "Principal, Solution Architecture",
+      "location": "Chicago - 125 S Franklin",
+      "url": "https://theocc.wd5.myworkdayjobs.com/job/Chicago---125-S-Franklin/Principal--Solution-Architecture_REQ-4725-1",
+      "posted_at": "Posted 30+ Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-01T21:53:41+00:00",
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
+    },
+    "REQ-4650": {
+      "title": "Lead Associate Principal, Quantitative Risk Management",
+      "location": "Chicago - 125 S Franklin",
+      "url": "https://theocc.wd5.myworkdayjobs.com/job/Chicago---125-S-Franklin/Lead-Associate-Principal--Quantitative-Risk-Management_REQ-4650",
+      "posted_at": "Posted 30+ Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-01T21:53:41+00:00",
+      "last_seen_at": "2026-11-01T21:53:41+00:00"
     }
-  }
+  },
+  "source_updated_at_by_id": {}
 }
