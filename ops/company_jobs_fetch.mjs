@@ -179,8 +179,29 @@ function decodeHtmlEntities(value) {
     .replace(/&nbsp;/gi, " ");
 }
 
+const FETCH_TIMEOUT_MS = 30_000;
+const QUERY_CONCURRENCY = 4;
+const DETAIL_CONCURRENCY = 6;
+
+async function mapWithConcurrency(values, limit, callback) {
+  const results = new Array(values.length);
+  let nextIndex = 0;
+  async function worker() {
+    while (nextIndex < values.length) {
+      const index = nextIndex;
+      nextIndex += 1;
+      results[index] = await callback(values[index], index);
+    }
+  }
+  await Promise.all(Array.from({ length: Math.min(limit, values.length) }, worker));
+  return results;
+}
+
 async function fetchJson(url, options = {}) {
-  const response = await fetch(url, options);
+  const response = await fetch(url, {
+    ...options,
+    signal: options.signal || AbortSignal.timeout(FETCH_TIMEOUT_MS),
+  });
   if (!response.ok) throw new Error(`${response.status} ${response.statusText}: ${url}`);
   return response.json();
 }
@@ -556,11 +577,11 @@ async function inteprosDetails(page, jobs) {
 }
 
 async function workdayListings(company, config, knownJobIds = []) {
-  const endpoint = `${config.base}/wday/cxs/${config.tenant}/${config.site}/jobs`;
-  const jobs = [];
   const known = new Set(knownJobIds.map(String));
-  const limit = 20;
-  for (const searchText of config.searchTexts) {
+  const endpoint = `${config.base}/wday/cxs/${config.tenant}/${config.site}/jobs`;
+  const queryResults = await mapWithConcurrency(config.searchTexts, QUERY_CONCURRENCY, async (searchText) => {
+    const jobs = [];
+    const limit = 20;
     let total = Infinity;
     let consecutiveKnownPages = 0;
     for (let offset = 0; offset < total; offset += limit) {
@@ -587,7 +608,9 @@ async function workdayListings(company, config, knownJobIds = []) {
       if (known.size && consecutiveKnownPages >= config.knownPageLimit) break;
       if (!pageJobs.length) break;
     }
-  }
+    return jobs;
+  });
+  const jobs = queryResults.flat();
   return [...new Map(jobs.filter((job) => job.external_job_id).map((job) => [job.external_job_id, job])).values()];
 }
 
@@ -721,61 +744,87 @@ async function crunchyrollDetails(jobs) {
   return details;
 }
 
-async function cbreListings(page, knownJobIds = []) {
+async function cbreSearchListings(page, search, known) {
   const jobs = [];
+  let consecutiveKnownPages = 0;
+  for (let offset = 0; offset < 2500; offset += 25) {
+    const params = new URLSearchParams({
+      search,
+      jobRecordsPerPage: "25",
+      jobOffset: String(offset),
+      jobSort: "postedDate",
+      jobSortDirection: "DESC",
+    });
+    await page.goto(`${CBRE_SEARCH}?${params}`, { waitUntil: "domcontentloaded", timeout: 45_000 });
+    const firstCard = page.locator("article.article--result").first();
+    const found = await firstCard.waitFor({ state: "attached", timeout: 12_000 }).then(() => true).catch(() => false);
+    if (!found) break;
+    const pageJobs = await page.locator("article.article--result").evaluateAll((cards) => cards.map((card) => {
+      const anchor = card.querySelector('a[href*="/JobDetail/"]');
+      const text = (card.innerText || "").replace(/\s+/g, " ").trim();
+      return {
+        source: "cbre",
+        external_job_id: text.match(/Job ID:\s*(\d+)/i)?.[1] || anchor?.href.match(/\/(\d+)(?:\?.*)?$/)?.[1] || "",
+        title: anchor?.textContent?.trim() || "",
+        location: text.match(/Posted:\s*[^|]+\|\s*(.*?)(?:Apply now|Save Job|$)/i)?.[1]?.trim() || "",
+        job_type: "Full time",
+        posted_at: text.match(/Posted:\s*([^|]+)/i)?.[1]?.trim() || "",
+        url: anchor?.href || "",
+      };
+    }));
+    jobs.push(...pageJobs);
+    consecutiveKnownPages = pageJobs.length > 0 && pageJobs.every((job) => known.has(job.external_job_id))
+      ? consecutiveKnownPages + 1
+      : 0;
+    if (known.size && consecutiveKnownPages >= 3) break;
+    if (pageJobs.length < 25) break;
+  }
+  return jobs;
+}
+
+async function cbreListings(browser, knownJobIds = []) {
   const known = new Set(knownJobIds.map(String));
-  for (const search of CBRE_SEARCH_TERMS) {
-    let consecutiveKnownPages = 0;
-    for (let offset = 0; offset < 2500; offset += 25) {
-      const params = new URLSearchParams({
-        search,
-        jobRecordsPerPage: "25",
-        jobOffset: String(offset),
-        jobSort: "postedDate",
-        jobSortDirection: "DESC",
-      });
-      await page.goto(`${CBRE_SEARCH}?${params}`, { waitUntil: "domcontentloaded", timeout: 90_000 });
-      const firstCard = page.locator("article.article--result").first();
-      const found = await firstCard.waitFor({ state: "attached", timeout: 30_000 }).then(() => true).catch(() => false);
-      if (!found) break;
-      const pageJobs = await page.locator("article.article--result").evaluateAll((cards) => cards.map((card) => {
-        const anchor = card.querySelector('a[href*="/JobDetail/"]');
-        const text = (card.innerText || "").replace(/\s+/g, " ").trim();
-        return {
-          source: "cbre",
-          external_job_id: text.match(/Job ID:\s*(\d+)/i)?.[1] || anchor?.href.match(/\/(\d+)(?:\?.*)?$/)?.[1] || "",
-          title: anchor?.textContent?.trim() || "",
-          location: text.match(/Posted:\s*[^|]+\|\s*(.*?)(?:Apply now|Save Job|$)/i)?.[1]?.trim() || "",
-          job_type: "Full time",
-          posted_at: text.match(/Posted:\s*([^|]+)/i)?.[1]?.trim() || "",
-          url: anchor?.href || "",
-        };
-      }));
-      jobs.push(...pageJobs);
-      consecutiveKnownPages = pageJobs.length > 0 && pageJobs.every((job) => known.has(job.external_job_id))
-        ? consecutiveKnownPages + 1
-        : 0;
-      if (known.size && consecutiveKnownPages >= 3) break;
-      if (pageJobs.length < 25) break;
+  const runQueries = (concurrency) => mapWithConcurrency(CBRE_SEARCH_TERMS, concurrency, async (search) => {
+    const page = await browser.newPage();
+    page.setDefaultTimeout(15_000);
+    await page.route("**/*", (route) => {
+      const type = route.request().resourceType();
+      return ["image", "font", "media", "stylesheet"].includes(type) ? route.abort() : route.continue();
+    });
+    try {
+      return await cbreSearchListings(page, search, known);
+    } finally {
+      await page.close();
     }
+  });
+  let jobs = (await runQueries(QUERY_CONCURRENCY)).flat();
+  if (!jobs.length) {
+    await new Promise((resolve) => setTimeout(resolve, 5_000));
+    jobs = (await runQueries(QUERY_CONCURRENCY)).flat();
   }
   return [...new Map(jobs.filter((job) => job.external_job_id).map((job) => [job.external_job_id, job])).values()];
 }
 
-async function browserTextDetails(page, jobs, company) {
-  const details = [];
-  for (const job of jobs) {
+async function browserTextDetails(browser, jobs, company) {
+  return mapWithConcurrency(jobs, DETAIL_CONCURRENCY, async (job) => {
+    const page = await browser.newPage();
+    page.setDefaultTimeout(20_000);
+    await page.route("**/*", (route) => {
+      const type = route.request().resourceType();
+      return ["image", "font", "media", "stylesheet"].includes(type) ? route.abort() : route.continue();
+    });
     try {
-      await page.goto(job.url, { waitUntil: "domcontentloaded", timeout: 90_000 });
+      await page.goto(job.url, { waitUntil: "domcontentloaded", timeout: 45_000 });
       await page.locator("body").waitFor();
-      await page.waitForTimeout(800);
+      await page.waitForTimeout(500);
       const description = await page.locator("body").innerText();
-      details.push({ ...job, description, error: description ? null : `Empty ${company} description` });
+      return { ...job, description, error: description ? null : `Empty ${company} description` };
     } catch (error) {
-      details.push({ external_job_id: job.external_job_id, description: "", error: String(error?.message || error) });
+      return { external_job_id: job.external_job_id, description: "", error: String(error?.message || error) };
+    } finally {
+      await page.close();
     }
-  }
-  return details;
+  });
 }
 
 async function ocientListings(page) {
@@ -868,15 +917,13 @@ async function main() {
   if (company === "cbre" || company === "ocient") {
     const browser = await chromium.launch({ headless: true });
     try {
-      const page = await browser.newPage();
-      page.setDefaultTimeout(30_000);
       if (mode === "list") {
         const jobs = company === "cbre"
-          ? await cbreListings(page, payload.known_job_ids || [])
-          : await ocientListings(page);
+          ? await cbreListings(browser, payload.known_job_ids || [])
+          : await ocientListings(await browser.newPage());
         process.stdout.write(JSON.stringify({ jobs }));
       } else {
-        process.stdout.write(JSON.stringify({ details: await browserTextDetails(page, payload.jobs || [], company) }));
+        process.stdout.write(JSON.stringify({ details: await browserTextDetails(browser, payload.jobs || [], company) }));
       }
     } finally {
       await browser.close();

@@ -54,6 +54,33 @@ def test_filter_change_rechecks_known_non_candidates(tmp_path, monkeypatch):
     assert json.loads(state.read_text())["filter_version"] == FILTER_VERSION
 
 
+def test_filter_change_rechecks_in_resumable_batches(tmp_path, monkeypatch):
+    state = tmp_path / "state.json"
+    jobs = [listing(str(index), title="Warehouse Associate") for index in range(55)]
+    state.write_text(json.dumps({
+        "filter_version": FILTER_VERSION - 1,
+        "known_job_ids": [job["external_job_id"] for job in jobs],
+    }))
+    monkeypatch.setattr(company_job_monitor, "fetch_listings", lambda company, known: jobs)
+    monkeypatch.setattr(company_job_monitor, "fetch_details", lambda company, survivors: [])
+
+    first = company_job_monitor.run_company_scan("cbre", state)
+    first_state = json.loads(state.read_text())
+
+    assert first["rechecked_after_filter_change"] == 50
+    assert first["filter_recheck_pending"] == 5
+    assert first_state["filter_version"] == FILTER_VERSION - 1
+    assert len(first_state["filter_rechecked_ids"]) == 50
+
+    second = company_job_monitor.run_company_scan("cbre", state)
+    second_state = json.loads(state.read_text())
+
+    assert second["rechecked_after_filter_change"] == 5
+    assert second["filter_recheck_pending"] == 0
+    assert second_state["filter_version"] == FILTER_VERSION
+    assert "filter_rechecked_ids" not in second_state
+
+
 def test_rejection_evidence_is_returned_and_persisted(tmp_path, monkeypatch):
     state = tmp_path / "state.json"
     rejected = listing(title="Warehouse Associate")

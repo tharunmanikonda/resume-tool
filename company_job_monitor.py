@@ -29,6 +29,7 @@ COMPANIES = {
     "rivian",
     "tiktok",
 }
+FILTER_RECHECK_BATCH_SIZE = 50
 
 
 def default_state_path(company: str) -> Path:
@@ -105,12 +106,19 @@ def run_company_scan(
 
     candidate_ids = {str(value) for value in state.get("candidate_catalog", {})}
     unseen = [job for job in listings if str(job.get("external_job_id") or "") not in known_ids]
-    recheck = [
+    migration_version = int(state.get("filter_recheck_version") or 0)
+    already_rechecked = {
+        str(value) for value in state.get("filter_rechecked_ids", [])
+    } if migration_version == FILTER_VERSION else set()
+    recheck_eligible = [
         job for job in listings
         if rules_changed
         and str(job.get("external_job_id") or "") in known_ids
         and str(job.get("external_job_id") or "") not in candidate_ids
+        and str(job.get("external_job_id") or "") not in already_rechecked
     ]
+    recheck = recheck_eligible[:FILTER_RECHECK_BATCH_SIZE]
+    recheck_pending = max(0, len(recheck_eligible) - len(recheck))
     jobs_to_evaluate = [*unseen, *recheck]
     survivors = []
     prefilter_rejections = []
@@ -186,17 +194,29 @@ def run_company_scan(
                 "first_seen_at": previous.get("first_seen_at", timestamp),
                 "last_seen_at": timestamp,
             }
-        compact_state = {key: value for key, value in state.items() if key != "catalog"}
+        compact_state = {
+            key: value for key, value in state.items()
+            if key not in {"catalog", "filter_recheck_version", "filter_rechecked_ids"}
+        }
         source_updated_at_by_id = dict(state.get("source_updated_at_by_id", {}))
         for job in listings:
             external_id = str(job.get("external_job_id") or "")
             source_updated_at = str(job.get("source_updated_at") or "")
             if external_id and source_updated_at:
                 source_updated_at_by_id[external_id] = source_updated_at
+        migration_complete = not rules_changed or recheck_pending == 0
+        migration_state = {} if migration_complete else {
+            "filter_recheck_version": FILTER_VERSION,
+            "filter_rechecked_ids": sorted(
+                already_rechecked
+                | {str(job.get("external_job_id") or "") for job in recheck}
+            ),
+        }
         _write_json_atomic(state_path, {
             **compact_state,
             "company": company,
-            "filter_version": FILTER_VERSION,
+            "filter_version": FILTER_VERSION if migration_complete else int(state.get("filter_version") or 0),
+            **migration_state,
             "known_job_ids": sorted(all_ids),
             "candidate_catalog": candidate_catalog,
             "rejected_catalog": rejected_catalog,
@@ -214,6 +234,7 @@ def run_company_scan(
         "fetched": len(listings),
         "unseen": len(unseen),
         "rechecked_after_filter_change": len(recheck),
+        "filter_recheck_pending": recheck_pending,
         "filter_version": FILTER_VERSION,
         "filter_rules_changed": rules_changed,
         "prefilter_survivors": len(survivors),
