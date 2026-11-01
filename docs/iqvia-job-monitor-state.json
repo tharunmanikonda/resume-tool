@@ -2443,7 +2443,7 @@
       "category": "security"
     }
   },
-  "last_successful_scan_at": "2026-11-01T22:36:41+00:00",
+  "last_successful_scan_at": "2026-11-01T22:44:41+00:00",
   "filter_version": 2,
   "rejected_catalog": {
     "R1545472": {
@@ -16333,15 +16333,15 @@
       "title": "Application Security Engineer",
       "location": "Porto Salvo, Portugal",
       "url": "https://iqvia.wd1.myworkdayjobs.com/job/Porto-Salvo-Portugal/Application-Security-Engineer_R1549374",
-      "posted_at": "Posted 4 Days Ago",
+      "posted_at": "Posted 18 Days Ago",
       "stage": "prefilter",
       "blockers": [
         "non_us_location"
       ],
       "category": "security",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-01T22:44:41+00:00"
     },
     "R1553743": {
       "title": "Senior Generative AI Engineer",
@@ -16353,9 +16353,9 @@
         "non_us_location"
       ],
       "category": "ai_ml",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-01T22:44:41+00:00"
     },
     "R1562480": {
       "title": "Senior Generative AI Engineer",
@@ -16367,9 +16367,9 @@
         "non_us_location"
       ],
       "category": "ai_ml",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-01T22:44:41+00:00"
     },
     "R1562482": {
       "title": "Senior Generative AI Engineer",
@@ -16381,24 +16381,24 @@
         "non_us_location"
       ],
       "category": "ai_ml",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-01T22:44:41+00:00"
     },
     "R1551819": {
       "title": "Associate Director, Digital Measurement Platform & Systems Engineering",
       "location": "Athens, Greece",
       "url": "https://iqvia.wd1.myworkdayjobs.com/job/Athens-Greece/Associate-Director--Digital-Measurement-Platform---Systems-Engineering_R1551819",
-      "posted_at": "Posted 12 Days Ago",
+      "posted_at": "Posted 9 Days Ago",
       "stage": "prefilter",
       "blockers": [
         "management",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-01T22:44:41+00:00"
     },
     "R1192671": {
       "title": "Assoc Dir, Machine Learning",
@@ -16439,9 +16439,9 @@
         "non_us_location"
       ],
       "category": "platform",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-01T22:44:41+00:00"
     },
     "R1528007": {
       "title": "DevOps Engineer",
@@ -16461,16 +16461,16 @@
       "title": "Associate Director, AI/ML & Computational Biomarkers",
       "location": "Athens, Greece",
       "url": "https://iqvia.wd1.myworkdayjobs.com/job/Athens-Greece/Associate-Director--AI-ML---Computational-Biomarkers_R1560195",
-      "posted_at": "Posted 12 Days Ago",
+      "posted_at": "Posted 9 Days Ago",
       "stage": "prefilter",
       "blockers": [
         "management",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-01T22:44:41+00:00"
     },
     "R1366866": {
       "title": "Product Support Engineer",
@@ -16482,9 +16482,9 @@
         "support"
       ],
       "category": "technical_review",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-01T22:44:41+00:00"
     },
     "R1526853": {
       "title": "Sr. Software Architect (m/w/d) full remote",
@@ -16512,9 +16512,9 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-01T22:44:41+00:00"
     },
     "R1568613": {
       "title": "MedTech Field Service Technician Software/Networking - Orange County, CA",
@@ -16549,29 +16549,29 @@
       "title": "MedTech Field Service Software Tech Entry level - East Coast",
       "location": "4 Locations",
       "url": "https://iqvia.wd1.myworkdayjobs.com/job/Raleigh-NC/MedTech-Field-Service-Software-Tech-Entry-level---Eastern-Time-Zone_R1568794",
-      "posted_at": "Posted 30 Days Ago",
+      "posted_at": "Posted 30+ Days Ago",
       "stage": "prefilter",
       "blockers": [
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-01T22:44:41+00:00"
     },
     "R1572568": {
       "title": "MedTech Field Service Software Tech Entry level - Batesville, IN",
       "location": "Batesville, Indiana, United States",
       "url": "https://iqvia.wd1.myworkdayjobs.com/job/Batesville-Indiana-United-States/MedTech-Field-Service-Software-Tech-Entry-level---Batesville--IN_R1572568",
-      "posted_at": "Posted 13 Days Ago",
+      "posted_at": "Posted 4 Days Ago",
       "stage": "prefilter",
       "blockers": [
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-01T22:44:41+00:00"
     },
     "R1564641": {
       "title": "MedTech Field Service Software Tech Entry Level - Central Time Zone",
@@ -16620,16 +16620,16 @@
       "title": "Solution Management Assoc Director",
       "location": "Durham, NC",
       "url": "https://iqvia.wd1.myworkdayjobs.com/job/Durham-NC/Solution-Management-Assoc-Director_R1574457",
-      "posted_at": "Posted 3 Days Ago",
+      "posted_at": "Posted 17 Days Ago",
       "stage": "prefilter",
       "blockers": [
         "management",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-01T22:44:41+00:00"
     },
     "R1568795": {
       "title": "MedTech Field Service Software Tech Entry Level - Dallas/Ft. Worth, TX",
@@ -16649,15 +16649,15 @@
       "title": "MedTech Field Service Software Tech Entry Level - Kansas City & St. Louis",
       "location": "3 Locations",
       "url": "https://iqvia.wd1.myworkdayjobs.com/job/St-Louis-MO/MedTech-Field-Service-Software-Tech-Entry-Level---Kansas-City---St-Louis_R1569837",
-      "posted_at": "Posted 30 Days Ago",
+      "posted_at": "Posted 30+ Days Ago",
       "stage": "prefilter",
       "blockers": [
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-01T22:44:41+00:00"
     },
     "R1564643": {
       "title": "MedTech Field Service Software Update Tech Entry Level Travel - West Coast Timezone",
@@ -16675,18 +16675,18 @@
     },
     "R1563456": {
       "title": "Director, AI Platform Engineering & DevOps",
-      "location": "Wayne, PA, Unites States of America",
-      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Wayne-PA-Unites-States-of-America/Director--AI-Platform-Engineering---DevOps_R1563456",
-      "posted_at": "Posted 30+ Days Ago",
+      "location": "Wayne, PA, United States of America",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Wayne-PA-United-States-of-America/Director--AI-Platform-Engineering---DevOps_R1563456",
+      "posted_at": "Posted 13 Days Ago",
       "stage": "prefilter",
       "blockers": [
         "management",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-01T22:44:41+00:00"
     },
     "R1568013": {
       "title": "MedTech Device Field Service Engineer or  Technician Flexible/Part Time - Switzerland",
@@ -17514,15 +17514,15 @@
       "title": "MedTech Field Service Tech Remediation - Nationwide Travel",
       "location": "20 Locations",
       "url": "https://iqvia.wd1.myworkdayjobs.com/job/Dallas-TX/MedTech-Field-Service-Tech-Remediation---Nationwide-Travel_R1573290",
-      "posted_at": "Posted 6 Days Ago",
+      "posted_at": "Posted 20 Days Ago",
       "stage": "prefilter",
       "blockers": [
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-01T22:44:41+00:00"
     },
     "R1568489": {
       "title": "Linguistic Validation Project Manager- Language Solutions",
@@ -17543,16 +17543,16 @@
       "title": "Associate Manager, COA Product Management",
       "location": "3 Locations",
       "url": "https://iqvia.wd1.myworkdayjobs.com/job/Paris-France/Associate-Manager--COA-Product-Management_R1544571",
-      "posted_at": "Posted 27 Days Ago",
+      "posted_at": "Posted 30+ Days Ago",
       "stage": "prefilter",
       "blockers": [
         "management",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-01T22:44:41+00:00"
     },
     "R1268464": {
       "title": "Sr. Product Support Tech Advisor",
@@ -17717,16 +17717,16 @@
       "title": "Associate Director, Product Management \u2013 COA Accelerator (COAA)",
       "location": "Athens, Greece",
       "url": "https://iqvia.wd1.myworkdayjobs.com/job/Athens-Greece/Associate-Director--Product-Management---COA-Accelerator--COAA-_R1557199",
-      "posted_at": "Posted 30+ Days Ago",
+      "posted_at": "Posted 9 Days Ago",
       "stage": "prefilter",
       "blockers": [
         "management",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-01T22:44:41+00:00"
     },
     "R1561253": {
       "title": "Metrology Technician",
@@ -25382,15 +25382,15 @@
       "title": "Senior AI Platform Engineer",
       "location": "London, United Kingdom",
       "url": "https://iqvia.wd1.myworkdayjobs.com/job/London-United-Kingdom/Senior-AI-Platform-Engineer_R1531626",
-      "posted_at": "Posted 30+ Days Ago",
+      "posted_at": "Posted 3 Days Ago",
       "stage": "prefilter",
       "blockers": [
         "non_us_location"
       ],
       "category": "platform",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-01T22:44:41+00:00"
     },
     "R1571504": {
       "title": "Medical Data Review Manager (Rehumatology)",
@@ -25957,9 +25957,9 @@
         "minimum_experience_at_least_5_years"
       ],
       "category": "software",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-01T22:44:41+00:00"
     },
     "R1320047": {
       "title": "Sr. Software Developer",
@@ -25979,15 +25979,15 @@
       "title": "Senior Software QA",
       "location": "Kathmandu, Nepal",
       "url": "https://iqvia.wd1.myworkdayjobs.com/job/Kathmandu-Nepal/Senior-Software-QA_R1569181",
-      "posted_at": "2026-10-05",
+      "posted_at": "2026-10-31",
       "stage": "detail",
       "blockers": [
         "minimum_experience_at_least_5_years"
       ],
       "category": "qa",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-01T22:44:41+00:00"
     },
     "R1558645": {
       "title": "Senior AI Solutions Engineer",
@@ -26013,37 +26013,37 @@
         "non_us_location"
       ],
       "category": "technical_review",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-01T22:44:41+00:00"
     },
     "R1552095": {
       "title": "Engineer, Digital Measurement Platform & Applications (Full Stack)",
       "location": "Athens, Greece",
       "url": "https://iqvia.wd1.myworkdayjobs.com/job/Athens-Greece/Engineer--Digital-Measurement-Platform---Applications--Full-Stack-_R1552095-1",
-      "posted_at": "2026-10-06",
+      "posted_at": "2026-10-23",
       "stage": "detail",
       "blockers": [
         "minimum_experience_at_least_5_years"
       ],
       "category": "full_stack",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-01T22:44:41+00:00"
     },
     "R1552092": {
       "title": "Senior Engineer, Digital Measurement Platform & Data Infrastructure",
       "location": "Athens, Greece",
       "url": "https://iqvia.wd1.myworkdayjobs.com/job/Athens-Greece/Senior-Engineer--Digital-Measurement-Platform---Data-Infrastructure_R1552092",
-      "posted_at": "2026-10-06",
+      "posted_at": "2026-10-23",
       "stage": "detail",
       "blockers": [
         "minimum_experience_at_least_5_years"
       ],
       "category": "technical_review",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-01T22:44:41+00:00"
     },
     "R1320054": {
       "title": "Sr. Software Developer",
@@ -26083,9 +26083,9 @@
         "non_us_location"
       ],
       "category": "automation",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-01T22:44:41+00:00"
     },
     "R1573235": {
       "title": "Data Standards Engineer",
@@ -26097,9 +26097,9 @@
         "non_us_location"
       ],
       "category": "systems_engineering",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-01T22:44:41+00:00"
     },
     "R1566841": {
       "title": "Sr. Metrology/LC-MS Engineer",
@@ -26111,9 +26111,9 @@
         "non_software_engineering_role"
       ],
       "category": "technical_review",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-01T22:44:41+00:00"
     },
     "R1212478": {
       "title": "Database Developer",
@@ -26133,15 +26133,15 @@
       "title": "Workplace IT Solutions Engineer (Onsite)",
       "location": "New York, NY, United States of America",
       "url": "https://iqvia.wd1.myworkdayjobs.com/job/New-York-NY-United-States-of-America/Workplace-IT-Solutions-Engineer_R1552007",
-      "posted_at": "2026-10-07",
+      "posted_at": "2026-10-29",
       "stage": "detail",
       "blockers": [
         "minimum_experience_at_least_5_years"
       ],
       "category": "technical_review",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-01T22:44:41+00:00"
     },
     "R1552020": {
       "title": "MedTech Laboratory Field Service Engineer - Jacksonville, FL",
@@ -27450,7 +27450,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:36:41+00:00",
-      "last_seen_at": "2026-11-01T22:36:41+00:00"
+      "last_seen_at": "2026-11-01T22:44:41+00:00"
     },
     "R1572220": {
       "title": "Graduate Analyst Internship Programme (12 Months) - Life Sciences Consulting",
@@ -27464,7 +27464,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:36:41+00:00",
-      "last_seen_at": "2026-11-01T22:36:41+00:00"
+      "last_seen_at": "2026-11-01T22:44:41+00:00"
     },
     "R1553994": {
       "title": "Associate Principal - COAA Scientific AI Lead - UK and EU (home-based or hybrid)",
@@ -27479,7 +27479,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:36:41+00:00",
-      "last_seen_at": "2026-11-01T22:36:41+00:00"
+      "last_seen_at": "2026-11-01T22:44:41+00:00"
     },
     "R1567707": {
       "title": "Clinical Project Manager",
@@ -27494,7 +27494,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:36:41+00:00",
-      "last_seen_at": "2026-11-01T22:36:41+00:00"
+      "last_seen_at": "2026-11-01T22:44:41+00:00"
     },
     "R1575660": {
       "title": "Snr Clinical Project Mgr",
@@ -27509,7 +27509,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:36:41+00:00",
-      "last_seen_at": "2026-11-01T22:36:41+00:00"
+      "last_seen_at": "2026-11-01T22:44:41+00:00"
     },
     "R1557690": {
       "title": "Senior Clinical Project Manager- Oncology",
@@ -27524,7 +27524,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:36:41+00:00",
-      "last_seen_at": "2026-11-01T22:36:41+00:00"
+      "last_seen_at": "2026-11-01T22:44:41+00:00"
     },
     "R1571366": {
       "title": "Project Manager, Information Security",
@@ -27540,7 +27540,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:36:41+00:00",
-      "last_seen_at": "2026-11-01T22:36:41+00:00"
+      "last_seen_at": "2026-11-01T22:44:41+00:00"
     },
     "R1577328": {
       "title": "Director, Growth & Business Transformation - Patient Strategy",
@@ -27555,7 +27555,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:36:41+00:00",
-      "last_seen_at": "2026-11-01T22:36:41+00:00"
+      "last_seen_at": "2026-11-01T22:44:41+00:00"
     },
     "R1571512": {
       "title": "Associate Director, Sales, Consumer Health & MedTech",
@@ -27570,7 +27570,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:36:41+00:00",
-      "last_seen_at": "2026-11-01T22:36:41+00:00"
+      "last_seen_at": "2026-11-01T22:44:41+00:00"
     },
     "R1575357": {
       "title": "Medical Advisor/Associate Medical Director - Oncology/Hematology",
@@ -27585,7 +27585,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:36:41+00:00",
-      "last_seen_at": "2026-11-01T22:36:41+00:00"
+      "last_seen_at": "2026-11-01T22:44:41+00:00"
     },
     "R1572212": {
       "title": "Engagement Manager, Systems Integration",
@@ -27600,7 +27600,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:36:41+00:00",
-      "last_seen_at": "2026-11-01T22:36:41+00:00"
+      "last_seen_at": "2026-11-01T22:44:41+00:00"
     },
     "R1572179": {
       "title": "Consultant, Systems Integration",
@@ -27614,7 +27614,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:36:41+00:00",
-      "last_seen_at": "2026-11-01T22:36:41+00:00"
+      "last_seen_at": "2026-11-01T22:44:41+00:00"
     },
     "R1571966": {
       "title": "Software Development Engineering Manager (.NET)",
@@ -27629,7 +27629,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:36:41+00:00",
-      "last_seen_at": "2026-11-01T22:36:41+00:00"
+      "last_seen_at": "2026-11-01T22:44:41+00:00"
     },
     "R1567511": {
       "title": "SQL Database, T-SQL Developer",
@@ -27643,7 +27643,7 @@
       "category": "database",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:36:41+00:00",
-      "last_seen_at": "2026-11-01T22:36:41+00:00"
+      "last_seen_at": "2026-11-01T22:44:41+00:00"
     },
     "R1575309": {
       "title": "MedTech Field Service Software Tech Entry level - Southeast US",
@@ -27657,7 +27657,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:36:41+00:00",
-      "last_seen_at": "2026-11-01T22:36:41+00:00"
+      "last_seen_at": "2026-11-01T22:44:41+00:00"
     },
     "R1572580": {
       "title": "Application Security Architect",
@@ -27673,7 +27673,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:36:41+00:00",
-      "last_seen_at": "2026-11-01T22:36:41+00:00"
+      "last_seen_at": "2026-11-01T22:44:41+00:00"
     },
     "R1575539": {
       "title": "MedTech Field Service Technician Mechanical - Mountain/MST",
@@ -27688,7 +27688,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:36:41+00:00",
-      "last_seen_at": "2026-11-01T22:36:41+00:00"
+      "last_seen_at": "2026-11-01T22:44:41+00:00"
     },
     "R1575553": {
       "title": "Client Services Representative 2",
@@ -27851,7 +27851,7 @@
       "category": "full_stack",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:36:41+00:00",
-      "last_seen_at": "2026-11-01T22:36:41+00:00"
+      "last_seen_at": "2026-11-01T22:44:41+00:00"
     },
     "R1574599": {
       "title": "Senior Manual QA Tester",
@@ -27865,7 +27865,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:36:41+00:00",
-      "last_seen_at": "2026-11-01T22:36:41+00:00"
+      "last_seen_at": "2026-11-01T22:44:41+00:00"
     },
     "R1558491": {
       "title": "Associate Director, Strategic Business Development \u2013 IQVIA Language Solutions",
@@ -33497,7 +33497,7 @@
       "category": "technical_review",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:36:41+00:00",
-      "last_seen_at": "2026-11-01T22:36:41+00:00"
+      "last_seen_at": "2026-11-01T22:44:41+00:00"
     },
     "R1561755": {
       "title": "Software QA Engineer 2",
@@ -33511,7 +33511,7 @@
       "category": "qa",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:36:41+00:00",
-      "last_seen_at": "2026-11-01T22:36:41+00:00"
+      "last_seen_at": "2026-11-01T22:44:41+00:00"
     },
     "R1573184": {
       "title": "Senior Full Stack Engineer",
@@ -33525,7 +33525,7 @@
       "category": "full_stack",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:36:41+00:00",
-      "last_seen_at": "2026-11-01T22:36:41+00:00"
+      "last_seen_at": "2026-11-01T22:44:41+00:00"
     },
     "R1574581": {
       "title": "Associate Dir, Software QA",
@@ -33539,61 +33539,111 @@
       "category": "qa",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:36:41+00:00",
-      "last_seen_at": "2026-11-01T22:36:41+00:00"
+      "last_seen_at": "2026-11-01T22:44:41+00:00"
     }
   },
+  "source_updated_at_by_id": {},
   "filter_recheck_version": 3,
   "filter_rechecked_ids": [
     "R1192671",
     "R1212478",
+    "R1259334",
     "R1320047",
     "R1320054",
+    "R1366866",
+    "R1422638",
     "R1526853",
     "R1528007",
     "R1531617",
+    "R1531626",
     "R1534656",
     "R1536103",
+    "R1544571",
     "R1547562",
     "R1548135",
     "R1548883",
+    "R1549374",
     "R1550633",
     "R1551551",
+    "R1551819",
+    "R1552007",
+    "R1552092",
+    "R1552095",
     "R1552451",
     "R1552472",
+    "R1553743",
+    "R1553994",
     "R1554582",
     "R1554802",
+    "R1555469",
     "R1556229",
     "R1556631",
+    "R1557199",
+    "R1557690",
     "R1558485",
     "R1558645",
+    "R1559006",
     "R1559190",
+    "R1559687",
+    "R1560195",
     "R1560452",
     "R1560523",
     "R1560529",
     "R1560775",
     "R1560797",
+    "R1561755",
     "R1561925",
+    "R1562480",
+    "R1562482",
     "R1562504",
     "R1562668",
     "R1562959",
+    "R1563456",
     "R1564081",
     "R1565011",
     "R1566313",
     "R1566323",
+    "R1566841",
+    "R1567511",
+    "R1567707",
+    "R1567860",
+    "R1568794",
     "R1569125",
+    "R1569181",
     "R1569260",
+    "R1569837",
     "R1570675",
     "R1571326",
+    "R1571366",
     "R1571399",
+    "R1571512",
     "R1571598",
     "R1571704",
+    "R1571966",
+    "R1572179",
+    "R1572212",
+    "R1572220",
     "R1572242",
+    "R1572568",
     "R1572578",
+    "R1572580",
     "R1573047",
     "R1573113",
+    "R1573184",
+    "R1573235",
+    "R1573290",
     "R1573391",
+    "R1573915",
     "R1574185",
-    "R1574363"
-  ],
-  "source_updated_at_by_id": {}
+    "R1574363",
+    "R1574457",
+    "R1574581",
+    "R1574599",
+    "R1575309",
+    "R1575357",
+    "R1575373",
+    "R1575539",
+    "R1575660",
+    "R1577328"
+  ]
 }
