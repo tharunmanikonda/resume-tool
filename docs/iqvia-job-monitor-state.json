@@ -2443,7 +2443,7 @@
       "category": "security"
     }
   },
-  "last_successful_scan_at": "2026-11-01T22:44:41+00:00",
+  "last_successful_scan_at": "2026-11-02T01:19:54+00:00",
   "filter_version": 2,
   "rejected_catalog": {
     "R1545472": {
@@ -2487,9 +2487,9 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "R1555484": {
       "title": "Assoc Business Development Director - Safety Solutions",
@@ -2502,9 +2502,9 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "R1559004": {
       "title": "Business Developer Grand OUEST H/F",
@@ -2516,9 +2516,9 @@
         "non_us_location"
       ],
       "category": "technical_review",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "R1553347": {
       "title": "Director/Senior Director, Business Development, Biotech",
@@ -2531,9 +2531,9 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "R1556568": {
       "title": "Head of Patient Science, Instrument Development & Thought Leadership",
@@ -2546,37 +2546,37 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "R1573009": {
       "title": "Head of Lab Composite Measures Science & Integration",
       "location": "7 Locations",
       "url": "https://iqvia.wd1.myworkdayjobs.com/job/Paris-France/Head-of-Lab-Composite-Measures-Science---Integration_R1573009",
-      "posted_at": "Posted 11 Days Ago",
+      "posted_at": "Posted 25 Days Ago",
       "stage": "prefilter",
       "blockers": [
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "R1570752": {
       "title": "Chief Scientist, Modern Drug Discovery",
       "location": "8 Locations",
       "url": "https://iqvia.wd1.myworkdayjobs.com/job/Cambridge-United-Kingdom/Chief-Scientist--Modern-Drug-Discovery_R1570752",
-      "posted_at": "Posted 20 Days Ago",
+      "posted_at": "Posted 30+ Days Ago",
       "stage": "prefilter",
       "blockers": [
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "R1549770": {
       "title": "Director/Senior Director, Business Development, Clinical Solutions, EMEA",
@@ -2589,9 +2589,9 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "R1568257": {
       "title": "\u5546\u52a1\u90e8\u95e8\u52a9\u7406\uff08\u4e09\u65b9\uff09 Admin Assistant, Business Development",
@@ -4546,15 +4546,15 @@
       "title": "Clinical Research Associate, Early Clinical Development",
       "location": "7 Locations",
       "url": "https://iqvia.wd1.myworkdayjobs.com/job/Carlsbad-CA-United-States-of-America/Clinical-Research-Associate--Early-Clinical-Development_R1574294",
-      "posted_at": "Posted 4 Days Ago",
+      "posted_at": "Posted 18 Days Ago",
       "stage": "prefilter",
       "blockers": [
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "R1554995": {
       "title": "Senior Clinical Research Associate, Early Clinical Development",
@@ -4566,9 +4566,9 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "R1557388": {
       "title": "Client and Market Development Manager",
@@ -4581,39 +4581,39 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "R1553194": {
       "title": "Business Development Director, PPG Payer",
       "location": "3 Locations",
       "url": "https://iqvia.wd1.myworkdayjobs.com/job/Rosemont-IL-United-States-of-America/Business-Development-Director--PPG-Payer_R1553194",
-      "posted_at": "Posted 25 Days Ago",
+      "posted_at": "Posted 30+ Days Ago",
       "stage": "prefilter",
       "blockers": [
         "management",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "R1554415": {
       "title": "Director, Strategic Planning & Corporate Development",
       "location": "Seoul, Republic of Korea",
       "url": "https://iqvia.wd1.myworkdayjobs.com/job/Seoul-Republic-of-Korea/Director--Strategic-Planning---Corporate-Development_R1554415",
-      "posted_at": "Posted 24 Days Ago",
+      "posted_at": "Posted 30+ Days Ago",
       "stage": "prefilter",
       "blockers": [
         "management",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "R1557036": {
       "title": "Business Development Manager - Expert Ecosystem",
@@ -4664,15 +4664,15 @@
       "title": "Senior Scientist - Translational Science Lab, Flow Cytometry",
       "location": "Valencia, CA, United States of America",
       "url": "https://iqvia.wd1.myworkdayjobs.com/job/Valencia-CA-United-States-of-America/Senior-Scientist---Translational-Science-Lab--Flow-_R1552924",
-      "posted_at": "Posted 20 Days Ago",
+      "posted_at": "Posted 30+ Days Ago",
       "stage": "prefilter",
       "blockers": [
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "R1540075": {
       "title": "Senior Clinical Research Associate, Early Clinical Development",
@@ -4713,9 +4713,9 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "R1565823": {
       "title": "Senior Director, Emerging BioPharma, Business Development (West/Mid-West)",
@@ -16826,9 +16826,9 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "R1230414": {
       "title": "Clin Data Prgmg Assoc 1",
@@ -16841,24 +16841,24 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "R1569240": {
       "title": "Associate Business Development Director - Genomics",
       "location": "Durham, North Carolina, United States of America",
       "url": "https://iqvia.wd1.myworkdayjobs.com/job/Durham-North-Carolina-United-States-of-America/Associate-Business-Development-Director---Genomics_R1569240",
-      "posted_at": "Posted 16 Days Ago",
+      "posted_at": "Posted 30 Days Ago",
       "stage": "prefilter",
       "blockers": [
         "management",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "R1560833": {
       "title": "Associate Principal Scientist, Liquid Chromatography-Mass Spectrometry (LCMS) Assay Development",
@@ -16871,24 +16871,24 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "R1570546": {
       "title": "Associate Business Development Director - Real-World Evidence",
       "location": "Carlsbad, CA, United States of America",
       "url": "https://iqvia.wd1.myworkdayjobs.com/job/Carlsbad-CA-United-States-of-America/Associate-Business-Development-Director---Real-World-Evidence_R1570546",
-      "posted_at": "Posted 17 Days Ago",
+      "posted_at": "Posted 30+ Days Ago",
       "stage": "prefilter",
       "blockers": [
         "management",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "R1549434": {
       "title": "Business Development Manager",
@@ -16902,9 +16902,9 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "R1542965": {
       "title": "Associate Director,  Digital Health Business Development",
@@ -16941,15 +16941,15 @@
       "title": "Learning Delivery Quality Lead (Trainer)",
       "location": "13 Locations",
       "url": "https://iqvia.wd1.myworkdayjobs.com/job/Stockholm-Sweden/Learning-Delivery-Quality-Lead--Trainer-_R1572955-1",
-      "posted_at": "Posted 4 Days Ago",
+      "posted_at": "Posted 11 Days Ago",
       "stage": "prefilter",
       "blockers": [
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "R1548883": {
       "title": "SQL Server Architect",
@@ -16970,16 +16970,16 @@
       "title": "CloudOps Lead",
       "location": "London, United Kingdom",
       "url": "https://iqvia.wd1.myworkdayjobs.com/job/London-United-Kingdom/CloudOps-Lead_R1567350",
-      "posted_at": "Posted 26 Days Ago",
+      "posted_at": "Posted 30+ Days Ago",
       "stage": "prefilter",
       "blockers": [
         "non_us_location",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "R1562504": {
       "title": "Product Manager, Capitation Adjudication",
@@ -17455,16 +17455,16 @@
       "title": "Bankkaufmann als Business Consultant - Financial Services (m/w/d)",
       "location": "Dortmund, Germany",
       "url": "https://iqvia.wd1.myworkdayjobs.com/job/Dortmund-Germany/Bankkaufmann-als-Business-Consultant---Financial-Services--m-w-d-_R1565993",
-      "posted_at": "Posted 2 Days Ago",
+      "posted_at": "Posted 16 Days Ago",
       "stage": "prefilter",
       "blockers": [
         "non_us_location",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "R1557141": {
       "title": "Health Information Technology Specialist West",
@@ -19390,16 +19390,16 @@
       "title": "Clinical Data Specalist / Senior clinical Data Coordinator",
       "location": "Kochi, India",
       "url": "https://iqvia.wd1.myworkdayjobs.com/job/Kochi-India/Clinical-Data-Specalist---Senior-clinical-Data-Coordinator_R1569000",
-      "posted_at": "Posted 18 Days Ago",
+      "posted_at": "Posted 2 Days Ago",
       "stage": "prefilter",
       "blockers": [
         "non_us_location",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "R1562668": {
       "title": "Benelux Database Operations Team Leader - Dutch Native Speaker (Madrid Based)",
@@ -19464,15 +19464,15 @@
       "title": "Business Developer",
       "location": "Barcelona, Spain",
       "url": "https://iqvia.wd1.myworkdayjobs.com/job/Barcelona-Spain/Business-Developer_R1570289",
-      "posted_at": "Posted 24 Days Ago",
+      "posted_at": "Posted 30+ Days Ago",
       "stage": "prefilter",
       "blockers": [
         "non_us_location"
       ],
       "category": "technical_review",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "R1543295": {
       "title": "Proposal Developer 2",
@@ -19484,9 +19484,9 @@
         "non_us_location"
       ],
       "category": "technical_review",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "R1523856": {
       "title": "Business Development Director",
@@ -19499,9 +19499,9 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "R1565821": {
       "title": "Business Development Director",
@@ -19514,9 +19514,9 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "R1560213": {
       "title": "Analyste en d\u00e9veloppement des affaires - gouvernements et prestataires / Business Development Analyst \u2013 Governments and Healthcare Providers",
@@ -19537,7 +19537,7 @@
       "title": "Principal Scientist, Pharmaceutical Development",
       "location": "Cambridge, United Kingdom",
       "url": "https://iqvia.wd1.myworkdayjobs.com/job/Cambridge-United-Kingdom/Principal-Scientist--Pharmaceutical-Development_R1565135",
-      "posted_at": "Posted 19 Days Ago",
+      "posted_at": "Posted 30+ Days Ago",
       "stage": "prefilter",
       "blockers": [
         "non_us_location",
@@ -19545,9 +19545,9 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "R1552564": {
       "title": "Director Product Offering Development",
@@ -19576,9 +19576,9 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "R1561641": {
       "title": "Proposal Developer 1 - RWE",
@@ -19604,9 +19604,9 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "R1199276": {
       "title": "Associate Director, Genomics Business Development",
@@ -19619,9 +19619,9 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "R1573761": {
       "title": "Medical Strategy Lead , Oncology-Clinical Development (m/w/d)",
@@ -19678,9 +19678,9 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "R1571834": {
       "title": "Associate Business Development Director - Mid-Atlantic, EBP-Mid",
@@ -24146,9 +24146,9 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "R1556294": {
       "title": "Gestionnaire de programme / Program Manager",
@@ -25564,9 +25564,9 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "R1320678": {
       "title": "2023 Campus Hiring --DM (Shanghai/Dalian/Beijing)",
@@ -26237,23 +26237,23 @@
         "minimum_experience_at_least_5_years"
       ],
       "category": "technical_review",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "R1568616": {
       "title": "Contacts & Proposal Developer",
       "location": "Buenos Aires, Argentina",
       "url": "https://iqvia.wd1.myworkdayjobs.com/job/Buenos-Aires-Argentina/Contacts---Proposal-Developer_R1568616",
-      "posted_at": "2026-10-13",
+      "posted_at": "2026-10-30",
       "stage": "detail",
       "blockers": [
         "insufficient_profile_overlap"
       ],
       "category": "technical_review",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "R1385705": {
       "title": "Sr RFI Developer",
@@ -26265,9 +26265,9 @@
         "minimum_experience_at_least_5_years"
       ],
       "category": "technical_review",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "R1572809": {
       "title": "Senior Standards Engineer",
@@ -26293,9 +26293,9 @@
         "minimum_experience_at_least_5_years"
       ],
       "category": "technical_review",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "R1565189": {
       "title": "Data Scientist, GenAI & Advanced Analytics",
@@ -27880,7 +27880,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:36:41+00:00",
-      "last_seen_at": "2026-11-01T22:36:41+00:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "R1576960": {
       "title": "Business Development Representative 1",
@@ -27894,7 +27894,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:36:41+00:00",
-      "last_seen_at": "2026-11-01T22:36:41+00:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "R1568028": {
       "title": "Trainer - Hub & Copay Program Operations",
@@ -27908,7 +27908,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:36:41+00:00",
-      "last_seen_at": "2026-11-01T22:36:41+00:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "R1577205": {
       "title": "Budget & Contracts Analyst",
@@ -27922,7 +27922,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:36:41+00:00",
-      "last_seen_at": "2026-11-01T22:36:41+00:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "R1577248": {
       "title": "Regulatory Affairs Officer",
@@ -28114,7 +28114,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:36:41+00:00",
-      "last_seen_at": "2026-11-01T22:36:41+00:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "R1574810": {
       "title": "Associate Principal Scientist, Large Molecule Bioanalytical",
@@ -28916,7 +28916,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:36:41+00:00",
-      "last_seen_at": "2026-11-01T22:36:41+00:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "R1573732": {
       "title": "Associate Business Development Director",
@@ -28931,7 +28931,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:36:41+00:00",
-      "last_seen_at": "2026-11-01T22:36:41+00:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "R1567858": {
       "title": "MedTech Business Development Manager",
@@ -28947,7 +28947,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:36:41+00:00",
-      "last_seen_at": "2026-11-01T22:36:41+00:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "R1577138": {
       "title": "Contract & Proposal Analyst",
@@ -28962,7 +28962,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:36:41+00:00",
-      "last_seen_at": "2026-11-01T22:36:41+00:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "R1568590": {
       "title": "Proposal Developer 1- GBO IQL",
@@ -28976,7 +28976,7 @@
       "category": "technical_review",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:36:41+00:00",
-      "last_seen_at": "2026-11-01T22:36:41+00:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "R1575355": {
       "title": "Business Development Manager (Contract) - Clinical Trials",
@@ -33546,53 +33546,79 @@
   "filter_recheck_version": 3,
   "filter_rechecked_ids": [
     "R1192671",
+    "R1199276",
     "R1212478",
+    "R1230414",
+    "R1241580",
     "R1259334",
+    "R1271034",
     "R1320047",
     "R1320054",
     "R1366866",
+    "R1385705",
     "R1422638",
+    "R1441484",
+    "R1523856",
     "R1526853",
     "R1528007",
     "R1531617",
     "R1531626",
+    "R1533711",
     "R1534656",
+    "R1535275",
     "R1536103",
+    "R1543295",
     "R1544571",
     "R1547562",
     "R1548135",
     "R1548883",
     "R1549374",
+    "R1549434",
+    "R1549770",
     "R1550633",
     "R1551551",
     "R1551819",
+    "R1551833",
     "R1552007",
     "R1552092",
     "R1552095",
     "R1552451",
     "R1552472",
+    "R1552924",
+    "R1553194",
+    "R1553347",
     "R1553743",
     "R1553994",
+    "R1554415",
     "R1554582",
     "R1554802",
+    "R1554995",
     "R1555469",
+    "R1555484",
     "R1556229",
+    "R1556568",
     "R1556631",
     "R1557199",
+    "R1557388",
     "R1557690",
     "R1558485",
+    "R1558491",
     "R1558645",
+    "R1559004",
     "R1559006",
     "R1559190",
     "R1559687",
+    "R1559944",
     "R1560195",
     "R1560452",
     "R1560523",
     "R1560529",
     "R1560775",
     "R1560797",
+    "R1560833",
     "R1561755",
     "R1561925",
+    "R1561935",
     "R1562480",
     "R1562482",
     "R1562504",
@@ -33600,19 +33626,34 @@
     "R1562959",
     "R1563456",
     "R1564081",
+    "R1564554",
     "R1565011",
+    "R1565135",
+    "R1565821",
+    "R1565971",
+    "R1565993",
     "R1566313",
     "R1566323",
     "R1566841",
+    "R1567350",
     "R1567511",
     "R1567707",
+    "R1567858",
     "R1567860",
+    "R1568028",
+    "R1568590",
+    "R1568616",
     "R1568794",
+    "R1569000",
     "R1569125",
     "R1569181",
+    "R1569240",
     "R1569260",
     "R1569837",
+    "R1570289",
+    "R1570546",
     "R1570675",
+    "R1570752",
     "R1571326",
     "R1571366",
     "R1571399",
@@ -33627,16 +33668,22 @@
     "R1572568",
     "R1572578",
     "R1572580",
+    "R1572955",
+    "R1573009",
     "R1573047",
     "R1573113",
     "R1573184",
     "R1573235",
     "R1573290",
     "R1573391",
+    "R1573732",
+    "R1573878",
     "R1573915",
     "R1574185",
+    "R1574294",
     "R1574363",
     "R1574457",
+    "R1574559",
     "R1574581",
     "R1574599",
     "R1575309",
@@ -33644,6 +33691,9 @@
     "R1575373",
     "R1575539",
     "R1575660",
+    "R1576960",
+    "R1577138",
+    "R1577205",
     "R1577328"
   ]
 }

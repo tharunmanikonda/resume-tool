@@ -2418,9 +2418,11 @@
     "300767",
     "300770",
     "300782",
+    "300786",
     "300804",
     "300807",
     "300810",
+    "300813",
     "300819",
     "300821",
     "300828",
@@ -2922,61 +2924,8 @@
     "8655"
   ],
   "candidate_catalog": {},
-  "last_successful_scan_at": "2026-11-01T22:44:41+00:00",
+  "last_successful_scan_at": "2026-11-02T01:19:54+00:00",
   "filter_version": 0,
-  "filter_recheck_version": 3,
-  "filter_rechecked_ids": [
-    "172253",
-    "240671",
-    "245650",
-    "246185",
-    "277052",
-    "285472",
-    "289161",
-    "290907",
-    "291701",
-    "293619",
-    "293840",
-    "294552",
-    "294809",
-    "295634",
-    "296495",
-    "296994",
-    "297848",
-    "297862",
-    "297890",
-    "297892",
-    "298064",
-    "298323",
-    "298425",
-    "298427",
-    "298572",
-    "298600",
-    "298628",
-    "298681",
-    "298747",
-    "298800",
-    "298864",
-    "298890",
-    "298904",
-    "299432",
-    "299445",
-    "299492",
-    "299528",
-    "299721",
-    "299730",
-    "299881",
-    "299953",
-    "299961",
-    "300142",
-    "300353",
-    "300354",
-    "300366",
-    "300407",
-    "300897",
-    "300991",
-    "301084"
-  ],
   "rejected_catalog": {
     "301688": {
       "title": "Solutions Engineer - Talent Community",
@@ -2991,7 +2940,7 @@
       "category": "technical_review",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "298961": {
       "title": "Facilities Sr Coordinator",
@@ -3005,7 +2954,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "302116": {
       "title": "Material Handler",
@@ -3019,7 +2968,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "297201": {
       "title": "Vehicle Shop Technician",
@@ -3034,7 +2983,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "303346": {
       "title": "Data Center Manager - Night Shift - Colorado City",
@@ -3049,7 +2998,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "302454": {
       "title": "T\u00e9cnico/a de mantenimiento polivalente temporal",
@@ -3064,7 +3013,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "302452": {
       "title": "T\u00e9cnico/a de mantenimiento polivalente",
@@ -3079,7 +3028,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "303380": {
       "title": "Maintenance Planner",
@@ -3093,7 +3042,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "303139": {
       "title": "Maintenance Planner",
@@ -3107,7 +3056,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "302547": {
       "title": "Customer Service Coordinator - First Shift",
@@ -3121,7 +3070,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "301800": {
       "title": "Maintenance Assistant",
@@ -3135,7 +3084,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "302487": {
       "title": "Receptionist",
@@ -3150,7 +3099,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "301642": {
       "title": "Robotics Sr Technician",
@@ -3165,7 +3114,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "303000": {
       "title": "Sr. Occupancy and Space Planner",
@@ -3179,7 +3128,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "302144": {
       "title": "Space Data Administrator",
@@ -3194,7 +3143,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "302698": {
       "title": "Maintenance Planner",
@@ -3208,7 +3157,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "302145": {
       "title": "Space Data Administrator",
@@ -3223,7 +3172,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "301455": {
       "title": "Archibus Product Manager",
@@ -3238,7 +3187,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "302232": {
       "title": "Sustainability Manager - Talent pool",
@@ -3254,7 +3203,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "299036": {
       "title": "Contract Support - Assistente di Commessa - Firenze",
@@ -3269,7 +3218,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "301450": {
       "title": "HVAC Technician",
@@ -3285,7 +3234,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "302092": {
       "title": "Energy Manager",
@@ -3301,7 +3250,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "300631": {
       "title": "Building Engineer- Low Voltage Technician (7AM-3:30PM)",
@@ -3315,7 +3264,7 @@
       "category": "technical_review",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "301872": {
       "title": "Electrical Utility Infrastructure Manager",
@@ -3330,7 +3279,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "301788": {
       "title": "Technical Services Manager",
@@ -3346,7 +3295,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "301160": {
       "title": "T\u00e9cnico de mantenimiento polivalente equipo movil",
@@ -3361,7 +3310,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "300003": {
       "title": "Warehouse & Mail Supervisor - Los Angeles, CA",
@@ -3375,7 +3324,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "287260": {
       "title": "Real Estate Specialist",
@@ -3406,7 +3355,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "290402": {
       "title": "Surveyor/Senior Surveyor (Valuations - International)",
@@ -3421,7 +3370,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "295336": {
       "title": "Property Valuer (Commercial/Residential - Midlands & South) - REMOTE/HOME BASED",
@@ -3436,7 +3385,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "295337": {
       "title": "Property Valuer (Commercial/Residential - North) - REMOTE/HOME BASED",
@@ -3451,7 +3400,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "298909": {
       "title": "Yardi Systems Development & Implementation - Fund Accounting - 6 Month FTC",
@@ -3466,7 +3415,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "290770": {
       "title": "Surveyor/Senior Surveyor (Valuations - Corporate Services)",
@@ -3481,7 +3430,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "298535": {
       "title": "Senior Consultant - Strategic Programme Management",
@@ -3496,7 +3445,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "294827": {
       "title": "Marketing & Growth Associate",
@@ -3511,7 +3460,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "294158": {
       "title": "Project Manager",
@@ -3527,7 +3476,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "299996": {
       "title": "Project Manager",
@@ -3543,7 +3492,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "295620": {
       "title": "Data Intelligence Lead (Database Sr Engineer)",
@@ -3557,7 +3506,7 @@
       "category": "technical_review",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "301798": {
       "title": "Project Manager",
@@ -3573,7 +3522,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "301749": {
       "title": "Business Development Manager (EOI)",
@@ -3588,7 +3537,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "286381": {
       "title": "Surveyor - Flex (Leasing and Occupier)",
@@ -3603,7 +3552,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "289020": {
       "title": "Planner/ Senior Planner",
@@ -3618,7 +3567,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "257614": {
       "title": "Senior Manager/Associate Director - Residential Brokerage",
@@ -17938,7 +17887,7 @@
       "category": "systems_engineering",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "303138": {
       "title": "Automation Engineer",
@@ -17952,7 +17901,7 @@
       "category": "automation",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "302230": {
       "title": "Industrial Automation Engineer - Detroit, MI",
@@ -17966,7 +17915,7 @@
       "category": "automation",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "302539": {
       "title": "Automation Engineer",
@@ -17980,7 +17929,7 @@
       "category": "automation",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "301294": {
       "title": "Automation Engineer",
@@ -17989,12 +17938,12 @@
       "posted_at": "15-Oct-2026",
       "stage": "detail",
       "blockers": [
-        "insufficient_profile_overlap"
+        "non_software_engineering_role"
       ],
       "category": "automation",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "297972": {
       "title": "Bldg Engineer - BMS/EPMS Night Shift",
@@ -18008,7 +17957,7 @@
       "category": "technical_review",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     },
     "302219": {
       "title": "Field Projects & Maintenance Engineer (Lahore, Pakistan)",
@@ -22937,7 +22886,169 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
       "last_seen_at": "2026-11-01T22:44:41+00:00"
+    },
+    "300813": {
+      "title": "HVAC Technician",
+      "location": "Atlanta - Georgia - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/HVAC-Technician/300813",
+      "posted_at": "29-Oct-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-02T01:19:54+00:00",
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
+    },
+    "290399": {
+      "title": "Senior Supply Chain Consultant",
+      "location": "London - England - United Kingdom of Great Britain and Northern Ireland",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Senior-Supply-Chain-Consultant/290399",
+      "posted_at": "19-Oct-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-02T01:19:54+00:00",
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
+    },
+    "299326": {
+      "title": "Construction Project Manager - Raleigh On-Site",
+      "location": "Durham - North Carolina - United States of America , Raleigh - North Carolina - United States of America , Wilson - North Carolina - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Construction-Project-Manager-Raleigh-On-Site/299326",
+      "posted_at": "12-Oct-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-02T01:19:54+00:00",
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
+    },
+    "300786": {
+      "title": "Bldg Engineer 2nd Shift (12:30PM-9:00PM)",
+      "location": "Cleveland - Ohio - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Bldg-Engineer-2nd-Shift-12-30PM-9-00PM/300786",
+      "posted_at": "29-Oct-2026",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-02T01:19:54+00:00",
+      "last_seen_at": "2026-11-02T01:19:54+00:00"
     }
   },
-  "source_updated_at_by_id": {}
+  "source_updated_at_by_id": {},
+  "filter_recheck_version": 3,
+  "filter_rechecked_ids": [
+    "172253",
+    "240671",
+    "245650",
+    "246185",
+    "255415",
+    "277052",
+    "285472",
+    "286381",
+    "289020",
+    "289161",
+    "290399",
+    "290402",
+    "290770",
+    "290907",
+    "291701",
+    "293619",
+    "293840",
+    "294158",
+    "294552",
+    "294809",
+    "294827",
+    "295336",
+    "295337",
+    "295620",
+    "295634",
+    "296495",
+    "296994",
+    "297201",
+    "297848",
+    "297862",
+    "297890",
+    "297892",
+    "297972",
+    "298064",
+    "298323",
+    "298425",
+    "298427",
+    "298535",
+    "298572",
+    "298600",
+    "298628",
+    "298681",
+    "298747",
+    "298800",
+    "298864",
+    "298890",
+    "298904",
+    "298909",
+    "298961",
+    "299036",
+    "299326",
+    "299432",
+    "299445",
+    "299492",
+    "299528",
+    "299721",
+    "299730",
+    "299881",
+    "299953",
+    "299961",
+    "299996",
+    "300003",
+    "300142",
+    "300353",
+    "300354",
+    "300366",
+    "300407",
+    "300631",
+    "300897",
+    "300991",
+    "301084",
+    "301160",
+    "301294",
+    "301450",
+    "301455",
+    "301642",
+    "301688",
+    "301749",
+    "301788",
+    "301798",
+    "301800",
+    "301872",
+    "302092",
+    "302116",
+    "302144",
+    "302145",
+    "302230",
+    "302232",
+    "302452",
+    "302454",
+    "302487",
+    "302539",
+    "302547",
+    "302698",
+    "303000",
+    "303138",
+    "303139",
+    "303346",
+    "303380",
+    "303605"
+  ]
 }
