@@ -1426,6 +1426,10 @@
     "2028670",
     "2028671",
     "2028673",
+    "2028675",
+    "2028676",
+    "2028677",
+    "2028678",
     "2028719",
     "2028757",
     "2028834",
@@ -1445,12 +1449,13 @@
     "2029455",
     "2029584",
     "2029655",
+    "2029683",
     "2029917",
     "2030022",
     "2030081",
     "2030087"
   ],
-  "last_successful_scan_at": "2026-11-02T01:19:54+00:00",
+  "last_successful_scan_at": "2026-11-02T22:12:15+00:00",
   "candidate_catalog": {
     "2024998": {
       "title": "AI Security Engineer",
@@ -3360,6 +3365,77 @@
       "filter_version": 3,
       "first_seen_at": "2026-10-31T11:57:39-05:00",
       "last_seen_at": "2026-10-31T11:57:39-05:00"
+    },
+    "2028678": {
+      "title": "Software Engineer - Webex Native Client",
+      "location": "Bratislava, Slovakia",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Bratislava-Slovakia/Software-Engineer---Webex-Native-Client_2028678",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-02T22:12:15+00:00",
+      "last_seen_at": "2026-11-02T22:12:15+00:00"
+    },
+    "2028677": {
+      "title": "Software Engineer - Webex Native Client",
+      "location": "Bratislava, Slovakia",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Bratislava-Slovakia/Software-Engineer---Webex-Native-Client_2028677",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-02T22:12:15+00:00",
+      "last_seen_at": "2026-11-02T22:12:15+00:00"
+    },
+    "2028675": {
+      "title": "Software Engineering Technical Leader - Webex Native Client",
+      "location": "Bratislava, Slovakia",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Bratislava-Slovakia/Software-Engineering-Technical-Leader---Webex-Native-Client_2028675",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "level_too_senior"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-02T22:12:15+00:00",
+      "last_seen_at": "2026-11-02T22:12:15+00:00"
+    },
+    "2028676": {
+      "title": "Senior Software Engineer - Webex Native Client",
+      "location": "Bratislava, Slovakia",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Bratislava-Slovakia/Senior-Software-Engineer---Webex-Native-Client_2028676",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-02T22:12:15+00:00",
+      "last_seen_at": "2026-11-02T22:12:15+00:00"
+    },
+    "2029683": {
+      "title": "ASIC Engineer",
+      "location": "Armenia",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Armenia/ASIC-Engineer_2029683",
+      "posted_at": "2026-11-02",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-02T22:12:15+00:00",
+      "last_seen_at": "2026-11-02T22:12:15+00:00"
     }
   },
   "source_updated_at_by_id": {}

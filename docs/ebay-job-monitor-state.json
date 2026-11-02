@@ -91,6 +91,7 @@
     "R0075117",
     "R0075150",
     "R0075171",
+    "R0075205",
     "R0075227",
     "R0075229",
     "R0075258",
@@ -351,6 +352,7 @@
     "R0077188",
     "R0077195",
     "R0077208",
+    "R0077219",
     "R0077220",
     "R0077226",
     "R0077239",
@@ -361,7 +363,14 @@
     "R0077273",
     "R0077275",
     "R0077276",
-    "R0077317"
+    "R0077292",
+    "R0077293",
+    "R0077304",
+    "R0077306",
+    "R0077317",
+    "R0077352",
+    "R0077357",
+    "R0077364"
   ],
   "candidate_catalog": {
     "R0076812": {
@@ -428,7 +437,7 @@
       "category": "technical_review"
     }
   },
-  "last_successful_scan_at": "2026-11-02T01:19:54+00:00",
+  "last_successful_scan_at": "2026-11-02T22:12:15+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "R0077145": {
@@ -5005,6 +5014,138 @@
       "filter_version": 3,
       "first_seen_at": "2026-10-31T12:11:04-05:00",
       "last_seen_at": "2026-10-31T12:11:04-05:00"
+    },
+    "R0077364": {
+      "title": "Receiving Associate",
+      "location": "Runnemede, New Jersey, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077364/Receiving-Associate",
+      "posted_at": "2026-11-02T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-02T22:12:15+00:00",
+      "last_seen_at": "2026-11-02T22:12:15+00:00"
+    },
+    "R0077219": {
+      "title": "Account Manager, eBay Live - AU",
+      "location": "Sydney, New South Wales, Australia",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077219/Account-Manager-eBay-Live-AU",
+      "posted_at": "2026-11-02T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-02T22:12:15+00:00",
+      "last_seen_at": "2026-11-02T22:12:15+00:00"
+    },
+    "R0075205": {
+      "title": "Tise Head of Product Design",
+      "location": "Oslo, Oslo, Norway",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0075205/Tise-Head-of-Product-Design",
+      "posted_at": "2026-11-02T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-02T22:12:15+00:00",
+      "last_seen_at": "2026-11-02T22:12:15+00:00"
+    },
+    "R0077304": {
+      "title": "Manager, Collectibles Strategic Programs",
+      "location": "Kleinmachnow, Brandenburg, Germany",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077304/Manager-Collectibles-Strategic-Programs",
+      "posted_at": "2026-11-02T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-02T22:12:15+00:00",
+      "last_seen_at": "2026-11-02T22:12:15+00:00"
+    },
+    "R0077306": {
+      "title": "Collectibles Strategic Programs Lead",
+      "location": "Kleinmachnow, Brandenburg, Germany",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077306/Collectibles-Strategic-Programs-Lead",
+      "posted_at": "2026-11-02T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-02T22:12:15+00:00",
+      "last_seen_at": "2026-11-02T22:12:15+00:00"
+    },
+    "R0077292": {
+      "title": "Watch Authenticator",
+      "location": "Moonachie, New Jersey, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077292/Watch-Authenticator",
+      "posted_at": "2026-11-02T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-02T22:12:15+00:00",
+      "last_seen_at": "2026-11-02T22:12:15+00:00"
+    },
+    "R0077293": {
+      "title": "Warehouse Associate",
+      "location": "Moonachie, New Jersey, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077293/Warehouse-Associate",
+      "posted_at": "2026-11-02T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-02T22:12:15+00:00",
+      "last_seen_at": "2026-11-02T22:12:15+00:00"
+    },
+    "R0077352": {
+      "title": "Cataloguer",
+      "location": "Runnemede, New Jersey, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077352/Cataloguer",
+      "posted_at": "2026-11-02T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-02T22:12:15+00:00",
+      "last_seen_at": "2026-11-02T22:12:15+00:00"
+    },
+    "R0077357": {
+      "title": "Photographer",
+      "location": "Runnemede, New Jersey, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077357/Photographer",
+      "posted_at": "2026-11-02T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-02T22:12:15+00:00",
+      "last_seen_at": "2026-11-02T22:12:15+00:00"
     }
   },
   "source_updated_at_by_id": {}

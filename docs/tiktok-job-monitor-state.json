@@ -677,6 +677,7 @@
     "7633790707178948869",
     "7633920607004035333",
     "7633921874261362949",
+    "7634194854205327669",
     "7634522776666851589",
     "7634524250169116933",
     "7634600804971792693",
@@ -1619,6 +1620,7 @@
     "7682898382579222789",
     "7683014347920935173",
     "7683038377522497797",
+    "7683137026325809461",
     "7683172598747040053",
     "7683173189771249925",
     "7683174773255260421",
@@ -1939,14 +1941,24 @@
     "7701480558070597893",
     "7701486873210390837",
     "7701495231666342197",
+    "7701662445036308741",
     "7701752335028406533",
     "7701755924868712757",
+    "7701924053711423749",
     "7701928869323114805",
+    "7701929513323940149",
     "7701990114490239237",
     "7702053561758746885",
+    "7702218766196934965",
+    "7702224452130539829",
     "7702224456596736309",
+    "7702286307201861893",
+    "7702352946390501685",
     "7702417446982142213",
-    "7702517151362976053"
+    "7702517151362976053",
+    "7703419124309182725",
+    "7703606693767973125",
+    "7703620119666280757"
   ],
   "candidate_catalog": {
     "7680987768009754885": {
@@ -28236,8 +28248,186 @@
       "filter_version": 3,
       "first_seen_at": "2026-10-31T11:57:23-05:00",
       "last_seen_at": "2026-10-31T11:57:23-05:00"
+    },
+    "7702352946390501685": {
+      "title": "Senior Engineer of Audio and Visual Operation - IT",
+      "location": "London, England, United Kingdom",
+      "url": "https://lifeattiktok.com/search/7702352946390501685",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-02T22:12:15+00:00",
+      "last_seen_at": "2026-11-02T22:12:15+00:00"
+    },
+    "7702224452130539829": {
+      "title": "AI Deployment Strategist \u2014 Ads Vertical - Global Monetization Product and Technology",
+      "location": "San Francisco, California, United States of America",
+      "url": "https://lifeattiktok.com/search/7702224452130539829",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-02T22:12:15+00:00",
+      "last_seen_at": "2026-11-02T22:12:15+00:00"
+    },
+    "7702218766196934965": {
+      "title": "AI Deployment Strategist \u2014 Ads Vertical - Global Monetization Product and Technology",
+      "location": "San Jose, California, United States of America",
+      "url": "https://lifeattiktok.com/search/7702218766196934965",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-02T22:12:15+00:00",
+      "last_seen_at": "2026-11-02T22:12:15+00:00"
+    },
+    "7703620119666280757": {
+      "title": "AI Deployment Strategist - Ads Vertical - Global Monetization Product and Technology",
+      "location": "London, England, United Kingdom",
+      "url": "https://lifeattiktok.com/search/7703620119666280757",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-02T22:12:15+00:00",
+      "last_seen_at": "2026-11-02T22:12:15+00:00"
+    },
+    "7703606693767973125": {
+      "title": "AI Deployment Strategist - Ads Vertical - Global Monetization Product and Technology",
+      "location": "Sao Paulo, S\u00e3o Paulo, Brazil",
+      "url": "https://lifeattiktok.com/search/7703606693767973125",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-02T22:12:15+00:00",
+      "last_seen_at": "2026-11-02T22:12:15+00:00"
+    },
+    "7683137026325809461": {
+      "title": "AI Data Quality Enforcement Expert - Graduate (TikTok AI Data Service and Operations) - 2027 Start",
+      "location": "Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur, Malaysia",
+      "url": "https://lifeattiktok.com/search/7683137026325809461",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-02T22:12:15+00:00",
+      "last_seen_at": "2026-11-02T22:12:15+00:00"
+    },
+    "7703419124309182725": {
+      "title": "Training & Quality Lead",
+      "location": "Tokyo, Japan",
+      "url": "https://lifeattiktok.com/search/7703419124309182725",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-02T22:12:15+00:00",
+      "last_seen_at": "2026-11-02T22:12:15+00:00"
+    },
+    "7702286307201861893": {
+      "title": "Program Manager, Measurement & Experimentation, PMC & IE GBM - GBS",
+      "location": "San Francisco, California, United States of America",
+      "url": "https://lifeattiktok.com/search/7702286307201861893",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-02T22:12:15+00:00",
+      "last_seen_at": "2026-11-02T22:12:15+00:00"
+    },
+    "7701924053711423749": {
+      "title": "TikTok Shop - Customer Experience Program Manager, Loyalty & Support",
+      "location": "London, England, United Kingdom",
+      "url": "https://lifeattiktok.com/search/7701924053711423749",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-02T22:12:15+00:00",
+      "last_seen_at": "2026-11-02T22:12:15+00:00"
+    },
+    "7701929513323940149": {
+      "title": "TikTok Shop - Governance Strategy Manager",
+      "location": "London, England, United Kingdom",
+      "url": "https://lifeattiktok.com/search/7701929513323940149",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-02T22:12:15+00:00",
+      "last_seen_at": "2026-11-02T22:12:15+00:00"
+    },
+    "7701662445036308741": {
+      "title": "TikTok Shop - Governance Strategy Product Manager",
+      "location": "Singapore",
+      "url": "https://lifeattiktok.com/search/7701662445036308741",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-02T22:12:15+00:00",
+      "last_seen_at": "2026-11-02T22:12:15+00:00"
+    },
+    "7634194854205327669": {
+      "title": "TikTok Shop - Content Governance Policy Program Manager",
+      "location": "San Jose, California, United States of America",
+      "url": "https://lifeattiktok.com/search/7634194854205327669",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-02T22:12:15+00:00",
+      "last_seen_at": "2026-11-02T22:12:15+00:00"
     }
   },
-  "last_successful_scan_at": "2026-11-02T01:19:54+00:00",
+  "last_successful_scan_at": "2026-11-02T22:12:15+00:00",
   "source_updated_at_by_id": {}
 }

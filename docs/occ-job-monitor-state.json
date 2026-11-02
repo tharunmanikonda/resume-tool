@@ -80,11 +80,14 @@
     "REQ-4889",
     "REQ-4896",
     "REQ-4899",
+    "REQ-4900",
     "REQ-4901",
     "REQ-4907",
     "REQ-4908",
     "REQ-4909",
-    "REQ-4910"
+    "REQ-4910",
+    "REQ-4911",
+    "REQ-4914"
   ],
   "candidate_catalog": {
     "REQ-4807": {
@@ -115,7 +118,7 @@
       "category": "software"
     }
   },
-  "last_successful_scan_at": "2026-11-02T01:19:54+00:00",
+  "last_successful_scan_at": "2026-11-02T22:12:15+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "REQ-4896": {
@@ -1183,6 +1186,51 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-01T21:53:41+00:00",
       "last_seen_at": "2026-11-01T21:53:41+00:00"
+    },
+    "REQ-4900": {
+      "title": "Principal, Stress Testing & Liquidity Risk Management",
+      "location": "2 Locations",
+      "url": "https://theocc.wd5.myworkdayjobs.com/job/Dallas-TX/Principal--Stress-Testing---Liquidity-Risk-Management_REQ-4900-1",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-02T22:12:15+00:00",
+      "last_seen_at": "2026-11-02T22:12:15+00:00"
+    },
+    "REQ-4911": {
+      "title": "Associate Principal, Internal Audit, Information Technology & Security",
+      "location": "Dallas, TX",
+      "url": "https://theocc.wd5.myworkdayjobs.com/job/Dallas-TX/Associate-Principal--Internal-Audit--Information-Technology---Security_REQ-4911",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-02T22:12:15+00:00",
+      "last_seen_at": "2026-11-02T22:12:15+00:00"
+    },
+    "REQ-4914": {
+      "title": "Manager, IT Delivery: Agile Practices",
+      "location": "Chicago - 125 S Franklin",
+      "url": "https://theocc.wd5.myworkdayjobs.com/job/Chicago---125-S-Franklin/Manager--IT-Delivery--Agile-Practices_REQ-4914-1",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-02T22:12:15+00:00",
+      "last_seen_at": "2026-11-02T22:12:15+00:00"
     }
   },
   "source_updated_at_by_id": {}

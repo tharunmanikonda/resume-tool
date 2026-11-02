@@ -1,6 +1,6 @@
 {
-  "success": true,
-  "scanned_at": "2026-11-02T01:19:54+00:00",
+  "success": false,
+  "scanned_at": "2026-11-02T22:12:15+00:00",
   "monitor_count": 14,
   "successful_monitors": [
     "cbre",
@@ -9,7 +9,6 @@
     "crunchyroll",
     "ebay",
     "intepros",
-    "iqvia",
     "nbcu",
     "nvidia",
     "occ",
@@ -18,7 +17,9 @@
     "tiktok",
     "waymo"
   ],
-  "failed_monitors": [],
+  "failed_monitors": [
+    "iqvia"
+  ],
   "candidate_count": 0,
   "needs_ai_review_count": 0,
   "candidates": [],
@@ -27,9 +28,9 @@
     {
       "monitor": "cbre",
       "success": true,
-      "scanned_at": "2026-11-02T01:19:54+00:00",
-      "fetched": 689,
-      "unseen": 2,
+      "scanned_at": "2026-11-02T22:12:15+00:00",
+      "fetched": 1258,
+      "unseen": 59,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -38,9 +39,9 @@
     {
       "monitor": "cdk",
       "success": true,
-      "scanned_at": "2026-11-02T01:19:54+00:00",
-      "fetched": 38,
-      "unseen": 0,
+      "scanned_at": "2026-11-02T22:12:15+00:00",
+      "fetched": 39,
+      "unseen": 2,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -49,9 +50,9 @@
     {
       "monitor": "cisco",
       "success": true,
-      "scanned_at": "2026-11-02T01:19:54+00:00",
-      "fetched": 60,
-      "unseen": 0,
+      "scanned_at": "2026-11-02T22:12:15+00:00",
+      "fetched": 80,
+      "unseen": 5,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -60,8 +61,8 @@
     {
       "monitor": "crunchyroll",
       "success": true,
-      "scanned_at": "2026-11-02T01:19:54+00:00",
-      "fetched": 100,
+      "scanned_at": "2026-11-02T22:12:15+00:00",
+      "fetched": 99,
       "unseen": 0,
       "state_updated": true,
       "candidates": [],
@@ -71,9 +72,9 @@
     {
       "monitor": "ebay",
       "success": true,
-      "scanned_at": "2026-11-02T01:19:54+00:00",
-      "fetched": 145,
-      "unseen": 0,
+      "scanned_at": "2026-11-02T22:12:15+00:00",
+      "fetched": 159,
+      "unseen": 9,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -82,9 +83,9 @@
     {
       "monitor": "intepros",
       "success": true,
-      "scanned_at": "2026-11-02T01:19:54+00:00",
-      "fetched": 20,
-      "unseen": 0,
+      "scanned_at": "2026-11-02T22:12:15+00:00",
+      "fetched": 30,
+      "unseen": 2,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -92,21 +93,25 @@
     },
     {
       "monitor": "iqvia",
-      "success": true,
-      "scanned_at": "2026-11-02T01:19:54+00:00",
-      "fetched": 351,
+      "success": false,
+      "scanned_at": "2026-11-02T22:12:15+00:00",
+      "fetched": 0,
       "unseen": 0,
-      "state_updated": true,
+      "state_updated": false,
       "candidates": [],
       "needs_ai_review": [],
-      "errors": []
+      "errors": [
+        {
+          "error": "Error: 502 Bad Gateway: https://iqvia.wd1.myworkdayjobs.com/wday/cxs/iqvia/IQVIA/jobs\n    at fetchJson (file:///home/runner/work/resume-tool/resume-tool/ops/company_jobs_fetch.mjs:205:27)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async file:///home/runner/work/resume-tool/resume-tool/ops/company_jobs_fetch.mjs:588:23\n    at async worker (file:///home/runner/work/resume-tool/resume-tool/ops/company_jobs_fetch.mjs:193:24)\n    at async Promise.all (index 0)\n    at async mapWithConcurrency (file:///home/runner/work/resume-tool/resume-tool/ops/company_jobs_fetch.mjs:196:3)\n    at async workdayListings (file:///home/runner/work/resume-tool/resume-tool/ops/company_jobs_fetch.mjs:582:24)\n    at async main (file:///home/runner/work/resume-tool/resume-tool/ops/company_jobs_fetch.mjs:869:17)"
+        }
+      ]
     },
     {
       "monitor": "nbcu",
       "success": true,
-      "scanned_at": "2026-11-02T01:19:54+00:00",
-      "fetched": 201,
-      "unseen": 0,
+      "scanned_at": "2026-11-02T22:12:15+00:00",
+      "fetched": 293,
+      "unseen": 10,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -115,9 +120,9 @@
     {
       "monitor": "nvidia",
       "success": true,
-      "scanned_at": "2026-11-02T01:19:54+00:00",
-      "fetched": 100,
-      "unseen": 0,
+      "scanned_at": "2026-11-02T22:12:15+00:00",
+      "fetched": 140,
+      "unseen": 17,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -126,9 +131,9 @@
     {
       "monitor": "occ",
       "success": true,
-      "scanned_at": "2026-11-02T01:19:54+00:00",
-      "fetched": 60,
-      "unseen": 0,
+      "scanned_at": "2026-11-02T22:12:15+00:00",
+      "fetched": 67,
+      "unseen": 3,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -137,7 +142,7 @@
     {
       "monitor": "ocient",
       "success": true,
-      "scanned_at": "2026-11-02T01:19:54+00:00",
+      "scanned_at": "2026-11-02T22:12:15+00:00",
       "fetched": 15,
       "unseen": 0,
       "state_updated": true,
@@ -148,7 +153,7 @@
     {
       "monitor": "rivian",
       "success": true,
-      "scanned_at": "2026-11-02T01:19:54+00:00",
+      "scanned_at": "2026-11-02T22:12:15+00:00",
       "fetched": 30,
       "unseen": 0,
       "state_updated": true,
@@ -159,9 +164,9 @@
     {
       "monitor": "tiktok",
       "success": true,
-      "scanned_at": "2026-11-02T01:19:54+00:00",
-      "fetched": 1871,
-      "unseen": 0,
+      "scanned_at": "2026-11-02T22:12:15+00:00",
+      "fetched": 1875,
+      "unseen": 12,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -170,7 +175,7 @@
     {
       "monitor": "waymo",
       "success": true,
-      "scanned_at": "2026-11-02T01:19:54+00:00",
+      "scanned_at": "2026-11-02T22:12:15+00:00",
       "fetched": 169,
       "unseen": 0,
       "state_updated": true,

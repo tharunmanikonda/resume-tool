@@ -210,6 +210,7 @@
     "a0Hcw00000AxzOIEAZ",
     "a0Hcw00000B06BxEAJ",
     "a0Hcw00000B0TTmEAN",
+    "a0Hcw00000B0rh7EAB",
     "a0Hcw00000B11lJEAR",
     "a0Hcw00000B3hbaEAB",
     "a0Hcw00000B3qOjEAJ",
@@ -218,9 +219,10 @@
     "a0Hcw00000B6hlXEAR",
     "a0Hcw00000B74LVEAZ",
     "a0Hcw00000B7MDZEA3",
-    "a0Hcw00000B8msLEAR"
+    "a0Hcw00000B8msLEAR",
+    "a0Hcw00000BEdeHEAT"
   ],
-  "last_successful_scan_at": "2026-11-02T01:19:54+00:00",
+  "last_successful_scan_at": "2026-11-02T22:12:15+00:00",
   "candidate_catalog": {
     "a0Hcw000006tdYLEAY": {
       "title": "Operational Excellence Engineer",
@@ -1161,6 +1163,34 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-01T21:53:41+00:00",
       "last_seen_at": "2026-11-01T21:53:41+00:00"
+    },
+    "a0Hcw00000BEdeHEAT": {
+      "title": "Marketing Solutions Consultant",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000BEdeHEAT/marketing-solutions-consultant",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-02T22:12:15+00:00",
+      "last_seen_at": "2026-11-02T22:12:15+00:00"
+    },
+    "a0Hcw00000B0rh7EAB": {
+      "title": "Engineering - Senior Engineer, Quality Assurance Engineering - Individual Contr",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000B0rh7EAB/engineering---senior-engineer-quality-assurance-engineering---individual-contr",
+      "posted_at": "",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-02T22:12:15+00:00",
+      "last_seen_at": "2026-11-02T22:12:15+00:00"
     }
   },
   "source_updated_at_by_id": {}
