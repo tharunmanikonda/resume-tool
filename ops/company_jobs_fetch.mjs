@@ -1,4 +1,5 @@
 import { chromium } from "playwright";
+import { pathToFileURL } from "node:url";
 
 const CISCO_BASE = "https://cisco.wd5.myworkdayjobs.com";
 const CISCO_SITE = "Cisco_Careers";
@@ -180,8 +181,31 @@ function decodeHtmlEntities(value) {
 }
 
 const FETCH_TIMEOUT_MS = 30_000;
+const FETCH_MAX_ATTEMPTS = 4;
+const FETCH_RETRY_BASE_MS = Number(process.env.JOB_MONITOR_RETRY_BASE_MS || 750);
 const QUERY_CONCURRENCY = 4;
 const DETAIL_CONCURRENCY = 6;
+
+function sleep(milliseconds) {
+  return new Promise((resolve) => setTimeout(resolve, milliseconds));
+}
+
+function retryDelay(response, attempt) {
+  const retryAfter = response?.headers?.get("retry-after");
+  if (retryAfter) {
+    const seconds = Number(retryAfter);
+    if (Number.isFinite(seconds)) return Math.max(0, seconds * 1000);
+    const date = Date.parse(retryAfter);
+    if (Number.isFinite(date)) return Math.max(0, date - Date.now());
+  }
+  return FETCH_RETRY_BASE_MS * (2 ** (attempt - 1));
+}
+
+function isRetryableError(error) {
+  return error?.name === "TimeoutError"
+    || error?.name === "AbortError"
+    || error instanceof TypeError;
+}
 
 async function mapWithConcurrency(values, limit, callback) {
   const results = new Array(values.length);
@@ -197,13 +221,28 @@ async function mapWithConcurrency(values, limit, callback) {
   return results;
 }
 
-async function fetchJson(url, options = {}) {
-  const response = await fetch(url, {
-    ...options,
-    signal: options.signal || AbortSignal.timeout(FETCH_TIMEOUT_MS),
-  });
-  if (!response.ok) throw new Error(`${response.status} ${response.statusText}: ${url}`);
-  return response.json();
+export async function fetchJson(url, options = {}) {
+  let lastError;
+  for (let attempt = 1; attempt <= FETCH_MAX_ATTEMPTS; attempt += 1) {
+    let response;
+    try {
+      response = await fetch(url, {
+        ...options,
+        signal: options.signal || AbortSignal.timeout(FETCH_TIMEOUT_MS),
+      });
+      if (response.ok) return response.json();
+
+      const error = new Error(`${response.status} ${response.statusText}: ${url}`);
+      if (response.status !== 429 && response.status < 500) throw error;
+      lastError = error;
+    } catch (error) {
+      if (!isRetryableError(error) || options.signal) throw error;
+      lastError = error;
+    }
+
+    if (attempt < FETCH_MAX_ATTEMPTS) await sleep(retryDelay(response, attempt));
+  }
+  throw lastError;
 }
 
 function tiktokLocation(cityInfo = {}) {
@@ -945,8 +984,10 @@ async function main() {
   throw new Error(`Unsupported company: ${company}`);
 }
 
-main().catch((error) => {
-  process.stderr.write(`${error?.stack || error}\n`);
-  process.exitCode = 1;
-});
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  main().catch((error) => {
+    process.stderr.write(`${error?.stack || error}\n`);
+    process.exitCode = 1;
+  });
+}
 
