@@ -569,6 +569,7 @@
     "7615555193869994293",
     "7616171061901805829",
     "7616337872688171269",
+    "7616638424640031029",
     "7616682163138005253",
     "7618066031789541685",
     "7618124649465481525",
@@ -1621,6 +1622,9 @@
     "7683014347920935173",
     "7683038377522497797",
     "7683137026325809461",
+    "7683142457451055413",
+    "7683144918139111685",
+    "7683145703476349189",
     "7683172598747040053",
     "7683173189771249925",
     "7683174773255260421",
@@ -1786,6 +1790,7 @@
     "7691468099895576885",
     "7691469068414896389",
     "7691469068856265013",
+    "7691480232733575477",
     "7691524327304464693",
     "7691540456811890949",
     "7691541870426982709",
@@ -1906,6 +1911,7 @@
     "7699052150337210677",
     "7699076799691131141",
     "7699098131707414837",
+    "7699118052253681925",
     "7699177493051787573",
     "7699260943320795397",
     "7699264903143770421",
@@ -1947,18 +1953,22 @@
     "7701924053711423749",
     "7701928869323114805",
     "7701929513323940149",
+    "7701941644619155717",
     "7701990114490239237",
     "7702053561758746885",
     "7702218766196934965",
     "7702224452130539829",
     "7702224456596736309",
+    "7702243883850697013",
     "7702286307201861893",
     "7702352946390501685",
     "7702417446982142213",
     "7702517151362976053",
     "7703419124309182725",
     "7703606693767973125",
-    "7703620119666280757"
+    "7703620119666280757",
+    "7703632666805160197",
+    "7703876741467998469"
   ],
   "candidate_catalog": {
     "7680987768009754885": {
@@ -5074,6 +5084,15 @@
       "first_seen_at": "2026-10-31T11:57:23-05:00",
       "priority": "low",
       "category": "technical_review"
+    },
+    "7691480232733575477": {
+      "title": "Sr. Software Engineer - Data Subject Rights - TikTok Privacy and Security",
+      "location": "San Jose, California, United States of America",
+      "url": "https://lifeattiktok.com/search/7691480232733575477",
+      "posted_at": "",
+      "first_seen_at": "2026-11-03T19:59:39+00:00",
+      "priority": "medium",
+      "category": "software"
     }
   },
   "rejected_catalog": {
@@ -28426,8 +28445,141 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-02T22:12:15+00:00",
       "last_seen_at": "2026-11-02T22:12:15+00:00"
+    },
+    "7702243883850697013": {
+      "title": "TikTok Shop - Sorting Equipment Implementation & Operations Manager, Sort Centers",
+      "location": "Rancho Cucamonga, California, United States of America",
+      "url": "https://lifeattiktok.com/search/7702243883850697013",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-03T19:59:39+00:00",
+      "last_seen_at": "2026-11-03T19:59:39+00:00"
+    },
+    "7616638424640031029": {
+      "title": "Search Operation Specialist - German - TikTok AI Data Service and Operations",
+      "location": "Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur, Malaysia",
+      "url": "https://lifeattiktok.com/search/7616638424640031029",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-03T19:59:39+00:00",
+      "last_seen_at": "2026-11-03T19:59:39+00:00"
+    },
+    "7701941644619155717": {
+      "title": "Site Reliability Engineer - Storage",
+      "location": "Sydney, New South Wales, Australia",
+      "url": "https://lifeattiktok.com/search/7701941644619155717",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "reliability",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-03T19:59:39+00:00",
+      "last_seen_at": "2026-11-03T19:59:39+00:00"
+    },
+    "7683145703476349189": {
+      "title": "AI Data Quality Enforcement Expert - Graduate (TikTok AI Data Service and Operations) - 2027 Start",
+      "location": "Ho Chi Minh City, Ho Chi Minh, Vietnam",
+      "url": "https://lifeattiktok.com/search/7683145703476349189",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-03T19:59:39+00:00",
+      "last_seen_at": "2026-11-03T19:59:39+00:00"
+    },
+    "7683144918139111685": {
+      "title": "AI Data Quality Enforcement Expert - Graduate (TikTok AI Data Service and Operations) - 2027 Start",
+      "location": "Bangkok, Thailand",
+      "url": "https://lifeattiktok.com/search/7683144918139111685",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-03T19:59:39+00:00",
+      "last_seen_at": "2026-11-03T19:59:39+00:00"
+    },
+    "7683142457451055413": {
+      "title": "AI Data Quality Enforcement Expert - Graduate (TikTok AI Data Service and Operations) - 2027 Start",
+      "location": "Jakarta Selatan, Jakarta Raya, Indonesia",
+      "url": "https://lifeattiktok.com/search/7683142457451055413",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-03T19:59:39+00:00",
+      "last_seen_at": "2026-11-03T19:59:39+00:00"
+    },
+    "7703876741467998469": {
+      "title": "Capacity Planning Analyst Graduate (Video Safety Operations) - 2027 Start",
+      "location": "Singapore",
+      "url": "https://lifeattiktok.com/search/7703876741467998469",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-03T19:59:39+00:00",
+      "last_seen_at": "2026-11-03T19:59:39+00:00"
+    },
+    "7699118052253681925": {
+      "title": "Regulatory Response Analyst, Eastern Europe - Trust & Safety",
+      "location": "Dublin, Ireland",
+      "url": "https://lifeattiktok.com/search/7699118052253681925",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-03T19:59:39+00:00",
+      "last_seen_at": "2026-11-03T19:59:39+00:00"
+    },
+    "7703632666805160197": {
+      "title": "Client Solutions Manager, Consumer Goods, 12 Month Fixed Term Contract - GBS",
+      "location": "Milan, Milano, Italy",
+      "url": "https://lifeattiktok.com/search/7703632666805160197",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-03T19:59:39+00:00",
+      "last_seen_at": "2026-11-03T19:59:39+00:00"
     }
   },
-  "last_successful_scan_at": "2026-11-02T22:12:15+00:00",
+  "last_successful_scan_at": "2026-11-03T19:59:39+00:00",
   "source_updated_at_by_id": {}
 }

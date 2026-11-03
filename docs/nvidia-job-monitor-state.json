@@ -53,6 +53,7 @@
     "JR2001996",
     "JR2002040",
     "JR2002272",
+    "JR2002321",
     "JR2002351",
     "JR2002387",
     "JR2002546",
@@ -628,6 +629,7 @@
     "JR2022219",
     "JR2022263",
     "JR2022268",
+    "JR2022276",
     "JR2022280",
     "JR2022282",
     "JR2022324",
@@ -685,6 +687,7 @@
     "JR2022959",
     "JR2022972",
     "JR2022992",
+    "JR2023004",
     "JR2023005",
     "JR2023036",
     "JR2023042",
@@ -954,6 +957,7 @@
     "JR2026650",
     "JR2026652",
     "JR2026658",
+    "JR2026698",
     "JR2026726",
     "JR2026731",
     "JR2026733",
@@ -1064,6 +1068,7 @@
     "JR2028054",
     "JR2028060",
     "JR2028074",
+    "JR2028076",
     "JR2028088",
     "JR2028090",
     "JR2028101",
@@ -1141,8 +1146,10 @@
     "JR2028791",
     "JR2028805",
     "JR2028821",
+    "JR2028824",
     "JR2028848",
     "JR2028850",
+    "JR2028854",
     "JR2028868",
     "JR2028871",
     "JR2028878",
@@ -1157,14 +1164,21 @@
     "JR2029006",
     "JR2029008",
     "JR2029009",
+    "JR2029015",
     "JR2029041",
     "JR2029043",
+    "JR2029074",
+    "JR2029082",
     "JR2029093",
     "JR2029094",
+    "JR2029108",
+    "JR2029109",
     "JR2029160",
     "JR2029162",
     "JR2029189",
-    "JR2029216"
+    "JR2029190",
+    "JR2029216",
+    "JR2029239"
   ],
   "candidate_catalog": {
     "JR2018245": {
@@ -1481,9 +1495,27 @@
       "first_seen_at": "2026-10-29T09:39:54-05:00",
       "priority": "medium",
       "category": "technical_review"
+    },
+    "JR2029190": {
+      "title": "Compiler Verification Engineer, Compute Performance \u2013 GPU",
+      "location": "US, TX, Austin; US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-TX-Austin/Compiler-Verification-Engineer--Compute-Performance---GPU_JR2029190",
+      "posted_at": "2026-11-02",
+      "first_seen_at": "2026-11-03T19:59:39+00:00",
+      "priority": "low",
+      "category": "technical_review"
+    },
+    "JR2029015": {
+      "title": "Senior Compiler Engineer, Agentic Compiler Systems",
+      "location": "US, CA, Santa Clara; US, TX, Austin; US, TX, Remote; US, OR, Remote; US, CA, Remote; US, WA, Redmond",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Compiler-Engineer--Agentic-Compiler-Systems_JR2029015",
+      "posted_at": "2026-11-02",
+      "first_seen_at": "2026-11-03T19:59:39+00:00",
+      "priority": "low",
+      "category": "technical_review"
     }
   },
-  "last_successful_scan_at": "2026-11-02T22:12:15+00:00",
+  "last_successful_scan_at": "2026-11-03T19:59:39+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "JR2014880": {
@@ -15946,6 +15978,175 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-02T22:12:15+00:00",
       "last_seen_at": "2026-11-02T22:12:15+00:00"
+    },
+    "JR2029108": {
+      "title": "PCIe Post-Silicon Validation Engineer - New College Grad 2027",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/PCIe-Post-Silicon-Validation-Engineer---New-College-Grad-2027_JR2029108",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "embedded_or_hardware"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-03T19:59:39+00:00",
+      "last_seen_at": "2026-11-03T19:59:39+00:00"
+    },
+    "JR2028824": {
+      "title": "GPU System and Scheduling Architect \u2013 New College Grad 2026",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/GPU-System-and-Scheduling-Architect---New-College-Grad-2026_JR2028824",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-03T19:59:39+00:00",
+      "last_seen_at": "2026-11-03T19:59:39+00:00"
+    },
+    "JR2022276": {
+      "title": "System Software Engineer, UEFI Firmware",
+      "location": "2 Locations",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/System-Software-Engineer--UEFI-Firmware_JR2022276",
+      "posted_at": "Posted Yesterday",
+      "stage": "prefilter",
+      "blockers": [
+        "embedded_or_hardware"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-03T19:59:39+00:00",
+      "last_seen_at": "2026-11-03T19:59:39+00:00"
+    },
+    "JR2029109": {
+      "title": "DSX Infrastructure Integration Engineer",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Critical-Facilities-Mechanical-Engineer---Data-Center_JR2029109",
+      "posted_at": "2026-11-03",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-03T19:59:39+00:00",
+      "last_seen_at": "2026-11-03T19:59:39+00:00"
+    },
+    "JR2002321": {
+      "title": "Senior Verification Engineer - CPU",
+      "location": "US, CA, Santa Clara; US, TX, Austin",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Verification-Engineer---CPU_JR2002321",
+      "posted_at": "2026-11-03",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-03T19:59:39+00:00",
+      "last_seen_at": "2026-11-03T19:59:39+00:00"
+    },
+    "JR2026698": {
+      "title": "Senior Digital Design Engineer",
+      "location": "US, CA, Santa Clara; US, TX, Austin; US, WA, Redmond",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Digital-Design-Engineer_JR2026698",
+      "posted_at": "2026-11-03",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-03T19:59:39+00:00",
+      "last_seen_at": "2026-11-03T19:59:39+00:00"
+    },
+    "JR2028076": {
+      "title": "Senior System Software Engineer - Networking",
+      "location": "US, TX, Austin; US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-TX-Austin/Senior-System-Software-Engineer---Networking_JR2028076",
+      "posted_at": "2026-11-03",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-03T19:59:39+00:00",
+      "last_seen_at": "2026-11-03T19:59:39+00:00"
+    },
+    "JR2029074": {
+      "title": "Senior Software Engineer, AI Developer Tools",
+      "location": "US, CA, Santa Clara; US, Remote",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Software-Engineer--AI-Developer-Tools_JR2029074",
+      "posted_at": "2026-11-03",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-03T19:59:39+00:00",
+      "last_seen_at": "2026-11-03T19:59:39+00:00"
+    },
+    "JR2029239": {
+      "title": "Senior Compiler Engineer - AI",
+      "location": "US, CA, Santa Clara; US, CA, Remote; US, WA, Redmond",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Compiler-Engineer---AI_JR2029239-1",
+      "posted_at": "2026-11-02",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-03T19:59:39+00:00",
+      "last_seen_at": "2026-11-03T19:59:39+00:00"
+    },
+    "JR2023004": {
+      "title": "Senior Software Engineer, Machine Learning Safety",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Software-Engineer--Machine-Learning-Safety_JR2023004",
+      "posted_at": "2026-11-02",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-03T19:59:39+00:00",
+      "last_seen_at": "2026-11-03T19:59:39+00:00"
+    },
+    "JR2029082": {
+      "title": "DSX Electrical Engineer",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/DSX-Electrical-Engineer_JR2029082",
+      "posted_at": "2026-11-02",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-03T19:59:39+00:00",
+      "last_seen_at": "2026-11-03T19:59:39+00:00"
+    },
+    "JR2028854": {
+      "title": "DSX Energy Engineer",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/DSX-Energy-Engineer_JR2028854",
+      "posted_at": "2026-11-02",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-03T19:59:39+00:00",
+      "last_seen_at": "2026-11-03T19:59:39+00:00"
     }
   },
   "source_updated_at_by_id": {}
