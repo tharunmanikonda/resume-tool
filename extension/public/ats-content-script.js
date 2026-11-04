@@ -111,6 +111,7 @@
 
   function atsSource() {
     const host = location.hostname.toLowerCase();
+    if (host === "jobs.dover.com") return "dover";
     if (host.includes("greenhouse.io")) return "greenhouse";
     if (host.includes("lever.co")) return "lever";
     if (host.includes("ashbyhq.com") || host.includes("ashby.com")) return "ashby";
@@ -319,6 +320,11 @@
   function readContext() {
     const source = atsSource();
     const structured = structuredJob();
+    if (source === "dover" && (!/^\/[a-f0-9-]{36}\/[a-f0-9-]{36}\/?$/i.test(location.pathname) || !structured)) {
+      sendRuntimeMessage({ type: "JOB_CONTEXT_CLEARED" });
+      lastFingerprint = "";
+      return;
+    }
     const metadata = metadataContext();
     const sourceCompany = companyFromUrl(source);
     const id = externalJobId(source) || `${sourceCompany}:${metadata.roleTitle || titleFromDom()}`;
@@ -354,6 +360,9 @@
       job_description: jobDescription,
       extraction_confidence: completeFields === 3 ? "high" : (completeFields === 2 ? "medium" : "low"),
       source_metadata: {
+        posted_at: cleanText(structured?.datePosted),
+        posted_at_source: structured?.datePosted ? "page_metadata" : "",
+        updated_at: cleanText(structured?.dateModified),
         extracted_at: new Date().toISOString(),
         extraction_method: structured ? "dom_and_json_ld" : "dom",
         extractor_version: readerVersion,
@@ -364,7 +373,7 @@
         },
       },
     };
-    const fingerprint = [source, id, roleTitle, companyName, jobDescription.length, jobDescription.slice(0, 80), jobDescription.slice(-80)].join("|");
+    const fingerprint = [source, id, roleTitle, companyName, jobDescription.length, jobDescription.slice(0, 80), jobDescription.slice(-80), structured?.datePosted, structured?.dateModified].join("|");
     if (fingerprint === lastFingerprint) return;
     lastFingerprint = fingerprint;
     sendRuntimeMessage({ type: "JOB_CONTEXT", context });

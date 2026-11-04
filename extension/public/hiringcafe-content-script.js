@@ -275,7 +275,7 @@
     // Never publish a listing summary or pair a newly selected job with old content.
     if (!roleTitle || !companyName || jobDescription.length < 120
       || (!structured && selected.id !== lastPublishedJobId && jobDescription === lastDescription)) return;
-    const fingerprint = JSON.stringify([selected.id, roleTitle, companyName, jobLocation, jobDescription]);
+    const fingerprint = JSON.stringify([selected.id, roleTitle, companyName, jobLocation, jobDescription, structured?.datePosted, structured?.dateModified]);
     if (fingerprint === lastFingerprint) return;
     if (fingerprint !== pendingFingerprint) {
       pendingFingerprint = fingerprint;
@@ -296,6 +296,9 @@
       job_description: jobDescription,
       extraction_confidence: "high",
       source_metadata: {
+        posted_at: cleanText(structured?.datePosted),
+        posted_at_source: structured?.datePosted ? "page_metadata" : "",
+        updated_at: cleanText(structured?.dateModified),
         extracted_at: new Date().toISOString(),
         extraction_method: structured ? "dom_and_json_ld" : "dom",
         extractor_version: readerVersion,

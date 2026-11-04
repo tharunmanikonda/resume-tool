@@ -441,9 +441,15 @@ On LinkedIn Jobs, a Dice job-detail page, or a HiringCafe job page or search-res
 - Source job ID and canonical URL.
 - Company, role, and location.
 - Full job description.
-- Available posting metadata.
+- Available posting metadata, including publication and update dates.
+
+The drawer shows **Posted** and **Updated** separately and keeps these dates in saved drafts. It reads `datePosted` and `dateModified` from the current job page. On Greenhouse pages it also checks the public job API for `first_published` and `updated_at`. Dover job pages are supported through their structured metadata. Date-only values stay date-only; missing publication dates show **Posted date unavailable**. Open the job page to capture its dates; the extension does not crawl career sites in the background.
 
 Use **Refresh** when the job page has finished loading but the company, role, or description is missing. Refresh forces a new page extraction and waits for the updated context before rendering it.
+
+The shared job-page reader supports detail pages on Breezy HR, Workday, iCIMS, SmartRecruiters, Workable, Oracle Recruiting, Taleo, SuccessFactors, Jobvite, BambooHR, Personio, Indeed, Glassdoor, ZipRecruiter, Monster, USAJOBS, Avature, and Phenom. It also captures other company career pages when they publish one identifiable `JobPosting` object. Existing LinkedIn, Dice, HiringCafe, Greenhouse, Lever, Ashby, Rippling, and Dover readers remain available.
+
+Capture uses the currently open job page. Platform-specific description regions are used when structured metadata is absent. Search results, login pages, and unrelated body text are not used as job descriptions. A site's login requirements, anti-bot challenges, missing fields, or description previews can prevent a complete capture; open or expand the full posting and use **Refresh**. Missing company names can be entered in the drawer. Relative posting labels remain relative; missing dates are not inferred from job IDs or expiry dates.
 
 HiringCafe is supported on both `hiring.cafe` and `hiringcafe.com`. Open a job from the search results or use its full job page, then click **Resume**. The reader waits for the full description and clears the selected job when its search drawer closes.
 

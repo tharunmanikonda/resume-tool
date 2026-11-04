@@ -111,7 +111,9 @@ def canonical_job_url(value: str, external_job_id: str = "", source: str = "link
             return urlunparse((parsed.scheme, parsed.netloc, "/", "", urlencode({"v": selected_id}), ""))
     if not parsed.scheme or not parsed.netloc:
         return ""
-    return urlunparse((parsed.scheme, parsed.netloc, parsed.path.rstrip("/") + "/", "", "", ""))
+    identity_keys = {"jk", "vjk", "jobListingId", "jl", "job", "career_job_req_id", "jobId", "j", "id", "jid", "job_id", "gh_jid"}
+    identity_query = {key: values for key, values in parse_qs(parsed.query).items() if key in identity_keys}
+    return urlunparse((parsed.scheme, parsed.netloc, parsed.path.rstrip("/") + "/", "", urlencode(identity_query, doseq=True), ""))
 
 
 def normalize_context(payload: dict) -> dict:

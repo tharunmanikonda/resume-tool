@@ -8,6 +8,7 @@ function isAtsJobUrl(url) {
     const parsed = new URL(String(url || ""));
     const host = parsed.hostname.toLowerCase();
     const path = parsed.pathname.toLowerCase();
+    if (host === "jobs.dover.com") return /^\/[a-f0-9-]{36}\/[a-f0-9-]{36}\/?$/i.test(parsed.pathname);
     if (host === "jobs.lever.co" || host.endsWith(".lever.co")) return path.split("/").filter(Boolean).length >= 2;
     if (host === "boards.greenhouse.io" || host.endsWith(".greenhouse.io")) return path.includes("/jobs/") || parsed.searchParams.has("gh_jid");
     if (host === "jobs.ashbyhq.com" || host.endsWith(".ashbyhq.com") || host.endsWith(".ashby.com")) return path.split("/").filter(Boolean).length >= 2;
@@ -36,7 +37,11 @@ async function openResumePanel() {
       else if (/^https:\/\/(?:www\.)?dice\.com\//i.test(currentUrl)) script = "dice-content-script.js";
       else if (/^https:\/\/(?:www\.)?(?:hiring\.cafe|hiringcafe\.com)\//i.test(currentUrl)) script = "hiringcafe-content-script.js";
       else if (isAtsJobUrl(currentUrl)) script = "ats-content-script.js";
-      await chrome.scripting.executeScript({ target: { tabId: tab.id }, files: [script] });
+      const additional = globalThis.ResumeJobSites?.platform(currentUrl);
+      const files = additional
+        ? ["job-site-config.js", "job-board-content-script.js", "panel-host.js"]
+        : [script];
+      await chrome.scripting.executeScript({ target: { tabId: tab.id }, files });
       await chrome.tabs.sendMessage(tab.id, { type: "TOGGLE_RESUME_PANEL" });
     }
     window.close();

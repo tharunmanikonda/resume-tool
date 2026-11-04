@@ -279,9 +279,44 @@ function sourceIdentity(value) {
   return [source, value.company_name || "", value.role_title || ""].map((item) => String(item).trim().toLowerCase()).join(":");
 }
 
+function jobDateDisplay(value, now = Date.now()) {
+  const raw = String(value || "").trim();
+  const match = raw.match(/^(\d{4}-\d{2}-\d{2})(?:$|T)/);
+  if (!match) return { text: "", note: "" };
+  const dateOnly = /^\d{4}-\d{2}-\d{2}$/.test(raw);
+  const hasTimezone = /(?:Z|[+-]\d{2}:?\d{2})$/i.test(raw);
+  const parsed = new Date(dateOnly ? `${raw}T12:00:00Z` : raw);
+  if (!Number.isFinite(parsed.getTime())) return { text: "", note: "" };
+  const future = !dateOnly && hasTimezone && parsed.getTime() > now + 60000;
+  const omitTime = dateOnly || !hasTimezone || future;
+  const sourceDateOnly = dateOnly || !hasTimezone;
+  const displayDate = sourceDateOnly ? new Date(`${match[1]}T12:00:00Z`) : parsed;
+  const text = displayDate.toLocaleString(undefined, omitTime
+    ? { year: "numeric", month: "short", day: "numeric", ...(sourceDateOnly ? { timeZone: "UTC" } : {}) }
+    : { year: "numeric", month: "short", day: "numeric", hour: "numeric", minute: "2-digit", timeZoneName: "short" });
+  return { text, note: future ? "Site reports a future time" : !dateOnly && !hasTimezone ? "Site did not provide a timezone" : "" };
+}
+
+function formatJobDate(value) {
+  return jobDateDisplay(value).text;
+}
+
+function JobDates({ metadata }) {
+  const posted = jobDateDisplay(metadata.posted_at);
+  const updated = jobDateDisplay(metadata.updated_at);
+  const provenance = metadata.posted_at_source === "greenhouse_api" ? "Greenhouse public API" : "Job page metadata";
+  return <div className="job-meta job-dates">
+    <span title={posted.text ? `${provenance}: ${metadata.posted_at}` : "This site did not provide a publication date"}>{posted.text ? `Posted: ${posted.text}` : metadata.posted_text ? `Posted: ${metadata.posted_text}` : "Posted date unavailable"}{posted.note ? ` (${posted.note})` : ""}</span>
+    {updated.text ? <span title={metadata.updated_at}> · Updated: {updated.text}{updated.note ? ` (${updated.note})` : ""}</span> : null}
+  </div>;
+}
+
 function sourceLabel(value) {
   const source = String(typeof value === "string" ? value : value?.source || "").trim().toLowerCase();
   if (source === "hiringcafe") return "HiringCafe";
+  const labels = { breezy: "Breezy HR", workday: "Workday", icims: "iCIMS", smartrecruiters: "SmartRecruiters", workable: "Workable", oracle: "Oracle Recruiting", taleo: "Taleo", successfactors: "SuccessFactors", jobvite: "Jobvite", bamboohr: "BambooHR", personio: "Personio", indeed: "Indeed", glassdoor: "Glassdoor", ziprecruiter: "ZipRecruiter", monster: "Monster", usajobs: "USAJOBS", avature: "Avature", phenom: "Phenom", career_page: "Career site" };
+  if (labels[source]) return labels[source];
+  if (source === "dover") return "Dover";
   if (source === "dice") return "Dice";
   if (source === "linkedin") return "LinkedIn";
   return source ? source.charAt(0).toUpperCase() + source.slice(1) : "Job site";
@@ -1336,15 +1371,18 @@ function App() {
     });
     const listener = (message) => {
       if (message?.type === "JOB_CONTEXT_CHANGED" && viewingCurrentRef.current) {
-        if (message.context) resolveContext(message.context);
-        else {
-          currentContextRef.current = null;
-          setContext(null);
-          setContextForm(emptyContext());
-          setJobFit(null);
-          setResolution({ history: null, issues: [], preflight: null, draft: null });
-          commitDraft(null);
-        }
+        chrome.tabs.query({ active: true, currentWindow: true }).then((activeTabs) => {
+          if (message.tabId !== activeTabs[0]?.id || !viewingCurrentRef.current) return;
+          if (message.context) resolveContext(message.context);
+          else {
+            currentContextRef.current = null;
+            setContext(null);
+            setContextForm(emptyContext());
+            setJobFit(null);
+            setResolution({ history: null, issues: [], preflight: null, draft: null });
+            commitDraft(null);
+          }
+        }).catch(() => {});
       }
       if (message?.type === "AUTOFILL_ACTIVE_STATUS_CHANGED" && message.status) setAutofillStatus(message.status);
     };
@@ -1858,13 +1896,14 @@ function App() {
         role_title: loaded.role_title || "",
         location: loaded.location || "",
         job_description: loaded.job_description || "",
+        source_metadata: loaded.source_metadata || {},
       });
       setApplyForm((current) => ({ ...current, source: sourceLabel(loaded) }));
     }
   }
 
   async function openSourceJob(item) {
-    const result = await send({ type: "OPEN_SOURCE_JOB", url: item.canonical_url });
+    const result = await send({ type: "OPEN_SOURCE_JOB", url: item.canonical_url, source: item.source });
     if (!result?.success) setError(result?.error || "This draft does not have a supported job link.");
   }
 
@@ -1999,7 +2038,7 @@ function App() {
       {visibleError ? <div className="error-band">{visibleError}</div> : null}
 
       {viewingCurrent && !context ? (
-        <div className="blank-state"><h2>{visibleDrafts.length ? "Select a recent draft" : "No supported job selected"}</h2><p>{visibleDrafts.length ? "Choose a draft above to review progress or answer follow-up questions. This page is not being read." : "Open a LinkedIn, Dice, or HiringCafe job to create a resume. On other pages, the extension stays available without reading page content."}</p><button onClick={() => send({ type: "GET_ACTIVE_CONTEXT" }).then((result) => result?.context && resolveContext(result.context))}>Check job page again</button></div>
+        <div className="blank-state"><h2>{visibleDrafts.length ? "Select a recent draft" : "No supported job selected"}</h2><p>{visibleDrafts.length ? "Choose a draft above to review progress or answer follow-up questions. This page is not being read." : "Open a job detail page to capture its full description. Supported job boards and career sites with job metadata are read automatically."}</p><button onClick={() => send({ type: "GET_ACTIVE_CONTEXT" }).then((result) => result?.context && resolveContext(result.context))}>Check job page again</button></div>
       ) : null}
 
       {(context || draft) ? (
@@ -2008,6 +2047,7 @@ function App() {
             <label>Company<input value={contextForm.company_name} disabled={!viewingCurrent || !!draft?.locked} onChange={(event) => updateContextField("company_name", event.target.value)} /></label>
             <label>Role<input value={contextForm.role_title} disabled={!viewingCurrent || !!draft?.locked} onChange={(event) => updateContextField("role_title", event.target.value)} /></label>
             <div className="job-meta">{contextForm.location || "Location not provided"}</div>
+            <JobDates metadata={(viewingCurrent ? contextForm.source_metadata : draft?.source_metadata) || {}} />
             {viewingCurrent ? (
               <details><summary>Review extracted job description</summary><textarea value={contextForm.job_description} onChange={(event) => updateContextField("job_description", event.target.value)} /></details>
             ) : null}

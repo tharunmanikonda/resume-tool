@@ -462,6 +462,9 @@
       job_description: jobDescription,
       extraction_confidence: completeFields === 3 ? "high" : (completeFields === 2 ? "medium" : "low"),
       source_metadata: {
+        posted_at: cleanText(structured?.datePosted),
+        posted_at_source: structured?.datePosted ? "page_metadata" : "",
+        updated_at: cleanText(structured?.dateModified),
         posted_text: textFrom(selectors.posted),
         extracted_at: new Date().toISOString(),
         extraction_method: structured ? "dom_and_json_ld" : "dom",
@@ -476,7 +479,7 @@
         }
       }
     };
-    const fingerprint = [externalJobId, roleTitle, companyName, jobDescription.length, jobDescription.slice(0, 80), jobDescription.slice(-80)].join("|");
+    const fingerprint = [externalJobId, roleTitle, companyName, jobDescription.length, jobDescription.slice(0, 80), jobDescription.slice(-80), structured?.datePosted, structured?.dateModified].join("|");
     if (fingerprint === lastFingerprint) return;
 
     if (fingerprint !== pendingFingerprint) {

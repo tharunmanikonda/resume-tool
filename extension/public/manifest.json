@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Resume Generator Companion",
-  "version": "1.6.0",
+  "version": "1.7.1",
   "description": "Generate tailored resumes and fill job applications from one persistent browser panel.",
   "permissions": ["sidePanel", "storage", "tabs", "webNavigation", "scripting", "activeTab", "clipboardWrite"],
   "host_permissions": [
@@ -41,7 +41,7 @@
     {
       "matches": ["http://*/*", "https://*/*"],
       "exclude_matches": ["http://127.0.0.1/*", "http://localhost/*"],
-      "js": ["application-assistant.js"],
+      "js": ["job-site-config.js", "job-board-content-script.js", "application-assistant.js"],
       "run_at": "document_idle"
     },
     {
@@ -54,6 +54,7 @@
         "https://www.hiringcafe.com/*",
         "https://www.dice.com/*",
         "https://dice.com/*",
+        "https://jobs.dover.com/*",
         "*://jobs.lever.co/*",
         "*://*.lever.co/*",
         "*://boards.greenhouse.io/*",
@@ -91,6 +92,7 @@
     },
     {
       "matches": [
+        "https://jobs.dover.com/*",
         "*://jobs.lever.co/*", "*://*.lever.co/*",
         "*://boards.greenhouse.io/*", "*://*.greenhouse.io/*",
         "*://jobs.ashbyhq.com/*", "*://*.ashbyhq.com/*", "*://*.ashby.com/*",

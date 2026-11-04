@@ -1,3 +1,5 @@
+import "./job-site-config.js";
+
 const DEFAULT_SERVER = "http://127.0.0.1:5001";
 const LOCAL_SERVER_CANDIDATES = [
   DEFAULT_SERVER,
@@ -69,6 +71,7 @@ async function configureExtension() {
     "https://www.hiringcafe.com/*",
     "https://www.dice.com/*",
     "https://dice.com/*",
+    "https://jobs.dover.com/*",
     "*://jobs.lever.co/*",
     "*://boards.greenhouse.io/*",
     "*://*.greenhouse.io/*",
@@ -89,11 +92,12 @@ async function configureExtension() {
     if (!tab.id) return Promise.resolve();
     return chrome.scripting.executeScript({ target: { tabId: tab.id }, files: ["application-assistant.js"] }).catch(() => {});
   }));
-  await Promise.all(webTabs.filter((tab) => !isSupportedJobReaderUrl(tab.url)).map((tab) => {
+  await Promise.all(webTabs.filter((tab) => !isSupportedJobReaderUrl(tab.url) || globalThis.ResumeJobSites.platform(tab.url)).map((tab) => {
     if (!tab.id) return Promise.resolve();
     return chrome.scripting.executeScript({ target: { tabId: tab.id }, files: ["panel-host.js"] }).catch(() => {});
   }));
   await Promise.all(webTabs.filter((tab) => isKnownAtsUrl(tab.url)).map((tab) => ensureAutofillRuntime(tab)));
+  await Promise.all(webTabs.filter((tab) => isInspectableWebUrl(tab.url)).map((tab) => chrome.scripting.executeScript({ target: { tabId: tab.id }, files: ["job-site-config.js", "job-board-content-script.js"] }).catch(() => {})));
 }
 
 configureExtension();
@@ -141,7 +145,7 @@ function isHiringCafeJobUrl(url) {
 }
 
 function isSupportedJobReaderUrl(url) {
-  return isLinkedInJobsUrl(url) || isHiringCafeUrl(url) || isDiceUrl(url) || isSupportedAtsJobUrl(url);
+  return Boolean(globalThis.ResumeJobSites.platform(url)) || isLinkedInJobsUrl(url) || isHiringCafeUrl(url) || isDiceUrl(url) || isSupportedAtsJobUrl(url);
 }
 
 function jobReaderScriptForUrl(url) {
@@ -149,6 +153,7 @@ function jobReaderScriptForUrl(url) {
   if (isDiceUrl(url)) return "dice-content-script.js";
   if (isHiringCafeUrl(url)) return "hiringcafe-content-script.js";
   if (isSupportedAtsJobUrl(url)) return "ats-content-script.js";
+  if (globalThis.ResumeJobSites.platform(url) || isInspectableWebUrl(url)) return "job-board-content-script.js";
   return "";
 }
 
@@ -158,6 +163,7 @@ function isSupportedAtsJobUrl(url) {
     const host = parsed.hostname.toLowerCase();
     const path = parsed.pathname.toLowerCase();
     if (!["http:", "https:"].includes(parsed.protocol)) return false;
+    if (host === "jobs.dover.com") return /^\/[a-f0-9-]{36}\/[a-f0-9-]{36}\/?$/i.test(parsed.pathname);
     if (host === "jobs.lever.co" || host.endsWith(".lever.co")) return path.split("/").filter(Boolean).length >= 2;
     if (host === "boards.greenhouse.io" || host.endsWith(".greenhouse.io")) return path.includes("/jobs/") || parsed.searchParams.has("gh_jid");
     if (host === "jobs.ashbyhq.com" || host.endsWith(".ashbyhq.com") || host.endsWith(".ashby.com")) return path.split("/").filter(Boolean).length >= 2;
@@ -509,7 +515,7 @@ async function ensureJobReader(tab) {
   try {
     await chrome.tabs.sendMessage(tab.id, { type: "READ_JOB_CONTEXT" });
   } catch (_) {
-    await chrome.scripting.executeScript({ target: { tabId: tab.id }, files: [script] });
+    await chrome.scripting.executeScript({ target: { tabId: tab.id }, files: ["job-site-config.js", script] });
   }
 }
 
@@ -517,6 +523,8 @@ async function activeJobTab() {
   const activeTabs = await chrome.tabs.query({ active: true, currentWindow: true });
   const active = activeTabs.find((tab) => isSupportedJobReaderUrl(tab.url));
   if (active) return active;
+  const activeWeb = activeTabs.find((tab) => isInspectableWebUrl(tab.url));
+  if (activeWeb) return activeWeb;
   const tabs = await chrome.tabs.query({ url: [
     "https://www.linkedin.com/jobs/*",
     "https://hiring.cafe/*",
@@ -525,6 +533,7 @@ async function activeJobTab() {
     "https://www.hiringcafe.com/*",
     "https://www.dice.com/job-detail/*",
     "https://dice.com/job-detail/*",
+    "https://jobs.dover.com/*",
     "*://jobs.lever.co/*",
     "*://boards.greenhouse.io/*",
     "*://*.greenhouse.io/*",
@@ -573,17 +582,74 @@ async function apiRequest(message) {
   return result.payload;
 }
 
+const jobContextTokens = new Map();
+const jobDateRequests = new Map();
+
+function greenhouseJobApiUrl(value) {
+  try {
+    const url = new URL(value);
+    const host = url.hostname.toLowerCase();
+    if (url.protocol !== "https:" || !(host === "greenhouse.io" || host.endsWith(".greenhouse.io"))) return "";
+    const parts = url.pathname.split("/").filter(Boolean);
+    const id = url.pathname.match(/\/jobs\/(\d+)/)?.[1] || url.searchParams.get("gh_jid");
+    const label = host.split(".")[0];
+    const board = ["boards", "job-boards"].includes(label) ? parts[0] : label;
+    if (!/^\d+$/.test(id || "") || !/^[a-z0-9_-]+$/i.test(board || "")) return "";
+    return `https://boards-api.greenhouse.io/v1/boards/${encodeURIComponent(board)}/jobs/${id}`;
+  } catch (_) {
+    return "";
+  }
+}
+
+async function fetchJobDates(context) {
+  const endpoint = greenhouseJobApiUrl(context.url);
+  if (!endpoint) return null;
+  const cached = jobDateRequests.get(endpoint);
+  if (cached && Date.now() - cached.at < 300000) return cached.promise;
+  const promise = (async () => {
+    try {
+      const response = await fetch(endpoint, { credentials: "omit", signal: AbortSignal.timeout(4000) });
+      if (!response.ok) return null;
+      const job = await response.json();
+      if (String(job.id) !== endpoint.split("/").pop()) return null;
+      const dates = {};
+      if (typeof job.first_published === "string" && Number.isFinite(Date.parse(job.first_published))) {
+        dates.posted_at = job.first_published;
+        dates.posted_at_source = "greenhouse_api";
+      }
+      if (typeof job.updated_at === "string" && Number.isFinite(Date.parse(job.updated_at))) dates.updated_at = job.updated_at;
+      return Object.keys(dates).length ? dates : null;
+    } catch (_) {
+      return null;
+    }
+  })();
+  jobDateRequests.set(endpoint, { at: Date.now(), promise });
+  return promise;
+}
+
+async function publishJobContext(tabId, context, token) {
+  if (jobContextTokens.get(tabId) !== token) return;
+  await chrome.storage.session.set({ [`jobContext:${tabId}`]: context });
+  if (jobContextTokens.get(tabId) !== token) return;
+  chrome.action.setBadgeBackgroundColor({ color: "#0f9f78", tabId }).catch(() => {});
+  chrome.action.setBadgeText({ text: "JOB", tabId }).catch(() => {});
+  chrome.runtime.sendMessage({ type: "JOB_CONTEXT_CHANGED", tabId, context }).catch(() => {});
+}
+
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message?.type === "JOB_CONTEXT") {
     const tabId = sender.tab?.id;
     if (!tabId) return false;
-    const key = `jobContext:${tabId}`;
-    chrome.storage.session.set({ [key]: message.context }).then(() => {
-      chrome.action.setBadgeBackgroundColor({ color: "#0f9f78", tabId }).catch(() => {});
-      chrome.action.setBadgeText({ text: "JOB", tabId }).catch(() => {});
-      chrome.runtime.sendMessage({ type: "JOB_CONTEXT_CHANGED", tabId, context: message.context }).catch(() => {});
-      sendResponse({ success: true });
-    });
+    const token = Symbol();
+    jobContextTokens.set(tabId, token);
+    const context = message.context;
+    publishJobContext(tabId, context, token)
+      .then(() => sendResponse({ success: true }))
+      .catch((error) => sendResponse({ success: false, error: error.message }));
+    fetchJobDates(context).then((dates) => {
+      if (!dates || jobContextTokens.get(tabId) !== token) return;
+      return publishJobContext(tabId, { ...context, source_metadata: { ...context.source_metadata, ...dates } }, token);
+    }).catch(() => {});
     return true;
   }
 
@@ -601,6 +667,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message?.type === "JOB_CONTEXT_CLEARED") {
     const tabId = sender.tab?.id;
     if (!tabId) return false;
+    jobContextTokens.delete(tabId);
     chrome.storage.session.remove([`jobContext:${tabId}`, `linkedinJobContext:${tabId}`]).then(() => {
       chrome.action.setBadgeText({ text: "", tabId }).catch(() => {});
       chrome.runtime.sendMessage({ type: "JOB_CONTEXT_CHANGED", tabId, context: null }).catch(() => {});
@@ -824,7 +891,9 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     const isLinkedIn = /^https:\/\/(www\.)?linkedin\.com\/jobs\/view\/\d+\/?(?:[?#].*)?$/i.test(jobUrl);
     const isDice = /^https:\/\/(www\.)?dice\.com\/job-detail\/[a-z0-9-]+\/?(?:[?#].*)?$/i.test(jobUrl);
     const isAts = isSupportedAtsJobUrl(jobUrl);
-    if (!isLinkedIn && !isDice && !isHiringCafeJobUrl(jobUrl) && !isAts) {
+    const isAdditional = globalThis.ResumeJobSites.isDetail(jobUrl);
+    const isSavedCareerPage = message.source === "career_page" && isInspectableWebUrl(jobUrl);
+    if (!isLinkedIn && !isDice && !isHiringCafeJobUrl(jobUrl) && !isAts && !isAdditional && !isSavedCareerPage) {
       sendResponse({ success: false, error: "This draft does not have a valid supported job URL." });
       return false;
     }
@@ -923,9 +992,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
 chrome.webNavigation.onHistoryStateUpdated.addListener((details) => {
   if (details.frameId !== 0) return;
-  if (isSupportedJobReaderUrl(details.url)) {
-    chrome.tabs.sendMessage(details.tabId, { type: "READ_JOB_CONTEXT" }).catch(() => {});
-  }
+  chrome.tabs.sendMessage(details.tabId, { type: "READ_JOB_CONTEXT" }).catch(() => {});
   chrome.tabs.sendMessage(details.tabId, { type: "AUTOFILL_NAVIGATION_CHANGED", url: details.url }).catch(() => {});
 });
 
@@ -945,6 +1012,7 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo) => {
 });
 
 chrome.tabs.onRemoved.addListener((tabId) => {
+  jobContextTokens.delete(tabId);
   clearTimeout(applicationScanTimers.get(tabId));
   applicationScanTimers.delete(tabId);
   clearApplicationApproval(tabId).catch(() => {});
