@@ -498,6 +498,7 @@
     "JR2020567",
     "JR2020640",
     "JR2020644",
+    "JR2020652",
     "JR2020717",
     "JR2020726",
     "JR2020731",
@@ -1118,6 +1119,7 @@
     "JR2028458",
     "JR2028501",
     "JR2028506",
+    "JR2028517",
     "JR2028518",
     "JR2028519",
     "JR2028528",
@@ -1178,7 +1180,9 @@
     "JR2029189",
     "JR2029190",
     "JR2029216",
-    "JR2029239"
+    "JR2029227",
+    "JR2029239",
+    "JR2029313"
   ],
   "candidate_catalog": {
     "JR2018245": {
@@ -1515,7 +1519,7 @@
       "category": "technical_review"
     }
   },
-  "last_successful_scan_at": "2026-11-03T19:59:39+00:00",
+  "last_successful_scan_at": "2026-11-04T01:57:30+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "JR2014880": {
@@ -16147,6 +16151,64 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-03T19:59:39+00:00",
       "last_seen_at": "2026-11-03T19:59:39+00:00"
+    },
+    "JR2029227": {
+      "title": "Senior Resiliency Architect,\u00a0Hardware\u00a0Diagnostics\u00a0and Resiliency Modeling",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Resiliency-Architect--Hardware-Diagnostics-and-Resiliency-Modeling_JR2029227",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "embedded_or_hardware",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-04T01:57:30+00:00",
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
+    },
+    "JR2028517": {
+      "title": "Senior System Software Engineer\u2014 Autonomous Driving Context Fusion",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-System-Software-Engineer--Autonomous-Driving-Context-Fusion_JR2028517",
+      "posted_at": "2026-11-03",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-04T01:57:30+00:00",
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
+    },
+    "JR2020652": {
+      "title": "Senior Platform Service Software Engineer",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Platform-Service-Software-Engineer_JR2020652",
+      "posted_at": "2026-11-03",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-04T01:57:30+00:00",
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
+    },
+    "JR2029313": {
+      "title": "Senior AI Agent Test Developer, SDET",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-AI-Agent-Test-Developer--SDET_JR2029313",
+      "posted_at": "2026-11-03",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "qa",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-04T01:57:30+00:00",
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
     }
   },
   "source_updated_at_by_id": {}

@@ -561,7 +561,13 @@
     "744000159415630",
     "744000159448534",
     "744000159479547",
-    "744000159481897"
+    "744000159481897",
+    "744000159487075",
+    "744000159492802",
+    "744000159495004",
+    "744000159502949",
+    "744000159509155",
+    "744000159511839"
   ],
   "candidate_catalog": {
     "744000151898289": {
@@ -617,9 +623,18 @@
       "first_seen_at": "2026-10-31T12:05:11-05:00",
       "priority": "low",
       "category": "systems_engineering"
+    },
+    "744000159511839": {
+      "title": "Software Engineer, Roku",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159511839-software-engineer-roku",
+      "posted_at": "2026-11-03T22:57:52.631Z",
+      "first_seen_at": "2026-11-04T01:57:30+00:00",
+      "priority": "medium",
+      "category": "software"
     }
   },
-  "last_successful_scan_at": "2026-11-03T19:59:39+00:00",
+  "last_successful_scan_at": "2026-11-04T01:57:30+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "744000156079569": {
@@ -7342,6 +7357,79 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-03T19:59:39+00:00",
       "last_seen_at": "2026-11-03T19:59:39+00:00"
+    },
+    "744000159509155": {
+      "title": "Freelance Scheduling Coordinator - NBC Sports",
+      "location": "Stamford, Connecticut, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159509155-freelance-scheduling-coordinator-nbc-sports",
+      "posted_at": "2026-11-03T22:40:09.822Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-04T01:57:30+00:00",
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
+    },
+    "744000159502949": {
+      "title": "Manager, MEP & Facility Utilities",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159502949-manager-mep-facility-utilities",
+      "posted_at": "2026-11-03T21:50:13.287Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-04T01:57:30+00:00",
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
+    },
+    "744000159495004": {
+      "title": "Manager, Programmatic Strategy",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159495004-manager-programmatic-strategy",
+      "posted_at": "2026-11-03T21:12:08.357Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-04T01:57:30+00:00",
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
+    },
+    "744000159492802": {
+      "title": "Director, Product",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159492802-director-product",
+      "posted_at": "2026-11-03T20:50:36.371Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-04T01:57:30+00:00",
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
+    },
+    "744000159487075": {
+      "title": "Coordinator, Franchise Mgmt & Brand Mktg",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159487075-coordinator-franchise-mgmt-brand-mktg",
+      "posted_at": "2026-11-03T20:32:13.002Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-04T01:57:30+00:00",
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
     }
   },
   "source_updated_at_by_id": {}

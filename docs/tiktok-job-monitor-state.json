@@ -1968,7 +1968,9 @@
     "7703606693767973125",
     "7703620119666280757",
     "7703632666805160197",
-    "7703876741467998469"
+    "7703876741467998469",
+    "7703899923206867205",
+    "7704007084339595525"
   ],
   "candidate_catalog": {
     "7680987768009754885": {
@@ -5093,6 +5095,15 @@
       "first_seen_at": "2026-11-03T19:59:39+00:00",
       "priority": "medium",
       "category": "software"
+    },
+    "7703899923206867205": {
+      "title": "Machine Learning Engineer - Intern (TikTok BRIC) - 2027 Start (PhD)",
+      "location": "San Jose, California, United States of America",
+      "url": "https://lifeattiktok.com/search/7703899923206867205",
+      "posted_at": "",
+      "first_seen_at": "2026-11-04T01:57:30+00:00",
+      "priority": "medium",
+      "category": "ai_ml"
     }
   },
   "rejected_catalog": {
@@ -28578,8 +28589,23 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-03T19:59:39+00:00",
       "last_seen_at": "2026-11-03T19:59:39+00:00"
+    },
+    "7704007084339595525": {
+      "title": "Agency Partnerships Manager - Andean Region (Ad-Sales) - GBS",
+      "location": "Bogot\u00e1, Distrito Capital de Bogot\u00e1, Colombia",
+      "url": "https://lifeattiktok.com/search/7704007084339595525",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-04T01:57:30+00:00",
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
     }
   },
-  "last_successful_scan_at": "2026-11-03T19:59:39+00:00",
+  "last_successful_scan_at": "2026-11-04T01:57:30+00:00",
   "source_updated_at_by_id": {}
 }

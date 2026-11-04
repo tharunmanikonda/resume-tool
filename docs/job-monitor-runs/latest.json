@@ -1,12 +1,13 @@
 {
-  "success": false,
-  "scanned_at": "2026-11-03T19:59:39+00:00",
+  "success": true,
+  "scanned_at": "2026-11-04T01:57:30+00:00",
   "monitor_count": 14,
   "successful_monitors": [
     "cbre",
     "cdk",
     "cisco",
     "crunchyroll",
+    "ebay",
     "intepros",
     "iqvia",
     "nbcu",
@@ -17,116 +18,52 @@
     "tiktok",
     "waymo"
   ],
-  "failed_monitors": [
-    "ebay"
-  ],
-  "candidate_count": 3,
-  "needs_ai_review_count": 3,
+  "failed_monitors": [],
+  "candidate_count": 2,
+  "needs_ai_review_count": 0,
   "candidates": [
     {
-      "monitor": "iqvia",
-      "job_id": "R1536839",
-      "title": "16315-Sr Software Engineer",
-      "location": "Marietta, Georgia, United States of America",
-      "posted_at": "2026-11-03",
-      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Marietta-Georgia-United-States-of-America/XMLNAME-16315-Sr-Software-Engineer_R1536839",
+      "monitor": "nbcu",
+      "job_id": "744000159511839",
+      "title": "Software Engineer, Roku",
+      "location": "Universal City, CALIFORNIA, United States",
+      "posted_at": "2026-11-03T22:57:52.631Z",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159511839-software-engineer-roku",
       "priority": "medium",
       "matching_requirements": [
         "target_title:software",
+        "profile_signal:javascript_react:+1",
         "profile_signal:backend_apis:+2",
-        "profile_signal:cloud_containers:+2",
-        "profile_signal:qa_automation:+2"
-      ],
-      "material_gaps": []
-    },
-    {
-      "monitor": "rivian",
-      "job_id": "35303",
-      "title": "Systems Integration Engineer II, Automated Drive",
-      "location": "Palo Alto, California",
-      "posted_at": "2026-11-02T23:30:00+0000",
-      "url": "https://careers.rivian.com/careers-home/jobs/35303",
-      "priority": "medium",
-      "matching_requirements": [
-        "target_title:integration",
-        "profile_signal:python:+2",
-        "profile_signal:cloud_containers:+2",
+        "profile_signal:reliability_telemetry:+3",
         "profile_signal:qa_automation:+2"
       ],
       "material_gaps": []
     },
     {
       "monitor": "tiktok",
-      "job_id": "7691480232733575477",
-      "title": "Sr. Software Engineer - Data Subject Rights - TikTok Privacy and Security",
+      "job_id": "7703899923206867205",
+      "title": "Machine Learning Engineer - Intern (TikTok BRIC) - 2027 Start (PhD)",
       "location": "San Jose, California, United States of America",
       "posted_at": "",
-      "url": "https://lifeattiktok.com/search/7691480232733575477",
+      "url": "https://lifeattiktok.com/search/7703899923206867205",
       "priority": "medium",
       "matching_requirements": [
-        "target_title:software",
+        "target_title:ai_ml",
         "profile_signal:python:+2",
-        "profile_signal:java:+1",
-        "profile_signal:backend_apis:+2",
-        "profile_signal:reliability_telemetry:+3"
-      ],
-      "material_gaps": []
-    }
-  ],
-  "needs_ai_review": [
-    {
-      "monitor": "iqvia",
-      "job_id": "R1568229",
-      "title": "API Developer",
-      "location": "S\u00e3o Paulo, Brazil",
-      "posted_at": "2026-11-03",
-      "url": "https://iqvia.wd1.myworkdayjobs.com/job/So-Paulo-Brazil/API-Developer_R1568229",
-      "priority": "low",
-      "matching_requirements": [
-        "target_title:development",
-        "profile_signal:backend_apis:+2",
-        "profile_signal:databases:+1"
-      ],
-      "material_gaps": []
-    },
-    {
-      "monitor": "nvidia",
-      "job_id": "JR2029190",
-      "title": "Compiler Verification Engineer, Compute Performance \u2013 GPU",
-      "location": "US, TX, Austin; US, CA, Santa Clara",
-      "posted_at": "2026-11-02",
-      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-TX-Austin/Compiler-Verification-Engineer--Compute-Performance---GPU_JR2029190",
-      "priority": "low",
-      "matching_requirements": [
-        "target_title:technical_review",
-        "profile_signal:python:+2",
-        "profile_signal:qa_automation:+2"
-      ],
-      "material_gaps": []
-    },
-    {
-      "monitor": "nvidia",
-      "job_id": "JR2029015",
-      "title": "Senior Compiler Engineer, Agentic Compiler Systems",
-      "location": "US, CA, Santa Clara; US, TX, Austin; US, TX, Remote; US, OR, Remote; US, CA, Remote; US, WA, Redmond",
-      "posted_at": "2026-11-02",
-      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Compiler-Engineer--Agentic-Compiler-Systems_JR2029015",
-      "priority": "low",
-      "matching_requirements": [
-        "target_title:technical_review",
-        "profile_signal:python:+2",
+        "profile_signal:databases:+1",
         "profile_signal:agentic_tooling:+3"
       ],
       "material_gaps": []
     }
   ],
+  "needs_ai_review": [],
   "results": [
     {
       "monitor": "cbre",
       "success": true,
-      "scanned_at": "2026-11-03T19:59:39+00:00",
-      "fetched": 983,
-      "unseen": 38,
+      "scanned_at": "2026-11-04T01:57:30+00:00",
+      "fetched": 780,
+      "unseen": 19,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -135,7 +72,7 @@
     {
       "monitor": "cdk",
       "success": true,
-      "scanned_at": "2026-11-03T19:59:39+00:00",
+      "scanned_at": "2026-11-04T01:57:30+00:00",
       "fetched": 39,
       "unseen": 0,
       "state_updated": true,
@@ -146,9 +83,9 @@
     {
       "monitor": "cisco",
       "success": true,
-      "scanned_at": "2026-11-03T19:59:39+00:00",
+      "scanned_at": "2026-11-04T01:57:30+00:00",
       "fetched": 80,
-      "unseen": 4,
+      "unseen": 1,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -157,9 +94,9 @@
     {
       "monitor": "crunchyroll",
       "success": true,
-      "scanned_at": "2026-11-03T19:59:39+00:00",
-      "fetched": 101,
-      "unseen": 2,
+      "scanned_at": "2026-11-04T01:57:30+00:00",
+      "fetched": 100,
+      "unseen": 0,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -167,23 +104,19 @@
     },
     {
       "monitor": "ebay",
-      "success": false,
-      "scanned_at": "2026-11-03T19:59:39+00:00",
-      "fetched": 0,
-      "unseen": 0,
-      "state_updated": false,
+      "success": true,
+      "scanned_at": "2026-11-04T01:57:30+00:00",
+      "fetched": 177,
+      "unseen": 9,
+      "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
-      "errors": [
-        {
-          "error": "Command '['node', '/home/runner/work/resume-tool/resume-tool/ops/company_jobs_fetch.mjs', 'ebay', 'list']' timed out after 300 seconds"
-        }
-      ]
+      "errors": []
     },
     {
       "monitor": "intepros",
       "success": true,
-      "scanned_at": "2026-11-03T19:59:39+00:00",
+      "scanned_at": "2026-11-04T01:57:30+00:00",
       "fetched": 20,
       "unseen": 0,
       "state_updated": true,
@@ -194,102 +127,59 @@
     {
       "monitor": "iqvia",
       "success": true,
-      "scanned_at": "2026-11-03T19:59:39+00:00",
-      "fetched": 1008,
-      "unseen": 54,
-      "state_updated": true,
-      "candidates": [
-        {
-          "job_id": "R1536839",
-          "title": "16315-Sr Software Engineer",
-          "location": "Marietta, Georgia, United States of America",
-          "posted_at": "2026-11-03",
-          "url": "https://iqvia.wd1.myworkdayjobs.com/job/Marietta-Georgia-United-States-of-America/XMLNAME-16315-Sr-Software-Engineer_R1536839",
-          "priority": "medium",
-          "matching_requirements": [
-            "target_title:software",
-            "profile_signal:backend_apis:+2",
-            "profile_signal:cloud_containers:+2",
-            "profile_signal:qa_automation:+2"
-          ],
-          "material_gaps": []
-        }
-      ],
-      "needs_ai_review": [
-        {
-          "job_id": "R1568229",
-          "title": "API Developer",
-          "location": "S\u00e3o Paulo, Brazil",
-          "posted_at": "2026-11-03",
-          "url": "https://iqvia.wd1.myworkdayjobs.com/job/So-Paulo-Brazil/API-Developer_R1568229",
-          "priority": "low",
-          "matching_requirements": [
-            "target_title:development",
-            "profile_signal:backend_apis:+2",
-            "profile_signal:databases:+1"
-          ],
-          "material_gaps": []
-        }
-      ],
-      "errors": []
-    },
-    {
-      "monitor": "nbcu",
-      "success": true,
-      "scanned_at": "2026-11-03T19:59:39+00:00",
-      "fetched": 291,
-      "unseen": 9,
+      "scanned_at": "2026-11-04T01:57:30+00:00",
+      "fetched": 368,
+      "unseen": 0,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
       "errors": []
     },
     {
-      "monitor": "nvidia",
+      "monitor": "nbcu",
       "success": true,
-      "scanned_at": "2026-11-03T19:59:39+00:00",
-      "fetched": 140,
-      "unseen": 14,
+      "scanned_at": "2026-11-04T01:57:30+00:00",
+      "fetched": 291,
+      "unseen": 6,
       "state_updated": true,
-      "candidates": [],
-      "needs_ai_review": [
+      "candidates": [
         {
-          "job_id": "JR2029190",
-          "title": "Compiler Verification Engineer, Compute Performance \u2013 GPU",
-          "location": "US, TX, Austin; US, CA, Santa Clara",
-          "posted_at": "2026-11-02",
-          "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-TX-Austin/Compiler-Verification-Engineer--Compute-Performance---GPU_JR2029190",
-          "priority": "low",
+          "job_id": "744000159511839",
+          "title": "Software Engineer, Roku",
+          "location": "Universal City, CALIFORNIA, United States",
+          "posted_at": "2026-11-03T22:57:52.631Z",
+          "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159511839-software-engineer-roku",
+          "priority": "medium",
           "matching_requirements": [
-            "target_title:technical_review",
-            "profile_signal:python:+2",
+            "target_title:software",
+            "profile_signal:javascript_react:+1",
+            "profile_signal:backend_apis:+2",
+            "profile_signal:reliability_telemetry:+3",
             "profile_signal:qa_automation:+2"
-          ],
-          "material_gaps": []
-        },
-        {
-          "job_id": "JR2029015",
-          "title": "Senior Compiler Engineer, Agentic Compiler Systems",
-          "location": "US, CA, Santa Clara; US, TX, Austin; US, TX, Remote; US, OR, Remote; US, CA, Remote; US, WA, Redmond",
-          "posted_at": "2026-11-02",
-          "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Compiler-Engineer--Agentic-Compiler-Systems_JR2029015",
-          "priority": "low",
-          "matching_requirements": [
-            "target_title:technical_review",
-            "profile_signal:python:+2",
-            "profile_signal:agentic_tooling:+3"
           ],
           "material_gaps": []
         }
       ],
+      "needs_ai_review": [],
+      "errors": []
+    },
+    {
+      "monitor": "nvidia",
+      "success": true,
+      "scanned_at": "2026-11-04T01:57:30+00:00",
+      "fetched": 120,
+      "unseen": 4,
+      "state_updated": true,
+      "candidates": [],
+      "needs_ai_review": [],
       "errors": []
     },
     {
       "monitor": "occ",
       "success": true,
-      "scanned_at": "2026-11-03T19:59:39+00:00",
-      "fetched": 73,
-      "unseen": 6,
+      "scanned_at": "2026-11-04T01:57:30+00:00",
+      "fetched": 60,
+      "unseen": 0,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -298,7 +188,7 @@
     {
       "monitor": "ocient",
       "success": true,
-      "scanned_at": "2026-11-03T19:59:39+00:00",
+      "scanned_at": "2026-11-04T01:57:30+00:00",
       "fetched": 15,
       "unseen": 0,
       "state_updated": true,
@@ -309,51 +199,34 @@
     {
       "monitor": "rivian",
       "success": true,
-      "scanned_at": "2026-11-03T19:59:39+00:00",
-      "fetched": 40,
-      "unseen": 2,
+      "scanned_at": "2026-11-04T01:57:30+00:00",
+      "fetched": 30,
+      "unseen": 0,
       "state_updated": true,
-      "candidates": [
-        {
-          "job_id": "35303",
-          "title": "Systems Integration Engineer II, Automated Drive",
-          "location": "Palo Alto, California",
-          "posted_at": "2026-11-02T23:30:00+0000",
-          "url": "https://careers.rivian.com/careers-home/jobs/35303",
-          "priority": "medium",
-          "matching_requirements": [
-            "target_title:integration",
-            "profile_signal:python:+2",
-            "profile_signal:cloud_containers:+2",
-            "profile_signal:qa_automation:+2"
-          ],
-          "material_gaps": []
-        }
-      ],
+      "candidates": [],
       "needs_ai_review": [],
       "errors": []
     },
     {
       "monitor": "tiktok",
       "success": true,
-      "scanned_at": "2026-11-03T19:59:39+00:00",
+      "scanned_at": "2026-11-04T01:57:30+00:00",
       "fetched": 1883,
-      "unseen": 10,
+      "unseen": 2,
       "state_updated": true,
       "candidates": [
         {
-          "job_id": "7691480232733575477",
-          "title": "Sr. Software Engineer - Data Subject Rights - TikTok Privacy and Security",
+          "job_id": "7703899923206867205",
+          "title": "Machine Learning Engineer - Intern (TikTok BRIC) - 2027 Start (PhD)",
           "location": "San Jose, California, United States of America",
           "posted_at": "",
-          "url": "https://lifeattiktok.com/search/7691480232733575477",
+          "url": "https://lifeattiktok.com/search/7703899923206867205",
           "priority": "medium",
           "matching_requirements": [
-            "target_title:software",
+            "target_title:ai_ml",
             "profile_signal:python:+2",
-            "profile_signal:java:+1",
-            "profile_signal:backend_apis:+2",
-            "profile_signal:reliability_telemetry:+3"
+            "profile_signal:databases:+1",
+            "profile_signal:agentic_tooling:+3"
           ],
           "material_gaps": []
         }
@@ -364,9 +237,9 @@
     {
       "monitor": "waymo",
       "success": true,
-      "scanned_at": "2026-11-03T19:59:39+00:00",
-      "fetched": 170,
-      "unseen": 0,
+      "scanned_at": "2026-11-04T01:57:30+00:00",
+      "fetched": 169,
+      "unseen": 1,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],

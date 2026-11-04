@@ -1360,6 +1360,7 @@
     "2027165",
     "2027249",
     "2027254",
+    "2027291",
     "2027318",
     "2027386",
     "2027389",
@@ -1459,7 +1460,7 @@
     "2030081",
     "2030087"
   ],
-  "last_successful_scan_at": "2026-11-03T19:59:39+00:00",
+  "last_successful_scan_at": "2026-11-04T01:57:30+00:00",
   "candidate_catalog": {
     "2024998": {
       "title": "AI Security Engineer",
@@ -3498,6 +3499,20 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-03T19:59:39+00:00",
       "last_seen_at": "2026-11-03T19:59:39+00:00"
+    },
+    "2027291": {
+      "title": "Senior Mechanical Engineer- (Hybrid)",
+      "location": "Austin, Texas, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Austin-Texas-US/Senior-Mechanical-Engineer---Hybrid-_2027291",
+      "posted_at": "2026-11-03",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-04T01:57:30+00:00",
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
     }
   },
   "source_updated_at_by_id": {}

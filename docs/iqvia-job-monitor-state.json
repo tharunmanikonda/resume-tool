@@ -2515,7 +2515,7 @@
       "category": "development"
     }
   },
-  "last_successful_scan_at": "2026-11-03T19:59:39+00:00",
+  "last_successful_scan_at": "2026-11-04T01:57:30+00:00",
   "filter_version": 2,
   "rejected_catalog": {
     "R1545472": {
@@ -2927,16 +2927,16 @@
       "title": "Field Service Technician- Nashville, TN",
       "location": "Nashville, TN",
       "url": "https://iqvia.wd1.myworkdayjobs.com/job/Nashville-TN/Field-Service-Representative_R1559969",
-      "posted_at": "Posted 24 Days Ago",
+      "posted_at": "Posted 6 Days Ago",
       "stage": "prefilter",
       "blockers": [
         "support",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
     },
     "R1565172": {
       "title": "Projektmanager (m/w/d) hybrid",
@@ -4313,16 +4313,16 @@
       "title": "MedTech Depot Field Service Technician - Nationwide Travel",
       "location": "15 Locations",
       "url": "https://iqvia.wd1.myworkdayjobs.com/job/Cincinnati-OH/MedTech-Depot-Field-Service-Technician---Nationwide-Travel_R1571848",
-      "posted_at": "Posted 18 Days Ago",
+      "posted_at": "Posted Yesterday",
       "stage": "prefilter",
       "blockers": [
         "support",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
     },
     "R1564528": {
       "title": "Senior Consultant - Evidence Synthesis (Health Economics) - United Kingdom/European Union",
@@ -17542,15 +17542,15 @@
       "title": "Health Information Technology Specialist West",
       "location": "7 Locations",
       "url": "https://iqvia.wd1.myworkdayjobs.com/job/Los-Angeles-CA/Health-Information-Technology-Specialist-West_R1557141",
-      "posted_at": "Posted 14 Days Ago",
+      "posted_at": "Posted 30 Days Ago",
       "stage": "prefilter",
       "blockers": [
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
     },
     "R1569260": {
       "title": "Coordonnateur(trice) de projet, Services de protection des donn\u00e9es/ Project Coordinator, Data Privacy Services",
@@ -17637,9 +17637,9 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
     },
     "R1568486": {
       "title": "Senior Records Management Associate/Records Management Analyst 1",
@@ -18120,9 +18120,9 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
     },
     "R1562238": {
       "title": "Healthcare Analytics, AI Product & Methodology Analyst",
@@ -19699,45 +19699,45 @@
       "title": "Medical Strategy Lead , Oncology-Clinical Development (m/w/d)",
       "location": "Frankfurt, Hesse, Germany",
       "url": "https://iqvia.wd1.myworkdayjobs.com/job/Frankfurt-Hesse-Germany/Medical-Strategy-Lead---Oncology-Clinical-Development--m-w-d-_R1573761",
-      "posted_at": "Posted 6 Days Ago",
+      "posted_at": "Posted 22 Days Ago",
       "stage": "prefilter",
       "blockers": [
         "non_us_location",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
     },
     "R1570586": {
       "title": "Therapeutic Strategy Director \u2013 Early Clinical Development",
       "location": "Durham, North Carolina, United States of America",
       "url": "https://iqvia.wd1.myworkdayjobs.com/job/Durham-North-Carolina-United-States-of-America/Therapeutic-Strategy-Director---Early-Clinical-Development_R1570586",
-      "posted_at": "Posted 13 Days Ago",
+      "posted_at": "Posted 11 Days Ago",
       "stage": "prefilter",
       "blockers": [
         "management",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
     },
     "R1550377": {
       "title": "Medical Strategy Lead, Oncology-Clinical Development (Centre of Excellence)",
-      "location": "15 Locations",
+      "location": "14 Locations",
       "url": "https://iqvia.wd1.myworkdayjobs.com/job/Reading-Berkshire-United-Kingdom/Medical-Strategy-Lead--Oncology--Home-Based-_R1550377",
-      "posted_at": "Posted 6 Days Ago",
+      "posted_at": "Posted 3 Days Ago",
       "stage": "prefilter",
       "blockers": [
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
     },
     "R1551833": {
       "title": "Head of Patient Science, Instrument Development & Thought Leadership",
@@ -21071,9 +21071,9 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
     },
     "R1565399": {
       "title": "Associate Solution and Delivery Lead, Healthcare & Pharma",
@@ -22359,15 +22359,15 @@
       "title": "Clinical Data Strategist",
       "location": "Durham, North Carolina, United States of America",
       "url": "https://iqvia.wd1.myworkdayjobs.com/job/Durham-North-Carolina-United-States-of-America/Clinical-Data-Strategist_R1553527-1",
-      "posted_at": "Posted 5 Days Ago",
+      "posted_at": "Posted 21 Days Ago",
       "stage": "prefilter",
       "blockers": [
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
     },
     "R1567598": {
       "title": "Consultant -  Healthcare Consulting (Digital & Technology)",
@@ -22957,15 +22957,15 @@
       "title": "Assoc Mgr, Data Integrity (GRE 140) - Belgium",
       "location": "Taguig City, Philippines",
       "url": "https://iqvia.wd1.myworkdayjobs.com/job/Taguig-City-Philippines/Assoc-Mgr--Data-Integrity--GRE-140----Belgium_R1550626",
-      "posted_at": "Posted 10 Days Ago",
+      "posted_at": "Posted 26 Days Ago",
       "stage": "prefilter",
       "blockers": [
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
     },
     "R1573442": {
       "title": "Medical Information Specialist with Latvian, English and Additional Language",
@@ -23043,16 +23043,16 @@
       "title": "Associate Manager, Data Integrity (GRE 140)",
       "location": "Taguig City, Philippines",
       "url": "https://iqvia.wd1.myworkdayjobs.com/job/Taguig-City-Philippines/Associate-Manager--Data-Integrity--GRE-140-_R1563048-1",
-      "posted_at": "Posted 10 Days Ago",
+      "posted_at": "Posted 26 Days Ago",
       "stage": "prefilter",
       "blockers": [
         "management",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
     },
     "R1561138": {
       "title": "Associate Financial Systems Analyst",
@@ -23122,9 +23122,9 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
     },
     "R1567187": {
       "title": "Database Operator - French Native Speaker (7 weeks contract / Madrid Office based)",
@@ -23205,16 +23205,16 @@
       "title": "Sr. Director IT, Specialty Labs",
       "location": "Durham, North Carolina, United States of America",
       "url": "https://iqvia.wd1.myworkdayjobs.com/job/Durham-North-Carolina-United-States-of-America/Sr-Director-IT--Specialty-Labs_R1569482-1",
-      "posted_at": "Posted 6 Days Ago",
+      "posted_at": "Posted 22 Days Ago",
       "stage": "prefilter",
       "blockers": [
         "management",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
     },
     "R1572673": {
       "title": "Associate Program Director, Regulatory Affairs",
@@ -23252,16 +23252,16 @@
       "title": "Director of Product- Media OS Activation, IQVIA Digital",
       "location": "11 Locations",
       "url": "https://iqvia.wd1.myworkdayjobs.com/job/Wayne-PA-United-States-of-America/Director-of-Product--Media-OS-Activation--IQVIA-Digital_R1563204",
-      "posted_at": "Posted 30+ Days Ago",
+      "posted_at": "Posted Today",
       "stage": "prefilter",
       "blockers": [
         "management",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
     },
     "R1522475": {
       "title": "Senior Site Contracts Associate",
@@ -23316,9 +23316,9 @@
         "non_us_location"
       ],
       "category": "technical_review",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
     },
     "R1543041": {
       "title": "Contract Negotiator - FSP - Belgium",
@@ -23502,9 +23502,9 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
     },
     "R1544862": {
       "title": "Vice President, MedTech Cardiovascular Regulatory Affairs",
@@ -23851,15 +23851,15 @@
       "title": "Product Support Technical Advisor II",
       "location": "Marietta, Georgia, United States of America",
       "url": "https://iqvia.wd1.myworkdayjobs.com/job/Marietta-Georgia-United-States-of-America/Product-Support-Technical-Advisor-II_R1550660",
-      "posted_at": "Posted 27 Days Ago",
+      "posted_at": "Posted 4 Days Ago",
       "stage": "prefilter",
       "blockers": [
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
     },
     "R1562041": {
       "title": "Sr Prod Data Input Assoc",
@@ -24011,15 +24011,15 @@
       "title": "(Senior) Data Team Lead",
       "location": "4 Locations",
       "url": "https://iqvia.wd1.myworkdayjobs.com/job/Mexico-City-Mexico/XMLNAME--Senior--Data-Team-Lead_R1571994",
-      "posted_at": "Posted 16 Days Ago",
+      "posted_at": "Posted 30+ Days Ago",
       "stage": "prefilter",
       "blockers": [
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
     },
     "R1541783": {
       "title": "Snr Safety Project Lead",
@@ -24313,16 +24313,16 @@
       "title": "BI Consultant Back-End & Semantic Modelling",
       "location": "Porto Salvo, Portugal",
       "url": "https://iqvia.wd1.myworkdayjobs.com/job/Porto-Salvo-Portugal/BI-Consultant-Back-End---Semantic-Modelling_R1567701-1",
-      "posted_at": "Posted 16 Days Ago",
+      "posted_at": "Posted 30+ Days Ago",
       "stage": "prefilter",
       "blockers": [
         "non_us_location",
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
     },
     "R1572394": {
       "title": "Senior Technical Specialist - Stem Cell",
@@ -24654,15 +24654,15 @@
       "title": "Junior Patient Support Coordinator",
       "location": "Jakarta, Indonesia",
       "url": "https://iqvia.wd1.myworkdayjobs.com/job/Jakarta-Indonesia/Junior-Patient-Support-Coordinator_R1573439",
-      "posted_at": "Posted 3 Days Ago",
+      "posted_at": "Posted 19 Days Ago",
       "stage": "prefilter",
       "blockers": [
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
     },
     "R1559144": {
       "title": "Inventory Control Associate",
@@ -24879,9 +24879,9 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
     },
     "R1557085": {
       "title": "Sr Database Support Assoc",
@@ -25829,9 +25829,9 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
     },
     "R1218879": {
       "title": "Associate Sales Engineering Director",
@@ -25844,9 +25844,9 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
     },
     "R1154726": {
       "title": "Associate Sales Engineering Director",
@@ -25859,9 +25859,9 @@
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
     },
     "R1512346": {
       "title": "SAP Sales and Distribution Business Analyst",
@@ -26351,9 +26351,9 @@
         "insufficient_profile_overlap"
       ],
       "category": "systems_engineering",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-18T14:24:09-05:00",
-      "last_seen_at": "2026-10-18T14:24:09-05:00"
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
     },
     "R1533711": {
       "title": "Field Service Engineer- South Sudan",
@@ -26610,16 +26610,16 @@
       "title": "Manager, Business Systems Analyst",
       "location": "Barcelona, Spain",
       "url": "https://iqvia.wd1.myworkdayjobs.com/job/Barcelona-Spain/Manager--Business-Systems-Analyst_R1562489",
-      "posted_at": "Posted Today",
+      "posted_at": "Posted 15 Days Ago",
       "stage": "prefilter",
       "blockers": [
         "non_us_location",
         "management"
       ],
       "category": "systems_analysis",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-19T11:51:32-05:00",
-      "last_seen_at": "2026-10-19T11:51:32-05:00"
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
     },
     "R1554090": {
       "title": "Bilingual Call Center Agent (US healthcare management)",
@@ -27154,18 +27154,18 @@
       "last_seen_at": "2026-10-20T09:51:22-05:00"
     },
     "R1568249": {
-      "title": "DCT Implementation and Integration Lead",
-      "location": "2 Locations",
-      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Sofia-Bulgaria/DCT-Implementation-and-Integration-Lead_R1568249",
-      "posted_at": "Posted Today",
+      "title": "DCT Implementation and Integration",
+      "location": "8 Locations",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Warsaw-Poland/DCT-Implementation-and-Integration-Lead_R1568249",
+      "posted_at": "Posted 13 Days Ago",
       "stage": "prefilter",
       "blockers": [
         "title_not_targeted"
       ],
       "category": "other",
-      "filter_version": 2,
+      "filter_version": 3,
       "first_seen_at": "2026-10-20T09:51:22-05:00",
-      "last_seen_at": "2026-10-20T09:51:22-05:00"
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
     },
     "R1574933": {
       "title": "Analyst - Strategic Consulting",
@@ -29372,7 +29372,7 @@
       "title": "Senior Data Analytics Analyst",
       "location": "Kathmandu, Nepal",
       "url": "https://iqvia.wd1.myworkdayjobs.com/job/Kathmandu-Nepal/Senior-Data-Analytics-Analyst_R1574643-1",
-      "posted_at": "Posted 4 Days Ago",
+      "posted_at": "Posted 6 Days Ago",
       "stage": "prefilter",
       "blockers": [
         "title_not_targeted"
@@ -29380,7 +29380,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:36:41+00:00",
-      "last_seen_at": "2026-11-01T22:36:41+00:00"
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
     },
     "R1566302": {
       "title": "Survey Programmer",
@@ -29484,7 +29484,7 @@
       "title": "Senior Consultant - Data Science, Commercial Services Analytics US Dedicated",
       "location": "Lisbon, Portugal",
       "url": "https://iqvia.wd1.myworkdayjobs.com/job/Lisbon-Portugal/Senior-Consultant---Data-Science--Commercial-Services-Analytics-US-Dedicated_R1572691",
-      "posted_at": "Posted 9 Days Ago",
+      "posted_at": "Posted 11 Days Ago",
       "stage": "prefilter",
       "blockers": [
         "non_us_location",
@@ -29493,13 +29493,13 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:36:41+00:00",
-      "last_seen_at": "2026-11-01T22:36:41+00:00"
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
     },
     "R1572694": {
       "title": "Senior Consultant - Data Science, Commercial Services Analytics US Dedicated",
       "location": "Porto Salvo, Portugal",
       "url": "https://iqvia.wd1.myworkdayjobs.com/job/Porto-Salvo-Portugal/Senior-Consultant---Data-Science--Commercial-Services-Analytics-US-Dedicated_R1572694",
-      "posted_at": "Posted 4 Days Ago",
+      "posted_at": "Posted 6 Days Ago",
       "stage": "prefilter",
       "blockers": [
         "non_us_location",
@@ -29508,7 +29508,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:36:41+00:00",
-      "last_seen_at": "2026-11-01T22:36:41+00:00"
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
     },
     "R1576199": {
       "title": "Medical Director - Dermatology",
@@ -30459,7 +30459,7 @@
       "title": "Senior Consultant \u2013 Public Health & Patient Support Programs",
       "location": "New Cairo, Egypt",
       "url": "https://iqvia.wd1.myworkdayjobs.com/job/New-Cairo-Egypt/Senior-Consultant---Public-Health---Patient-Support-Programs_R1574853",
-      "posted_at": "Posted 6 Days Ago",
+      "posted_at": "Posted 8 Days Ago",
       "stage": "prefilter",
       "blockers": [
         "title_not_targeted"
@@ -30467,7 +30467,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:36:41+00:00",
-      "last_seen_at": "2026-11-01T22:36:41+00:00"
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
     },
     "R1573313": {
       "title": "Solution Sales Specialist - MedTech Commercial Field Solutions",
@@ -31867,7 +31867,7 @@
       "title": "Clinical Trial Feasibility Analyst",
       "location": "Durham, North Carolina, United States of America",
       "url": "https://iqvia.wd1.myworkdayjobs.com/job/Durham-North-Carolina-United-States-of-America/Clinical-Trial-Feasibility-Analyst_R1575320",
-      "posted_at": "Posted 5 Days Ago",
+      "posted_at": "Posted 7 Days Ago",
       "stage": "prefilter",
       "blockers": [
         "title_not_targeted"
@@ -31875,7 +31875,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:36:41+00:00",
-      "last_seen_at": "2026-11-01T22:36:41+00:00"
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
     },
     "R1529012": {
       "title": "Site Enrollment and Engagement Lead",
@@ -31968,7 +31968,7 @@
       "title": "Data Analytics Analyst1",
       "location": "Kathmandu, Nepal",
       "url": "https://iqvia.wd1.myworkdayjobs.com/job/Kathmandu-Nepal/Data-Analytics-Analyst1_R1574658",
-      "posted_at": "Posted 2 Days Ago",
+      "posted_at": "Posted 4 Days Ago",
       "stage": "prefilter",
       "blockers": [
         "title_not_targeted"
@@ -31976,7 +31976,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:36:41+00:00",
-      "last_seen_at": "2026-11-01T22:36:41+00:00"
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
     },
     "R1576092": {
       "title": "Clin Trials Mtrl Technician",
@@ -32159,7 +32159,7 @@
       "title": "Associate Director, Staff Storage & Backup Engineering",
       "location": "8 Locations",
       "url": "https://iqvia.wd1.myworkdayjobs.com/job/Frankfurt-Hesse-Germany/Associate-Director--Staff-Storage---Backup-Engineering_R1538555",
-      "posted_at": "Posted 4 Days Ago",
+      "posted_at": "Posted 6 Days Ago",
       "stage": "prefilter",
       "blockers": [
         "management",
@@ -32169,7 +32169,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:36:41+00:00",
-      "last_seen_at": "2026-11-01T22:36:41+00:00"
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
     },
     "R1574929": {
       "title": "Home Visit Nurse - Padua",
@@ -32277,7 +32277,7 @@
       "title": "IRT Systems Project Manager",
       "location": "3 Locations",
       "url": "https://iqvia.wd1.myworkdayjobs.com/job/Bucuresti-Romania/IRT-Systems-Project-Manager_R1568572-3",
-      "posted_at": "Posted 2 Days Ago",
+      "posted_at": "Posted 4 Days Ago",
       "stage": "prefilter",
       "blockers": [
         "management",
@@ -32286,7 +32286,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:36:41+00:00",
-      "last_seen_at": "2026-11-01T22:36:41+00:00"
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
     },
     "R1419515": {
       "title": "Medizinprodukteberater (m/w/d) im Bereich der Diabetologie - bundesweit offene Stellen",
@@ -33517,7 +33517,7 @@
       "title": "Patient Support Assistant",
       "location": "Sofia, Bulgaria",
       "url": "https://iqvia.wd1.myworkdayjobs.com/job/Sofia-Bulgaria/Patient-Support-Assistant_R1575698-2",
-      "posted_at": "Posted 6 Days Ago",
+      "posted_at": "Posted 8 Days Ago",
       "stage": "prefilter",
       "blockers": [
         "title_not_targeted"
@@ -33525,7 +33525,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:36:41+00:00",
-      "last_seen_at": "2026-11-01T22:36:41+00:00"
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
     },
     "R1571885": {
       "title": "Senior Consultant/Manager, RWD Global project leader",
@@ -33625,7 +33625,7 @@
       "category": "qa",
       "filter_version": 3,
       "first_seen_at": "2026-11-03T19:59:39+00:00",
-      "last_seen_at": "2026-11-03T19:59:39+00:00"
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
     },
     "R1562185": {
       "title": "Quality Lead, Computer System Validation & Regulatory Compliance",
@@ -33639,7 +33639,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-03T19:59:39+00:00",
-      "last_seen_at": "2026-11-03T19:59:39+00:00"
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
     },
     "R1577960": {
       "title": "Clinical Project Manager - Hybrid (m/f/d)",
@@ -33655,7 +33655,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-03T19:59:39+00:00",
-      "last_seen_at": "2026-11-03T19:59:39+00:00"
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
     },
     "R1576098": {
       "title": "Functional Consultant \u2013 Clinical Terminology & Semantic Standardization (Valencia Based)",
@@ -33670,7 +33670,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-03T19:59:39+00:00",
-      "last_seen_at": "2026-11-03T19:59:39+00:00"
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
     },
     "R1576097": {
       "title": "Senior IT Consultant \u2013 Healthcare Systems & Interoperability (Valencia Based)",
@@ -33685,7 +33685,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-03T19:59:39+00:00",
-      "last_seen_at": "2026-11-03T19:59:39+00:00"
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
     },
     "R1575993": {
       "title": "Clinical Data Specialist - Fixed Term Contract",
@@ -33699,7 +33699,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-03T19:59:39+00:00",
-      "last_seen_at": "2026-11-03T19:59:39+00:00"
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
     },
     "R1566377": {
       "title": "AI Automation Architect",
@@ -33715,7 +33715,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-03T19:59:39+00:00",
-      "last_seen_at": "2026-11-03T19:59:39+00:00"
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
     },
     "R1558664": {
       "title": "Business Development Manager",
@@ -33730,7 +33730,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-03T19:59:39+00:00",
-      "last_seen_at": "2026-11-03T19:59:39+00:00"
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
     },
     "R1577792": {
       "title": "Associate Director, Agency Partnerships - IQVIA Digital",
@@ -33859,7 +33859,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-03T19:59:39+00:00",
-      "last_seen_at": "2026-11-03T19:59:39+00:00"
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
     },
     "R1548570": {
       "title": "Contracts Manager",
@@ -33962,7 +33962,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-03T19:59:39+00:00",
-      "last_seen_at": "2026-11-03T19:59:39+00:00"
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
     },
     "R1554026": {
       "title": "Clinical Advisory Analyst",
@@ -34082,7 +34082,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-03T19:59:39+00:00",
-      "last_seen_at": "2026-11-03T19:59:39+00:00"
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
     },
     "R1577815": {
       "title": "Marketing Support Specialist",
@@ -34097,7 +34097,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-03T19:59:39+00:00",
-      "last_seen_at": "2026-11-03T19:59:39+00:00"
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
     },
     "R1550008": {
       "title": "Clinical Files Specialist, Hybrid (Bulgaria)",
@@ -34444,17 +34444,37 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-03T19:59:39+00:00",
       "last_seen_at": "2026-11-03T19:59:39+00:00"
+    },
+    "R1564298": {
+      "title": "Supplier Services Analyst",
+      "location": "London, United Kingdom",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/London-United-Kingdom/Supplier-Services-Analyst_R1564298-1",
+      "posted_at": "Posted Yesterday",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-04T01:57:30+00:00",
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
     }
   },
   "source_updated_at_by_id": {},
   "filter_recheck_version": 3,
   "filter_rechecked_ids": [
+    "R1154726",
     "R1192671",
     "R1199276",
+    "R1200443",
     "R1212478",
+    "R1214568",
+    "R1218879",
     "R1230414",
     "R1241580",
     "R1259334",
+    "R1268464",
     "R1271034",
     "R1320047",
     "R1320054",
@@ -34462,15 +34482,19 @@
     "R1385705",
     "R1422638",
     "R1441484",
+    "R1521966",
+    "R1523605",
     "R1523856",
     "R1526853",
     "R1528007",
+    "R1529486",
     "R1531617",
     "R1531626",
     "R1533711",
     "R1534656",
     "R1535275",
     "R1536103",
+    "R1538555",
     "R1543295",
     "R1544571",
     "R1547562",
@@ -34480,7 +34504,10 @@
     "R1549374",
     "R1549434",
     "R1549770",
+    "R1550377",
+    "R1550626",
     "R1550633",
+    "R1550660",
     "R1551551",
     "R1551673",
     "R1551819",
@@ -34494,8 +34521,11 @@
     "R1553194",
     "R1553313",
     "R1553347",
+    "R1553527",
     "R1553743",
     "R1553994",
+    "R1554038",
+    "R1554057",
     "R1554072",
     "R1554415",
     "R1554582",
@@ -34511,6 +34541,7 @@
     "R1556631",
     "R1556847",
     "R1557082",
+    "R1557141",
     "R1557199",
     "R1557388",
     "R1557690",
@@ -34518,11 +34549,13 @@
     "R1558485",
     "R1558491",
     "R1558645",
+    "R1558664",
     "R1559004",
     "R1559006",
     "R1559190",
     "R1559687",
     "R1559944",
+    "R1559969",
     "R1559979",
     "R1560195",
     "R1560387",
@@ -34537,19 +34570,25 @@
     "R1561925",
     "R1561935",
     "R1562169",
+    "R1562185",
     "R1562238",
+    "R1562475",
     "R1562480",
     "R1562482",
+    "R1562489",
     "R1562504",
     "R1562542",
     "R1562668",
     "R1562700",
     "R1562959",
+    "R1563048",
+    "R1563204",
     "R1563456",
     "R1564081",
     "R1564267",
     "R1564270",
     "R1564272",
+    "R1564298",
     "R1564554",
     "R1564683",
     "R1565011",
@@ -34559,13 +34598,16 @@
     "R1565993",
     "R1566054",
     "R1566142",
+    "R1566251",
     "R1566313",
     "R1566319",
     "R1566323",
+    "R1566377",
     "R1566841",
     "R1567058",
     "R1567350",
     "R1567511",
+    "R1567701",
     "R1567707",
     "R1567858",
     "R1567860",
@@ -34573,7 +34615,9 @@
     "R1568028",
     "R1568065",
     "R1568119",
+    "R1568249",
     "R1568257",
+    "R1568572",
     "R1568590",
     "R1568616",
     "R1568777",
@@ -34585,10 +34629,12 @@
     "R1569181",
     "R1569240",
     "R1569260",
+    "R1569482",
     "R1569837",
     "R1570289",
     "R1570321",
     "R1570546",
+    "R1570586",
     "R1570675",
     "R1570752",
     "R1570787",
@@ -34600,8 +34646,10 @@
     "R1571513",
     "R1571598",
     "R1571704",
+    "R1571848",
     "R1571873",
     "R1571966",
+    "R1571994",
     "R1572179",
     "R1572212",
     "R1572220",
@@ -34610,6 +34658,9 @@
     "R1572568",
     "R1572578",
     "R1572580",
+    "R1572691",
+    "R1572694",
+    "R1572809",
     "R1572955",
     "R1573009",
     "R1573047",
@@ -34619,9 +34670,12 @@
     "R1573235",
     "R1573290",
     "R1573391",
+    "R1573439",
+    "R1573539",
     "R1573655",
     "R1573658",
     "R1573732",
+    "R1573761",
     "R1573836",
     "R1573878",
     "R1573915",
@@ -34632,9 +34686,13 @@
     "R1574559",
     "R1574581",
     "R1574599",
+    "R1574643",
+    "R1574658",
+    "R1574853",
     "R1575035",
     "R1575219",
     "R1575309",
+    "R1575320",
     "R1575357",
     "R1575373",
     "R1575529",
@@ -34643,11 +34701,18 @@
     "R1575541",
     "R1575553",
     "R1575660",
+    "R1575698",
+    "R1575993",
+    "R1576097",
+    "R1576098",
     "R1576137",
     "R1576960",
     "R1577138",
     "R1577205",
     "R1577248",
-    "R1577328"
+    "R1577328",
+    "R1577624",
+    "R1577815",
+    "R1577960"
   ]
 }
