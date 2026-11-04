@@ -266,18 +266,22 @@ function generatedAgo(value) {
 function sourceIdentity(value) {
   if (!value) return "";
   const source = String(value.source || "").trim().toLowerCase()
+    || (/hiring(?:\.cafe|cafe\.com)/i.test(String(value.url || value.canonical_url || "")) ? "hiringcafe" : "")
     || (/dice\.com/i.test(String(value.url || value.canonical_url || "")) ? "dice" : "linkedin");
   const explicitId = String(value.external_job_id || "").trim();
   if (explicitId) return `${source}:${explicitId}`;
   const url = String(value.url || value.canonical_url || "");
   const linkedinId = url.match(/\/jobs\/view\/(\d+)/)?.[1] || url.match(/[?&]currentJobId=(\d+)/)?.[1];
   const diceId = url.match(/\/job-detail\/([^/?#]+)/)?.[1];
+  const hiringCafeId = source === "hiringcafe" ? (url.match(/\/job\/([^/?#]+)/)?.[1]?.split("-").pop() || new URLSearchParams(url.split("?")[1]?.split("#")[0] || "").get("v")) : "";
+  if (hiringCafeId) return `${source}:${hiringCafeId}`;
   if (linkedinId || diceId) return `${source}:${linkedinId || diceId}`;
   return [source, value.company_name || "", value.role_title || ""].map((item) => String(item).trim().toLowerCase()).join(":");
 }
 
 function sourceLabel(value) {
   const source = String(typeof value === "string" ? value : value?.source || "").trim().toLowerCase();
+  if (source === "hiringcafe") return "HiringCafe";
   if (source === "dice") return "Dice";
   if (source === "linkedin") return "LinkedIn";
   return source ? source.charAt(0).toUpperCase() + source.slice(1) : "Job site";
@@ -1995,7 +1999,7 @@ function App() {
       {visibleError ? <div className="error-band">{visibleError}</div> : null}
 
       {viewingCurrent && !context ? (
-        <div className="blank-state"><h2>{visibleDrafts.length ? "Select a recent draft" : "No supported job selected"}</h2><p>{visibleDrafts.length ? "Choose a draft above to review progress or answer follow-up questions. This page is not being read." : "Open a LinkedIn or Dice job to create a resume. On other pages, the extension stays available without reading page content."}</p><button onClick={() => send({ type: "GET_ACTIVE_CONTEXT" }).then((result) => result?.context && resolveContext(result.context))}>Check job page again</button></div>
+        <div className="blank-state"><h2>{visibleDrafts.length ? "Select a recent draft" : "No supported job selected"}</h2><p>{visibleDrafts.length ? "Choose a draft above to review progress or answer follow-up questions. This page is not being read." : "Open a LinkedIn, Dice, or HiringCafe job to create a resume. On other pages, the extension stays available without reading page content."}</p><button onClick={() => send({ type: "GET_ACTIVE_CONTEXT" }).then((result) => result?.context && resolveContext(result.context))}>Check job page again</button></div>
       ) : null}
 
       {(context || draft) ? (

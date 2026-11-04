@@ -38,4 +38,4 @@ def test_shared_panel_and_worker_are_source_aware():
     assert "dice-content-script.js" in worker
     assert "jobContext:${tabId}" in worker
     assert "sourceLabel(item)" in panel
-    assert "LinkedIn or Dice job" in panel
+    assert "LinkedIn, Dice, or HiringCafe job" in panel

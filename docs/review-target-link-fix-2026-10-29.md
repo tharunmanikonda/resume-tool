@@ -1,0 +1,9 @@
+# Review replacement targets — October 29, 2026
+
+Citi's saved review returned nine validly targeted replacements but swapped the first six finding change_indices: three skills findings pointed to bullet replacements and three bullet findings pointed to the skills replacements. The prior link reconciler repaired missing links only and skipped any already-claimed index, even if that claim targeted a different field.
+
+The reconciler now derives ownership for each replacement from its explicit target (role/bullet, skills group, headline or summary). When there is exactly one eligible finding on that target, it removes incorrect index claims and attaches the replacement to that finding. It does not change replacement content, guess between ambiguous findings, override factual blockers, or weaken exact original-text application. Unresolved or unrelated replacements still fail validation.
+
+IMDb had a separate metadata mismatch: visible “99.9% authentication success rate” versus value “99.9” with unit “authentication success rate”. The validator now recognizes an identical visible percentage when the metadata unit explicitly describes a rate/percentage. Different magnitudes, fraction-to-percentage conversions and count units are still rejected. Visible prose/numbers are not rewritten.
+
+Verification: 613 local tests pass. Tests include the real swapped target pattern, exact link application, unchanged patch content, ambiguity/blocker safeguards, and positive/negative rate-unit cases. Both complete saved paid review responses were replayed locally and approved. The current JD and full editable resume were confirmed identical to each response's saved input before replay/application. Original/manual versions remain preserved; pre-recovery snapshots were saved in tmp. Both Citi and IMDb are approved at revision 2. No fresh OpenAI requests were made.

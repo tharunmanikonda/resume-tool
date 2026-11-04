@@ -62,10 +62,9 @@ export default function JdDraftExperiment({ enabled, jobDescription, enabledKeys
         <p>{result.review.summary}</p>
         <ul>{result.review.findings.map((finding, i) => <li key={i}>{finding.issue}</li>)}</ul>
       </details> : null}
-      <details><summary>Required work and optional strengths</summary>
+      <details><summary>Engineering focus</summary>
         <p>{result.plan.role_positioning}</p>
-        <strong>Required</strong><ul>{result.plan.required.map((r, i) => <li key={i}>{r.capability}</li>)}</ul>
-        <strong>Optional</strong><ul>{result.plan.optional.map((r, i) => <li key={i}>{r.capability}</li>)}</ul>
+        <ul>{(result.plan.engineering_focus || [...(result.plan.required || []), ...(result.plan.optional || [])].map(r => r.capability)).map((focus, i) => <li key={i}>{focus}</li>)}</ul>
       </details>
       {Object.entries(result.draft.experience).map(([key, role]) => <article key={key}>
         <h4>{(result.employment_headings || []).find(h => h.key === key)?.company || key}</h4>

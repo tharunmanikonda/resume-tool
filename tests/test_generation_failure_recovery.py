@@ -93,7 +93,8 @@ def test_migrated_failed_plan_skips_another_planning_call(monkeypatch):
     inputs = {'job_description': jd, 'employment_headings_only': experiment.headings_only([ROLE]),
               'resume_mode_context': experiment.mode_context('professional')}
     legacy_fingerprint = app.canonical_json_hash({'workflow_version': 5, 'jd_source_version': 4,
-        'writing_policy_version': experiment.WRITING_POLICY_VERSION, 'inputs': inputs, 'skill_order_key': None})
+        'writing_policy_version': experiment.WRITING_POLICY_VERSION,
+        'planning_policy_version': experiment.PLANNING_POLICY_VERSION, 'inputs': inputs, 'skill_order_key': None})
     saved = {'fingerprint': legacy_fingerprint, 'pending_plan': plan}
     stages, checkpoints = [], []
 

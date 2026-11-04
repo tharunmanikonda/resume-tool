@@ -34,6 +34,7 @@ async function openResumePanel() {
       let script = "panel-host.js";
       if (currentUrl.startsWith("https://www.linkedin.com/jobs/")) script = "content-script.js";
       else if (/^https:\/\/(?:www\.)?dice\.com\//i.test(currentUrl)) script = "dice-content-script.js";
+      else if (/^https:\/\/(?:www\.)?(?:hiring\.cafe|hiringcafe\.com)\//i.test(currentUrl)) script = "hiringcafe-content-script.js";
       else if (isAtsJobUrl(currentUrl)) script = "ats-content-script.js";
       await chrome.scripting.executeScript({ target: { tabId: tab.id }, files: [script] });
       await chrome.tabs.sendMessage(tab.id, { type: "TOGGLE_RESUME_PANEL" });

@@ -63,6 +63,10 @@ async function configureExtension() {
   }
   const jobsTabs = await chrome.tabs.query({ url: [
     "https://www.linkedin.com/jobs/*",
+    "https://hiring.cafe/*",
+    "https://www.hiring.cafe/*",
+    "https://hiringcafe.com/*",
+    "https://www.hiringcafe.com/*",
     "https://www.dice.com/*",
     "https://dice.com/*",
     "*://jobs.lever.co/*",
@@ -121,13 +125,29 @@ function isDiceJobDetailUrl(url) {
   return /^\/job-detail\/[^/]+\/?$/i.test(new URL(String(url)).pathname);
 }
 
+function isHiringCafeUrl(url) {
+  try {
+    const parsed = new URL(String(url || ""));
+    return parsed.protocol === "https:" && ["hiring.cafe", "www.hiring.cafe", "hiringcafe.com", "www.hiringcafe.com"].includes(parsed.hostname.toLowerCase());
+  } catch (_) {
+    return false;
+  }
+}
+
+function isHiringCafeJobUrl(url) {
+  if (!isHiringCafeUrl(url)) return false;
+  const parsed = new URL(url);
+  return /^\/job\/[^/]+\/?$/.test(parsed.pathname) || Boolean(parsed.searchParams.get("v"));
+}
+
 function isSupportedJobReaderUrl(url) {
-  return isLinkedInJobsUrl(url) || isDiceUrl(url) || isSupportedAtsJobUrl(url);
+  return isLinkedInJobsUrl(url) || isHiringCafeUrl(url) || isDiceUrl(url) || isSupportedAtsJobUrl(url);
 }
 
 function jobReaderScriptForUrl(url) {
   if (isLinkedInJobsUrl(url)) return "content-script.js";
   if (isDiceUrl(url)) return "dice-content-script.js";
+  if (isHiringCafeUrl(url)) return "hiringcafe-content-script.js";
   if (isSupportedAtsJobUrl(url)) return "ats-content-script.js";
   return "";
 }
@@ -499,6 +519,10 @@ async function activeJobTab() {
   if (active) return active;
   const tabs = await chrome.tabs.query({ url: [
     "https://www.linkedin.com/jobs/*",
+    "https://hiring.cafe/*",
+    "https://www.hiring.cafe/*",
+    "https://hiringcafe.com/*",
+    "https://www.hiringcafe.com/*",
     "https://www.dice.com/job-detail/*",
     "https://dice.com/job-detail/*",
     "*://jobs.lever.co/*",
@@ -510,7 +534,7 @@ async function activeJobTab() {
     "*://*.rippling.com/*",
   ] });
   return tabs
-    .filter((tab) => isLinkedInJobsUrl(tab.url) || isDiceJobDetailUrl(tab.url) || isSupportedAtsJobUrl(tab.url))
+    .filter((tab) => isLinkedInJobsUrl(tab.url) || isDiceJobDetailUrl(tab.url) || isHiringCafeJobUrl(tab.url) || isSupportedAtsJobUrl(tab.url))
     .sort((left, right) => (right.lastAccessed || 0) - (left.lastAccessed || 0))[0] || null;
 }
 
@@ -800,7 +824,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     const isLinkedIn = /^https:\/\/(www\.)?linkedin\.com\/jobs\/view\/\d+\/?(?:[?#].*)?$/i.test(jobUrl);
     const isDice = /^https:\/\/(www\.)?dice\.com\/job-detail\/[a-z0-9-]+\/?(?:[?#].*)?$/i.test(jobUrl);
     const isAts = isSupportedAtsJobUrl(jobUrl);
-    if (!isLinkedIn && !isDice && !isAts) {
+    if (!isLinkedIn && !isDice && !isHiringCafeJobUrl(jobUrl) && !isAts) {
       sendResponse({ success: false, error: "This draft does not have a valid supported job URL." });
       return false;
     }

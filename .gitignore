@@ -94,3 +94,6 @@ config/resume_tool.db-wal
 .agents/
 .codex-artifacts/
 *.tgz
+
+# Local scratch files and generated test artifacts
+tmp/

@@ -1,0 +1,9 @@
+# Postfix qualification labels and false JD headings
+
+T-Mobile's Associate Software Engineer – Billing Platform run failed after the initial section-priority change. The previous generic heading matcher treated customer requirements and Business Requirements Documentation (BRD) as section boundaries. A sentence break before a trailing `(Preferred)` separated it from the experience item and joined it to the next required-skills list. Required section context then also spilled into overview examples and travel details.
+
+The parser now requires heading structure or a plausible list starter for generic heading words. It recognizes overview, education/work experience, knowledge/skills/abilities and travel sections separately. Explicit `(Required)` / `(Preferred)` suffixes stay on their items, including after sentence punctuation, across a newline and when followed immediately by another skill. Item suffixes determine local priority, overriding section defaults; section heading words are excluded from the item's preference-word check. Short labels and exact evidence remain separate. Source parser version 3 invalidates incompatible workflow checkpoints on retry.
+
+Offline replay: T-Mobile's retained raw planning response now passes without reclassifying its requirements or making another API call. It produces the five actual headings and preserves `Business Requirements Documentation (BRD) (Required)` as one skill. ITW's replay still passes. CHAMP's raw response still raises its genuine mandatory-Apache-Camel-in-optional error. Tests also deliberately invert priorities to verify that actual mistakes remain blocked.
+
+Validation: 555 Python tests passed, including saved T-Mobile/ITW/CHAMP regression cases. No extension code changed in this follow-up. No live generation or automatic requeue was performed.

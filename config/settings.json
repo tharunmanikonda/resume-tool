@@ -44,5 +44,6 @@
       "format_profile": "gmail"
     }
   ],
-  "allow_security_clearance_jobs": false
+  "allow_security_clearance_jobs": false,
+  "experimental_jd_drafting": true
 }

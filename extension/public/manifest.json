@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Resume Generator Companion",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "description": "Generate tailored resumes and fill job applications from one persistent browser panel.",
   "permissions": ["sidePanel", "storage", "tabs", "webNavigation", "scripting", "activeTab", "clipboardWrite"],
   "host_permissions": [
@@ -48,6 +48,10 @@
       "matches": ["http://*/*", "https://*/*"],
       "exclude_matches": [
         "https://www.linkedin.com/jobs/*",
+        "https://hiring.cafe/*",
+        "https://www.hiring.cafe/*",
+        "https://hiringcafe.com/*",
+        "https://www.hiringcafe.com/*",
         "https://www.dice.com/*",
         "https://dice.com/*",
         "*://jobs.lever.co/*",
@@ -66,6 +70,11 @@
     {
       "matches": ["https://www.linkedin.com/jobs/*"],
       "js": ["content-script.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["https://hiring.cafe/*", "https://www.hiring.cafe/*", "https://hiringcafe.com/*", "https://www.hiringcafe.com/*"],
+      "js": ["hiringcafe-content-script.js"],
       "run_at": "document_idle"
     },
     {

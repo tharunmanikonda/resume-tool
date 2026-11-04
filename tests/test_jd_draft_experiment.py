@@ -421,7 +421,6 @@ def test_selected_mode_reaches_planning_repairs_drafting_and_review(setup, monke
     assert selected_modes == [mode]
     assert [stage for stage, _, _ in calls] == ['plan', 'plan', 'draft', 'draft', 'review']
     for _, prompt, inputs in calls:
-        assert 'resume_mode_context' in prompt
         assert inputs['resume_mode_context'] == experiment.mode_context(mode)
         assert 'PRIVATE_' not in json.dumps(inputs)
     assert generated.json['resume_mode'] == mode
@@ -731,7 +730,7 @@ def test_concatenated_jd_keeps_explicit_preferences_optional():
     plan['required'] = [{'capability': 'Python', 'jd_quote': 'Strong Python development skills'}]
     plan['optional'] = [{'capability': 'Cloud migration', 'jd_quote': 'Cloud migration highly advantageous'}]
     assert experiment.plan_issues(plan, [ROLE], jd) == []
-    assert experiment.plan_schema([ROLE])['properties']['required']['minItems'] == 1
+    assert experiment.plan_schema([ROLE])['properties']['engineering_focus']['minItems'] == 1
 
 
 def test_normal_resume_formatter_also_rejects_leaked_status_labels():
@@ -745,8 +744,8 @@ def test_normal_resume_formatter_also_rejects_leaked_status_labels():
 def test_quote_schema_selects_actual_clauses_from_joined_job_site_text():
     jd = 'Required Technical SkillsStrong experience with C#, Python and API’s. Mobile application development is a plus.Use of Hangfire is nice to have.Required QualificationsHands-on production software experience.'
     clauses = experiment.jd_clauses(jd)
-    enum = experiment.plan_schema([ROLE], jd)['properties']['required']['items']['properties']['source_clause_id']['enum']
-    assert [experiment.jd_clause_map(jd)[key] for key in enum] == clauses
+    assert 'required' not in experiment.plan_schema([ROLE], jd)['properties']
+    assert list(experiment.jd_clause_map(jd).values()) == clauses
     assert all(clause in jd for clause in clauses)
     assert 'Mobile application development is a plus.' in clauses
     assert 'Use of Hangfire is nice to have.' in clauses
@@ -961,7 +960,7 @@ def test_grouped_writing_uses_shared_plan_and_core_handoff(setup, monkeypatch, m
                 assert set(schema['properties']) == {'headline', 'summary', 'skills'}
                 return {k: copy.deepcopy(DRAFT[k]) for k in ('headline', 'summary', 'skills')}
             assert set(schema['properties']) == {'experience'}
-            assert 'Measurement opportunity' in prompt
+            assert 'work | outcome | measurement' in prompt
             assert inputs['core_sections'] == {k: DRAFT[k] for k in ('headline', 'summary', 'skills')}
             assert 'checked plan controls' in prompt
             # Even an unexpected extra field from a test double cannot replace core.
@@ -1076,3 +1075,93 @@ def test_prose_only_review_request_is_not_mistaken_for_an_applied_fix(setup, mon
     result = app.generate_jd_only_resume(JD, [ROLE], 'professional')
     assert result['audit']['decision'] == 'technical_failed'
     assert result['resume'] == result['original_resume']
+
+
+@pytest.mark.parametrize('mode', ['professional', 'new_grad', 'internship', 'coop'])
+def test_compact_structured_plan_reaches_all_downstream_stages(setup, monkeypatch, mode):
+    raw = {'role_positioning': 'Software Engineer', 'engineering_focus': ['Application APIs'],
+           'experience': copy.deepcopy(PLAN['experience'])}
+    note = {'work': 'Implement typed request validation', 'outcome': 'Reject malformed payloads',
+            'measurement': 'Malformed requests rejected (%)'}
+    raw['experience']['mckinsey']['contributions'] = [note]
+    expected = experiment.ensure_plan_titles(experiment.normalize_plan(raw, JD), [ROLE])
+    assert experiment.plan_issues(expected, [ROLE], JD) == []
+    assert raw['experience']['mckinsey']['contributions'] == [note]
+    stages = []
+
+    def generate(stage, schema, prompt, inputs):
+        stages.append(stage)
+        if stage == 'plan':
+            assert 'required' not in schema['properties']
+            assert 'optional' not in schema['properties']
+            assert 'contributions' not in schema['properties']['experience']['properties']['mckinsey']['properties']
+            return copy.deepcopy(raw)
+        if stage == 'targeting':
+            assert inputs['proposed_plan'] == expected
+            assert 'PROJECT CONTEXT' in prompt
+            return aligned_targeting(inputs)
+        assert inputs['checked_plan'] == expected
+        assert expected['experience']['mckinsey']['contributions'] == [
+            'Implement typed request validation | Reject malformed payloads | Malformed requests rejected (%)']
+        assert 'PROJECT CONTEXT' in prompt
+        if stage == 'core':
+            return {key: copy.deepcopy(DRAFT[key]) for key in ('headline', 'summary', 'skills')}
+        if stage == 'experience':
+            return {'experience': copy.deepcopy(DRAFT['experience'])}
+        return {'summary': 'Reviewed', 'findings': [], 'ready_for_assumption_review': True}
+
+    monkeypatch.setattr(app, '_jd_experiment_call', generate)
+    result = app.generate_jd_only_resume(JD, [ROLE], mode)
+    assert stages == ['plan', 'targeting', 'core', 'experience', 'review']
+    assert result['resume']['experience']['mckinsey']['bullets'] == [DRAFT['experience']['mckinsey']['bullets'][0]['text']]
+
+
+def test_planning_preserves_full_jd_while_targeting_receives_clauses(setup, monkeypatch):
+    captured = []
+    def capture(**kwargs):
+        captured.append(json.loads(kwargs['user_prompt']))
+        return copy.deepcopy(PLAN)
+    monkeypatch.setattr(app, 'call_openai_structured_output', capture)
+    inputs = {'job_description': JD, 'employment_headings_only': experiment.headings_only([ROLE])}
+    app._jd_experiment_call('plan', experiment.plan_schema([ROLE]), experiment.PLAN_PROMPT, inputs)
+    assert captured[-1] == inputs
+    app._jd_experiment_call('targeting', {}, experiment.TARGETING_PROMPT, inputs)
+    assert 'job_description' not in captured[-1]
+    assert captured[-1]['job_description_clauses'] == experiment.jd_clause_map(JD)
+    assert inputs['job_description'] == JD
+
+
+@pytest.mark.parametrize('mode', ['professional', 'new_grad', 'internship', 'coop'])
+def test_project_only_plan_lets_writer_choose_contributions_without_extra_calls(setup, monkeypatch, mode):
+    plan = {'role_positioning': 'Software Engineer', 'engineering_focus': ['Application APIs'],
+            'experience': copy.deepcopy(PLAN['experience'])}
+    plan['experience']['mckinsey'].pop('contributions')
+    expected = experiment.ensure_plan_titles(plan, [ROLE])
+    assert experiment.normalize_plan(plan, JD) == plan
+    assert experiment.plan_issues(plan, [ROLE], JD) == []
+    stages = []
+    def generate(stage, schema, prompt, inputs):
+        stages.append(stage)
+        assert experiment.CAREER_SCOPE_POLICY in prompt
+        if stage == 'plan':
+            assert 'contributions' not in schema['properties']['experience']['properties']['mckinsey']['properties']
+            return copy.deepcopy(plan)
+        if stage == 'targeting':
+            assert inputs['proposed_plan'] == expected
+            variants = schema['properties']['corrections']['items']['anyOf']
+            assert not any(v['properties']['target']['enum'] == ['contribution'] for v in variants)
+            assert variants[0]['properties']['target']['enum'] == ['role_positioning']
+            return aligned_targeting(inputs)
+        assert inputs['checked_plan'] == expected
+        assert 'contributions' not in inputs['checked_plan']['experience']['mckinsey']
+        if stage == 'core':
+            return {key: copy.deepcopy(DRAFT[key]) for key in ('headline', 'summary', 'skills')}
+        if stage == 'experience':
+            assert 'choose distinct important engineering contributions' in prompt
+            assert 'measurement.value' in prompt
+            return {'experience': copy.deepcopy(DRAFT['experience'])}
+        return {'summary': 'Reviewed', 'findings': [], 'ready_for_assumption_review': True}
+    monkeypatch.setattr(app, '_jd_experiment_call', generate)
+    result = app.generate_jd_only_resume(JD, [ROLE], mode)
+    assert stages == ['plan', 'targeting', 'core', 'experience', 'review']
+    assert result['resume']['experience']['mckinsey']['bullets'] == [DRAFT['experience']['mckinsey']['bullets'][0]['text']]

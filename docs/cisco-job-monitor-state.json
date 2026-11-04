@@ -1455,7 +1455,7 @@
     "2030081",
     "2030087"
   ],
-  "last_successful_scan_at": "2026-11-02T22:12:15+00:00",
+  "last_successful_scan_at": "2026-11-02T12:35:33-06:00",
   "candidate_catalog": {
     "2024998": {
       "title": "AI Security Engineer",
@@ -3377,8 +3377,8 @@
       ],
       "category": "software",
       "filter_version": 3,
-      "first_seen_at": "2026-11-02T22:12:15+00:00",
-      "last_seen_at": "2026-11-02T22:12:15+00:00"
+      "first_seen_at": "2026-11-02T12:35:33-06:00",
+      "last_seen_at": "2026-11-02T12:35:33-06:00"
     },
     "2028677": {
       "title": "Software Engineer - Webex Native Client",
@@ -3391,8 +3391,8 @@
       ],
       "category": "software",
       "filter_version": 3,
-      "first_seen_at": "2026-11-02T22:12:15+00:00",
-      "last_seen_at": "2026-11-02T22:12:15+00:00"
+      "first_seen_at": "2026-11-02T12:35:33-06:00",
+      "last_seen_at": "2026-11-02T12:35:33-06:00"
     },
     "2028675": {
       "title": "Software Engineering Technical Leader - Webex Native Client",
@@ -3406,8 +3406,8 @@
       ],
       "category": "software",
       "filter_version": 3,
-      "first_seen_at": "2026-11-02T22:12:15+00:00",
-      "last_seen_at": "2026-11-02T22:12:15+00:00"
+      "first_seen_at": "2026-11-02T12:35:33-06:00",
+      "last_seen_at": "2026-11-02T12:35:33-06:00"
     },
     "2028676": {
       "title": "Senior Software Engineer - Webex Native Client",
@@ -3420,8 +3420,8 @@
       ],
       "category": "software",
       "filter_version": 3,
-      "first_seen_at": "2026-11-02T22:12:15+00:00",
-      "last_seen_at": "2026-11-02T22:12:15+00:00"
+      "first_seen_at": "2026-11-02T12:35:33-06:00",
+      "last_seen_at": "2026-11-02T12:35:33-06:00"
     },
     "2029683": {
       "title": "ASIC Engineer",
@@ -3434,8 +3434,8 @@
       ],
       "category": "technical_review",
       "filter_version": 3,
-      "first_seen_at": "2026-11-02T22:12:15+00:00",
-      "last_seen_at": "2026-11-02T22:12:15+00:00"
+      "first_seen_at": "2026-11-02T12:35:33-06:00",
+      "last_seen_at": "2026-11-02T12:35:33-06:00"
     }
   },
   "source_updated_at_by_id": {}

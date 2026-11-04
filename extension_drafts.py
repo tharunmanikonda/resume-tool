@@ -8,7 +8,7 @@ import re
 import threading
 import uuid
 from datetime import datetime, timezone
-from urllib.parse import parse_qs, urlparse, urlunparse
+from urllib.parse import urlencode, parse_qs, urlparse, urlunparse
 
 from sqlalchemy import delete, select
 
@@ -89,6 +89,9 @@ def external_job_id(source: str, value: str, url: str = "") -> str:
     if normalized_source == "dice":
         path_match = re.search(r"^/job-detail/([^/?#]+)", parsed.path, re.IGNORECASE)
         return clean_text(path_match.group(1) if path_match else "")
+    if normalized_source == "hiringcafe":
+        path_match = re.search(r"^/job/([^/?#]+)", parsed.path, re.IGNORECASE)
+        return path_match.group(1).split("-")[-1] if path_match else clean_text(parse_qs(parsed.query).get("v", [""])[0])
     return ""
 
 
@@ -100,6 +103,12 @@ def canonical_job_url(value: str, external_job_id: str = "", source: str = "link
     if external_job_id and normalized_source == "dice":
         safe_id = re.sub(r"[^a-zA-Z0-9-]", "", external_job_id)
         return f"https://www.dice.com/job-detail/{safe_id}"
+    if normalized_source == "hiringcafe" and parsed.scheme == "https" and parsed.netloc.lower() in {"hiring.cafe", "www.hiring.cafe", "hiringcafe.com", "www.hiringcafe.com"}:
+        if parsed.path.startswith("/job/"):
+            return urlunparse((parsed.scheme, parsed.netloc, parsed.path.rstrip("/"), "", "", ""))
+        selected_id = clean_text(parse_qs(parsed.query).get("v", [""])[0])
+        if selected_id:
+            return urlunparse((parsed.scheme, parsed.netloc, "/", "", urlencode({"v": selected_id}), ""))
     if not parsed.scheme or not parsed.netloc:
         return ""
     return urlunparse((parsed.scheme, parsed.netloc, parsed.path.rstrip("/") + "/", "", "", ""))

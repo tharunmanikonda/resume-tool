@@ -13030,7 +13030,7 @@ def _jd_experiment_call(stage, schema, prompt, inputs):
     retry_limit = min(36000, limit * 2)
     started = time.perf_counter()
     request_inputs = copy.deepcopy(inputs)
-    if stage in {"plan", "targeting"} and request_inputs.get("job_description"):
+    if stage == "targeting" and request_inputs.get("job_description"):
         description = request_inputs.pop("job_description")
         request_inputs["job_description_clauses"] = jd_experiment.jd_clause_map(description)
         request_inputs["job_description_clause_priorities"] = jd_experiment.jd_clause_priorities(description)
@@ -13197,6 +13197,7 @@ def generate_jd_only_resume(jd, blueprints, resume_mode, revision_context=None, 
         inputs["current_proposed_resume"] = str(previous)[:AI_REVISION_RESUME_MAX_CHARS]
     fingerprint_input = {"workflow_version": 5, "jd_source_version": jd_experiment.JD_SOURCE_VERSION,
                          "writing_policy_version": jd_experiment.WRITING_POLICY_VERSION,
+                         "planning_policy_version": jd_experiment.PLANNING_POLICY_VERSION,
                          "inputs": inputs, "skill_order_key": skill_order_key}
     fingerprint = canonical_json_hash(fingerprint_input)
     state = copy.deepcopy(saved_state or {})
@@ -13237,7 +13238,7 @@ def generate_jd_only_resume(jd, blueprints, resume_mode, revision_context=None, 
     state["plan"] = copy.deepcopy(plan)
     if not state.get("targeting_assessment"):
         progress("jd_targeting")
-        targeting = _jd_experiment_call("targeting", jd_experiment.targeting_schema(roles, jd), jd_experiment.TARGETING_PROMPT,
+        targeting = _jd_experiment_call("targeting", jd_experiment.targeting_schema(roles, jd, plan), jd_experiment.TARGETING_PROMPT,
                                        {**inputs, "proposed_plan": plan})
         plan, assessment = jd_experiment.apply_targeting_check(plan, targeting, jd)
         issues = jd_experiment.plan_issues(plan, roles, jd)

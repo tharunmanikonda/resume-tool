@@ -545,14 +545,7 @@
     "744000158845959",
     "744000159170845",
     "744000159208699",
-    "744000159217002",
-    "744000159221659",
-    "744000159226249",
-    "744000159235229",
-    "744000159235962",
-    "744000159244240",
-    "744000159248324",
-    "744000159249649"
+    "744000159217002"
   ],
   "candidate_catalog": {
     "744000151898289": {
@@ -610,7 +603,7 @@
       "category": "systems_engineering"
     }
   },
-  "last_successful_scan_at": "2026-11-02T22:12:15+00:00",
+  "last_successful_scan_at": "2026-11-02T12:36:00-06:00",
   "filter_version": 3,
   "rejected_catalog": {
     "744000156079569": {
@@ -7061,107 +7054,6 @@
       "first_seen_at": "2026-10-31T12:05:11-05:00",
       "last_seen_at": "2026-10-31T12:05:11-05:00"
     },
-    "744000159249649": {
-      "title": "Sr. Manager, Financial Contract Administration",
-      "location": "Universal City, CALIFORNIA, United States",
-      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159249649-sr-manager-financial-contract-administration",
-      "posted_at": "2026-11-02T21:48:11.061Z",
-      "stage": "prefilter",
-      "blockers": [
-        "management",
-        "title_not_targeted"
-      ],
-      "category": "other",
-      "filter_version": 3,
-      "first_seen_at": "2026-11-02T22:12:15+00:00",
-      "last_seen_at": "2026-11-02T22:12:15+00:00"
-    },
-    "744000159248324": {
-      "title": "Content Producer, NBC Connecticut",
-      "location": "Hartford, Connecticut, United States",
-      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159248324-content-producer-nbc-connecticut",
-      "posted_at": "2026-11-02T21:41:12.454Z",
-      "stage": "prefilter",
-      "blockers": [
-        "title_not_targeted"
-      ],
-      "category": "other",
-      "filter_version": 3,
-      "first_seen_at": "2026-11-02T22:12:15+00:00",
-      "last_seen_at": "2026-11-02T22:12:15+00:00"
-    },
-    "744000159244240": {
-      "title": "Principal Engineer, Digital Workplace Technology Engineering",
-      "location": "New York, NEW YORK, United States",
-      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159244240-principal-engineer-digital-workplace-technology-engineering",
-      "posted_at": "2026-11-02T21:22:07.880Z",
-      "stage": "prefilter",
-      "blockers": [
-        "level_too_senior"
-      ],
-      "category": "technical_review",
-      "filter_version": 3,
-      "first_seen_at": "2026-11-02T22:12:15+00:00",
-      "last_seen_at": "2026-11-02T22:12:15+00:00"
-    },
-    "744000159235962": {
-      "title": "General Assignment Reporter, NBC10 Philadelphia ",
-      "location": "Philadelphia, PENNSYLVANIA, United States",
-      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159235962-general-assignment-reporter-nbc10-philadelphia",
-      "posted_at": "2026-11-02T20:40:39.616Z",
-      "stage": "prefilter",
-      "blockers": [
-        "title_not_targeted"
-      ],
-      "category": "other",
-      "filter_version": 3,
-      "first_seen_at": "2026-11-02T22:12:15+00:00",
-      "last_seen_at": "2026-11-02T22:12:15+00:00"
-    },
-    "744000159235229": {
-      "title": "Maintenance Facility Coordinator",
-      "location": "Glendale, CALIFORNIA, United States",
-      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159235229-maintenance-facility-coordinator",
-      "posted_at": "2026-11-02T20:29:36.739Z",
-      "stage": "prefilter",
-      "blockers": [
-        "title_not_targeted"
-      ],
-      "category": "other",
-      "filter_version": 3,
-      "first_seen_at": "2026-11-02T22:12:15+00:00",
-      "last_seen_at": "2026-11-02T22:12:15+00:00"
-    },
-    "744000159226249": {
-      "title": "Account Director, Performance & Growth (San Francisco)",
-      "location": "San Francisco, CA, United States",
-      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159226249-account-director-performance-growth-san-francisco",
-      "posted_at": "2026-11-02T19:33:56.513Z",
-      "stage": "prefilter",
-      "blockers": [
-        "management",
-        "title_not_targeted"
-      ],
-      "category": "other",
-      "filter_version": 3,
-      "first_seen_at": "2026-11-02T22:12:15+00:00",
-      "last_seen_at": "2026-11-02T22:12:15+00:00"
-    },
-    "744000159221659": {
-      "title": "Account Director, Performance & Growth (LA)",
-      "location": "Universal City, CALIFORNIA, United States",
-      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159221659-account-director-performance-growth-la",
-      "posted_at": "2026-11-02T18:55:15.521Z",
-      "stage": "prefilter",
-      "blockers": [
-        "management",
-        "title_not_targeted"
-      ],
-      "category": "other",
-      "filter_version": 3,
-      "first_seen_at": "2026-11-02T22:12:15+00:00",
-      "last_seen_at": "2026-11-02T22:12:15+00:00"
-    },
     "744000159217002": {
       "title": "Director, FP&A",
       "location": "New York, NEW YORK, United States",
@@ -7174,8 +7066,8 @@
       ],
       "category": "other",
       "filter_version": 3,
-      "first_seen_at": "2026-11-02T22:12:15+00:00",
-      "last_seen_at": "2026-11-02T22:12:15+00:00"
+      "first_seen_at": "2026-11-02T12:36:00-06:00",
+      "last_seen_at": "2026-11-02T12:36:00-06:00"
     },
     "744000159208699": {
       "title": "Manager, Client Team",
@@ -7189,8 +7081,8 @@
       ],
       "category": "other",
       "filter_version": 3,
-      "first_seen_at": "2026-11-02T22:12:15+00:00",
-      "last_seen_at": "2026-11-02T22:12:15+00:00"
+      "first_seen_at": "2026-11-02T12:36:00-06:00",
+      "last_seen_at": "2026-11-02T12:36:00-06:00"
     },
     "744000159170845": {
       "title": "Project Coordinator, Media Group Decision Sciences",
@@ -7203,8 +7095,8 @@
       ],
       "category": "other",
       "filter_version": 3,
-      "first_seen_at": "2026-11-02T22:12:15+00:00",
-      "last_seen_at": "2026-11-02T22:12:15+00:00"
+      "first_seen_at": "2026-11-02T12:36:00-06:00",
+      "last_seen_at": "2026-11-02T12:36:00-06:00"
     }
   },
   "source_updated_at_by_id": {}
