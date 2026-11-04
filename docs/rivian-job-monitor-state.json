@@ -16,6 +16,7 @@
     "27521",
     "28607",
     "28772",
+    "28786",
     "29068",
     "29572",
     "29591",
@@ -179,7 +180,8 @@
     "34950",
     "34953",
     "34995",
-    "35126"
+    "35126",
+    "35303"
   ],
   "candidate_catalog": {
     "30795": {
@@ -235,9 +237,18 @@
       "first_seen_at": "2026-10-20T09:15:09-05:00",
       "priority": "medium",
       "category": "software"
+    },
+    "35303": {
+      "title": "Systems Integration Engineer II, Automated Drive",
+      "location": "Palo Alto, California",
+      "url": "https://careers.rivian.com/careers-home/jobs/35303",
+      "posted_at": "2026-11-02T23:30:00+0000",
+      "first_seen_at": "2026-11-03T19:59:39+00:00",
+      "priority": "medium",
+      "category": "integration"
     }
   },
-  "last_successful_scan_at": "2026-11-02T12:40:00-06:00",
+  "last_successful_scan_at": "2026-11-04T01:57:30+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "34699": {
@@ -945,6 +956,20 @@
       "filter_version": 3,
       "first_seen_at": "2026-10-30T10:50:38-05:00",
       "last_seen_at": "2026-10-30T10:50:38-05:00"
+    },
+    "28786": {
+      "title": "Sr. Cybersecurity Engineer",
+      "location": "Atlanta, Georgia; Irvine, California; Palo Alto, California",
+      "url": "https://careers.rivian.com/careers-home/jobs/28786",
+      "posted_at": "2026-11-03T17:45:00+0000",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-03T19:59:39+00:00",
+      "last_seen_at": "2026-11-03T19:59:39+00:00"
     }
   },
   "source_updated_at_by_id": {}

@@ -66,6 +66,7 @@
     "R0074109",
     "R0074168",
     "R0074176",
+    "R0074249",
     "R0074327",
     "R0074386",
     "R0074449",
@@ -283,6 +284,7 @@
     "R0076861",
     "R0076863",
     "R0076866",
+    "R0076879",
     "R0076884",
     "R0076885",
     "R0076899",
@@ -305,6 +307,7 @@
     "R0076984",
     "R0076987",
     "R0076991",
+    "R0076995",
     "R0076997",
     "R0077001",
     "R0077009",
@@ -341,6 +344,7 @@
     "R0077135",
     "R0077136",
     "R0077137",
+    "R0077144",
     "R0077145",
     "R0077150",
     "R0077151",
@@ -350,7 +354,9 @@
     "R0077182",
     "R0077185",
     "R0077188",
+    "R0077191",
     "R0077195",
+    "R0077199",
     "R0077208",
     "R0077219",
     "R0077220",
@@ -363,9 +369,17 @@
     "R0077273",
     "R0077275",
     "R0077276",
+    "R0077292",
+    "R0077293",
     "R0077304",
     "R0077306",
-    "R0077317"
+    "R0077317",
+    "R0077324",
+    "R0077329",
+    "R0077346",
+    "R0077352",
+    "R0077357",
+    "R0077364"
   ],
   "candidate_catalog": {
     "R0076812": {
@@ -432,7 +446,7 @@
       "category": "technical_review"
     }
   },
-  "last_successful_scan_at": "2026-11-02T12:39:48-06:00",
+  "last_successful_scan_at": "2026-11-04T01:57:30+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "R0077145": {
@@ -5010,6 +5024,20 @@
       "first_seen_at": "2026-10-31T12:11:04-05:00",
       "last_seen_at": "2026-10-31T12:11:04-05:00"
     },
+    "R0077364": {
+      "title": "Receiving Associate",
+      "location": "Runnemede, New Jersey, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077364/Receiving-Associate",
+      "posted_at": "2026-11-02T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-02T22:12:15+00:00",
+      "last_seen_at": "2026-11-02T22:12:15+00:00"
+    },
     "R0077219": {
       "title": "Account Manager, eBay Live - AU",
       "location": "Sydney, New South Wales, Australia",
@@ -5023,8 +5051,8 @@
       ],
       "category": "other",
       "filter_version": 3,
-      "first_seen_at": "2026-11-02T12:39:48-06:00",
-      "last_seen_at": "2026-11-02T12:39:48-06:00"
+      "first_seen_at": "2026-11-02T22:12:15+00:00",
+      "last_seen_at": "2026-11-02T22:12:15+00:00"
     },
     "R0075205": {
       "title": "Tise Head of Product Design",
@@ -5038,8 +5066,8 @@
       ],
       "category": "other",
       "filter_version": 3,
-      "first_seen_at": "2026-11-02T12:39:48-06:00",
-      "last_seen_at": "2026-11-02T12:39:48-06:00"
+      "first_seen_at": "2026-11-02T22:12:15+00:00",
+      "last_seen_at": "2026-11-02T22:12:15+00:00"
     },
     "R0077304": {
       "title": "Manager, Collectibles Strategic Programs",
@@ -5054,8 +5082,8 @@
       ],
       "category": "other",
       "filter_version": 3,
-      "first_seen_at": "2026-11-02T12:39:48-06:00",
-      "last_seen_at": "2026-11-02T12:39:48-06:00"
+      "first_seen_at": "2026-11-02T22:12:15+00:00",
+      "last_seen_at": "2026-11-02T22:12:15+00:00"
     },
     "R0077306": {
       "title": "Collectibles Strategic Programs Lead",
@@ -5069,8 +5097,198 @@
       ],
       "category": "other",
       "filter_version": 3,
-      "first_seen_at": "2026-11-02T12:39:48-06:00",
-      "last_seen_at": "2026-11-02T12:39:48-06:00"
+      "first_seen_at": "2026-11-02T22:12:15+00:00",
+      "last_seen_at": "2026-11-02T22:12:15+00:00"
+    },
+    "R0077292": {
+      "title": "Watch Authenticator",
+      "location": "Moonachie, New Jersey, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077292/Watch-Authenticator",
+      "posted_at": "2026-11-02T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-02T22:12:15+00:00",
+      "last_seen_at": "2026-11-02T22:12:15+00:00"
+    },
+    "R0077293": {
+      "title": "Warehouse Associate",
+      "location": "Moonachie, New Jersey, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077293/Warehouse-Associate",
+      "posted_at": "2026-11-02T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-02T22:12:15+00:00",
+      "last_seen_at": "2026-11-02T22:12:15+00:00"
+    },
+    "R0077352": {
+      "title": "Cataloguer",
+      "location": "Runnemede, New Jersey, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077352/Cataloguer",
+      "posted_at": "2026-11-02T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-02T22:12:15+00:00",
+      "last_seen_at": "2026-11-02T22:12:15+00:00"
+    },
+    "R0077357": {
+      "title": "Photographer",
+      "location": "Runnemede, New Jersey, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077357/Photographer",
+      "posted_at": "2026-11-02T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-02T22:12:15+00:00",
+      "last_seen_at": "2026-11-02T22:12:15+00:00"
+    },
+    "R0074249": {
+      "title": "Sr Software Engineer - Digital Identity",
+      "location": "Dublin, Dublin, Ireland",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0074249/Sr-Software-Engineer-Digital-Identity",
+      "posted_at": "2026-11-03T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-04T01:57:30+00:00",
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
+    },
+    "R0077324": {
+      "title": "CBT Ads Seller Engagement Specialist",
+      "location": "Shenzen, Shanghai, China",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077324/CBT-Ads-Seller-Engagement-Specialist",
+      "posted_at": "2026-11-03T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-04T01:57:30+00:00",
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
+    },
+    "R0077346": {
+      "title": "Working Student Category Mgmt. (f/m/d)",
+      "location": "Kleinmachnow, Brandenburg, Germany",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077346/Working-Student-Category-Mgmt-f-m-d",
+      "posted_at": "2026-11-03T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "not_target_employment_type",
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-04T01:57:30+00:00",
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
+    },
+    "R0076995": {
+      "title": "AI Transformation Lead",
+      "location": "Austin, Texas, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076995/AI-Transformation-Lead",
+      "posted_at": "2026-11-03T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-04T01:57:30+00:00",
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
+    },
+    "R0076879": {
+      "title": "Senior iOS Software Engineer",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076879/Senior-iOS-Software-Engineer",
+      "posted_at": "2026-11-02T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-04T01:57:30+00:00",
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
+    },
+    "R0077329": {
+      "title": "iCBT Ads Seller Engagement Sr Manager",
+      "location": "Shenzen, Shanghai, China",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077329/iCBT-Ads-Seller-Engagement-Sr-Manager",
+      "posted_at": "2026-11-03T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-04T01:57:30+00:00",
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
+    },
+    "R0077199": {
+      "title": "Senior Regulatory Auditor",
+      "location": "Dublin, Dublin, Ireland",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077199/Senior-Regulatory-Auditor",
+      "posted_at": "2026-11-03T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-04T01:57:30+00:00",
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
+    },
+    "R0077144": {
+      "title": "Commercial Director DE P&A FTC",
+      "location": "Kleinmachnow, Brandenburg, Germany",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077144/Commercial-Director-DE-P-A-FTC",
+      "posted_at": "2026-11-03T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-04T01:57:30+00:00",
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
+    },
+    "R0077191": {
+      "title": "Head of PUDO Network, OPs, Partners",
+      "location": "San Jose, California, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077191/Head-of-PUDO-Network-OPs-Partners",
+      "posted_at": "2026-11-03T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-04T01:57:30+00:00",
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
     }
   },
   "source_updated_at_by_id": {}

@@ -1,33 +1,36 @@
 # Daily job monitor report
 
-- Status: **Completed with failures**
-- Scanned at: `2026-11-02T22:12:15+00:00`
+- Status: **Successful**
+- Scanned at: `2026-11-04T01:57:30+00:00`
 - Monitors: 14
-- New candidates: 0
+- New candidates: 2
 - Needs review: 0
 
 ## Monitor results
 
 | Monitor | Status | Fetched | Unseen | Candidates | Review | State updated |
 | --- | --- | ---: | ---: | ---: | ---: | --- |
-| cbre | ok | 1258 | 59 | 0 | 0 | yes |
-| cdk | ok | 39 | 2 | 0 | 0 | yes |
-| cisco | ok | 80 | 5 | 0 | 0 | yes |
-| crunchyroll | ok | 99 | 0 | 0 | 0 | yes |
-| ebay | ok | 159 | 9 | 0 | 0 | yes |
-| intepros | ok | 30 | 2 | 0 | 0 | yes |
-| iqvia | failed | 0 | 0 | 0 | 0 | no |
-| nbcu | ok | 293 | 10 | 0 | 0 | yes |
-| nvidia | ok | 140 | 17 | 0 | 0 | yes |
-| occ | ok | 67 | 3 | 0 | 0 | yes |
+| cbre | ok | 780 | 19 | 0 | 0 | yes |
+| cdk | ok | 39 | 0 | 0 | 0 | yes |
+| cisco | ok | 80 | 1 | 0 | 0 | yes |
+| crunchyroll | ok | 100 | 0 | 0 | 0 | yes |
+| ebay | ok | 177 | 9 | 0 | 0 | yes |
+| intepros | ok | 20 | 0 | 0 | 0 | yes |
+| iqvia | ok | 368 | 0 | 0 | 0 | yes |
+| nbcu | ok | 291 | 6 | 1 | 0 | yes |
+| nvidia | ok | 120 | 4 | 0 | 0 | yes |
+| occ | ok | 60 | 0 | 0 | 0 | yes |
 | ocient | ok | 15 | 0 | 0 | 0 | yes |
 | rivian | ok | 30 | 0 | 0 | 0 | yes |
-| tiktok | ok | 1875 | 12 | 0 | 0 | yes |
-| waymo | ok | 169 | 0 | 0 | 0 | yes |
+| tiktok | ok | 1883 | 2 | 1 | 0 | yes |
+| waymo | ok | 169 | 1 | 0 | 0 | yes |
 
-## Failures
+## New candidates
 
-- **iqvia**: Error: 502 Bad Gateway: https://iqvia.wd1.myworkdayjobs.com/wday/cxs/iqvia/IQVIA/jobs     at fetchJson (file:///home/runner/work/resume-tool/resume-tool/ops/company_jobs_fetch.mjs:205:27)     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)     at async file:///home/runner/work/resume-tool/resume-tool/ops/company_jobs_fetch.mjs:588:23     at async worker (file:///home/runner/work/resume-tool/resume-tool/ops/company_jobs_fetch.mjs:193:24)     at async Promise.all (index 0)     at async mapWithConcurrency (file:///home/runner/work/resume-tool/resume-tool/ops/company_jobs_fetch.mjs:196:3)     at async workdayListings (file:///home/runner/work/resume-tool/resume-tool/ops/company_jobs_fetch.mjs:582:24)     at async main (file:///home/runner/work/resume-tool/resume-tool/ops/company_jobs_fetch.mjs:869:17)
+- **nbcu**: [Software Engineer, Roku](https://jobs.smartrecruiters.com/NBCUniversal3/744000159511839-software-engineer-roku) (medium; Universal City, CALIFORNIA, United States)
+  Match: target_title:software, profile_signal:javascript_react:+1, profile_signal:backend_apis:+2, profile_signal:reliability_telemetry:+3, profile_signal:qa_automation:+2
+- **tiktok**: [Machine Learning Engineer - Intern (TikTok BRIC) - 2027 Start (PhD)](https://lifeattiktok.com/search/7703899923206867205) (medium; San Jose, California, United States of America)
+  Match: target_title:ai_ml, profile_signal:python:+2, profile_signal:databases:+1, profile_signal:agentic_tooling:+3
 
 ## Not automated
 

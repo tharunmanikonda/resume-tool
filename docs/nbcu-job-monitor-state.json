@@ -545,7 +545,29 @@
     "744000158845959",
     "744000159170845",
     "744000159208699",
-    "744000159217002"
+    "744000159217002",
+    "744000159221659",
+    "744000159226249",
+    "744000159235229",
+    "744000159235962",
+    "744000159244240",
+    "744000159248324",
+    "744000159249649",
+    "744000159259489",
+    "744000159261379",
+    "744000159394393",
+    "744000159403390",
+    "744000159405004",
+    "744000159415630",
+    "744000159448534",
+    "744000159479547",
+    "744000159481897",
+    "744000159487075",
+    "744000159492802",
+    "744000159495004",
+    "744000159502949",
+    "744000159509155",
+    "744000159511839"
   ],
   "candidate_catalog": {
     "744000151898289": {
@@ -601,9 +623,18 @@
       "first_seen_at": "2026-10-31T12:05:11-05:00",
       "priority": "low",
       "category": "systems_engineering"
+    },
+    "744000159511839": {
+      "title": "Software Engineer, Roku",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159511839-software-engineer-roku",
+      "posted_at": "2026-11-03T22:57:52.631Z",
+      "first_seen_at": "2026-11-04T01:57:30+00:00",
+      "priority": "medium",
+      "category": "software"
     }
   },
-  "last_successful_scan_at": "2026-11-02T12:36:00-06:00",
+  "last_successful_scan_at": "2026-11-04T01:57:30+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "744000156079569": {
@@ -7054,6 +7085,107 @@
       "first_seen_at": "2026-10-31T12:05:11-05:00",
       "last_seen_at": "2026-10-31T12:05:11-05:00"
     },
+    "744000159249649": {
+      "title": "Sr. Manager, Financial Contract Administration",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159249649-sr-manager-financial-contract-administration",
+      "posted_at": "2026-11-02T21:48:11.061Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-02T22:12:15+00:00",
+      "last_seen_at": "2026-11-02T22:12:15+00:00"
+    },
+    "744000159248324": {
+      "title": "Content Producer, NBC Connecticut",
+      "location": "Hartford, Connecticut, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159248324-content-producer-nbc-connecticut",
+      "posted_at": "2026-11-02T21:41:12.454Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-02T22:12:15+00:00",
+      "last_seen_at": "2026-11-02T22:12:15+00:00"
+    },
+    "744000159244240": {
+      "title": "Principal Engineer, Digital Workplace Technology Engineering",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159244240-principal-engineer-digital-workplace-technology-engineering",
+      "posted_at": "2026-11-02T21:22:07.880Z",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-02T22:12:15+00:00",
+      "last_seen_at": "2026-11-02T22:12:15+00:00"
+    },
+    "744000159235962": {
+      "title": "General Assignment Reporter, NBC10 Philadelphia ",
+      "location": "Philadelphia, PENNSYLVANIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159235962-general-assignment-reporter-nbc10-philadelphia",
+      "posted_at": "2026-11-02T20:40:39.616Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-02T22:12:15+00:00",
+      "last_seen_at": "2026-11-02T22:12:15+00:00"
+    },
+    "744000159235229": {
+      "title": "Maintenance Facility Coordinator",
+      "location": "Glendale, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159235229-maintenance-facility-coordinator",
+      "posted_at": "2026-11-02T20:29:36.739Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-02T22:12:15+00:00",
+      "last_seen_at": "2026-11-02T22:12:15+00:00"
+    },
+    "744000159226249": {
+      "title": "Account Director, Performance & Growth (San Francisco)",
+      "location": "San Francisco, CA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159226249-account-director-performance-growth-san-francisco",
+      "posted_at": "2026-11-02T19:33:56.513Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-02T22:12:15+00:00",
+      "last_seen_at": "2026-11-02T22:12:15+00:00"
+    },
+    "744000159221659": {
+      "title": "Account Director, Performance & Growth (LA)",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159221659-account-director-performance-growth-la",
+      "posted_at": "2026-11-02T18:55:15.521Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-02T22:12:15+00:00",
+      "last_seen_at": "2026-11-02T22:12:15+00:00"
+    },
     "744000159217002": {
       "title": "Director, FP&A",
       "location": "New York, NEW YORK, United States",
@@ -7066,8 +7198,8 @@
       ],
       "category": "other",
       "filter_version": 3,
-      "first_seen_at": "2026-11-02T12:36:00-06:00",
-      "last_seen_at": "2026-11-02T12:36:00-06:00"
+      "first_seen_at": "2026-11-02T22:12:15+00:00",
+      "last_seen_at": "2026-11-02T22:12:15+00:00"
     },
     "744000159208699": {
       "title": "Manager, Client Team",
@@ -7081,8 +7213,8 @@
       ],
       "category": "other",
       "filter_version": 3,
-      "first_seen_at": "2026-11-02T12:36:00-06:00",
-      "last_seen_at": "2026-11-02T12:36:00-06:00"
+      "first_seen_at": "2026-11-02T22:12:15+00:00",
+      "last_seen_at": "2026-11-02T22:12:15+00:00"
     },
     "744000159170845": {
       "title": "Project Coordinator, Media Group Decision Sciences",
@@ -7095,8 +7227,209 @@
       ],
       "category": "other",
       "filter_version": 3,
-      "first_seen_at": "2026-11-02T12:36:00-06:00",
-      "last_seen_at": "2026-11-02T12:36:00-06:00"
+      "first_seen_at": "2026-11-02T22:12:15+00:00",
+      "last_seen_at": "2026-11-02T22:12:15+00:00"
+    },
+    "744000159481897": {
+      "title": "Senior Business Analyst, Sales Automation",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159481897-senior-business-analyst-sales-automation",
+      "posted_at": "2026-11-03T19:58:22.834Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-03T19:59:39+00:00",
+      "last_seen_at": "2026-11-03T19:59:39+00:00"
+    },
+    "744000159479547": {
+      "title": "Manager, Human Resources",
+      "location": "Doraville, GEORGIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159479547-manager-human-resources",
+      "posted_at": "2026-11-03T19:35:29.954Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-03T19:59:39+00:00",
+      "last_seen_at": "2026-11-03T19:59:39+00:00"
+    },
+    "744000159448534": {
+      "title": "Multimedia Journalist, Telemundo T51 Miami",
+      "location": "Miramar, Florida, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159448534-multimedia-journalist-telemundo-t51-miami",
+      "posted_at": "2026-11-03T16:51:51.534Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-03T19:59:39+00:00",
+      "last_seen_at": "2026-11-03T19:59:39+00:00"
+    },
+    "744000159415630": {
+      "title": "Analyst, Sports Inventory",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159415630-analyst-sports-inventory",
+      "posted_at": "2026-11-03T15:16:37.859Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-03T19:59:39+00:00",
+      "last_seen_at": "2026-11-03T19:59:39+00:00"
+    },
+    "744000159403390": {
+      "title": "Digital Account Manager - NBCU Local",
+      "location": "New York, NY, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159403390-digital-account-manager-nbcu-local",
+      "posted_at": "2026-11-03T14:36:36.588Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-03T19:59:39+00:00",
+      "last_seen_at": "2026-11-03T19:59:39+00:00"
+    },
+    "744000159394393": {
+      "title": "Marketing Coordinator, NBC & Telemundo Connecticut",
+      "location": "Hartford, Connecticut, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159394393-marketing-coordinator-nbc-telemundo-connecticut",
+      "posted_at": "2026-11-03T14:03:46.293Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-03T19:59:39+00:00",
+      "last_seen_at": "2026-11-03T19:59:39+00:00"
+    },
+    "744000159261379": {
+      "title": "Sr. Producer/Editor",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159261379-sr-producer-editor",
+      "posted_at": "2026-11-02T23:08:59.708Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-03T19:59:39+00:00",
+      "last_seen_at": "2026-11-03T19:59:39+00:00"
+    },
+    "744000159259489": {
+      "title": "Sr Financial Analyst",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159259489-sr-financial-analyst",
+      "posted_at": "2026-11-02T22:46:30.780Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-03T19:59:39+00:00",
+      "last_seen_at": "2026-11-03T19:59:39+00:00"
+    },
+    "744000159405004": {
+      "title": "Sr. Production Broadcast Engineer - NBC Sports",
+      "location": "Stamford, Connecticut, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159405004-sr-production-broadcast-engineer-nbc-sports",
+      "posted_at": "2026-11-03T14:41:35.335Z",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-03T19:59:39+00:00",
+      "last_seen_at": "2026-11-03T19:59:39+00:00"
+    },
+    "744000159509155": {
+      "title": "Freelance Scheduling Coordinator - NBC Sports",
+      "location": "Stamford, Connecticut, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159509155-freelance-scheduling-coordinator-nbc-sports",
+      "posted_at": "2026-11-03T22:40:09.822Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-04T01:57:30+00:00",
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
+    },
+    "744000159502949": {
+      "title": "Manager, MEP & Facility Utilities",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159502949-manager-mep-facility-utilities",
+      "posted_at": "2026-11-03T21:50:13.287Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-04T01:57:30+00:00",
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
+    },
+    "744000159495004": {
+      "title": "Manager, Programmatic Strategy",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159495004-manager-programmatic-strategy",
+      "posted_at": "2026-11-03T21:12:08.357Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-04T01:57:30+00:00",
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
+    },
+    "744000159492802": {
+      "title": "Director, Product",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159492802-director-product",
+      "posted_at": "2026-11-03T20:50:36.371Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-04T01:57:30+00:00",
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
+    },
+    "744000159487075": {
+      "title": "Coordinator, Franchise Mgmt & Brand Mktg",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159487075-coordinator-franchise-mgmt-brand-mktg",
+      "posted_at": "2026-11-03T20:32:13.002Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-04T01:57:30+00:00",
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
     }
   },
   "source_updated_at_by_id": {}

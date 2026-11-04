@@ -1360,6 +1360,8 @@
     "2027165",
     "2027249",
     "2027254",
+    "2027291",
+    "2027318",
     "2027386",
     "2027389",
     "2027406",
@@ -1420,6 +1422,8 @@
     "2028364",
     "2028387",
     "2028428",
+    "2028502",
+    "2028546",
     "2028596",
     "2028609",
     "2028669",
@@ -1446,6 +1450,7 @@
     "2029245",
     "2029276",
     "2029288",
+    "2029397",
     "2029455",
     "2029584",
     "2029655",
@@ -1455,7 +1460,7 @@
     "2030081",
     "2030087"
   ],
-  "last_successful_scan_at": "2026-11-02T12:35:33-06:00",
+  "last_successful_scan_at": "2026-11-04T01:57:30+00:00",
   "candidate_catalog": {
     "2024998": {
       "title": "AI Security Engineer",
@@ -3377,8 +3382,8 @@
       ],
       "category": "software",
       "filter_version": 3,
-      "first_seen_at": "2026-11-02T12:35:33-06:00",
-      "last_seen_at": "2026-11-02T12:35:33-06:00"
+      "first_seen_at": "2026-11-02T22:12:15+00:00",
+      "last_seen_at": "2026-11-02T22:12:15+00:00"
     },
     "2028677": {
       "title": "Software Engineer - Webex Native Client",
@@ -3391,8 +3396,8 @@
       ],
       "category": "software",
       "filter_version": 3,
-      "first_seen_at": "2026-11-02T12:35:33-06:00",
-      "last_seen_at": "2026-11-02T12:35:33-06:00"
+      "first_seen_at": "2026-11-02T22:12:15+00:00",
+      "last_seen_at": "2026-11-02T22:12:15+00:00"
     },
     "2028675": {
       "title": "Software Engineering Technical Leader - Webex Native Client",
@@ -3406,8 +3411,8 @@
       ],
       "category": "software",
       "filter_version": 3,
-      "first_seen_at": "2026-11-02T12:35:33-06:00",
-      "last_seen_at": "2026-11-02T12:35:33-06:00"
+      "first_seen_at": "2026-11-02T22:12:15+00:00",
+      "last_seen_at": "2026-11-02T22:12:15+00:00"
     },
     "2028676": {
       "title": "Senior Software Engineer - Webex Native Client",
@@ -3420,8 +3425,8 @@
       ],
       "category": "software",
       "filter_version": 3,
-      "first_seen_at": "2026-11-02T12:35:33-06:00",
-      "last_seen_at": "2026-11-02T12:35:33-06:00"
+      "first_seen_at": "2026-11-02T22:12:15+00:00",
+      "last_seen_at": "2026-11-02T22:12:15+00:00"
     },
     "2029683": {
       "title": "ASIC Engineer",
@@ -3434,8 +3439,80 @@
       ],
       "category": "technical_review",
       "filter_version": 3,
-      "first_seen_at": "2026-11-02T12:35:33-06:00",
-      "last_seen_at": "2026-11-02T12:35:33-06:00"
+      "first_seen_at": "2026-11-02T22:12:15+00:00",
+      "last_seen_at": "2026-11-02T22:12:15+00:00"
+    },
+    "2028502": {
+      "title": "Hardware (Signal Integrity) Engineer",
+      "location": "RTP, North Carolina, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/RTP-North-Carolina-US/Hardware--Signal-Integrity--Engineer_2028502",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "embedded_or_hardware"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-03T19:59:39+00:00",
+      "last_seen_at": "2026-11-03T19:59:39+00:00"
+    },
+    "2028546": {
+      "title": "Front-End Software Engineer \u2013 Workspace Designer",
+      "location": "Lysaker, Norway",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Lysaker-Norway/Front-End-Software-Engineer---Workspace-Designer_2028546",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "frontend",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-03T19:59:39+00:00",
+      "last_seen_at": "2026-11-03T19:59:39+00:00"
+    },
+    "2029397": {
+      "title": "Supplier Commodity Manager",
+      "location": "2 Locations",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Taipei-Taiwan/Supplier-Commodity-Manager_2029397",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-03T19:59:39+00:00",
+      "last_seen_at": "2026-11-03T19:59:39+00:00"
+    },
+    "2027318": {
+      "title": "Leader, Hardware Engineering",
+      "location": "San Jose, California, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/Leader--Hardware-Engineering_2027318",
+      "posted_at": "Posted Yesterday",
+      "stage": "prefilter",
+      "blockers": [
+        "embedded_or_hardware",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-03T19:59:39+00:00",
+      "last_seen_at": "2026-11-03T19:59:39+00:00"
+    },
+    "2027291": {
+      "title": "Senior Mechanical Engineer- (Hybrid)",
+      "location": "Austin, Texas, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Austin-Texas-US/Senior-Mechanical-Engineer---Hybrid-_2027291",
+      "posted_at": "2026-11-03",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-04T01:57:30+00:00",
+      "last_seen_at": "2026-11-04T01:57:30+00:00"
     }
   },
   "source_updated_at_by_id": {}
