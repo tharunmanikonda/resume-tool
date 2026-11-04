@@ -1156,6 +1156,7 @@
     "JR2028871",
     "JR2028878",
     "JR2028905",
+    "JR2028913",
     "JR2028915",
     "JR2028930",
     "JR2028947",
@@ -1169,10 +1170,12 @@
     "JR2029015",
     "JR2029041",
     "JR2029043",
+    "JR2029056",
     "JR2029074",
     "JR2029082",
     "JR2029093",
     "JR2029094",
+    "JR2029104",
     "JR2029108",
     "JR2029109",
     "JR2029160",
@@ -1182,7 +1185,10 @@
     "JR2029216",
     "JR2029227",
     "JR2029239",
-    "JR2029313"
+    "JR2029313",
+    "JR2029400",
+    "JR2029426",
+    "JR2029432"
   ],
   "candidate_catalog": {
     "JR2018245": {
@@ -1519,7 +1525,7 @@
       "category": "technical_review"
     }
   },
-  "last_successful_scan_at": "2026-11-04T01:57:30+00:00",
+  "last_successful_scan_at": "2026-11-04T20:19:04+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "JR2014880": {
@@ -16209,6 +16215,91 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-04T01:57:30+00:00",
       "last_seen_at": "2026-11-04T01:57:30+00:00"
+    },
+    "JR2029056": {
+      "title": "Senior Applied Research Scientist",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Applied-Research-Scientist_JR2029056",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-04T20:19:04+00:00",
+      "last_seen_at": "2026-11-04T20:19:04+00:00"
+    },
+    "JR2028913": {
+      "title": "Manager, Systems Software Engineering - GPU",
+      "location": "2 Locations",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Manager--Systems-Software-Engineering---GPU_JR2028913",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "management"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-04T20:19:04+00:00",
+      "last_seen_at": "2026-11-04T20:19:04+00:00"
+    },
+    "JR2029426": {
+      "title": "Senior Networking Architect",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Networking-Architect_JR2029426-1",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-04T20:19:04+00:00",
+      "last_seen_at": "2026-11-04T20:19:04+00:00"
+    },
+    "JR2029432": {
+      "title": "Manager, Software Engineering",
+      "location": "5 Locations",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Manager--Software-Engineering_JR2029432",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "management"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-04T20:19:04+00:00",
+      "last_seen_at": "2026-11-04T20:19:04+00:00"
+    },
+    "JR2029400": {
+      "title": "Senior Vision Language Model Engineer",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Vision-Language-Model-Engineer_JR2029400",
+      "posted_at": "2026-11-04",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-04T20:19:04+00:00",
+      "last_seen_at": "2026-11-04T20:19:04+00:00"
+    },
+    "JR2029104": {
+      "title": "Network Site Reliability Engineer",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Network-Site-Reliability-Engineer_JR2029104",
+      "posted_at": "2026-11-04",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "reliability",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-04T20:19:04+00:00",
+      "last_seen_at": "2026-11-04T20:19:04+00:00"
     }
   },
   "source_updated_at_by_id": {}

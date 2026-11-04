@@ -6,6 +6,7 @@
     "R0062268",
     "R0065056",
     "R0068184",
+    "R0069197",
     "R0069489",
     "R0069578",
     "R0069582",
@@ -227,6 +228,7 @@
     "R0076541",
     "R0076547",
     "R0076549",
+    "R0076563",
     "R0076568",
     "R0076575",
     "R0076576",
@@ -355,6 +357,7 @@
     "R0077185",
     "R0077188",
     "R0077191",
+    "R0077192",
     "R0077195",
     "R0077199",
     "R0077208",
@@ -375,6 +378,7 @@
     "R0077306",
     "R0077317",
     "R0077324",
+    "R0077328",
     "R0077329",
     "R0077346",
     "R0077352",
@@ -446,7 +450,7 @@
       "category": "technical_review"
     }
   },
-  "last_successful_scan_at": "2026-11-04T01:57:30+00:00",
+  "last_successful_scan_at": "2026-11-04T20:19:04+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "R0077145": {
@@ -5289,6 +5293,67 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-04T01:57:30+00:00",
       "last_seen_at": "2026-11-04T01:57:30+00:00"
+    },
+    "R0077328": {
+      "title": "CBT Ads Seller Engagement Specialist",
+      "location": "Shanghai, Shanghai, China",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077328/CBT-Ads-Seller-Engagement-Specialist",
+      "posted_at": "2026-11-04T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-04T20:19:04+00:00",
+      "last_seen_at": "2026-11-04T20:19:04+00:00"
+    },
+    "R0069197": {
+      "title": "Senior Engineering Manager",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0069197/Senior-Engineering-Manager",
+      "posted_at": "2026-11-04T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-04T20:19:04+00:00",
+      "last_seen_at": "2026-11-04T20:19:04+00:00"
+    },
+    "R0076563": {
+      "title": "Platform Engineer, Python",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076563/Platform-Engineer-Python",
+      "posted_at": "2026-11-04T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "platform",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-04T20:19:04+00:00",
+      "last_seen_at": "2026-11-04T20:19:04+00:00"
+    },
+    "R0077192": {
+      "title": "Manager, PUDO Pricing & Monetization",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077192/Manager-PUDO-Pricing-Monetization",
+      "posted_at": "2026-11-04T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-04T20:19:04+00:00",
+      "last_seen_at": "2026-11-04T20:19:04+00:00"
     }
   },
   "source_updated_at_by_id": {}

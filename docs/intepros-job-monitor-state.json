@@ -220,9 +220,10 @@
     "a0Hcw00000B74LVEAZ",
     "a0Hcw00000B7MDZEA3",
     "a0Hcw00000B8msLEAR",
-    "a0Hcw00000BEdeHEAT"
+    "a0Hcw00000BEdeHEAT",
+    "a0Hcw00000BLqRtEAL"
   ],
-  "last_successful_scan_at": "2026-11-04T01:57:30+00:00",
+  "last_successful_scan_at": "2026-11-04T20:19:04+00:00",
   "candidate_catalog": {
     "a0Hcw000006tdYLEAY": {
       "title": "Operational Excellence Engineer",
@@ -1191,6 +1192,20 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-02T22:12:15+00:00",
       "last_seen_at": "2026-11-02T22:12:15+00:00"
+    },
+    "a0Hcw00000BLqRtEAL": {
+      "title": "Full Stack Developer",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000BLqRtEAL/full-stack-developer",
+      "posted_at": "",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "full_stack",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-04T20:19:04+00:00",
+      "last_seen_at": "2026-11-04T20:19:04+00:00"
     }
   },
   "source_updated_at_by_id": {}

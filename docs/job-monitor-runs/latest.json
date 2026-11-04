@@ -1,6 +1,6 @@
 {
   "success": true,
-  "scanned_at": "2026-11-04T01:57:30+00:00",
+  "scanned_at": "2026-11-04T20:19:04+00:00",
   "monitor_count": 14,
   "successful_monitors": [
     "cbre",
@@ -19,39 +19,24 @@
     "waymo"
   ],
   "failed_monitors": [],
-  "candidate_count": 2,
+  "candidate_count": 1,
   "needs_ai_review_count": 0,
   "candidates": [
     {
-      "monitor": "nbcu",
-      "job_id": "744000159511839",
-      "title": "Software Engineer, Roku",
-      "location": "Universal City, CALIFORNIA, United States",
-      "posted_at": "2026-11-03T22:57:52.631Z",
-      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159511839-software-engineer-roku",
+      "monitor": "iqvia",
+      "job_id": "R1574613",
+      "title": "Senior Software Engineer (.NET)",
+      "location": "Kathmandu, Nepal",
+      "posted_at": "2026-11-04",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Kathmandu-Nepal/Senior-Software-Engineer--NET-_R1574613",
       "priority": "medium",
       "matching_requirements": [
         "target_title:software",
         "profile_signal:javascript_react:+1",
         "profile_signal:backend_apis:+2",
-        "profile_signal:reliability_telemetry:+3",
-        "profile_signal:qa_automation:+2"
-      ],
-      "material_gaps": []
-    },
-    {
-      "monitor": "tiktok",
-      "job_id": "7703899923206867205",
-      "title": "Machine Learning Engineer - Intern (TikTok BRIC) - 2027 Start (PhD)",
-      "location": "San Jose, California, United States of America",
-      "posted_at": "",
-      "url": "https://lifeattiktok.com/search/7703899923206867205",
-      "priority": "medium",
-      "matching_requirements": [
-        "target_title:ai_ml",
-        "profile_signal:python:+2",
         "profile_signal:databases:+1",
-        "profile_signal:agentic_tooling:+3"
+        "profile_signal:cloud_containers:+2",
+        "profile_signal:qa_automation:+2"
       ],
       "material_gaps": []
     }
@@ -61,9 +46,9 @@
     {
       "monitor": "cbre",
       "success": true,
-      "scanned_at": "2026-11-04T01:57:30+00:00",
-      "fetched": 780,
-      "unseen": 19,
+      "scanned_at": "2026-11-04T20:19:04+00:00",
+      "fetched": 970,
+      "unseen": 52,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -72,9 +57,9 @@
     {
       "monitor": "cdk",
       "success": true,
-      "scanned_at": "2026-11-04T01:57:30+00:00",
-      "fetched": 39,
-      "unseen": 0,
+      "scanned_at": "2026-11-04T20:19:04+00:00",
+      "fetched": 41,
+      "unseen": 2,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -83,9 +68,9 @@
     {
       "monitor": "cisco",
       "success": true,
-      "scanned_at": "2026-11-04T01:57:30+00:00",
+      "scanned_at": "2026-11-04T20:19:04+00:00",
       "fetched": 80,
-      "unseen": 1,
+      "unseen": 3,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -94,9 +79,9 @@
     {
       "monitor": "crunchyroll",
       "success": true,
-      "scanned_at": "2026-11-04T01:57:30+00:00",
-      "fetched": 100,
-      "unseen": 0,
+      "scanned_at": "2026-11-04T20:19:04+00:00",
+      "fetched": 101,
+      "unseen": 2,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -105,9 +90,9 @@
     {
       "monitor": "ebay",
       "success": true,
-      "scanned_at": "2026-11-04T01:57:30+00:00",
-      "fetched": 177,
-      "unseen": 9,
+      "scanned_at": "2026-11-04T20:19:04+00:00",
+      "fetched": 176,
+      "unseen": 4,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -116,9 +101,9 @@
     {
       "monitor": "intepros",
       "success": true,
-      "scanned_at": "2026-11-04T01:57:30+00:00",
-      "fetched": 20,
-      "unseen": 0,
+      "scanned_at": "2026-11-04T20:19:04+00:00",
+      "fetched": 30,
+      "unseen": 1,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -127,34 +112,24 @@
     {
       "monitor": "iqvia",
       "success": true,
-      "scanned_at": "2026-11-04T01:57:30+00:00",
-      "fetched": 368,
-      "unseen": 0,
-      "state_updated": true,
-      "candidates": [],
-      "needs_ai_review": [],
-      "errors": []
-    },
-    {
-      "monitor": "nbcu",
-      "success": true,
-      "scanned_at": "2026-11-04T01:57:30+00:00",
-      "fetched": 291,
-      "unseen": 6,
+      "scanned_at": "2026-11-04T20:19:04+00:00",
+      "fetched": 1084,
+      "unseen": 53,
       "state_updated": true,
       "candidates": [
         {
-          "job_id": "744000159511839",
-          "title": "Software Engineer, Roku",
-          "location": "Universal City, CALIFORNIA, United States",
-          "posted_at": "2026-11-03T22:57:52.631Z",
-          "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159511839-software-engineer-roku",
+          "job_id": "R1574613",
+          "title": "Senior Software Engineer (.NET)",
+          "location": "Kathmandu, Nepal",
+          "posted_at": "2026-11-04",
+          "url": "https://iqvia.wd1.myworkdayjobs.com/job/Kathmandu-Nepal/Senior-Software-Engineer--NET-_R1574613",
           "priority": "medium",
           "matching_requirements": [
             "target_title:software",
             "profile_signal:javascript_react:+1",
             "profile_signal:backend_apis:+2",
-            "profile_signal:reliability_telemetry:+3",
+            "profile_signal:databases:+1",
+            "profile_signal:cloud_containers:+2",
             "profile_signal:qa_automation:+2"
           ],
           "material_gaps": []
@@ -164,11 +139,22 @@
       "errors": []
     },
     {
+      "monitor": "nbcu",
+      "success": true,
+      "scanned_at": "2026-11-04T20:19:04+00:00",
+      "fetched": 294,
+      "unseen": 10,
+      "state_updated": true,
+      "candidates": [],
+      "needs_ai_review": [],
+      "errors": []
+    },
+    {
       "monitor": "nvidia",
       "success": true,
-      "scanned_at": "2026-11-04T01:57:30+00:00",
+      "scanned_at": "2026-11-04T20:19:04+00:00",
       "fetched": 120,
-      "unseen": 4,
+      "unseen": 6,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -177,7 +163,7 @@
     {
       "monitor": "occ",
       "success": true,
-      "scanned_at": "2026-11-04T01:57:30+00:00",
+      "scanned_at": "2026-11-04T20:19:04+00:00",
       "fetched": 60,
       "unseen": 0,
       "state_updated": true,
@@ -188,8 +174,8 @@
     {
       "monitor": "ocient",
       "success": true,
-      "scanned_at": "2026-11-04T01:57:30+00:00",
-      "fetched": 15,
+      "scanned_at": "2026-11-04T20:19:04+00:00",
+      "fetched": 14,
       "unseen": 0,
       "state_updated": true,
       "candidates": [],
@@ -199,9 +185,9 @@
     {
       "monitor": "rivian",
       "success": true,
-      "scanned_at": "2026-11-04T01:57:30+00:00",
-      "fetched": 30,
-      "unseen": 0,
+      "scanned_at": "2026-11-04T20:19:04+00:00",
+      "fetched": 40,
+      "unseen": 1,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -210,34 +196,18 @@
     {
       "monitor": "tiktok",
       "success": true,
-      "scanned_at": "2026-11-04T01:57:30+00:00",
-      "fetched": 1883,
-      "unseen": 2,
+      "scanned_at": "2026-11-04T20:19:04+00:00",
+      "fetched": 1885,
+      "unseen": 5,
       "state_updated": true,
-      "candidates": [
-        {
-          "job_id": "7703899923206867205",
-          "title": "Machine Learning Engineer - Intern (TikTok BRIC) - 2027 Start (PhD)",
-          "location": "San Jose, California, United States of America",
-          "posted_at": "",
-          "url": "https://lifeattiktok.com/search/7703899923206867205",
-          "priority": "medium",
-          "matching_requirements": [
-            "target_title:ai_ml",
-            "profile_signal:python:+2",
-            "profile_signal:databases:+1",
-            "profile_signal:agentic_tooling:+3"
-          ],
-          "material_gaps": []
-        }
-      ],
+      "candidates": [],
       "needs_ai_review": [],
       "errors": []
     },
     {
       "monitor": "waymo",
       "success": true,
-      "scanned_at": "2026-11-04T01:57:30+00:00",
+      "scanned_at": "2026-11-04T20:19:04+00:00",
       "fetched": 169,
       "unseen": 1,
       "state_updated": true,

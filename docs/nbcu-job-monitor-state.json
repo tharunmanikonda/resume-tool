@@ -567,7 +567,17 @@
     "744000159495004",
     "744000159502949",
     "744000159509155",
-    "744000159511839"
+    "744000159511839",
+    "744000159654619",
+    "744000159662349",
+    "744000159687904",
+    "744000159689357",
+    "744000159693639",
+    "744000159694381",
+    "744000159696800",
+    "744000159706969",
+    "744000159712060",
+    "744000159718086"
   ],
   "candidate_catalog": {
     "744000151898289": {
@@ -634,7 +644,7 @@
       "category": "software"
     }
   },
-  "last_successful_scan_at": "2026-11-04T01:57:30+00:00",
+  "last_successful_scan_at": "2026-11-04T20:19:04+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "744000156079569": {
@@ -7430,6 +7440,149 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-04T01:57:30+00:00",
       "last_seen_at": "2026-11-04T01:57:30+00:00"
+    },
+    "744000159718086": {
+      "title": "Manager, Strategic Enablement",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159718086-manager-strategic-enablement",
+      "posted_at": "2026-11-04T20:06:33.631Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-04T20:19:04+00:00",
+      "last_seen_at": "2026-11-04T20:19:04+00:00"
+    },
+    "744000159712060": {
+      "title": "Assistant Manager Food",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159712060-assistant-manager-food",
+      "posted_at": "2026-11-04T19:22:31.130Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-04T20:19:04+00:00",
+      "last_seen_at": "2026-11-04T20:19:04+00:00"
+    },
+    "744000159706969": {
+      "title": "Learning Experience Designer",
+      "location": "Universal City, CA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159706969-learning-experience-designer",
+      "posted_at": "2026-11-04T18:48:16.140Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-04T20:19:04+00:00",
+      "last_seen_at": "2026-11-04T20:19:04+00:00"
+    },
+    "744000159696800": {
+      "title": "Creative Producer, Telemundo Utah",
+      "location": "Salt Lake City, Utah, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159696800-creative-producer-telemundo-utah",
+      "posted_at": "2026-11-04T17:56:39.776Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-04T20:19:04+00:00",
+      "last_seen_at": "2026-11-04T20:19:04+00:00"
+    },
+    "744000159694381": {
+      "title": "Transmission Operator - NBC Sports",
+      "location": "Stamford, Connecticut, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159694381-transmission-operator-nbc-sports",
+      "posted_at": "2026-11-04T17:34:54.431Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-04T20:19:04+00:00",
+      "last_seen_at": "2026-11-04T20:19:04+00:00"
+    },
+    "744000159693639": {
+      "title": "Designer, Design & Development (Toys)",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159693639-designer-design-development-toys",
+      "posted_at": "2026-11-04T17:30:24.103Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-04T20:19:04+00:00",
+      "last_seen_at": "2026-11-04T20:19:04+00:00"
+    },
+    "744000159687904": {
+      "title": "Sr. Designer, Design & Development (Toys & Hardlines)",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159687904-sr-designer-design-development-toys-hardlines",
+      "posted_at": "2026-11-04T17:22:24.562Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-04T20:19:04+00:00",
+      "last_seen_at": "2026-11-04T20:19:04+00:00"
+    },
+    "744000159689357": {
+      "title": "Assistant, Talent & Culture ",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159689357-assistant-talent-culture",
+      "posted_at": "2026-11-04T17:15:29.991Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-04T20:19:04+00:00",
+      "last_seen_at": "2026-11-04T20:19:04+00:00"
+    },
+    "744000159662349": {
+      "title": "Senior Financial Analyst",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159662349-senior-financial-analyst",
+      "posted_at": "2026-11-04T15:21:05.565Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-04T20:19:04+00:00",
+      "last_seen_at": "2026-11-04T20:19:04+00:00"
+    },
+    "744000159654619": {
+      "title": "Manager, Business Affairs",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159654619-manager-business-affairs",
+      "posted_at": "2026-11-04T14:55:21.305Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-04T20:19:04+00:00",
+      "last_seen_at": "2026-11-04T20:19:04+00:00"
     }
   },
   "source_updated_at_by_id": {}

@@ -181,6 +181,7 @@
     "34953",
     "34995",
     "35126",
+    "35211",
     "35303"
   ],
   "candidate_catalog": {
@@ -248,7 +249,7 @@
       "category": "integration"
     }
   },
-  "last_successful_scan_at": "2026-11-04T01:57:30+00:00",
+  "last_successful_scan_at": "2026-11-04T20:19:04+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "34699": {
@@ -970,6 +971,20 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-03T19:59:39+00:00",
       "last_seen_at": "2026-11-03T19:59:39+00:00"
+    },
+    "35211": {
+      "title": "Senior Software Engineer, Supply Chain",
+      "location": "Belgrade, Serbia",
+      "url": "https://careers.rivian.com/careers-home/jobs/35211",
+      "posted_at": "2026-11-04T09:45:00+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-04T20:19:04+00:00",
+      "last_seen_at": "2026-11-04T20:19:04+00:00"
     }
   },
   "source_updated_at_by_id": {}

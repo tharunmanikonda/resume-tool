@@ -1354,6 +1354,7 @@
     "2027090",
     "2027109",
     "2027137",
+    "2027138",
     "2027145",
     "2027160",
     "2027162",
@@ -1405,6 +1406,7 @@
     "2027896",
     "2027922",
     "2027934",
+    "2027962",
     "2028001",
     "2028009",
     "2028011",
@@ -1424,6 +1426,7 @@
     "2028428",
     "2028502",
     "2028546",
+    "2028560",
     "2028596",
     "2028609",
     "2028669",
@@ -1460,7 +1463,7 @@
     "2030081",
     "2030087"
   ],
-  "last_successful_scan_at": "2026-11-04T01:57:30+00:00",
+  "last_successful_scan_at": "2026-11-04T20:19:04+00:00",
   "candidate_catalog": {
     "2024998": {
       "title": "AI Security Engineer",
@@ -3513,6 +3516,50 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-04T01:57:30+00:00",
       "last_seen_at": "2026-11-04T01:57:30+00:00"
+    },
+    "2027138": {
+      "title": "Software Engineering Technical Leader - Embedded Systems",
+      "location": "Milpitas, California, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Milpitas-California-US/Software-Engineering-Technical-Leader---Embedded-Systems_2027138",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "embedded_or_hardware"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-04T20:19:04+00:00",
+      "last_seen_at": "2026-11-04T20:19:04+00:00"
+    },
+    "2027962": {
+      "title": "Industrial Designer",
+      "location": "Lysaker, Norway",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Lysaker-Norway/Industrial-Designer_2027962-1",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-04T20:19:04+00:00",
+      "last_seen_at": "2026-11-04T20:19:04+00:00"
+    },
+    "2028560": {
+      "title": "Audio Software Developer",
+      "location": "Lysaker, Norway",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Lysaker-Norway/Audio-Software-Developer_2028560",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-04T20:19:04+00:00",
+      "last_seen_at": "2026-11-04T20:19:04+00:00"
     }
   },
   "source_updated_at_by_id": {}

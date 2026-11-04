@@ -359,6 +359,7 @@
     "7533010433386809607",
     "7533083363810330887",
     "7533124079211399432",
+    "7533145462880127240",
     "7533150108277623048",
     "7533507587720726791",
     "7533508124829878546",
@@ -485,6 +486,7 @@
     "7594678245917428021",
     "7594767288634755381",
     "7594906381292488965",
+    "7594911490849753349",
     "7595412683009394997",
     "7595416370108533045",
     "7595445244009138485",
@@ -879,6 +881,7 @@
     "7662179455012030725",
     "7662216018282023173",
     "7662343067223263541",
+    "7662390983678822661",
     "7662407455385913605",
     "7662446436931782965",
     "7662452236483643701",
@@ -1742,6 +1745,7 @@
     "7688653987118106933",
     "7688734876254751029",
     "7688738955324016901",
+    "7688796095538825525",
     "7688979151089961221",
     "7688991951765883141",
     "7689010193607051525",
@@ -1970,7 +1974,8 @@
     "7703632666805160197",
     "7703876741467998469",
     "7703899923206867205",
-    "7704007084339595525"
+    "7704007084339595525",
+    "7704011114551986485"
   ],
   "candidate_catalog": {
     "7680987768009754885": {
@@ -28604,8 +28609,83 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-04T01:57:30+00:00",
       "last_seen_at": "2026-11-04T01:57:30+00:00"
+    },
+    "7704011114551986485": {
+      "title": "Talent Acquisition Partner - Global Monetization Product and Technology",
+      "location": "London, England, United Kingdom",
+      "url": "https://lifeattiktok.com/search/7704011114551986485",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-04T20:19:04+00:00",
+      "last_seen_at": "2026-11-04T20:19:04+00:00"
+    },
+    "7533145462880127240": {
+      "title": "Product Designer Project Intern (TikTok-Design-UX) - 2026 Start - Project Intern (TikTok Design) - 2027 Start",
+      "location": "San Jose, California, United States of America",
+      "url": "https://lifeattiktok.com/search/7533145462880127240",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-04T20:19:04+00:00",
+      "last_seen_at": "2026-11-04T20:19:04+00:00"
+    },
+    "7662390983678822661": {
+      "title": "Client Solutions Manager - Tourism & Events and Export Services - Global Business Solutions - Dubai",
+      "location": "Dubai, United Arab Emirates",
+      "url": "https://lifeattiktok.com/search/7662390983678822661",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-04T20:19:04+00:00",
+      "last_seen_at": "2026-11-04T20:19:04+00:00"
+    },
+    "7688796095538825525": {
+      "title": "TikTok Shop - Category Governance Solutions & GTM Manager",
+      "location": "Seattle, Washington, United States of America",
+      "url": "https://lifeattiktok.com/search/7688796095538825525",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-04T20:19:04+00:00",
+      "last_seen_at": "2026-11-04T20:19:04+00:00"
+    },
+    "7594911490849753349": {
+      "title": "TikTok Shop - Moderation Partner Operation Manager",
+      "location": "London, England, United Kingdom",
+      "url": "https://lifeattiktok.com/search/7594911490849753349",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-04T20:19:04+00:00",
+      "last_seen_at": "2026-11-04T20:19:04+00:00"
     }
   },
-  "last_successful_scan_at": "2026-11-04T01:57:30+00:00",
+  "last_successful_scan_at": "2026-11-04T20:19:04+00:00",
   "source_updated_at_by_id": {}
 }

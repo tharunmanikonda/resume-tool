@@ -41,6 +41,7 @@
     "JR9330",
     "JR9331",
     "JR9333",
+    "JR9344",
     "JR9354",
     "JR9361",
     "JR9363",
@@ -60,7 +61,8 @@
     "JR9400",
     "JR9409",
     "JR9418",
-    "JR9433"
+    "JR9433",
+    "JR9459"
   ],
   "candidate_catalog": {
     "JR8008": {
@@ -91,7 +93,7 @@
       "category": "security"
     }
   },
-  "last_successful_scan_at": "2026-11-04T01:57:30+00:00",
+  "last_successful_scan_at": "2026-11-04T20:19:04+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "JR9003": {
@@ -810,6 +812,34 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-02T22:12:15+00:00",
       "last_seen_at": "2026-11-02T22:12:15+00:00"
+    },
+    "JR9459": {
+      "title": "New Business Account Executive - Automotive CRM",
+      "location": "6 Locations",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Columbus-OH-USA/New-Business-Account-Executive---Automotive-CRM_JR9459",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-04T20:19:04+00:00",
+      "last_seen_at": "2026-11-04T20:19:04+00:00"
+    },
+    "JR9344": {
+      "title": "Lead Product Mgr",
+      "location": "Austin, TX, USA",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Austin-TX-USA/Lead-Product-Mgr_JR9344-1",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-04T20:19:04+00:00",
+      "last_seen_at": "2026-11-04T20:19:04+00:00"
     }
   },
   "source_updated_at_by_id": {}
