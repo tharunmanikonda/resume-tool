@@ -1,13 +1,12 @@
 {
-  "success": true,
-  "scanned_at": "2026-11-05T02:01:04+00:00",
+  "success": false,
+  "scanned_at": "2026-11-05T20:29:48+00:00",
   "monitor_count": 14,
   "successful_monitors": [
     "cbre",
     "cdk",
     "cisco",
     "crunchyroll",
-    "ebay",
     "intepros",
     "iqvia",
     "nbcu",
@@ -18,93 +17,40 @@
     "tiktok",
     "waymo"
   ],
-  "failed_monitors": [],
-  "candidate_count": 3,
-  "needs_ai_review_count": 1,
+  "failed_monitors": [
+    "ebay"
+  ],
+  "candidate_count": 1,
+  "needs_ai_review_count": 0,
   "candidates": [
     {
-      "monitor": "cisco",
-      "job_id": "2018124",
-      "title": "Cloud Engineer II (Full Time) - United States",
-      "location": "Milpitas, California, US",
-      "posted_at": "2026-11-04",
-      "url": "https://cisco.wd5.myworkdayjobs.com/job/Milpitas-California-US/Cloud-Engineer_2018124",
-      "priority": "high",
-      "matching_requirements": [
-        "target_title:platform",
-        "profile_signal:python:+2",
-        "profile_signal:java:+1",
-        "profile_signal:javascript_react:+1",
-        "profile_signal:backend_apis:+2",
-        "profile_signal:distributed_systems:+2",
-        "profile_signal:cloud_containers:+2",
-        "profile_signal:observability:+1",
-        "profile_signal:reliability_telemetry:+3",
-        "profile_signal:qa_automation:+2"
-      ],
-      "material_gaps": []
-    },
-    {
       "monitor": "nbcu",
-      "job_id": "744000159723020",
-      "title": "Jr. Software Engineer",
-      "location": "Universal City, CALIFORNIA, United States",
-      "posted_at": "2026-11-04T20:40:26.335Z",
-      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159723020-jr-software-engineer",
+      "job_id": "744000159958519",
+      "title": "Software Engineer, VOD",
+      "location": "New York, NEW YORK, United States",
+      "posted_at": "2026-11-05T19:43:14.152Z",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159958519-software-engineer-vod",
       "priority": "high",
       "matching_requirements": [
         "target_title:software",
         "profile_signal:python:+2",
-        "profile_signal:javascript_react:+1",
         "profile_signal:backend_apis:+2",
-        "profile_signal:databases:+1",
+        "profile_signal:data_streaming:+2",
         "profile_signal:cloud_containers:+2",
         "profile_signal:observability:+1",
         "profile_signal:agentic_tooling:+3"
       ],
       "material_gaps": []
-    },
-    {
-      "monitor": "rivian",
-      "job_id": "35302",
-      "title": "Sr. Systems Integration Engineer, Automated Drive",
-      "location": "Palo Alto, California",
-      "posted_at": "2026-11-04T21:39:00+0000",
-      "url": "https://careers.rivian.com/careers-home/jobs/35302",
-      "priority": "medium",
-      "matching_requirements": [
-        "target_title:integration",
-        "profile_signal:python:+2",
-        "profile_signal:cloud_containers:+2",
-        "profile_signal:qa_automation:+2"
-      ],
-      "material_gaps": []
     }
   ],
-  "needs_ai_review": [
-    {
-      "monitor": "rivian",
-      "job_id": "35301",
-      "title": "Sr. Systems Integration Engineer, Automated Drive",
-      "location": "Palo Alto, California",
-      "posted_at": "2026-11-04T21:39:00+0000",
-      "url": "https://careers.rivian.com/careers-home/jobs/35301",
-      "priority": "low",
-      "matching_requirements": [
-        "target_title:integration",
-        "profile_signal:cloud_containers:+2",
-        "profile_signal:qa_automation:+2"
-      ],
-      "material_gaps": []
-    }
-  ],
+  "needs_ai_review": [],
   "results": [
     {
       "monitor": "cbre",
       "success": true,
-      "scanned_at": "2026-11-05T02:01:04+00:00",
-      "fetched": 853,
-      "unseen": 24,
+      "scanned_at": "2026-11-05T20:29:48+00:00",
+      "fetched": 903,
+      "unseen": 44,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -113,9 +59,9 @@
     {
       "monitor": "cdk",
       "success": true,
-      "scanned_at": "2026-11-05T02:01:04+00:00",
+      "scanned_at": "2026-11-05T20:29:48+00:00",
       "fetched": 41,
-      "unseen": 0,
+      "unseen": 2,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -124,41 +70,19 @@
     {
       "monitor": "cisco",
       "success": true,
-      "scanned_at": "2026-11-05T02:01:04+00:00",
+      "scanned_at": "2026-11-05T20:29:48+00:00",
       "fetched": 80,
-      "unseen": 1,
+      "unseen": 4,
       "state_updated": true,
-      "candidates": [
-        {
-          "job_id": "2018124",
-          "title": "Cloud Engineer II (Full Time) - United States",
-          "location": "Milpitas, California, US",
-          "posted_at": "2026-11-04",
-          "url": "https://cisco.wd5.myworkdayjobs.com/job/Milpitas-California-US/Cloud-Engineer_2018124",
-          "priority": "high",
-          "matching_requirements": [
-            "target_title:platform",
-            "profile_signal:python:+2",
-            "profile_signal:java:+1",
-            "profile_signal:javascript_react:+1",
-            "profile_signal:backend_apis:+2",
-            "profile_signal:distributed_systems:+2",
-            "profile_signal:cloud_containers:+2",
-            "profile_signal:observability:+1",
-            "profile_signal:reliability_telemetry:+3",
-            "profile_signal:qa_automation:+2"
-          ],
-          "material_gaps": []
-        }
-      ],
+      "candidates": [],
       "needs_ai_review": [],
       "errors": []
     },
     {
       "monitor": "crunchyroll",
       "success": true,
-      "scanned_at": "2026-11-05T02:01:04+00:00",
-      "fetched": 101,
+      "scanned_at": "2026-11-05T20:29:48+00:00",
+      "fetched": 104,
       "unseen": 2,
       "state_updated": true,
       "candidates": [],
@@ -167,21 +91,25 @@
     },
     {
       "monitor": "ebay",
-      "success": true,
-      "scanned_at": "2026-11-05T02:01:04+00:00",
-      "fetched": 180,
-      "unseen": 2,
-      "state_updated": true,
+      "success": false,
+      "scanned_at": "2026-11-05T20:29:48+00:00",
+      "fetched": 0,
+      "unseen": 0,
+      "state_updated": false,
       "candidates": [],
       "needs_ai_review": [],
-      "errors": []
+      "errors": [
+        {
+          "error": "Command '['node', '/home/runner/work/resume-tool/resume-tool/ops/company_jobs_fetch.mjs', 'ebay', 'list']' timed out after 300 seconds"
+        }
+      ]
     },
     {
       "monitor": "intepros",
       "success": true,
-      "scanned_at": "2026-11-05T02:01:04+00:00",
+      "scanned_at": "2026-11-05T20:29:48+00:00",
       "fetched": 30,
-      "unseen": 1,
+      "unseen": 3,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -190,9 +118,9 @@
     {
       "monitor": "iqvia",
       "success": true,
-      "scanned_at": "2026-11-05T02:01:04+00:00",
-      "fetched": 428,
-      "unseen": 2,
+      "scanned_at": "2026-11-05T20:29:48+00:00",
+      "fetched": 935,
+      "unseen": 34,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -201,24 +129,23 @@
     {
       "monitor": "nbcu",
       "success": true,
-      "scanned_at": "2026-11-05T02:01:04+00:00",
+      "scanned_at": "2026-11-05T20:29:48+00:00",
       "fetched": 294,
-      "unseen": 9,
+      "unseen": 12,
       "state_updated": true,
       "candidates": [
         {
-          "job_id": "744000159723020",
-          "title": "Jr. Software Engineer",
-          "location": "Universal City, CALIFORNIA, United States",
-          "posted_at": "2026-11-04T20:40:26.335Z",
-          "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159723020-jr-software-engineer",
+          "job_id": "744000159958519",
+          "title": "Software Engineer, VOD",
+          "location": "New York, NEW YORK, United States",
+          "posted_at": "2026-11-05T19:43:14.152Z",
+          "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159958519-software-engineer-vod",
           "priority": "high",
           "matching_requirements": [
             "target_title:software",
             "profile_signal:python:+2",
-            "profile_signal:javascript_react:+1",
             "profile_signal:backend_apis:+2",
-            "profile_signal:databases:+1",
+            "profile_signal:data_streaming:+2",
             "profile_signal:cloud_containers:+2",
             "profile_signal:observability:+1",
             "profile_signal:agentic_tooling:+3"
@@ -232,9 +159,9 @@
     {
       "monitor": "nvidia",
       "success": true,
-      "scanned_at": "2026-11-05T02:01:04+00:00",
+      "scanned_at": "2026-11-05T20:29:48+00:00",
       "fetched": 120,
-      "unseen": 2,
+      "unseen": 4,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -243,7 +170,7 @@
     {
       "monitor": "occ",
       "success": true,
-      "scanned_at": "2026-11-05T02:01:04+00:00",
+      "scanned_at": "2026-11-05T20:29:48+00:00",
       "fetched": 60,
       "unseen": 0,
       "state_updated": true,
@@ -254,7 +181,7 @@
     {
       "monitor": "ocient",
       "success": true,
-      "scanned_at": "2026-11-05T02:01:04+00:00",
+      "scanned_at": "2026-11-05T20:29:48+00:00",
       "fetched": 14,
       "unseen": 0,
       "state_updated": true,
@@ -265,51 +192,20 @@
     {
       "monitor": "rivian",
       "success": true,
-      "scanned_at": "2026-11-05T02:01:04+00:00",
-      "fetched": 40,
-      "unseen": 2,
+      "scanned_at": "2026-11-05T20:29:48+00:00",
+      "fetched": 30,
+      "unseen": 0,
       "state_updated": true,
-      "candidates": [
-        {
-          "job_id": "35302",
-          "title": "Sr. Systems Integration Engineer, Automated Drive",
-          "location": "Palo Alto, California",
-          "posted_at": "2026-11-04T21:39:00+0000",
-          "url": "https://careers.rivian.com/careers-home/jobs/35302",
-          "priority": "medium",
-          "matching_requirements": [
-            "target_title:integration",
-            "profile_signal:python:+2",
-            "profile_signal:cloud_containers:+2",
-            "profile_signal:qa_automation:+2"
-          ],
-          "material_gaps": []
-        }
-      ],
-      "needs_ai_review": [
-        {
-          "job_id": "35301",
-          "title": "Sr. Systems Integration Engineer, Automated Drive",
-          "location": "Palo Alto, California",
-          "posted_at": "2026-11-04T21:39:00+0000",
-          "url": "https://careers.rivian.com/careers-home/jobs/35301",
-          "priority": "low",
-          "matching_requirements": [
-            "target_title:integration",
-            "profile_signal:cloud_containers:+2",
-            "profile_signal:qa_automation:+2"
-          ],
-          "material_gaps": []
-        }
-      ],
+      "candidates": [],
+      "needs_ai_review": [],
       "errors": []
     },
     {
       "monitor": "tiktok",
       "success": true,
-      "scanned_at": "2026-11-05T02:01:04+00:00",
-      "fetched": 1885,
-      "unseen": 0,
+      "scanned_at": "2026-11-05T20:29:48+00:00",
+      "fetched": 1872,
+      "unseen": 7,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -318,9 +214,9 @@
     {
       "monitor": "waymo",
       "success": true,
-      "scanned_at": "2026-11-05T02:01:04+00:00",
-      "fetched": 169,
-      "unseen": 2,
+      "scanned_at": "2026-11-05T20:29:48+00:00",
+      "fetched": 167,
+      "unseen": 1,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],

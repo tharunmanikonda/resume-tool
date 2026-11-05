@@ -1383,6 +1383,7 @@
     "2027563",
     "2027581",
     "2027583",
+    "2027589",
     "2027595",
     "2027610",
     "2027611",
@@ -1423,6 +1424,7 @@
     "2028211",
     "2028217",
     "2028364",
+    "2028374",
     "2028387",
     "2028428",
     "2028502",
@@ -1462,9 +1464,11 @@
     "2029917",
     "2030022",
     "2030081",
-    "2030087"
+    "2030087",
+    "2030105",
+    "2030301"
   ],
-  "last_successful_scan_at": "2026-11-05T02:01:04+00:00",
+  "last_successful_scan_at": "2026-11-05T20:29:48+00:00",
   "candidate_catalog": {
     "2024998": {
       "title": "AI Security Engineer",
@@ -3570,6 +3574,65 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-04T20:19:04+00:00",
       "last_seen_at": "2026-11-04T20:19:04+00:00"
+    },
+    "2027589": {
+      "title": "Senior FPGA Engineer",
+      "location": "San Jose, California, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/Senior-FPGA-Engineer_2027589",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "embedded_or_hardware"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-05T20:29:48+00:00",
+      "last_seen_at": "2026-11-05T20:29:48+00:00"
+    },
+    "2028374": {
+      "title": "Product Designer - Collaboration Devices & Workplaces",
+      "location": "Lysaker, Norway",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Lysaker-Norway/Product-Designer---Collaboration-Devices---Workplaces_2028374",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-05T20:29:48+00:00",
+      "last_seen_at": "2026-11-05T20:29:48+00:00"
+    },
+    "2030301": {
+      "title": "Technical Operations Manager",
+      "location": "Hanoi, Vietnam",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Hanoi-Vietnam/Technical-Operations-Manager_2030301",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-05T20:29:48+00:00",
+      "last_seen_at": "2026-11-05T20:29:48+00:00"
+    },
+    "2030105": {
+      "title": "Lead Performance & AI Tools Engineer, Hybrid",
+      "location": "Milpitas, California, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Milpitas-California-US/Lead-Performance---AI-Tools-Engineer--Hybrid_2030105",
+      "posted_at": "2026-11-05",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-05T20:29:48+00:00",
+      "last_seen_at": "2026-11-05T20:29:48+00:00"
     }
   },
   "source_updated_at_by_id": {}

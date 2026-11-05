@@ -24,6 +24,7 @@
     "JR9235",
     "JR9241",
     "JR9247",
+    "JR9257",
     "JR9261",
     "JR9275",
     "JR9283",
@@ -59,6 +60,7 @@
     "JR9392",
     "JR9395",
     "JR9400",
+    "JR9403",
     "JR9409",
     "JR9418",
     "JR9433",
@@ -93,7 +95,7 @@
       "category": "security"
     }
   },
-  "last_successful_scan_at": "2026-11-05T02:01:04+00:00",
+  "last_successful_scan_at": "2026-11-05T20:29:48+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "JR9003": {
@@ -840,6 +842,36 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-04T20:19:04+00:00",
       "last_seen_at": "2026-11-04T20:19:04+00:00"
+    },
+    "JR9257": {
+      "title": "Staff Technology Program Manager",
+      "location": "Austin, TX, USA",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Austin-TX-USA/Staff-Technology-Program-Manager_JR9257-1",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-05T20:29:48+00:00",
+      "last_seen_at": "2026-11-05T20:29:48+00:00"
+    },
+    "JR9403": {
+      "title": "Associate Field Network Engineer",
+      "location": "Sacramento, CA, USA",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Sacramento-CA-USA/Associate-Field-Network-Engineer_JR9403",
+      "posted_at": "2026-11-05",
+      "stage": "detail",
+      "blockers": [
+        "non_software_engineering_role"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-05T20:29:48+00:00",
+      "last_seen_at": "2026-11-05T20:29:48+00:00"
     }
   },
   "source_updated_at_by_id": {}

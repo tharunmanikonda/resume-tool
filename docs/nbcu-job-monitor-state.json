@@ -586,7 +586,19 @@
     "744000159734169",
     "744000159737341",
     "744000159737779",
-    "744000159740609"
+    "744000159740609",
+    "744000159910732",
+    "744000159929906",
+    "744000159930360",
+    "744000159932498",
+    "744000159947409",
+    "744000159947792",
+    "744000159947900",
+    "744000159949889",
+    "744000159950049",
+    "744000159950181",
+    "744000159955329",
+    "744000159958519"
   ],
   "candidate_catalog": {
     "744000151898289": {
@@ -660,9 +672,18 @@
       "first_seen_at": "2026-11-05T02:01:04+00:00",
       "priority": "high",
       "category": "software"
+    },
+    "744000159958519": {
+      "title": "Software Engineer, VOD",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159958519-software-engineer-vod",
+      "posted_at": "2026-11-05T19:43:14.152Z",
+      "first_seen_at": "2026-11-05T20:29:48+00:00",
+      "priority": "high",
+      "category": "software"
     }
   },
-  "last_successful_scan_at": "2026-11-05T02:01:04+00:00",
+  "last_successful_scan_at": "2026-11-05T20:29:48+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "744000156079569": {
@@ -7717,6 +7738,163 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-05T02:01:04+00:00",
       "last_seen_at": "2026-11-05T02:01:04+00:00"
+    },
+    "744000159955329": {
+      "title": "Sr Designer, Visual Design - Global UXUI Experience Design",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159955329-sr-designer-visual-design-global-uxui-experience-design",
+      "posted_at": "2026-11-05T19:20:24.428Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-05T20:29:48+00:00",
+      "last_seen_at": "2026-11-05T20:29:48+00:00"
+    },
+    "744000159950181": {
+      "title": "NBC Sports Bay Area & California - Marketing Intern - Summer 2027",
+      "location": "San Francisco, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159950181-nbc-sports-bay-area-california-marketing-intern-summer-2027",
+      "posted_at": "2026-11-05T18:39:49.386Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-05T20:29:48+00:00",
+      "last_seen_at": "2026-11-05T20:29:48+00:00"
+    },
+    "744000159950049": {
+      "title": "NBC Sports Bay Area & California - Finance Intern - Summer 2027",
+      "location": "San Francisco, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159950049-nbc-sports-bay-area-california-finance-intern-summer-2027",
+      "posted_at": "2026-11-05T18:38:59.434Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-05T20:29:48+00:00",
+      "last_seen_at": "2026-11-05T20:29:48+00:00"
+    },
+    "744000159949889": {
+      "title": "NBC Sports Bay Area & California - Sales & Digital Media Intern - Summer 2027",
+      "location": "San Francisco, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159949889-nbc-sports-bay-area-california-sales-digital-media-intern-summer-2027",
+      "posted_at": "2026-11-05T18:38:05.059Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-05T20:29:48+00:00",
+      "last_seen_at": "2026-11-05T20:29:48+00:00"
+    },
+    "744000159947792": {
+      "title": "NBC Sports Bay Area & California - Programming Intern - Summer 2027",
+      "location": "San Francisco, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159947792-nbc-sports-bay-area-california-programming-intern-summer-2027",
+      "posted_at": "2026-11-05T18:37:15.882Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-05T20:29:48+00:00",
+      "last_seen_at": "2026-11-05T20:29:48+00:00"
+    },
+    "744000159947900": {
+      "title": "NBC Sports Bay Area & California - Production Assistant Intern - Summer 2027",
+      "location": "San Francisco, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159947900-nbc-sports-bay-area-california-production-assistant-intern-summer-2027",
+      "posted_at": "2026-11-05T18:35:34.573Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-05T20:29:48+00:00",
+      "last_seen_at": "2026-11-05T20:29:48+00:00"
+    },
+    "744000159947409": {
+      "title": "Manager, Product",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159947409-manager-product",
+      "posted_at": "2026-11-05T18:24:18.701Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-05T20:29:48+00:00",
+      "last_seen_at": "2026-11-05T20:29:48+00:00"
+    },
+    "744000159929906": {
+      "title": "Generalist, Human Resources - Core Services",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159929906-generalist-human-resources-core-services",
+      "posted_at": "2026-11-05T17:04:42.959Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-05T20:29:48+00:00",
+      "last_seen_at": "2026-11-05T20:29:48+00:00"
+    },
+    "744000159932498": {
+      "title": "Manager, Partner Operations",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159932498-manager-partner-operations",
+      "posted_at": "2026-11-05T17:00:22.229Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-05T20:29:48+00:00",
+      "last_seen_at": "2026-11-05T20:29:48+00:00"
+    },
+    "744000159930360": {
+      "title": "Senior Executive Producer",
+      "location": "New York, NY, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159930360-senior-executive-producer",
+      "posted_at": "2026-11-05T16:56:44.318Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-05T20:29:48+00:00",
+      "last_seen_at": "2026-11-05T20:29:48+00:00"
+    },
+    "744000159910732": {
+      "title": "Manager, Finance",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159910732-manager-finance",
+      "posted_at": "2026-11-05T15:56:09.416Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-05T20:29:48+00:00",
+      "last_seen_at": "2026-11-05T20:29:48+00:00"
     }
   },
   "source_updated_at_by_id": {}

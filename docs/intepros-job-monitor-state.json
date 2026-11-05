@@ -222,9 +222,12 @@
     "a0Hcw00000B8msLEAR",
     "a0Hcw00000BEdeHEAT",
     "a0Hcw00000BJMjGEAX",
-    "a0Hcw00000BLqRtEAL"
+    "a0Hcw00000BLqRtEAL",
+    "a0Hcw00000BMeenEAD",
+    "a0Hcw00000BP3xGEAT",
+    "a0Hcw00000BPZ2fEAH"
   ],
-  "last_successful_scan_at": "2026-11-05T02:01:04+00:00",
+  "last_successful_scan_at": "2026-11-05T20:29:48+00:00",
   "candidate_catalog": {
     "a0Hcw000006tdYLEAY": {
       "title": "Operational Excellence Engineer",
@@ -1221,6 +1224,48 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-05T02:01:04+00:00",
       "last_seen_at": "2026-11-05T02:01:04+00:00"
+    },
+    "a0Hcw00000BP3xGEAT": {
+      "title": "Epic Security Administrator (REMOTE)",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000BP3xGEAT/epic-security-administrator-remote",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-05T20:29:48+00:00",
+      "last_seen_at": "2026-11-05T20:29:48+00:00"
+    },
+    "a0Hcw00000BPZ2fEAH": {
+      "title": "Tier 1 HR Advisor",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000BPZ2fEAH/tier-1-hr-advisor",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-05T20:29:48+00:00",
+      "last_seen_at": "2026-11-05T20:29:48+00:00"
+    },
+    "a0Hcw00000BMeenEAD": {
+      "title": "Python Application Developer",
+      "location": "New York, NY",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000BMeenEAD/python-application-developer",
+      "posted_at": "Nov 05, 2026",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "application",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-05T20:29:48+00:00",
+      "last_seen_at": "2026-11-05T20:29:48+00:00"
     }
   },
   "source_updated_at_by_id": {}

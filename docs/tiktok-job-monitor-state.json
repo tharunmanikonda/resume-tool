@@ -1441,6 +1441,7 @@
     "7673807358744627509",
     "7673813569277479173",
     "7673827905012926773",
+    "7673838996238502197",
     "7673841367588882693",
     "7673844519815399685",
     "7673873678608468229",
@@ -1975,7 +1976,13 @@
     "7703876741467998469",
     "7703899923206867205",
     "7704007084339595525",
-    "7704011114551986485"
+    "7704011114551986485",
+    "7704168719376173365",
+    "7704211967934449973",
+    "7704562889684060469",
+    "7704565954109294901",
+    "7704619723464411445",
+    "7704620574878140725"
   ],
   "candidate_catalog": {
     "7680987768009754885": {
@@ -28684,8 +28691,116 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-04T20:19:04+00:00",
       "last_seen_at": "2026-11-04T20:19:04+00:00"
+    },
+    "7704168719376173365": {
+      "title": "Global Quality Operations AI Solutions Specialist",
+      "location": "Singapore",
+      "url": "https://lifeattiktok.com/search/7704168719376173365",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-05T20:29:48+00:00",
+      "last_seen_at": "2026-11-05T20:29:48+00:00"
+    },
+    "7704211967934449973": {
+      "title": "Data Product Project Intern (TikTok Platform Responsibility) - 2026 Start",
+      "location": "Singapore",
+      "url": "https://lifeattiktok.com/search/7704211967934449973",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-05T20:29:48+00:00",
+      "last_seen_at": "2026-11-05T20:29:48+00:00"
+    },
+    "7673838996238502197": {
+      "title": "Client Solutions - Intern (GBS) - 2027 Start",
+      "location": "Dubai, United Arab Emirates",
+      "url": "https://lifeattiktok.com/search/7673838996238502197",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-05T20:29:48+00:00",
+      "last_seen_at": "2026-11-05T20:29:48+00:00"
+    },
+    "7704620574878140725": {
+      "title": "Brand Partnership Manager (Micro Series, Mandarin Speaking), Singapore - GBS",
+      "location": "Singapore",
+      "url": "https://lifeattiktok.com/search/7704620574878140725",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-05T20:29:48+00:00",
+      "last_seen_at": "2026-11-05T20:29:48+00:00"
+    },
+    "7704619723464411445": {
+      "title": "Brand Partnership Manager (Micro Series, Mandarin Speaking), Thailand - GBS",
+      "location": "Bangkok, Thailand",
+      "url": "https://lifeattiktok.com/search/7704619723464411445",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-05T20:29:48+00:00",
+      "last_seen_at": "2026-11-05T20:29:48+00:00"
+    },
+    "7704565954109294901": {
+      "title": "Agency Partnership Manager (Cross Border, Mandarin Speaking), Singapore - GBS",
+      "location": "Singapore",
+      "url": "https://lifeattiktok.com/search/7704565954109294901",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-05T20:29:48+00:00",
+      "last_seen_at": "2026-11-05T20:29:48+00:00"
+    },
+    "7704562889684060469": {
+      "title": "Agency Partnership Manager (Cross Border, Mandarin Speaking), Thailand - GBS",
+      "location": "Bangkok, Thailand",
+      "url": "https://lifeattiktok.com/search/7704562889684060469",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-05T20:29:48+00:00",
+      "last_seen_at": "2026-11-05T20:29:48+00:00"
     }
   },
-  "last_successful_scan_at": "2026-11-05T02:01:04+00:00",
+  "last_successful_scan_at": "2026-11-05T20:29:48+00:00",
   "source_updated_at_by_id": {}
 }

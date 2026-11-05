@@ -1097,6 +1097,7 @@
     "JR2028241",
     "JR2028264",
     "JR2028279",
+    "JR2028311",
     "JR2028321",
     "JR2028324",
     "JR2028332",
@@ -1188,9 +1189,12 @@
     "JR2029227",
     "JR2029239",
     "JR2029313",
+    "JR2029366",
     "JR2029400",
     "JR2029426",
-    "JR2029432"
+    "JR2029432",
+    "JR2029460",
+    "JR2029533"
   ],
   "candidate_catalog": {
     "JR2018245": {
@@ -1527,7 +1531,7 @@
       "category": "technical_review"
     }
   },
-  "last_successful_scan_at": "2026-11-05T02:01:04+00:00",
+  "last_successful_scan_at": "2026-11-05T20:29:48+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "JR2014880": {
@@ -16330,6 +16334,65 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-05T02:01:04+00:00",
       "last_seen_at": "2026-11-05T02:01:04+00:00"
+    },
+    "JR2029366": {
+      "title": "Senior Software Engineer - Autonomous Vehicles",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Software-Engineer---Autonomous-Vehicles_JR2029366",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "specialized_low_level"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-05T20:29:48+00:00",
+      "last_seen_at": "2026-11-05T20:29:48+00:00"
+    },
+    "JR2028311": {
+      "title": "Senior Networking Software Architect",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Networking-Software-Architect_JR2028311",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-05T20:29:48+00:00",
+      "last_seen_at": "2026-11-05T20:29:48+00:00"
+    },
+    "JR2029460": {
+      "title": "Senior Engineering Manager, Object Storage - DGX Cloud",
+      "location": "4 Locations",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CO-Remote/Senior-Engineering-Manager--Object-Storage---DGX-Cloud_JR2029460",
+      "posted_at": "Posted Yesterday",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-05T20:29:48+00:00",
+      "last_seen_at": "2026-11-05T20:29:48+00:00"
+    },
+    "JR2029533": {
+      "title": "Senior Deployment Manager \u2014 Datacenter and Network Infrastructure",
+      "location": "4 Locations",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Deployment-Manager---Datacenter-and-Network-Infrastructure_JR2029533",
+      "posted_at": "Posted Yesterday",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-05T20:29:48+00:00",
+      "last_seen_at": "2026-11-05T20:29:48+00:00"
     }
   },
   "source_updated_at_by_id": {}
