@@ -671,6 +671,7 @@
     "JR2022806",
     "JR2022830",
     "JR2022834",
+    "JR2022836",
     "JR2022837",
     "JR2022838",
     "JR2022839",
@@ -1155,6 +1156,7 @@
     "JR2028868",
     "JR2028871",
     "JR2028878",
+    "JR2028887",
     "JR2028905",
     "JR2028913",
     "JR2028915",
@@ -1525,7 +1527,7 @@
       "category": "technical_review"
     }
   },
-  "last_successful_scan_at": "2026-11-04T20:19:04+00:00",
+  "last_successful_scan_at": "2026-11-05T02:01:04+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "JR2014880": {
@@ -16300,6 +16302,34 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-04T20:19:04+00:00",
       "last_seen_at": "2026-11-04T20:19:04+00:00"
+    },
+    "JR2028887": {
+      "title": "Firmware Engineer - GPU",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Firmware-Engineer---GPU_JR2028887-1",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "embedded_or_hardware"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-05T02:01:04+00:00",
+      "last_seen_at": "2026-11-05T02:01:04+00:00"
+    },
+    "JR2022836": {
+      "title": "Senior Security Engineer, Detection Engineering",
+      "location": "US, CA, Remote; US, TX, Remote; US, NY, Remote",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Remote/Senior-Security-Engineer--Detection-Engineering_JR2022836",
+      "posted_at": "2026-11-04",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "security",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-05T02:01:04+00:00",
+      "last_seen_at": "2026-11-05T02:01:04+00:00"
     }
   },
   "source_updated_at_by_id": {}

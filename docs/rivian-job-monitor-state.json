@@ -182,6 +182,8 @@
     "34995",
     "35126",
     "35211",
+    "35301",
+    "35302",
     "35303"
   ],
   "candidate_catalog": {
@@ -247,9 +249,27 @@
       "first_seen_at": "2026-11-03T19:59:39+00:00",
       "priority": "medium",
       "category": "integration"
+    },
+    "35302": {
+      "title": "Sr. Systems Integration Engineer, Automated Drive",
+      "location": "Palo Alto, California",
+      "url": "https://careers.rivian.com/careers-home/jobs/35302",
+      "posted_at": "2026-11-04T21:39:00+0000",
+      "first_seen_at": "2026-11-05T02:01:04+00:00",
+      "priority": "medium",
+      "category": "integration"
+    },
+    "35301": {
+      "title": "Sr. Systems Integration Engineer, Automated Drive",
+      "location": "Palo Alto, California",
+      "url": "https://careers.rivian.com/careers-home/jobs/35301",
+      "posted_at": "2026-11-04T21:39:00+0000",
+      "first_seen_at": "2026-11-05T02:01:04+00:00",
+      "priority": "low",
+      "category": "integration"
     }
   },
-  "last_successful_scan_at": "2026-11-04T20:19:04+00:00",
+  "last_successful_scan_at": "2026-11-05T02:01:04+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "34699": {

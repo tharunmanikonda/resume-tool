@@ -353,6 +353,7 @@
     "R0077155",
     "R0077160",
     "R0077166",
+    "R0077174",
     "R0077182",
     "R0077185",
     "R0077188",
@@ -374,6 +375,7 @@
     "R0077276",
     "R0077292",
     "R0077293",
+    "R0077302",
     "R0077304",
     "R0077306",
     "R0077317",
@@ -450,7 +452,7 @@
       "category": "technical_review"
     }
   },
-  "last_successful_scan_at": "2026-11-04T20:19:04+00:00",
+  "last_successful_scan_at": "2026-11-05T02:01:04+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "R0077145": {
@@ -5354,6 +5356,37 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-04T20:19:04+00:00",
       "last_seen_at": "2026-11-04T20:19:04+00:00"
+    },
+    "R0077302": {
+      "title": "Applied Researcher",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077302/Applied-Researcher",
+      "posted_at": "2026-11-04T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-05T02:01:04+00:00",
+      "last_seen_at": "2026-11-05T02:01:04+00:00"
+    },
+    "R0077174": {
+      "title": "Manager, Product Strategy & Operations",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077174/Manager-Product-Strategy-Operations",
+      "posted_at": "2026-11-04T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-05T02:01:04+00:00",
+      "last_seen_at": "2026-11-05T02:01:04+00:00"
     }
   },
   "source_updated_at_by_id": {}

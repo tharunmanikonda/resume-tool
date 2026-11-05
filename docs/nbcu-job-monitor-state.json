@@ -577,7 +577,16 @@
     "744000159696800",
     "744000159706969",
     "744000159712060",
-    "744000159718086"
+    "744000159718086",
+    "744000159723020",
+    "744000159723360",
+    "744000159723669",
+    "744000159725311",
+    "744000159733284",
+    "744000159734169",
+    "744000159737341",
+    "744000159737779",
+    "744000159740609"
   ],
   "candidate_catalog": {
     "744000151898289": {
@@ -642,9 +651,18 @@
       "first_seen_at": "2026-11-04T01:57:30+00:00",
       "priority": "medium",
       "category": "software"
+    },
+    "744000159723020": {
+      "title": "Jr. Software Engineer",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159723020-jr-software-engineer",
+      "posted_at": "2026-11-04T20:40:26.335Z",
+      "first_seen_at": "2026-11-05T02:01:04+00:00",
+      "priority": "high",
+      "category": "software"
     }
   },
-  "last_successful_scan_at": "2026-11-04T20:19:04+00:00",
+  "last_successful_scan_at": "2026-11-05T02:01:04+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "744000156079569": {
@@ -7583,6 +7601,122 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-04T20:19:04+00:00",
       "last_seen_at": "2026-11-04T20:19:04+00:00"
+    },
+    "744000159740609": {
+      "title": "Vice President, Sports Content Partnerships",
+      "location": "Miami, Florida, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159740609-vice-president-sports-content-partnerships",
+      "posted_at": "2026-11-04T23:15:16.623Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-05T02:01:04+00:00",
+      "last_seen_at": "2026-11-05T02:01:04+00:00"
+    },
+    "744000159737341": {
+      "title": "Manager, Talent & Culture",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159737341-manager-talent-culture",
+      "posted_at": "2026-11-04T22:41:44.647Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-05T02:01:04+00:00",
+      "last_seen_at": "2026-11-05T02:01:04+00:00"
+    },
+    "744000159737779": {
+      "title": "Coordinator, Multiplatform Planning",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159737779-coordinator-multiplatform-planning",
+      "posted_at": "2026-11-04T22:39:28.225Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-05T02:01:04+00:00",
+      "last_seen_at": "2026-11-05T02:01:04+00:00"
+    },
+    "744000159734169": {
+      "title": "Sr Manager Sourcing",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159734169-sr-manager-sourcing",
+      "posted_at": "2026-11-04T22:03:10.048Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-05T02:01:04+00:00",
+      "last_seen_at": "2026-11-05T02:01:04+00:00"
+    },
+    "744000159733284": {
+      "title": "Multimedia Journalist Telemundo T31 Orlando, FL",
+      "location": "Orlando, Florida, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159733284-multimedia-journalist-telemundo-t31-orlando-fl",
+      "posted_at": "2026-11-04T21:58:12.698Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-05T02:01:04+00:00",
+      "last_seen_at": "2026-11-05T02:01:04+00:00"
+    },
+    "744000159723669": {
+      "title": "Product Manager",
+      "location": "North Hollywood, CA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159723669-product-manager",
+      "posted_at": "2026-11-04T20:38:42.823Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-05T02:01:04+00:00",
+      "last_seen_at": "2026-11-05T02:01:04+00:00"
+    },
+    "744000159723360": {
+      "title": "Product Manager",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159723360-product-manager",
+      "posted_at": "2026-11-04T20:38:14.322Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-05T02:01:04+00:00",
+      "last_seen_at": "2026-11-05T02:01:04+00:00"
+    },
+    "744000159725311": {
+      "title": "Sr. Systems Engineer- Projects - NBC4 & T44",
+      "location": "Washington, District of Columbia, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159725311-sr-systems-engineer-projects-nbc4-t44",
+      "posted_at": "2026-11-04T20:52:04.627Z",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "systems_engineering",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-05T02:01:04+00:00",
+      "last_seen_at": "2026-11-05T02:01:04+00:00"
     }
   },
   "source_updated_at_by_id": {}
