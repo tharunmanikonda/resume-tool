@@ -348,6 +348,11 @@ function linkedinJobSearchUrl({ keywords, location = "United States", timeRange 
   return `https://www.linkedin.com/jobs/search/?${params.toString()}`;
 }
 
+function hiringCafeJobSearchUrl({ keywords, dateFetchedPastNDays = 2 }) {
+  const searchState = JSON.stringify({ jobTitleQuery: keywords, dateFetchedPastNDays });
+  return `https://hiringcafe.com/classic?${new URLSearchParams({ searchState }).toString()}`;
+}
+
 const LINKEDIN_JOB_SEARCHES = [
   {
     group: "Core SWE",
@@ -433,6 +438,15 @@ const LINKEDIN_TIME_WINDOWS = [
   { label: "24h", value: "r86400" },
   { label: "48h", value: "r172800" },
 ];
+
+const HIRINGCAFE_JOB_SEARCHES = LINKEDIN_JOB_SEARCHES.map((group) => ({
+  group: group.group,
+  items: group.items.map((item) => ({
+    label: item.label,
+    keywords: item.keywords,
+    url: hiringCafeJobSearchUrl({ keywords: item.keywords }),
+  })),
+}));
 
 const RESUME_MODES = [
   { value: "professional", label: "Professional" },
@@ -945,6 +959,22 @@ function JobSearchWorkspace({ onLinkedInJobSearch, onDiscoverySearch, onResource
                 <span><strong>{item.label}</strong><small>{item.keywords}</small></span>
                 <b>{selectedWindow.label}</b>
               </button>
+            ))}
+          </section>
+        ))}
+
+        <div className="search-intro discovery-intro">
+          <strong>HiringCafe fresh jobs</strong>
+          <p>HiringCafe's native Boolean job-title filter, grouped like LinkedIn and limited to Past 24 hours.</p>
+        </div>
+        {HIRINGCAFE_JOB_SEARCHES.map((group) => (
+          <section className="search-group hiringcafe-search-group" key={`hiringcafe-${group.group}`}>
+            <h4>{group.group} - HiringCafe</h4>
+            {group.items.map((item) => (
+              <a className="search-row" key={`hiringcafe-${group.group}-${item.keywords}`} href={item.url} target="_blank" rel="noopener noreferrer">
+                <span><strong>{item.label}</strong><small>{item.keywords}</small></span>
+                <b>24h</b>
+              </a>
             ))}
           </section>
         ))}

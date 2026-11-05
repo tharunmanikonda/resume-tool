@@ -57,6 +57,22 @@ try {
     assert.equal(params.has("f_E"), false);
     assert.equal(params.has("f_JT"), false);
   }
+  async function openHiringCafePreset(label) {
+    const group = page.locator(".hiringcafe-search-group").filter({ has: page.getByText(label, { exact: true }) }).first();
+    const link = group.getByRole("link", { name: new RegExp(label.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")) });
+    assert.equal(await link.getAttribute("target"), "_blank");
+    assert.equal(await link.getAttribute("rel"), "noopener noreferrer");
+    const url = new URL(await link.getAttribute("href"));
+    assert.equal(url.hostname, "hiringcafe.com");
+    assert.equal(url.pathname, "/classic");
+    return JSON.parse(url.searchParams.get("searchState"));
+  }
+  let hiringCafeState = await openHiringCafePreset("Software engineer/developer");
+  assert.ok(hiringCafeState.jobTitleQuery.includes('"Software Engineer" OR "Software Developer"'));
+  assert.equal(hiringCafeState.searchQuery, undefined);
+  assert.equal(hiringCafeState.dateFetchedPastNDays, 2);
+  hiringCafeState = await openHiringCafePreset("New grad analyst");
+  assert.ok(hiringCafeState.jobTitleQuery.includes('"New Grad" OR "New Graduate"'));
   let params = await openPreset("Data analyst");
   assert.equal(params.get("keywords"), '"Data Analyst"');
   params = await openPreset("SWE internships");

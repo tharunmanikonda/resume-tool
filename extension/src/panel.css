@@ -172,6 +172,8 @@ details[open] summary { margin-bottom: 9px; }
 .search-group { display: grid; gap: 7px; }
 .search-group h4 { margin: 0 0 2px; font-size: 12px; text-transform: uppercase; }
 .search-row { display: flex; width: 100%; justify-content: space-between; align-items: center; gap: 12px; padding: 9px 10px; text-align: left; }
+a.search-row { border: 1px solid #c9c9c9; border-radius: 6px; background: #fff; color: #171717; text-decoration: none; }
+a.search-row:hover { border-color: #171717; }
 .search-row span { display: grid; min-width: 0; gap: 3px; }
 .search-row strong, .search-row small { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .search-row small { color: #666; font-weight: 400; }

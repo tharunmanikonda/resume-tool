@@ -93,7 +93,8 @@ def test_one_selected_late_role_uses_its_story_title_not_an_automatic_junior_lab
     assert result['experience']['mckinsey']['title'] == 'Salesforce Developer'
     legacy = model_plan();del legacy['experience']['mckinsey']['title']
     result = experiment.ensure_plan_titles(legacy, [role])
-    assert result['experience']['mckinsey']['title'] == role['default_title']
+    assert result['experience']['mckinsey']['title'] == 'Software Engineer'
+    assert result['experience']['mckinsey']['title'] != role['default_title']
 
 
 def test_targeting_can_correct_title_when_story_direction_changes():

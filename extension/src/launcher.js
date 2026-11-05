@@ -25,24 +25,37 @@ async function openResumePanel() {
   try {
     const tabs = await chrome.tabs.query({ active: true, currentWindow: true });
     const tab = tabs[0];
-    if (!tab?.id || !/^https?:\/\//i.test(String(tab.url || ""))) {
+    if (!tab?.id) {
+      throw new Error("No active browser tab was found.");
+    }
+    if (!/^https?:\/\//i.test(String(tab.url || ""))) {
+      if (chrome.sidePanel?.open) {
+        await chrome.sidePanel.open({ windowId: tab.windowId });
+        window.close();
+        return;
+      }
       throw new Error("Open a regular website first. Browser settings pages do not allow extension drawers.");
     }
     try {
       await chrome.tabs.sendMessage(tab.id, { type: "TOGGLE_RESUME_PANEL" });
-    } catch (_) {
-      const currentUrl = String(tab.url || "");
-      let script = "panel-host.js";
-      if (currentUrl.startsWith("https://www.linkedin.com/jobs/")) script = "content-script.js";
-      else if (/^https:\/\/(?:www\.)?dice\.com\//i.test(currentUrl)) script = "dice-content-script.js";
-      else if (/^https:\/\/(?:www\.)?(?:hiring\.cafe|hiringcafe\.com)\//i.test(currentUrl)) script = "hiringcafe-content-script.js";
-      else if (isAtsJobUrl(currentUrl)) script = "ats-content-script.js";
-      const additional = globalThis.ResumeJobSites?.platform(currentUrl);
-      const files = additional
-        ? ["job-site-config.js", "job-board-content-script.js", "panel-host.js"]
-        : [script];
-      await chrome.scripting.executeScript({ target: { tabId: tab.id }, files });
-      await chrome.tabs.sendMessage(tab.id, { type: "TOGGLE_RESUME_PANEL" });
+    } catch (drawerError) {
+      try {
+        const currentUrl = String(tab.url || "");
+        let script = "panel-host.js";
+        if (currentUrl.startsWith("https://www.linkedin.com/jobs/")) script = "content-script.js";
+        else if (/^https:\/\/(?:www\.)?dice\.com\//i.test(currentUrl)) script = "dice-content-script.js";
+        else if (/^https:\/\/(?:www\.)?(?:hiring\.cafe|hiringcafe\.com)\//i.test(currentUrl)) script = "hiringcafe-content-script.js";
+        else if (isAtsJobUrl(currentUrl)) script = "ats-content-script.js";
+        const additional = globalThis.ResumeJobSites?.platform(currentUrl);
+        const files = additional
+          ? ["job-site-config.js", "job-board-content-script.js", "panel-host.js"]
+          : [script];
+        await chrome.scripting.executeScript({ target: { tabId: tab.id }, files });
+        await chrome.tabs.sendMessage(tab.id, { type: "TOGGLE_RESUME_PANEL" });
+      } catch (injectionError) {
+        if (!chrome.sidePanel?.open) throw injectionError || drawerError;
+        await chrome.sidePanel.open({ windowId: tab.windowId });
+      }
     }
     window.close();
   } catch (error) {

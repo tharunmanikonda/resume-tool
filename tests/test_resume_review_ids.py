@@ -163,3 +163,36 @@ def test_complete_review_uses_typed_ids_for_all_sections_without_extra_calls(mon
         role, index = ids.snapshot(original)['locations'][bid]
         assert revised['experience'][role]['bullets'][index].startswith('Built')
     assert canonical['updated_title'] == original['headline']
+
+
+def test_skills_removals_use_original_ids_and_apply_atomically():
+    original = draft()
+    original['skills'].append({'category': 'Testing & Quality', 'items': ['Unit testing', 'Integration testing']})
+    saved = ids.snapshot(original)
+    wire = response(saved, skills=[
+        {'sid': 1, 'replacement': {'category': 'Programming Languages', 'items': []}, 'reason': 'Consolidate'},
+        {'sid': 3, 'replacement': {'category': 'Testing & Quality', 'items': ['pytest', 'Integration testing']}, 'reason': 'Clarify'}])
+    Draft202012Validator(experiment.review_apply_schema([{'key': 'recent', 'bullet_min': 7}], original)).validate(wire)
+    patch, _ = ids.decode(wire, saved, original)
+    revised = experiment.apply_repairs(original, patch)
+    assert revised['skills'] == [original['skills'][1], {'category': 'Testing & Quality', 'items': ['pytest', 'Integration testing']}]
+    assert len(original['skills']) == 3
+    assert revised['experience'] == original['experience']
+
+
+def test_review_cannot_remove_every_skills_group():
+    original = draft(); saved = ids.snapshot(original)
+    wire = response(saved, skills=[{'sid': i+1, 'replacement': {'category': g['category'], 'items': []}, 'reason': 'Remove'} for i, g in enumerate(original['skills'])])
+    patch, _ = ids.decode(wire, saved, original)
+    with pytest.raises(ValueError, match='every skills group'):
+        experiment.apply_repairs(original, patch)
+    assert original == draft()
+
+
+def test_review_snapshot_exposes_independent_measurement_copy():
+    original = draft()
+    saved = ids.snapshot(original)
+    item = saved['items']['bullets'][0]
+    assert item['measurement'] == METRIC
+    item['measurement']['value'] = '999'
+    assert original['experience']['recent']['bullets'][0]['measurement'] == METRIC

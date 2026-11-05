@@ -1135,6 +1135,8 @@ def test_planning_preserves_full_jd_while_targeting_receives_clauses(setup, monk
 def test_project_only_plan_lets_writer_choose_contributions_without_extra_calls(setup, monkeypatch, mode):
     plan = {'role_positioning': 'Software Engineer', 'engineering_focus': ['Application APIs'],
             'experience': copy.deepcopy(PLAN['experience'])}
+    plan['career_alignment'] = {'specialization': 'Power Platform', 'requires_sustained_specialization': True,
+                                'support_status': 'unestablished', 'gap': 'Platform tenure is not supplied.'}
     plan['experience']['mckinsey'].pop('contributions')
     expected = experiment.ensure_plan_titles(plan, [ROLE])
     assert experiment.normalize_plan(plan, JD) == plan
@@ -1142,7 +1144,14 @@ def test_project_only_plan_lets_writer_choose_contributions_without_extra_calls(
     stages = []
     def generate(stage, schema, prompt, inputs):
         stages.append(stage)
-        assert experiment.CAREER_SCOPE_POLICY in prompt
+        if stage == 'plan':
+            assert prompt == experiment.PLAN_PROMPT
+            assert 'CAREER AND TITLE CONTRACT' in prompt
+        else:
+            assert experiment.CAREER_SCOPE_POLICY in prompt
+            assert experiment.SPECIALIST_CONTINUITY_POLICY in prompt
+            assert experiment.PLANNED_CAREER_HANDOFF in prompt
+            assert experiment.BUSINESS_CONTEXT_AND_TECH_FAMILY_HANDOFF in prompt
         if stage == 'plan':
             assert 'contributions' not in schema['properties']['experience']['properties']['mckinsey']['properties']
             return copy.deepcopy(plan)
@@ -1164,4 +1173,34 @@ def test_project_only_plan_lets_writer_choose_contributions_without_extra_calls(
     monkeypatch.setattr(app, '_jd_experiment_call', generate)
     result = app.generate_jd_only_resume(JD, [ROLE], mode)
     assert stages == ['plan', 'targeting', 'core', 'experience', 'review']
+    assert any(g['kind'] == 'qualification_gap' and 'Platform tenure' in g['impact'] for g in result['audit']['non_blocking_gaps'])
+    assert result['audit']['decision'] == 'approved'
     assert result['resume']['experience']['mckinsey']['bullets'] == [DRAFT['experience']['mckinsey']['bullets'][0]['text']]
+
+
+@pytest.mark.parametrize('stage', ['plan', 'targeting', 'core', 'experience', 'review', 'repair'])
+def test_model_boundary_strips_saved_titles_but_keeps_generated_story_titles(setup, monkeypatch, stage):
+    captured = []
+    def capture(**kwargs):
+        captured.append(json.loads(kwargs['user_prompt']))
+        return {'ok': True}
+    monkeypatch.setattr(app, 'call_openai_structured_output', capture)
+    role = {**ROLE, 'default_title': 'PRIVATE_PROFILE_TITLE', 'title': 'PRIVATE_PROFILE_TITLE',
+            'source_bullets': ['PRIVATE_SAVED_BULLET']}
+    inputs = {'job_description': JD, 'employment_headings_only': [role],
+              'checked_plan': {'experience': {'mckinsey': {'title': 'Power Platform Developer'}}}}
+    app._jd_experiment_call(stage, {}, 'test', inputs)
+    wire = captured[0]
+    assert 'PRIVATE_PROFILE_TITLE' not in json.dumps(wire)
+    assert 'PRIVATE_SAVED_BULLET' not in json.dumps(wire)
+    assert wire['employment_headings_only'] == experiment.headings_only([ROLE])
+    assert wire['checked_plan']['experience']['mckinsey']['title'] == 'Power Platform Developer'
+    assert inputs['employment_headings_only'][0]['default_title'] == 'PRIVATE_PROFILE_TITLE'
+
+
+def test_profile_titles_are_not_used_as_draft_or_plan_fallbacks():
+    role = {**ROLE, 'default_title': 'PRIVATE_PROFILE_TITLE'}
+    plan = {'experience': {'mckinsey': {'system': 'Operational application'}}}
+    assert experiment.ensure_plan_titles(plan, [role])['experience']['mckinsey']['title'] == 'Software Engineer'
+    draft = {'experience': {'mckinsey': {'bullets': []}}}
+    assert experiment.apply_plan_titles(draft, plan, [role])['experience']['mckinsey']['title'] == 'Software Engineer'

@@ -16,6 +16,8 @@ const expectations = [
   [panel, "site:ats.rippling.com", "Rippling discovery search"],
   [panel, "site:higheredjobs.com", "HigherEdJobs discovery search"],
   [panel, "linkedinJobSearchUrl", "LinkedIn jobs URL builder"],
+  [panel, "hiringCafeJobSearchUrl", "HiringCafe jobs URL builder"],
+  [panel, "HIRINGCAFE_JOB_SEARCHES", "HiringCafe grouped search presets"],
   [panel, "LINKEDIN_JOB_SEARCHES", "LinkedIn job search presets"],
   [panel, "Core SWE", "Core SWE LinkedIn group"],
   [panel, "Intern / New Grad", "intern/new grad LinkedIn group"],
@@ -66,6 +68,14 @@ const missing = expectations
 if (missing.length) {
   throw new Error(`Missing extension discovery pieces: ${missing.join(", ")}`);
 }
+
+const hiringCafeStart = panel.indexOf("const HIRINGCAFE_JOB_SEARCHES");
+const hiringCafeEnd = panel.indexOf("const RESUME_MODES", hiringCafeStart);
+assert.ok(hiringCafeStart >= 0 && hiringCafeEnd > hiringCafeStart);
+const hiringCafeSource = panel.slice(hiringCafeStart, hiringCafeEnd);
+assert.ok(hiringCafeSource.includes("LINKEDIN_JOB_SEARCHES.map"), "HiringCafe must preserve the LinkedIn preset groups");
+assert.ok(panel.includes("jobTitleQuery: keywords"), "HiringCafe Boolean expressions must use its job-title filter");
+assert.ok(!panel.slice(panel.indexOf("function hiringCafeJobSearchUrl"), panel.indexOf("const LINKEDIN_JOB_SEARCHES")).includes("searchQuery: keywords"), "HiringCafe Boolean expressions must not use the top keyword box");
 
 const start = panel.indexOf("function linkedinJobSearchUrl(");
 const end = panel.indexOf("const LINKEDIN_TIME_WINDOWS", start);

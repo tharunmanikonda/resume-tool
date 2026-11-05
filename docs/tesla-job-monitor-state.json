@@ -36,7 +36,7 @@
     "software_engineer": {
       "query": "software engineer",
       "highest_seen_job_id": 288437,
-      "last_successful_scan_at": "2026-11-03T16:02:35-06:00",
+      "last_successful_scan_at": "2026-11-04T06:58:46-06:00",
       "known_job_ids": [
         "221942",
         "222387",
@@ -60,6 +60,7 @@
         "249688",
         "249690",
         "250454",
+        "250588",
         "250942",
         "251197",
         "251702",
@@ -122,6 +123,7 @@
         "267157",
         "267254",
         "267968",
+        "268131",
         "268132",
         "268943",
         "269073",
@@ -413,7 +415,7 @@
         "286354",
         "286844"
       ],
-      "last_successful_scan_at": "2026-11-03T16:02:35-06:00"
+      "last_successful_scan_at": "2026-11-04T06:58:46-06:00"
     },
     "platform_engineer": {
       "query": "platform engineer",
@@ -456,7 +458,7 @@
         "286874",
         "288538"
       ],
-      "last_successful_scan_at": "2026-11-03T16:02:35-06:00"
+      "last_successful_scan_at": "2026-11-04T06:58:46-06:00"
     },
     "data_engineer": {
       "query": "data engineer",
@@ -594,7 +596,7 @@
         "288727",
         "288730"
       ],
-      "last_successful_scan_at": "2026-11-03T16:02:35-06:00"
+      "last_successful_scan_at": "2026-11-04T06:58:46-06:00"
     },
     "backend_engineer": {
       "query": "backend engineer",
@@ -612,7 +614,7 @@
         "284604",
         "284638"
       ],
-      "last_successful_scan_at": "2026-11-03T16:02:35-06:00"
+      "last_successful_scan_at": "2026-11-04T06:58:46-06:00"
     },
     "full_stack_engineer": {
       "query": "full stack engineer",
@@ -640,7 +642,7 @@
         "285673",
         "287792"
       ],
-      "last_successful_scan_at": "2026-11-03T16:02:35-06:00"
+      "last_successful_scan_at": "2026-11-04T06:58:46-06:00"
     },
     "software_qa": {
       "query": "software QA",
@@ -655,7 +657,7 @@
         "287394",
         "287994"
       ],
-      "last_successful_scan_at": "2026-11-03T16:02:35-06:00"
+      "last_successful_scan_at": "2026-11-04T06:58:46-06:00"
     },
     "test_automation": {
       "query": "test automation",
@@ -669,7 +671,7 @@
         "284026",
         "287818"
       ],
-      "last_successful_scan_at": "2026-11-03T16:02:35-06:00"
+      "last_successful_scan_at": "2026-11-04T06:58:46-06:00"
     },
     "software_validation": {
       "query": "software validation",
@@ -718,19 +720,19 @@
         "287272",
         "288284"
       ],
-      "last_successful_scan_at": "2026-11-03T16:02:35-06:00"
+      "last_successful_scan_at": "2026-11-04T06:58:46-06:00"
     },
     "systems_analyst": {
       "query": "systems analyst",
       "highest_seen_job_id": 0,
       "known_job_ids": [],
-      "last_successful_scan_at": "2026-11-03T16:02:35-06:00"
+      "last_successful_scan_at": "2026-11-04T06:58:46-06:00"
     },
     "programmer_analyst": {
       "query": "programmer analyst",
       "highest_seen_job_id": 0,
       "known_job_ids": [],
-      "last_successful_scan_at": "2026-11-03T16:02:35-06:00"
+      "last_successful_scan_at": "2026-11-04T06:58:46-06:00"
     },
     "database_engineer": {
       "query": "database engineer",
@@ -738,13 +740,13 @@
       "known_job_ids": [
         "288435"
       ],
-      "last_successful_scan_at": "2026-11-03T16:02:35-06:00"
+      "last_successful_scan_at": "2026-11-04T06:58:46-06:00"
     },
     "database_administrator": {
       "query": "database administrator",
       "highest_seen_job_id": 0,
       "known_job_ids": [],
-      "last_successful_scan_at": "2026-11-03T16:02:35-06:00"
+      "last_successful_scan_at": "2026-11-04T06:58:46-06:00"
     },
     "integration": {
       "query": "systems integration engineer",
@@ -763,7 +765,7 @@
         "285779",
         "287125"
       ],
-      "last_successful_scan_at": "2026-11-03T16:02:35-06:00"
+      "last_successful_scan_at": "2026-11-04T06:58:46-06:00"
     },
     "production_engineer": {
       "query": "production engineer",
@@ -816,7 +818,7 @@
         "288578",
         "288822"
       ],
-      "last_successful_scan_at": "2026-11-03T16:02:35-06:00"
+      "last_successful_scan_at": "2026-11-04T06:58:46-06:00"
     },
     "release_engineer": {
       "query": "release engineer",
@@ -825,7 +827,7 @@
         "281557",
         "287001"
       ],
-      "last_successful_scan_at": "2026-11-03T16:02:35-06:00"
+      "last_successful_scan_at": "2026-11-04T06:58:46-06:00"
     },
     "build_engineer": {
       "query": "build engineer",
@@ -836,7 +838,7 @@
         "285801",
         "287254"
       ],
-      "last_successful_scan_at": "2026-11-03T16:02:35-06:00"
+      "last_successful_scan_at": "2026-11-04T06:58:46-06:00"
     },
     "deployment_engineer": {
       "query": "deployment engineer",
@@ -848,25 +850,25 @@
         "285326",
         "286234"
       ],
-      "last_successful_scan_at": "2026-11-03T16:02:35-06:00"
+      "last_successful_scan_at": "2026-11-04T06:58:46-06:00"
     },
     "systems_support_developer": {
       "query": "systems support developer",
       "highest_seen_job_id": 0,
       "known_job_ids": [],
-      "last_successful_scan_at": "2026-11-03T16:02:35-06:00"
+      "last_successful_scan_at": "2026-11-04T06:58:46-06:00"
     },
     "application_support_developer": {
       "query": "application support developer",
       "highest_seen_job_id": 0,
       "known_job_ids": [],
-      "last_successful_scan_at": "2026-11-03T16:02:35-06:00"
+      "last_successful_scan_at": "2026-11-04T06:58:46-06:00"
     },
     "production_support_developer": {
       "query": "production support developer",
       "highest_seen_job_id": 0,
       "known_job_ids": [],
-      "last_successful_scan_at": "2026-11-03T16:02:35-06:00"
+      "last_successful_scan_at": "2026-11-04T06:58:46-06:00"
     },
     "systems_engineer": {
       "query": "systems engineer",
@@ -1052,17 +1054,17 @@
         "288114",
         "288122"
       ],
-      "last_successful_scan_at": "2026-11-03T16:02:35-06:00"
+      "last_successful_scan_at": "2026-11-04T06:58:46-06:00"
     },
     "business_systems_analyst": {
       "query": "business systems analyst",
       "highest_seen_job_id": 0,
       "known_job_ids": [],
-      "last_successful_scan_at": "2026-11-03T16:02:35-06:00"
+      "last_successful_scan_at": "2026-11-04T06:58:46-06:00"
     },
     "automation_engineer": {
       "query": "automation engineer",
-      "highest_seen_job_id": 288578,
+      "highest_seen_job_id": 288728,
       "known_job_ids": [
         "227308",
         "237415",
@@ -1142,9 +1144,10 @@
         "288295",
         "288297",
         "288392",
-        "288578"
+        "288578",
+        "288728"
       ],
-      "last_successful_scan_at": "2026-11-03T16:02:35-06:00"
+      "last_successful_scan_at": "2026-11-04T06:58:46-06:00"
     },
     "security_engineer": {
       "query": "security engineer",
@@ -1193,7 +1196,7 @@
         "287574",
         "288127"
       ],
-      "last_successful_scan_at": "2026-11-03T16:02:35-06:00"
+      "last_successful_scan_at": "2026-11-04T06:58:46-06:00"
     },
     "cloud_engineer": {
       "query": "cloud engineer",
@@ -1203,13 +1206,13 @@
         "286874",
         "287684"
       ],
-      "last_successful_scan_at": "2026-11-03T16:02:35-06:00"
+      "last_successful_scan_at": "2026-11-04T06:58:46-06:00"
     },
     "devops_engineer": {
       "query": "devops engineer",
       "highest_seen_job_id": 0,
       "known_job_ids": [],
-      "last_successful_scan_at": "2026-11-03T16:02:35-06:00"
+      "last_successful_scan_at": "2026-11-04T06:58:46-06:00"
     },
     "software_engineering_intern": {
       "query": "software engineer intern",
@@ -1280,17 +1283,17 @@
         "286127",
         "286261"
       ],
-      "last_successful_scan_at": "2026-11-03T16:02:35-06:00"
+      "last_successful_scan_at": "2026-11-04T06:58:46-06:00"
     },
     "software_engineering_coop": {
       "query": "software engineering co-op",
       "highest_seen_job_id": 0,
       "known_job_ids": [],
-      "last_successful_scan_at": "2026-11-03T16:02:35-06:00"
+      "last_successful_scan_at": "2026-11-04T06:58:46-06:00"
     }
   },
   "highest_seen_job_id": 288822,
-  "last_successful_scan_at": "2026-11-03T16:02:35-06:00",
+  "last_successful_scan_at": "2026-11-04T06:58:46-06:00",
   "known_job_ids": [
     "221942",
     "222387",
@@ -1331,6 +1334,7 @@
     "249690",
     "250454",
     "250579",
+    "250588",
     "250896",
     "250942",
     "251197",
@@ -1474,6 +1478,7 @@
     "267808",
     "267968",
     "267979",
+    "268131",
     "268132",
     "268526",
     "268767",
@@ -2068,6 +2073,7 @@
     "288538",
     "288578",
     "288727",
+    "288728",
     "288730",
     "288822"
   ]

@@ -15,7 +15,8 @@ def snapshot(draft):
         for index, bullet in enumerate(entry.get('bullets', [])):
             bid = len(locations) + 1
             locations[bid] = (role, index)
-            bullets.append({'bid': bid, 'role_key': role, 'text': bullet['text']})
+            bullets.append({'bid': bid, 'role_key': role, 'text': bullet['text'],
+                            'measurement': deepcopy(bullet.get('measurement', {}))})
     titles = [{'tid': 1, 'text': saved.get('headline', ''), 'scope': 'main'}]
     for role, entry in saved.get('experience', {}).items():
         if entry.get('title'):
@@ -36,7 +37,7 @@ def response_schema(saved, bullet_schema, categories=None):
         ids = [item[kind] for item in saved['items'][{'tid': 'titles', 'psid': 'summaries', 'sid': 'skills', 'bid': 'bullets'}[kind]]]
         return {'type': 'integer', 'enum': ids} if ids else {'type': 'integer', 'minimum': 1}
     skill = obj({'category': {'type': 'string', 'enum': sorted(categories)} if categories else string,
-                 'items': {'type': 'array', 'items': string, 'minItems': 2, 'maxItems': 5}})
+                 'items': {'type': 'array', 'items': string, 'minItems': 0, 'maxItems': 5}})
     def array(kind, replacement, measurement=False):
         props = {kind: id_field(kind), 'replacement': replacement, 'reason': string}
         if measurement:
@@ -98,8 +99,12 @@ def decode(response, saved, current_draft):
             seen.add((kind, value))
             replacement = item['replacement']
             if kind == 'sid':
-                if not isinstance(replacement, dict) or not replacement.get('category') or not isinstance(replacement.get('items'), list) or not replacement['items']:
+                if not isinstance(replacement, dict) or not replacement.get('category') or not isinstance(replacement.get('items'), list):
                     raise ValueError('A skills replacement needs its category and items.')
+                if len(replacement['items']) == 1:
+                    raise ValueError('A retained skills group needs at least two items.')
+                if not replacement['items'] and replacement['category'] != change['expected_category']:
+                    raise ValueError('A removed skills group must preserve its snapshot category.')
                 change.update(category=replacement['category'], items=deepcopy(replacement['items']))
             elif kind == 'bid':
                 if not isinstance(replacement, str) or not replacement.strip():

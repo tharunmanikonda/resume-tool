@@ -13030,6 +13030,8 @@ def _jd_experiment_call(stage, schema, prompt, inputs):
     retry_limit = min(36000, limit * 2)
     started = time.perf_counter()
     request_inputs = copy.deepcopy(inputs)
+    if "employment_headings_only" in request_inputs:
+        request_inputs["employment_headings_only"] = jd_experiment.headings_only(request_inputs["employment_headings_only"])
     if stage == "targeting" and request_inputs.get("job_description"):
         description = request_inputs.pop("job_description")
         request_inputs["job_description_clauses"] = jd_experiment.jd_clause_map(description)
@@ -13075,7 +13077,7 @@ def _jd_experiment_call(stage, schema, prompt, inputs):
             raise AIStageError("jd_" + stage, f"JD-only {stage} failed: {exc}") from exc
 
 
-def jd_only_audit_result(review, resume, notes=()):
+def jd_only_audit_result(review, resume, notes=(), *, plan=None):
     """Use the existing review UI; approval here assesses writing, not facts."""
     findings = [f for f in review.get("findings", []) if f.get("severity") != "advisory"]
     advisory = [f for f in review.get("findings", []) if f.get("severity") == "advisory"]
@@ -13091,7 +13093,10 @@ def jd_only_audit_result(review, resume, notes=()):
                              if f.get("role_key") and f.get("bullet_number", 0) > 0 else "",
                              "problem": f.get("issue", ""), "recommendation": "Review this contribution in the editor."}
                             for i, f in enumerate(findings)],
-        "non_blocking_gaps": ([{"kind": "numerical_target", "gap": "Numerical evidence", "impact": n} for n in notes]
+        "non_blocking_gaps": ([{"kind": "qualification_gap", "gap": "Specialist experience", "impact": (plan or {})['career_alignment']['gap']}]
+                              if (plan or {}).get('career_alignment', {}).get('support_status') == 'unestablished'
+                              and (plan or {}).get('career_alignment', {}).get('gap') else [])
+                             + ([{"kind": "numerical_target", "gap": "Numerical evidence", "impact": n} for n in notes]
                               + [{"kind": "review_note", "gap": "Writing suggestion", "impact": f.get("issue", "")} for f in advisory]),
         "changes": {}, "review_groups": [],
     }
@@ -13146,7 +13151,7 @@ def review_jd_only_resume(jd, analysis, resume, blueprints, *, repair=False):
     errors, _ = validate_updated_content(format_generated_resume_text(canonical, blueprints))
     if errors:
         raise ValueError("Reviewed resume needs revision: " + " | ".join(errors[:3]))
-    result = jd_only_audit_result(review, canonical, notes)
+    result = jd_only_audit_result(review, canonical, notes, plan=analysis.get("_jd_only_plan"))
     if canonical != resume:
         result["_repaired_resume"] = canonical
     result["review_application"] = state.get("review_rounds", [])
@@ -13337,7 +13342,7 @@ def generate_jd_only_resume(jd, blueprints, resume_mode, revision_context=None, 
     def canonical(proposed):
         return {"updated_title": proposed["headline"], "updated_summary": proposed["summary"],
                 "updated_skills": normalize_updated_skills(proposed["skills"]),
-                "experience": {r["key"]: {"title": proposed["experience"][r["key"]].get("title") or plan["experience"][r["key"]].get("title") or r["default_title"],
+                "experience": {r["key"]: {"title": proposed["experience"][r["key"]].get("title") or plan["experience"][r["key"]].get("title") or "Software Engineer",
                     "bullets": [b["text"] for b in proposed["experience"][r["key"]]["bullets"]]} for r in roles}}
     resume, original_resume = canonical(draft), canonical(original)
     # Fail before changing the saved/editor state if the normal resume parser cannot consume it.
@@ -13345,7 +13350,7 @@ def generate_jd_only_resume(jd, blueprints, resume_mode, revision_context=None, 
     errors, _ = validate_updated_content(content)
     if errors:
         raise ValueError("Generated resume needs revision: " + " | ".join(errors[:3]))
-    audit = jd_only_audit_result(review, resume, notes)
+    audit = jd_only_audit_result(review, resume, notes, plan=plan)
     if review_error:
         audit.update(_quality_audit_failure_metadata(review_error))
     return {"resume": resume, "original_resume": original_resume, "content": content,
