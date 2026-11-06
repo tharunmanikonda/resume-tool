@@ -1096,6 +1096,7 @@
     "JR2028240",
     "JR2028241",
     "JR2028264",
+    "JR2028267",
     "JR2028279",
     "JR2028311",
     "JR2028321",
@@ -1111,6 +1112,7 @@
     "JR2028388",
     "JR2028394",
     "JR2028401",
+    "JR2028411",
     "JR2028412",
     "JR2028415",
     "JR2028417",
@@ -1189,10 +1191,14 @@
     "JR2029227",
     "JR2029239",
     "JR2029313",
+    "JR2029355",
     "JR2029366",
     "JR2029400",
+    "JR2029416",
+    "JR2029419",
     "JR2029426",
     "JR2029432",
+    "JR2029449",
     "JR2029460",
     "JR2029533"
   ],
@@ -1531,7 +1537,7 @@
       "category": "technical_review"
     }
   },
-  "last_successful_scan_at": "2026-11-05T20:29:48+00:00",
+  "last_successful_scan_at": "2026-11-06T02:00:49+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "JR2014880": {
@@ -16393,6 +16399,91 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-05T20:29:48+00:00",
       "last_seen_at": "2026-11-05T20:29:48+00:00"
+    },
+    "JR2028411": {
+      "title": "Hardware Validation Engineer",
+      "location": "US, OR, Hillsboro",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-OR-Hillsboro/Hardware-Validation-Engineer_JR2028411",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "embedded_or_hardware"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-06T02:00:49+00:00",
+      "last_seen_at": "2026-11-06T02:00:49+00:00"
+    },
+    "JR2029355": {
+      "title": "Senior SoC Architect, RAS",
+      "location": "3 Locations",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-SoC-Architect--RAS_JR2029355",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-06T02:00:49+00:00",
+      "last_seen_at": "2026-11-06T02:00:49+00:00"
+    },
+    "JR2029419": {
+      "title": "Senior Firmware Engineer",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Firmware-Engineer_JR2029419",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "embedded_or_hardware"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-06T02:00:49+00:00",
+      "last_seen_at": "2026-11-06T02:00:49+00:00"
+    },
+    "JR2028267": {
+      "title": "Principal Site Reliability Engineer",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Principal-Site-Reliability-Engineer_JR2028267",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior"
+      ],
+      "category": "reliability",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-06T02:00:49+00:00",
+      "last_seen_at": "2026-11-06T02:00:49+00:00"
+    },
+    "JR2029416": {
+      "title": "Senior Machine Learning Engineer, AI Safety Evaluations",
+      "location": "US, CA, Santa Clara; US, Remote",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Machine-Learning-Engineer--AI-Safety-Evaluations_JR2029416",
+      "posted_at": "2026-11-05",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "ai_ml",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-06T02:00:49+00:00",
+      "last_seen_at": "2026-11-06T02:00:49+00:00"
+    },
+    "JR2029449": {
+      "title": "Senior Software Developer, AI Networking",
+      "location": "US, CA, Santa Clara; US, TX, Remote; US, WA, Remote",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Software-Developer--AI-Networking_JR2029449",
+      "posted_at": "2026-11-05",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-06T02:00:49+00:00",
+      "last_seen_at": "2026-11-06T02:00:49+00:00"
     }
   },
   "source_updated_at_by_id": {}

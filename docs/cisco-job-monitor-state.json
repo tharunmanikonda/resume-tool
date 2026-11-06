@@ -1451,6 +1451,7 @@
     "2028928",
     "2028929",
     "2029023",
+    "2029178",
     "2029193",
     "2029243",
     "2029245",
@@ -1468,7 +1469,7 @@
     "2030105",
     "2030301"
   ],
-  "last_successful_scan_at": "2026-11-05T20:29:48+00:00",
+  "last_successful_scan_at": "2026-11-06T02:00:49+00:00",
   "candidate_catalog": {
     "2024998": {
       "title": "AI Security Engineer",
@@ -3633,6 +3634,20 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-05T20:29:48+00:00",
       "last_seen_at": "2026-11-05T20:29:48+00:00"
+    },
+    "2029178": {
+      "title": "Embedded Software Engineer",
+      "location": "2 Locations",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/Embedded-Software-Engineer_2029178",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "embedded_or_hardware"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-06T02:00:49+00:00",
+      "last_seen_at": "2026-11-06T02:00:49+00:00"
     }
   },
   "source_updated_at_by_id": {}

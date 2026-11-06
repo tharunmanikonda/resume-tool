@@ -233,6 +233,7 @@
     "R0076575",
     "R0076576",
     "R0076601",
+    "R0076602",
     "R0076606",
     "R0076607",
     "R0076608",
@@ -289,12 +290,14 @@
     "R0076879",
     "R0076884",
     "R0076885",
+    "R0076887",
     "R0076899",
     "R0076900",
     "R0076909",
     "R0076910",
     "R0076916",
     "R0076920",
+    "R0076922",
     "R0076925",
     "R0076926",
     "R0076937",
@@ -365,8 +368,10 @@
     "R0077219",
     "R0077220",
     "R0077226",
+    "R0077235",
     "R0077239",
     "R0077253",
+    "R0077255",
     "R0077261",
     "R0077264",
     "R0077267",
@@ -375,6 +380,7 @@
     "R0077276",
     "R0077292",
     "R0077293",
+    "R0077301",
     "R0077302",
     "R0077304",
     "R0077306",
@@ -382,10 +388,16 @@
     "R0077324",
     "R0077328",
     "R0077329",
+    "R0077330",
     "R0077346",
+    "R0077348",
+    "R0077349",
     "R0077352",
     "R0077357",
-    "R0077364"
+    "R0077364",
+    "R0077480",
+    "R0077481",
+    "R0077482"
   ],
   "candidate_catalog": {
     "R0076812": {
@@ -450,9 +462,27 @@
       "first_seen_at": "2026-10-30T10:55:43-05:00",
       "priority": "medium",
       "category": "technical_review"
+    },
+    "R0076602": {
+      "title": "Full Stack Engineer - Traffic",
+      "location": "Austin, Texas, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076602/Full-Stack-Engineer-Traffic",
+      "posted_at": "2026-09-20",
+      "first_seen_at": "2026-11-06T02:00:49+00:00",
+      "priority": "high",
+      "category": "full_stack"
+    },
+    "R0077481": {
+      "title": "MTS 1, Business Systems Analyst",
+      "location": "San Jose, California, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077481/MTS-1-Business-Systems-Analyst",
+      "posted_at": "2026-11-06",
+      "first_seen_at": "2026-11-06T02:00:49+00:00",
+      "priority": "low",
+      "category": "systems_analysis"
     }
   },
-  "last_successful_scan_at": "2026-11-05T02:01:04+00:00",
+  "last_successful_scan_at": "2026-11-06T02:00:49+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "R0077145": {
@@ -5387,6 +5417,157 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-05T02:01:04+00:00",
       "last_seen_at": "2026-11-05T02:01:04+00:00"
+    },
+    "R0077255": {
+      "title": "Data Lake Studio Manager",
+      "location": "Austin, Texas, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077255/Data-Lake-Studio-Manager",
+      "posted_at": "2026-11-05T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-06T02:00:49+00:00",
+      "last_seen_at": "2026-11-06T02:00:49+00:00"
+    },
+    "R0077348": {
+      "title": "Sr Manager, Salvage Parts Initiatives",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077348/Sr-Manager-Salvage-Parts-Initiatives",
+      "posted_at": "2026-11-05T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-06T02:00:49+00:00",
+      "last_seen_at": "2026-11-06T02:00:49+00:00"
+    },
+    "R0076887": {
+      "title": "Engineering Manager - Pricing, Depop",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076887/Engineering-Manager-Pricing-Depop",
+      "posted_at": "2026-11-05T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-06T02:00:49+00:00",
+      "last_seen_at": "2026-11-06T02:00:49+00:00"
+    },
+    "R0076922": {
+      "title": "Sr. Manager, S&O, US P&A",
+      "location": "San Jose, California, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076922/Sr-Manager-S-O-US-P-A",
+      "posted_at": "2026-11-05T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-06T02:00:49+00:00",
+      "last_seen_at": "2026-11-06T02:00:49+00:00"
+    },
+    "R0077330": {
+      "title": "Senior Regulatory Auditor",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077330/Senior-Regulatory-Auditor",
+      "posted_at": "2026-11-05T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-06T02:00:49+00:00",
+      "last_seen_at": "2026-11-06T02:00:49+00:00"
+    },
+    "R0077235": {
+      "title": "Competitive Strategy & Insights Lead",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077235/Competitive-Strategy-Insights-Lead",
+      "posted_at": "2026-11-05T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-06T02:00:49+00:00",
+      "last_seen_at": "2026-11-06T02:00:49+00:00"
+    },
+    "R0077301": {
+      "title": "Manager, AG Strategy & Operations",
+      "location": "San Jose, California, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077301/Manager-AG-Strategy-Operations",
+      "posted_at": "2026-11-05T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-06T02:00:49+00:00",
+      "last_seen_at": "2026-11-06T02:00:49+00:00"
+    },
+    "R0077349": {
+      "title": "Sr Manager, Electronics Initiatives",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077349/Sr-Manager-Electronics-Initiatives",
+      "posted_at": "2026-11-05T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-06T02:00:49+00:00",
+      "last_seen_at": "2026-11-06T02:00:49+00:00"
+    },
+    "R0077480": {
+      "title": "Network Engineer 3",
+      "location": "San Jose, California, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077480/Network-Engineer-3",
+      "posted_at": "2026-11-06",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-06T02:00:49+00:00",
+      "last_seen_at": "2026-11-06T02:00:49+00:00"
+    },
+    "R0077482": {
+      "title": "Software Engineer 2",
+      "location": "San Jose, California, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077482/Software-Engineer-2",
+      "posted_at": "2026-11-06",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-06T02:00:49+00:00",
+      "last_seen_at": "2026-11-06T02:00:49+00:00"
     }
   },
   "source_updated_at_by_id": {}

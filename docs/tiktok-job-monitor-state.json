@@ -1135,6 +1135,7 @@
     "7667946859185195317",
     "7667952201696790837",
     "7667985919575935285",
+    "7668005743913781509",
     "7668066625135921413",
     "7668066625138379013",
     "7668158657595803909",
@@ -1978,6 +1979,7 @@
     "7704007084339595525",
     "7704011114551986485",
     "7704168719376173365",
+    "7704204891975633205",
     "7704211967934449973",
     "7704562889684060469",
     "7704565954109294901",
@@ -28799,8 +28801,38 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-05T20:29:48+00:00",
       "last_seen_at": "2026-11-05T20:29:48+00:00"
+    },
+    "7704204891975633205": {
+      "title": "Technical Program Manager - Optical Transport Network (OTN)",
+      "location": "Sydney, New South Wales, Australia",
+      "url": "https://lifeattiktok.com/search/7704204891975633205",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-06T02:00:49+00:00",
+      "last_seen_at": "2026-11-06T02:00:49+00:00"
+    },
+    "7668005743913781509": {
+      "title": "US Logistics Partnership Management Graduate (Global Procurement) - 2027 Start (MBA)",
+      "location": "Seattle, Washington, United States of America",
+      "url": "https://lifeattiktok.com/search/7668005743913781509",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-06T02:00:49+00:00",
+      "last_seen_at": "2026-11-06T02:00:49+00:00"
     }
   },
-  "last_successful_scan_at": "2026-11-05T20:29:48+00:00",
+  "last_successful_scan_at": "2026-11-06T02:00:49+00:00",
   "source_updated_at_by_id": {}
 }

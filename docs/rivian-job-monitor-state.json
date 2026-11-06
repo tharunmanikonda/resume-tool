@@ -184,7 +184,8 @@
     "35211",
     "35301",
     "35302",
-    "35303"
+    "35303",
+    "35837"
   ],
   "candidate_catalog": {
     "30795": {
@@ -269,7 +270,7 @@
       "category": "integration"
     }
   },
-  "last_successful_scan_at": "2026-11-05T20:29:48+00:00",
+  "last_successful_scan_at": "2026-11-06T02:00:49+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "34699": {
@@ -1005,6 +1006,20 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-04T20:19:04+00:00",
       "last_seen_at": "2026-11-04T20:19:04+00:00"
+    },
+    "35837": {
+      "title": "Sr. Analyst, SAP Material Management",
+      "location": "Normal, Illinois; Atlanta, Georgia",
+      "url": "https://careers.rivian.com/careers-home/jobs/35837",
+      "posted_at": "2026-11-05T22:27:00+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-06T02:00:49+00:00",
+      "last_seen_at": "2026-11-06T02:00:49+00:00"
     }
   },
   "source_updated_at_by_id": {}
