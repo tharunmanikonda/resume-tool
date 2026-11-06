@@ -1,6 +1,6 @@
 {
   "success": true,
-  "scanned_at": "2026-11-06T02:00:49+00:00",
+  "scanned_at": "2026-11-06T19:52:44+00:00",
   "monitor_count": 14,
   "successful_monitors": [
     "cbre",
@@ -23,59 +23,58 @@
   "needs_ai_review_count": 1,
   "candidates": [
     {
-      "monitor": "ebay",
-      "job_id": "R0076602",
-      "title": "Full Stack Engineer - Traffic",
-      "location": "Austin, Texas, United States of America",
-      "posted_at": "2026-09-20",
-      "url": "https://jobs.ebayinc.com/us/en/job/R0076602/Full-Stack-Engineer-Traffic",
-      "priority": "high",
+      "monitor": "tiktok",
+      "job_id": "7704036750285867269",
+      "title": "Research Engineer, Agentic Video Editing - TikTok",
+      "location": "San Jose, California, United States of America",
+      "posted_at": "",
+      "url": "https://lifeattiktok.com/search/7704036750285867269",
+      "priority": "medium",
       "matching_requirements": [
-        "target_title:full_stack",
-        "profile_signal:java:+1",
-        "profile_signal:javascript_react:+1",
+        "target_title:technical_review",
+        "profile_signal:python:+2",
         "profile_signal:backend_apis:+2",
-        "profile_signal:distributed_systems:+2",
-        "profile_signal:databases:+1",
-        "profile_signal:cloud_containers:+2",
-        "profile_signal:qa_automation:+2"
+        "profile_signal:agentic_tooling:+3"
       ],
       "material_gaps": []
     },
     {
-      "monitor": "nbcu",
-      "job_id": "744000159977020",
-      "title": "Software Engineer, VOD",
-      "location": "New York, NEW YORK, United States",
-      "posted_at": "2026-11-05T21:41:06.849Z",
-      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159977020-software-engineer-vod",
-      "priority": "high",
+      "monitor": "waymo",
+      "job_id": "5652",
+      "title": "2027 Summer Intern, MS/PhD, Software Engineer, Multiverse",
+      "location": [
+        "San Francisco, California",
+        "Software Engineering",
+        "Intern",
+        "Intern"
+      ],
+      "posted_at": null,
+      "url": "https://careers.withwaymo.com/jobs/2027-summer-intern-ms-phd-software-engineer-multiverse-san-francisco-california-united-states",
+      "priority": "medium",
       "matching_requirements": [
         "target_title:software",
         "profile_signal:python:+2",
-        "profile_signal:backend_apis:+2",
+        "profile_signal:distributed_systems:+2",
         "profile_signal:data_streaming:+2",
-        "profile_signal:cloud_containers:+2",
-        "profile_signal:observability:+1",
-        "profile_signal:agentic_tooling:+3"
+        "profile_signal:databases:+1"
       ],
       "material_gaps": []
     }
   ],
   "needs_ai_review": [
     {
-      "monitor": "ebay",
-      "job_id": "R0077481",
-      "title": "MTS 1, Business Systems Analyst",
-      "location": "San Jose, California, United States of America",
+      "monitor": "iqvia",
+      "job_id": "R1574603",
+      "title": "Senior Data QA Engineer",
+      "location": "Kathmandu, Nepal",
       "posted_at": "2026-11-06",
-      "url": "https://jobs.ebayinc.com/us/en/job/R0077481/MTS-1-Business-Systems-Analyst",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Kathmandu-Nepal/Senior-Data-QA-Engineer_R1574603",
       "priority": "low",
       "matching_requirements": [
-        "target_title:systems_analysis",
-        "profile_signal:python:+2",
+        "target_title:technical_review",
         "profile_signal:data_streaming:+2",
-        "profile_signal:databases:+1"
+        "profile_signal:databases:+1",
+        "profile_signal:cloud_containers:+2"
       ],
       "material_gaps": []
     }
@@ -84,9 +83,9 @@
     {
       "monitor": "cbre",
       "success": true,
-      "scanned_at": "2026-11-06T02:00:49+00:00",
-      "fetched": 805,
-      "unseen": 13,
+      "scanned_at": "2026-11-06T19:52:44+00:00",
+      "fetched": 844,
+      "unseen": 34,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -95,9 +94,9 @@
     {
       "monitor": "cdk",
       "success": true,
-      "scanned_at": "2026-11-06T02:00:49+00:00",
+      "scanned_at": "2026-11-06T19:52:44+00:00",
       "fetched": 42,
-      "unseen": 1,
+      "unseen": 0,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -106,7 +105,7 @@
     {
       "monitor": "cisco",
       "success": true,
-      "scanned_at": "2026-11-06T02:00:49+00:00",
+      "scanned_at": "2026-11-06T19:52:44+00:00",
       "fetched": 80,
       "unseen": 1,
       "state_updated": true,
@@ -117,8 +116,8 @@
     {
       "monitor": "crunchyroll",
       "success": true,
-      "scanned_at": "2026-11-06T02:00:49+00:00",
-      "fetched": 104,
+      "scanned_at": "2026-11-06T19:52:44+00:00",
+      "fetched": 105,
       "unseen": 1,
       "state_updated": true,
       "candidates": [],
@@ -128,56 +127,20 @@
     {
       "monitor": "ebay",
       "success": true,
-      "scanned_at": "2026-11-06T02:00:49+00:00",
-      "fetched": 179,
-      "unseen": 12,
+      "scanned_at": "2026-11-06T19:52:44+00:00",
+      "fetched": 173,
+      "unseen": 2,
       "state_updated": true,
-      "candidates": [
-        {
-          "job_id": "R0076602",
-          "title": "Full Stack Engineer - Traffic",
-          "location": "Austin, Texas, United States of America",
-          "posted_at": "2026-09-20",
-          "url": "https://jobs.ebayinc.com/us/en/job/R0076602/Full-Stack-Engineer-Traffic",
-          "priority": "high",
-          "matching_requirements": [
-            "target_title:full_stack",
-            "profile_signal:java:+1",
-            "profile_signal:javascript_react:+1",
-            "profile_signal:backend_apis:+2",
-            "profile_signal:distributed_systems:+2",
-            "profile_signal:databases:+1",
-            "profile_signal:cloud_containers:+2",
-            "profile_signal:qa_automation:+2"
-          ],
-          "material_gaps": []
-        }
-      ],
-      "needs_ai_review": [
-        {
-          "job_id": "R0077481",
-          "title": "MTS 1, Business Systems Analyst",
-          "location": "San Jose, California, United States of America",
-          "posted_at": "2026-11-06",
-          "url": "https://jobs.ebayinc.com/us/en/job/R0077481/MTS-1-Business-Systems-Analyst",
-          "priority": "low",
-          "matching_requirements": [
-            "target_title:systems_analysis",
-            "profile_signal:python:+2",
-            "profile_signal:data_streaming:+2",
-            "profile_signal:databases:+1"
-          ],
-          "material_gaps": []
-        }
-      ],
+      "candidates": [],
+      "needs_ai_review": [],
       "errors": []
     },
     {
       "monitor": "intepros",
       "success": true,
-      "scanned_at": "2026-11-06T02:00:49+00:00",
-      "fetched": 20,
-      "unseen": 0,
+      "scanned_at": "2026-11-06T19:52:44+00:00",
+      "fetched": 30,
+      "unseen": 1,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -186,50 +149,47 @@
     {
       "monitor": "iqvia",
       "success": true,
-      "scanned_at": "2026-11-06T02:00:49+00:00",
-      "fetched": 424,
-      "unseen": 2,
+      "scanned_at": "2026-11-06T19:52:44+00:00",
+      "fetched": 884,
+      "unseen": 27,
+      "state_updated": true,
+      "candidates": [],
+      "needs_ai_review": [
+        {
+          "job_id": "R1574603",
+          "title": "Senior Data QA Engineer",
+          "location": "Kathmandu, Nepal",
+          "posted_at": "2026-11-06",
+          "url": "https://iqvia.wd1.myworkdayjobs.com/job/Kathmandu-Nepal/Senior-Data-QA-Engineer_R1574603",
+          "priority": "low",
+          "matching_requirements": [
+            "target_title:technical_review",
+            "profile_signal:data_streaming:+2",
+            "profile_signal:databases:+1",
+            "profile_signal:cloud_containers:+2"
+          ],
+          "material_gaps": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "monitor": "nbcu",
+      "success": true,
+      "scanned_at": "2026-11-06T19:52:44+00:00",
+      "fetched": 290,
+      "unseen": 8,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
       "errors": []
     },
     {
-      "monitor": "nbcu",
-      "success": true,
-      "scanned_at": "2026-11-06T02:00:49+00:00",
-      "fetched": 295,
-      "unseen": 4,
-      "state_updated": true,
-      "candidates": [
-        {
-          "job_id": "744000159977020",
-          "title": "Software Engineer, VOD",
-          "location": "New York, NEW YORK, United States",
-          "posted_at": "2026-11-05T21:41:06.849Z",
-          "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000159977020-software-engineer-vod",
-          "priority": "high",
-          "matching_requirements": [
-            "target_title:software",
-            "profile_signal:python:+2",
-            "profile_signal:backend_apis:+2",
-            "profile_signal:data_streaming:+2",
-            "profile_signal:cloud_containers:+2",
-            "profile_signal:observability:+1",
-            "profile_signal:agentic_tooling:+3"
-          ],
-          "material_gaps": []
-        }
-      ],
-      "needs_ai_review": [],
-      "errors": []
-    },
-    {
       "monitor": "nvidia",
       "success": true,
-      "scanned_at": "2026-11-06T02:00:49+00:00",
+      "scanned_at": "2026-11-06T19:52:44+00:00",
       "fetched": 120,
-      "unseen": 6,
+      "unseen": 4,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -238,9 +198,9 @@
     {
       "monitor": "occ",
       "success": true,
-      "scanned_at": "2026-11-06T02:00:49+00:00",
-      "fetched": 60,
-      "unseen": 0,
+      "scanned_at": "2026-11-06T19:52:44+00:00",
+      "fetched": 69,
+      "unseen": 1,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -249,8 +209,8 @@
     {
       "monitor": "ocient",
       "success": true,
-      "scanned_at": "2026-11-06T02:00:49+00:00",
-      "fetched": 14,
+      "scanned_at": "2026-11-06T19:52:44+00:00",
+      "fetched": 13,
       "unseen": 0,
       "state_updated": true,
       "candidates": [],
@@ -260,9 +220,9 @@
     {
       "monitor": "rivian",
       "success": true,
-      "scanned_at": "2026-11-06T02:00:49+00:00",
-      "fetched": 40,
-      "unseen": 1,
+      "scanned_at": "2026-11-06T19:52:44+00:00",
+      "fetched": 30,
+      "unseen": 0,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -271,22 +231,60 @@
     {
       "monitor": "tiktok",
       "success": true,
-      "scanned_at": "2026-11-06T02:00:49+00:00",
+      "scanned_at": "2026-11-06T19:52:44+00:00",
       "fetched": 1876,
-      "unseen": 2,
+      "unseen": 6,
       "state_updated": true,
-      "candidates": [],
+      "candidates": [
+        {
+          "job_id": "7704036750285867269",
+          "title": "Research Engineer, Agentic Video Editing - TikTok",
+          "location": "San Jose, California, United States of America",
+          "posted_at": "",
+          "url": "https://lifeattiktok.com/search/7704036750285867269",
+          "priority": "medium",
+          "matching_requirements": [
+            "target_title:technical_review",
+            "profile_signal:python:+2",
+            "profile_signal:backend_apis:+2",
+            "profile_signal:agentic_tooling:+3"
+          ],
+          "material_gaps": []
+        }
+      ],
       "needs_ai_review": [],
       "errors": []
     },
     {
       "monitor": "waymo",
       "success": true,
-      "scanned_at": "2026-11-06T02:00:49+00:00",
-      "fetched": 166,
-      "unseen": 0,
+      "scanned_at": "2026-11-06T19:52:44+00:00",
+      "fetched": 167,
+      "unseen": 4,
       "state_updated": true,
-      "candidates": [],
+      "candidates": [
+        {
+          "job_id": "5652",
+          "title": "2027 Summer Intern, MS/PhD, Software Engineer, Multiverse",
+          "location": [
+            "San Francisco, California",
+            "Software Engineering",
+            "Intern",
+            "Intern"
+          ],
+          "posted_at": null,
+          "url": "https://careers.withwaymo.com/jobs/2027-summer-intern-ms-phd-software-engineer-multiverse-san-francisco-california-united-states",
+          "priority": "medium",
+          "matching_requirements": [
+            "target_title:software",
+            "profile_signal:python:+2",
+            "profile_signal:distributed_systems:+2",
+            "profile_signal:data_streaming:+2",
+            "profile_signal:databases:+1"
+          ],
+          "material_gaps": []
+        }
+      ],
       "needs_ai_review": [],
       "errors": []
     }

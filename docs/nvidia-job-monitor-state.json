@@ -412,6 +412,7 @@
     "JR2018817",
     "JR2018836",
     "JR2018839",
+    "JR2018875",
     "JR2018915",
     "JR2018920",
     "JR2018983",
@@ -1070,6 +1071,7 @@
     "JR2028054",
     "JR2028060",
     "JR2028074",
+    "JR2028075",
     "JR2028076",
     "JR2028088",
     "JR2028090",
@@ -1194,8 +1196,10 @@
     "JR2029355",
     "JR2029366",
     "JR2029400",
+    "JR2029411",
     "JR2029416",
     "JR2029419",
+    "JR2029424",
     "JR2029426",
     "JR2029432",
     "JR2029449",
@@ -1537,7 +1541,7 @@
       "category": "technical_review"
     }
   },
-  "last_successful_scan_at": "2026-11-06T02:00:49+00:00",
+  "last_successful_scan_at": "2026-11-06T19:52:44+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "JR2014880": {
@@ -16484,6 +16488,63 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-06T02:00:49+00:00",
       "last_seen_at": "2026-11-06T02:00:49+00:00"
+    },
+    "JR2028075": {
+      "title": "Senior Digital Design Verification Engineer - Hardware",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Digital-Design-Verification-Engineer---Hardware_JR2028075",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "embedded_or_hardware"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-06T19:52:44+00:00",
+      "last_seen_at": "2026-11-06T19:52:44+00:00"
+    },
+    "JR2029424": {
+      "title": "Senior Software and System Architect",
+      "location": "4 Locations",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Software-and-System-Architect_JR2029424",
+      "posted_at": "Posted Yesterday",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-06T19:52:44+00:00",
+      "last_seen_at": "2026-11-06T19:52:44+00:00"
+    },
+    "JR2018875": {
+      "title": "Senior Software Engineer, Agentic Systems",
+      "location": "US, CA, Santa Clara; US, NY, Remote; US, CO, Remote; US, WA, Remote; US, MA, Remote",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Software-Engineer--Agentic-Systems_JR2018875",
+      "posted_at": "2026-11-06",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-06T19:52:44+00:00",
+      "last_seen_at": "2026-11-06T19:52:44+00:00"
+    },
+    "JR2029411": {
+      "title": "Distinguished Signal and Power Integrity Engineer",
+      "location": "US, CA, Santa Clara; US, CA, Remote",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Distinguished-Signal-and-Power-Integrity-Engineer_JR2029411-1",
+      "posted_at": "2026-11-06",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-06T19:52:44+00:00",
+      "last_seen_at": "2026-11-06T19:52:44+00:00"
     }
   },
   "source_updated_at_by_id": {}

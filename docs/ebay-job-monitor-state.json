@@ -230,6 +230,7 @@
     "R0076549",
     "R0076563",
     "R0076568",
+    "R0076572",
     "R0076575",
     "R0076576",
     "R0076601",
@@ -354,6 +355,7 @@
     "R0077150",
     "R0077151",
     "R0077155",
+    "R0077156",
     "R0077160",
     "R0077166",
     "R0077174",
@@ -482,7 +484,7 @@
       "category": "systems_analysis"
     }
   },
-  "last_successful_scan_at": "2026-11-06T02:00:49+00:00",
+  "last_successful_scan_at": "2026-11-06T19:52:44+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "R0077145": {
@@ -5568,6 +5570,37 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-06T02:00:49+00:00",
       "last_seen_at": "2026-11-06T02:00:49+00:00"
+    },
+    "R0076572": {
+      "title": "Sr Manager, Ads & MarTech Eng",
+      "location": "Amsterdam, North Holland, Netherlands",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076572/Sr-Manager-Ads-MarTech-Eng",
+      "posted_at": "2026-11-06T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-06T19:52:44+00:00",
+      "last_seen_at": "2026-11-06T19:52:44+00:00"
+    },
+    "R0077156": {
+      "title": "Account Mgr, eBay Partner Network",
+      "location": "London, Surrey, United Kingdom",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077156/Account-Mgr-eBay-Partner-Network",
+      "posted_at": "2026-11-06T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-06T19:52:44+00:00",
+      "last_seen_at": "2026-11-06T19:52:44+00:00"
     }
   },
   "source_updated_at_by_id": {}

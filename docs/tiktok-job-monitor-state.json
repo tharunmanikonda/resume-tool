@@ -744,6 +744,7 @@
     "7646621925436131637",
     "7646623921182247221",
     "7646684538269632821",
+    "7646689526540929285",
     "7646695339021715717",
     "7646704292787800373",
     "7646705314083326261",
@@ -1790,6 +1791,7 @@
     "7691004592498592053",
     "7691009353374894341",
     "7691170805791328517",
+    "7691208357803362565",
     "7691270406416582917",
     "7691270507140892981",
     "7691329614841252149",
@@ -1978,13 +1980,17 @@
     "7703899923206867205",
     "7704007084339595525",
     "7704011114551986485",
+    "7704036750285867269",
+    "7704039380520388869",
     "7704168719376173365",
     "7704204891975633205",
     "7704211967934449973",
     "7704562889684060469",
     "7704565954109294901",
     "7704619723464411445",
-    "7704620574878140725"
+    "7704620574878140725",
+    "7704853345886980357",
+    "7705008538728499509"
   ],
   "candidate_catalog": {
     "7680987768009754885": {
@@ -5118,6 +5124,15 @@
       "first_seen_at": "2026-11-04T01:57:30+00:00",
       "priority": "medium",
       "category": "ai_ml"
+    },
+    "7704036750285867269": {
+      "title": "Research Engineer, Agentic Video Editing - TikTok",
+      "location": "San Jose, California, United States of America",
+      "url": "https://lifeattiktok.com/search/7704036750285867269",
+      "posted_at": "",
+      "first_seen_at": "2026-11-06T19:52:44+00:00",
+      "priority": "medium",
+      "category": "technical_review"
     }
   },
   "rejected_catalog": {
@@ -28831,8 +28846,84 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-06T02:00:49+00:00",
       "last_seen_at": "2026-11-06T02:00:49+00:00"
+    },
+    "7646689526540929285": {
+      "title": "Key Account Client Solutions Manager - Retail & E-commerce, Singapore - GBS",
+      "location": "Singapore",
+      "url": "https://lifeattiktok.com/search/7646689526540929285",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-06T19:52:44+00:00",
+      "last_seen_at": "2026-11-06T19:52:44+00:00"
+    },
+    "7704853345886980357": {
+      "title": "Regulatory Response Analyst, Turkish - Trust & Safety",
+      "location": "Dublin, Ireland",
+      "url": "https://lifeattiktok.com/search/7704853345886980357",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-06T19:52:44+00:00",
+      "last_seen_at": "2026-11-06T19:52:44+00:00"
+    },
+    "7691208357803362565": {
+      "title": "Product Operation Intern (TikTok Local Services) - 2027 Start",
+      "location": "Singapore",
+      "url": "https://lifeattiktok.com/search/7691208357803362565",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-06T19:52:44+00:00",
+      "last_seen_at": "2026-11-06T19:52:44+00:00"
+    },
+    "7704039380520388869": {
+      "title": "Global EDiscovery Lead - Global Litigation",
+      "location": "New York, United States of America",
+      "url": "https://lifeattiktok.com/search/7704039380520388869",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-06T19:52:44+00:00",
+      "last_seen_at": "2026-11-06T19:52:44+00:00"
+    },
+    "7705008538728499509": {
+      "title": "Client Solutions Manager - GBS",
+      "location": "Amsterdam, North Holland, Netherlands",
+      "url": "https://lifeattiktok.com/search/7705008538728499509",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-06T19:52:44+00:00",
+      "last_seen_at": "2026-11-06T19:52:44+00:00"
     }
   },
-  "last_successful_scan_at": "2026-11-06T02:00:49+00:00",
+  "last_successful_scan_at": "2026-11-06T19:52:44+00:00",
   "source_updated_at_by_id": {}
 }
