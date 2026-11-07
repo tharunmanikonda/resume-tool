@@ -88,6 +88,7 @@
     "REQ-4909",
     "REQ-4910",
     "REQ-4911",
+    "REQ-4913",
     "REQ-4914",
     "REQ-4916",
     "REQ-4917",
@@ -125,7 +126,7 @@
       "category": "software"
     }
   },
-  "last_successful_scan_at": "2026-11-06T19:52:44+00:00",
+  "last_successful_scan_at": "2026-11-07T01:41:21+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "REQ-4896": {
@@ -1339,6 +1340,20 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-06T19:52:44+00:00",
       "last_seen_at": "2026-11-06T19:52:44+00:00"
+    },
+    "REQ-4913": {
+      "title": "Senior Associate, Internal Audit Information Technology & Security",
+      "location": "Chicago - 125 S Franklin",
+      "url": "https://theocc.wd5.myworkdayjobs.com/job/Chicago---125-S-Franklin/Senior-Associate--Internal-Audit-Information-Technology---Security_REQ-4913",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-07T01:41:21+00:00",
+      "last_seen_at": "2026-11-07T01:41:21+00:00"
     }
   },
   "source_updated_at_by_id": {}

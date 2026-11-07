@@ -610,7 +610,12 @@
     "744000160267405",
     "744000160268480",
     "744000160282359",
-    "744000160289778"
+    "744000160289778",
+    "744000160291330",
+    "744000160299707",
+    "744000160300670",
+    "744000160301617",
+    "744000160304459"
   ],
   "candidate_catalog": {
     "744000151898289": {
@@ -704,7 +709,7 @@
       "category": "software"
     }
   },
-  "last_successful_scan_at": "2026-11-06T19:52:44+00:00",
+  "last_successful_scan_at": "2026-11-07T01:41:21+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "744000156079569": {
@@ -8073,6 +8078,78 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-06T19:52:44+00:00",
       "last_seen_at": "2026-11-06T19:52:44+00:00"
+    },
+    "744000160304459": {
+      "title": "Senior Financial Analyst \u2013 NBC Sports",
+      "location": "Stamford, Connecticut, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160304459-senior-financial-analyst-nbc-sports",
+      "posted_at": "2026-11-06T21:46:20.097Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-07T01:41:21+00:00",
+      "last_seen_at": "2026-11-07T01:41:21+00:00"
+    },
+    "744000160301617": {
+      "title": "Director, Production Sourcing",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160301617-director-production-sourcing",
+      "posted_at": "2026-11-06T21:26:39.697Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-07T01:41:21+00:00",
+      "last_seen_at": "2026-11-07T01:41:21+00:00"
+    },
+    "744000160300670": {
+      "title": "Assignment Desk Editor - Multiplatform, Telemundo Arizona (Phoenix/Tucson)",
+      "location": "Phoenix, Arizona, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160300670-assignment-desk-editor-multiplatform-telemundo-arizona-phoenix-tucson",
+      "posted_at": "2026-11-06T21:24:49.577Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-07T01:41:21+00:00",
+      "last_seen_at": "2026-11-07T01:41:21+00:00"
+    },
+    "744000160299707": {
+      "title": "Facilities Engineering Manager  ",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160299707-facilities-engineering-manager",
+      "posted_at": "2026-11-06T21:14:40.395Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-07T01:41:21+00:00",
+      "last_seen_at": "2026-11-07T01:41:21+00:00"
+    },
+    "744000160291330": {
+      "title": "Producer/Editor, Telemundo Al Rojo Vivo",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160291330-producer-editor-telemundo-al-rojo-vivo",
+      "posted_at": "2026-11-06T20:03:39.009Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-07T01:41:21+00:00",
+      "last_seen_at": "2026-11-07T01:41:21+00:00"
     }
   },
   "source_updated_at_by_id": {}

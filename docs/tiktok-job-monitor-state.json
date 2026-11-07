@@ -1990,7 +1990,9 @@
     "7704619723464411445",
     "7704620574878140725",
     "7704853345886980357",
-    "7705008538728499509"
+    "7704981006856145205",
+    "7705008538728499509",
+    "7705012688944810245"
   ],
   "candidate_catalog": {
     "7680987768009754885": {
@@ -5131,6 +5133,24 @@
       "url": "https://lifeattiktok.com/search/7704036750285867269",
       "posted_at": "",
       "first_seen_at": "2026-11-06T19:52:44+00:00",
+      "priority": "medium",
+      "category": "technical_review"
+    },
+    "7705012688944810245": {
+      "title": "Software Engineer - Intern (TikTok BRIC) - 2027 Start (PhD)",
+      "location": "San Jose, California, United States of America",
+      "url": "https://lifeattiktok.com/search/7705012688944810245",
+      "posted_at": "",
+      "first_seen_at": "2026-11-07T01:41:21+00:00",
+      "priority": "high",
+      "category": "software"
+    },
+    "7704981006856145205": {
+      "title": "Research Engineer Intern (TikTok Generalized Arch) - 2027 Start (PhD)",
+      "location": "San Jose, California, United States of America",
+      "url": "https://lifeattiktok.com/search/7704981006856145205",
+      "posted_at": "",
+      "first_seen_at": "2026-11-07T01:41:21+00:00",
       "priority": "medium",
       "category": "technical_review"
     }
@@ -28924,6 +28944,6 @@
       "last_seen_at": "2026-11-06T19:52:44+00:00"
     }
   },
-  "last_successful_scan_at": "2026-11-06T19:52:44+00:00",
+  "last_successful_scan_at": "2026-11-07T01:41:21+00:00",
   "source_updated_at_by_id": {}
 }

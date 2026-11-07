@@ -1,6 +1,6 @@
 {
   "success": true,
-  "scanned_at": "2026-11-06T19:52:44+00:00",
+  "scanned_at": "2026-11-07T01:41:21+00:00",
   "monitor_count": 14,
   "successful_monitors": [
     "cbre",
@@ -20,72 +20,51 @@
   ],
   "failed_monitors": [],
   "candidate_count": 2,
-  "needs_ai_review_count": 1,
+  "needs_ai_review_count": 0,
   "candidates": [
     {
       "monitor": "tiktok",
-      "job_id": "7704036750285867269",
-      "title": "Research Engineer, Agentic Video Editing - TikTok",
+      "job_id": "7705012688944810245",
+      "title": "Software Engineer - Intern (TikTok BRIC) - 2027 Start (PhD)",
       "location": "San Jose, California, United States of America",
       "posted_at": "",
-      "url": "https://lifeattiktok.com/search/7704036750285867269",
-      "priority": "medium",
+      "url": "https://lifeattiktok.com/search/7705012688944810245",
+      "priority": "high",
       "matching_requirements": [
-        "target_title:technical_review",
+        "target_title:software",
         "profile_signal:python:+2",
+        "profile_signal:java:+1",
         "profile_signal:backend_apis:+2",
+        "profile_signal:distributed_systems:+2",
+        "profile_signal:observability:+1",
         "profile_signal:agentic_tooling:+3"
       ],
       "material_gaps": []
     },
     {
-      "monitor": "waymo",
-      "job_id": "5652",
-      "title": "2027 Summer Intern, MS/PhD, Software Engineer, Multiverse",
-      "location": [
-        "San Francisco, California",
-        "Software Engineering",
-        "Intern",
-        "Intern"
-      ],
-      "posted_at": null,
-      "url": "https://careers.withwaymo.com/jobs/2027-summer-intern-ms-phd-software-engineer-multiverse-san-francisco-california-united-states",
+      "monitor": "tiktok",
+      "job_id": "7704981006856145205",
+      "title": "Research Engineer Intern (TikTok Generalized Arch) - 2027 Start (PhD)",
+      "location": "San Jose, California, United States of America",
+      "posted_at": "",
+      "url": "https://lifeattiktok.com/search/7704981006856145205",
       "priority": "medium",
       "matching_requirements": [
-        "target_title:software",
-        "profile_signal:python:+2",
-        "profile_signal:distributed_systems:+2",
-        "profile_signal:data_streaming:+2",
-        "profile_signal:databases:+1"
-      ],
-      "material_gaps": []
-    }
-  ],
-  "needs_ai_review": [
-    {
-      "monitor": "iqvia",
-      "job_id": "R1574603",
-      "title": "Senior Data QA Engineer",
-      "location": "Kathmandu, Nepal",
-      "posted_at": "2026-11-06",
-      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Kathmandu-Nepal/Senior-Data-QA-Engineer_R1574603",
-      "priority": "low",
-      "matching_requirements": [
         "target_title:technical_review",
-        "profile_signal:data_streaming:+2",
-        "profile_signal:databases:+1",
-        "profile_signal:cloud_containers:+2"
+        "profile_signal:reliability_telemetry:+3",
+        "profile_signal:agentic_tooling:+3"
       ],
       "material_gaps": []
     }
   ],
+  "needs_ai_review": [],
   "results": [
     {
       "monitor": "cbre",
       "success": true,
-      "scanned_at": "2026-11-06T19:52:44+00:00",
-      "fetched": 844,
-      "unseen": 34,
+      "scanned_at": "2026-11-07T01:41:21+00:00",
+      "fetched": 867,
+      "unseen": 20,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -94,7 +73,7 @@
     {
       "monitor": "cdk",
       "success": true,
-      "scanned_at": "2026-11-06T19:52:44+00:00",
+      "scanned_at": "2026-11-07T01:41:21+00:00",
       "fetched": 42,
       "unseen": 0,
       "state_updated": true,
@@ -105,9 +84,9 @@
     {
       "monitor": "cisco",
       "success": true,
-      "scanned_at": "2026-11-06T19:52:44+00:00",
-      "fetched": 80,
-      "unseen": 1,
+      "scanned_at": "2026-11-07T01:41:21+00:00",
+      "fetched": 60,
+      "unseen": 0,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -116,9 +95,9 @@
     {
       "monitor": "crunchyroll",
       "success": true,
-      "scanned_at": "2026-11-06T19:52:44+00:00",
+      "scanned_at": "2026-11-07T01:41:21+00:00",
       "fetched": 105,
-      "unseen": 1,
+      "unseen": 0,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -127,9 +106,9 @@
     {
       "monitor": "ebay",
       "success": true,
-      "scanned_at": "2026-11-06T19:52:44+00:00",
-      "fetched": 173,
-      "unseen": 2,
+      "scanned_at": "2026-11-07T01:41:21+00:00",
+      "fetched": 162,
+      "unseen": 3,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -138,9 +117,9 @@
     {
       "monitor": "intepros",
       "success": true,
-      "scanned_at": "2026-11-06T19:52:44+00:00",
-      "fetched": 30,
-      "unseen": 1,
+      "scanned_at": "2026-11-07T01:41:21+00:00",
+      "fetched": 20,
+      "unseen": 0,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -149,36 +128,20 @@
     {
       "monitor": "iqvia",
       "success": true,
-      "scanned_at": "2026-11-06T19:52:44+00:00",
-      "fetched": 884,
-      "unseen": 27,
+      "scanned_at": "2026-11-07T01:41:21+00:00",
+      "fetched": 359,
+      "unseen": 0,
       "state_updated": true,
       "candidates": [],
-      "needs_ai_review": [
-        {
-          "job_id": "R1574603",
-          "title": "Senior Data QA Engineer",
-          "location": "Kathmandu, Nepal",
-          "posted_at": "2026-11-06",
-          "url": "https://iqvia.wd1.myworkdayjobs.com/job/Kathmandu-Nepal/Senior-Data-QA-Engineer_R1574603",
-          "priority": "low",
-          "matching_requirements": [
-            "target_title:technical_review",
-            "profile_signal:data_streaming:+2",
-            "profile_signal:databases:+1",
-            "profile_signal:cloud_containers:+2"
-          ],
-          "material_gaps": []
-        }
-      ],
+      "needs_ai_review": [],
       "errors": []
     },
     {
       "monitor": "nbcu",
       "success": true,
-      "scanned_at": "2026-11-06T19:52:44+00:00",
+      "scanned_at": "2026-11-07T01:41:21+00:00",
       "fetched": 290,
-      "unseen": 8,
+      "unseen": 5,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -187,7 +150,7 @@
     {
       "monitor": "nvidia",
       "success": true,
-      "scanned_at": "2026-11-06T19:52:44+00:00",
+      "scanned_at": "2026-11-07T01:41:21+00:00",
       "fetched": 120,
       "unseen": 4,
       "state_updated": true,
@@ -198,8 +161,8 @@
     {
       "monitor": "occ",
       "success": true,
-      "scanned_at": "2026-11-06T19:52:44+00:00",
-      "fetched": 69,
+      "scanned_at": "2026-11-07T01:41:21+00:00",
+      "fetched": 70,
       "unseen": 1,
       "state_updated": true,
       "candidates": [],
@@ -209,7 +172,7 @@
     {
       "monitor": "ocient",
       "success": true,
-      "scanned_at": "2026-11-06T19:52:44+00:00",
+      "scanned_at": "2026-11-07T01:41:21+00:00",
       "fetched": 13,
       "unseen": 0,
       "state_updated": true,
@@ -220,7 +183,7 @@
     {
       "monitor": "rivian",
       "success": true,
-      "scanned_at": "2026-11-06T19:52:44+00:00",
+      "scanned_at": "2026-11-07T01:41:21+00:00",
       "fetched": 30,
       "unseen": 0,
       "state_updated": true,
@@ -231,22 +194,39 @@
     {
       "monitor": "tiktok",
       "success": true,
-      "scanned_at": "2026-11-06T19:52:44+00:00",
-      "fetched": 1876,
-      "unseen": 6,
+      "scanned_at": "2026-11-07T01:41:21+00:00",
+      "fetched": 1874,
+      "unseen": 2,
       "state_updated": true,
       "candidates": [
         {
-          "job_id": "7704036750285867269",
-          "title": "Research Engineer, Agentic Video Editing - TikTok",
+          "job_id": "7705012688944810245",
+          "title": "Software Engineer - Intern (TikTok BRIC) - 2027 Start (PhD)",
           "location": "San Jose, California, United States of America",
           "posted_at": "",
-          "url": "https://lifeattiktok.com/search/7704036750285867269",
+          "url": "https://lifeattiktok.com/search/7705012688944810245",
+          "priority": "high",
+          "matching_requirements": [
+            "target_title:software",
+            "profile_signal:python:+2",
+            "profile_signal:java:+1",
+            "profile_signal:backend_apis:+2",
+            "profile_signal:distributed_systems:+2",
+            "profile_signal:observability:+1",
+            "profile_signal:agentic_tooling:+3"
+          ],
+          "material_gaps": []
+        },
+        {
+          "job_id": "7704981006856145205",
+          "title": "Research Engineer Intern (TikTok Generalized Arch) - 2027 Start (PhD)",
+          "location": "San Jose, California, United States of America",
+          "posted_at": "",
+          "url": "https://lifeattiktok.com/search/7704981006856145205",
           "priority": "medium",
           "matching_requirements": [
             "target_title:technical_review",
-            "profile_signal:python:+2",
-            "profile_signal:backend_apis:+2",
+            "profile_signal:reliability_telemetry:+3",
             "profile_signal:agentic_tooling:+3"
           ],
           "material_gaps": []
@@ -258,33 +238,11 @@
     {
       "monitor": "waymo",
       "success": true,
-      "scanned_at": "2026-11-06T19:52:44+00:00",
-      "fetched": 167,
-      "unseen": 4,
+      "scanned_at": "2026-11-07T01:41:21+00:00",
+      "fetched": 169,
+      "unseen": 2,
       "state_updated": true,
-      "candidates": [
-        {
-          "job_id": "5652",
-          "title": "2027 Summer Intern, MS/PhD, Software Engineer, Multiverse",
-          "location": [
-            "San Francisco, California",
-            "Software Engineering",
-            "Intern",
-            "Intern"
-          ],
-          "posted_at": null,
-          "url": "https://careers.withwaymo.com/jobs/2027-summer-intern-ms-phd-software-engineer-multiverse-san-francisco-california-united-states",
-          "priority": "medium",
-          "matching_requirements": [
-            "target_title:software",
-            "profile_signal:python:+2",
-            "profile_signal:distributed_systems:+2",
-            "profile_signal:data_streaming:+2",
-            "profile_signal:databases:+1"
-          ],
-          "material_gaps": []
-        }
-      ],
+      "candidates": [],
       "needs_ai_review": [],
       "errors": []
     }

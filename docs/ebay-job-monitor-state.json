@@ -395,8 +395,11 @@
     "R0077348",
     "R0077349",
     "R0077352",
+    "R0077355",
     "R0077357",
     "R0077364",
+    "R0077366",
+    "R0077389",
     "R0077480",
     "R0077481",
     "R0077482"
@@ -484,7 +487,7 @@
       "category": "systems_analysis"
     }
   },
-  "last_successful_scan_at": "2026-11-06T19:52:44+00:00",
+  "last_successful_scan_at": "2026-11-07T01:41:21+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "R0077145": {
@@ -5601,6 +5604,51 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-06T19:52:44+00:00",
       "last_seen_at": "2026-11-06T19:52:44+00:00"
+    },
+    "R0077389": {
+      "title": "Manager, Compliance Strategy & Ops",
+      "location": "Portland, Oregon, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077389/Manager-Compliance-Strategy-Ops",
+      "posted_at": "2026-11-06T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-07T01:41:21+00:00",
+      "last_seen_at": "2026-11-07T01:41:21+00:00"
+    },
+    "R0077355": {
+      "title": "Accounting Manager",
+      "location": "Austin, Texas, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077355/Accounting-Manager",
+      "posted_at": "2026-11-06T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-07T01:41:21+00:00",
+      "last_seen_at": "2026-11-07T01:41:21+00:00"
+    },
+    "R0077366": {
+      "title": "Manager, Product Marketing - eBay Live",
+      "location": "San Jose, California, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077366/Manager-Product-Marketing-eBay-Live",
+      "posted_at": "2026-11-06T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-07T01:41:21+00:00",
+      "last_seen_at": "2026-11-07T01:41:21+00:00"
     }
   },
   "source_updated_at_by_id": {}

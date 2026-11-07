@@ -1192,19 +1192,23 @@
     "JR2029216",
     "JR2029227",
     "JR2029239",
+    "JR2029272",
     "JR2029313",
     "JR2029355",
     "JR2029366",
     "JR2029400",
     "JR2029411",
+    "JR2029414",
     "JR2029416",
     "JR2029419",
     "JR2029424",
     "JR2029426",
     "JR2029432",
     "JR2029449",
+    "JR2029457",
     "JR2029460",
-    "JR2029533"
+    "JR2029533",
+    "JR2029570"
   ],
   "candidate_catalog": {
     "JR2018245": {
@@ -1541,7 +1545,7 @@
       "category": "technical_review"
     }
   },
-  "last_successful_scan_at": "2026-11-06T19:52:44+00:00",
+  "last_successful_scan_at": "2026-11-07T01:41:21+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "JR2014880": {
@@ -16545,6 +16549,62 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-06T19:52:44+00:00",
       "last_seen_at": "2026-11-06T19:52:44+00:00"
+    },
+    "JR2029570": {
+      "title": "Senior Security Firmware Engineer, Data Center Systems",
+      "location": "6 Locations",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Security-Firmware-Engineer--Data-Center-Systems_JR2029570",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "embedded_or_hardware"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-07T01:41:21+00:00",
+      "last_seen_at": "2026-11-07T01:41:21+00:00"
+    },
+    "JR2029272": {
+      "title": "Senior AI Engineer, AI Safety",
+      "location": "US, CA, Santa Clara; US, CA, Remote",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-AI-Engineer--AI-Safety_JR2029272-1",
+      "posted_at": "2026-11-06",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "ai_ml",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-07T01:41:21+00:00",
+      "last_seen_at": "2026-11-07T01:41:21+00:00"
+    },
+    "JR2029457": {
+      "title": "Senior System Software Engineer, DGX Cloud AI Infrastructure",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-System-Software-Engineer--DGX-Cloud-AI-Infrastructure_JR2029457",
+      "posted_at": "2026-11-06",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-07T01:41:21+00:00",
+      "last_seen_at": "2026-11-07T01:41:21+00:00"
+    },
+    "JR2029414": {
+      "title": "Senior System Software Engineer - Factory Bringup",
+      "location": "US, CA, Santa Clara; US, NC, Remote; US, TX, Remote; US, CO, Remote; US, CA, Remote; US, MA, Remote",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-System-Software-Engineer---Factory-Bringup_JR2029414-1",
+      "posted_at": "2026-11-06",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-07T01:41:21+00:00",
+      "last_seen_at": "2026-11-07T01:41:21+00:00"
     }
   },
   "source_updated_at_by_id": {}
