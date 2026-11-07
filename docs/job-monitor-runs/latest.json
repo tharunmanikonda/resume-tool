@@ -1,6 +1,6 @@
 {
   "success": true,
-  "scanned_at": "2026-11-07T01:41:21+00:00",
+  "scanned_at": "2026-11-07T17:57:43+00:00",
   "monitor_count": 14,
   "successful_monitors": [
     "cbre",
@@ -19,52 +19,17 @@
     "waymo"
   ],
   "failed_monitors": [],
-  "candidate_count": 2,
+  "candidate_count": 0,
   "needs_ai_review_count": 0,
-  "candidates": [
-    {
-      "monitor": "tiktok",
-      "job_id": "7705012688944810245",
-      "title": "Software Engineer - Intern (TikTok BRIC) - 2027 Start (PhD)",
-      "location": "San Jose, California, United States of America",
-      "posted_at": "",
-      "url": "https://lifeattiktok.com/search/7705012688944810245",
-      "priority": "high",
-      "matching_requirements": [
-        "target_title:software",
-        "profile_signal:python:+2",
-        "profile_signal:java:+1",
-        "profile_signal:backend_apis:+2",
-        "profile_signal:distributed_systems:+2",
-        "profile_signal:observability:+1",
-        "profile_signal:agentic_tooling:+3"
-      ],
-      "material_gaps": []
-    },
-    {
-      "monitor": "tiktok",
-      "job_id": "7704981006856145205",
-      "title": "Research Engineer Intern (TikTok Generalized Arch) - 2027 Start (PhD)",
-      "location": "San Jose, California, United States of America",
-      "posted_at": "",
-      "url": "https://lifeattiktok.com/search/7704981006856145205",
-      "priority": "medium",
-      "matching_requirements": [
-        "target_title:technical_review",
-        "profile_signal:reliability_telemetry:+3",
-        "profile_signal:agentic_tooling:+3"
-      ],
-      "material_gaps": []
-    }
-  ],
+  "candidates": [],
   "needs_ai_review": [],
   "results": [
     {
       "monitor": "cbre",
       "success": true,
-      "scanned_at": "2026-11-07T01:41:21+00:00",
-      "fetched": 867,
-      "unseen": 20,
+      "scanned_at": "2026-11-07T17:57:43+00:00",
+      "fetched": 688,
+      "unseen": 1,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -73,7 +38,7 @@
     {
       "monitor": "cdk",
       "success": true,
-      "scanned_at": "2026-11-07T01:41:21+00:00",
+      "scanned_at": "2026-11-07T17:57:43+00:00",
       "fetched": 42,
       "unseen": 0,
       "state_updated": true,
@@ -84,7 +49,7 @@
     {
       "monitor": "cisco",
       "success": true,
-      "scanned_at": "2026-11-07T01:41:21+00:00",
+      "scanned_at": "2026-11-07T17:57:43+00:00",
       "fetched": 60,
       "unseen": 0,
       "state_updated": true,
@@ -95,7 +60,7 @@
     {
       "monitor": "crunchyroll",
       "success": true,
-      "scanned_at": "2026-11-07T01:41:21+00:00",
+      "scanned_at": "2026-11-07T17:57:43+00:00",
       "fetched": 105,
       "unseen": 0,
       "state_updated": true,
@@ -106,9 +71,9 @@
     {
       "monitor": "ebay",
       "success": true,
-      "scanned_at": "2026-11-07T01:41:21+00:00",
-      "fetched": 162,
-      "unseen": 3,
+      "scanned_at": "2026-11-07T17:57:43+00:00",
+      "fetched": 156,
+      "unseen": 0,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -117,7 +82,7 @@
     {
       "monitor": "intepros",
       "success": true,
-      "scanned_at": "2026-11-07T01:41:21+00:00",
+      "scanned_at": "2026-11-07T17:57:43+00:00",
       "fetched": 20,
       "unseen": 0,
       "state_updated": true,
@@ -128,8 +93,8 @@
     {
       "monitor": "iqvia",
       "success": true,
-      "scanned_at": "2026-11-07T01:41:21+00:00",
-      "fetched": 359,
+      "scanned_at": "2026-11-07T17:57:43+00:00",
+      "fetched": 361,
       "unseen": 0,
       "state_updated": true,
       "candidates": [],
@@ -139,9 +104,9 @@
     {
       "monitor": "nbcu",
       "success": true,
-      "scanned_at": "2026-11-07T01:41:21+00:00",
-      "fetched": 290,
-      "unseen": 5,
+      "scanned_at": "2026-11-07T17:57:43+00:00",
+      "fetched": 217,
+      "unseen": 0,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -150,9 +115,9 @@
     {
       "monitor": "nvidia",
       "success": true,
-      "scanned_at": "2026-11-07T01:41:21+00:00",
+      "scanned_at": "2026-11-07T17:57:43+00:00",
       "fetched": 120,
-      "unseen": 4,
+      "unseen": 5,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -161,9 +126,9 @@
     {
       "monitor": "occ",
       "success": true,
-      "scanned_at": "2026-11-07T01:41:21+00:00",
-      "fetched": 70,
-      "unseen": 1,
+      "scanned_at": "2026-11-07T17:57:43+00:00",
+      "fetched": 60,
+      "unseen": 0,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -172,7 +137,7 @@
     {
       "monitor": "ocient",
       "success": true,
-      "scanned_at": "2026-11-07T01:41:21+00:00",
+      "scanned_at": "2026-11-07T17:57:43+00:00",
       "fetched": 13,
       "unseen": 0,
       "state_updated": true,
@@ -183,7 +148,7 @@
     {
       "monitor": "rivian",
       "success": true,
-      "scanned_at": "2026-11-07T01:41:21+00:00",
+      "scanned_at": "2026-11-07T17:57:43+00:00",
       "fetched": 30,
       "unseen": 0,
       "state_updated": true,
@@ -194,53 +159,20 @@
     {
       "monitor": "tiktok",
       "success": true,
-      "scanned_at": "2026-11-07T01:41:21+00:00",
+      "scanned_at": "2026-11-07T17:57:43+00:00",
       "fetched": 1874,
-      "unseen": 2,
+      "unseen": 0,
       "state_updated": true,
-      "candidates": [
-        {
-          "job_id": "7705012688944810245",
-          "title": "Software Engineer - Intern (TikTok BRIC) - 2027 Start (PhD)",
-          "location": "San Jose, California, United States of America",
-          "posted_at": "",
-          "url": "https://lifeattiktok.com/search/7705012688944810245",
-          "priority": "high",
-          "matching_requirements": [
-            "target_title:software",
-            "profile_signal:python:+2",
-            "profile_signal:java:+1",
-            "profile_signal:backend_apis:+2",
-            "profile_signal:distributed_systems:+2",
-            "profile_signal:observability:+1",
-            "profile_signal:agentic_tooling:+3"
-          ],
-          "material_gaps": []
-        },
-        {
-          "job_id": "7704981006856145205",
-          "title": "Research Engineer Intern (TikTok Generalized Arch) - 2027 Start (PhD)",
-          "location": "San Jose, California, United States of America",
-          "posted_at": "",
-          "url": "https://lifeattiktok.com/search/7704981006856145205",
-          "priority": "medium",
-          "matching_requirements": [
-            "target_title:technical_review",
-            "profile_signal:reliability_telemetry:+3",
-            "profile_signal:agentic_tooling:+3"
-          ],
-          "material_gaps": []
-        }
-      ],
+      "candidates": [],
       "needs_ai_review": [],
       "errors": []
     },
     {
       "monitor": "waymo",
       "success": true,
-      "scanned_at": "2026-11-07T01:41:21+00:00",
+      "scanned_at": "2026-11-07T17:57:43+00:00",
       "fetched": 169,
-      "unseen": 2,
+      "unseen": 0,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],

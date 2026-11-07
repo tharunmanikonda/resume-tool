@@ -484,6 +484,7 @@
     "JR2020316",
     "JR2020319",
     "JR2020320",
+    "JR2020321",
     "JR2020327",
     "JR2020330",
     "JR2020334",
@@ -1058,6 +1059,7 @@
     "JR2027850",
     "JR2027860",
     "JR2027863",
+    "JR2027872",
     "JR2027873",
     "JR2027887",
     "JR2027891",
@@ -1163,6 +1165,7 @@
     "JR2028878",
     "JR2028887",
     "JR2028905",
+    "JR2028908",
     "JR2028913",
     "JR2028915",
     "JR2028930",
@@ -1183,12 +1186,14 @@
     "JR2029093",
     "JR2029094",
     "JR2029104",
+    "JR2029107",
     "JR2029108",
     "JR2029109",
     "JR2029160",
     "JR2029162",
     "JR2029189",
     "JR2029190",
+    "JR2029192",
     "JR2029216",
     "JR2029227",
     "JR2029239",
@@ -1545,7 +1550,7 @@
       "category": "technical_review"
     }
   },
-  "last_successful_scan_at": "2026-11-07T01:41:21+00:00",
+  "last_successful_scan_at": "2026-11-07T17:57:43+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "JR2014880": {
@@ -16605,6 +16610,76 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-07T01:41:21+00:00",
       "last_seen_at": "2026-11-07T01:41:21+00:00"
+    },
+    "JR2020321": {
+      "title": "Principal Software Engineer, E2E Performance and Goodput \u2014 CSP Engagements",
+      "location": "4 Locations",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Principal-Software-Engineer--E2E-Performance-and-Goodput---CSP-Engagements_JR2020321",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-07T17:57:43+00:00",
+      "last_seen_at": "2026-11-07T17:57:43+00:00"
+    },
+    "JR2029107": {
+      "title": "Senior Software Support Engineer - Slinky",
+      "location": "US, UT, Remote",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-UT-Remote/Senior-Software-Support-Engineer---Slinky_JR2029107",
+      "posted_at": "Posted Yesterday",
+      "stage": "prefilter",
+      "blockers": [
+        "support"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-07T17:57:43+00:00",
+      "last_seen_at": "2026-11-07T17:57:43+00:00"
+    },
+    "JR2028908": {
+      "title": "Machine Learning Engineer, Data Curation - Autonomous Vehicles",
+      "location": "3 Locations",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Machine-Learning-Engineer--Data-Curation---Autonomous-Vehicles_JR2028908",
+      "posted_at": "Posted Yesterday",
+      "stage": "prefilter",
+      "blockers": [
+        "specialized_low_level"
+      ],
+      "category": "ai_ml",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-07T17:57:43+00:00",
+      "last_seen_at": "2026-11-07T17:57:43+00:00"
+    },
+    "JR2027872": {
+      "title": "Senior Deep Learning Software Infrastructure Engineer",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Deep-Learning-Software-Infrastructure-Engineer_JR2027872",
+      "posted_at": "2026-11-06",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-07T17:57:43+00:00",
+      "last_seen_at": "2026-11-07T17:57:43+00:00"
+    },
+    "JR2029192": {
+      "title": "Senior Machine Learning Data Pipeline Engineer",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Machine-Learning-Data-Pipeline-Engineer_JR2029192",
+      "posted_at": "2026-11-06",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-07T17:57:43+00:00",
+      "last_seen_at": "2026-11-07T17:57:43+00:00"
     }
   },
   "source_updated_at_by_id": {}

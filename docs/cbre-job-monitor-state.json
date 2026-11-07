@@ -3215,6 +3215,7 @@
     "304355",
     "304384",
     "304448",
+    "304484",
     "304504",
     "304510",
     "304517",
@@ -3227,7 +3228,7 @@
     "8655"
   ],
   "candidate_catalog": {},
-  "last_successful_scan_at": "2026-11-07T01:41:21+00:00",
+  "last_successful_scan_at": "2026-11-07T17:57:43+00:00",
   "filter_version": 0,
   "rejected_catalog": {
     "301688": {
@@ -14084,7 +14085,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-07T17:57:43+00:00"
     },
     "301724": {
       "title": "Finance Manager",
@@ -14099,7 +14100,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-07T17:57:43+00:00"
     },
     "302330": {
       "title": "Assistant Property Manager",
@@ -14114,7 +14115,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-07T17:57:43+00:00"
     },
     "301748": {
       "title": "Finance Manager",
@@ -14129,7 +14130,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-07T17:57:43+00:00"
     },
     "300934": {
       "title": "Operations Analyst",
@@ -14158,7 +14159,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-07T17:57:43+00:00"
     },
     "300435": {
       "title": "T&T Purchase Ledger Analyst",
@@ -14173,7 +14174,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-07T17:57:43+00:00"
     },
     "269942": {
       "title": "Senior Technical Trainer, Data Centers",
@@ -14187,7 +14188,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-07T17:57:43+00:00"
     },
     "302248": {
       "title": "Building Systems Engineer",
@@ -23618,7 +23619,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-02T22:12:15+00:00",
-      "last_seen_at": "2026-11-02T22:12:15+00:00"
+      "last_seen_at": "2026-11-07T17:57:43+00:00"
     },
     "303215": {
       "title": "Maintenance Technician",
@@ -24581,7 +24582,7 @@
       "category": "technical_review",
       "filter_version": 3,
       "first_seen_at": "2026-11-02T22:12:15+00:00",
-      "last_seen_at": "2026-11-02T22:12:15+00:00"
+      "last_seen_at": "2026-11-07T17:57:43+00:00"
     },
     "300352": {
       "title": "Automation Engineer",
@@ -25650,7 +25651,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-04T01:57:30+00:00",
-      "last_seen_at": "2026-11-04T01:57:30+00:00"
+      "last_seen_at": "2026-11-07T17:57:43+00:00"
     },
     "303929": {
       "title": "Sr. Maintenance Technician",
@@ -25680,7 +25681,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-04T01:57:30+00:00",
-      "last_seen_at": "2026-11-04T01:57:30+00:00"
+      "last_seen_at": "2026-11-07T17:57:43+00:00"
     },
     "303764": {
       "title": "Sr. Maintenance Technician",
@@ -26378,7 +26379,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-04T20:19:04+00:00",
-      "last_seen_at": "2026-11-04T20:19:04+00:00"
+      "last_seen_at": "2026-11-07T17:57:43+00:00"
     },
     "303918": {
       "title": "Maintenance Technician",
@@ -27588,7 +27589,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-05T20:29:48+00:00",
-      "last_seen_at": "2026-11-05T20:29:48+00:00"
+      "last_seen_at": "2026-11-07T17:57:43+00:00"
     },
     "303763": {
       "title": "Sr. Maintenance Technician",
@@ -28579,12 +28580,12 @@
       "posted_at": "03-Nov-2026",
       "stage": "detail",
       "blockers": [
-        "insufficient_profile_overlap"
+        "non_software_engineering_role"
       ],
       "category": "automation",
       "filter_version": 3,
       "first_seen_at": "2026-11-06T02:00:49+00:00",
-      "last_seen_at": "2026-11-06T02:00:49+00:00"
+      "last_seen_at": "2026-11-07T17:57:43+00:00"
     },
     "300767": {
       "title": "Electrical Engineer (Johor Bahru)",
@@ -29255,7 +29256,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-07T01:41:21+00:00",
-      "last_seen_at": "2026-11-07T01:41:21+00:00"
+      "last_seen_at": "2026-11-07T17:57:43+00:00"
     },
     "304547": {
       "title": "FM Engineering Ops Manager",
@@ -29270,7 +29271,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-07T01:41:21+00:00",
-      "last_seen_at": "2026-11-07T01:41:21+00:00"
+      "last_seen_at": "2026-11-07T17:57:43+00:00"
     },
     "304548": {
       "title": "Data Center Manager",
@@ -29285,7 +29286,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-07T01:41:21+00:00",
-      "last_seen_at": "2026-11-07T01:41:21+00:00"
+      "last_seen_at": "2026-11-07T17:57:43+00:00"
     },
     "304205": {
       "title": "Analista de Sistemas de Calidad",
@@ -29300,7 +29301,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-07T01:41:21+00:00",
-      "last_seen_at": "2026-11-07T01:41:21+00:00"
+      "last_seen_at": "2026-11-07T17:57:43+00:00"
     },
     "304384": {
       "title": "Data Center Technician (Day Shift 6am-6pm)",
@@ -29315,7 +29316,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-07T01:41:21+00:00",
-      "last_seen_at": "2026-11-07T01:41:21+00:00"
+      "last_seen_at": "2026-11-07T17:57:43+00:00"
     },
     "304177": {
       "title": "Maintenance Technician",
@@ -29330,7 +29331,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-07T01:41:21+00:00",
-      "last_seen_at": "2026-11-07T01:41:21+00:00"
+      "last_seen_at": "2026-11-07T17:57:43+00:00"
     },
     "302795": {
       "title": "Maintenance Technician",
@@ -29360,7 +29361,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-07T01:41:21+00:00",
-      "last_seen_at": "2026-11-07T01:41:21+00:00"
+      "last_seen_at": "2026-11-07T17:57:43+00:00"
     },
     "304355": {
       "title": "Fleet Service Specialist",
@@ -29374,7 +29375,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-07T01:41:21+00:00",
-      "last_seen_at": "2026-11-07T01:41:21+00:00"
+      "last_seen_at": "2026-11-07T17:57:43+00:00"
     },
     "304154": {
       "title": "Maintenance Technician",
@@ -29389,7 +29390,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-07T01:41:21+00:00",
-      "last_seen_at": "2026-11-07T01:41:21+00:00"
+      "last_seen_at": "2026-11-07T17:57:43+00:00"
     },
     "303768": {
       "title": "Sr. Maintenance Technician",
@@ -29503,7 +29504,7 @@
       "category": "technical_review",
       "filter_version": 3,
       "first_seen_at": "2026-11-07T01:41:21+00:00",
-      "last_seen_at": "2026-11-07T01:41:21+00:00"
+      "last_seen_at": "2026-11-07T17:57:43+00:00"
     },
     "303787": {
       "title": "HVAC Engineer",
@@ -29512,12 +29513,12 @@
       "posted_at": "06-Nov-2026",
       "stage": "detail",
       "blockers": [
-        "non_software_engineering_role"
+        "insufficient_profile_overlap"
       ],
       "category": "technical_review",
       "filter_version": 3,
       "first_seen_at": "2026-11-07T01:41:21+00:00",
-      "last_seen_at": "2026-11-07T01:41:21+00:00"
+      "last_seen_at": "2026-11-07T17:57:43+00:00"
     },
     "303440": {
       "title": "Lead Building Engineer",
@@ -29532,6 +29533,384 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-07T01:41:21+00:00",
       "last_seen_at": "2026-11-07T01:41:21+00:00"
+    },
+    "304484": {
+      "title": "Data Center Technician (Night Shift 6pm-6am)",
+      "location": "St Francisville - Louisiana - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Data-Center-Technician-Night-Shift-6pm-6am/304484",
+      "posted_at": "06-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-07T17:57:43+00:00",
+      "last_seen_at": "2026-11-07T17:57:43+00:00"
+    },
+    "299788": {
+      "title": "Estate Management Analyst (Valuation and Tax)",
+      "location": "Singapore - Singapore",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Estate-Management-Analyst-Valuation-and-Tax/299788",
+      "posted_at": "04-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-07T17:57:43+00:00",
+      "last_seen_at": "2026-11-07T17:57:43+00:00"
+    },
+    "290257": {
+      "title": "Business Systems Sr Analyst",
+      "location": "Singapore - Singapore",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Business-Systems-Sr-Analyst/290257",
+      "posted_at": "03-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-07T17:57:43+00:00",
+      "last_seen_at": "2026-11-07T17:57:43+00:00"
+    },
+    "247044": {
+      "title": "EOI: HR Operations Analyst",
+      "location": "Kuala Lumpur - Wilayah Persekutuan Kuala Lumpur - Malaysia",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/EOI-HR-Operations-Analyst/247044",
+      "posted_at": "27-Oct-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-07T17:57:43+00:00",
+      "last_seen_at": "2026-11-07T17:57:43+00:00"
+    },
+    "301406": {
+      "title": "Sustainability Analyst",
+      "location": "Ciudad De Mexico - Ciudad de Mexico - Mexico",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Sustainability-Analyst/301406",
+      "posted_at": "16-Oct-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-07T17:57:43+00:00",
+      "last_seen_at": "2026-11-07T17:57:43+00:00"
+    },
+    "300671": {
+      "title": "Valuation Analyst",
+      "location": "Pittsburgh - Pennsylvania - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Valuation-Analyst/300671",
+      "posted_at": "15-Oct-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-07T17:57:43+00:00",
+      "last_seen_at": "2026-11-07T17:57:43+00:00"
+    },
+    "298878": {
+      "title": "Loan Servicing Analyst - Insurance",
+      "location": "Houston - Texas - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Loan-Servicing-Analyst-Insurance/298878",
+      "posted_at": "09-Oct-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-07T17:57:43+00:00",
+      "last_seen_at": "2026-11-07T17:57:43+00:00"
+    },
+    "298997": {
+      "title": "Financial Specialist",
+      "location": "Hyderabad - Telangana - India",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Financial-Specialist/298997",
+      "posted_at": "06-Oct-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-07T17:57:43+00:00",
+      "last_seen_at": "2026-11-07T17:57:43+00:00"
+    },
+    "260203": {
+      "title": "EOI : Financial Analyst - Record to Report (RTR)",
+      "location": "Kuala Lumpur - Wilayah Persekutuan Kuala Lumpur - Malaysia",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/EOI-Financial-Analyst-Record-to-Report-RTR/260203",
+      "posted_at": "21-Sep-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-07T17:57:43+00:00",
+      "last_seen_at": "2026-11-07T17:57:43+00:00"
+    },
+    "292122": {
+      "title": "Finance Sr Analyst (BSO)",
+      "location": "Hyderabad - Telangana - India",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Finance-Sr-Analyst-BSO/292122",
+      "posted_at": "07-Sep-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-07T17:57:43+00:00",
+      "last_seen_at": "2026-11-07T17:57:43+00:00"
+    },
+    "295940": {
+      "title": "Senior Financial Analyst",
+      "location": "Singapore - Singapore",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Senior-Financial-Analyst/295940",
+      "posted_at": "02-Sep-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-07T17:57:43+00:00",
+      "last_seen_at": "2026-11-07T17:57:43+00:00"
+    },
+    "279571": {
+      "title": "Loan Servicing Analyst - Insurance",
+      "location": "Houston - Texas - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Loan-Servicing-Analyst-Insurance/279571",
+      "posted_at": "31-Aug-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-07T17:57:43+00:00",
+      "last_seen_at": "2026-11-07T17:57:43+00:00"
+    },
+    "282380": {
+      "title": "Payroll Analyst",
+      "location": "Richardson - Texas - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Payroll-Analyst/282380",
+      "posted_at": "24-Aug-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-07T17:57:43+00:00",
+      "last_seen_at": "2026-11-07T17:57:43+00:00"
+    },
+    "288805": {
+      "title": "Real Estate Analyst (Weekend Roster required)",
+      "location": "Kuala Lumpur - Wilayah Persekutuan Kuala Lumpur - Malaysia",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Real-Estate-Analyst-Weekend-Roster-required/288805",
+      "posted_at": "20-Aug-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-07T17:57:43+00:00",
+      "last_seen_at": "2026-11-07T17:57:43+00:00"
+    },
+    "291895": {
+      "title": "Senior Lease Analyst",
+      "location": "Amsterdam '- Noord-Holland - Netherlands",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Senior-Lease-Analyst/291895",
+      "posted_at": "19-Aug-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-07T17:57:43+00:00",
+      "last_seen_at": "2026-11-07T17:57:43+00:00"
+    },
+    "291092": {
+      "title": "Data Analyst",
+      "location": "Remote - US - Remote - US - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Data-Analyst/291092",
+      "posted_at": "18-Aug-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-07T17:57:43+00:00",
+      "last_seen_at": "2026-11-07T17:57:43+00:00"
+    },
+    "291918": {
+      "title": "Senior AR Analyst- Talent Community",
+      "location": "Cleveland - Ohio - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Senior-AR-Analyst-Talent-Community/291918",
+      "posted_at": "17-Aug-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "not_an_open_role",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-07T17:57:43+00:00",
+      "last_seen_at": "2026-11-07T17:57:43+00:00"
+    },
+    "288121": {
+      "title": "Expression of Interest: Procurement Analyst",
+      "location": "Makati City - National Capital Region - Philippines",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Expression-of-Interest-Procurement-Analyst/288121",
+      "posted_at": "28-Jul-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "not_an_open_role",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-07T17:57:43+00:00",
+      "last_seen_at": "2026-11-07T17:57:43+00:00"
+    },
+    "288120": {
+      "title": "Expression of Interest: Procurement Analyst (Nihongo Speaker)",
+      "location": "Makati City - National Capital Region - Philippines",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Expression-of-Interest-Procurement-Analyst-Nihongo-Speaker/288120",
+      "posted_at": "23-Jul-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "not_an_open_role",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-07T17:57:43+00:00",
+      "last_seen_at": "2026-11-07T17:57:43+00:00"
+    },
+    "287838": {
+      "title": "Maintenance Planner",
+      "location": "Pontoon Beach - Illinois - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Maintenance-Planner/287838",
+      "posted_at": "21-Jul-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-07T17:57:43+00:00",
+      "last_seen_at": "2026-11-07T17:57:43+00:00"
+    },
+    "282825": {
+      "title": "Contract Support Senior Analyst",
+      "location": "Ann Arbor - Michigan - United States of America , Cleveland - Ohio - United States of America , Detroit - Michigan - United States of America , Toledo - Ohio - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Contract-Support-Senior-Analyst/282825",
+      "posted_at": "21-Jul-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-07T17:57:43+00:00",
+      "last_seen_at": "2026-11-07T17:57:43+00:00"
+    },
+    "260209": {
+      "title": "EOI : Senior Financial Analyst - Record to Report (RTR)",
+      "location": "Kuala Lumpur - Wilayah Persekutuan Kuala Lumpur - Malaysia",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/EOI-Senior-Financial-Analyst-Record-to-Report-RTR/260209",
+      "posted_at": "10-Jul-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-07T17:57:43+00:00",
+      "last_seen_at": "2026-11-07T17:57:43+00:00"
+    },
+    "38196": {
+      "title": "Research Analyst",
+      "location": "Makati City - National Capital Region - Philippines",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Research-Analyst/38196",
+      "posted_at": "16-Mar-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-07T17:57:43+00:00",
+      "last_seen_at": "2026-11-07T17:57:43+00:00"
+    },
+    "258569": {
+      "title": "Manager - Investment Properties",
+      "location": "Hanoi - Ha Noi - Viet Nam",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Manager-Investment-Properties/258569",
+      "posted_at": "29-Jan-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-07T17:57:43+00:00",
+      "last_seen_at": "2026-11-07T17:57:43+00:00"
+    },
+    "236971": {
+      "title": "Expression of Interest: Procurement Analyst (German Speaker)",
+      "location": "Makati City - National Capital Region - Philippines",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Expression-of-Interest-Procurement-Analyst-German-Speaker/236971",
+      "posted_at": "16-Jan-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "not_an_open_role",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-07T17:57:43+00:00",
+      "last_seen_at": "2026-11-07T17:57:43+00:00"
+    },
+    "236967": {
+      "title": "Expression of Interest: Procurement Analyst (Nihongo Speaker)",
+      "location": "Makati City - National Capital Region - Philippines",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Expression-of-Interest-Procurement-Analyst-Nihongo-Speaker/236967",
+      "posted_at": "16-Jan-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "not_an_open_role",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-07T17:57:43+00:00",
+      "last_seen_at": "2026-11-07T17:57:43+00:00"
     }
   },
   "source_updated_at_by_id": {},
@@ -29541,22 +29920,32 @@
     "233159",
     "234824",
     "236964",
+    "236967",
+    "236971",
     "240671",
     "245650",
     "246185",
+    "247044",
     "253889",
     "254941",
     "255415",
     "257614",
+    "258569",
+    "260203",
+    "260209",
     "263051",
     "265363",
     "267642",
+    "269942",
     "271043",
     "273037",
     "273390",
     "277052",
     "277068",
+    "279571",
     "281485",
+    "282380",
+    "282825",
     "283211",
     "283340",
     "284084",
@@ -29568,12 +29957,16 @@
     "286381",
     "286490",
     "287087",
+    "287838",
     "288092",
+    "288120",
+    "288121",
     "288521",
     "288522",
     "288523",
     "288685",
     "288726",
+    "288805",
     "289007",
     "289020",
     "289141",
@@ -29584,21 +29977,26 @@
     "289988",
     "290029",
     "290200",
+    "290257",
     "290399",
     "290402",
     "290594",
     "290770",
     "290907",
     "290956",
+    "291092",
     "291107",
     "291113",
     "291265",
     "291701",
     "291752",
     "291785",
+    "291895",
     "291902",
+    "291918",
     "291975",
     "292014",
+    "292122",
     "292502",
     "292594",
     "292605",
@@ -29643,6 +30041,7 @@
     "295852",
     "295856",
     "295875",
+    "295940",
     "295984",
     "295993",
     "296011",
@@ -29717,14 +30116,17 @@
     "298747",
     "298776",
     "298800",
+    "298811",
     "298835",
     "298864",
+    "298878",
     "298889",
     "298890",
     "298904",
     "298909",
     "298961",
     "298976",
+    "298997",
     "299000",
     "299036",
     "299062",
@@ -29763,6 +30165,8 @@
     "299726",
     "299730",
     "299731",
+    "299788",
+    "299863",
     "299870",
     "299881",
     "299899",
@@ -29775,6 +30179,7 @@
     "300039",
     "300066",
     "300078",
+    "300114",
     "300142",
     "300183",
     "300269",
@@ -29788,6 +30193,7 @@
     "300366",
     "300404",
     "300407",
+    "300435",
     "300468",
     "300485",
     "300496",
@@ -29798,6 +30204,7 @@
     "300643",
     "300644",
     "300655",
+    "300671",
     "300767",
     "300822",
     "300829",
@@ -29805,6 +30212,7 @@
     "300838",
     "300840",
     "300867",
+    "300880",
     "300881",
     "300897",
     "300909",
@@ -29840,6 +30248,7 @@
     "301294",
     "301361",
     "301391",
+    "301406",
     "301430",
     "301434",
     "301443",
@@ -29860,9 +30269,11 @@
     "301686",
     "301688",
     "301694",
+    "301724",
     "301738",
     "301741",
     "301746",
+    "301748",
     "301749",
     "301780",
     "301787",
@@ -29919,6 +30330,7 @@
     "302310",
     "302313",
     "302326",
+    "302330",
     "302331",
     "302389",
     "302421",
@@ -29956,6 +30368,7 @@
     "302806",
     "302808",
     "302811",
+    "302816",
     "302873",
     "302904",
     "302951",
@@ -29978,6 +30391,7 @@
     "303185",
     "303193",
     "303205",
+    "303206",
     "303219",
     "303225",
     "303231",
@@ -30036,6 +30450,7 @@
     "303758",
     "303767",
     "303776",
+    "303787",
     "303793",
     "303798",
     "303801",
@@ -30044,7 +30459,11 @@
     "303872",
     "303914",
     "303917",
+    "303923",
+    "303933",
+    "303937",
     "303951",
+    "303962",
     "303976",
     "303981",
     "304011",
@@ -30062,6 +30481,8 @@
     "304129",
     "304130",
     "304141",
+    "304154",
+    "304177",
     "304178",
     "304181",
     "304183",
@@ -30071,6 +30492,7 @@
     "304192",
     "304194",
     "304195",
+    "304205",
     "304241",
     "304247",
     "304249",
@@ -30078,6 +30500,7 @@
     "304296",
     "304307",
     "304311",
+    "304317",
     "304321",
     "304324",
     "304329",
@@ -30085,7 +30508,13 @@
     "304340",
     "304341",
     "304354",
+    "304355",
+    "304384",
     "304510",
-    "304517"
+    "304517",
+    "304525",
+    "304547",
+    "304548",
+    "38196"
   ]
 }
