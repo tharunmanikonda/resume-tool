@@ -3228,7 +3228,7 @@
     "8655"
   ],
   "candidate_catalog": {},
-  "last_successful_scan_at": "2026-11-07T17:57:43+00:00",
+  "last_successful_scan_at": "2026-11-08T01:09:04+00:00",
   "filter_version": 0,
   "rejected_catalog": {
     "301688": {
@@ -4590,7 +4590,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-08T01:09:04+00:00"
     },
     "302234": {
       "title": "Energy Manager",
@@ -6186,7 +6186,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-08T01:09:04+00:00"
     },
     "302650": {
       "title": "Electrical Engineer",
@@ -6259,7 +6259,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-08T01:09:04+00:00"
     },
     "303144": {
       "title": "Maintenance Technician",
@@ -6290,7 +6290,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-08T01:09:04+00:00"
     },
     "294195": {
       "title": "Maintenance Technician",
@@ -6825,7 +6825,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-08T01:09:04+00:00"
     },
     "302913": {
       "title": "Fleet Service Specialist",
@@ -6980,7 +6980,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-08T01:09:04+00:00"
     },
     "302995": {
       "title": "Maintenance Technician",
@@ -6995,7 +6995,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-08T01:09:04+00:00"
     },
     "302922": {
       "title": "Fleet Service Specialist",
@@ -7038,7 +7038,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-08T01:09:04+00:00"
     },
     "302710": {
       "title": "Maintenance Technician",
@@ -7053,7 +7053,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-08T01:09:04+00:00"
     },
     "302725": {
       "title": "Sr. Maintenance Technician",
@@ -7068,7 +7068,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-08T01:09:04+00:00"
     },
     "302742": {
       "title": "Fleet Service Specialist",
@@ -7111,7 +7111,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-08T01:09:04+00:00"
     },
     "302752": {
       "title": "Fleet Service Specialist",
@@ -7197,7 +7197,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-08T01:09:04+00:00"
     },
     "302778": {
       "title": "Fleet Service Specialist",
@@ -7272,7 +7272,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-08T01:09:04+00:00"
     },
     "301636": {
       "title": "Multiskilled Engineer",
@@ -7526,7 +7526,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-08T01:09:04+00:00"
     },
     "302453": {
       "title": "Maintenance Technician",
@@ -14202,7 +14202,7 @@
       "category": "systems_engineering",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-08T01:09:04+00:00"
     },
     "303172": {
       "title": "Sr. Maintenance Technician",
@@ -14217,7 +14217,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-08T01:09:04+00:00"
     },
     "302492": {
       "title": "Maintenance Technician",
@@ -14232,7 +14232,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-08T01:09:04+00:00"
     },
     "292778": {
       "title": "Chief Engineer (Electrical/Mechanical)",
@@ -14246,7 +14246,7 @@
       "category": "technical_review",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-08T01:09:04+00:00"
     },
     "302523": {
       "title": "Maintenance Technician",
@@ -14261,7 +14261,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-08T01:09:04+00:00"
     },
     "302522": {
       "title": "Maintenance Technician",
@@ -14306,7 +14306,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-08T01:09:04+00:00"
     },
     "302531": {
       "title": "Maintenance Technician",
@@ -14592,7 +14592,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-08T01:09:04+00:00"
     },
     "301024": {
       "title": "Multiskilled Host",
@@ -14607,7 +14607,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-08T01:09:04+00:00"
     },
     "236575": {
       "title": "Shift Engineer - Electrical",
@@ -14621,7 +14621,7 @@
       "category": "technical_review",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-08T01:09:04+00:00"
     },
     "302410": {
       "title": "Soft Services Manager",
@@ -14637,7 +14637,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-08T01:09:04+00:00"
     },
     "301610": {
       "title": "Facilities Coordinator",
@@ -14652,7 +14652,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-08T01:09:04+00:00"
     },
     "302369": {
       "title": "HVAC Technician",
@@ -14668,7 +14668,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-08T01:09:04+00:00"
     },
     "302305": {
       "title": "Senior Project Manager - GC Background, Atlanta",
@@ -14973,7 +14973,7 @@
       "category": "platform",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-08T01:09:04+00:00"
     },
     "302151": {
       "title": "QHSE Lead (Account)",
@@ -18667,7 +18667,7 @@
       "category": "systems_engineering",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-08T01:09:04+00:00"
     },
     "299279": {
       "title": "Mobile Building Engineer",
@@ -18751,7 +18751,7 @@
       "category": "technical_review",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-08T01:09:04+00:00"
     },
     "301157": {
       "title": "Property Engineer (Office - Paranaque)",
@@ -19017,7 +19017,7 @@
       "category": "technical_review",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-08T01:09:04+00:00"
     },
     "297510": {
       "title": "HVAC/R Mobile Engineer",
@@ -19339,7 +19339,7 @@
       "category": "technical_review",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-08T01:09:04+00:00"
     },
     "301740": {
       "title": "Mobile Engineer",
@@ -19367,7 +19367,7 @@
       "category": "automation",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-08T01:09:04+00:00"
     },
     "301951": {
       "title": "Bldg Engineer",
@@ -19437,7 +19437,7 @@
       "category": "technical_review",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-08T01:09:04+00:00"
     },
     "302528": {
       "title": "Automation Engineer",
@@ -21789,7 +21789,7 @@
       "category": "automation",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-08T01:09:04+00:00"
     },
     "294593": {
       "title": "HVAC Engineer (Temple, Tx)",
@@ -23487,7 +23487,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-02T22:12:15+00:00",
-      "last_seen_at": "2026-11-02T22:12:15+00:00"
+      "last_seen_at": "2026-11-08T01:09:04+00:00"
     },
     "303405": {
       "title": "Sr. Maintenance Technician",
@@ -23502,7 +23502,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-02T22:12:15+00:00",
-      "last_seen_at": "2026-11-02T22:12:15+00:00"
+      "last_seen_at": "2026-11-08T01:09:04+00:00"
     },
     "303400": {
       "title": "Maintenance Technician",
@@ -23532,7 +23532,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-02T22:12:15+00:00",
-      "last_seen_at": "2026-11-02T22:12:15+00:00"
+      "last_seen_at": "2026-11-08T01:09:04+00:00"
     },
     "301208": {
       "title": "HVAC Engineer",
@@ -23634,7 +23634,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-02T22:12:15+00:00",
-      "last_seen_at": "2026-11-02T22:12:15+00:00"
+      "last_seen_at": "2026-11-08T01:09:04+00:00"
     },
     "301716": {
       "title": "Sr. Maintenance Technician",
@@ -26394,7 +26394,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-04T20:19:04+00:00",
-      "last_seen_at": "2026-11-04T20:19:04+00:00"
+      "last_seen_at": "2026-11-08T01:09:04+00:00"
     },
     "303770": {
       "title": "Union Data Center Technician",
@@ -26979,7 +26979,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-05T02:01:04+00:00",
-      "last_seen_at": "2026-11-05T02:01:04+00:00"
+      "last_seen_at": "2026-11-08T01:09:04+00:00"
     },
     "290200": {
       "title": "Maintenance Technician 3rd Shift",
@@ -27604,7 +27604,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-05T20:29:48+00:00",
-      "last_seen_at": "2026-11-05T20:29:48+00:00"
+      "last_seen_at": "2026-11-08T01:09:04+00:00"
     },
     "303618": {
       "title": "Mechatronic Apprentice",
@@ -27618,7 +27618,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-05T20:29:48+00:00",
-      "last_seen_at": "2026-11-05T20:29:48+00:00"
+      "last_seen_at": "2026-11-08T01:09:04+00:00"
     },
     "303004": {
       "title": "Mechatronic Apprentice",
@@ -27632,7 +27632,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-05T20:29:48+00:00",
-      "last_seen_at": "2026-11-05T20:29:48+00:00"
+      "last_seen_at": "2026-11-08T01:09:04+00:00"
     },
     "303815": {
       "title": "Facilities Coordinator",
@@ -28936,7 +28936,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-06T19:52:44+00:00",
-      "last_seen_at": "2026-11-06T19:52:44+00:00"
+      "last_seen_at": "2026-11-08T01:09:04+00:00"
     },
     "304019": {
       "title": "Maintenance Technician",
@@ -28951,7 +28951,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-06T19:52:44+00:00",
-      "last_seen_at": "2026-11-06T19:52:44+00:00"
+      "last_seen_at": "2026-11-08T01:09:04+00:00"
     },
     "304332": {
       "title": "Maintenance Technician",
@@ -29405,7 +29405,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-07T01:41:21+00:00",
-      "last_seen_at": "2026-11-07T01:41:21+00:00"
+      "last_seen_at": "2026-11-08T01:09:04+00:00"
     },
     "302975": {
       "title": "Mechatronic Apprentice",
@@ -29419,7 +29419,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-07T01:41:21+00:00",
-      "last_seen_at": "2026-11-07T01:41:21+00:00"
+      "last_seen_at": "2026-11-08T01:09:04+00:00"
     },
     "301639": {
       "title": "Metrology Technician",
@@ -29547,7 +29547,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-07T17:57:43+00:00",
-      "last_seen_at": "2026-11-07T17:57:43+00:00"
+      "last_seen_at": "2026-11-08T01:09:04+00:00"
     },
     "299788": {
       "title": "Estate Management Analyst (Valuation and Tax)",
@@ -29911,6 +29911,37 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-07T17:57:43+00:00",
       "last_seen_at": "2026-11-07T17:57:43+00:00"
+    },
+    "295041": {
+      "title": "Product Manager",
+      "location": "Mount Gravatt - Queensland - Australia",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Product-Manager/295041",
+      "posted_at": "21-Sep-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-08T01:09:04+00:00",
+      "last_seen_at": "2026-11-08T01:09:04+00:00"
+    },
+    "292861": {
+      "title": "Digital Engineering Director - Redmond, WA",
+      "location": "Redmond - Washington - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Digital-Engineering-Director-Redmond-WA/292861",
+      "posted_at": "26-Aug-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-08T01:09:04+00:00",
+      "last_seen_at": "2026-11-08T01:09:04+00:00"
     }
   },
   "source_updated_at_by_id": {},
@@ -29919,6 +29950,7 @@
     "172253",
     "233159",
     "234824",
+    "236575",
     "236964",
     "236967",
     "236971",
@@ -29957,6 +29989,7 @@
     "286381",
     "286490",
     "287087",
+    "287163",
     "287838",
     "288092",
     "288120",
@@ -30001,7 +30034,9 @@
     "292594",
     "292605",
     "292684",
+    "292778",
     "292820",
+    "292861",
     "293031",
     "293057",
     "293167",
@@ -30023,6 +30058,7 @@
     "294931",
     "294937",
     "294985",
+    "295041",
     "295109",
     "295112",
     "295134",
@@ -30069,6 +30105,7 @@
     "296762",
     "296798",
     "296844",
+    "296904",
     "296925",
     "296994",
     "297011",
@@ -30097,6 +30134,7 @@
     "297898",
     "297950",
     "297972",
+    "298047",
     "298064",
     "298087",
     "298126",
@@ -30224,12 +30262,15 @@
     "301009",
     "301014",
     "301016",
+    "301024",
     "301038",
     "301047",
     "301052",
+    "301055",
     "301064",
     "301084",
     "301106",
+    "301113",
     "301130",
     "301160",
     "301178",
@@ -30260,6 +30301,9 @@
     "301497",
     "301533",
     "301584",
+    "301610",
+    "301617",
+    "301626",
     "301638",
     "301642",
     "301643",
@@ -30268,6 +30312,7 @@
     "301674",
     "301686",
     "301688",
+    "301693",
     "301694",
     "301724",
     "301738",
@@ -30321,6 +30366,7 @@
     "302232",
     "302234",
     "302243",
+    "302248",
     "302260",
     "302275",
     "302277",
@@ -30332,7 +30378,9 @@
     "302326",
     "302330",
     "302331",
+    "302369",
     "302389",
+    "302410",
     "302421",
     "302436",
     "302441",
@@ -30343,6 +30391,11 @@
     "302472",
     "302476",
     "302487",
+    "302492",
+    "302520",
+    "302523",
+    "302525",
+    "302529",
     "302533",
     "302539",
     "302544",
@@ -30358,12 +30411,19 @@
     "302693",
     "302694",
     "302698",
+    "302706",
+    "302710",
+    "302722",
+    "302725",
     "302735",
     "302736",
     "302737",
     "302748",
+    "302749",
     "302750",
+    "302777",
     "302780",
+    "302791",
     "302794",
     "302806",
     "302808",
@@ -30374,24 +30434,34 @@
     "302951",
     "302960",
     "302973",
+    "302975",
     "302977",
+    "302993",
+    "302995",
     "303000",
+    "303004",
     "303007",
     "303009",
     "303011",
     "303017",
     "303019",
     "303020",
+    "303031",
     "303127",
     "303138",
     "303139",
+    "303143",
+    "303154",
     "303157",
+    "303172",
     "303173",
     "303178",
     "303185",
     "303193",
+    "303197",
     "303205",
     "303206",
+    "303215",
     "303219",
     "303225",
     "303231",
@@ -30409,6 +30479,7 @@
     "303351",
     "303353",
     "303356",
+    "303363",
     "303369",
     "303380",
     "303384",
@@ -30420,11 +30491,13 @@
     "303399",
     "303402",
     "303404",
+    "303405",
     "303406",
     "303412",
     "303416",
     "303417",
     "303432",
+    "303436",
     "303443",
     "303444",
     "303445",
@@ -30441,6 +30514,7 @@
     "303596",
     "303605",
     "303609",
+    "303618",
     "303623",
     "303702",
     "303722",
@@ -30448,9 +30522,12 @@
     "303739",
     "303748",
     "303758",
+    "303763",
     "303767",
+    "303768",
     "303776",
     "303787",
+    "303789",
     "303793",
     "303798",
     "303801",
@@ -30459,6 +30536,7 @@
     "303872",
     "303914",
     "303917",
+    "303918",
     "303923",
     "303933",
     "303937",
@@ -30466,11 +30544,13 @@
     "303962",
     "303976",
     "303981",
+    "303999",
     "304011",
     "304012",
     "304013",
     "304014",
     "304015",
+    "304019",
     "304021",
     "304022",
     "304089",
@@ -30510,6 +30590,7 @@
     "304354",
     "304355",
     "304384",
+    "304484",
     "304510",
     "304517",
     "304525",

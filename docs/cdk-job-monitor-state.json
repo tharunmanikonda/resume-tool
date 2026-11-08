@@ -42,6 +42,7 @@
     "JR9330",
     "JR9331",
     "JR9333",
+    "JR9337",
     "JR9343",
     "JR9344",
     "JR9354",
@@ -96,7 +97,7 @@
       "category": "security"
     }
   },
-  "last_successful_scan_at": "2026-11-07T17:57:43+00:00",
+  "last_successful_scan_at": "2026-11-08T01:09:04+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "JR9003": {
@@ -887,6 +888,22 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-06T02:00:49+00:00",
       "last_seen_at": "2026-11-06T02:00:49+00:00"
+    },
+    "JR9337": {
+      "title": "Staff Technology Program Manager",
+      "location": "Austin, TX, USA",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Austin-TX-USA/Staff-Technology-Program-Manager_JR9337-1",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-08T01:09:04+00:00",
+      "last_seen_at": "2026-11-08T01:09:04+00:00"
     }
   },
   "source_updated_at_by_id": {}

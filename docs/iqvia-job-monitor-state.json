@@ -1764,6 +1764,7 @@
     "R1571295",
     "R1571299",
     "R1571302",
+    "R1571312",
     "R1571316",
     "R1571326",
     "R1571329",
@@ -2651,7 +2652,7 @@
       "category": "technical_review"
     }
   },
-  "last_successful_scan_at": "2026-11-07T17:57:43+00:00",
+  "last_successful_scan_at": "2026-11-08T01:09:04+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "R1545472": {
@@ -36348,6 +36349,20 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-07T01:41:21+00:00",
       "last_seen_at": "2026-11-07T01:41:21+00:00"
+    },
+    "R1571312": {
+      "title": "Senior FP&A Analyst",
+      "location": "6 Locations",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Bratislava-Slovakia/Senior-FP-A-Analyst_R1571312",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-08T01:09:04+00:00",
+      "last_seen_at": "2026-11-08T01:09:04+00:00"
     }
   },
   "source_updated_at_by_id": {}

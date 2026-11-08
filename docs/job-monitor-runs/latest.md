@@ -1,7 +1,7 @@
 # Daily job monitor report
 
 - Status: **Successful**
-- Scanned at: `2026-11-07T17:57:43+00:00`
+- Scanned at: `2026-11-08T01:09:04+00:00`
 - Monitors: 14
 - New candidates: 0
 - Needs review: 0
@@ -10,15 +10,15 @@
 
 | Monitor | Status | Fetched | Unseen | Candidates | Review | State updated |
 | --- | --- | ---: | ---: | ---: | ---: | --- |
-| cbre | ok | 688 | 1 | 0 | 0 | yes |
-| cdk | ok | 42 | 0 | 0 | 0 | yes |
+| cbre | ok | 669 | 0 | 0 | 0 | yes |
+| cdk | ok | 42 | 1 | 0 | 0 | yes |
 | cisco | ok | 60 | 0 | 0 | 0 | yes |
 | crunchyroll | ok | 105 | 0 | 0 | 0 | yes |
 | ebay | ok | 156 | 0 | 0 | 0 | yes |
 | intepros | ok | 20 | 0 | 0 | 0 | yes |
-| iqvia | ok | 361 | 0 | 0 | 0 | yes |
+| iqvia | ok | 374 | 1 | 0 | 0 | yes |
 | nbcu | ok | 217 | 0 | 0 | 0 | yes |
-| nvidia | ok | 120 | 5 | 0 | 0 | yes |
+| nvidia | ok | 100 | 0 | 0 | 0 | yes |
 | occ | ok | 60 | 0 | 0 | 0 | yes |
 | ocient | ok | 13 | 0 | 0 | 0 | yes |
 | rivian | ok | 30 | 0 | 0 | 0 | yes |
