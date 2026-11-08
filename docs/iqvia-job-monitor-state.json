@@ -2485,6 +2485,7 @@
     "R1578479",
     "R1578490",
     "R1578503",
+    "R1578527",
     "R1578528",
     "R1578543",
     "R1578547",
@@ -2652,7 +2653,7 @@
       "category": "technical_review"
     }
   },
-  "last_successful_scan_at": "2026-11-08T01:09:04+00:00",
+  "last_successful_scan_at": "2026-11-08T18:15:00+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "R1545472": {
@@ -36363,6 +36364,20 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-08T01:09:04+00:00",
       "last_seen_at": "2026-11-08T01:09:04+00:00"
+    },
+    "R1578527": {
+      "title": "Clin Process Coord",
+      "location": "3 Locations",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Bangalore-India/Clin-Process-Coord_R1578527",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-08T18:15:00+00:00",
+      "last_seen_at": "2026-11-08T18:15:00+00:00"
     }
   },
   "source_updated_at_by_id": {}
