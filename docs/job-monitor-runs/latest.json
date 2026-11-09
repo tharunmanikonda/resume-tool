@@ -1,6 +1,6 @@
 {
   "success": true,
-  "scanned_at": "2026-11-09T01:29:13+00:00",
+  "scanned_at": "2026-11-09T22:54:09+00:00",
   "monitor_count": 14,
   "successful_monitors": [
     "cbre",
@@ -19,17 +19,100 @@
     "waymo"
   ],
   "failed_monitors": [],
-  "candidate_count": 0,
-  "needs_ai_review_count": 0,
-  "candidates": [],
-  "needs_ai_review": [],
+  "candidate_count": 3,
+  "needs_ai_review_count": 1,
+  "candidates": [
+    {
+      "monitor": "cisco",
+      "job_id": "2028307",
+      "title": "Senior Software Engineer",
+      "location": "San Jose, California, US",
+      "posted_at": "2026-11-09",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/Senior-Software-Engineer_2028307",
+      "priority": "high",
+      "matching_requirements": [
+        "target_title:software",
+        "profile_signal:python:+2",
+        "profile_signal:java:+1",
+        "profile_signal:javascript_react:+1",
+        "profile_signal:backend_apis:+2",
+        "profile_signal:distributed_systems:+2",
+        "profile_signal:data_streaming:+2",
+        "profile_signal:databases:+1",
+        "profile_signal:cloud_containers:+2",
+        "profile_signal:observability:+1",
+        "profile_signal:reliability_telemetry:+3",
+        "profile_signal:qa_automation:+2",
+        "profile_signal:agentic_tooling:+3"
+      ],
+      "material_gaps": []
+    },
+    {
+      "monitor": "crunchyroll",
+      "job_id": "7891761",
+      "title": "Software Engineer II",
+      "location": "San Francisco, CA, United States",
+      "posted_at": "",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/7891761?gh_jid=7891761",
+      "priority": "high",
+      "matching_requirements": [
+        "target_title:software",
+        "profile_signal:python:+2",
+        "profile_signal:go:+2",
+        "profile_signal:java:+1",
+        "profile_signal:javascript_react:+1",
+        "profile_signal:backend_apis:+2",
+        "profile_signal:reliability_telemetry:+3"
+      ],
+      "material_gaps": []
+    },
+    {
+      "monitor": "nbcu",
+      "job_id": "744000160659459",
+      "title": "Software Engineering Internships \u2013 Summer 2027",
+      "location": "New York, NY, United States",
+      "posted_at": "2026-11-09T16:10:02.802Z",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160659459-software-engineering-internships-summer-2027",
+      "priority": "high",
+      "matching_requirements": [
+        "target_title:software",
+        "profile_signal:python:+2",
+        "profile_signal:go:+2",
+        "profile_signal:java:+1",
+        "profile_signal:javascript_react:+1",
+        "profile_signal:backend_apis:+2",
+        "profile_signal:distributed_systems:+2",
+        "profile_signal:data_streaming:+2",
+        "profile_signal:cloud_containers:+2",
+        "profile_signal:observability:+1",
+        "profile_signal:reliability_telemetry:+3"
+      ],
+      "material_gaps": []
+    }
+  ],
+  "needs_ai_review": [
+    {
+      "monitor": "tiktok",
+      "job_id": "7704986879082907909",
+      "title": "Research Engineer Intern (TikTok Generalized Arch) - 2027 Start (PhD)",
+      "location": "San Jose, California, United States of America",
+      "posted_at": "",
+      "url": "https://lifeattiktok.com/search/7704986879082907909",
+      "priority": "low",
+      "matching_requirements": [
+        "target_title:technical_review",
+        "profile_signal:agentic_tooling:+3"
+      ],
+      "material_gaps": []
+    }
+  ],
   "results": [
     {
       "monitor": "cbre",
       "success": true,
-      "scanned_at": "2026-11-09T01:29:13+00:00",
-      "fetched": 691,
-      "unseen": 2,
+      "scanned_at": "2026-11-09T22:54:09+00:00",
+      "fetched": 1258,
+      "unseen": 78,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -38,9 +121,9 @@
     {
       "monitor": "cdk",
       "success": true,
-      "scanned_at": "2026-11-09T01:29:13+00:00",
-      "fetched": 42,
-      "unseen": 0,
+      "scanned_at": "2026-11-09T22:54:09+00:00",
+      "fetched": 45,
+      "unseen": 4,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -49,31 +132,75 @@
     {
       "monitor": "cisco",
       "success": true,
-      "scanned_at": "2026-11-09T01:29:13+00:00",
-      "fetched": 60,
-      "unseen": 0,
+      "scanned_at": "2026-11-09T22:54:09+00:00",
+      "fetched": 80,
+      "unseen": 4,
       "state_updated": true,
-      "candidates": [],
+      "candidates": [
+        {
+          "job_id": "2028307",
+          "title": "Senior Software Engineer",
+          "location": "San Jose, California, US",
+          "posted_at": "2026-11-09",
+          "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/Senior-Software-Engineer_2028307",
+          "priority": "high",
+          "matching_requirements": [
+            "target_title:software",
+            "profile_signal:python:+2",
+            "profile_signal:java:+1",
+            "profile_signal:javascript_react:+1",
+            "profile_signal:backend_apis:+2",
+            "profile_signal:distributed_systems:+2",
+            "profile_signal:data_streaming:+2",
+            "profile_signal:databases:+1",
+            "profile_signal:cloud_containers:+2",
+            "profile_signal:observability:+1",
+            "profile_signal:reliability_telemetry:+3",
+            "profile_signal:qa_automation:+2",
+            "profile_signal:agentic_tooling:+3"
+          ],
+          "material_gaps": []
+        }
+      ],
       "needs_ai_review": [],
       "errors": []
     },
     {
       "monitor": "crunchyroll",
       "success": true,
-      "scanned_at": "2026-11-09T01:29:13+00:00",
-      "fetched": 103,
-      "unseen": 0,
+      "scanned_at": "2026-11-09T22:54:09+00:00",
+      "fetched": 104,
+      "unseen": 2,
       "state_updated": true,
-      "candidates": [],
+      "candidates": [
+        {
+          "job_id": "7891761",
+          "title": "Software Engineer II",
+          "location": "San Francisco, CA, United States",
+          "posted_at": "",
+          "url": "https://boards.greenhouse.io/crunchyroll/jobs/7891761?gh_jid=7891761",
+          "priority": "high",
+          "matching_requirements": [
+            "target_title:software",
+            "profile_signal:python:+2",
+            "profile_signal:go:+2",
+            "profile_signal:java:+1",
+            "profile_signal:javascript_react:+1",
+            "profile_signal:backend_apis:+2",
+            "profile_signal:reliability_telemetry:+3"
+          ],
+          "material_gaps": []
+        }
+      ],
       "needs_ai_review": [],
       "errors": []
     },
     {
       "monitor": "ebay",
       "success": true,
-      "scanned_at": "2026-11-09T01:29:13+00:00",
-      "fetched": 156,
-      "unseen": 0,
+      "scanned_at": "2026-11-09T22:54:09+00:00",
+      "fetched": 166,
+      "unseen": 3,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -82,9 +209,9 @@
     {
       "monitor": "intepros",
       "success": true,
-      "scanned_at": "2026-11-09T01:29:13+00:00",
-      "fetched": 20,
-      "unseen": 0,
+      "scanned_at": "2026-11-09T22:54:09+00:00",
+      "fetched": 30,
+      "unseen": 4,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -93,9 +220,9 @@
     {
       "monitor": "iqvia",
       "success": true,
-      "scanned_at": "2026-11-09T01:29:13+00:00",
-      "fetched": 365,
-      "unseen": 0,
+      "scanned_at": "2026-11-09T22:54:09+00:00",
+      "fetched": 1022,
+      "unseen": 56,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -104,20 +231,43 @@
     {
       "monitor": "nbcu",
       "success": true,
-      "scanned_at": "2026-11-09T01:29:13+00:00",
-      "fetched": 217,
-      "unseen": 0,
+      "scanned_at": "2026-11-09T22:54:09+00:00",
+      "fetched": 303,
+      "unseen": 93,
       "state_updated": true,
-      "candidates": [],
+      "candidates": [
+        {
+          "job_id": "744000160659459",
+          "title": "Software Engineering Internships \u2013 Summer 2027",
+          "location": "New York, NY, United States",
+          "posted_at": "2026-11-09T16:10:02.802Z",
+          "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160659459-software-engineering-internships-summer-2027",
+          "priority": "high",
+          "matching_requirements": [
+            "target_title:software",
+            "profile_signal:python:+2",
+            "profile_signal:go:+2",
+            "profile_signal:java:+1",
+            "profile_signal:javascript_react:+1",
+            "profile_signal:backend_apis:+2",
+            "profile_signal:distributed_systems:+2",
+            "profile_signal:data_streaming:+2",
+            "profile_signal:cloud_containers:+2",
+            "profile_signal:observability:+1",
+            "profile_signal:reliability_telemetry:+3"
+          ],
+          "material_gaps": []
+        }
+      ],
       "needs_ai_review": [],
       "errors": []
     },
     {
       "monitor": "nvidia",
       "success": true,
-      "scanned_at": "2026-11-09T01:29:13+00:00",
-      "fetched": 100,
-      "unseen": 0,
+      "scanned_at": "2026-11-09T22:54:09+00:00",
+      "fetched": 120,
+      "unseen": 9,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -126,7 +276,7 @@
     {
       "monitor": "occ",
       "success": true,
-      "scanned_at": "2026-11-09T01:29:13+00:00",
+      "scanned_at": "2026-11-09T22:54:09+00:00",
       "fetched": 60,
       "unseen": 0,
       "state_updated": true,
@@ -137,7 +287,7 @@
     {
       "monitor": "ocient",
       "success": true,
-      "scanned_at": "2026-11-09T01:29:13+00:00",
+      "scanned_at": "2026-11-09T22:54:09+00:00",
       "fetched": 13,
       "unseen": 0,
       "state_updated": true,
@@ -148,7 +298,7 @@
     {
       "monitor": "rivian",
       "success": true,
-      "scanned_at": "2026-11-09T01:29:13+00:00",
+      "scanned_at": "2026-11-09T22:54:09+00:00",
       "fetched": 30,
       "unseen": 0,
       "state_updated": true,
@@ -159,19 +309,33 @@
     {
       "monitor": "tiktok",
       "success": true,
-      "scanned_at": "2026-11-09T01:29:13+00:00",
-      "fetched": 1874,
-      "unseen": 0,
+      "scanned_at": "2026-11-09T22:54:09+00:00",
+      "fetched": 1880,
+      "unseen": 9,
       "state_updated": true,
       "candidates": [],
-      "needs_ai_review": [],
+      "needs_ai_review": [
+        {
+          "job_id": "7704986879082907909",
+          "title": "Research Engineer Intern (TikTok Generalized Arch) - 2027 Start (PhD)",
+          "location": "San Jose, California, United States of America",
+          "posted_at": "",
+          "url": "https://lifeattiktok.com/search/7704986879082907909",
+          "priority": "low",
+          "matching_requirements": [
+            "target_title:technical_review",
+            "profile_signal:agentic_tooling:+3"
+          ],
+          "material_gaps": []
+        }
+      ],
       "errors": []
     },
     {
       "monitor": "waymo",
       "success": true,
-      "scanned_at": "2026-11-09T01:29:13+00:00",
-      "fetched": 167,
+      "scanned_at": "2026-11-09T22:54:09+00:00",
+      "fetched": 166,
       "unseen": 0,
       "state_updated": true,
       "candidates": [],

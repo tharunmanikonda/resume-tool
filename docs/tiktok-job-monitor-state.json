@@ -583,6 +583,7 @@
     "7620368637762128181",
     "7620521322171664645",
     "7620752339915311365",
+    "7620756477101017349",
     "7621299118434961669",
     "7621302490100779269",
     "7621591115419552005",
@@ -1962,6 +1963,7 @@
     "7701928869323114805",
     "7701929513323940149",
     "7701941644619155717",
+    "7701948520060799285",
     "7701990114490239237",
     "7702053561758746885",
     "7702218766196934965",
@@ -1989,10 +1991,17 @@
     "7704565954109294901",
     "7704619723464411445",
     "7704620574878140725",
+    "7704777867472734517",
+    "7704778444389173509",
     "7704853345886980357",
     "7704981006856145205",
+    "7704986879082907909",
     "7705008538728499509",
-    "7705012688944810245"
+    "7705012688944810245",
+    "7706052508166261045",
+    "7706052848276654341",
+    "7706053837959186741",
+    "7706187982816594181"
   ],
   "candidate_catalog": {
     "7680987768009754885": {
@@ -5152,6 +5161,15 @@
       "posted_at": "",
       "first_seen_at": "2026-11-07T01:41:21+00:00",
       "priority": "medium",
+      "category": "technical_review"
+    },
+    "7704986879082907909": {
+      "title": "Research Engineer Intern (TikTok Generalized Arch) - 2027 Start (PhD)",
+      "location": "San Jose, California, United States of America",
+      "url": "https://lifeattiktok.com/search/7704986879082907909",
+      "posted_at": "",
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "priority": "low",
       "category": "technical_review"
     }
   },
@@ -28942,8 +28960,129 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-06T19:52:44+00:00",
       "last_seen_at": "2026-11-06T19:52:44+00:00"
+    },
+    "7706052508166261045": {
+      "title": "AI Agent & Automation Project Intern (TikTok Live) - 2027 Start",
+      "location": "Singapore",
+      "url": "https://lifeattiktok.com/search/7706052508166261045",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "7620756477101017349": {
+      "title": "Key Account Client Solutions Manager (Apps & Gaming), Singapore",
+      "location": "Singapore",
+      "url": "https://lifeattiktok.com/search/7620756477101017349",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "7706187982816594181": {
+      "title": "EMEA Partner Operations Manager - Graduate (TikTok AI Data Service and Operations) - 2027 Start",
+      "location": "Dublin, Ireland",
+      "url": "https://lifeattiktok.com/search/7706187982816594181",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "7706053837959186741": {
+      "title": "Safety Model Operation Project Intern (Safety Model Operations) - 2027 Start",
+      "location": "Singapore",
+      "url": "https://lifeattiktok.com/search/7706053837959186741",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "7706052848276654341": {
+      "title": "LLM / Dataset Operations Project Intern (TikTok Live) - 2027 Start",
+      "location": "Singapore",
+      "url": "https://lifeattiktok.com/search/7706052848276654341",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "7704778444389173509": {
+      "title": "HR Business Partner - TikTok Local Services (San Jose)",
+      "location": "San Jose, California, United States of America",
+      "url": "https://lifeattiktok.com/search/7704778444389173509",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "7704777867472734517": {
+      "title": "HR Business Partner - TikTok Local Services (Los Angeles)",
+      "location": "Los Angeles, California, United States of America",
+      "url": "https://lifeattiktok.com/search/7704777867472734517",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "7701948520060799285": {
+      "title": "TikTok Shop - Customer Experience & Aftersales Operations Manager",
+      "location": "Singapore",
+      "url": "https://lifeattiktok.com/search/7701948520060799285",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
     }
   },
-  "last_successful_scan_at": "2026-11-09T01:29:13+00:00",
+  "last_successful_scan_at": "2026-11-09T22:54:09+00:00",
   "source_updated_at_by_id": {}
 }

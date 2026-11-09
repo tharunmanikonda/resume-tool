@@ -66,7 +66,11 @@
     "JR9409",
     "JR9418",
     "JR9433",
-    "JR9459"
+    "JR9446",
+    "JR9459",
+    "JR9460",
+    "JR9465",
+    "JR9466"
   ],
   "candidate_catalog": {
     "JR8008": {
@@ -97,7 +101,7 @@
       "category": "security"
     }
   },
-  "last_successful_scan_at": "2026-11-09T01:29:13+00:00",
+  "last_successful_scan_at": "2026-11-09T22:54:09+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "JR9003": {
@@ -904,6 +908,62 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-08T01:09:04+00:00",
       "last_seen_at": "2026-11-08T01:09:04+00:00"
+    },
+    "JR9466": {
+      "title": "Lead Professional Services Consultant, Business Performance Assessment (BPA)",
+      "location": "4 Locations",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Hoffman-Estates-IL-USA/Lead-Professional-Services-Consultant--Business-Performance-Assessment--BPA-_JR9466-1",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "JR9465": {
+      "title": "Sr. Professional Services Consultant, Business Performance Assessment (BPA)",
+      "location": "5 Locations",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Hoffman-Estates-IL-USA/Sr-Professional-Services-Consultant--Business-Performance-Assessment--BPA-_JR9465-1",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "JR9460": {
+      "title": "Account Executive",
+      "location": "Los Angeles, CA, USA",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Los-Angeles-CA-USA/Account-Executive_JR9460",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "JR9446": {
+      "title": "Pricing Data Analyst",
+      "location": "4 Locations",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Hoffman-Estates-IL-USA/Pricing-Data-Analyst_JR9446",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
     }
   },
   "source_updated_at_by_id": {}

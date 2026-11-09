@@ -10,6 +10,7 @@
     "7669099",
     "7687574",
     "7688329",
+    "7891761",
     "7895580",
     "7950813",
     "7950858",
@@ -103,6 +104,7 @@
     "8283204",
     "8286408",
     "8286617",
+    "8302268",
     "8302387",
     "8304955",
     "8305197",
@@ -131,6 +133,15 @@
       "posted_at": "",
       "first_seen_at": "2026-10-23T17:01:27-05:00",
       "priority": "medium",
+      "category": "software"
+    },
+    "7891761": {
+      "title": "Software Engineer II",
+      "location": "San Francisco, CA, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/7891761?gh_jid=7891761",
+      "posted_at": "",
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "priority": "high",
       "category": "software"
     }
   },
@@ -1913,9 +1924,23 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-06T19:52:44+00:00",
       "last_seen_at": "2026-11-06T19:52:44+00:00"
+    },
+    "8302268": {
+      "title": "Senior Software Engineer, EDGE Discovery",
+      "location": "San Francisco, CA, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8302268?gh_jid=8302268",
+      "posted_at": "",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
     }
   },
-  "last_successful_scan_at": "2026-11-09T01:29:13+00:00",
+  "last_successful_scan_at": "2026-11-09T22:54:09+00:00",
   "source_updated_at_by_id": {
     "6584220": "2026-11-05T10:14:23-05:00",
     "8204263": "2026-11-05T10:14:23-05:00",
@@ -2036,6 +2061,8 @@
     "8354058": "2026-11-05T12:40:31-05:00",
     "8049714": "2026-11-05T10:14:23-05:00",
     "8304955": "2026-11-05T20:09:44-05:00",
-    "8209706": "2026-11-06T14:48:55-05:00"
+    "8209706": "2026-11-06T14:48:55-05:00",
+    "8302268": "2026-11-09T13:56:07-05:00",
+    "7891761": "2026-11-09T14:35:09-05:00"
   }
 }

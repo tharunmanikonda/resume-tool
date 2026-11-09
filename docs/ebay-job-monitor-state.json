@@ -370,6 +370,7 @@
     "R0077219",
     "R0077220",
     "R0077226",
+    "R0077234",
     "R0077235",
     "R0077239",
     "R0077253",
@@ -382,6 +383,7 @@
     "R0077276",
     "R0077292",
     "R0077293",
+    "R0077294",
     "R0077301",
     "R0077302",
     "R0077304",
@@ -400,6 +402,7 @@
     "R0077364",
     "R0077366",
     "R0077389",
+    "R0077475",
     "R0077480",
     "R0077481",
     "R0077482"
@@ -487,7 +490,7 @@
       "category": "systems_analysis"
     }
   },
-  "last_successful_scan_at": "2026-11-09T01:29:13+00:00",
+  "last_successful_scan_at": "2026-11-09T22:54:09+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "R0077145": {
@@ -5649,6 +5652,52 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-07T01:41:21+00:00",
       "last_seen_at": "2026-11-07T01:41:21+00:00"
+    },
+    "R0077234": {
+      "title": "Director of Marketplace Policy",
+      "location": "New York, New York, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077234/Director-of-Marketplace-Policy",
+      "posted_at": "2026-11-09T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "R0077475": {
+      "title": "Senior Manager, Data Science & Analytics",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077475/Senior-Manager-Data-Science-Analytics",
+      "posted_at": "2026-11-09T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "R0077294": {
+      "title": "Senior Category Manager, Jewelry",
+      "location": "New York, New York, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077294/Senior-Category-Manager-Jewelry",
+      "posted_at": "2026-11-09T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
     }
   },
   "source_updated_at_by_id": {}

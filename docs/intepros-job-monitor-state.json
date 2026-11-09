@@ -139,6 +139,7 @@
     "a0Hcw00000A5g2TEAR",
     "a0Hcw00000A5kMDEAZ",
     "a0Hcw00000A5nK5EAJ",
+    "a0Hcw00000A5oMbEAJ",
     "a0Hcw00000A65bxEAB",
     "a0Hcw00000A6rwjEAB",
     "a0Hcw00000A9A5dEAF",
@@ -226,9 +227,12 @@
     "a0Hcw00000BMeenEAD",
     "a0Hcw00000BP3u1EAD",
     "a0Hcw00000BP3xGEAT",
-    "a0Hcw00000BPZ2fEAH"
+    "a0Hcw00000BPZ2fEAH",
+    "a0Hcw00000BVq2PEAT",
+    "a0Hcw00000BW0rNEAT",
+    "a0Hcw00000BWWw5EAH"
   ],
-  "last_successful_scan_at": "2026-11-09T01:29:13+00:00",
+  "last_successful_scan_at": "2026-11-09T22:54:09+00:00",
   "candidate_catalog": {
     "a0Hcw000006tdYLEAY": {
       "title": "Operational Excellence Engineer",
@@ -1281,6 +1285,64 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-06T19:52:44+00:00",
       "last_seen_at": "2026-11-06T19:52:44+00:00"
+    },
+    "a0Hcw00000BWWw5EAH": {
+      "title": "Sr. Quality Assurance Associate",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000BWWw5EAH/sr-quality-assurance-associate",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "a0Hcw00000A5oMbEAJ": {
+      "title": "Sr. Project Manager, Oracle/People Soft",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000A5oMbEAJ/sr-project-manager-oraclepeople-soft",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "a0Hcw00000BW0rNEAT": {
+      "title": "Senior Technical Product Manager \u2013 AI & Human Rights",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000BW0rNEAT/senior-technical-product-manager--ai--human-rights",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "a0Hcw00000BVq2PEAT": {
+      "title": "CONFIDENTIAL: Product Owner, AI & Data (Remote)",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000BVq2PEAT/confidential-product-owner-ai--data-remote",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
     }
   },
   "source_updated_at_by_id": {}

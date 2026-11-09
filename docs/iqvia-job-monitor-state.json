@@ -125,6 +125,7 @@
     "R1469743",
     "R1469909",
     "R1470082",
+    "R1470823",
     "R1473968",
     "R1475995",
     "R1477429",
@@ -775,6 +776,8 @@
     "R1557137",
     "R1557141",
     "R1557180",
+    "R1557193",
+    "R1557195",
     "R1557199",
     "R1557317",
     "R1557333",
@@ -904,6 +907,7 @@
     "R1560509",
     "R1560512",
     "R1560523",
+    "R1560526",
     "R1560529",
     "R1560539",
     "R1560649",
@@ -1178,6 +1182,7 @@
     "R1565325",
     "R1565327",
     "R1565330",
+    "R1565336",
     "R1565353",
     "R1565371",
     "R1565391",
@@ -1245,6 +1250,7 @@
     "R1566060",
     "R1566066",
     "R1566072",
+    "R1566076",
     "R1566140",
     "R1566142",
     "R1566150",
@@ -1742,6 +1748,7 @@
     "R1571083",
     "R1571086",
     "R1571088",
+    "R1571091",
     "R1571149",
     "R1571152",
     "R1571158",
@@ -1918,6 +1925,7 @@
     "R1572726",
     "R1572753",
     "R1572759",
+    "R1572769",
     "R1572795",
     "R1572798",
     "R1572804",
@@ -1944,6 +1952,7 @@
     "R1573085",
     "R1573095",
     "R1573103",
+    "R1573108",
     "R1573113",
     "R1573118",
     "R1573121",
@@ -2046,6 +2055,7 @@
     "R1573832",
     "R1573833",
     "R1573836",
+    "R1573850",
     "R1573863",
     "R1573869",
     "R1573878",
@@ -2116,6 +2126,7 @@
     "R1574480",
     "R1574498",
     "R1574516",
+    "R1574546",
     "R1574548",
     "R1574551",
     "R1574555",
@@ -2214,6 +2225,7 @@
     "R1575270",
     "R1575271",
     "R1575282",
+    "R1575289",
     "R1575294",
     "R1575306",
     "R1575307",
@@ -2248,6 +2260,7 @@
     "R1575537",
     "R1575539",
     "R1575541",
+    "R1575545",
     "R1575546",
     "R1575553",
     "R1575563",
@@ -2263,6 +2276,7 @@
     "R1575672",
     "R1575680",
     "R1575682",
+    "R1575687",
     "R1575691",
     "R1575698",
     "R1575706",
@@ -2277,6 +2291,7 @@
     "R1575800",
     "R1575804",
     "R1575806",
+    "R1575812",
     "R1575906",
     "R1575922",
     "R1575957",
@@ -2339,6 +2354,7 @@
     "R1576525",
     "R1576540",
     "R1576549",
+    "R1576553",
     "R1576557",
     "R1576564",
     "R1576604",
@@ -2380,6 +2396,7 @@
     "R1576910",
     "R1576912",
     "R1576917",
+    "R1576919",
     "R1576930",
     "R1576937",
     "R1576940",
@@ -2399,6 +2416,7 @@
     "R1577139",
     "R1577146",
     "R1577170",
+    "R1577187",
     "R1577199",
     "R1577205",
     "R1577208",
@@ -2449,24 +2467,35 @@
     "R1577624",
     "R1577637",
     "R1577690",
+    "R1577723",
+    "R1577725",
     "R1577772",
     "R1577781",
     "R1577792",
     "R1577815",
     "R1577828",
     "R1577873",
+    "R1577887",
     "R1577939",
     "R1577944",
     "R1577960",
     "R1577968",
+    "R1577971",
     "R1577978",
     "R1577982",
     "R1577995",
+    "R1577997",
+    "R1578002",
     "R1578015",
+    "R1578047",
     "R1578064",
+    "R1578073",
     "R1578075",
     "R1578132",
+    "R1578141",
     "R1578170",
+    "R1578177",
+    "R1578180",
     "R1578191",
     "R1578241",
     "R1578252",
@@ -2477,12 +2506,14 @@
     "R1578280",
     "R1578290",
     "R1578310",
+    "R1578320",
     "R1578325",
     "R1578344",
     "R1578387",
     "R1578414",
     "R1578457",
     "R1578479",
+    "R1578486",
     "R1578490",
     "R1578503",
     "R1578527",
@@ -2496,7 +2527,32 @@
     "R1578614",
     "R1578696",
     "R1578730",
-    "R1578777"
+    "R1578748",
+    "R1578750",
+    "R1578777",
+    "R1578778",
+    "R1578828",
+    "R1578830",
+    "R1578851",
+    "R1578877",
+    "R1578908",
+    "R1578914",
+    "R1578925",
+    "R1578926",
+    "R1578928",
+    "R1578935",
+    "R1578939",
+    "R1578948",
+    "R1578965",
+    "R1578978",
+    "R1578987",
+    "R1578999",
+    "R1579011",
+    "R1579034",
+    "R1579059",
+    "R1579063",
+    "R1579067",
+    "R1579071"
   ],
   "candidate_catalog": {
     "R1570411": {
@@ -2653,7 +2709,7 @@
       "category": "technical_review"
     }
   },
-  "last_successful_scan_at": "2026-11-09T01:29:13+00:00",
+  "last_successful_scan_at": "2026-11-09T22:54:09+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "R1545472": {
@@ -36378,6 +36434,827 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-08T18:15:00+00:00",
       "last_seen_at": "2026-11-08T18:15:00+00:00"
+    },
+    "R1574546": {
+      "title": "Associate Dir, Software Test",
+      "location": "New Providence, New Jersey, United States of America",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/New-Providence-New-Jersey-United-States-of-America/Associate-Dir--Software-Test_R1574546",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "R1577187": {
+      "title": "Training Manager",
+      "location": "Durham, North Carolina, United States of America",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Durham-North-Carolina-United-States-of-America/Training-Manager_R1577187",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "R1578320": {
+      "title": "Clinical Project Manager (Early Clinical Development, Home-Based)",
+      "location": "12 Locations",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Overland-Park-KS-United-States-of-America/Clinical-Project-Manager--Early-Clinical-Development--Home-Based-_R1578320",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "R1566076": {
+      "title": "Client Reporting Junior Data Analyst",
+      "location": "Buenos Aires, Argentina",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Buenos-Aires-Argentina/Client-Reporting-Junior-Data-Analyst_R1566076",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "R1578877": {
+      "title": "\u9ad8\u7ea7\u9879\u76ee\u7ba1\u7406\u4e13\u5458 Sr Fieldwork Support Assoc",
+      "location": "Shanghai, China",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Shanghai-China/-Sr-Fieldwork-Support-Assoc_R1578877",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "R1575812": {
+      "title": "Analyst, Regional Management Consulting",
+      "location": "Mexico City, Mexico",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Mexico-City-Mexico/Analyst--Regional-Management-Consulting_R1575812",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "R1579034": {
+      "title": "Consultant - Pricing & Market Access",
+      "location": "Milan, Italy",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Milan-Italy/Consultant---Pricing---Market-Access_R1579034",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "R1579011": {
+      "title": "Clinical Project Manager - Global Study Leadership",
+      "location": "3 Locations",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Madrid-Spain/Clinical-Project-Manager---Global-Study-Leadership_R1579011",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "R1575545": {
+      "title": "Sr Consultant - Pricing & Market Access",
+      "location": "Milan, Italy",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Milan-Italy/Sr-Consultant---Pricing---Market-Access_R1575545-1",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "R1578965": {
+      "title": "Research Nurse - Vinar\u00f2s",
+      "location": "Valencia, Spain",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Valencia-Spain/Research-Nurse---Vinars_R1578965-1",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "R1578908": {
+      "title": "Project Operations Coordinator",
+      "location": "Seoul, Republic of Korea",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Seoul-Republic-of-Korea/Project-Operations-Coordinator_R1578908",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "R1578830": {
+      "title": "Senior Clinical Investigator Payment Associate (FSP-Brazil)",
+      "location": "S\u00e3o Paulo, Brazil",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/So-Paulo-Brazil/Senior-Clinical-Investigator-Payment-Associate--FSP-Brazil-_R1578830",
+      "posted_at": "Posted 3 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "R1578828": {
+      "title": "Clinical Investigator Payment Associate (FSP-Brazil)",
+      "location": "S\u00e3o Paulo, Brazil",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/So-Paulo-Brazil/Clinical-Investigator-Payment-Associate--FSP-Brazil-_R1578828",
+      "posted_at": "Posted 3 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "R1579067": {
+      "title": "Regional Account Director-Oncology",
+      "location": "5 Locations",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Dallas-TX/Regional-Account-Director-Oncology_R1579067",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "R1579071": {
+      "title": "Key Account Manager-Oncology",
+      "location": "6 Locations",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Dallas-TX/Key-Account-Manager-Oncology_R1579071",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "R1578948": {
+      "title": "Pharmacy Business Manager",
+      "location": "3 Locations",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Bristol-England-United-Kingdom/Pharmacy-Business-Manager_R1578948",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "R1578778": {
+      "title": "Associate Territory Representative -North Central New Jersey",
+      "location": "3 Locations",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/New-Brunswick-NJ/Associate-Territory-Representative--North-Central-New-Jerseye_R1578778-1",
+      "posted_at": "Posted 3 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "R1578851": {
+      "title": "HR Director, UK & Ireland",
+      "location": "2 Locations",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Reading-Berkshire-United-Kingdom/HR-Director--UK---Ireland_R1578851",
+      "posted_at": "Posted Yesterday",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "R1560526": {
+      "title": "Associate Project Services Manager - (Clinical Trials and Laboratories)",
+      "location": "Buenos Aires, Argentina",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Buenos-Aires-Argentina/Associate-Project-Services-Manager----Clinical-Trials-and-Laboratories-_R1560526",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "R1578748": {
+      "title": "Clinical Research Coordinator in Pisa - part time",
+      "location": "Pisa, Toscana, Italy",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Pisa-Toscana-Italy/Clinical-Research-Coordinator-in-Pisa---part-time_R1578748",
+      "posted_at": "Posted 3 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "R1557195": {
+      "title": "Associate Manager / Manager, Project Services - Laboratories (Remote - West Coast)",
+      "location": "4 Locations",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Valencia-CA-United-States-of-America/Associate-Manager---Manager--Project-Services---Laboratories--Remote---West-Coast-_R1557195",
+      "posted_at": "Posted 3 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "R1557193": {
+      "title": "Associate Manager / Manager,  Project Services - Laboratories (Remote - East Coast)",
+      "location": "6 Locations",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Marietta-GA/Associate-Manager---Manager---Project-Services---Laboratories--Remote---East-Coast-_R1557193",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "R1577887": {
+      "title": "Medical Sales Representative, Miskolc",
+      "location": "Budapest, Hungary",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Budapest-Hungary/Medical-Sales-Representative--Miskolc_R1577887",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "R1578926": {
+      "title": "(Greece) FSP Assoc Director, Quality Management",
+      "location": "Athens, Greece",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Athens-Greece/XMLNAME--Greece--FSP-Assoc-Director--Quality-Management_R1578926",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "R1565336": {
+      "title": "Freelance Site Activation Specialist (Study Start-Up / Regulatory Submissions) \u2013 UK Remote",
+      "location": "5 Locations",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/London-United-Kingdom/Freelance-Site-Activation-Specialist--Study-Start-Up---Regulatory-Submissions----UK-Remote_R1565336",
+      "posted_at": "Posted 5 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "R1578928": {
+      "title": "Reference File Maintainer Assoc",
+      "location": "Taguig City, Philippines",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Taguig-City-Philippines/Reference-File-Maintainer-Assoc_R1578928",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "R1578935": {
+      "title": "Sales Specialist",
+      "location": "Birmingham, England, United Kingdom",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Birmingham-England-United-Kingdom/Sales-Specialist_R1578935",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "R1578914": {
+      "title": "Study Start Up Manager - IQVIA Biotech - Portugal",
+      "location": "Lisbon, Portugal",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Lisbon-Portugal/Study-Start-Up-Manager---IQVIA-Biotech---Portugal_R1578914",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "R1573850": {
+      "title": "Clinical Operations Manager",
+      "location": "North Sydney, New South Wales, Australia",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/North-Sydney-New-South-Wales-Australia/Mgr--Clin-Site---Resource_R1573850-1",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "R1578047": {
+      "title": "Bilingual Virtual Patient Navigator \u2013 Remote",
+      "location": "Durham, NC",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Durham-NC/Bilingual-Virtual-Patient-Navigator---Remote_R1578047",
+      "posted_at": "Posted 6 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "R1575289": {
+      "title": "MedTech Clinical Safety Manager",
+      "location": "Washington, DC, United States of America",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Washington-DC-United-States-of-America/MedTech-Clinical-Safety-Manager_R1575289",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "R1578750": {
+      "title": "Senior Regulatory and Start Up Specialist - South Africa",
+      "location": "3 Locations",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Centurion-South-Africa/Senior-Regulatory-and-Start-Up-Specialist---South-Africa_R1578750",
+      "posted_at": "Posted 3 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "R1578177": {
+      "title": "Site Enrollment and Engagement Lead",
+      "location": "Paris, France",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Paris-France/Site-Enrollment-and-Engagement-Lead_R1578177",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "R1578141": {
+      "title": "Site Enrollment & Engagement Lead",
+      "location": "2 Locations",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Hanoi-H-Ni-Vietnam/Site-Enrollment---Engagement-Lead_R1578141",
+      "posted_at": "Posted 5 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "R1578180": {
+      "title": "Site Enrollment and Engagement Lead",
+      "location": "Milan, Italy",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Milan-Italy/Site-Enrollment-and-Engagement-Lead_R1578180",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "R1470823": {
+      "title": "Nurse Educator",
+      "location": "Wilayah Persekutuan Kuala Lumpur, Malaysia",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Wilayah-Persekutuan-Kuala-Lumpur-Malaysia/Nurse-Educator_R1470823",
+      "posted_at": "Posted 7 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "R1578486": {
+      "title": "Freelance Research Nurse \u2013 Home Visits",
+      "location": "7 Locations",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Amsterdam-Netherlands/Freelance-Research-Nurse---Home-Visits_R1578486",
+      "posted_at": "Posted 4 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "R1576553": {
+      "title": "Regulatory Affairs Senior Specialist - Submission Manager",
+      "location": "New Cairo, Egypt",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/New-Cairo-Egypt/Regulatory-Affairs-Senior-Specialist---Submission-Manager_R1576553-1",
+      "posted_at": "Posted 6 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "R1575687": {
+      "title": "Project Manager - Real World Evidence - France",
+      "location": "Illkirch-Graffenstaden, France",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Illkirch-Graffenstaden-France/Project-Manager---Real-World-Evidence_R1575687",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "R1572769": {
+      "title": "Resource Manager - Patient Centered Solutions Team",
+      "location": "3 Locations",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Porto-Salvo-Portugal/Resource-Management---Patient-Centered-Solutions-Team_R1572769",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "R1577971": {
+      "title": "Travel Site Research Assistant / Clinical Research Coordinator \u2013 Czech Republic (2 days per week))",
+      "location": "2 Locations",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/PlzePilsen-Czech-Republic/Travel-Site-Research-Assistant---Clinical-Research-Coordinator---Czech-Republic--2-days-per-week--_R1577971",
+      "posted_at": "Posted 6 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "R1577997": {
+      "title": "Clinical Research Coordinator - Wyomissing, PA",
+      "location": "Wyomissing, PA",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Wyomissing-PA/Clinical-Research-Coordinator---Wyomissing--PA_R1577997",
+      "posted_at": "Posted 6 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "R1578002": {
+      "title": "Clinical Research Coordinator - Thomasville, GA",
+      "location": "Tallahassee, FL",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Tallahassee-FL/Clinical-Research-Coordinator---Thomasville--GA_R1578002",
+      "posted_at": "Posted 6 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "R1577723": {
+      "title": "Internship in Clinical Research (m/w/d), Home-Based in Germany",
+      "location": "Frankfurt, Hesse, Germany",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Frankfurt-Hesse-Germany/Internship-in-Clinical-Research--m-w-d---Home-Based-in-Germany_R1577723",
+      "posted_at": "Posted 7 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "R1577725": {
+      "title": "Internship in Clinical Research (m/w/d), Home-Based in eastern part of Germany",
+      "location": "Frankfurt, Hesse, Germany",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Frankfurt-Hesse-Germany/Internship-in-Clinical-Research--m-w-d---Home-Based-in-eastern-part-of-Germany_R1577725",
+      "posted_at": "Posted 7 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "R1578073": {
+      "title": "Pharmaceutical Sales Associate -Hartford, CT",
+      "location": "3 Locations",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Hartford-CT/Pharmaceutical-Sales-Associate--Hartford--CT_R1578073",
+      "posted_at": "Posted 5 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "R1576919": {
+      "title": "Day LPN",
+      "location": "Fairfax, VA, United States of America",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Fairfax-VA-United-States-of-America/Day-LPN_R1576919",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "R1579059": {
+      "title": "Clinical Research Associate, Sponsor Dedicated, IVD",
+      "location": "4 Locations",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Carlsbad-CA-United-States-of-America/Clinical-Research-Associate--Sponsor-Dedicated--IVD_R1579059",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "R1579063": {
+      "title": "MedTech Device Field Collection Associate - Missoula, MT",
+      "location": "Missoula, MT",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Missoula-MT/MedTech-Device-Field-Collection-Associate---Missoula--MT_R1579063",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "R1578939": {
+      "title": "Clinical Trials Assistant 1 (m/w/d), office based in Frankfurt",
+      "location": "Frankfurt, Hesse, Germany",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Frankfurt-Hesse-Germany/Clinical-Trials-Assistant-1--m-w-d---office-based-in-Frankfurt_R1578939",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "R1578999": {
+      "title": "Contract Negotiator - FSP - Italy",
+      "location": "Milan, Italy",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Milan-Italy/Contract-Negotiator---FSP---Italy_R1578999-1",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "R1578978": {
+      "title": "Strategic Network & Account Manager (SNAM) m/w/d  Onkologie",
+      "location": "2 Locations",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Mannheim-Baden-Wurttemberg-Germany/Strategic-Network---Account-Manager--SNAM--m-w-d--Onkologie_R1578978",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "R1578987": {
+      "title": "Strategic Network & Account Manager (SNAM) m/w/d  Onkologie",
+      "location": "2 Locations",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Mannheim-Baden-Wurttemberg-Germany/Strategic-Network---Account-Manager--SNAM--m-w-d--Onkologie_R1578987",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "R1578925": {
+      "title": "Contract Coordinator - Sponsor dedicated - Bucharest based",
+      "location": "Bucuresti, Romania",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Bucuresti-Romania/Contract-Coordinator---Sponsor-dedicated---Bucharest-based_R1578925",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "R1573108": {
+      "title": "Health Technology Assessment Analyst (Global)",
+      "location": "S\u00e3o Paulo, Brazil",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/So-Paulo-Brazil/Health-Technology-Assessment-Analyst--Global-_R1573108",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "R1571091": {
+      "title": "Associate Consultant, Market Access Strategy Consulting",
+      "location": "2 Locations",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Boston-Massachusetts-United-States-of-America/Associate-Consultant--Market-Access-Strategy-Consulting_R1571091",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
     }
   },
   "source_updated_at_by_id": {}

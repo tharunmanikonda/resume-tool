@@ -615,7 +615,100 @@
     "744000160299707",
     "744000160300670",
     "744000160301617",
-    "744000160304459"
+    "744000160304459",
+    "744000160635200",
+    "744000160636835",
+    "744000160636964",
+    "744000160639019",
+    "744000160639069",
+    "744000160639419",
+    "744000160639829",
+    "744000160642592",
+    "744000160642921",
+    "744000160643394",
+    "744000160645039",
+    "744000160645208",
+    "744000160645359",
+    "744000160645520",
+    "744000160646119",
+    "744000160646989",
+    "744000160647460",
+    "744000160648109",
+    "744000160648119",
+    "744000160648454",
+    "744000160648679",
+    "744000160649385",
+    "744000160649714",
+    "744000160649909",
+    "744000160649935",
+    "744000160649940",
+    "744000160650459",
+    "744000160650767",
+    "744000160651569",
+    "744000160651979",
+    "744000160652254",
+    "744000160652668",
+    "744000160652809",
+    "744000160653439",
+    "744000160653540",
+    "744000160654359",
+    "744000160654878",
+    "744000160655850",
+    "744000160656123",
+    "744000160658984",
+    "744000160659354",
+    "744000160659379",
+    "744000160659459",
+    "744000160660549",
+    "744000160660741",
+    "744000160660769",
+    "744000160660975",
+    "744000160661249",
+    "744000160661852",
+    "744000160661871",
+    "744000160663160",
+    "744000160664279",
+    "744000160664696",
+    "744000160668730",
+    "744000160671074",
+    "744000160672109",
+    "744000160677312",
+    "744000160677459",
+    "744000160677969",
+    "744000160678070",
+    "744000160678499",
+    "744000160680290",
+    "744000160680389",
+    "744000160680779",
+    "744000160680980",
+    "744000160681069",
+    "744000160681580",
+    "744000160681769",
+    "744000160682711",
+    "744000160683650",
+    "744000160684410",
+    "744000160685002",
+    "744000160685279",
+    "744000160686477",
+    "744000160686479",
+    "744000160689930",
+    "744000160691960",
+    "744000160693610",
+    "744000160693891",
+    "744000160694609",
+    "744000160695451",
+    "744000160696244",
+    "744000160697300",
+    "744000160697599",
+    "744000160721794",
+    "744000160730879",
+    "744000160731587",
+    "744000160731770",
+    "744000160731804",
+    "744000160732180",
+    "744000160733129",
+    "744000160733409",
+    "744000160733599"
   ],
   "candidate_catalog": {
     "744000151898289": {
@@ -707,9 +800,18 @@
       "first_seen_at": "2026-11-06T02:00:49+00:00",
       "priority": "high",
       "category": "software"
+    },
+    "744000160659459": {
+      "title": "Software Engineering Internships \u2013 Summer 2027",
+      "location": "New York, NY, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160659459-software-engineering-internships-summer-2027",
+      "posted_at": "2026-11-09T16:10:02.802Z",
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "priority": "high",
+      "category": "software"
     }
   },
-  "last_successful_scan_at": "2026-11-09T01:29:13+00:00",
+  "last_successful_scan_at": "2026-11-09T22:54:09+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "744000156079569": {
@@ -8150,6 +8252,1296 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-07T01:41:21+00:00",
       "last_seen_at": "2026-11-07T01:41:21+00:00"
+    },
+    "744000160733599": {
+      "title": "NBC News Production & Digital Editorial Internships \u2013 Summer 2027",
+      "location": "New York, NY, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160733599-nbc-news-production-digital-editorial-internships-summer-2027",
+      "posted_at": "2026-11-09T21:33:58.428Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160731804": {
+      "title": "NBC 4 New York Production & Editorial Internships \u2013 Summer 2027",
+      "location": "New York, NY, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160731804-nbc-4-new-york-production-editorial-internships-summer-2027",
+      "posted_at": "2026-11-09T21:33:33.715Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160732180": {
+      "title": "NBC News Bureau Internships \u2013 Summer 2027",
+      "location": "Universal City, CA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160732180-nbc-news-bureau-internships-summer-2027",
+      "posted_at": "2026-11-09T21:33:29.058Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160733409": {
+      "title": "NBC 4 New York Marketing & Digital Design Internships \u2013 Summer 2027",
+      "location": "New York, NY, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160733409-nbc-4-new-york-marketing-digital-design-internships-summer-2027",
+      "posted_at": "2026-11-09T21:32:50.285Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160731587": {
+      "title": "NBC News Creative & Digital Design Internships \u2013 Summer 2027",
+      "location": "New York, NY, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160731587-nbc-news-creative-digital-design-internships-summer-2027",
+      "posted_at": "2026-11-09T21:32:29.119Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160733129": {
+      "title": "NBC News Communications, Marketing, and Research Internships \u2013 Summer 2027",
+      "location": "New York, NY, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160733129-nbc-news-communications-marketing-and-research-internships-summer-2027",
+      "posted_at": "2026-11-09T21:32:10.118Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160731770": {
+      "title": "NBC News Group Technology Internships \u2013 Summer 2027",
+      "location": "New York, NY, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160731770-nbc-news-group-technology-internships-summer-2027",
+      "posted_at": "2026-11-09T21:31:50.249Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160730879": {
+      "title": "Senior Product Manager, SAP GRC",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160730879-senior-product-manager-sap-grc",
+      "posted_at": "2026-11-09T21:15:46.561Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160721794": {
+      "title": "Sr. Manager, Internal Communications",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160721794-sr-manager-internal-communications",
+      "posted_at": "2026-11-09T20:21:28.691Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160696244": {
+      "title": "NBC Local Production, Editorial, and Marketing News Internships \u2013 Summer 2027",
+      "location": "Miami, FL, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160696244-nbc-local-production-editorial-and-marketing-news-internships-summer-2027",
+      "posted_at": "2026-11-09T19:02:32.198Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160697599": {
+      "title": "NBC Local Production, Editorial, and Marketing News Internships \u2013 Summer 2027",
+      "location": "Universal City, CA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160697599-nbc-local-production-editorial-and-marketing-news-internships-summer-2027",
+      "posted_at": "2026-11-09T19:02:08.789Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160697300": {
+      "title": "NBC Local Production, Editorial, and Marketing News Internships \u2013 Summer 2027",
+      "location": "New York, NY, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160697300-nbc-local-production-editorial-and-marketing-news-internships-summer-2027",
+      "posted_at": "2026-11-09T19:00:37.135Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160695451": {
+      "title": "NBC Local Los Angeles News Internships \u2013 Summer 2027",
+      "location": "Universal City, CA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160695451-nbc-local-los-angeles-news-internships-summer-2027",
+      "posted_at": "2026-11-09T18:53:30.788Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160693891": {
+      "title": "NBC Local South Florida News Internships \u2013 Summer 2027",
+      "location": "Miramar, FL, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160693891-nbc-local-south-florida-news-internships-summer-2027",
+      "posted_at": "2026-11-09T18:48:38.838Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160694609": {
+      "title": "NBC Local Boston News Internships \u2013 Summer 2027",
+      "location": "Needham, MA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160694609-nbc-local-boston-news-internships-summer-2027",
+      "posted_at": "2026-11-09T18:45:00.430Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160693610": {
+      "title": "Telemundo 44 DC News Internships \u2013 Summer 2027",
+      "location": "Washington, DC, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160693610-telemundo-44-dc-news-internships-summer-2027",
+      "posted_at": "2026-11-09T18:38:00.493Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160691960": {
+      "title": "NBC 4 DC News Internships \u2013 Summer 2027",
+      "location": "Washington, DC, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160691960-nbc-4-dc-news-internships-summer-2027",
+      "posted_at": "2026-11-09T18:36:58.510Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160689930": {
+      "title": "Advertising & Partnerships: Data Science Internship \u2013 Summer 2027",
+      "location": "New York, NY, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160689930-advertising-partnerships-data-science-internship-summer-2027",
+      "posted_at": "2026-11-09T18:26:42.685Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160686479": {
+      "title": "Advertising & Partnerships: Ad Products Internships \u2013 Summer 2027",
+      "location": "New York, NY, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160686479-advertising-partnerships-ad-products-internships-summer-2027",
+      "posted_at": "2026-11-09T17:57:31.209Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160685279": {
+      "title": "Ad Sales Sales & Sales Support Internships \u2013 Summer 2027",
+      "location": "Birmingham, MI, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160685279-ad-sales-sales-sales-support-internships-summer-2027",
+      "posted_at": "2026-11-09T17:53:20.619Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160685002": {
+      "title": "Ad Sales Sales & Sales Support Internships \u2013 Summer 2027",
+      "location": "Atlanta, GA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160685002-ad-sales-sales-sales-support-internships-summer-2027",
+      "posted_at": "2026-11-09T17:52:43.447Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160683650": {
+      "title": "Ad Sales Sales & Sales Support Internships \u2013 Summer 2027",
+      "location": "Universal City, CA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160683650-ad-sales-sales-sales-support-internships-summer-2027",
+      "posted_at": "2026-11-09T17:52:27.280Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160682711": {
+      "title": "Ad Sales Enterprise Marketing & Communications Internships \u2013 Summer 2027",
+      "location": "Stamford, CT, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160682711-ad-sales-enterprise-marketing-communications-internships-summer-2027",
+      "posted_at": "2026-11-09T17:51:22.159Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160684410": {
+      "title": "Ad Sales Enterprise Marketing & Communications Internships \u2013 Summer 2027",
+      "location": "Universal City, CA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160684410-ad-sales-enterprise-marketing-communications-internships-summer-2027",
+      "posted_at": "2026-11-09T17:51:02.278Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160681580": {
+      "title": "Human Resources & Culture Internships \u2013 Summer 2027",
+      "location": "Miami, FL, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160681580-human-resources-culture-internships-summer-2027",
+      "posted_at": "2026-11-09T17:40:26.482Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160681769": {
+      "title": "Human Resources & Culture Internships \u2013 Summer 2027",
+      "location": "Universal City, CA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160681769-human-resources-culture-internships-summer-2027",
+      "posted_at": "2026-11-09T17:39:59.683Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160680980": {
+      "title": "Human Resources & Culture Internships \u2013 Summer 2027",
+      "location": "New York, NY, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160680980-human-resources-culture-internships-summer-2027",
+      "posted_at": "2026-11-09T17:37:51.048Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160681069": {
+      "title": "Advertising & Partnerships: Enterprise Marketing & Communications Internships \u2013 Summer 2027",
+      "location": "New York, NY, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160681069-advertising-partnerships-enterprise-marketing-communications-internships-summer-2027",
+      "posted_at": "2026-11-09T17:36:12.770Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160680290": {
+      "title": "Legal Internships \u2013 Summer 2027",
+      "location": "Miami, FL, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160680290-legal-internships-summer-2027",
+      "posted_at": "2026-11-09T17:35:17.833Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160680779": {
+      "title": "Legal Internships \u2013 Summer 2027",
+      "location": "Washington, DC, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160680779-legal-internships-summer-2027",
+      "posted_at": "2026-11-09T17:34:16.487Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160678070": {
+      "title": "Legal Internships \u2013 Summer 2027",
+      "location": "New York, NY, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160678070-legal-internships-summer-2027",
+      "posted_at": "2026-11-09T17:31:55.538Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160680389": {
+      "title": "Advertising & Partnerships: Sales & Sales Support Internships \u2013 Summer 2027",
+      "location": "New York, NY, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160680389-advertising-partnerships-sales-sales-support-internships-summer-2027",
+      "posted_at": "2026-11-09T17:31:31.742Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160677312": {
+      "title": "Legal Internships \u2013 Summer 2027",
+      "location": "Universal City, CA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160677312-legal-internships-summer-2027",
+      "posted_at": "2026-11-09T17:28:57.309Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160678499": {
+      "title": "Finance Internships \u2013 Summer 2027",
+      "location": "Miami, FL, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160678499-finance-internships-summer-2027",
+      "posted_at": "2026-11-09T17:23:32.098Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160677969": {
+      "title": "Finance Internships \u2013 Summer 2027",
+      "location": "New York, NY, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160677969-finance-internships-summer-2027",
+      "posted_at": "2026-11-09T17:21:40.586Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160677459": {
+      "title": "Finance Internships \u2013 Summer 2027",
+      "location": "Universal City, CA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160677459-finance-internships-summer-2027",
+      "posted_at": "2026-11-09T17:19:12.154Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160671074": {
+      "title": "NBC News Bureau Internships \u2013 Summer 2027",
+      "location": "Chicago, IL, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160671074-nbc-news-bureau-internships-summer-2027",
+      "posted_at": "2026-11-09T16:53:12.958Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160672109": {
+      "title": "NBC News Bureau Internships \u2013 Summer 2027",
+      "location": "Miami, FL, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160672109-nbc-news-bureau-internships-summer-2027",
+      "posted_at": "2026-11-09T16:52:55.069Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160668730": {
+      "title": "NBC News Bureau Internships \u2013 Summer 2027",
+      "location": "Washington, DC, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160668730-nbc-news-bureau-internships-summer-2027",
+      "posted_at": "2026-11-09T16:52:37.211Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160664696": {
+      "title": "Music Internships \u2013 Summer 2027",
+      "location": "Universal City, CA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160664696-music-internships-summer-2027",
+      "posted_at": "2026-11-09T16:29:11.764Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160661852": {
+      "title": "Platform Distribution & Partnerships: Business Development, Sales & Marketing Internships \u2013 Summer 2027",
+      "location": "Universal City, CA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160661852-platform-distribution-partnerships-business-development-sales-marketing-internships-summer-2027",
+      "posted_at": "2026-11-09T16:24:54.221Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160663160": {
+      "title": "Music Internships \u2013 Summer 2027",
+      "location": "New York, NY, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160663160-music-internships-summer-2027",
+      "posted_at": "2026-11-09T16:24:06.640Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160664279": {
+      "title": "Platform Distribution & Partnerships: Business Development, Sales & Marketing Internships \u2013 Summer 2027",
+      "location": "New York, NY, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160664279-platform-distribution-partnerships-business-development-sales-marketing-internships-summer-2027",
+      "posted_at": "2026-11-09T16:23:48.664Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160661871": {
+      "title": "Government Affairs Internships \u2013 Summer 2027",
+      "location": "Washington, DC, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160661871-government-affairs-internships-summer-2027",
+      "posted_at": "2026-11-09T16:20:20.798Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160660741": {
+      "title": "Government Affairs Internships \u2013 Summer 2027",
+      "location": "Universal City, CA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160660741-government-affairs-internships-summer-2027",
+      "posted_at": "2026-11-09T16:18:24.072Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160659354": {
+      "title": "Sustainability Strategy Internships \u2013 Summer 2027",
+      "location": "New York, NY, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160659354-sustainability-strategy-internships-summer-2027",
+      "posted_at": "2026-11-09T16:17:28.460Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160660975": {
+      "title": "Government Affairs Internships \u2013 Summer 2027",
+      "location": "New York, NY, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160660975-government-affairs-internships-summer-2027",
+      "posted_at": "2026-11-09T16:17:07.452Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160661249": {
+      "title": "Streaming Platforms, Product Management Internships \u2013 Summer 2027",
+      "location": "New York, NY, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160661249-streaming-platforms-product-management-internships-summer-2027",
+      "posted_at": "2026-11-09T16:16:07.395Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160660769": {
+      "title": "Program Management & Operations Internships \u2013 Summer 2027",
+      "location": "Universal City, CA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160660769-program-management-operations-internships-summer-2027",
+      "posted_at": "2026-11-09T16:14:22.528Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160660549": {
+      "title": "Program Management & Operations Internships \u2013 Summer 2027",
+      "location": "Stamford, CT, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160660549-program-management-operations-internships-summer-2027",
+      "posted_at": "2026-11-09T16:13:59.507Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160658984": {
+      "title": "Program Management & Operations Internships \u2013 Summer 2027",
+      "location": "New York, NY, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160658984-program-management-operations-internships-summer-2027",
+      "posted_at": "2026-11-09T16:13:33.373Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160655850": {
+      "title": "Product Design Internships \u2013 Summer 2027",
+      "location": "New York, NY, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160655850-product-design-internships-summer-2027",
+      "posted_at": "2026-11-09T16:05:16.672Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160656123": {
+      "title": "Media Asset & Archival Management Internships \u2013 Summer 2027",
+      "location": "North Bergen, NJ, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160656123-media-asset-archival-management-internships-summer-2027",
+      "posted_at": "2026-11-09T16:00:14.346Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160654878": {
+      "title": "Media Tech: Cybersecurity, Governance & Security Engineering Internships \u2013 Summer 2027",
+      "location": "New York, NY, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160654878-media-tech-cybersecurity-governance-security-engineering-internships-summer-2027",
+      "posted_at": "2026-11-09T15:53:42.725Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160649935": {
+      "title": "Media Tech: Data, AI & Machine Learning Internships \u2013 Summer 2027",
+      "location": "Universal City, CA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160649935-media-tech-data-ai-machine-learning-internships-summer-2027",
+      "posted_at": "2026-11-09T15:52:20.870Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160654359": {
+      "title": "Universal Film Global Distribution \u2013 Summer 2027",
+      "location": "New York, NY, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160654359-universal-film-global-distribution-summer-2027",
+      "posted_at": "2026-11-09T15:51:59.933Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160650767": {
+      "title": "Media Tech: Data, AI & Machine Learning Internships \u2013 Summer 2027",
+      "location": "New York, NY, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160650767-media-tech-data-ai-machine-learning-internships-summer-2027",
+      "posted_at": "2026-11-09T15:51:36.264Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160653540": {
+      "title": "Franchise, Products & Partnerships: Creative and Product Design Internships \u2013 Summer 2027",
+      "location": "Universal City, CA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160653540-franchise-products-partnerships-creative-and-product-design-internships-summer-2027",
+      "posted_at": "2026-11-09T15:50:09.476Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160653439": {
+      "title": "Media Tech: Product & Engineering Internships \u2013 Summer 2027",
+      "location": "Miami, FL, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160653439-media-tech-product-engineering-internships-summer-2027",
+      "posted_at": "2026-11-09T15:49:53.102Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160649385": {
+      "title": "Franchise, Products & Partnerships: Communications, Marketing, Strategy Internships \u2013 Summer 2027",
+      "location": "Universal City, CA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160649385-franchise-products-partnerships-communications-marketing-strategy-internships-summer-2027",
+      "posted_at": "2026-11-09T15:49:41.638Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160652254": {
+      "title": "Media Tech: Product & Engineering Internships \u2013 Summer 2027",
+      "location": "Universal City, CA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160652254-media-tech-product-engineering-internships-summer-2027",
+      "posted_at": "2026-11-09T15:49:04.505Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160652809": {
+      "title": "Media Tech: Product & Engineering Internships \u2013 Summer 2027",
+      "location": "New York, NY, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160652809-media-tech-product-engineering-internships-summer-2027",
+      "posted_at": "2026-11-09T15:48:22.539Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160652668": {
+      "title": "Universal Film Global Distribution \u2013 Summer 2027",
+      "location": "North Hollywood, CA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160652668-universal-film-global-distribution-summer-2027",
+      "posted_at": "2026-11-09T15:47:29.705Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160651979": {
+      "title": "Film Production & Development Internships \u2013 Summer 2027",
+      "location": "North Hollywood, CA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160651979-film-production-development-internships-summer-2027",
+      "posted_at": "2026-11-09T15:45:53.104Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160651569": {
+      "title": "NBC Sports Logistics & Inventory Operations Internships \u2013 Summer 2027",
+      "location": "Stamford, CT, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160651569-nbc-sports-logistics-inventory-operations-internships-summer-2027",
+      "posted_at": "2026-11-09T15:44:35.726Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160649714": {
+      "title": "Universal Pictures Publicity & Marketing Internships \u2013 Summer 2027",
+      "location": "New York, NY, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160649714-universal-pictures-publicity-marketing-internships-summer-2027",
+      "posted_at": "2026-11-09T15:41:57.497Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160650459": {
+      "title": "Universal Pictures Publicty & Marketing Internships \u2013 Summer 2027",
+      "location": "North Hollywood, CA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160650459-universal-pictures-publicty-marketing-internships-summer-2027",
+      "posted_at": "2026-11-09T15:40:35.579Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160648454": {
+      "title": "Global Security & Intelligence Internships \u2013 Summer 2027",
+      "location": "Universal City, CA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160648454-global-security-intelligence-internships-summer-2027",
+      "posted_at": "2026-11-09T15:39:55.326Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160649940": {
+      "title": "Focus Features Publicity & Marketing Internships \u2013 Summer 2027",
+      "location": "North Hollywood, CA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160649940-focus-features-publicity-marketing-internships-summer-2027",
+      "posted_at": "2026-11-09T15:39:28.452Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160649909": {
+      "title": "Global Security & Intelligence Internships \u2013 Summer 2027",
+      "location": "New York, NY, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160649909-global-security-intelligence-internships-summer-2027",
+      "posted_at": "2026-11-09T15:39:22.370Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160647460": {
+      "title": "Digital Transformation AR/VR Internships \u2013 Summer 2027",
+      "location": "North Hollywood, CA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160647460-digital-transformation-ar-vr-internships-summer-2027",
+      "posted_at": "2026-11-09T15:37:34.774Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160648679": {
+      "title": "NBC Sports Production Operations Internships \u2013 Summer 2027",
+      "location": "Stamford, CT, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160648679-nbc-sports-production-operations-internships-summer-2027",
+      "posted_at": "2026-11-09T15:36:28.483Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160648119": {
+      "title": "Universal Film Production IT Support Internships \u2013 Summer 2027",
+      "location": "North Hollywood, CA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160648119-universal-film-production-it-support-internships-summer-2027",
+      "posted_at": "2026-11-09T15:34:17.447Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160648109": {
+      "title": "Studio Operations, Data Analytics Internships \u2013 Summer 2027",
+      "location": "Universal City, CA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160648109-studio-operations-data-analytics-internships-summer-2027",
+      "posted_at": "2026-11-09T15:34:17.416Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160646989": {
+      "title": "The Tonight Show Starring Jimmy Fallon Internships \u2013 Summer 2027",
+      "location": "New York, NY, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160646989-the-tonight-show-starring-jimmy-fallon-internships-summer-2027",
+      "posted_at": "2026-11-09T15:28:43.816Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160646119": {
+      "title": "Advertising & Program Standards Internships \u2013 Summer 2027",
+      "location": "New York, NY, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160646119-advertising-program-standards-internships-summer-2027",
+      "posted_at": "2026-11-09T15:25:22.088Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160642921": {
+      "title": "NBC Sports Marketing Internships \u2013 Summer 2027",
+      "location": "Stamford, CT, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160642921-nbc-sports-marketing-internships-summer-2027",
+      "posted_at": "2026-11-09T15:24:14.403Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160645520": {
+      "title": "Advertising & Program Standards Internships \u2013 Summer 2027",
+      "location": "Universal City, CA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160645520-advertising-program-standards-internships-summer-2027",
+      "posted_at": "2026-11-09T15:23:58.653Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160642592": {
+      "title": "NBC Sports Programming Internships \u2013 Summer 2027",
+      "location": "Stamford, CT, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160642592-nbc-sports-programming-internships-summer-2027",
+      "posted_at": "2026-11-09T15:22:55.397Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160645359": {
+      "title": "Telemundo Production & Operations Internships \u2013 Summer 2027",
+      "location": "Miami, FL, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160645359-telemundo-production-operations-internships-summer-2027",
+      "posted_at": "2026-11-09T15:22:19.241Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160645208": {
+      "title": "Telemundo News, Digital, & Marketing Internships \u2013 Summer 2027",
+      "location": "Miami, FL, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160645208-telemundo-news-digital-marketing-internships-summer-2027",
+      "posted_at": "2026-11-09T15:21:38.800Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160645039": {
+      "title": "NBCUniversal International Strategy & Ad Sales Internships \u2013 Summer 2027",
+      "location": "Miami, FL, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160645039-nbcuniversal-international-strategy-ad-sales-internships-summer-2027",
+      "posted_at": "2026-11-09T15:20:55.424Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160643394": {
+      "title": "NBC Sports Olympic Digital & Production Internships \u2013 Summer 2027",
+      "location": "Stamford, CT, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160643394-nbc-sports-olympic-digital-production-internships-summer-2027",
+      "posted_at": "2026-11-09T15:20:01.453Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160636835": {
+      "title": "Universal Television Entertainment Digital, Creative & Design Internships \u2013 Summer 2027",
+      "location": "New York, NY, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160636835-universal-television-entertainment-digital-creative-design-internships-summer-2027",
+      "posted_at": "2026-11-09T15:05:40.200Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160635200": {
+      "title": "Universal Television Entertainment Digital, Creative & Design Internships \u2013 Summer 2027",
+      "location": "Universal City, CA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160635200-universal-television-entertainment-digital-creative-design-internships-summer-2027",
+      "posted_at": "2026-11-09T15:05:32.446Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160639829": {
+      "title": "Universal Television Entertainment Finance Transformation Internships \u2013 Summer 2027",
+      "location": "Universal City, CA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160639829-universal-television-entertainment-finance-transformation-internships-summer-2027",
+      "posted_at": "2026-11-09T15:05:04.140Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160636964": {
+      "title": "Universal Television Entertainment Marketing, Communications & Brand Strategy Internships \u2013 Summer 2027",
+      "location": "Universal City, CA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160636964-universal-television-entertainment-marketing-communications-brand-strategy-internships-summer-2027",
+      "posted_at": "2026-11-09T15:04:23.709Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160639419": {
+      "title": "Universal Television Entertainment Marketing, Communications & Brand Strategy Internships \u2013 Summer 2027",
+      "location": "New York, NY, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160639419-universal-television-entertainment-marketing-communications-brand-strategy-internships-summer-2027",
+      "posted_at": "2026-11-09T15:04:22.973Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160639069": {
+      "title": "Universal Television Entertainment Production, Development & Programming Internships \u2013 Summer 2027",
+      "location": "New York, NY, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160639069-universal-television-entertainment-production-development-programming-internships-summer-2027",
+      "posted_at": "2026-11-09T15:03:25.256Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160639019": {
+      "title": "Universal Television Entertainment Production, Development & Programming Internships \u2013 Summer 2027",
+      "location": "Universal City, CA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160639019-universal-television-entertainment-production-development-programming-internships-summer-2027",
+      "posted_at": "2026-11-09T15:03:19.148Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160686477": {
+      "title": "Software Engineer",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160686477-software-engineer",
+      "posted_at": "2026-11-09T18:03:45.456Z",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160659379": {
+      "title": "Software Engineering Internships \u2013 Summer 2027",
+      "location": "Universal City, CA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160659379-software-engineering-internships-summer-2027",
+      "posted_at": "2026-11-09T16:09:53.267Z",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
     }
   },
   "source_updated_at_by_id": {}

@@ -453,6 +453,7 @@
     "JR2019756",
     "JR2019791",
     "JR2019800",
+    "JR2019801",
     "JR2019809",
     "JR2019821",
     "JR2019832",
@@ -555,6 +556,7 @@
     "JR2021346",
     "JR2021350",
     "JR2021367",
+    "JR2021408",
     "JR2021443",
     "JR2021453",
     "JR2021465",
@@ -951,6 +953,7 @@
     "JR2026531",
     "JR2026536",
     "JR2026547",
+    "JR2026573",
     "JR2026576",
     "JR2026587",
     "JR2026588",
@@ -1137,6 +1140,7 @@
     "JR2028557",
     "JR2028576",
     "JR2028585",
+    "JR2028599",
     "JR2028628",
     "JR2028629",
     "JR2028636",
@@ -1168,7 +1172,9 @@
     "JR2028908",
     "JR2028913",
     "JR2028915",
+    "JR2028918",
     "JR2028930",
+    "JR2028938",
     "JR2028947",
     "JR2028978",
     "JR2028979",
@@ -1200,6 +1206,7 @@
     "JR2029272",
     "JR2029313",
     "JR2029355",
+    "JR2029364",
     "JR2029366",
     "JR2029400",
     "JR2029411",
@@ -1213,7 +1220,9 @@
     "JR2029457",
     "JR2029460",
     "JR2029533",
-    "JR2029570"
+    "JR2029570",
+    "JR2029621",
+    "JR2029702"
   ],
   "candidate_catalog": {
     "JR2018245": {
@@ -1550,7 +1559,7 @@
       "category": "technical_review"
     }
   },
-  "last_successful_scan_at": "2026-11-09T01:29:13+00:00",
+  "last_successful_scan_at": "2026-11-09T22:54:09+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "JR2014880": {
@@ -16680,6 +16689,135 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-07T17:57:43+00:00",
       "last_seen_at": "2026-11-07T17:57:43+00:00"
+    },
+    "JR2028938": {
+      "title": "Principal Data and Platform Engineer, DGX Cloud",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Principal-Data-and-Platform-Engineer--DGX-Cloud_JR2028938",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior"
+      ],
+      "category": "platform",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "JR2019801": {
+      "title": "Principal CPU Software Architect",
+      "location": "5 Locations",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Principal-CPU-Software-Architect_JR2019801",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "JR2028599": {
+      "title": "Manager, Firmware System Engineering",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Manager--Firmware-System-Engineering_JR2028599",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "embedded_or_hardware",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "JR2021408": {
+      "title": "Principal Software Engineer - Cloud Services",
+      "location": "2 Locations",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Principal-Software-Engineer---Cloud-Services_JR2021408",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "JR2029364": {
+      "title": "Senior Perception AI Engineer - Autonomous Vehicles",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Perception-AI-Engineer---Autonomous-Vehicles_JR2029364",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "specialized_low_level"
+      ],
+      "category": "ai_ml",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "JR2029621": {
+      "title": "Senior Software Development Engineer, Motion Planning - Autonomous Vehicles",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Software-Development-Engineer--Motion-Planning---Autonomous-Vehicles_JR2029621",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "specialized_low_level"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "JR2029702": {
+      "title": "Senior Software Engineer, AI Data",
+      "location": "US, CA, Santa Clara; US, MA, Westford; US, TX, Austin; US, NC, Durham",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Software-Engineer--AI-Data_JR2029702",
+      "posted_at": "2026-11-09",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "JR2028918": {
+      "title": "Senior Engineer, DGX Cloud Resilience Engineering - Data Platform",
+      "location": "US, CA, Santa Clara; US, CO, Remote; US, CA, Remote; US, MA, Remote",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Engineer--DGX-Cloud-Resilience-Engineering---Data-Platform_JR2028918",
+      "posted_at": "2026-11-09",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "data",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "JR2026573": {
+      "title": "Senior Software Engineer, Kubernetes Runtime and Release",
+      "location": "US, CA, Remote",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Remote/Senior-Software-Engineer--Kubernetes-Runtime-and-Release_JR2026573",
+      "posted_at": "2026-11-09",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-09T22:54:09+00:00",
+      "last_seen_at": "2026-11-09T22:54:09+00:00"
     }
   },
   "source_updated_at_by_id": {}
