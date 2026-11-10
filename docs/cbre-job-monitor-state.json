@@ -1828,6 +1828,7 @@
     "298008",
     "298012",
     "298047",
+    "298062",
     "298064",
     "298082",
     "298087",
@@ -1953,6 +1954,7 @@
     "298614",
     "298615",
     "298616",
+    "298625",
     "298628",
     "298631",
     "298633",
@@ -2320,6 +2322,7 @@
     "300153",
     "300157",
     "300169",
+    "300171",
     "300173",
     "300178",
     "300180",
@@ -2567,6 +2570,7 @@
     "301113",
     "301114",
     "301115",
+    "301123",
     "301130",
     "301136",
     "301139",
@@ -2691,6 +2695,7 @@
     "301642",
     "301643",
     "301647",
+    "301653",
     "301657",
     "301658",
     "301660",
@@ -2823,6 +2828,7 @@
     "302089",
     "302090",
     "302092",
+    "302093",
     "302100",
     "302102",
     "302105",
@@ -2871,6 +2877,7 @@
     "302275",
     "302277",
     "302278",
+    "302282",
     "302288",
     "302291",
     "302293",
@@ -2900,6 +2907,7 @@
     "302389",
     "302390",
     "302394",
+    "302408",
     "302410",
     "302421",
     "302430",
@@ -2937,6 +2945,7 @@
     "302531",
     "302532",
     "302533",
+    "302534",
     "302539",
     "302542",
     "302544",
@@ -2944,6 +2953,7 @@
     "302592",
     "302600",
     "302612",
+    "302635",
     "302650",
     "302659",
     "302663",
@@ -3030,9 +3040,11 @@
     "303019",
     "303020",
     "303031",
+    "303059",
     "303091",
     "303096",
     "303115",
+    "303120",
     "303123",
     "303127",
     "303130",
@@ -3121,6 +3133,7 @@
     "303504",
     "303526",
     "303528",
+    "303532",
     "303533",
     "303539",
     "303546",
@@ -3140,11 +3153,13 @@
     "303618",
     "303623",
     "303626",
+    "303629",
     "303644",
     "303655",
     "303665",
     "303668",
     "303680",
+    "303699",
     "303702",
     "303722",
     "303734",
@@ -3167,6 +3182,8 @@
     "303775",
     "303776",
     "303779",
+    "303780",
+    "303781",
     "303782",
     "303787",
     "303789",
@@ -3178,6 +3195,7 @@
     "303807",
     "303809",
     "303815",
+    "303819",
     "303829",
     "303830",
     "303838",
@@ -3185,16 +3203,20 @@
     "303862",
     "303863",
     "303872",
+    "303879",
     "303914",
     "303917",
     "303918",
+    "303921",
     "303923",
     "303929",
     "303933",
     "303937",
     "303942",
+    "303947",
     "303951",
     "303954",
+    "303959",
     "303962",
     "303976",
     "303981",
@@ -3203,6 +3225,7 @@
     "303997",
     "303999",
     "304006",
+    "304008",
     "304011",
     "304012",
     "304013",
@@ -3214,9 +3237,11 @@
     "304036",
     "304089",
     "304090",
+    "304092",
     "304110",
     "304115",
     "304123",
+    "304127",
     "304129",
     "304130",
     "304138",
@@ -3231,17 +3256,21 @@
     "304185",
     "304187",
     "304188",
+    "304191",
     "304192",
     "304194",
     "304195",
     "304205",
+    "304206",
     "304210",
+    "304217",
     "304234",
     "304236",
     "304241",
     "304243",
     "304247",
     "304249",
+    "304272",
     "304289",
     "304296",
     "304300",
@@ -3265,10 +3294,18 @@
     "304355",
     "304357",
     "304371",
+    "304373",
+    "304376",
+    "304379",
+    "304381",
     "304384",
     "304397",
     "304448",
     "304475",
+    "304476",
+    "304479",
+    "304481",
+    "304482",
     "304484",
     "304498",
     "304502",
@@ -3276,6 +3313,7 @@
     "304507",
     "304510",
     "304513",
+    "304515",
     "304517",
     "304518",
     "304519",
@@ -3284,12 +3322,17 @@
     "304522",
     "304523",
     "304525",
+    "304527",
+    "304530",
     "304535",
     "304543",
+    "304544",
     "304547",
     "304548",
     "304549",
     "304550",
+    "304557",
+    "304559",
     "304573",
     "304598",
     "304615",
@@ -3300,15 +3343,18 @@
     "304661",
     "304674",
     "304677",
+    "304679",
     "304687",
+    "304693",
     "304700",
     "304707",
+    "304712",
     "38196",
     "76242",
     "8655"
   ],
   "candidate_catalog": {},
-  "last_successful_scan_at": "2026-11-09T22:54:09+00:00",
+  "last_successful_scan_at": "2026-11-10T20:17:40+00:00",
   "filter_version": 0,
   "rejected_catalog": {
     "301688": {
@@ -7311,7 +7357,7 @@
       "title": "HVAC Senior Technician",
       "location": "Edmonton - Alberta - Canada",
       "url": "https://careers.cbre.com/en_US/careers/JobDetail/HVAC-Senior-Technician/296547",
-      "posted_at": "26-Oct-2026",
+      "posted_at": "10-Nov-2026",
       "stage": "prefilter",
       "blockers": [
         "non_us_location",
@@ -7321,13 +7367,13 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
     },
     "296473": {
       "title": "Building Operator",
       "location": "Charlottetown - Prince Edward Island - Canada",
       "url": "https://careers.cbre.com/en_US/careers/JobDetail/Building-Operator/296473",
-      "posted_at": "26-Oct-2026",
+      "posted_at": "10-Nov-2026",
       "stage": "prefilter",
       "blockers": [
         "non_us_location",
@@ -7336,7 +7382,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
     },
     "301617": {
       "title": "Assistant Facilities Manager",
@@ -7446,7 +7492,7 @@
       "title": "Senior HVAC Technician",
       "location": "Raynham - Massachusetts - United States of America",
       "url": "https://careers.cbre.com/en_US/careers/JobDetail/Senior-HVAC-Technician/299491",
-      "posted_at": "26-Oct-2026",
+      "posted_at": "10-Nov-2026",
       "stage": "prefilter",
       "blockers": [
         "support",
@@ -7455,7 +7501,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
     },
     "290595": {
       "title": "Electrician - Life Science",
@@ -8682,7 +8728,7 @@
       "title": "Electrician",
       "location": "Spring House - Pennsylvania - United States of America",
       "url": "https://careers.cbre.com/en_US/careers/JobDetail/Electrician/299049",
-      "posted_at": "20-Oct-2026",
+      "posted_at": "10-Nov-2026",
       "stage": "prefilter",
       "blockers": [
         "title_not_targeted"
@@ -8690,7 +8736,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
     },
     "301696": {
       "title": "Maintenance Technician",
@@ -16130,10 +16176,10 @@
       "last_seen_at": "2026-11-01T22:44:41+00:00"
     },
     "295024": {
-      "title": "EOI: APAC Account Operations Director (Philippines)",
-      "location": "Makati City - National Capital Region - Philippines",
-      "url": "https://careers.cbre.com/en_US/careers/JobDetail/EOI-APAC-Account-Operations-Director-Philippines/295024",
-      "posted_at": "07-Sep-2026",
+      "title": "EOI: Senior Maintenance & Operations Manager (Cluster Lead)",
+      "location": "Laguna - Calabarzon - Philippines",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/EOI-Senior-Maintenance-Operations-Manager-Cluster-Lead/295024",
+      "posted_at": "09-Nov-2026",
       "stage": "prefilter",
       "blockers": [
         "management",
@@ -16142,7 +16188,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
     },
     "277555": {
       "title": "Maintenance Technician",
@@ -19145,7 +19191,7 @@
       "title": "Technical Engineer - Schedule Planner",
       "location": "Cambridge - Massachusetts - United States of America",
       "url": "https://careers.cbre.com/en_US/careers/JobDetail/Technical-Engineer-Schedule-Planner/295672",
-      "posted_at": "27-Oct-2026",
+      "posted_at": "10-Nov-2026",
       "stage": "detail",
       "blockers": [
         "insufficient_profile_overlap"
@@ -19153,7 +19199,7 @@
       "category": "technical_review",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
     },
     "301282": {
       "title": "Assistant Chief Bldg Engineer - Second Shift",
@@ -19397,7 +19443,7 @@
       "title": "Assistant Chief Building Engineer",
       "location": "Lanham - Maryland - United States of America",
       "url": "https://careers.cbre.com/en_US/careers/JobDetail/Assistant-Chief-Building-Engineer/289593",
-      "posted_at": "26-Oct-2026",
+      "posted_at": "10-Nov-2026",
       "stage": "detail",
       "blockers": [
         "insufficient_profile_overlap"
@@ -19405,7 +19451,7 @@
       "category": "technical_review",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
     },
     "301055": {
       "title": "Chief Engineer-Local 39",
@@ -19957,7 +20003,7 @@
       "title": "Union Mobile Route Engineer - Plainfield",
       "location": "Plainfield - New Jersey - United States of America",
       "url": "https://careers.cbre.com/en_US/careers/JobDetail/Union-Mobile-Route-Engineer-Plainfield/292600",
-      "posted_at": "20-Oct-2026",
+      "posted_at": "10-Nov-2026",
       "stage": "detail",
       "blockers": [
         "insufficient_profile_overlap"
@@ -19965,7 +20011,7 @@
       "category": "technical_review",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
     },
     "300930": {
       "title": "Assistant Chief Building Engineer",
@@ -20013,7 +20059,7 @@
       "title": "Union HVAC Engineer - Mobile-NYC",
       "location": "New York - New York - United States of America",
       "url": "https://careers.cbre.com/en_US/careers/JobDetail/Union-HVAC-Engineer-Mobile-NYC/294527",
-      "posted_at": "19-Oct-2026",
+      "posted_at": "10-Nov-2026",
       "stage": "detail",
       "blockers": [
         "insufficient_profile_overlap"
@@ -20021,7 +20067,7 @@
       "category": "technical_review",
       "filter_version": 3,
       "first_seen_at": "2026-11-01T22:44:41+00:00",
-      "last_seen_at": "2026-11-01T22:44:41+00:00"
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
     },
     "294513": {
       "title": "Union HVAC Engineer - Mobile- Linden, NJ",
@@ -23499,7 +23545,7 @@
       "title": "Maintenance Associate",
       "location": "Spartanburg - South Carolina - United States of America",
       "url": "https://careers.cbre.com/en_US/careers/JobDetail/Maintenance-Associate/300920",
-      "posted_at": "29-Oct-2026",
+      "posted_at": "10-Nov-2026",
       "stage": "prefilter",
       "blockers": [
         "title_not_targeted"
@@ -23507,7 +23553,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-02T22:12:15+00:00",
-      "last_seen_at": "2026-11-02T22:12:15+00:00"
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
     },
     "298937": {
       "title": "Help Desk Representative",
@@ -24542,7 +24588,7 @@
       "title": "Chief Building Engineer",
       "location": "Washington, D.C. - District of Columbia - United States of America",
       "url": "https://careers.cbre.com/en_US/careers/JobDetail/Chief-Building-Engineer/301299",
-      "posted_at": "02-Nov-2026",
+      "posted_at": "10-Nov-2026",
       "stage": "detail",
       "blockers": [
         "insufficient_profile_overlap"
@@ -24550,7 +24596,7 @@
       "category": "technical_review",
       "filter_version": 3,
       "first_seen_at": "2026-11-02T22:12:15+00:00",
-      "last_seen_at": "2026-11-02T22:12:15+00:00"
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
     },
     "301251": {
       "title": "Mobile HVAC Engineer",
@@ -30351,7 +30397,7 @@
       "category": "technical_review",
       "filter_version": 3,
       "first_seen_at": "2026-11-09T22:54:09+00:00",
-      "last_seen_at": "2026-11-09T22:54:09+00:00"
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
     },
     "304674": {
       "title": "Data Center Team Lead mechanical/electrical (Night Shift, Rotating 12 hours, 6PM - 6AM) 674",
@@ -30365,7 +30411,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-09T22:54:09+00:00",
-      "last_seen_at": "2026-11-09T22:54:09+00:00"
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
     },
     "304342": {
       "title": "Auxiliar de Manuten\u00e7\u00e3o El\u00e9trica (Data Center/Miss\u00e3o Cr\u00edtica) - Hortol\u00e2ndia/SP",
@@ -30379,7 +30425,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-09T22:54:09+00:00",
-      "last_seen_at": "2026-11-09T22:54:09+00:00"
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
     },
     "304535": {
       "title": "Facilities Coordinator (Waco, Tx)",
@@ -30393,7 +30439,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-09T22:54:09+00:00",
-      "last_seen_at": "2026-11-09T22:54:09+00:00"
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
     },
     "304677": {
       "title": "Data Center Technician mechanical/electrical (Day Shift, Rotating 12 hours, 6PM - 6AM) 677",
@@ -30408,7 +30454,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-09T22:54:09+00:00",
-      "last_seen_at": "2026-11-09T22:54:09+00:00"
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
     },
     "304644": {
       "title": "Electrical Technician",
@@ -30423,7 +30469,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-09T22:54:09+00:00",
-      "last_seen_at": "2026-11-09T22:54:09+00:00"
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
     },
     "304622": {
       "title": "Tenant Relations Officer (Office - Cebu)",
@@ -30437,7 +30483,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-09T22:54:09+00:00",
-      "last_seen_at": "2026-11-09T22:54:09+00:00"
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
     },
     "301938": {
       "title": "Data Center Technician",
@@ -30452,7 +30498,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-09T22:54:09+00:00",
-      "last_seen_at": "2026-11-09T22:54:09+00:00"
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
     },
     "304687": {
       "title": "Data Center Technician mechanical/electrical (Rotating 12-Hour Day Shift, 6AM\u20136PM, Other Shifts as Needed) 687",
@@ -30467,7 +30513,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-09T22:54:09+00:00",
-      "last_seen_at": "2026-11-09T22:54:09+00:00"
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
     },
     "304371": {
       "title": "Meta Installer Program",
@@ -30481,7 +30527,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-09T22:54:09+00:00",
-      "last_seen_at": "2026-11-09T22:54:09+00:00"
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
     },
     "301327": {
       "title": "Maintenance Technician - Laguna Technopark",
@@ -30496,7 +30542,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-09T22:54:09+00:00",
-      "last_seen_at": "2026-11-09T22:54:09+00:00"
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
     },
     "296288": {
       "title": "FHA Healthcare Senior Underwriter",
@@ -30526,7 +30572,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-09T22:54:09+00:00",
-      "last_seen_at": "2026-11-09T22:54:09+00:00"
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
     },
     "304397": {
       "title": "Senior Onsite Account Director - Integrated Facilities Management",
@@ -30541,7 +30587,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-09T22:54:09+00:00",
-      "last_seen_at": "2026-11-09T22:54:09+00:00"
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
     },
     "303742": {
       "title": "Head of Projects- Construction/MEP",
@@ -30555,7 +30601,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-09T22:54:09+00:00",
-      "last_seen_at": "2026-11-09T22:54:09+00:00"
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
     },
     "304615": {
       "title": "Mobile Maintenance Technician",
@@ -30571,7 +30617,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-09T22:54:09+00:00",
-      "last_seen_at": "2026-11-09T22:54:09+00:00"
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
     },
     "304661": {
       "title": "Foot Mobile Maintenance Technician",
@@ -30587,7 +30633,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-09T22:54:09+00:00",
-      "last_seen_at": "2026-11-09T22:54:09+00:00"
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
     },
     "304630": {
       "title": "Mobile Maintenance Technician",
@@ -30603,7 +30649,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-09T22:54:09+00:00",
-      "last_seen_at": "2026-11-09T22:54:09+00:00"
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
     },
     "304350": {
       "title": "RME Operator",
@@ -30617,7 +30663,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-09T22:54:09+00:00",
-      "last_seen_at": "2026-11-09T22:54:09+00:00"
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
     },
     "295969": {
       "title": "Technician HVAC",
@@ -30679,7 +30725,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-09T22:54:09+00:00",
-      "last_seen_at": "2026-11-09T22:54:09+00:00"
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
     },
     "303584": {
       "title": "Maintenance Technician - Second Shift",
@@ -30694,7 +30740,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-09T22:54:09+00:00",
-      "last_seen_at": "2026-11-09T22:54:09+00:00"
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
     },
     "304707": {
       "title": "Maintenance Technician",
@@ -30740,7 +30786,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-09T22:54:09+00:00",
-      "last_seen_at": "2026-11-09T22:54:09+00:00"
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
     },
     "304521": {
       "title": "Maintenance Technician",
@@ -30755,7 +30801,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-09T22:54:09+00:00",
-      "last_seen_at": "2026-11-09T22:54:09+00:00"
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
     },
     "304623": {
       "title": "Electrical Technician",
@@ -30785,7 +30831,7 @@
       "category": "other",
       "filter_version": 3,
       "first_seen_at": "2026-11-09T22:54:09+00:00",
-      "last_seen_at": "2026-11-09T22:54:09+00:00"
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
     },
     "304502": {
       "title": "Facilities Manager-On site Wilmington, MA",
@@ -31687,7 +31733,7 @@
       "category": "automation",
       "filter_version": 3,
       "first_seen_at": "2026-11-09T22:54:09+00:00",
-      "last_seen_at": "2026-11-09T22:54:09+00:00"
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
     },
     "303762": {
       "title": "Automation Engineer",
@@ -31696,12 +31742,12 @@
       "posted_at": "02-Nov-2026",
       "stage": "detail",
       "blockers": [
-        "non_software_engineering_role"
+        "insufficient_profile_overlap"
       ],
       "category": "automation",
       "filter_version": 3,
       "first_seen_at": "2026-11-09T22:54:09+00:00",
-      "last_seen_at": "2026-11-09T22:54:09+00:00"
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
     },
     "303421": {
       "title": "Automation Engineer",
@@ -31715,7 +31761,7 @@
       "category": "automation",
       "filter_version": 3,
       "first_seen_at": "2026-11-09T22:54:09+00:00",
-      "last_seen_at": "2026-11-09T22:54:09+00:00"
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
     },
     "303526": {
       "title": "Bldg Sr Engineer",
@@ -31729,7 +31775,7 @@
       "category": "technical_review",
       "filter_version": 3,
       "first_seen_at": "2026-11-09T22:54:09+00:00",
-      "last_seen_at": "2026-11-09T22:54:09+00:00"
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
     },
     "303528": {
       "title": "Bldg Engineer",
@@ -31743,7 +31789,7 @@
       "category": "technical_review",
       "filter_version": 3,
       "first_seen_at": "2026-11-09T22:54:09+00:00",
-      "last_seen_at": "2026-11-09T22:54:09+00:00"
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
     },
     "304357": {
       "title": "Building Maintenance Engineer",
@@ -31757,7 +31803,7 @@
       "category": "technical_review",
       "filter_version": 3,
       "first_seen_at": "2026-11-09T22:54:09+00:00",
-      "last_seen_at": "2026-11-09T22:54:09+00:00"
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
     },
     "302301": {
       "title": "Building Maintenance Engineer",
@@ -31771,7 +31817,7 @@
       "category": "technical_review",
       "filter_version": 3,
       "first_seen_at": "2026-11-09T22:54:09+00:00",
-      "last_seen_at": "2026-11-09T22:54:09+00:00"
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
     },
     "303212": {
       "title": "Building Maintenance Engineer (2ND Shift Mon-Fri)",
@@ -31785,7 +31831,7 @@
       "category": "technical_review",
       "filter_version": 3,
       "first_seen_at": "2026-11-09T22:54:09+00:00",
-      "last_seen_at": "2026-11-09T22:54:09+00:00"
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
     },
     "303779": {
       "title": "Mobile Building Engineer Lead",
@@ -31841,7 +31887,7 @@
       "category": "technical_review",
       "filter_version": 3,
       "first_seen_at": "2026-11-09T22:54:09+00:00",
-      "last_seen_at": "2026-11-09T22:54:09+00:00"
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
     },
     "300198": {
       "title": "Assistant Building Engineer",
@@ -31911,7 +31957,7 @@
       "category": "technical_review",
       "filter_version": 3,
       "first_seen_at": "2026-11-09T22:54:09+00:00",
-      "last_seen_at": "2026-11-09T22:54:09+00:00"
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
     },
     "301190": {
       "title": "Reliability Engineer - Life Science",
@@ -32052,6 +32098,766 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-09T22:54:09+00:00",
       "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "304092": {
+      "title": "T\u00e9cnico de mantenimiento polivalente",
+      "location": "Madrid - Madrid, Comunidad de - Spain",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/T-cnico-de-mantenimiento-polivalente/304092",
+      "posted_at": "10-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "304272": {
+      "title": "T\u00e9cnico de mantenimiento polivalente",
+      "location": "Sant Cugat del Valles - Catalunya - Spain",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/T-cnico-de-mantenimiento-polivalente/304272",
+      "posted_at": "10-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "304476": {
+      "title": "Maintenance Planner",
+      "location": "Markham - Illinois - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Maintenance-Planner/304476",
+      "posted_at": "06-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "302282": {
+      "title": "Senior Software Engineer",
+      "location": "Hyderabad - Telangana - India",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Senior-Software-Engineer/302282",
+      "posted_at": "03-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "303781": {
+      "title": "Procurement Manager",
+      "location": "Remote - US - Remote - US - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Procurement-Manager/303781",
+      "posted_at": "10-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "303629": {
+      "title": "Technical Director",
+      "location": "Dallas - Texas - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Technical-Director/303629",
+      "posted_at": "10-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "304008": {
+      "title": "Union Helper",
+      "location": "Brooklyn - New York - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Union-Helper/304008",
+      "posted_at": "10-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "304373": {
+      "title": "Data Center Project Manager - Retrofit, End of Life, Operations",
+      "location": "Atlanta - Georgia - United States of America , Austin - Texas - United States of America , Dallas - Texas - United States of America , Phoenix - Arizona - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Data-Center-Project-Manager-Retrofit-End-of-Life-Operations/304373",
+      "posted_at": "10-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "303879": {
+      "title": "Shift Technician",
+      "location": "Cambridge - England - United Kingdom of Great Britain and Northern Ireland",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Shift-Technician/303879",
+      "posted_at": "10-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "300171": {
+      "title": "Data Centre Electrical Test & Inspection Engineer - Corsham/Farnborough",
+      "location": "Farnborough - England - United Kingdom of Great Britain and Northern Ireland",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Data-Centre-Electrical-Test-Inspection-Engineer-Corsham-Farnborough/300171",
+      "posted_at": "10-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "304530": {
+      "title": "Data Center Technician - Night Shift",
+      "location": "Barker - New York - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Data-Center-Technician-Night-Shift/304530",
+      "posted_at": "06-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "304527": {
+      "title": "Data Center Team Lead - Day Shift (Mechanical/Electrical)",
+      "location": "Barker - New York - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Data-Center-Team-Lead-Day-Shift-Mechanical-Electrical/304527",
+      "posted_at": "06-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "304379": {
+      "title": "Data Center Team Lead - Night Shift",
+      "location": "St Francisville - Louisiana - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Data-Center-Team-Lead-Night-Shift/304379",
+      "posted_at": "05-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "304381": {
+      "title": "Data Center Technician - Day Shift",
+      "location": "St Francisville - Louisiana - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Data-Center-Technician-Day-Shift/304381",
+      "posted_at": "05-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "304376": {
+      "title": "Data Center Team Lead - Day Shift",
+      "location": "St Francisville - Louisiana - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Data-Center-Team-Lead-Day-Shift/304376",
+      "posted_at": "05-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "304679": {
+      "title": "FM Engineering Ops Manager",
+      "location": "Roanoke - Virginia - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/FM-Engineering-Ops-Manager/304679",
+      "posted_at": "09-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "302093": {
+      "title": "Building Operator",
+      "location": "Toronto - Ontario - Canada",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Building-Operator/302093",
+      "posted_at": "09-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "303532": {
+      "title": "General Maintainer",
+      "location": "Toronto - Ontario - Canada",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/General-Maintainer/303532",
+      "posted_at": "09-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "304544": {
+      "title": "Sr. Maintenance Manager",
+      "location": "Desert Hot Springs - California - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Sr-Maintenance-Manager/304544",
+      "posted_at": "06-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "298625": {
+      "title": "HVAC Technician (FIFO)",
+      "location": "Karratha - Western Australia - Australia",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/HVAC-Technician-FIFO/298625",
+      "posted_at": "06-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "303059": {
+      "title": "Senior Technician",
+      "location": "Hong Kong - Hong Kong",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Senior-Technician/303059",
+      "posted_at": "11-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "301123": {
+      "title": "Mobile Technician",
+      "location": "Kowloon - Hong Kong",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Mobile-Technician/301123",
+      "posted_at": "11-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "302408": {
+      "title": "Contract Support Administrator",
+      "location": "Leeds - England - United Kingdom of Great Britain and Northern Ireland",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Contract-Support-Administrator/302408",
+      "posted_at": "10-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "302635": {
+      "title": "Electrical Engineer",
+      "location": "Glasgow - Scotland - United Kingdom of Great Britain and Northern Ireland",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Electrical-Engineer/302635",
+      "posted_at": "10-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "303819": {
+      "title": "HVAC Mobile Tech",
+      "location": "Canyon Lake - Texas - United States of America , Converse - Texas - United States of America , Kerrville - Texas - United States of America , Kyle - Texas - United States of America , Live Oak - Texas - United States of America , Lockhart - Texas - United States of America , New Braunfels - Texas - United States of America , San Antonio - Texas - United States of America , San Marcos - Texas - United States of America , Schertz - Texas - United States of America , Seguin - Texas - United States of America , Universal City - Texas - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/HVAC-Mobile-Tech/303819",
+      "posted_at": "10-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "304693": {
+      "title": "Fleet Service Specialist",
+      "location": "Romulus - Michigan - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Fleet-Service-Specialist/304693",
+      "posted_at": "09-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "303780": {
+      "title": "Electrician",
+      "location": "San Jose - California - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Electrician/303780",
+      "posted_at": "09-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "304515": {
+      "title": "Maintenance Technician",
+      "location": "Fountain Inn - South Carolina -",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Maintenance-Technician/304515",
+      "posted_at": "06-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "304482": {
+      "title": "Maintenance Technician",
+      "location": "Markham - Illinois - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Maintenance-Technician/304482",
+      "posted_at": "06-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "304481": {
+      "title": "Maintenance Technician",
+      "location": "Markham - Illinois - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Maintenance-Technician/304481",
+      "posted_at": "06-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "303947": {
+      "title": "Camera Systems Support Analyst",
+      "location": "Greenville - Texas - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Camera-Systems-Support-Analyst/303947",
+      "posted_at": "10-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "304712": {
+      "title": "Maintenance Technician",
+      "location": "Penns Grove - New Jersey - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Maintenance-Technician/304712",
+      "posted_at": "09-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "302534": {
+      "title": "2nd Shift Maintenance Supervisor",
+      "location": "Concord - North Carolina - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/2nd-Shift-Maintenance-Supervisor/302534",
+      "posted_at": "10-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "304127": {
+      "title": "Union Boiler Operator - Rotating Shift - Life Science",
+      "location": "Raritan - New Jersey - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Union-Boiler-Operator-Rotating-Shift-Life-Science/304127",
+      "posted_at": "10-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "303921": {
+      "title": "Workplace Exp Sr Mgr",
+      "location": "Atlanta - Georgia - United States of America , Brookhaven - Georgia - United States of America , Decatur - Georgia - United States of America , East Point - Georgia - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Workplace-Exp-Sr-Mgr/303921",
+      "posted_at": "10-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "304559": {
+      "title": "Sales Support Associate",
+      "location": "Los Angeles - California - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Sales-Support-Associate/304559",
+      "posted_at": "10-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "304557": {
+      "title": "SPQREA - Vice President",
+      "location": "Houston - Texas - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/SPQREA-Vice-President/304557",
+      "posted_at": "09-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "303120": {
+      "title": "Senior Financial Analyst",
+      "location": "Hyderabad - Telangana - India",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Senior-Financial-Analyst/303120",
+      "posted_at": "03-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "298062": {
+      "title": "BU Lead Contract Support",
+      "location": "Dublin - Dublin - Ireland",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/BU-Lead-Contract-Support/298062",
+      "posted_at": "20-Oct-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "304479": {
+      "title": "Senior Lab Coordinator",
+      "location": "Lebanon - Indiana - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Senior-Lab-Coordinator/304479",
+      "posted_at": "10-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "303699": {
+      "title": "Lead Engineer",
+      "location": "Stockport - England - United Kingdom of Great Britain and Northern Ireland",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Lead-Engineer/303699",
+      "posted_at": "10-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "217719": {
+      "title": "Assistant Facilities Manager",
+      "location": "Singapore - Singapore",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Assistant-Facilities-Manager/217719",
+      "posted_at": "10-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "290476": {
+      "title": "Construction Project Senior Manager - Data Center Infrastructure",
+      "location": "Austin - Texas - United States of America , Dallas - Texas - United States of America , Fort Worth - Texas - United States of America , Houston - Texas - United States of America , Kansas City - Kansas - United States of America , Kansas City - Missouri - United States of America , Monroe - Louisiana - United States of America , Nashville - Tennessee - United States of America , New Orleans - Louisiana - United States of America , San Antonio - Texas - United States of America , St. Louis - Missouri - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Construction-Project-Senior-Manager-Data-Center-Infrastructure/290476",
+      "posted_at": "10-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "280435": {
+      "title": "Multi-Skilled Technician - Crystal Springs, MS",
+      "location": "Jackson - Mississippi - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Multi-Skilled-Technician-Crystal-Springs-MS/280435",
+      "posted_at": "10-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "275405": {
+      "title": "Technical Contract Manager - Data Centre Solutions",
+      "location": "London - England - United Kingdom of Great Britain and Northern Ireland",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Technical-Contract-Manager-Data-Centre-Solutions/275405",
+      "posted_at": "17-Sep-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "296632": {
+      "title": "Technical Facilities Manager",
+      "location": "Melbourne - Victoria - Australia",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Technical-Facilities-Manager/296632",
+      "posted_at": "17-Sep-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "296734": {
+      "title": "RME Operator",
+      "location": "Sparrows Point - Maryland - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/RME-Operator/296734",
+      "posted_at": "17-Sep-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "301653": {
+      "title": "Union Bldg Engineer",
+      "location": "",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Union-Bldg-Engineer/301653",
+      "posted_at": "10-Nov-2026 Apply now Share this job: Share Share Union Bldg Engineer with LinkedIn Share Union Bldg Engineer with Twitter Share Union Bldg Engineer with a friend via e-mail",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "304206": {
+      "title": "Chief Bldg Engineer Supervisor",
+      "location": "Houston - Texas - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Chief-Bldg-Engineer-Supervisor/304206",
+      "posted_at": "09-Nov-2026",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "303959": {
+      "title": "Building Engineer",
+      "location": "Los Angeles - California - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Building-Engineer/303959",
+      "posted_at": "09-Nov-2026",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "304191": {
+      "title": "Building Engineer (Temple, Tx)",
+      "location": "Killeen - Texas - United States of America , Temple - Texas - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Building-Engineer-Temple-Tx/304191",
+      "posted_at": "10-Nov-2026",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "304217": {
+      "title": "Building Engineer",
+      "location": "Apache Junction - Arizona - United States of America , Chandler - Arizona - United States of America , Gilbert - Arizona - United States of America , Mesa - Arizona - United States of America , Paradise Valley - Arizona - United States of America , Phoenix - Arizona - United States of America , Queen Creek - Arizona - United States of America , Tempe - Arizona - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Building-Engineer/304217",
+      "posted_at": "10-Nov-2026",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
     }
   },
   "source_updated_at_by_id": {},
@@ -32060,6 +32866,7 @@
     "172253",
     "194018",
     "215435",
+    "217719",
     "233159",
     "234824",
     "236575",
@@ -32089,10 +32896,12 @@
     "273037",
     "273390",
     "274656",
+    "275405",
     "277052",
     "277068",
     "278244",
     "279571",
+    "280435",
     "280522",
     "281485",
     "282380",
@@ -32128,12 +32937,14 @@
     "289258",
     "289331",
     "289472",
+    "289593",
     "289988",
     "290029",
     "290200",
     "290257",
     "290399",
     "290402",
+    "290476",
     "290594",
     "290770",
     "290907",
@@ -32154,6 +32965,7 @@
     "292122",
     "292502",
     "292594",
+    "292600",
     "292605",
     "292684",
     "292762",
@@ -32174,6 +32986,7 @@
     "294179",
     "294354",
     "294370",
+    "294527",
     "294552",
     "294563",
     "294567",
@@ -32189,6 +33002,7 @@
     "294937",
     "294985",
     "294999",
+    "295024",
     "295041",
     "295046",
     "295109",
@@ -32204,6 +33018,7 @@
     "295620",
     "295634",
     "295655",
+    "295672",
     "295690",
     "295728",
     "295753",
@@ -32234,12 +33049,16 @@
     "296320",
     "296391",
     "296465",
+    "296473",
     "296495",
+    "296547",
     "296572",
     "296592",
     "296605",
+    "296632",
     "296671",
     "296702",
+    "296734",
     "296760",
     "296762",
     "296798",
@@ -32329,6 +33148,7 @@
     "299000",
     "299035",
     "299036",
+    "299049",
     "299062",
     "299084",
     "299085",
@@ -32351,6 +33171,7 @@
     "299462",
     "299466",
     "299489",
+    "299491",
     "299492",
     "299511",
     "299528",
@@ -32446,6 +33267,7 @@
     "300881",
     "300897",
     "300909",
+    "300920",
     "300926",
     "300927",
     "300956",
@@ -32490,7 +33312,9 @@
     "301281",
     "301293",
     "301294",
+    "301299",
     "301310",
+    "301327",
     "301361",
     "301368",
     "301370",
@@ -32552,6 +33376,7 @@
     "301899",
     "301918",
     "301929",
+    "301938",
     "301942",
     "301999",
     "302011",
@@ -32586,6 +33411,7 @@
     "302275",
     "302277",
     "302278",
+    "302301",
     "302304",
     "302305",
     "302309",
@@ -32688,6 +33514,7 @@
     "303197",
     "303205",
     "303206",
+    "303212",
     "303215",
     "303219",
     "303225",
@@ -32727,6 +33554,7 @@
     "303412",
     "303416",
     "303417",
+    "303421",
     "303425",
     "303428",
     "303432",
@@ -32740,11 +33568,14 @@
     "303487",
     "303490",
     "303504",
+    "303526",
+    "303528",
     "303533",
     "303539",
     "303558",
     "303559",
     "303563",
+    "303584",
     "303596",
     "303605",
     "303608",
@@ -32753,6 +33584,7 @@
     "303618",
     "303623",
     "303626",
+    "303644",
     "303655",
     "303665",
     "303668",
@@ -32761,10 +33593,12 @@
     "303722",
     "303734",
     "303739",
+    "303742",
     "303748",
     "303750",
     "303757",
     "303758",
+    "303762",
     "303763",
     "303767",
     "303768",
@@ -32812,6 +33646,7 @@
     "304123",
     "304129",
     "304130",
+    "304138",
     "304141",
     "304154",
     "304177",
@@ -32825,6 +33660,7 @@
     "304194",
     "304195",
     "304205",
+    "304210",
     "304236",
     "304241",
     "304247",
@@ -32835,27 +33671,47 @@
     "304311",
     "304317",
     "304321",
+    "304322",
     "304324",
     "304329",
+    "304334",
     "304337",
     "304340",
     "304341",
+    "304342",
     "304343",
     "304344",
+    "304350",
     "304354",
     "304355",
+    "304357",
+    "304371",
     "304384",
+    "304397",
     "304448",
     "304484",
     "304504",
     "304510",
     "304517",
     "304520",
+    "304521",
+    "304523",
     "304525",
+    "304535",
     "304547",
     "304548",
     "304549",
     "304550",
+    "304573",
+    "304615",
+    "304622",
+    "304630",
+    "304644",
+    "304661",
+    "304674",
+    "304677",
+    "304687",
+    "304700",
     "38196"
   ]
 }

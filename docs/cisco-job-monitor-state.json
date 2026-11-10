@@ -1419,6 +1419,7 @@
     "2028164",
     "2028166",
     "2028178",
+    "2028205",
     "2028208",
     "2028210",
     "2028211",
@@ -1472,9 +1473,11 @@
     "2030087",
     "2030105",
     "2030301",
-    "2030760"
+    "2030352",
+    "2030760",
+    "2031083"
   ],
-  "last_successful_scan_at": "2026-11-09T22:54:09+00:00",
+  "last_successful_scan_at": "2026-11-10T20:17:40+00:00",
   "candidate_catalog": {
     "2024998": {
       "title": "AI Security Engineer",
@@ -3720,6 +3723,50 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-09T22:54:09+00:00",
       "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "2028205": {
+      "title": "ASIC Development Technical Leader",
+      "location": "Vancouver, British Columbia, Canada",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Vancouver-British-Columbia-Canada/ASIC-Development-Technical-Leader_2028205",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "2031083": {
+      "title": "Advanced Packaging Design Engineer (Hybrid)",
+      "location": "San Jose, California, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/Advanced-Packaging-Design-Engineer--Hybrid-_2031083",
+      "posted_at": "2026-11-10",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "2030352": {
+      "title": "Senior Forward Deployed Engineer",
+      "location": "Washington, District of Columbia, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Washington-District-of-Columbia-US/Senior-Forward-Deployed-Engineer_2030352",
+      "posted_at": "2026-11-10",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
     }
   },
   "source_updated_at_by_id": {}

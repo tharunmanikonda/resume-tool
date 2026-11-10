@@ -708,7 +708,22 @@
     "744000160732180",
     "744000160733129",
     "744000160733409",
-    "744000160733599"
+    "744000160733599",
+    "744000160748414",
+    "744000160919019",
+    "744000160921300",
+    "744000160922227",
+    "744000160923895",
+    "744000160928415",
+    "744000160930370",
+    "744000160930672",
+    "744000160935069",
+    "744000160940069",
+    "744000160942119",
+    "744000160955954",
+    "744000160960769",
+    "744000160960999",
+    "744000160961279"
   ],
   "candidate_catalog": {
     "744000151898289": {
@@ -809,9 +824,18 @@
       "first_seen_at": "2026-11-09T22:54:09+00:00",
       "priority": "high",
       "category": "software"
+    },
+    "744000160955954": {
+      "title": "Associate Design Engineer",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160955954-associate-design-engineer",
+      "posted_at": "2026-11-10T19:50:44.598Z",
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "priority": "low",
+      "category": "technical_review"
     }
   },
-  "last_successful_scan_at": "2026-11-09T22:54:09+00:00",
+  "last_successful_scan_at": "2026-11-10T20:17:40+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "744000156079569": {
@@ -9542,6 +9566,205 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-09T22:54:09+00:00",
       "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "744000160961279": {
+      "title": "Associate Counsel, Business & Legal Affairs",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160961279-associate-counsel-business-legal-affairs",
+      "posted_at": "2026-11-10T20:07:23.831Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "744000160960999": {
+      "title": "Coordinator, Partner Marketing",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160960999-coordinator-partner-marketing",
+      "posted_at": "2026-11-10T20:06:09.174Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "744000160960769": {
+      "title": "NBC and Telemundo Local South Florida News Internships \u2013 Summer 2027",
+      "location": "Miramar, FL, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160960769-nbc-and-telemundo-local-south-florida-news-internships-summer-2027",
+      "posted_at": "2026-11-10T20:04:28.102Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "744000160942119": {
+      "title": "Engineering Manager, VOD Media",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160942119-engineering-manager-vod-media",
+      "posted_at": "2026-11-10T18:08:37.874Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "744000160935069": {
+      "title": "Assignment Desk Editor, NBC & Telemundo Miami",
+      "location": "Miramar, Florida, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160935069-assignment-desk-editor-nbc-telemundo-miami",
+      "posted_at": "2026-11-10T17:26:37.994Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "744000160930370": {
+      "title": "NBCU Chicago Digital Editorial Intern \u2013 Summer 2027",
+      "location": "Chicago, ILLINOIS, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160930370-nbcu-chicago-digital-editorial-intern-summer-2027",
+      "posted_at": "2026-11-10T17:06:50.052Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "744000160930672": {
+      "title": "Telemundo Chicago News Intern \u2013 Summer 2027",
+      "location": "Chicago, ILLINOIS, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160930672-telemundo-chicago-news-intern-summer-2027",
+      "posted_at": "2026-11-10T17:04:13.341Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "744000160928415": {
+      "title": " NBCU Chicago Sales Intern \u2013 Summer 2027",
+      "location": "Chicago, ILLINOIS, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160928415-nbcu-chicago-sales-intern-summer-2027",
+      "posted_at": "2026-11-10T17:02:17.473Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "744000160921300": {
+      "title": "Creative Marketing Intern, NBCU Local Chicago \u2013 Summer 2027",
+      "location": "Chicago, ILLINOIS, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160921300-creative-marketing-intern-nbcu-local-chicago-summer-2027",
+      "posted_at": "2026-11-10T16:38:34.189Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "744000160923895": {
+      "title": "NBC Chicago News Intern \u2013 Summer 2027",
+      "location": "Chicago, ILLINOIS, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160923895-nbc-chicago-news-intern-summer-2027",
+      "posted_at": "2026-11-10T16:36:39.971Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "744000160922227": {
+      "title": "NBC Chicago Community Relations and Special Events Intern \u2013 Summer 2027",
+      "location": "Chicago, ILLINOIS, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160922227-nbc-chicago-community-relations-and-special-events-intern-summer-2027",
+      "posted_at": "2026-11-10T16:34:24.635Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "744000160919019": {
+      "title": "Manager, BOC Operations - NBC Sports",
+      "location": "Stamford, Connecticut, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160919019-manager-boc-operations-nbc-sports",
+      "posted_at": "2026-11-10T16:15:31.833Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "744000160748414": {
+      "title": "Manager Security",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160748414-manager-security",
+      "posted_at": "2026-11-10T00:35:55.624Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "744000160940069": {
+      "title": "Photographer (NABET Engineer), NBC4 & Telemundo 44 Washington DC",
+      "location": "Washington, District of Columbia, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160940069-photographer-nabet-engineer-nbc4-telemundo-44-washington-dc",
+      "posted_at": "2026-11-10T17:54:14.576Z",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
     }
   },
   "source_updated_at_by_id": {}

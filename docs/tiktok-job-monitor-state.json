@@ -1163,6 +1163,7 @@
     "7668384123840514309",
     "7668389759463393589",
     "7668390999147776309",
+    "7668391824834496773",
     "7668395019733289221",
     "7668396597746862341",
     "7668445566565321013",
@@ -1465,6 +1466,7 @@
     "7674979435981195573",
     "7675028053458700597",
     "7675031307501848837",
+    "7675041648438446389",
     "7675080308216154373",
     "7675084972638046517",
     "7675088965068491013",
@@ -1989,10 +1991,12 @@
     "7704211967934449973",
     "7704562889684060469",
     "7704565954109294901",
+    "7704570948737255733",
     "7704619723464411445",
     "7704620574878140725",
     "7704777867472734517",
     "7704778444389173509",
+    "7704784971953916213",
     "7704853345886980357",
     "7704981006856145205",
     "7704986879082907909",
@@ -2001,7 +2005,9 @@
     "7706052508166261045",
     "7706052848276654341",
     "7706053837959186741",
-    "7706187982816594181"
+    "7706187982816594181",
+    "7706338918660098309",
+    "7706600831827085621"
   ],
   "candidate_catalog": {
     "7680987768009754885": {
@@ -29081,8 +29087,96 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-09T22:54:09+00:00",
       "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "7668391824834496773": {
+      "title": "Talent Acquisition - Intern (Global Monetization Product and Technology) - 2027 Start",
+      "location": "New York, United States of America",
+      "url": "https://lifeattiktok.com/search/7668391824834496773",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "7675041648438446389": {
+      "title": "Paid Acquisition & Strategic Operations Manager",
+      "location": "Singapore",
+      "url": "https://lifeattiktok.com/search/7675041648438446389",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "7706600831827085621": {
+      "title": "Project Manager Graduate (Linehaul Management) - 2027 Start",
+      "location": "Middlesex, New Jersey, United States of America",
+      "url": "https://lifeattiktok.com/search/7706600831827085621",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "7706338918660098309": {
+      "title": "TikTok Shop - Partner Program Manager, BPO Partner Governance",
+      "location": "Sao Paulo, S\u00e3o Paulo, Brazil",
+      "url": "https://lifeattiktok.com/search/7706338918660098309",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "7704784971953916213": {
+      "title": "Product Operations Intern (SoundOn) - 2027 Start",
+      "location": "Los Angeles, California, United States of America",
+      "url": "https://lifeattiktok.com/search/7704784971953916213",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "7704570948737255733": {
+      "title": "FMCG Strategy Project Intern (TikTok Shop by Tokopedia) - 2027 Start",
+      "location": "Jakarta, Jakarta Raya, Indonesia",
+      "url": "https://lifeattiktok.com/search/7704570948737255733",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
     }
   },
-  "last_successful_scan_at": "2026-11-09T22:54:09+00:00",
+  "last_successful_scan_at": "2026-11-10T20:17:40+00:00",
   "source_updated_at_by_id": {}
 }

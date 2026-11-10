@@ -259,6 +259,7 @@
     "JR2015189",
     "JR2015198",
     "JR2015200",
+    "JR2015235",
     "JR2015287",
     "JR2015296",
     "JR2015492",
@@ -583,6 +584,7 @@
     "JR2021663",
     "JR2021665",
     "JR2021671",
+    "JR2021689",
     "JR2021692",
     "JR2021700",
     "JR2021717",
@@ -1057,6 +1059,7 @@
     "JR2027781",
     "JR2027783",
     "JR2027796",
+    "JR2027834",
     "JR2027839",
     "JR2027846",
     "JR2027850",
@@ -1215,14 +1218,18 @@
     "JR2029419",
     "JR2029424",
     "JR2029426",
+    "JR2029430",
     "JR2029432",
     "JR2029449",
+    "JR2029455",
     "JR2029457",
     "JR2029460",
     "JR2029533",
     "JR2029570",
     "JR2029621",
-    "JR2029702"
+    "JR2029701",
+    "JR2029702",
+    "JR2029706"
   ],
   "candidate_catalog": {
     "JR2018245": {
@@ -1557,9 +1564,18 @@
       "first_seen_at": "2026-11-03T19:59:39+00:00",
       "priority": "low",
       "category": "technical_review"
+    },
+    "JR2021689": {
+      "title": "Inference Performance Engineer, Agent Driven Inference Optimization",
+      "location": "US, CA, Santa Clara; US, CA, Remote",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Inference-Performance-Engineer--AI-Inference-Configuration-Optimization_JR2021689",
+      "posted_at": "2026-11-09",
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "priority": "low",
+      "category": "technical_review"
     }
   },
-  "last_successful_scan_at": "2026-11-09T22:54:09+00:00",
+  "last_successful_scan_at": "2026-11-10T20:17:40+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "JR2014880": {
@@ -16818,6 +16834,90 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-09T22:54:09+00:00",
       "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "JR2029455": {
+      "title": "Principal Software Engineer, Cloud Infrastructure",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Principal-Software-Engineer--Cloud-Infrastructure_JR2029455",
+      "posted_at": "Posted Yesterday",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "JR2027834": {
+      "title": "AI Factory Mechanical Engineer",
+      "location": "US, CA, Santa Clara; US, CA, Remote",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/AI-Factory-Mechanical-Engineer_JR2027834",
+      "posted_at": "2026-11-10",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "JR2029706": {
+      "title": "Senior Software Engineer - GPU and SOC",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Software-Engineer---GPU-and-SOC_JR2029706",
+      "posted_at": "2026-11-10",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "JR2029701": {
+      "title": "Senior Software Engineer, AI Compute Scheduling",
+      "location": "US, CA, Santa Clara; US, MA, Westford; US, TX, Austin; US, NC, Durham",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Software-Engineer--AI-Compute-Scheduling_JR2029701",
+      "posted_at": "2026-11-10",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "JR2029430": {
+      "title": "Senior Network Deployment Engineer",
+      "location": "US, CA, Santa Clara; US, TX, Remote; US, NY, Remote; US, WA, Remote; US, CA, Remote",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Network-Deployment-Engineer_JR2029430-1",
+      "posted_at": "2026-11-10",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "production",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "JR2015235": {
+      "title": "Senior Software Engineer - Accelerated Kubernetes Runtime Team",
+      "location": "US, WA, Remote; US, Remote",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-WA-Remote/Senior-Software-Engineer---Accelerated-Kubernetes-Runtime-Team_JR2015235",
+      "posted_at": "2026-11-09",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
     }
   },
   "source_updated_at_by_id": {}

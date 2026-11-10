@@ -63,6 +63,7 @@
     "JR9395",
     "JR9400",
     "JR9403",
+    "JR9405",
     "JR9409",
     "JR9418",
     "JR9433",
@@ -101,7 +102,7 @@
       "category": "security"
     }
   },
-  "last_successful_scan_at": "2026-11-09T22:54:09+00:00",
+  "last_successful_scan_at": "2026-11-10T20:17:40+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "JR9003": {
@@ -964,6 +965,20 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-09T22:54:09+00:00",
       "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "JR9405": {
+      "title": "Platform Specialist Enablement & Readiness Lead",
+      "location": "4 Locations",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/US---Illinois---Chicago-Hoffman-Estates/Platform-Specialist-Enablement---Readiness-Lead_JR9405",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
     }
   },
   "source_updated_at_by_id": {}

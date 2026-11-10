@@ -1,13 +1,12 @@
 {
-  "success": true,
-  "scanned_at": "2026-11-09T22:54:09+00:00",
+  "success": false,
+  "scanned_at": "2026-11-10T20:17:40+00:00",
   "monitor_count": 14,
   "successful_monitors": [
     "cbre",
     "cdk",
     "cisco",
     "crunchyroll",
-    "ebay",
     "intepros",
     "iqvia",
     "nbcu",
@@ -18,89 +17,63 @@
     "tiktok",
     "waymo"
   ],
-  "failed_monitors": [],
-  "candidate_count": 3,
-  "needs_ai_review_count": 1,
+  "failed_monitors": [
+    "ebay"
+  ],
+  "candidate_count": 1,
+  "needs_ai_review_count": 2,
   "candidates": [
     {
-      "monitor": "cisco",
-      "job_id": "2028307",
-      "title": "Senior Software Engineer",
-      "location": "San Jose, California, US",
-      "posted_at": "2026-11-09",
-      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/Senior-Software-Engineer_2028307",
-      "priority": "high",
+      "monitor": "waymo",
+      "job_id": "5652",
+      "title": "2027 Summer Intern, BS/MS, Software Engineer, Multiverse",
+      "location": [
+        "San Francisco, California",
+        "Software Engineering",
+        "Intern",
+        "Intern"
+      ],
+      "posted_at": null,
+      "url": "https://careers.withwaymo.com/jobs/2027-summer-intern-bs-ms-software-engineer-multiverse-san-francisco-california-united-states",
+      "priority": "medium",
       "matching_requirements": [
         "target_title:software",
         "profile_signal:python:+2",
-        "profile_signal:java:+1",
-        "profile_signal:javascript_react:+1",
-        "profile_signal:backend_apis:+2",
         "profile_signal:distributed_systems:+2",
         "profile_signal:data_streaming:+2",
-        "profile_signal:databases:+1",
-        "profile_signal:cloud_containers:+2",
-        "profile_signal:observability:+1",
-        "profile_signal:reliability_telemetry:+3",
-        "profile_signal:qa_automation:+2",
-        "profile_signal:agentic_tooling:+3"
-      ],
-      "material_gaps": []
-    },
-    {
-      "monitor": "crunchyroll",
-      "job_id": "7891761",
-      "title": "Software Engineer II",
-      "location": "San Francisco, CA, United States",
-      "posted_at": "",
-      "url": "https://boards.greenhouse.io/crunchyroll/jobs/7891761?gh_jid=7891761",
-      "priority": "high",
-      "matching_requirements": [
-        "target_title:software",
-        "profile_signal:python:+2",
-        "profile_signal:go:+2",
-        "profile_signal:java:+1",
-        "profile_signal:javascript_react:+1",
-        "profile_signal:backend_apis:+2",
-        "profile_signal:reliability_telemetry:+3"
-      ],
-      "material_gaps": []
-    },
-    {
-      "monitor": "nbcu",
-      "job_id": "744000160659459",
-      "title": "Software Engineering Internships \u2013 Summer 2027",
-      "location": "New York, NY, United States",
-      "posted_at": "2026-11-09T16:10:02.802Z",
-      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160659459-software-engineering-internships-summer-2027",
-      "priority": "high",
-      "matching_requirements": [
-        "target_title:software",
-        "profile_signal:python:+2",
-        "profile_signal:go:+2",
-        "profile_signal:java:+1",
-        "profile_signal:javascript_react:+1",
-        "profile_signal:backend_apis:+2",
-        "profile_signal:distributed_systems:+2",
-        "profile_signal:data_streaming:+2",
-        "profile_signal:cloud_containers:+2",
-        "profile_signal:observability:+1",
-        "profile_signal:reliability_telemetry:+3"
+        "profile_signal:databases:+1"
       ],
       "material_gaps": []
     }
   ],
   "needs_ai_review": [
     {
-      "monitor": "tiktok",
-      "job_id": "7704986879082907909",
-      "title": "Research Engineer Intern (TikTok Generalized Arch) - 2027 Start (PhD)",
-      "location": "San Jose, California, United States of America",
-      "posted_at": "",
-      "url": "https://lifeattiktok.com/search/7704986879082907909",
+      "monitor": "nbcu",
+      "job_id": "744000160955954",
+      "title": "Associate Design Engineer",
+      "location": "New York, NEW YORK, United States",
+      "posted_at": "2026-11-10T19:50:44.598Z",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160955954-associate-design-engineer",
       "priority": "low",
       "matching_requirements": [
         "target_title:technical_review",
+        "profile_signal:javascript_react:+1",
+        "profile_signal:backend_apis:+2",
+        "profile_signal:cloud_containers:+2"
+      ],
+      "material_gaps": []
+    },
+    {
+      "monitor": "nvidia",
+      "job_id": "JR2021689",
+      "title": "Inference Performance Engineer, Agent Driven Inference Optimization",
+      "location": "US, CA, Santa Clara; US, CA, Remote",
+      "posted_at": "2026-11-09",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Inference-Performance-Engineer--AI-Inference-Configuration-Optimization_JR2021689",
+      "priority": "low",
+      "matching_requirements": [
+        "target_title:technical_review",
+        "profile_signal:python:+2",
         "profile_signal:agentic_tooling:+3"
       ],
       "material_gaps": []
@@ -110,9 +83,9 @@
     {
       "monitor": "cbre",
       "success": true,
-      "scanned_at": "2026-11-09T22:54:09+00:00",
-      "fetched": 1258,
-      "unseen": 78,
+      "scanned_at": "2026-11-10T20:17:40+00:00",
+      "fetched": 967,
+      "unseen": 46,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -121,9 +94,9 @@
     {
       "monitor": "cdk",
       "success": true,
-      "scanned_at": "2026-11-09T22:54:09+00:00",
+      "scanned_at": "2026-11-10T20:17:40+00:00",
       "fetched": 45,
-      "unseen": 4,
+      "unseen": 1,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -132,74 +105,8 @@
     {
       "monitor": "cisco",
       "success": true,
-      "scanned_at": "2026-11-09T22:54:09+00:00",
+      "scanned_at": "2026-11-10T20:17:40+00:00",
       "fetched": 80,
-      "unseen": 4,
-      "state_updated": true,
-      "candidates": [
-        {
-          "job_id": "2028307",
-          "title": "Senior Software Engineer",
-          "location": "San Jose, California, US",
-          "posted_at": "2026-11-09",
-          "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/Senior-Software-Engineer_2028307",
-          "priority": "high",
-          "matching_requirements": [
-            "target_title:software",
-            "profile_signal:python:+2",
-            "profile_signal:java:+1",
-            "profile_signal:javascript_react:+1",
-            "profile_signal:backend_apis:+2",
-            "profile_signal:distributed_systems:+2",
-            "profile_signal:data_streaming:+2",
-            "profile_signal:databases:+1",
-            "profile_signal:cloud_containers:+2",
-            "profile_signal:observability:+1",
-            "profile_signal:reliability_telemetry:+3",
-            "profile_signal:qa_automation:+2",
-            "profile_signal:agentic_tooling:+3"
-          ],
-          "material_gaps": []
-        }
-      ],
-      "needs_ai_review": [],
-      "errors": []
-    },
-    {
-      "monitor": "crunchyroll",
-      "success": true,
-      "scanned_at": "2026-11-09T22:54:09+00:00",
-      "fetched": 104,
-      "unseen": 2,
-      "state_updated": true,
-      "candidates": [
-        {
-          "job_id": "7891761",
-          "title": "Software Engineer II",
-          "location": "San Francisco, CA, United States",
-          "posted_at": "",
-          "url": "https://boards.greenhouse.io/crunchyroll/jobs/7891761?gh_jid=7891761",
-          "priority": "high",
-          "matching_requirements": [
-            "target_title:software",
-            "profile_signal:python:+2",
-            "profile_signal:go:+2",
-            "profile_signal:java:+1",
-            "profile_signal:javascript_react:+1",
-            "profile_signal:backend_apis:+2",
-            "profile_signal:reliability_telemetry:+3"
-          ],
-          "material_gaps": []
-        }
-      ],
-      "needs_ai_review": [],
-      "errors": []
-    },
-    {
-      "monitor": "ebay",
-      "success": true,
-      "scanned_at": "2026-11-09T22:54:09+00:00",
-      "fetched": 166,
       "unseen": 3,
       "state_updated": true,
       "candidates": [],
@@ -207,11 +114,37 @@
       "errors": []
     },
     {
+      "monitor": "crunchyroll",
+      "success": true,
+      "scanned_at": "2026-11-10T20:17:40+00:00",
+      "fetched": 103,
+      "unseen": 1,
+      "state_updated": true,
+      "candidates": [],
+      "needs_ai_review": [],
+      "errors": []
+    },
+    {
+      "monitor": "ebay",
+      "success": false,
+      "scanned_at": "2026-11-10T20:17:40+00:00",
+      "fetched": 0,
+      "unseen": 0,
+      "state_updated": false,
+      "candidates": [],
+      "needs_ai_review": [],
+      "errors": [
+        {
+          "error": "Command '['node', '/home/runner/work/resume-tool/resume-tool/ops/company_jobs_fetch.mjs', 'ebay', 'list']' timed out after 300 seconds"
+        }
+      ]
+    },
+    {
       "monitor": "intepros",
       "success": true,
-      "scanned_at": "2026-11-09T22:54:09+00:00",
+      "scanned_at": "2026-11-10T20:17:40+00:00",
       "fetched": 30,
-      "unseen": 4,
+      "unseen": 3,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -220,9 +153,9 @@
     {
       "monitor": "iqvia",
       "success": true,
-      "scanned_at": "2026-11-09T22:54:09+00:00",
-      "fetched": 1022,
-      "unseen": 56,
+      "scanned_at": "2026-11-10T20:17:40+00:00",
+      "fetched": 955,
+      "unseen": 65,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -231,54 +164,62 @@
     {
       "monitor": "nbcu",
       "success": true,
-      "scanned_at": "2026-11-09T22:54:09+00:00",
-      "fetched": 303,
-      "unseen": 93,
+      "scanned_at": "2026-11-10T20:17:40+00:00",
+      "fetched": 309,
+      "unseen": 15,
       "state_updated": true,
-      "candidates": [
+      "candidates": [],
+      "needs_ai_review": [
         {
-          "job_id": "744000160659459",
-          "title": "Software Engineering Internships \u2013 Summer 2027",
-          "location": "New York, NY, United States",
-          "posted_at": "2026-11-09T16:10:02.802Z",
-          "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160659459-software-engineering-internships-summer-2027",
-          "priority": "high",
+          "job_id": "744000160955954",
+          "title": "Associate Design Engineer",
+          "location": "New York, NEW YORK, United States",
+          "posted_at": "2026-11-10T19:50:44.598Z",
+          "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160955954-associate-design-engineer",
+          "priority": "low",
           "matching_requirements": [
-            "target_title:software",
-            "profile_signal:python:+2",
-            "profile_signal:go:+2",
-            "profile_signal:java:+1",
+            "target_title:technical_review",
             "profile_signal:javascript_react:+1",
             "profile_signal:backend_apis:+2",
-            "profile_signal:distributed_systems:+2",
-            "profile_signal:data_streaming:+2",
-            "profile_signal:cloud_containers:+2",
-            "profile_signal:observability:+1",
-            "profile_signal:reliability_telemetry:+3"
+            "profile_signal:cloud_containers:+2"
           ],
           "material_gaps": []
         }
       ],
-      "needs_ai_review": [],
       "errors": []
     },
     {
       "monitor": "nvidia",
       "success": true,
-      "scanned_at": "2026-11-09T22:54:09+00:00",
+      "scanned_at": "2026-11-10T20:17:40+00:00",
       "fetched": 120,
-      "unseen": 9,
+      "unseen": 7,
       "state_updated": true,
       "candidates": [],
-      "needs_ai_review": [],
+      "needs_ai_review": [
+        {
+          "job_id": "JR2021689",
+          "title": "Inference Performance Engineer, Agent Driven Inference Optimization",
+          "location": "US, CA, Santa Clara; US, CA, Remote",
+          "posted_at": "2026-11-09",
+          "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Inference-Performance-Engineer--AI-Inference-Configuration-Optimization_JR2021689",
+          "priority": "low",
+          "matching_requirements": [
+            "target_title:technical_review",
+            "profile_signal:python:+2",
+            "profile_signal:agentic_tooling:+3"
+          ],
+          "material_gaps": []
+        }
+      ],
       "errors": []
     },
     {
       "monitor": "occ",
       "success": true,
-      "scanned_at": "2026-11-09T22:54:09+00:00",
-      "fetched": 60,
-      "unseen": 0,
+      "scanned_at": "2026-11-10T20:17:40+00:00",
+      "fetched": 67,
+      "unseen": 2,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -287,7 +228,7 @@
     {
       "monitor": "ocient",
       "success": true,
-      "scanned_at": "2026-11-09T22:54:09+00:00",
+      "scanned_at": "2026-11-10T20:17:40+00:00",
       "fetched": 13,
       "unseen": 0,
       "state_updated": true,
@@ -298,7 +239,7 @@
     {
       "monitor": "rivian",
       "success": true,
-      "scanned_at": "2026-11-09T22:54:09+00:00",
+      "scanned_at": "2026-11-10T20:17:40+00:00",
       "fetched": 30,
       "unseen": 0,
       "state_updated": true,
@@ -309,36 +250,44 @@
     {
       "monitor": "tiktok",
       "success": true,
-      "scanned_at": "2026-11-09T22:54:09+00:00",
-      "fetched": 1880,
-      "unseen": 9,
+      "scanned_at": "2026-11-10T20:17:40+00:00",
+      "fetched": 1872,
+      "unseen": 6,
       "state_updated": true,
       "candidates": [],
-      "needs_ai_review": [
-        {
-          "job_id": "7704986879082907909",
-          "title": "Research Engineer Intern (TikTok Generalized Arch) - 2027 Start (PhD)",
-          "location": "San Jose, California, United States of America",
-          "posted_at": "",
-          "url": "https://lifeattiktok.com/search/7704986879082907909",
-          "priority": "low",
-          "matching_requirements": [
-            "target_title:technical_review",
-            "profile_signal:agentic_tooling:+3"
-          ],
-          "material_gaps": []
-        }
-      ],
+      "needs_ai_review": [],
       "errors": []
     },
     {
       "monitor": "waymo",
       "success": true,
-      "scanned_at": "2026-11-09T22:54:09+00:00",
-      "fetched": 166,
-      "unseen": 0,
+      "scanned_at": "2026-11-10T20:17:40+00:00",
+      "fetched": 167,
+      "unseen": 2,
       "state_updated": true,
-      "candidates": [],
+      "candidates": [
+        {
+          "job_id": "5652",
+          "title": "2027 Summer Intern, BS/MS, Software Engineer, Multiverse",
+          "location": [
+            "San Francisco, California",
+            "Software Engineering",
+            "Intern",
+            "Intern"
+          ],
+          "posted_at": null,
+          "url": "https://careers.withwaymo.com/jobs/2027-summer-intern-bs-ms-software-engineer-multiverse-san-francisco-california-united-states",
+          "priority": "medium",
+          "matching_requirements": [
+            "target_title:software",
+            "profile_signal:python:+2",
+            "profile_signal:distributed_systems:+2",
+            "profile_signal:data_streaming:+2",
+            "profile_signal:databases:+1"
+          ],
+          "material_gaps": []
+        }
+      ],
       "needs_ai_review": [],
       "errors": []
     }

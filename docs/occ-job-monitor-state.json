@@ -95,7 +95,9 @@
     "REQ-4918",
     "REQ-4919",
     "REQ-4920",
-    "REQ-4921"
+    "REQ-4921",
+    "REQ-4922",
+    "REQ-4927"
   ],
   "candidate_catalog": {
     "REQ-4807": {
@@ -126,7 +128,7 @@
       "category": "software"
     }
   },
-  "last_successful_scan_at": "2026-11-09T22:54:09+00:00",
+  "last_successful_scan_at": "2026-11-10T20:17:40+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "REQ-4896": {
@@ -1354,6 +1356,35 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-07T01:41:21+00:00",
       "last_seen_at": "2026-11-07T01:41:21+00:00"
+    },
+    "REQ-4927": {
+      "title": "Director, Enterprise Monitoring",
+      "location": "Chicago - 125 S Franklin",
+      "url": "https://theocc.wd5.myworkdayjobs.com/job/Chicago---125-S-Franklin/Director--Enterprise-Monitoring_REQ-4927-1",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "REQ-4922": {
+      "title": "Senior Associate, Market Risk",
+      "location": "Dallas, TX",
+      "url": "https://theocc.wd5.myworkdayjobs.com/job/Dallas-TX/Senior-Associate--Market-Risk_REQ-4922",
+      "posted_at": "Posted Yesterday",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
     }
   },
   "source_updated_at_by_id": {}

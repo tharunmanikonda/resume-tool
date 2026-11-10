@@ -230,9 +230,12 @@
     "a0Hcw00000BPZ2fEAH",
     "a0Hcw00000BVq2PEAT",
     "a0Hcw00000BW0rNEAT",
-    "a0Hcw00000BWWw5EAH"
+    "a0Hcw00000BWANhEAP",
+    "a0Hcw00000BWWw5EAH",
+    "a0Hcw00000BYKVpEAP",
+    "a0Hcw00000BYxNVEA1"
   ],
-  "last_successful_scan_at": "2026-11-09T22:54:09+00:00",
+  "last_successful_scan_at": "2026-11-10T20:17:40+00:00",
   "candidate_catalog": {
     "a0Hcw000006tdYLEAY": {
       "title": "Operational Excellence Engineer",
@@ -1343,6 +1346,48 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-09T22:54:09+00:00",
       "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "a0Hcw00000BWANhEAP": {
+      "title": "Project Associate",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000BWANhEAP/project-associate",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "a0Hcw00000BYxNVEA1": {
+      "title": "Accounts Payable Specialist",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000BYxNVEA1/accounts-payable-specialist",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "a0Hcw00000BYKVpEAP": {
+      "title": "Remote: Lead Salesforce Developer",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000BYKVpEAP/remote-lead-salesforce-developer",
+      "posted_at": "",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-10T20:17:40+00:00",
+      "last_seen_at": "2026-11-10T20:17:40+00:00"
     }
   },
   "source_updated_at_by_id": {}
