@@ -12,10 +12,12 @@
     "am9icG9zdDpFdZTUveC6g8q8G7CRDYkt",
     "am9icG9zdDpFl5QFYmMzBVmY5ILWDpHv",
     "am9icG9zdDqJgzf2Bu_0qefQ3TIPESmw",
+    "am9icG9zdDqQGU-OlSzP3NW8e82cDjgJ",
     "am9icG9zdDqRbvqAGpMQYQZdQPuS_3w3",
     "am9icG9zdDqUzWDI7nPB-1ai3jJbFdxp",
     "am9icG9zdDqfghXX1xUaQY4pt_-uA4Jn",
     "am9icG9zdDqtEWCmgMmEa7pK_vw23dgP",
+    "am9icG9zdDqvfHe7ccFQfZ2upCmgI8zM",
     "am9icG9zdDr1ivF4Z83dxwMxjYehfXDd",
     "am9icG9zdDrbM9PPT4b0PBJLnZzIwPYm",
     "am9icG9zdDrjs1cXAvxZfz7oqTg028nU"
@@ -40,7 +42,7 @@
       "category": "software"
     }
   },
-  "last_successful_scan_at": "2026-11-11T01:44:24+00:00",
+  "last_successful_scan_at": "2026-11-11T20:02:07+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "am9icG9zdDoSZRhfRFSX4uPin3ZELp9s": {
@@ -259,6 +261,36 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-01T21:53:41+00:00",
       "last_seen_at": "2026-11-01T21:53:41+00:00"
+    },
+    "am9icG9zdDqvfHe7ccFQfZ2upCmgI8zM": {
+      "title": "Senior Customer Support Specialist",
+      "location": "Remote, India, Remote",
+      "url": "https://jobs.gem.com/ocient-inc-/am9icG9zdDqvfHe7ccFQfZ2upCmgI8zM",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-11T20:02:07+00:00",
+      "last_seen_at": "2026-11-11T20:02:07+00:00"
+    },
+    "am9icG9zdDqQGU-OlSzP3NW8e82cDjgJ": {
+      "title": "Technical Project Manager",
+      "location": "Remote, USA, Remote",
+      "url": "https://jobs.gem.com/ocient-inc-/am9icG9zdDqQGU-OlSzP3NW8e82cDjgJ",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-11T20:02:07+00:00",
+      "last_seen_at": "2026-11-11T20:02:07+00:00"
     }
   },
   "source_updated_at_by_id": {}

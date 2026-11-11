@@ -1,6 +1,6 @@
 {
   "success": true,
-  "scanned_at": "2026-11-11T01:44:24+00:00",
+  "scanned_at": "2026-11-11T20:02:07+00:00",
   "monitor_count": 14,
   "successful_monitors": [
     "cbre",
@@ -19,72 +19,17 @@
     "waymo"
   ],
   "failed_monitors": [],
-  "candidate_count": 1,
-  "needs_ai_review_count": 2,
-  "candidates": [
-    {
-      "monitor": "waymo",
-      "job_id": "5540",
-      "title": "2027 Summer Intern, BS/MS/PhD, Software Engineer, Eval Data Infra",
-      "location": [
-        "Mountain View, California",
-        "Software Engineering",
-        "Intern",
-        "Intern"
-      ],
-      "posted_at": null,
-      "url": "https://careers.withwaymo.com/jobs/2027-summer-intern-bs-ms-phd-software-engineer-eval-data-infra-mountain-view-california-united-states",
-      "priority": "medium",
-      "matching_requirements": [
-        "target_title:software",
-        "profile_signal:python:+2",
-        "profile_signal:distributed_systems:+2",
-        "profile_signal:data_streaming:+2",
-        "profile_signal:databases:+1"
-      ],
-      "material_gaps": []
-    }
-  ],
-  "needs_ai_review": [
-    {
-      "monitor": "ebay",
-      "job_id": "R0076323",
-      "title": "Platform Engineer, Java Frameworks",
-      "location": "Austin, Texas, United States of America",
-      "posted_at": "2026-11-11",
-      "url": "https://jobs.ebayinc.com/us/en/job/R0076323/Platform-Engineer-Java-Frameworks",
-      "priority": "low",
-      "matching_requirements": [
-        "target_title:platform",
-        "profile_signal:java:+1",
-        "profile_signal:cloud_containers:+2",
-        "profile_signal:qa_automation:+2"
-      ],
-      "material_gaps": []
-    },
-    {
-      "monitor": "tiktok",
-      "job_id": "7706693387932633397",
-      "title": "Machine Learning Engineer Intern (E-Commerce Recommendation Mall) - 2027 Start",
-      "location": "San Jose, California, United States of America",
-      "posted_at": "",
-      "url": "https://lifeattiktok.com/search/7706693387932633397",
-      "priority": "low",
-      "matching_requirements": [
-        "target_title:ai_ml",
-        "profile_signal:python:+2",
-        "profile_signal:agentic_tooling:+3"
-      ],
-      "material_gaps": []
-    }
-  ],
+  "candidate_count": 0,
+  "needs_ai_review_count": 0,
+  "candidates": [],
+  "needs_ai_review": [],
   "results": [
     {
       "monitor": "cbre",
       "success": true,
-      "scanned_at": "2026-11-11T01:44:24+00:00",
-      "fetched": 839,
-      "unseen": 15,
+      "scanned_at": "2026-11-11T20:02:07+00:00",
+      "fetched": 903,
+      "unseen": 32,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -93,7 +38,7 @@
     {
       "monitor": "cdk",
       "success": true,
-      "scanned_at": "2026-11-11T01:44:24+00:00",
+      "scanned_at": "2026-11-11T20:02:07+00:00",
       "fetched": 45,
       "unseen": 0,
       "state_updated": true,
@@ -104,7 +49,7 @@
     {
       "monitor": "cisco",
       "success": true,
-      "scanned_at": "2026-11-11T01:44:24+00:00",
+      "scanned_at": "2026-11-11T20:02:07+00:00",
       "fetched": 80,
       "unseen": 1,
       "state_updated": true,
@@ -115,9 +60,9 @@
     {
       "monitor": "crunchyroll",
       "success": true,
-      "scanned_at": "2026-11-11T01:44:24+00:00",
-      "fetched": 101,
-      "unseen": 0,
+      "scanned_at": "2026-11-11T20:02:07+00:00",
+      "fetched": 103,
+      "unseen": 3,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -126,36 +71,20 @@
     {
       "monitor": "ebay",
       "success": true,
-      "scanned_at": "2026-11-11T01:44:24+00:00",
-      "fetched": 180,
+      "scanned_at": "2026-11-11T20:02:07+00:00",
+      "fetched": 176,
       "unseen": 5,
       "state_updated": true,
       "candidates": [],
-      "needs_ai_review": [
-        {
-          "job_id": "R0076323",
-          "title": "Platform Engineer, Java Frameworks",
-          "location": "Austin, Texas, United States of America",
-          "posted_at": "2026-11-11",
-          "url": "https://jobs.ebayinc.com/us/en/job/R0076323/Platform-Engineer-Java-Frameworks",
-          "priority": "low",
-          "matching_requirements": [
-            "target_title:platform",
-            "profile_signal:java:+1",
-            "profile_signal:cloud_containers:+2",
-            "profile_signal:qa_automation:+2"
-          ],
-          "material_gaps": []
-        }
-      ],
+      "needs_ai_review": [],
       "errors": []
     },
     {
       "monitor": "intepros",
       "success": true,
-      "scanned_at": "2026-11-11T01:44:24+00:00",
+      "scanned_at": "2026-11-11T20:02:07+00:00",
       "fetched": 30,
-      "unseen": 1,
+      "unseen": 3,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -164,9 +93,9 @@
     {
       "monitor": "iqvia",
       "success": true,
-      "scanned_at": "2026-11-11T01:44:24+00:00",
-      "fetched": 438,
-      "unseen": 4,
+      "scanned_at": "2026-11-11T20:02:07+00:00",
+      "fetched": 841,
+      "unseen": 30,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -175,9 +104,9 @@
     {
       "monitor": "nbcu",
       "success": true,
-      "scanned_at": "2026-11-11T01:44:24+00:00",
-      "fetched": 311,
-      "unseen": 5,
+      "scanned_at": "2026-11-11T20:02:07+00:00",
+      "fetched": 313,
+      "unseen": 9,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -186,9 +115,9 @@
     {
       "monitor": "nvidia",
       "success": true,
-      "scanned_at": "2026-11-11T01:44:24+00:00",
+      "scanned_at": "2026-11-11T20:02:07+00:00",
       "fetched": 120,
-      "unseen": 3,
+      "unseen": 1,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -197,9 +126,9 @@
     {
       "monitor": "occ",
       "success": true,
-      "scanned_at": "2026-11-11T01:44:24+00:00",
-      "fetched": 67,
-      "unseen": 1,
+      "scanned_at": "2026-11-11T20:02:07+00:00",
+      "fetched": 60,
+      "unseen": 0,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -208,9 +137,9 @@
     {
       "monitor": "ocient",
       "success": true,
-      "scanned_at": "2026-11-11T01:44:24+00:00",
-      "fetched": 13,
-      "unseen": 0,
+      "scanned_at": "2026-11-11T20:02:07+00:00",
+      "fetched": 14,
+      "unseen": 2,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -219,7 +148,7 @@
     {
       "monitor": "rivian",
       "success": true,
-      "scanned_at": "2026-11-11T01:44:24+00:00",
+      "scanned_at": "2026-11-11T20:02:07+00:00",
       "fetched": 30,
       "unseen": 0,
       "state_updated": true,
@@ -230,59 +159,22 @@
     {
       "monitor": "tiktok",
       "success": true,
-      "scanned_at": "2026-11-11T01:44:24+00:00",
-      "fetched": 1872,
-      "unseen": 3,
+      "scanned_at": "2026-11-11T20:02:07+00:00",
+      "fetched": 1870,
+      "unseen": 1,
       "state_updated": true,
       "candidates": [],
-      "needs_ai_review": [
-        {
-          "job_id": "7706693387932633397",
-          "title": "Machine Learning Engineer Intern (E-Commerce Recommendation Mall) - 2027 Start",
-          "location": "San Jose, California, United States of America",
-          "posted_at": "",
-          "url": "https://lifeattiktok.com/search/7706693387932633397",
-          "priority": "low",
-          "matching_requirements": [
-            "target_title:ai_ml",
-            "profile_signal:python:+2",
-            "profile_signal:agentic_tooling:+3"
-          ],
-          "material_gaps": []
-        }
-      ],
+      "needs_ai_review": [],
       "errors": []
     },
     {
       "monitor": "waymo",
       "success": true,
-      "scanned_at": "2026-11-11T01:44:24+00:00",
-      "fetched": 166,
-      "unseen": 1,
+      "scanned_at": "2026-11-11T20:02:07+00:00",
+      "fetched": 165,
+      "unseen": 0,
       "state_updated": true,
-      "candidates": [
-        {
-          "job_id": "5540",
-          "title": "2027 Summer Intern, BS/MS/PhD, Software Engineer, Eval Data Infra",
-          "location": [
-            "Mountain View, California",
-            "Software Engineering",
-            "Intern",
-            "Intern"
-          ],
-          "posted_at": null,
-          "url": "https://careers.withwaymo.com/jobs/2027-summer-intern-bs-ms-phd-software-engineer-eval-data-infra-mountain-view-california-united-states",
-          "priority": "medium",
-          "matching_requirements": [
-            "target_title:software",
-            "profile_signal:python:+2",
-            "profile_signal:distributed_systems:+2",
-            "profile_signal:data_streaming:+2",
-            "profile_signal:databases:+1"
-          ],
-          "material_gaps": []
-        }
-      ],
+      "candidates": [],
       "needs_ai_review": [],
       "errors": []
     }

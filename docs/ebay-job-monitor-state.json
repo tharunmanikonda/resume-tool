@@ -35,6 +35,7 @@
     "R0072265",
     "R0072652",
     "R0072671",
+    "R0072675",
     "R0072742",
     "R0072799",
     "R0072836",
@@ -173,6 +174,7 @@
     "R0076157",
     "R0076165",
     "R0076192",
+    "R0076201",
     "R0076203",
     "R0076211",
     "R0076215",
@@ -378,6 +380,7 @@
     "R0077235",
     "R0077239",
     "R0077253",
+    "R0077254",
     "R0077255",
     "R0077261",
     "R0077264",
@@ -385,9 +388,11 @@
     "R0077273",
     "R0077275",
     "R0077276",
+    "R0077281",
     "R0077292",
     "R0077293",
     "R0077294",
+    "R0077298",
     "R0077301",
     "R0077302",
     "R0077304",
@@ -504,7 +509,7 @@
       "category": "platform"
     }
   },
-  "last_successful_scan_at": "2026-11-11T01:44:24+00:00",
+  "last_successful_scan_at": "2026-11-11T20:02:07+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "R0077145": {
@@ -5771,6 +5776,81 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-11T01:44:24+00:00",
       "last_seen_at": "2026-11-11T01:44:24+00:00"
+    },
+    "R0072675": {
+      "title": "Senior Software Engineer, Infrastructure",
+      "location": "Dublin, Dublin, Ireland",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0072675/Senior-Software-Engineer-Infrastructure",
+      "posted_at": "2026-11-11T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-11T20:02:07+00:00",
+      "last_seen_at": "2026-11-11T20:02:07+00:00"
+    },
+    "R0077254": {
+      "title": "Director, FP&A Center of Excellence",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077254/Director-FP-A-Center-of-Excellence",
+      "posted_at": "2026-11-11T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-11T20:02:07+00:00",
+      "last_seen_at": "2026-11-11T20:02:07+00:00"
+    },
+    "R0077298": {
+      "title": "Director, AG Strategy & Operations",
+      "location": "San Jose, California, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077298/Director-AG-Strategy-Operations",
+      "posted_at": "2026-11-11T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-11T20:02:07+00:00",
+      "last_seen_at": "2026-11-11T20:02:07+00:00"
+    },
+    "R0077281": {
+      "title": "Group Product Manager, E2E Regulatory",
+      "location": "Austin, Texas, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077281/Group-Product-Manager-E2E-Regulatory",
+      "posted_at": "2026-11-10T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-11T20:02:07+00:00",
+      "last_seen_at": "2026-11-11T20:02:07+00:00"
+    },
+    "R0076201": {
+      "title": "Chief Product Officer - Tise",
+      "location": "Oslo, Oslo, Norway",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076201/Chief-Product-Officer-Tise",
+      "posted_at": "2026-11-11T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-11T20:02:07+00:00",
+      "last_seen_at": "2026-11-11T20:02:07+00:00"
     }
   },
   "source_updated_at_by_id": {}

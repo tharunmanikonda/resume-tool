@@ -1476,9 +1476,10 @@
     "2030352",
     "2030721",
     "2030760",
-    "2031083"
+    "2031083",
+    "2031175"
   ],
-  "last_successful_scan_at": "2026-11-11T01:44:24+00:00",
+  "last_successful_scan_at": "2026-11-11T20:02:07+00:00",
   "candidate_catalog": {
     "2024998": {
       "title": "AI Security Engineer",
@@ -3782,6 +3783,20 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-11T01:44:24+00:00",
       "last_seen_at": "2026-11-11T01:44:24+00:00"
+    },
+    "2031175": {
+      "title": "ASIC Design Verification Engineer",
+      "location": "Armenia",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Armenia/ASIC-Design-Verification-Engineer_2031175",
+      "posted_at": "2026-11-11",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-11T20:02:07+00:00",
+      "last_seen_at": "2026-11-11T20:02:07+00:00"
     }
   },
   "source_updated_at_by_id": {}

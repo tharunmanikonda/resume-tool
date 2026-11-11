@@ -728,7 +728,16 @@
     "744000160965989",
     "744000160966800",
     "744000160980359",
-    "744000160983009"
+    "744000160983009",
+    "744000161086009",
+    "744000161093625",
+    "744000161096049",
+    "744000161096279",
+    "744000161096298",
+    "744000161119387",
+    "744000161122269",
+    "744000161150234",
+    "744000161159149"
   ],
   "candidate_catalog": {
     "744000151898289": {
@@ -840,7 +849,7 @@
       "category": "technical_review"
     }
   },
-  "last_successful_scan_at": "2026-11-11T01:44:24+00:00",
+  "last_successful_scan_at": "2026-11-11T20:02:07+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "744000156079569": {
@@ -9843,6 +9852,134 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-11T01:44:24+00:00",
       "last_seen_at": "2026-11-11T01:44:24+00:00"
+    },
+    "744000161159149": {
+      "title": "Campaign Manager - Programmatic Ad Operations",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161159149-campaign-manager-programmatic-ad-operations",
+      "posted_at": "2026-11-11T19:55:05.634Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-11T20:02:07+00:00",
+      "last_seen_at": "2026-11-11T20:02:07+00:00"
+    },
+    "744000161122269": {
+      "title": "Sr Designer, Design & Development (Seasonal)",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161122269-sr-designer-design-development-seasonal",
+      "posted_at": "2026-11-11T16:17:45.119Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-11T20:02:07+00:00",
+      "last_seen_at": "2026-11-11T20:02:07+00:00"
+    },
+    "744000161119387": {
+      "title": "Director, Franchise Creative- Multimedia",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161119387-director-franchise-creative-multimedia",
+      "posted_at": "2026-11-11T16:15:37.494Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-11T20:02:07+00:00",
+      "last_seen_at": "2026-11-11T20:02:07+00:00"
+    },
+    "744000161096298": {
+      "title": "NBC News Production & Digital Editorial Internships \u2013 Summer 2027",
+      "location": "New York, NY, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161096298-nbc-news-production-digital-editorial-internships-summer-2027",
+      "posted_at": "2026-11-11T14:24:08.868Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-11T20:02:07+00:00",
+      "last_seen_at": "2026-11-11T20:02:07+00:00"
+    },
+    "744000161096279": {
+      "title": "NBC News Bureau Internships \u2013 Summer 2027",
+      "location": "Universal City, CA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161096279-nbc-news-bureau-internships-summer-2027",
+      "posted_at": "2026-11-11T14:23:58.333Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-11T20:02:07+00:00",
+      "last_seen_at": "2026-11-11T20:02:07+00:00"
+    },
+    "744000161096049": {
+      "title": "NBC News Creative & Digital Design Internships \u2013 Summer 2027",
+      "location": "New York, NY, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161096049-nbc-news-creative-digital-design-internships-summer-2027",
+      "posted_at": "2026-11-11T14:23:09.963Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-11T20:02:07+00:00",
+      "last_seen_at": "2026-11-11T20:02:07+00:00"
+    },
+    "744000161093625": {
+      "title": "NBC 4 New York Production & Editorial Internships \u2013 Summer 2027",
+      "location": "New York, NY, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161093625-nbc-4-new-york-production-editorial-internships-summer-2027",
+      "posted_at": "2026-11-11T14:22:32.964Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-11T20:02:07+00:00",
+      "last_seen_at": "2026-11-11T20:02:07+00:00"
+    },
+    "744000161086009": {
+      "title": "Duopoly Reporter, NBC & Telemundo New York",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161086009-duopoly-reporter-nbc-telemundo-new-york",
+      "posted_at": "2026-11-11T13:33:01.035Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-11T20:02:07+00:00",
+      "last_seen_at": "2026-11-11T20:02:07+00:00"
+    },
+    "744000161150234": {
+      "title": "Sr Software Engineer (SAP SuccessFactors)",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161150234-sr-software-engineer-sap-successfactors-",
+      "posted_at": "2026-11-11T19:06:02.939Z",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-11T20:02:07+00:00",
+      "last_seen_at": "2026-11-11T20:02:07+00:00"
     }
   },
   "source_updated_at_by_id": {}

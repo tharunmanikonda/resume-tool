@@ -1231,6 +1231,7 @@
     "JR2029701",
     "JR2029702",
     "JR2029706",
+    "JR2029786",
     "JR2029838",
     "JR2029901"
   ],
@@ -1578,7 +1579,7 @@
       "category": "technical_review"
     }
   },
-  "last_successful_scan_at": "2026-11-11T01:44:24+00:00",
+  "last_successful_scan_at": "2026-11-11T20:02:07+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "JR2014880": {
@@ -16963,6 +16964,21 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-11T01:44:24+00:00",
       "last_seen_at": "2026-11-11T01:44:24+00:00"
+    },
+    "JR2029786": {
+      "title": "Manager, AI Factory Deployment Data Center",
+      "location": "US, VA, Remote",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-VA-Remote/Manager--AI-Factory-Deployment-Data-Center_JR2029786",
+      "posted_at": "Posted Yesterday",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-11T20:02:07+00:00",
+      "last_seen_at": "2026-11-11T20:02:07+00:00"
     }
   },
   "source_updated_at_by_id": {}

@@ -234,9 +234,12 @@
     "a0Hcw00000BWWw5EAH",
     "a0Hcw00000BYKVpEAP",
     "a0Hcw00000BYxNVEA1",
-    "a0Hcw00000BZMQjEAP"
+    "a0Hcw00000BZMQjEAP",
+    "a0Hcw00000Bbm8zEAB",
+    "a0Hcw00000BbmybEAB",
+    "a0Hcw00000Bc3ubEAB"
   ],
-  "last_successful_scan_at": "2026-11-11T01:44:24+00:00",
+  "last_successful_scan_at": "2026-11-11T20:02:07+00:00",
   "candidate_catalog": {
     "a0Hcw000006tdYLEAY": {
       "title": "Operational Excellence Engineer",
@@ -1404,6 +1407,49 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-11T01:44:24+00:00",
       "last_seen_at": "2026-11-11T01:44:24+00:00"
+    },
+    "a0Hcw00000Bbm8zEAB": {
+      "title": "Sr. Program/Project Manager - Salesforce",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000Bbm8zEAB/sr-programproject-manager---salesforce",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-11T20:02:07+00:00",
+      "last_seen_at": "2026-11-11T20:02:07+00:00"
+    },
+    "a0Hcw00000Bc3ubEAB": {
+      "title": "Claims Technical Lead",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000Bc3ubEAB/claims-technical-lead",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-11T20:02:07+00:00",
+      "last_seen_at": "2026-11-11T20:02:07+00:00"
+    },
+    "a0Hcw00000BbmybEAB": {
+      "title": "Medical Device Design Engineer",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000BbmybEAB/medical-device-design-engineer",
+      "posted_at": "",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-11T20:02:07+00:00",
+      "last_seen_at": "2026-11-11T20:02:07+00:00"
     }
   },
   "source_updated_at_by_id": {}

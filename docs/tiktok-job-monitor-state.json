@@ -2010,7 +2010,8 @@
     "7706600831827085621",
     "7706616396639127813",
     "7706649771394091317",
-    "7706693387932633397"
+    "7706693387932633397",
+    "7706738474833365301"
   ],
   "candidate_catalog": {
     "7680987768009754885": {
@@ -29217,8 +29218,23 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-11T01:44:24+00:00",
       "last_seen_at": "2026-11-11T01:44:24+00:00"
+    },
+    "7706738474833365301": {
+      "title": "Senior Safety Evaluation Operations Associate  - TikTok Safety Product",
+      "location": "Singapore",
+      "url": "https://lifeattiktok.com/search/7706738474833365301",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-11T20:02:07+00:00",
+      "last_seen_at": "2026-11-11T20:02:07+00:00"
     }
   },
-  "last_successful_scan_at": "2026-11-11T01:44:24+00:00",
+  "last_successful_scan_at": "2026-11-11T20:02:07+00:00",
   "source_updated_at_by_id": {}
 }
