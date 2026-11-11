@@ -97,6 +97,7 @@
     "REQ-4920",
     "REQ-4921",
     "REQ-4922",
+    "REQ-4924",
     "REQ-4927"
   ],
   "candidate_catalog": {
@@ -128,7 +129,7 @@
       "category": "software"
     }
   },
-  "last_successful_scan_at": "2026-11-10T20:17:40+00:00",
+  "last_successful_scan_at": "2026-11-11T01:44:24+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "REQ-4896": {
@@ -1385,6 +1386,21 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-10T20:17:40+00:00",
       "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "REQ-4924": {
+      "title": "Associate Principal, Business Analysis",
+      "location": "Chicago - 125 S Franklin",
+      "url": "https://theocc.wd5.myworkdayjobs.com/job/Chicago---125-S-Franklin/Associate-Principal--Business-Analysis_REQ-4924",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-11T01:44:24+00:00",
+      "last_seen_at": "2026-11-11T01:44:24+00:00"
     }
   },
   "source_updated_at_by_id": {}

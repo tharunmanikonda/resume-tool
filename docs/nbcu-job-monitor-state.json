@@ -723,7 +723,12 @@
     "744000160955954",
     "744000160960769",
     "744000160960999",
-    "744000160961279"
+    "744000160961279",
+    "744000160964155",
+    "744000160965989",
+    "744000160966800",
+    "744000160980359",
+    "744000160983009"
   ],
   "candidate_catalog": {
     "744000151898289": {
@@ -835,7 +840,7 @@
       "category": "technical_review"
     }
   },
-  "last_successful_scan_at": "2026-11-10T20:17:40+00:00",
+  "last_successful_scan_at": "2026-11-11T01:44:24+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "744000156079569": {
@@ -9765,6 +9770,79 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-10T20:17:40+00:00",
       "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "744000160983009": {
+      "title": "Local Sales Manager, Telemundo Arizona (Phoenix/Tucson)",
+      "location": "Phoenix, Arizona, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160983009-local-sales-manager-telemundo-arizona-phoenix-tucson",
+      "posted_at": "2026-11-10T23:04:36.122Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-11T01:44:24+00:00",
+      "last_seen_at": "2026-11-11T01:44:24+00:00"
+    },
+    "744000160980359": {
+      "title": "Director, Food Services",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160980359-director-food-services",
+      "posted_at": "2026-11-10T22:34:42.454Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-11T01:44:24+00:00",
+      "last_seen_at": "2026-11-11T01:44:24+00:00"
+    },
+    "744000160966800": {
+      "title": "NBC News Production & Digital Editorial Internships \u2013 Summer 2027",
+      "location": "Universal City, CA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160966800-nbc-news-production-digital-editorial-internships-summer-2027",
+      "posted_at": "2026-11-10T20:57:54.578Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-11T01:44:24+00:00",
+      "last_seen_at": "2026-11-11T01:44:24+00:00"
+    },
+    "744000160965989": {
+      "title": "Lead Data Scientist",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160965989-lead-data-scientist",
+      "posted_at": "2026-11-10T20:45:34.042Z",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-11T01:44:24+00:00",
+      "last_seen_at": "2026-11-11T01:44:24+00:00"
+    },
+    "744000160964155": {
+      "title": "NBC News Bureau Internships \u2013 Summer 2027",
+      "location": "Universal City, CA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160964155-nbc-news-bureau-internships-summer-2027",
+      "posted_at": "2026-11-10T20:41:43.405Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-11T01:44:24+00:00",
+      "last_seen_at": "2026-11-11T01:44:24+00:00"
     }
   },
   "source_updated_at_by_id": {}

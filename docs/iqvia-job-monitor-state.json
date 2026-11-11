@@ -644,6 +644,7 @@
     "R1553731",
     "R1553743",
     "R1553750",
+    "R1553768",
     "R1553805",
     "R1553807",
     "R1553934",
@@ -1783,6 +1784,7 @@
     "R1571316",
     "R1571326",
     "R1571329",
+    "R1571331",
     "R1571335",
     "R1571366",
     "R1571369",
@@ -2617,7 +2619,9 @@
     "R1579221",
     "R1579229",
     "R1579234",
-    "R1579241"
+    "R1579241",
+    "R1579252",
+    "R1579260"
   ],
   "candidate_catalog": {
     "R1570411": {
@@ -2774,7 +2778,7 @@
       "category": "technical_review"
     }
   },
-  "last_successful_scan_at": "2026-11-10T20:17:40+00:00",
+  "last_successful_scan_at": "2026-11-11T01:44:24+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "R1545472": {
@@ -38257,6 +38261,66 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-10T20:17:40+00:00",
       "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "R1571331": {
+      "title": "Junior Strategy Consulting Analyst (Temporary)",
+      "location": "Mexico City, Mexico",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Mexico-City-Mexico/Junior-Strategy-Consulting-Analyst--Temporary-_R1571331",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-11T01:44:24+00:00",
+      "last_seen_at": "2026-11-11T01:44:24+00:00"
+    },
+    "R1579252": {
+      "title": "Interim Finance Consolidation & Controllership Lead (North America",
+      "location": "San Jose, Costa Rica",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/San-Jose-Costa-Rica/Interim-Finance-Consolidation---Controllership-Lead--North-America_R1579252",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-11T01:44:24+00:00",
+      "last_seen_at": "2026-11-11T01:44:24+00:00"
+    },
+    "R1553768": {
+      "title": "Product Analyst",
+      "location": "2 Locations",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Columbia-Maryland-United-States-of-America/Product-Analyst_R1553768",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-11T01:44:24+00:00",
+      "last_seen_at": "2026-11-11T01:44:24+00:00"
+    },
+    "R1579260": {
+      "title": "Directeur adjoint, Solutions et pres associ\u00e9e, Strat\u00e9gie des solutions et prestation (SDL) / Associate Director, Solution and Delivery Lead (SDL)",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Toronto-Ontario-Canada/Directeur-adjoint--Solutions-et-pres-associe--Stratgie-des-solutions-et-prestation--SDL----Associate-Director--Solution-and-Delivery-Lead--SDL-_R1579260",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-11T01:44:24+00:00",
+      "last_seen_at": "2026-11-11T01:44:24+00:00"
     }
   },
   "source_updated_at_by_id": {}

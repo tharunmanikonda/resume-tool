@@ -34,6 +34,7 @@
     "R0072057",
     "R0072265",
     "R0072652",
+    "R0072671",
     "R0072742",
     "R0072799",
     "R0072836",
@@ -107,6 +108,7 @@
     "R0075330",
     "R0075331",
     "R0075377",
+    "R0075420",
     "R0075438",
     "R0075447",
     "R0075448",
@@ -191,6 +193,7 @@
     "R0076298",
     "R0076320",
     "R0076321",
+    "R0076323",
     "R0076325",
     "R0076335",
     "R0076343",
@@ -292,6 +295,7 @@
     "R0076884",
     "R0076885",
     "R0076887",
+    "R0076891",
     "R0076899",
     "R0076900",
     "R0076909",
@@ -402,6 +406,7 @@
     "R0077364",
     "R0077366",
     "R0077389",
+    "R0077397",
     "R0077475",
     "R0077480",
     "R0077481",
@@ -488,9 +493,18 @@
       "first_seen_at": "2026-11-06T02:00:49+00:00",
       "priority": "low",
       "category": "systems_analysis"
+    },
+    "R0076323": {
+      "title": "Platform Engineer, Java Frameworks",
+      "location": "Austin, Texas, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076323/Platform-Engineer-Java-Frameworks",
+      "posted_at": "2026-11-11",
+      "first_seen_at": "2026-11-11T01:44:24+00:00",
+      "priority": "low",
+      "category": "platform"
     }
   },
-  "last_successful_scan_at": "2026-11-09T22:54:09+00:00",
+  "last_successful_scan_at": "2026-11-11T01:44:24+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "R0077145": {
@@ -5698,6 +5712,65 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-09T22:54:09+00:00",
       "last_seen_at": "2026-11-09T22:54:09+00:00"
+    },
+    "R0072671": {
+      "title": "Software Engineer \u2013 Cloud Platform",
+      "location": "Dublin, Dublin, Ireland",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0072671/Software-Engineer-Cloud-Platform",
+      "posted_at": "2026-11-10T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-11T01:44:24+00:00",
+      "last_seen_at": "2026-11-11T01:44:24+00:00"
+    },
+    "R0076891": {
+      "title": "Senior Software Engineer, Infrastructure",
+      "location": "Dublin, Dublin, Ireland",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076891/Senior-Software-Engineer-Infrastructure",
+      "posted_at": "2026-11-10T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-11T01:44:24+00:00",
+      "last_seen_at": "2026-11-11T01:44:24+00:00"
+    },
+    "R0075420": {
+      "title": "Strategy & Ops Manager, Electronics",
+      "location": "London, Surrey, United Kingdom",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0075420/Strategy-Ops-Manager-Electronics",
+      "posted_at": "2026-11-10T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-11T01:44:24+00:00",
+      "last_seen_at": "2026-11-11T01:44:24+00:00"
+    },
+    "R0077397": {
+      "title": "Fin Intelligent Transformation Mgr",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077397/Fin-Intelligent-Transformation-Mgr",
+      "posted_at": "2026-11-10T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-11T01:44:24+00:00",
+      "last_seen_at": "2026-11-11T01:44:24+00:00"
     }
   },
   "source_updated_at_by_id": {}

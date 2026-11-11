@@ -1227,9 +1227,12 @@
     "JR2029533",
     "JR2029570",
     "JR2029621",
+    "JR2029683",
     "JR2029701",
     "JR2029702",
-    "JR2029706"
+    "JR2029706",
+    "JR2029838",
+    "JR2029901"
   ],
   "candidate_catalog": {
     "JR2018245": {
@@ -1575,7 +1578,7 @@
       "category": "technical_review"
     }
   },
-  "last_successful_scan_at": "2026-11-10T20:17:40+00:00",
+  "last_successful_scan_at": "2026-11-11T01:44:24+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "JR2014880": {
@@ -16918,6 +16921,48 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-10T20:17:40+00:00",
       "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "JR2029683": {
+      "title": "Senior Software Engineer, Platform Engineering - EDA Infrastructure",
+      "location": "6 Locations",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-WA-Remote/Senior-Software-Engineer--Platform-Engineering---EDA-Infrastructure_JR2029683",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "specialized_low_level"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-11T01:44:24+00:00",
+      "last_seen_at": "2026-11-11T01:44:24+00:00"
+    },
+    "JR2029901": {
+      "title": "Senior AI Infrastructure Engineer - DGX Cloud",
+      "location": "US, Remote",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-Remote/Senior-AI-Infrastructure-Engineer---DGX-Cloud_JR2029901",
+      "posted_at": "2026-11-10",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-11T01:44:24+00:00",
+      "last_seen_at": "2026-11-11T01:44:24+00:00"
+    },
+    "JR2029838": {
+      "title": "Senior Software Engineer, Datacenter Automation Platforms",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Software-Engineer--Datacenter-Automation-Platforms_JR2029838",
+      "posted_at": "2026-11-10",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-11T01:44:24+00:00",
+      "last_seen_at": "2026-11-11T01:44:24+00:00"
     }
   },
   "source_updated_at_by_id": {}

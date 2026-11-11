@@ -2007,7 +2007,10 @@
     "7706053837959186741",
     "7706187982816594181",
     "7706338918660098309",
-    "7706600831827085621"
+    "7706600831827085621",
+    "7706616396639127813",
+    "7706649771394091317",
+    "7706693387932633397"
   ],
   "candidate_catalog": {
     "7680987768009754885": {
@@ -5177,6 +5180,15 @@
       "first_seen_at": "2026-11-09T22:54:09+00:00",
       "priority": "low",
       "category": "technical_review"
+    },
+    "7706693387932633397": {
+      "title": "Machine Learning Engineer Intern (E-Commerce Recommendation Mall) - 2027 Start",
+      "location": "San Jose, California, United States of America",
+      "url": "https://lifeattiktok.com/search/7706693387932633397",
+      "posted_at": "",
+      "first_seen_at": "2026-11-11T01:44:24+00:00",
+      "priority": "low",
+      "category": "ai_ml"
     }
   },
   "rejected_catalog": {
@@ -29175,8 +29187,38 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-10T20:17:40+00:00",
       "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "7706649771394091317": {
+      "title": "Client Solutions Manager - GBS",
+      "location": "Los Angeles, California, United States of America",
+      "url": "https://lifeattiktok.com/search/7706649771394091317",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-11T01:44:24+00:00",
+      "last_seen_at": "2026-11-11T01:44:24+00:00"
+    },
+    "7706616396639127813": {
+      "title": "TikTok Shop - GTM Policy Program Manager",
+      "location": "Seattle, Washington, United States of America",
+      "url": "https://lifeattiktok.com/search/7706616396639127813",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-11T01:44:24+00:00",
+      "last_seen_at": "2026-11-11T01:44:24+00:00"
     }
   },
-  "last_successful_scan_at": "2026-11-10T20:17:40+00:00",
+  "last_successful_scan_at": "2026-11-11T01:44:24+00:00",
   "source_updated_at_by_id": {}
 }

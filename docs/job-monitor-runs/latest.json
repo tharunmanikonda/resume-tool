@@ -1,12 +1,13 @@
 {
-  "success": false,
-  "scanned_at": "2026-11-10T20:17:40+00:00",
+  "success": true,
+  "scanned_at": "2026-11-11T01:44:24+00:00",
   "monitor_count": 14,
   "successful_monitors": [
     "cbre",
     "cdk",
     "cisco",
     "crunchyroll",
+    "ebay",
     "intepros",
     "iqvia",
     "nbcu",
@@ -17,24 +18,22 @@
     "tiktok",
     "waymo"
   ],
-  "failed_monitors": [
-    "ebay"
-  ],
+  "failed_monitors": [],
   "candidate_count": 1,
   "needs_ai_review_count": 2,
   "candidates": [
     {
       "monitor": "waymo",
-      "job_id": "5652",
-      "title": "2027 Summer Intern, BS/MS, Software Engineer, Multiverse",
+      "job_id": "5540",
+      "title": "2027 Summer Intern, BS/MS/PhD, Software Engineer, Eval Data Infra",
       "location": [
-        "San Francisco, California",
+        "Mountain View, California",
         "Software Engineering",
         "Intern",
         "Intern"
       ],
       "posted_at": null,
-      "url": "https://careers.withwaymo.com/jobs/2027-summer-intern-bs-ms-software-engineer-multiverse-san-francisco-california-united-states",
+      "url": "https://careers.withwaymo.com/jobs/2027-summer-intern-bs-ms-phd-software-engineer-eval-data-infra-mountain-view-california-united-states",
       "priority": "medium",
       "matching_requirements": [
         "target_title:software",
@@ -48,31 +47,31 @@
   ],
   "needs_ai_review": [
     {
-      "monitor": "nbcu",
-      "job_id": "744000160955954",
-      "title": "Associate Design Engineer",
-      "location": "New York, NEW YORK, United States",
-      "posted_at": "2026-11-10T19:50:44.598Z",
-      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160955954-associate-design-engineer",
+      "monitor": "ebay",
+      "job_id": "R0076323",
+      "title": "Platform Engineer, Java Frameworks",
+      "location": "Austin, Texas, United States of America",
+      "posted_at": "2026-11-11",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076323/Platform-Engineer-Java-Frameworks",
       "priority": "low",
       "matching_requirements": [
-        "target_title:technical_review",
-        "profile_signal:javascript_react:+1",
-        "profile_signal:backend_apis:+2",
-        "profile_signal:cloud_containers:+2"
+        "target_title:platform",
+        "profile_signal:java:+1",
+        "profile_signal:cloud_containers:+2",
+        "profile_signal:qa_automation:+2"
       ],
       "material_gaps": []
     },
     {
-      "monitor": "nvidia",
-      "job_id": "JR2021689",
-      "title": "Inference Performance Engineer, Agent Driven Inference Optimization",
-      "location": "US, CA, Santa Clara; US, CA, Remote",
-      "posted_at": "2026-11-09",
-      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Inference-Performance-Engineer--AI-Inference-Configuration-Optimization_JR2021689",
+      "monitor": "tiktok",
+      "job_id": "7706693387932633397",
+      "title": "Machine Learning Engineer Intern (E-Commerce Recommendation Mall) - 2027 Start",
+      "location": "San Jose, California, United States of America",
+      "posted_at": "",
+      "url": "https://lifeattiktok.com/search/7706693387932633397",
       "priority": "low",
       "matching_requirements": [
-        "target_title:technical_review",
+        "target_title:ai_ml",
         "profile_signal:python:+2",
         "profile_signal:agentic_tooling:+3"
       ],
@@ -83,9 +82,9 @@
     {
       "monitor": "cbre",
       "success": true,
-      "scanned_at": "2026-11-10T20:17:40+00:00",
-      "fetched": 967,
-      "unseen": 46,
+      "scanned_at": "2026-11-11T01:44:24+00:00",
+      "fetched": 839,
+      "unseen": 15,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -94,9 +93,9 @@
     {
       "monitor": "cdk",
       "success": true,
-      "scanned_at": "2026-11-10T20:17:40+00:00",
+      "scanned_at": "2026-11-11T01:44:24+00:00",
       "fetched": 45,
-      "unseen": 1,
+      "unseen": 0,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -105,9 +104,9 @@
     {
       "monitor": "cisco",
       "success": true,
-      "scanned_at": "2026-11-10T20:17:40+00:00",
+      "scanned_at": "2026-11-11T01:44:24+00:00",
       "fetched": 80,
-      "unseen": 3,
+      "unseen": 1,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -116,9 +115,9 @@
     {
       "monitor": "crunchyroll",
       "success": true,
-      "scanned_at": "2026-11-10T20:17:40+00:00",
-      "fetched": 103,
-      "unseen": 1,
+      "scanned_at": "2026-11-11T01:44:24+00:00",
+      "fetched": 101,
+      "unseen": 0,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -126,25 +125,37 @@
     },
     {
       "monitor": "ebay",
-      "success": false,
-      "scanned_at": "2026-11-10T20:17:40+00:00",
-      "fetched": 0,
-      "unseen": 0,
-      "state_updated": false,
+      "success": true,
+      "scanned_at": "2026-11-11T01:44:24+00:00",
+      "fetched": 180,
+      "unseen": 5,
+      "state_updated": true,
       "candidates": [],
-      "needs_ai_review": [],
-      "errors": [
+      "needs_ai_review": [
         {
-          "error": "Command '['node', '/home/runner/work/resume-tool/resume-tool/ops/company_jobs_fetch.mjs', 'ebay', 'list']' timed out after 300 seconds"
+          "job_id": "R0076323",
+          "title": "Platform Engineer, Java Frameworks",
+          "location": "Austin, Texas, United States of America",
+          "posted_at": "2026-11-11",
+          "url": "https://jobs.ebayinc.com/us/en/job/R0076323/Platform-Engineer-Java-Frameworks",
+          "priority": "low",
+          "matching_requirements": [
+            "target_title:platform",
+            "profile_signal:java:+1",
+            "profile_signal:cloud_containers:+2",
+            "profile_signal:qa_automation:+2"
+          ],
+          "material_gaps": []
         }
-      ]
+      ],
+      "errors": []
     },
     {
       "monitor": "intepros",
       "success": true,
-      "scanned_at": "2026-11-10T20:17:40+00:00",
+      "scanned_at": "2026-11-11T01:44:24+00:00",
       "fetched": 30,
-      "unseen": 3,
+      "unseen": 1,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -153,9 +164,9 @@
     {
       "monitor": "iqvia",
       "success": true,
-      "scanned_at": "2026-11-10T20:17:40+00:00",
-      "fetched": 955,
-      "unseen": 65,
+      "scanned_at": "2026-11-11T01:44:24+00:00",
+      "fetched": 438,
+      "unseen": 4,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -164,62 +175,31 @@
     {
       "monitor": "nbcu",
       "success": true,
-      "scanned_at": "2026-11-10T20:17:40+00:00",
-      "fetched": 309,
-      "unseen": 15,
+      "scanned_at": "2026-11-11T01:44:24+00:00",
+      "fetched": 311,
+      "unseen": 5,
       "state_updated": true,
       "candidates": [],
-      "needs_ai_review": [
-        {
-          "job_id": "744000160955954",
-          "title": "Associate Design Engineer",
-          "location": "New York, NEW YORK, United States",
-          "posted_at": "2026-11-10T19:50:44.598Z",
-          "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000160955954-associate-design-engineer",
-          "priority": "low",
-          "matching_requirements": [
-            "target_title:technical_review",
-            "profile_signal:javascript_react:+1",
-            "profile_signal:backend_apis:+2",
-            "profile_signal:cloud_containers:+2"
-          ],
-          "material_gaps": []
-        }
-      ],
+      "needs_ai_review": [],
       "errors": []
     },
     {
       "monitor": "nvidia",
       "success": true,
-      "scanned_at": "2026-11-10T20:17:40+00:00",
+      "scanned_at": "2026-11-11T01:44:24+00:00",
       "fetched": 120,
-      "unseen": 7,
+      "unseen": 3,
       "state_updated": true,
       "candidates": [],
-      "needs_ai_review": [
-        {
-          "job_id": "JR2021689",
-          "title": "Inference Performance Engineer, Agent Driven Inference Optimization",
-          "location": "US, CA, Santa Clara; US, CA, Remote",
-          "posted_at": "2026-11-09",
-          "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Inference-Performance-Engineer--AI-Inference-Configuration-Optimization_JR2021689",
-          "priority": "low",
-          "matching_requirements": [
-            "target_title:technical_review",
-            "profile_signal:python:+2",
-            "profile_signal:agentic_tooling:+3"
-          ],
-          "material_gaps": []
-        }
-      ],
+      "needs_ai_review": [],
       "errors": []
     },
     {
       "monitor": "occ",
       "success": true,
-      "scanned_at": "2026-11-10T20:17:40+00:00",
+      "scanned_at": "2026-11-11T01:44:24+00:00",
       "fetched": 67,
-      "unseen": 2,
+      "unseen": 1,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -228,7 +208,7 @@
     {
       "monitor": "ocient",
       "success": true,
-      "scanned_at": "2026-11-10T20:17:40+00:00",
+      "scanned_at": "2026-11-11T01:44:24+00:00",
       "fetched": 13,
       "unseen": 0,
       "state_updated": true,
@@ -239,7 +219,7 @@
     {
       "monitor": "rivian",
       "success": true,
-      "scanned_at": "2026-11-10T20:17:40+00:00",
+      "scanned_at": "2026-11-11T01:44:24+00:00",
       "fetched": 30,
       "unseen": 0,
       "state_updated": true,
@@ -250,33 +230,48 @@
     {
       "monitor": "tiktok",
       "success": true,
-      "scanned_at": "2026-11-10T20:17:40+00:00",
+      "scanned_at": "2026-11-11T01:44:24+00:00",
       "fetched": 1872,
-      "unseen": 6,
+      "unseen": 3,
       "state_updated": true,
       "candidates": [],
-      "needs_ai_review": [],
+      "needs_ai_review": [
+        {
+          "job_id": "7706693387932633397",
+          "title": "Machine Learning Engineer Intern (E-Commerce Recommendation Mall) - 2027 Start",
+          "location": "San Jose, California, United States of America",
+          "posted_at": "",
+          "url": "https://lifeattiktok.com/search/7706693387932633397",
+          "priority": "low",
+          "matching_requirements": [
+            "target_title:ai_ml",
+            "profile_signal:python:+2",
+            "profile_signal:agentic_tooling:+3"
+          ],
+          "material_gaps": []
+        }
+      ],
       "errors": []
     },
     {
       "monitor": "waymo",
       "success": true,
-      "scanned_at": "2026-11-10T20:17:40+00:00",
-      "fetched": 167,
-      "unseen": 2,
+      "scanned_at": "2026-11-11T01:44:24+00:00",
+      "fetched": 166,
+      "unseen": 1,
       "state_updated": true,
       "candidates": [
         {
-          "job_id": "5652",
-          "title": "2027 Summer Intern, BS/MS, Software Engineer, Multiverse",
+          "job_id": "5540",
+          "title": "2027 Summer Intern, BS/MS/PhD, Software Engineer, Eval Data Infra",
           "location": [
-            "San Francisco, California",
+            "Mountain View, California",
             "Software Engineering",
             "Intern",
             "Intern"
           ],
           "posted_at": null,
-          "url": "https://careers.withwaymo.com/jobs/2027-summer-intern-bs-ms-software-engineer-multiverse-san-francisco-california-united-states",
+          "url": "https://careers.withwaymo.com/jobs/2027-summer-intern-bs-ms-phd-software-engineer-eval-data-infra-mountain-view-california-united-states",
           "priority": "medium",
           "matching_requirements": [
             "target_title:software",
