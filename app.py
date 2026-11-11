@@ -13032,6 +13032,11 @@ def _jd_experiment_call(stage, schema, prompt, inputs):
     request_inputs = copy.deepcopy(inputs)
     if "employment_headings_only" in request_inputs:
         request_inputs["employment_headings_only"] = jd_experiment.headings_only(request_inputs["employment_headings_only"])
+        contexts = jd_experiment.employer_project_contexts(request_inputs["employment_headings_only"])
+        if contexts:
+            request_inputs["employer_project_contexts"] = contexts
+        else:
+            request_inputs.pop("employer_project_contexts", None)
     if stage == "targeting" and request_inputs.get("job_description"):
         description = request_inputs.pop("job_description")
         request_inputs["job_description_clauses"] = jd_experiment.jd_clause_map(description)
@@ -13193,6 +13198,9 @@ def generate_jd_only_resume(jd, blueprints, resume_mode, revision_context=None, 
         raise ValueError("Select at least one employment heading.")
     mode = jd_experiment.mode_context(normalize_resume_mode(resume_mode))
     inputs = {"job_description": jd, "employment_headings_only": roles, "resume_mode_context": mode}
+    contexts = jd_experiment.employer_project_contexts(roles)
+    if contexts:
+        inputs["employer_project_contexts"] = contexts
     revision = (revision_context or {}).get("revision_request", "")
     if revision:
         inputs["requested_revision"] = str(revision)[:AI_REVISION_REQUEST_MAX_CHARS]

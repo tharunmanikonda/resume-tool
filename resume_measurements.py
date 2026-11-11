@@ -3,11 +3,19 @@ import re
 from decimal import Decimal
 
 
+def format_percentage_symbols(text):
+    """Format explicit numeric percentages without changing percentage-point units."""
+    text = re.sub(r'(?<![\w.])(\d[\d,]*(?:\.\d+)?)\s*(?:percent|per\s+cent)\b',
+                  r'\1%', str(text), flags=re.I)
+    return re.sub(r'(?<=\d)\s+%', '%', text)
+
+
 def measurement_rules():
     return "\n".join([
         "NUMERICAL EVIDENCE CONTRACT (applies to drafting, repair and review):",
         "Before writing, identify from cited source evidence: personal action, specific system/workflow, measure, supplied value/unit/qualifier, population or time context if supplied, and the action/result connection.",
         "Choose improvement, scale, or qualitative evidence. Improvement: implemented action + workflow + measured change + supported causal mechanism. Scale: implemented action + workflow + measured operating scope; scope is not an improvement. Qualitative: concrete supported contribution when no measurement is supplied.",
+        "Write percentage quantities with the % symbol attached to the number: 30%, not 30 percent or 30 %. Preserve percentage-point differences as percentage points; do not change their meaning.",
         "Use XYZ naturally; do not force a numeric result or a fixed sentence order. Keep the 80% numerical target, counting both supported improvement and scale. Report any remaining shortfall outside resume text.",
         "Preserve the measurement's original meaning, unit, bound/approximation, population and period. Never invent a baseline or convert a final-state measurement into an improvement. Do not move a number to another accomplishment.",
         "Treat 'over 50,000' and '50,000+' as equivalent scope notation. Preserve '<', 'at least', 'approximately' and similar qualifiers; never turn an estimate/bound into an exact count or reverse its direction.",

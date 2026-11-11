@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "employers": {
+    "mckinsey": {
+      "employer_names": ["McKinsey & Company", "McKinsey"],
+      "domain": "Enterprise referral and internal business workflows; client industry unspecified",
+      "matching_work_areas": ["Referral intake, classification and routing", "Internal workflow APIs and integrations", "Operational reporting, permissions and workflow support"],
+      "fallback_project": {
+        "purpose": "Enterprise referral workflow for internal business users",
+        "workflow": "Receive referrals, validate and route requests, track status, and expose operational views"
+      }
+    },
+    "uber": {
+      "employer_names": ["Uber"],
+      "domain": "Ride-sharing and related trip operations",
+      "matching_work_areas": ["Trip audits and ride-data validation", "Fare adjustments and payment or payout integrations linked to trips", "Trip operations reporting, event processing and support tooling"],
+      "fallback_project": {
+        "purpose": "Trip-audit and fare-validation workflow for ride-sharing operations",
+        "workflow": "Ingest ride records, validate fare adjustments, flag exceptions, and support operational investigation"
+      }
+    },
+    "kpmg": {
+      "employer_names": ["KPMG"],
+      "domain": "Financial audit, compliance reporting and supporting operational workflows",
+      "matching_work_areas": ["Audit reporting and operational dashboards", "Audit-data validation and application integrations", "Compliance document workflows, access controls and traceability"],
+      "fallback_project": {
+        "purpose": "Audit reporting and compliance workflow application",
+        "workflow": "Validate audit data, expose reports, manage supporting documents, and track review status"
+      }
+    },
+    "trigent": {
+      "employer_names": ["Trigent Software", "Trigent"],
+      "domain": "Business web application UI modernization; client industry unspecified",
+      "matching_work_areas": ["Assigned forms, screens and reusable UI components", "API consumption, input validation and session handling", "UI bug fixes, accessibility, responsive layouts and focused tests"],
+      "fallback_project": {
+        "purpose": "Modernization of an existing business web application's user interface",
+        "workflow": "Implement assigned screens and forms, connect existing APIs, validate inputs, and test interactions"
+      }
+    }
+  }
+}
