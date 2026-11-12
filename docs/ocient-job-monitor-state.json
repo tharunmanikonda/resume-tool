@@ -1,6 +1,7 @@
 {
   "company": "ocient",
   "known_job_ids": [
+    "am9icG9zdDoEfUJ6ueQ_zOuEq-A1e4oU",
     "am9icG9zdDoG4UzA36jIyuP_xXPNzCoE",
     "am9icG9zdDoOaLMvocrUd1cuTZMf4Xbe",
     "am9icG9zdDoSZRhfRFSX4uPin3ZELp9s",
@@ -42,7 +43,7 @@
       "category": "software"
     }
   },
-  "last_successful_scan_at": "2026-11-11T20:02:07+00:00",
+  "last_successful_scan_at": "2026-11-12T02:44:10+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "am9icG9zdDoSZRhfRFSX4uPin3ZELp9s": {
@@ -291,6 +292,22 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-11T20:02:07+00:00",
       "last_seen_at": "2026-11-11T20:02:07+00:00"
+    },
+    "am9icG9zdDoEfUJ6ueQ_zOuEq-A1e4oU": {
+      "title": "Executive Sales Director, ONSS EMEA",
+      "location": "London, England, Remote (United Kingdom or Europe), Remote",
+      "url": "https://jobs.gem.com/ocient-inc-/am9icG9zdDoEfUJ6ueQ_zOuEq-A1e4oU",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-12T02:44:10+00:00",
+      "last_seen_at": "2026-11-12T02:44:10+00:00"
     }
   },
   "source_updated_at_by_id": {}

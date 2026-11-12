@@ -45,6 +45,7 @@
     "JR9337",
     "JR9343",
     "JR9344",
+    "JR9345",
     "JR9354",
     "JR9361",
     "JR9363",
@@ -100,9 +101,18 @@
       "first_seen_at": "2026-10-24T12:24:41-05:00",
       "priority": "low",
       "category": "security"
+    },
+    "JR9345": {
+      "title": "Associate Software Engineer",
+      "location": "Austin, TX, USA",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Austin-TX-USA/Associate-Software-Engineer_JR9345-1",
+      "posted_at": "2026-11-11",
+      "first_seen_at": "2026-11-12T02:44:10+00:00",
+      "priority": "medium",
+      "category": "software"
     }
   },
-  "last_successful_scan_at": "2026-11-11T20:02:07+00:00",
+  "last_successful_scan_at": "2026-11-12T02:44:10+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "JR9003": {

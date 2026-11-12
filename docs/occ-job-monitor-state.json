@@ -79,6 +79,7 @@
     "REQ-4887",
     "REQ-4888",
     "REQ-4889",
+    "REQ-4894",
     "REQ-4896",
     "REQ-4899",
     "REQ-4900",
@@ -129,7 +130,7 @@
       "category": "software"
     }
   },
-  "last_successful_scan_at": "2026-11-11T20:02:07+00:00",
+  "last_successful_scan_at": "2026-11-12T02:44:10+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "REQ-4896": {
@@ -1401,6 +1402,20 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-11T01:44:24+00:00",
       "last_seen_at": "2026-11-11T01:44:24+00:00"
+    },
+    "REQ-4894": {
+      "title": "Associate Principal, Software Engineering Delivery & Execution",
+      "location": "Chicago - 125 S Franklin",
+      "url": "https://theocc.wd5.myworkdayjobs.com/job/Chicago---125-S-Franklin/Associate-Principal--Software-Engineering-Delivery---Execution_REQ-4894-2",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-12T02:44:10+00:00",
+      "last_seen_at": "2026-11-12T02:44:10+00:00"
     }
   },
   "source_updated_at_by_id": {}

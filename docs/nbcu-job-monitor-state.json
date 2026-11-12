@@ -737,7 +737,11 @@
     "744000161119387",
     "744000161122269",
     "744000161150234",
-    "744000161159149"
+    "744000161159149",
+    "744000161161787",
+    "744000161163099",
+    "744000161163147",
+    "744000161179529"
   ],
   "candidate_catalog": {
     "744000151898289": {
@@ -847,9 +851,18 @@
       "first_seen_at": "2026-11-10T20:17:40+00:00",
       "priority": "low",
       "category": "technical_review"
+    },
+    "744000161163099": {
+      "title": "Network Engineer",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161163099-network-engineer",
+      "posted_at": "2026-11-11T20:34:39.835Z",
+      "first_seen_at": "2026-11-12T02:44:10+00:00",
+      "priority": "low",
+      "category": "technical_review"
     }
   },
-  "last_successful_scan_at": "2026-11-11T20:02:07+00:00",
+  "last_successful_scan_at": "2026-11-12T02:44:10+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "744000156079569": {
@@ -9980,6 +9993,48 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-11T20:02:07+00:00",
       "last_seen_at": "2026-11-11T20:02:07+00:00"
+    },
+    "744000161163147": {
+      "title": "Producer, Telemundo T60 San Antonio",
+      "location": "San Antonio, TEXAS, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161163147-producer-telemundo-t60-san-antonio",
+      "posted_at": "2026-11-11T20:40:38.226Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-12T02:44:10+00:00",
+      "last_seen_at": "2026-11-12T02:44:10+00:00"
+    },
+    "744000161161787": {
+      "title": "Franchise, Products & Partnerships: Creative and Product Design & Development Internships \u2013 Summer 2027",
+      "location": "Universal City, CA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161161787-franchise-products-partnerships-creative-and-product-design-development-internships-summer-2027",
+      "posted_at": "2026-11-11T20:23:25.922Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-12T02:44:10+00:00",
+      "last_seen_at": "2026-11-12T02:44:10+00:00"
+    },
+    "744000161179529": {
+      "title": "Software Engineering Internships \u2013 Summer 2027",
+      "location": "Universal City, CA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161179529-software-engineering-internships-summer-2027",
+      "posted_at": "2026-11-11T22:56:19.744Z",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-12T02:44:10+00:00",
+      "last_seen_at": "2026-11-12T02:44:10+00:00"
     }
   },
   "source_updated_at_by_id": {}

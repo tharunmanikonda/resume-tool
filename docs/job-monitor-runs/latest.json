@@ -1,6 +1,6 @@
 {
   "success": true,
-  "scanned_at": "2026-11-11T20:02:07+00:00",
+  "scanned_at": "2026-11-12T02:44:10+00:00",
   "monitor_count": 14,
   "successful_monitors": [
     "cbre",
@@ -19,17 +19,71 @@
     "waymo"
   ],
   "failed_monitors": [],
-  "candidate_count": 0,
-  "needs_ai_review_count": 0,
-  "candidates": [],
-  "needs_ai_review": [],
+  "candidate_count": 2,
+  "needs_ai_review_count": 1,
+  "candidates": [
+    {
+      "monitor": "cdk",
+      "job_id": "JR9345",
+      "title": "Associate Software Engineer",
+      "location": "Austin, TX, USA",
+      "posted_at": "2026-11-11",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Austin-TX-USA/Associate-Software-Engineer_JR9345-1",
+      "priority": "medium",
+      "matching_requirements": [
+        "target_title:software",
+        "profile_signal:javascript_react:+1",
+        "profile_signal:backend_apis:+2",
+        "profile_signal:databases:+1",
+        "profile_signal:qa_automation:+2"
+      ],
+      "material_gaps": []
+    },
+    {
+      "monitor": "rivian",
+      "job_id": "35829",
+      "title": "Software Engineer II, Autonomy Evaluation & Metrics Platform",
+      "location": "Palo Alto, California",
+      "posted_at": "2026-11-11T22:27:00+0000",
+      "url": "https://careers.rivian.com/careers-home/jobs/35829",
+      "priority": "high",
+      "matching_requirements": [
+        "target_title:software",
+        "profile_signal:python:+2",
+        "profile_signal:backend_apis:+2",
+        "profile_signal:data_streaming:+2",
+        "profile_signal:databases:+1",
+        "profile_signal:cloud_containers:+2",
+        "profile_signal:observability:+1",
+        "profile_signal:qa_automation:+2"
+      ],
+      "material_gaps": []
+    }
+  ],
+  "needs_ai_review": [
+    {
+      "monitor": "nbcu",
+      "job_id": "744000161163099",
+      "title": "Network Engineer",
+      "location": "New York, NEW YORK, United States",
+      "posted_at": "2026-11-11T20:34:39.835Z",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161163099-network-engineer",
+      "priority": "low",
+      "matching_requirements": [
+        "target_title:technical_review",
+        "profile_signal:cloud_containers:+2",
+        "profile_signal:reliability_telemetry:+3"
+      ],
+      "material_gaps": []
+    }
+  ],
   "results": [
     {
       "monitor": "cbre",
       "success": true,
-      "scanned_at": "2026-11-11T20:02:07+00:00",
-      "fetched": 903,
-      "unseen": 32,
+      "scanned_at": "2026-11-12T02:44:10+00:00",
+      "fetched": 786,
+      "unseen": 15,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -38,95 +92,35 @@
     {
       "monitor": "cdk",
       "success": true,
-      "scanned_at": "2026-11-11T20:02:07+00:00",
-      "fetched": 45,
-      "unseen": 0,
+      "scanned_at": "2026-11-12T02:44:10+00:00",
+      "fetched": 46,
+      "unseen": 1,
       "state_updated": true,
-      "candidates": [],
+      "candidates": [
+        {
+          "job_id": "JR9345",
+          "title": "Associate Software Engineer",
+          "location": "Austin, TX, USA",
+          "posted_at": "2026-11-11",
+          "url": "https://cdk.wd1.myworkdayjobs.com/job/Austin-TX-USA/Associate-Software-Engineer_JR9345-1",
+          "priority": "medium",
+          "matching_requirements": [
+            "target_title:software",
+            "profile_signal:javascript_react:+1",
+            "profile_signal:backend_apis:+2",
+            "profile_signal:databases:+1",
+            "profile_signal:qa_automation:+2"
+          ],
+          "material_gaps": []
+        }
+      ],
       "needs_ai_review": [],
       "errors": []
     },
     {
       "monitor": "cisco",
       "success": true,
-      "scanned_at": "2026-11-11T20:02:07+00:00",
-      "fetched": 80,
-      "unseen": 1,
-      "state_updated": true,
-      "candidates": [],
-      "needs_ai_review": [],
-      "errors": []
-    },
-    {
-      "monitor": "crunchyroll",
-      "success": true,
-      "scanned_at": "2026-11-11T20:02:07+00:00",
-      "fetched": 103,
-      "unseen": 3,
-      "state_updated": true,
-      "candidates": [],
-      "needs_ai_review": [],
-      "errors": []
-    },
-    {
-      "monitor": "ebay",
-      "success": true,
-      "scanned_at": "2026-11-11T20:02:07+00:00",
-      "fetched": 176,
-      "unseen": 5,
-      "state_updated": true,
-      "candidates": [],
-      "needs_ai_review": [],
-      "errors": []
-    },
-    {
-      "monitor": "intepros",
-      "success": true,
-      "scanned_at": "2026-11-11T20:02:07+00:00",
-      "fetched": 30,
-      "unseen": 3,
-      "state_updated": true,
-      "candidates": [],
-      "needs_ai_review": [],
-      "errors": []
-    },
-    {
-      "monitor": "iqvia",
-      "success": true,
-      "scanned_at": "2026-11-11T20:02:07+00:00",
-      "fetched": 841,
-      "unseen": 30,
-      "state_updated": true,
-      "candidates": [],
-      "needs_ai_review": [],
-      "errors": []
-    },
-    {
-      "monitor": "nbcu",
-      "success": true,
-      "scanned_at": "2026-11-11T20:02:07+00:00",
-      "fetched": 313,
-      "unseen": 9,
-      "state_updated": true,
-      "candidates": [],
-      "needs_ai_review": [],
-      "errors": []
-    },
-    {
-      "monitor": "nvidia",
-      "success": true,
-      "scanned_at": "2026-11-11T20:02:07+00:00",
-      "fetched": 120,
-      "unseen": 1,
-      "state_updated": true,
-      "candidates": [],
-      "needs_ai_review": [],
-      "errors": []
-    },
-    {
-      "monitor": "occ",
-      "success": true,
-      "scanned_at": "2026-11-11T20:02:07+00:00",
+      "scanned_at": "2026-11-12T02:44:10+00:00",
       "fetched": 60,
       "unseen": 0,
       "state_updated": true,
@@ -135,11 +129,103 @@
       "errors": []
     },
     {
+      "monitor": "crunchyroll",
+      "success": true,
+      "scanned_at": "2026-11-12T02:44:10+00:00",
+      "fetched": 100,
+      "unseen": 1,
+      "state_updated": true,
+      "candidates": [],
+      "needs_ai_review": [],
+      "errors": []
+    },
+    {
+      "monitor": "ebay",
+      "success": true,
+      "scanned_at": "2026-11-12T02:44:10+00:00",
+      "fetched": 159,
+      "unseen": 0,
+      "state_updated": true,
+      "candidates": [],
+      "needs_ai_review": [],
+      "errors": []
+    },
+    {
+      "monitor": "intepros",
+      "success": true,
+      "scanned_at": "2026-11-12T02:44:10+00:00",
+      "fetched": 30,
+      "unseen": 2,
+      "state_updated": true,
+      "candidates": [],
+      "needs_ai_review": [],
+      "errors": []
+    },
+    {
+      "monitor": "iqvia",
+      "success": true,
+      "scanned_at": "2026-11-12T02:44:10+00:00",
+      "fetched": 380,
+      "unseen": 1,
+      "state_updated": true,
+      "candidates": [],
+      "needs_ai_review": [],
+      "errors": []
+    },
+    {
+      "monitor": "nbcu",
+      "success": true,
+      "scanned_at": "2026-11-12T02:44:10+00:00",
+      "fetched": 312,
+      "unseen": 4,
+      "state_updated": true,
+      "candidates": [],
+      "needs_ai_review": [
+        {
+          "job_id": "744000161163099",
+          "title": "Network Engineer",
+          "location": "New York, NEW YORK, United States",
+          "posted_at": "2026-11-11T20:34:39.835Z",
+          "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161163099-network-engineer",
+          "priority": "low",
+          "matching_requirements": [
+            "target_title:technical_review",
+            "profile_signal:cloud_containers:+2",
+            "profile_signal:reliability_telemetry:+3"
+          ],
+          "material_gaps": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "monitor": "nvidia",
+      "success": true,
+      "scanned_at": "2026-11-12T02:44:10+00:00",
+      "fetched": 100,
+      "unseen": 0,
+      "state_updated": true,
+      "candidates": [],
+      "needs_ai_review": [],
+      "errors": []
+    },
+    {
+      "monitor": "occ",
+      "success": true,
+      "scanned_at": "2026-11-12T02:44:10+00:00",
+      "fetched": 65,
+      "unseen": 1,
+      "state_updated": true,
+      "candidates": [],
+      "needs_ai_review": [],
+      "errors": []
+    },
+    {
       "monitor": "ocient",
       "success": true,
-      "scanned_at": "2026-11-11T20:02:07+00:00",
-      "fetched": 14,
-      "unseen": 2,
+      "scanned_at": "2026-11-12T02:44:10+00:00",
+      "fetched": 15,
+      "unseen": 1,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -148,20 +234,40 @@
     {
       "monitor": "rivian",
       "success": true,
-      "scanned_at": "2026-11-11T20:02:07+00:00",
-      "fetched": 30,
-      "unseen": 0,
+      "scanned_at": "2026-11-12T02:44:10+00:00",
+      "fetched": 40,
+      "unseen": 1,
       "state_updated": true,
-      "candidates": [],
+      "candidates": [
+        {
+          "job_id": "35829",
+          "title": "Software Engineer II, Autonomy Evaluation & Metrics Platform",
+          "location": "Palo Alto, California",
+          "posted_at": "2026-11-11T22:27:00+0000",
+          "url": "https://careers.rivian.com/careers-home/jobs/35829",
+          "priority": "high",
+          "matching_requirements": [
+            "target_title:software",
+            "profile_signal:python:+2",
+            "profile_signal:backend_apis:+2",
+            "profile_signal:data_streaming:+2",
+            "profile_signal:databases:+1",
+            "profile_signal:cloud_containers:+2",
+            "profile_signal:observability:+1",
+            "profile_signal:qa_automation:+2"
+          ],
+          "material_gaps": []
+        }
+      ],
       "needs_ai_review": [],
       "errors": []
     },
     {
       "monitor": "tiktok",
       "success": true,
-      "scanned_at": "2026-11-11T20:02:07+00:00",
-      "fetched": 1870,
-      "unseen": 1,
+      "scanned_at": "2026-11-12T02:44:10+00:00",
+      "fetched": 1873,
+      "unseen": 4,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -170,9 +276,9 @@
     {
       "monitor": "waymo",
       "success": true,
-      "scanned_at": "2026-11-11T20:02:07+00:00",
-      "fetched": 165,
-      "unseen": 0,
+      "scanned_at": "2026-11-12T02:44:10+00:00",
+      "fetched": 164,
+      "unseen": 1,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],

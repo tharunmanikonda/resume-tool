@@ -2011,7 +2011,11 @@
     "7706616396639127813",
     "7706649771394091317",
     "7706693387932633397",
-    "7706738474833365301"
+    "7706738474833365301",
+    "7706822228583287093",
+    "7706845403284801797",
+    "7707015061048428805",
+    "7707015653621893429"
   ],
   "candidate_catalog": {
     "7680987768009754885": {
@@ -29233,8 +29237,67 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-11T20:02:07+00:00",
       "last_seen_at": "2026-11-11T20:02:07+00:00"
+    },
+    "7707015653621893429": {
+      "title": "Senior Data Protection Specialist",
+      "location": "London, England, United Kingdom",
+      "url": "https://lifeattiktok.com/search/7707015653621893429",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-12T02:44:10+00:00",
+      "last_seen_at": "2026-11-12T02:44:10+00:00"
+    },
+    "7707015061048428805": {
+      "title": "Senior Data Protection Specialist",
+      "location": "Dublin, Ireland",
+      "url": "https://lifeattiktok.com/search/7707015061048428805",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-12T02:44:10+00:00",
+      "last_seen_at": "2026-11-12T02:44:10+00:00"
+    },
+    "7706822228583287093": {
+      "title": "Risk Strategy Operations Specialist - Live",
+      "location": "Singapore",
+      "url": "https://lifeattiktok.com/search/7706822228583287093",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-12T02:44:10+00:00",
+      "last_seen_at": "2026-11-12T02:44:10+00:00"
+    },
+    "7706845403284801797": {
+      "title": "Platform User Operations Specialist Project Intern (TikTok-Platform Responsibility-User Feedback Operations) - 2027 Start",
+      "location": "San Jose, California, United States of America",
+      "url": "https://lifeattiktok.com/search/7706845403284801797",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-12T02:44:10+00:00",
+      "last_seen_at": "2026-11-12T02:44:10+00:00"
     }
   },
-  "last_successful_scan_at": "2026-11-11T20:02:07+00:00",
+  "last_successful_scan_at": "2026-11-12T02:44:10+00:00",
   "source_updated_at_by_id": {}
 }

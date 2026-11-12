@@ -947,6 +947,7 @@
     "R1561253",
     "R1561296",
     "R1561303",
+    "R1561320",
     "R1561353",
     "R1561398",
     "R1561412",
@@ -2808,7 +2809,7 @@
       "category": "technical_review"
     }
   },
-  "last_successful_scan_at": "2026-11-11T20:02:07+00:00",
+  "last_successful_scan_at": "2026-11-12T02:44:10+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "R1545472": {
@@ -38788,6 +38789,20 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-11T20:02:07+00:00",
       "last_seen_at": "2026-11-11T20:02:07+00:00"
+    },
+    "R1561320": {
+      "title": "Data & Analytics Product Owner",
+      "location": "S\u00e3o Paulo, Brazil",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/So-Paulo-Brazil/Data---Analytics-Product-Owner_R1561320-1",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-12T02:44:10+00:00",
+      "last_seen_at": "2026-11-12T02:44:10+00:00"
     }
   },
   "source_updated_at_by_id": {}

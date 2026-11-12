@@ -185,6 +185,7 @@
     "35301",
     "35302",
     "35303",
+    "35829",
     "35837"
   ],
   "candidate_catalog": {
@@ -268,9 +269,18 @@
       "first_seen_at": "2026-11-05T02:01:04+00:00",
       "priority": "low",
       "category": "integration"
+    },
+    "35829": {
+      "title": "Software Engineer II, Autonomy Evaluation & Metrics Platform",
+      "location": "Palo Alto, California",
+      "url": "https://careers.rivian.com/careers-home/jobs/35829",
+      "posted_at": "2026-11-11T22:27:00+0000",
+      "first_seen_at": "2026-11-12T02:44:10+00:00",
+      "priority": "high",
+      "category": "software"
     }
   },
-  "last_successful_scan_at": "2026-11-11T20:02:07+00:00",
+  "last_successful_scan_at": "2026-11-12T02:44:10+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "34699": {

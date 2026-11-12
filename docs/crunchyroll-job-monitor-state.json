@@ -122,6 +122,7 @@
     "8324692",
     "8328077",
     "8328731",
+    "8331670",
     "8332314",
     "8332368",
     "8337587",
@@ -2002,9 +2003,25 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-11T20:02:07+00:00",
       "last_seen_at": "2026-11-11T20:02:07+00:00"
+    },
+    "8331670": {
+      "title": "Director, Marketing LATAM",
+      "location": "Mexico City, Mexico City, Mexico",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8331670?gh_jid=8331670",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-12T02:44:10+00:00",
+      "last_seen_at": "2026-11-12T02:44:10+00:00"
     }
   },
-  "last_successful_scan_at": "2026-11-11T20:02:07+00:00",
+  "last_successful_scan_at": "2026-11-12T02:44:10+00:00",
   "source_updated_at_by_id": {
     "6584220": "2026-11-10T08:46:25-05:00",
     "8204263": "2026-11-10T08:46:25-05:00",
@@ -2131,6 +2148,7 @@
     "8312305": "2026-11-10T16:16:06-05:00",
     "8282706": "2026-11-11T14:07:49-05:00",
     "8304675": "2026-11-11T14:07:52-05:00",
-    "8170816": "2026-11-11T14:16:07-05:00"
+    "8170816": "2026-11-11T14:16:07-05:00",
+    "8331670": "2026-11-11T17:22:47-05:00"
   }
 }

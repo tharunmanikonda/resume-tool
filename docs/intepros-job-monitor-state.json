@@ -48,6 +48,7 @@
     "a0Hcw000008VUhxEAG",
     "a0Hcw000008YGtlEAG",
     "a0Hcw000008YuPlEAK",
+    "a0Hcw000008bxULEAY",
     "a0Hcw000008c7FBEAY",
     "a0Hcw000008d5rKEAQ",
     "a0Hcw000008hPRZEA2",
@@ -237,9 +238,10 @@
     "a0Hcw00000BZMQjEAP",
     "a0Hcw00000Bbm8zEAB",
     "a0Hcw00000BbmybEAB",
-    "a0Hcw00000Bc3ubEAB"
+    "a0Hcw00000Bc3ubEAB",
+    "a0Hcw00000BcMArEAN"
   ],
-  "last_successful_scan_at": "2026-11-11T20:02:07+00:00",
+  "last_successful_scan_at": "2026-11-12T02:44:10+00:00",
   "candidate_catalog": {
     "a0Hcw000006tdYLEAY": {
       "title": "Operational Excellence Engineer",
@@ -1450,6 +1452,36 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-11T20:02:07+00:00",
       "last_seen_at": "2026-11-11T20:02:07+00:00"
+    },
+    "a0Hcw00000BcMArEAN": {
+      "title": "Senior Physical Security Project Manager",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000BcMArEAN/senior-physical-security-project-manager",
+      "posted_at": "Posted This Week",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-12T02:44:10+00:00",
+      "last_seen_at": "2026-11-12T02:44:10+00:00"
+    },
+    "a0Hcw000008bxULEAY": {
+      "title": "Sr. Finance Director",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw000008bxULEAY/sr-finance-director",
+      "posted_at": "Posted This Week",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-12T02:44:10+00:00",
+      "last_seen_at": "2026-11-12T02:44:10+00:00"
     }
   },
   "source_updated_at_by_id": {}
