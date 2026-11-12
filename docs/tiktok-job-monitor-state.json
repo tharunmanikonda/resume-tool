@@ -233,6 +233,7 @@
     "7455542860109744402",
     "7455575871421876487",
     "7461813875965610258",
+    "7461837515889133842",
     "7462285868162828562",
     "7462667177037613320",
     "7464840513293912327",
@@ -335,6 +336,7 @@
     "7527439871503239431",
     "7527441329384147208",
     "7528196025854380306",
+    "7528332249889294610",
     "7529474348652382472",
     "7529557919064967432",
     "7529626439915079944",
@@ -1994,6 +1996,7 @@
     "7704570948737255733",
     "7704619723464411445",
     "7704620574878140725",
+    "7704696088079010053",
     "7704777867472734517",
     "7704778444389173509",
     "7704784971953916213",
@@ -2007,6 +2010,8 @@
     "7706053837959186741",
     "7706187982816594181",
     "7706338918660098309",
+    "7706430001975380229",
+    "7706481808216688901",
     "7706600831827085621",
     "7706616396639127813",
     "7706649771394091317",
@@ -2015,7 +2020,9 @@
     "7706822228583287093",
     "7706845403284801797",
     "7707015061048428805",
-    "7707015653621893429"
+    "7707015653621893429",
+    "7707055690713893125",
+    "7707122792648132869"
   ],
   "candidate_catalog": {
     "7680987768009754885": {
@@ -5194,6 +5201,24 @@
       "first_seen_at": "2026-11-11T01:44:24+00:00",
       "priority": "low",
       "category": "ai_ml"
+    },
+    "7706481808216688901": {
+      "title": "Network Engineer - IT Infrastructure - United States",
+      "location": "New York, United States of America",
+      "url": "https://lifeattiktok.com/search/7706481808216688901",
+      "posted_at": "",
+      "first_seen_at": "2026-11-12T20:41:26+00:00",
+      "priority": "medium",
+      "category": "technical_review"
+    },
+    "7704696088079010053": {
+      "title": "Software Engineer - Intern (TikTok Search) - 2027 Start",
+      "location": "San Jose, California, United States of America",
+      "url": "https://lifeattiktok.com/search/7704696088079010053",
+      "posted_at": "",
+      "first_seen_at": "2026-11-12T20:41:26+00:00",
+      "priority": "low",
+      "category": "software"
     }
   },
   "rejected_catalog": {
@@ -29296,8 +29321,85 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-12T02:44:10+00:00",
       "last_seen_at": "2026-11-12T02:44:10+00:00"
+    },
+    "7461837515889133842": {
+      "title": "Key Account Manager (Travel) - TikTok Local Services",
+      "location": "Seattle, Washington, United States of America",
+      "url": "https://lifeattiktok.com/search/7461837515889133842",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-12T20:41:26+00:00",
+      "last_seen_at": "2026-11-12T20:41:26+00:00"
+    },
+    "7707122792648132869": {
+      "title": "IT Technical Service Cluster Leader - IT",
+      "location": "Hong Kong (China), Hong Kong Island, Hong Kong, China",
+      "url": "https://lifeattiktok.com/search/7707122792648132869",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-12T20:41:26+00:00",
+      "last_seen_at": "2026-11-12T20:41:26+00:00"
+    },
+    "7706430001975380229": {
+      "title": "Key Account Client Solutions Manager, Emerging Market - GBS",
+      "location": "Singapore",
+      "url": "https://lifeattiktok.com/search/7706430001975380229",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-12T20:41:26+00:00",
+      "last_seen_at": "2026-11-12T20:41:26+00:00"
+    },
+    "7528332249889294610": {
+      "title": "TikTok Local Services - Merchant Governance Strategy Manager (Model Strategy)",
+      "location": "Singapore",
+      "url": "https://lifeattiktok.com/search/7528332249889294610",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-12T20:41:26+00:00",
+      "last_seen_at": "2026-11-12T20:41:26+00:00"
+    },
+    "7707055690713893125": {
+      "title": "TikTok Shop - Regional Seller Governance Strategy Manager",
+      "location": "Seattle, Washington, United States of America",
+      "url": "https://lifeattiktok.com/search/7707055690713893125",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-12T20:41:26+00:00",
+      "last_seen_at": "2026-11-12T20:41:26+00:00"
     }
   },
-  "last_successful_scan_at": "2026-11-12T02:44:10+00:00",
+  "last_successful_scan_at": "2026-11-12T20:41:26+00:00",
   "source_updated_at_by_id": {}
 }

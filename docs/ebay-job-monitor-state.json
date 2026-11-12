@@ -321,6 +321,7 @@
     "R0076991",
     "R0076995",
     "R0076997",
+    "R0076998",
     "R0077001",
     "R0077009",
     "R0077010",
@@ -368,6 +369,7 @@
     "R0077182",
     "R0077185",
     "R0077188",
+    "R0077189",
     "R0077191",
     "R0077192",
     "R0077195",
@@ -389,6 +391,7 @@
     "R0077275",
     "R0077276",
     "R0077281",
+    "R0077283",
     "R0077292",
     "R0077293",
     "R0077294",
@@ -402,6 +405,7 @@
     "R0077328",
     "R0077329",
     "R0077330",
+    "R0077342",
     "R0077346",
     "R0077348",
     "R0077349",
@@ -509,7 +513,7 @@
       "category": "platform"
     }
   },
-  "last_successful_scan_at": "2026-11-12T02:44:10+00:00",
+  "last_successful_scan_at": "2026-11-12T20:41:26+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "R0077145": {
@@ -5851,6 +5855,64 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-11T20:02:07+00:00",
       "last_seen_at": "2026-11-11T20:02:07+00:00"
+    },
+    "R0077342": {
+      "title": "Applied Researcher 2",
+      "location": "Tokyo, Tokyo, Japan",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077342/Applied-Researcher-2",
+      "posted_at": "2026-11-12T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-12T20:41:26+00:00",
+      "last_seen_at": "2026-11-12T20:41:26+00:00"
+    },
+    "R0076998": {
+      "title": "Software Engineer - Cloud SRE",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076998/Software-Engineer-Cloud-SRE",
+      "posted_at": "2026-11-12T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "reliability",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-12T20:41:26+00:00",
+      "last_seen_at": "2026-11-12T20:41:26+00:00"
+    },
+    "R0077189": {
+      "title": "Security Engineer \u2013 Adjacencies & M&A",
+      "location": "Dublin, Dublin, Ireland",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077189/Security-Engineer-Adjacencies-M-A",
+      "posted_at": "2026-11-12T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "security",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-12T20:41:26+00:00",
+      "last_seen_at": "2026-11-12T20:41:26+00:00"
+    },
+    "R0077283": {
+      "title": "Partner Operations Manager",
+      "location": "Austin, Texas, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077283/Partner-Operations-Manager",
+      "posted_at": "2026-11-12T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-12T20:41:26+00:00",
+      "last_seen_at": "2026-11-12T20:41:26+00:00"
     }
   },
   "source_updated_at_by_id": {}

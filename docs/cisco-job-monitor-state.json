@@ -1474,12 +1474,13 @@
     "2030105",
     "2030301",
     "2030352",
+    "2030439",
     "2030721",
     "2030760",
     "2031083",
     "2031175"
   ],
-  "last_successful_scan_at": "2026-11-12T02:44:10+00:00",
+  "last_successful_scan_at": "2026-11-12T20:41:26+00:00",
   "candidate_catalog": {
     "2024998": {
       "title": "AI Security Engineer",
@@ -3797,6 +3798,21 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-11T20:02:07+00:00",
       "last_seen_at": "2026-11-11T20:02:07+00:00"
+    },
+    "2030439": {
+      "title": "ASIC Engineering Technical Leader",
+      "location": "Boston, Massachusetts, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Boston-Massachusetts-US/ASIC-Engineering-Technical-Leader_2030439",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-12T20:41:26+00:00",
+      "last_seen_at": "2026-11-12T20:41:26+00:00"
     }
   },
   "source_updated_at_by_id": {}

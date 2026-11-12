@@ -816,6 +816,7 @@
     "JR2024918",
     "JR2024920",
     "JR2024929",
+    "JR2024968",
     "JR2024972",
     "JR2024977",
     "JR2024978",
@@ -1167,6 +1168,7 @@
     "JR2028848",
     "JR2028850",
     "JR2028854",
+    "JR2028862",
     "JR2028868",
     "JR2028871",
     "JR2028878",
@@ -1232,8 +1234,10 @@
     "JR2029702",
     "JR2029706",
     "JR2029786",
+    "JR2029837",
     "JR2029838",
-    "JR2029901"
+    "JR2029901",
+    "JR2029924"
   ],
   "candidate_catalog": {
     "JR2018245": {
@@ -1579,7 +1583,7 @@
       "category": "technical_review"
     }
   },
-  "last_successful_scan_at": "2026-11-12T02:44:10+00:00",
+  "last_successful_scan_at": "2026-11-12T20:41:26+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "JR2014880": {
@@ -16979,6 +16983,62 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-11T20:02:07+00:00",
       "last_seen_at": "2026-11-11T20:02:07+00:00"
+    },
+    "JR2029837": {
+      "title": "Senior Data Engineer, Operational Excellence - EDA Infrastructure",
+      "location": "5 Locations",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Remote/Senior-Data-Engineer--Operational-Excellence---EDA-Infrastructure_JR2029837",
+      "posted_at": "Posted Yesterday",
+      "stage": "prefilter",
+      "blockers": [
+        "specialized_low_level"
+      ],
+      "category": "data",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-12T20:41:26+00:00",
+      "last_seen_at": "2026-11-12T20:41:26+00:00"
+    },
+    "JR2028862": {
+      "title": "Senior Engineer - Quantum Error Correction Libraries",
+      "location": "US, CA, Santa Clara; US, DC, Remote; US, WA, Remote; US, CA, Remote; US, NY, New York; US, MA, Remote",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Engineer---Quantum-Error-Correction-Libraries_JR2028862",
+      "posted_at": "2026-11-12",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-12T20:41:26+00:00",
+      "last_seen_at": "2026-11-12T20:41:26+00:00"
+    },
+    "JR2024968": {
+      "title": "Senior Systems Software Engineer - Machine Learning",
+      "location": "US, CA, Santa Clara; US, NC, Durham",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Systems-Software-Engineer---Machine-Learning_JR2024968",
+      "posted_at": "2026-11-12",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-12T20:41:26+00:00",
+      "last_seen_at": "2026-11-12T20:41:26+00:00"
+    },
+    "JR2029924": {
+      "title": "Enterprise Product Engineer - Fullstack",
+      "location": "US, CA, Santa Clara; US, Remote",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Enterprise-Product-Engineer---Fullstack_JR2029924",
+      "posted_at": "2026-11-11",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "full_stack",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-12T20:41:26+00:00",
+      "last_seen_at": "2026-11-12T20:41:26+00:00"
     }
   },
   "source_updated_at_by_id": {}

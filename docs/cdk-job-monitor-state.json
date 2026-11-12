@@ -59,6 +59,7 @@
     "JR9381",
     "JR9382",
     "JR9384",
+    "JR9386",
     "JR9387",
     "JR9392",
     "JR9395",
@@ -110,9 +111,18 @@
       "first_seen_at": "2026-11-12T02:44:10+00:00",
       "priority": "medium",
       "category": "software"
+    },
+    "JR9386": {
+      "title": "Associate Database Engineer",
+      "location": "Austin, TX, USA",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Austin-TX-USA/Associate-Database-Engineer_JR9386",
+      "posted_at": "2026-11-12",
+      "first_seen_at": "2026-11-12T20:41:26+00:00",
+      "priority": "low",
+      "category": "database"
     }
   },
-  "last_successful_scan_at": "2026-11-12T02:44:10+00:00",
+  "last_successful_scan_at": "2026-11-12T20:41:26+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "JR9003": {

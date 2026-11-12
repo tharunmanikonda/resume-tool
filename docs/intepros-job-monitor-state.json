@@ -239,9 +239,13 @@
     "a0Hcw00000Bbm8zEAB",
     "a0Hcw00000BbmybEAB",
     "a0Hcw00000Bc3ubEAB",
-    "a0Hcw00000BcMArEAN"
+    "a0Hcw00000BcMArEAN",
+    "a0Hcw00000BeTmYEAV",
+    "a0Hcw00000BeZDdEAN",
+    "a0Hcw00000BekNaEAJ",
+    "a0Hcw00000Bf3JlEAJ"
   ],
-  "last_successful_scan_at": "2026-11-12T02:44:10+00:00",
+  "last_successful_scan_at": "2026-11-12T20:41:26+00:00",
   "candidate_catalog": {
     "a0Hcw000006tdYLEAY": {
       "title": "Operational Excellence Engineer",
@@ -1482,6 +1486,63 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-12T02:44:10+00:00",
       "last_seen_at": "2026-11-12T02:44:10+00:00"
+    },
+    "a0Hcw00000Bf3JlEAJ": {
+      "title": "Product Support Analyst",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000Bf3JlEAJ/product-support-analyst",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-12T20:41:26+00:00",
+      "last_seen_at": "2026-11-12T20:41:26+00:00"
+    },
+    "a0Hcw00000BeTmYEAV": {
+      "title": "Architectural Visualization Coordinator",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000BeTmYEAV/architectural-visualization-coordinator",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-12T20:41:26+00:00",
+      "last_seen_at": "2026-11-12T20:41:26+00:00"
+    },
+    "a0Hcw00000BeZDdEAN": {
+      "title": "Engineering and Technical Operations Senior Manager",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000BeZDdEAN/engineering-and-technical-operations-senior-manager",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-12T20:41:26+00:00",
+      "last_seen_at": "2026-11-12T20:41:26+00:00"
+    },
+    "a0Hcw00000BekNaEAJ": {
+      "title": "Senior Workfront and Fusion Implementation Consultant",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000BekNaEAJ/senior-workfront-and-fusion-implementation-consultant",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-12T20:41:26+00:00",
+      "last_seen_at": "2026-11-12T20:41:26+00:00"
     }
   },
   "source_updated_at_by_id": {}

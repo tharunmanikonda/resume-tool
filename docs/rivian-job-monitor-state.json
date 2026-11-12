@@ -185,6 +185,7 @@
     "35301",
     "35302",
     "35303",
+    "35827",
     "35829",
     "35837"
   ],
@@ -280,7 +281,7 @@
       "category": "software"
     }
   },
-  "last_successful_scan_at": "2026-11-12T02:44:10+00:00",
+  "last_successful_scan_at": "2026-11-12T20:41:26+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "34699": {
@@ -1030,6 +1031,20 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-06T02:00:49+00:00",
       "last_seen_at": "2026-11-06T02:00:49+00:00"
+    },
+    "35827": {
+      "title": "Senior Software Engineer, Autonomy Evaluation & Metrics Platform",
+      "location": "Palo Alto, California",
+      "url": "https://careers.rivian.com/careers-home/jobs/35827",
+      "posted_at": "2026-11-12T18:27:00+0000",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-12T20:41:26+00:00",
+      "last_seen_at": "2026-11-12T20:41:26+00:00"
     }
   },
   "source_updated_at_by_id": {}

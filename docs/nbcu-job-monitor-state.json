@@ -741,7 +741,10 @@
     "744000161161787",
     "744000161163099",
     "744000161163147",
-    "744000161179529"
+    "744000161179529",
+    "744000161329469",
+    "744000161359648",
+    "744000161371509"
   ],
   "candidate_catalog": {
     "744000151898289": {
@@ -862,7 +865,7 @@
       "category": "technical_review"
     }
   },
-  "last_successful_scan_at": "2026-11-12T02:44:10+00:00",
+  "last_successful_scan_at": "2026-11-12T20:41:26+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "744000156079569": {
@@ -10035,6 +10038,49 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-12T02:44:10+00:00",
       "last_seen_at": "2026-11-12T02:44:10+00:00"
+    },
+    "744000161371509": {
+      "title": "Manager, Soundtracks & Marketing",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161371509-manager-soundtracks-marketing",
+      "posted_at": "2026-11-12T19:30:59.996Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-12T20:41:26+00:00",
+      "last_seen_at": "2026-11-12T20:41:26+00:00"
+    },
+    "744000161359648": {
+      "title": "Specialist, Learning and Talent Development",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161359648-specialist-learning-and-talent-development",
+      "posted_at": "2026-11-12T18:01:42.362Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-12T20:41:26+00:00",
+      "last_seen_at": "2026-11-12T20:41:26+00:00"
+    },
+    "744000161329469": {
+      "title": "Vice President, Advanced Advertising Strategy",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161329469-vice-president-advanced-advertising-strategy",
+      "posted_at": "2026-11-12T15:31:20.583Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-12T20:41:26+00:00",
+      "last_seen_at": "2026-11-12T20:41:26+00:00"
     }
   },
   "source_updated_at_by_id": {}
