@@ -196,3 +196,25 @@ def test_review_snapshot_exposes_independent_measurement_copy():
     assert item['measurement'] == METRIC
     item['measurement']['value'] = '999'
     assert original['experience']['recent']['bullets'][0]['measurement'] == METRIC
+
+
+def test_nine_relevant_skills_groups_can_survive_review_unchanged():
+    original = draft()
+    original['skills'] = [
+        {'category': 'Programming Languages', 'items': ['Java', 'TypeScript']},
+        {'category': 'Frontend Engineering', 'items': ['React', 'Web accessibility']},
+        {'category': 'Backend Engineering', 'items': ['Spring Boot', 'REST APIs']},
+        {'category': 'Data & Storage', 'items': ['PostgreSQL', 'SQL Server']},
+        {'category': 'Cloud & Infrastructure', 'items': ['Docker', 'AWS']},
+        {'category': 'DevOps & CI/CD', 'items': ['Git', 'GitHub Actions']},
+        {'category': 'Testing & Quality', 'items': ['JUnit', 'Jest']},
+        {'category': 'AI & LLM Systems', 'items': ['GitHub Copilot', 'Prompt engineering']},
+        {'category': 'Observability & Reliability', 'items': ['Prometheus', 'Grafana']},
+    ]
+    saved = ids.snapshot(original)
+    wire = response(saved)
+    Draft202012Validator(experiment.review_apply_schema([{'key': 'recent', 'bullet_min': 7}], original)).validate(wire)
+    patch, _ = ids.decode(wire, saved, original)
+    revised = experiment.apply_repairs(original, patch)
+    assert revised['skills'] == original['skills']
+    assert len(revised['skills']) == 9
