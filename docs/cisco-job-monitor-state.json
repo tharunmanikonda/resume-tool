@@ -1445,6 +1445,7 @@
     "2028719",
     "2028738",
     "2028757",
+    "2028763",
     "2028834",
     "2028913",
     "2028918",
@@ -1476,12 +1477,13 @@
     "2030301",
     "2030352",
     "2030439",
+    "2030529",
     "2030721",
     "2030760",
     "2031083",
     "2031175"
   ],
-  "last_successful_scan_at": "2026-11-13T02:27:33+00:00",
+  "last_successful_scan_at": "2026-11-13T20:22:31+00:00",
   "candidate_catalog": {
     "2024998": {
       "title": "AI Security Engineer",
@@ -3828,6 +3830,34 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-13T02:27:33+00:00",
       "last_seen_at": "2026-11-13T02:27:33+00:00"
+    },
+    "2028763": {
+      "title": "Hardware (ECAD) Engineer",
+      "location": "San Jose, California, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/Hardware--ECAD--Engineer_2028763",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "embedded_or_hardware"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T20:22:31+00:00",
+      "last_seen_at": "2026-11-13T20:22:31+00:00"
+    },
+    "2030529": {
+      "title": "Pricing and Strategy Sr Analyst\u00a0",
+      "location": "San Jose, California, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/Pricing-and-Strategy-Sr-Analyst-_2030529",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T20:22:31+00:00",
+      "last_seen_at": "2026-11-13T20:22:31+00:00"
     }
   },
   "source_updated_at_by_id": {}

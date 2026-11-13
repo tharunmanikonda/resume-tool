@@ -113,6 +113,7 @@
     "7262650850648361272",
     "7262985689515723065",
     "7263405519716714811",
+    "7264491722142796069",
     "7269820284705524023",
     "7269827605418133818",
     "7271106749720430903",
@@ -1985,6 +1986,7 @@
     "7703632666805160197",
     "7703876741467998469",
     "7703899923206867205",
+    "7703925583541979445",
     "7704007084339595525",
     "7704011114551986485",
     "7704036750285867269",
@@ -2023,7 +2025,9 @@
     "7707015061048428805",
     "7707015653621893429",
     "7707055690713893125",
-    "7707122792648132869"
+    "7707122792648132869",
+    "7707491778085357877",
+    "7707495347161516293"
   ],
   "candidate_catalog": {
     "7680987768009754885": {
@@ -29408,8 +29412,68 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-12T20:41:26+00:00",
       "last_seen_at": "2026-11-12T20:41:26+00:00"
+    },
+    "7703925583541979445": {
+      "title": "Machine Learning Scientist Intern (TikTok-Local Services) - 2027 Start",
+      "location": "San Jose, California, United States of America",
+      "url": "https://lifeattiktok.com/search/7703925583541979445",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T20:22:31+00:00",
+      "last_seen_at": "2026-11-13T20:22:31+00:00"
+    },
+    "7707495347161516293": {
+      "title": "Program Manager, Measurement & Experimentation - GBS",
+      "location": "Singapore",
+      "url": "https://lifeattiktok.com/search/7707495347161516293",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T20:22:31+00:00",
+      "last_seen_at": "2026-11-13T20:22:31+00:00"
+    },
+    "7707491778085357877": {
+      "title": "Client Solutions Manager - GBS",
+      "location": "London, England, United Kingdom",
+      "url": "https://lifeattiktok.com/search/7707491778085357877",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T20:22:31+00:00",
+      "last_seen_at": "2026-11-13T20:22:31+00:00"
+    },
+    "7264491722142796069": {
+      "title": "TikTok Shop by Tokopedia - Category Strategist, FMCG (Indonesia)",
+      "location": "Jakarta, Jakarta Raya, Indonesia",
+      "url": "https://lifeattiktok.com/search/7264491722142796069",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T20:22:31+00:00",
+      "last_seen_at": "2026-11-13T20:22:31+00:00"
     }
   },
-  "last_successful_scan_at": "2026-11-13T02:27:33+00:00",
+  "last_successful_scan_at": "2026-11-13T20:22:31+00:00",
   "source_updated_at_by_id": {}
 }

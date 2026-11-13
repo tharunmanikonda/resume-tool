@@ -209,6 +209,7 @@
     "R1521964",
     "R1521966",
     "R1521994",
+    "R1521995",
     "R1522007",
     "R1522012",
     "R1522013",
@@ -683,9 +684,15 @@
     "R1554517",
     "R1554540",
     "R1554545",
+    "R1554546",
+    "R1554563",
     "R1554582",
+    "R1554584",
     "R1554585",
     "R1554587",
+    "R1554590",
+    "R1554593",
+    "R1554599",
     "R1554602",
     "R1554603",
     "R1554605",
@@ -880,6 +887,7 @@
     "R1559463",
     "R1559473",
     "R1559482",
+    "R1559485",
     "R1559491",
     "R1559511",
     "R1559528",
@@ -893,6 +901,7 @@
     "R1559732",
     "R1559738",
     "R1559747",
+    "R1559809",
     "R1559822",
     "R1559849",
     "R1559877",
@@ -1199,6 +1208,7 @@
     "R1565327",
     "R1565330",
     "R1565336",
+    "R1565339",
     "R1565353",
     "R1565371",
     "R1565378",
@@ -1940,6 +1950,7 @@
     "R1572533",
     "R1572539",
     "R1572549",
+    "R1572555",
     "R1572563",
     "R1572564",
     "R1572565",
@@ -2018,6 +2029,7 @@
     "R1573257",
     "R1573259",
     "R1573265",
+    "R1573267",
     "R1573270",
     "R1573275",
     "R1573276",
@@ -2091,6 +2103,7 @@
     "R1573735",
     "R1573739",
     "R1573741",
+    "R1573745",
     "R1573750",
     "R1573751",
     "R1573752",
@@ -2133,6 +2146,7 @@
     "R1574029",
     "R1574034",
     "R1574041",
+    "R1574059",
     "R1574062",
     "R1574064",
     "R1574158",
@@ -2158,6 +2172,7 @@
     "R1574294",
     "R1574298",
     "R1574363",
+    "R1574364",
     "R1574365",
     "R1574371",
     "R1574374",
@@ -2402,6 +2417,7 @@
     "R1576258",
     "R1576287",
     "R1576312",
+    "R1576314",
     "R1576326",
     "R1576371",
     "R1576373",
@@ -2795,12 +2811,19 @@
     "R1579619",
     "R1579622",
     "R1579627",
+    "R1579638",
     "R1579644",
+    "R1579645",
     "R1579648",
     "R1579654",
+    "R1579657",
     "R1579675",
     "R1579687",
-    "R1579689"
+    "R1579689",
+    "R1579810",
+    "R1579812",
+    "R1579888",
+    "R1579921"
   ],
   "candidate_catalog": {
     "R1570411": {
@@ -2982,9 +3005,18 @@
       "first_seen_at": "2026-11-12T20:41:26+00:00",
       "priority": "low",
       "category": "technical_review"
+    },
+    "R1573745": {
+      "title": "Proposal Developer 1",
+      "location": "S\u00e3o Paulo, Brazil",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/So-Paulo-Brazil/Proposal-Developer-1_R1573745",
+      "posted_at": "2026-11-13",
+      "first_seen_at": "2026-11-13T20:22:31+00:00",
+      "priority": "low",
+      "category": "technical_review"
     }
   },
-  "last_successful_scan_at": "2026-11-13T02:27:33+00:00",
+  "last_successful_scan_at": "2026-11-13T20:22:31+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "R1545472": {
@@ -41113,6 +41145,323 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-12T20:41:26+00:00",
       "last_seen_at": "2026-11-12T20:41:26+00:00"
+    },
+    "R1559809": {
+      "title": "Software/Data Architect 2",
+      "location": "Durham, North Carolina, United States of America",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Durham-North-Carolina-United-States-of-America/Software-Data-Architect-2_R1559809",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T20:22:31+00:00",
+      "last_seen_at": "2026-11-13T20:22:31+00:00"
+    },
+    "R1574059": {
+      "title": "On-Site Patient Care Coordinator Lead",
+      "location": "Fairfax, VA, United States of America",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Fairfax-VA-United-States-of-America/On-Site-Patient-Care-Coordinator-Lead_R1574059",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T20:22:31+00:00",
+      "last_seen_at": "2026-11-13T20:22:31+00:00"
+    },
+    "R1521995": {
+      "title": "Senior Statistical Programmer (FSP - Permanent Homebased)",
+      "location": "16 Locations",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Reading-Berkshire-United-Kingdom/Senior-Statistical-Programmer--FSP---Permanent-Homebased-_R1521995-2",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T20:22:31+00:00",
+      "last_seen_at": "2026-11-13T20:22:31+00:00"
+    },
+    "R1554563": {
+      "title": "CRA Intern-KunTuo",
+      "location": "2 Locations",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Beijing-China/CRA-Intern-_R1554563",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T20:22:31+00:00",
+      "last_seen_at": "2026-11-13T20:22:31+00:00"
+    },
+    "R1554584": {
+      "title": "CTA Intern-KunTuo",
+      "location": "2 Locations",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Beijing-China/CTA-Intern----_R1554584",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T20:22:31+00:00",
+      "last_seen_at": "2026-11-13T20:22:31+00:00"
+    },
+    "R1554593": {
+      "title": "DM Intern-KunTuo",
+      "location": "3 Locations",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Beijing-China/DM-Intern-KunTuo_R1554593",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T20:22:31+00:00",
+      "last_seen_at": "2026-11-13T20:22:31+00:00"
+    },
+    "R1554599": {
+      "title": "Biostatistician Intern-KunTuo",
+      "location": "2 Locations",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Beijing-China/Biostatistician-Intern-KunTuo_R1554599",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T20:22:31+00:00",
+      "last_seen_at": "2026-11-13T20:22:31+00:00"
+    },
+    "R1554590": {
+      "title": "PV Intern-KunTuo",
+      "location": "3 Locations",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Beijing-China/PV-Intern-KunTuo_R1554590",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T20:22:31+00:00",
+      "last_seen_at": "2026-11-13T20:22:31+00:00"
+    },
+    "R1565339": {
+      "title": "Project Manager - IRT System Design",
+      "location": "3 Locations",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Bucuresti-Romania/Project-Manager---IRT-System-Design_R1565339",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T20:22:31+00:00",
+      "last_seen_at": "2026-11-13T20:22:31+00:00"
+    },
+    "R1576314": {
+      "title": "CTA2",
+      "location": "Beijing, China",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Beijing-China/CTA2_R1576314",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T20:22:31+00:00",
+      "last_seen_at": "2026-11-13T20:22:31+00:00"
+    },
+    "R1559485": {
+      "title": "Senior Laboratory Technical Specialist (office based, Pretoria)",
+      "location": "Centurion, South Africa",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Centurion-South-Africa/Laboratory-Technical-Specialist--office-based--Pretoria-_R1559485",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T20:22:31+00:00",
+      "last_seen_at": "2026-11-13T20:22:31+00:00"
+    },
+    "R1579645": {
+      "title": "Client Services Rep 1 - FCR (Evergreen)",
+      "location": "Taguig City, Philippines",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Taguig-City-Philippines/Client-Services-Rep-1---FCR--Evergreen-_R1579645",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T20:22:31+00:00",
+      "last_seen_at": "2026-11-13T20:22:31+00:00"
+    },
+    "R1579638": {
+      "title": "Client Services Rep 1 - Logistic Planner",
+      "location": "Taguig City, Philippines",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Taguig-City-Philippines/Client-Services-Rep-1---Logistic-Planner_R1579638",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T20:22:31+00:00",
+      "last_seen_at": "2026-11-13T20:22:31+00:00"
+    },
+    "R1579812": {
+      "title": "Sr. Quality Auditor, CAPA Center of Excellence - UK",
+      "location": "Reading, Berkshire, United Kingdom",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Reading-Berkshire-United-Kingdom/Sr-Quality-Auditor--CAPA-Center-of-Excellence---UK_R1579812",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T20:22:31+00:00",
+      "last_seen_at": "2026-11-13T20:22:31+00:00"
+    },
+    "R1573267": {
+      "title": "Accounting Coordinator",
+      "location": "Bratislava, Slovakia",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Bratislava-Slovakia/Accounting-Coordinator_R1573267",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T20:22:31+00:00",
+      "last_seen_at": "2026-11-13T20:22:31+00:00"
+    },
+    "R1554546": {
+      "title": "BD Mgr/SR/AD/Dir-KunTuo",
+      "location": "2 Locations",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Shanghai-China/BD-Mgr-SR-AD-Dir_R1554546",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T20:22:31+00:00",
+      "last_seen_at": "2026-11-13T20:22:31+00:00"
+    },
+    "R1574364": {
+      "title": "Safety Associate",
+      "location": "Dalian, Liaoning, China",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Dalian-Liaoning-China/Safety-Associate_R1574364",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T20:22:31+00:00",
+      "last_seen_at": "2026-11-13T20:22:31+00:00"
+    },
+    "R1579921": {
+      "title": "Monitor de Qualidade PSP",
+      "location": "S\u00e3o Paulo, Brazil",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/So-Paulo-Brazil/Monitor-de-Qualidade-PSP_R1579921",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T20:22:31+00:00",
+      "last_seen_at": "2026-11-13T20:22:31+00:00"
+    },
+    "R1579657": {
+      "title": "Principal  Statistical Programmer (FSP - Permanent Homebased) m/w/d",
+      "location": "15 Locations",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Frankfurt-Hesse-Germany/Principal--Statistical-Programmer--FSP---Permanent-Homebased--m-w-d_R1579657",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T20:22:31+00:00",
+      "last_seen_at": "2026-11-13T20:22:31+00:00"
+    },
+    "R1579888": {
+      "title": "Health Economics Analyst",
+      "location": "Porto Salvo, Portugal",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Porto-Salvo-Portugal/Health-Economics-Analyst_R1579888",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T20:22:31+00:00",
+      "last_seen_at": "2026-11-13T20:22:31+00:00"
+    },
+    "R1579810": {
+      "title": "Consultant Market Access",
+      "location": "Paris, France",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Paris-France/Consultant-Market-Access_R1579810",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T20:22:31+00:00",
+      "last_seen_at": "2026-11-13T20:22:31+00:00"
+    },
+    "R1572555": {
+      "title": "Business Systems Analyst \u2013 Life Sciences & Laboratory Systems",
+      "location": "Mexico City, Mexico; Buenos Aires, Argentina",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Mexico-City-Mexico/Business-Systems-Analyst---Life-Sciences---Laboratory-Systems_R1572555",
+      "posted_at": "2026-11-13",
+      "stage": "detail",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "systems_analysis",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T20:22:31+00:00",
+      "last_seen_at": "2026-11-13T20:22:31+00:00"
     }
   },
   "source_updated_at_by_id": {}

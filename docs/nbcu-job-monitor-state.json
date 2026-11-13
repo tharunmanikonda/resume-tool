@@ -746,7 +746,26 @@
     "744000161359648",
     "744000161371509",
     "744000161383497",
-    "744000161395829"
+    "744000161395829",
+    "744000161488283",
+    "744000161505795",
+    "744000161506702",
+    "744000161506990",
+    "744000161508551",
+    "744000161509039",
+    "744000161510089",
+    "744000161510379",
+    "744000161510639",
+    "744000161512179",
+    "744000161517418",
+    "744000161521750",
+    "744000161533282",
+    "744000161533619",
+    "744000161549529",
+    "744000161556149",
+    "744000161563469",
+    "744000161566129",
+    "744000161568499"
   ],
   "candidate_catalog": {
     "744000151898289": {
@@ -867,7 +886,7 @@
       "category": "technical_review"
     }
   },
-  "last_successful_scan_at": "2026-11-13T02:27:33+00:00",
+  "last_successful_scan_at": "2026-11-13T20:22:31+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "744000156079569": {
@@ -10112,6 +10131,274 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-13T02:27:33+00:00",
       "last_seen_at": "2026-11-13T02:27:33+00:00"
+    },
+    "744000161568499": {
+      "title": "Sr Manager, Sourcing Post-Production & Marketing",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161568499-sr-manager-sourcing-post-production-marketing",
+      "posted_at": "2026-11-13T20:04:54.404Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T20:22:31+00:00",
+      "last_seen_at": "2026-11-13T20:22:31+00:00"
+    },
+    "744000161566129": {
+      "title": "Sr. Product Designer, Design Systems",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161566129-sr-product-designer-design-systems",
+      "posted_at": "2026-11-13T19:45:32.542Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T20:22:31+00:00",
+      "last_seen_at": "2026-11-13T20:22:31+00:00"
+    },
+    "744000161563469": {
+      "title": "Criminal Justice Reporter, NBC News Digital",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161563469-criminal-justice-reporter-nbc-news-digital",
+      "posted_at": "2026-11-13T19:26:17.846Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T20:22:31+00:00",
+      "last_seen_at": "2026-11-13T20:22:31+00:00"
+    },
+    "744000161556149": {
+      "title": "Associate Counsel, Business & Legal Affairs",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161556149-associate-counsel-business-legal-affairs",
+      "posted_at": "2026-11-13T18:42:10.878Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T20:22:31+00:00",
+      "last_seen_at": "2026-11-13T20:22:31+00:00"
+    },
+    "744000161549529": {
+      "title": "Senior Producer, NBC News Specials (Prime)",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161549529-senior-producer-nbc-news-specials-prime",
+      "posted_at": "2026-11-13T18:01:14.001Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T20:22:31+00:00",
+      "last_seen_at": "2026-11-13T20:22:31+00:00"
+    },
+    "744000161533619": {
+      "title": "Manager, Design & Development (Toys & HL -  Collectibles)",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161533619-manager-design-development-toys-hl-collectibles",
+      "posted_at": "2026-11-13T16:30:22.479Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T20:22:31+00:00",
+      "last_seen_at": "2026-11-13T20:22:31+00:00"
+    },
+    "744000161521750": {
+      "title": "Human Resources & Culture Internships \u2013 Summer 2027",
+      "location": "New York, NY, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161521750-human-resources-culture-internships-summer-2027",
+      "posted_at": "2026-11-13T15:51:20.822Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T20:22:31+00:00",
+      "last_seen_at": "2026-11-13T20:22:31+00:00"
+    },
+    "744000161517418": {
+      "title": "Live Producer, NBC News Specials (Prime)",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161517418-live-producer-nbc-news-specials-prime",
+      "posted_at": "2026-11-13T15:32:19.342Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T20:22:31+00:00",
+      "last_seen_at": "2026-11-13T20:22:31+00:00"
+    },
+    "744000161512179": {
+      "title": "Supervising Producer, Dateline",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161512179-supervising-producer-dateline",
+      "posted_at": "2026-11-13T15:13:27.157Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T20:22:31+00:00",
+      "last_seen_at": "2026-11-13T20:22:31+00:00"
+    },
+    "744000161510639": {
+      "title": "Producer, Long Form Audio",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161510639-producer-long-form-audio",
+      "posted_at": "2026-11-13T15:09:22.780Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T20:22:31+00:00",
+      "last_seen_at": "2026-11-13T20:22:31+00:00"
+    },
+    "744000161510379": {
+      "title": "Assistant Producer, Dateline ",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161510379-assistant-producer-dateline",
+      "posted_at": "2026-11-13T15:08:39.034Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T20:22:31+00:00",
+      "last_seen_at": "2026-11-13T20:22:31+00:00"
+    },
+    "744000161510089": {
+      "title": "Producer, Dateline NBC",
+      "location": "Universal City, CA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161510089-producer-dateline-nbc",
+      "posted_at": "2026-11-13T15:07:55.273Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T20:22:31+00:00",
+      "last_seen_at": "2026-11-13T20:22:31+00:00"
+    },
+    "744000161508551": {
+      "title": "Producer, Dateline NBC",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161508551-producer-dateline-nbc",
+      "posted_at": "2026-11-13T15:07:03.444Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T20:22:31+00:00",
+      "last_seen_at": "2026-11-13T20:22:31+00:00"
+    },
+    "744000161509039": {
+      "title": "Associate Producer, Dateline",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161509039-associate-producer-dateline",
+      "posted_at": "2026-11-13T15:04:11.025Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T20:22:31+00:00",
+      "last_seen_at": "2026-11-13T20:22:31+00:00"
+    },
+    "744000161506990": {
+      "title": "Assistant Audio Producer, Dateline (contract)",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161506990-assistant-audio-producer-dateline-contract",
+      "posted_at": "2026-11-13T15:04:05.989Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T20:22:31+00:00",
+      "last_seen_at": "2026-11-13T20:22:31+00:00"
+    },
+    "744000161505795": {
+      "title": "Production Assistant, NBC News Specials Prime",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161505795-production-assistant-nbc-news-specials-prime",
+      "posted_at": "2026-11-13T15:00:29.579Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T20:22:31+00:00",
+      "last_seen_at": "2026-11-13T20:22:31+00:00"
+    },
+    "744000161506702": {
+      "title": "Production Assistant, Meet the Press NOW",
+      "location": "Washington, DC, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161506702-production-assistant-meet-the-press-now",
+      "posted_at": "2026-11-13T14:56:02.454Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T20:22:31+00:00",
+      "last_seen_at": "2026-11-13T20:22:31+00:00"
+    },
+    "744000161488283": {
+      "title": "Studio Tech II- NBC Philadelphia ",
+      "location": "Philadelphia, PENNSYLVANIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161488283-studio-tech-ii-nbc-philadelphia",
+      "posted_at": "2026-11-13T13:43:02.557Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T20:22:31+00:00",
+      "last_seen_at": "2026-11-13T20:22:31+00:00"
+    },
+    "744000161533282": {
+      "title": "System Analyst, Remote IT Operations",
+      "location": "Monroe, Connecticut, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161533282-system-analyst-remote-it-operations",
+      "posted_at": "2026-11-13T16:33:24.507Z",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T20:22:31+00:00",
+      "last_seen_at": "2026-11-13T20:22:31+00:00"
     }
   },
   "source_updated_at_by_id": {}

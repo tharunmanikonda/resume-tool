@@ -413,15 +413,30 @@
     "R0077349",
     "R0077352",
     "R0077355",
+    "R0077356",
     "R0077357",
+    "R0077360",
     "R0077364",
     "R0077366",
+    "R0077384",
     "R0077389",
     "R0077397",
+    "R0077398",
+    "R0077401",
+    "R0077411",
+    "R0077415",
+    "R0077431",
+    "R0077432",
+    "R0077438",
+    "R0077445",
+    "R0077463",
+    "R0077470",
     "R0077475",
     "R0077480",
     "R0077481",
-    "R0077482"
+    "R0077482",
+    "R0077487",
+    "R0077489"
   ],
   "candidate_catalog": {
     "R0076812": {
@@ -515,7 +530,7 @@
       "category": "platform"
     }
   },
-  "last_successful_scan_at": "2026-11-13T02:27:33+00:00",
+  "last_successful_scan_at": "2026-11-13T20:22:31+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "R0077145": {
@@ -5944,6 +5959,236 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-13T02:27:33+00:00",
       "last_seen_at": "2026-11-13T02:27:33+00:00"
+    },
+    "R0077487": {
+      "title": "Billing Analyst",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077487/Billing-Analyst",
+      "posted_at": "2026-11-13T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T20:22:31+00:00",
+      "last_seen_at": "2026-11-13T20:22:31+00:00"
+    },
+    "R0077401": {
+      "title": "Indirect Tax Accountant",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077401/Indirect-Tax-Accountant",
+      "posted_at": "2026-11-13T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T20:22:31+00:00",
+      "last_seen_at": "2026-11-13T20:22:31+00:00"
+    },
+    "R0077431": {
+      "title": "Accounting Manager - 2",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077431/Accounting-Manager-2",
+      "posted_at": "2026-11-13T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T20:22:31+00:00",
+      "last_seen_at": "2026-11-13T20:22:31+00:00"
+    },
+    "R0077398": {
+      "title": "Indirect Tax Accounting Supervisor",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077398/Indirect-Tax-Accounting-Supervisor",
+      "posted_at": "2026-11-13T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T20:22:31+00:00",
+      "last_seen_at": "2026-11-13T20:22:31+00:00"
+    },
+    "R0077411": {
+      "title": "T&E Operations Analyst",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077411/T-E-Operations-Analyst",
+      "posted_at": "2026-11-13T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T20:22:31+00:00",
+      "last_seen_at": "2026-11-13T20:22:31+00:00"
+    },
+    "R0077384": {
+      "title": "Indirect Tax Compliance Accounting Mgr",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077384/Indirect-Tax-Compliance-Accounting-Mgr",
+      "posted_at": "2026-11-13T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T20:22:31+00:00",
+      "last_seen_at": "2026-11-13T20:22:31+00:00"
+    },
+    "R0077415": {
+      "title": "P2P Analyst",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077415/P2P-Analyst",
+      "posted_at": "2026-11-13T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T20:22:31+00:00",
+      "last_seen_at": "2026-11-13T20:22:31+00:00"
+    },
+    "R0077470": {
+      "title": "PMO Manager - Finance & Accounting",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077470/PMO-Manager-Finance-Accounting",
+      "posted_at": "2026-11-13T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T20:22:31+00:00",
+      "last_seen_at": "2026-11-13T20:22:31+00:00"
+    },
+    "R0077432": {
+      "title": "Accounting Manager",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077432/Accounting-Manager",
+      "posted_at": "2026-11-13T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T20:22:31+00:00",
+      "last_seen_at": "2026-11-13T20:22:31+00:00"
+    },
+    "R0077445": {
+      "title": "Senior Accountant",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077445/Senior-Accountant",
+      "posted_at": "2026-11-13T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T20:22:31+00:00",
+      "last_seen_at": "2026-11-13T20:22:31+00:00"
+    },
+    "R0077356": {
+      "title": "Client Portfolio & Ecosystem Lead",
+      "location": "Milano, Milano, Italy",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077356/Client-Portfolio-Ecosystem-Lead",
+      "posted_at": "2026-11-13T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T20:22:31+00:00",
+      "last_seen_at": "2026-11-13T20:22:31+00:00"
+    },
+    "R0077463": {
+      "title": "Customer Success Manager",
+      "location": "Milano, Milano, Italy",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077463/Customer-Success-Manager",
+      "posted_at": "2026-11-13T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T20:22:31+00:00",
+      "last_seen_at": "2026-11-13T20:22:31+00:00"
+    },
+    "R0077438": {
+      "title": "Accounting Supervisor",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077438/Accounting-Supervisor",
+      "posted_at": "2026-11-13T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T20:22:31+00:00",
+      "last_seen_at": "2026-11-13T20:22:31+00:00"
+    },
+    "R0077360": {
+      "title": "Data Scientist",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077360/Data-Scientist",
+      "posted_at": "2026-11-13T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T20:22:31+00:00",
+      "last_seen_at": "2026-11-13T20:22:31+00:00"
+    },
+    "R0077489": {
+      "title": "GL Accounting Manager",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077489/GL-Accounting-Manager",
+      "posted_at": "2026-11-13T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T20:22:31+00:00",
+      "last_seen_at": "2026-11-13T20:22:31+00:00"
     }
   },
   "source_updated_at_by_id": {}

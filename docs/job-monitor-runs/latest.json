@@ -1,6 +1,6 @@
 {
-  "success": true,
-  "scanned_at": "2026-11-13T02:27:33+00:00",
+  "success": false,
+  "scanned_at": "2026-11-13T20:22:31+00:00",
   "monitor_count": 14,
   "successful_monitors": [
     "cbre",
@@ -11,45 +11,41 @@
     "intepros",
     "iqvia",
     "nbcu",
-    "nvidia",
     "occ",
     "ocient",
     "rivian",
     "tiktok",
     "waymo"
   ],
-  "failed_monitors": [],
-  "candidate_count": 1,
-  "needs_ai_review_count": 0,
-  "candidates": [
+  "failed_monitors": [
+    "nvidia"
+  ],
+  "candidate_count": 0,
+  "needs_ai_review_count": 1,
+  "candidates": [],
+  "needs_ai_review": [
     {
-      "monitor": "tiktok",
-      "job_id": "7698822572474583301",
-      "title": "Machine Learning Engineer Intern (Data-Global E-Commerce-Search) - 2027 Start",
-      "location": "San Jose, California, United States of America",
-      "posted_at": "",
-      "url": "https://lifeattiktok.com/search/7698822572474583301",
-      "priority": "high",
+      "monitor": "iqvia",
+      "job_id": "R1573745",
+      "title": "Proposal Developer 1",
+      "location": "S\u00e3o Paulo, Brazil",
+      "posted_at": "2026-11-13",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/So-Paulo-Brazil/Proposal-Developer-1_R1573745",
+      "priority": "low",
       "matching_requirements": [
-        "target_title:ai_ml",
-        "profile_signal:python:+2",
-        "profile_signal:java:+1",
-        "profile_signal:javascript_react:+1",
-        "profile_signal:backend_apis:+2",
-        "profile_signal:distributed_systems:+2",
-        "profile_signal:data_streaming:+2"
+        "target_title:technical_review",
+        "profile_signal:agentic_tooling:+3"
       ],
       "material_gaps": []
     }
   ],
-  "needs_ai_review": [],
   "results": [
     {
       "monitor": "cbre",
       "success": true,
-      "scanned_at": "2026-11-13T02:27:33+00:00",
-      "fetched": 713,
-      "unseen": 3,
+      "scanned_at": "2026-11-13T20:22:31+00:00",
+      "fetched": 976,
+      "unseen": 34,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -58,8 +54,8 @@
     {
       "monitor": "cdk",
       "success": true,
-      "scanned_at": "2026-11-13T02:27:33+00:00",
-      "fetched": 48,
+      "scanned_at": "2026-11-13T20:22:31+00:00",
+      "fetched": 47,
       "unseen": 0,
       "state_updated": true,
       "candidates": [],
@@ -69,9 +65,9 @@
     {
       "monitor": "cisco",
       "success": true,
-      "scanned_at": "2026-11-13T02:27:33+00:00",
+      "scanned_at": "2026-11-13T20:22:31+00:00",
       "fetched": 80,
-      "unseen": 1,
+      "unseen": 2,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -80,9 +76,9 @@
     {
       "monitor": "crunchyroll",
       "success": true,
-      "scanned_at": "2026-11-13T02:27:33+00:00",
-      "fetched": 99,
-      "unseen": 0,
+      "scanned_at": "2026-11-13T20:22:31+00:00",
+      "fetched": 100,
+      "unseen": 1,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -91,9 +87,9 @@
     {
       "monitor": "ebay",
       "success": true,
-      "scanned_at": "2026-11-13T02:27:33+00:00",
-      "fetched": 172,
-      "unseen": 2,
+      "scanned_at": "2026-11-13T20:22:31+00:00",
+      "fetched": 191,
+      "unseen": 15,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -102,7 +98,7 @@
     {
       "monitor": "intepros",
       "success": true,
-      "scanned_at": "2026-11-13T02:27:33+00:00",
+      "scanned_at": "2026-11-13T20:22:31+00:00",
       "fetched": 20,
       "unseen": 0,
       "state_updated": true,
@@ -113,20 +109,34 @@
     {
       "monitor": "iqvia",
       "success": true,
-      "scanned_at": "2026-11-13T02:27:33+00:00",
-      "fetched": 346,
-      "unseen": 0,
+      "scanned_at": "2026-11-13T20:22:31+00:00",
+      "fetched": 799,
+      "unseen": 23,
       "state_updated": true,
       "candidates": [],
-      "needs_ai_review": [],
+      "needs_ai_review": [
+        {
+          "job_id": "R1573745",
+          "title": "Proposal Developer 1",
+          "location": "S\u00e3o Paulo, Brazil",
+          "posted_at": "2026-11-13",
+          "url": "https://iqvia.wd1.myworkdayjobs.com/job/So-Paulo-Brazil/Proposal-Developer-1_R1573745",
+          "priority": "low",
+          "matching_requirements": [
+            "target_title:technical_review",
+            "profile_signal:agentic_tooling:+3"
+          ],
+          "material_gaps": []
+        }
+      ],
       "errors": []
     },
     {
       "monitor": "nbcu",
       "success": true,
-      "scanned_at": "2026-11-13T02:27:33+00:00",
-      "fetched": 312,
-      "unseen": 2,
+      "scanned_at": "2026-11-13T20:22:31+00:00",
+      "fetched": 325,
+      "unseen": 19,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -134,19 +144,23 @@
     },
     {
       "monitor": "nvidia",
-      "success": true,
-      "scanned_at": "2026-11-13T02:27:33+00:00",
-      "fetched": 120,
-      "unseen": 6,
-      "state_updated": true,
+      "success": false,
+      "scanned_at": "2026-11-13T20:22:31+00:00",
+      "fetched": 0,
+      "unseen": 0,
+      "state_updated": false,
       "candidates": [],
       "needs_ai_review": [],
-      "errors": []
+      "errors": [
+        {
+          "error": "Error: 500 Internal Server Error: https://nvidia.wd5.myworkdayjobs.com/wday/cxs/nvidia/NVIDIAExternalCareerSite/jobs\n    at fetchJson (file:///home/runner/work/resume-tool/resume-tool/ops/company_jobs_fetch.mjs:235:21)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async nvidiaListings (file:///home/runner/work/resume-tool/resume-tool/ops/company_jobs_fetch.mjs:513:21)\n    at async main (file:///home/runner/work/resume-tool/resume-tool/ops/company_jobs_fetch.mjs:929:67)"
+        }
+      ]
     },
     {
       "monitor": "occ",
       "success": true,
-      "scanned_at": "2026-11-13T02:27:33+00:00",
+      "scanned_at": "2026-11-13T20:22:31+00:00",
       "fetched": 60,
       "unseen": 0,
       "state_updated": true,
@@ -157,7 +171,7 @@
     {
       "monitor": "ocient",
       "success": true,
-      "scanned_at": "2026-11-13T02:27:33+00:00",
+      "scanned_at": "2026-11-13T20:22:31+00:00",
       "fetched": 15,
       "unseen": 0,
       "state_updated": true,
@@ -168,7 +182,7 @@
     {
       "monitor": "rivian",
       "success": true,
-      "scanned_at": "2026-11-13T02:27:33+00:00",
+      "scanned_at": "2026-11-13T20:22:31+00:00",
       "fetched": 30,
       "unseen": 0,
       "state_updated": true,
@@ -179,38 +193,19 @@
     {
       "monitor": "tiktok",
       "success": true,
-      "scanned_at": "2026-11-13T02:27:33+00:00",
-      "fetched": 1874,
-      "unseen": 1,
+      "scanned_at": "2026-11-13T20:22:31+00:00",
+      "fetched": 1873,
+      "unseen": 4,
       "state_updated": true,
-      "candidates": [
-        {
-          "job_id": "7698822572474583301",
-          "title": "Machine Learning Engineer Intern (Data-Global E-Commerce-Search) - 2027 Start",
-          "location": "San Jose, California, United States of America",
-          "posted_at": "",
-          "url": "https://lifeattiktok.com/search/7698822572474583301",
-          "priority": "high",
-          "matching_requirements": [
-            "target_title:ai_ml",
-            "profile_signal:python:+2",
-            "profile_signal:java:+1",
-            "profile_signal:javascript_react:+1",
-            "profile_signal:backend_apis:+2",
-            "profile_signal:distributed_systems:+2",
-            "profile_signal:data_streaming:+2"
-          ],
-          "material_gaps": []
-        }
-      ],
+      "candidates": [],
       "needs_ai_review": [],
       "errors": []
     },
     {
       "monitor": "waymo",
       "success": true,
-      "scanned_at": "2026-11-13T02:27:33+00:00",
-      "fetched": 165,
+      "scanned_at": "2026-11-13T20:22:31+00:00",
+      "fetched": 164,
       "unseen": 1,
       "state_updated": true,
       "candidates": [],
