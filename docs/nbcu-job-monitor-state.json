@@ -744,7 +744,9 @@
     "744000161179529",
     "744000161329469",
     "744000161359648",
-    "744000161371509"
+    "744000161371509",
+    "744000161383497",
+    "744000161395829"
   ],
   "candidate_catalog": {
     "744000151898289": {
@@ -865,7 +867,7 @@
       "category": "technical_review"
     }
   },
-  "last_successful_scan_at": "2026-11-12T20:41:26+00:00",
+  "last_successful_scan_at": "2026-11-13T02:27:33+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "744000156079569": {
@@ -10081,6 +10083,35 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-12T20:41:26+00:00",
       "last_seen_at": "2026-11-12T20:41:26+00:00"
+    },
+    "744000161395829": {
+      "title": "NBC News Product Manager",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161395829-nbc-news-product-manager",
+      "posted_at": "2026-11-12T23:24:01.239Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T02:27:33+00:00",
+      "last_seen_at": "2026-11-13T02:27:33+00:00"
+    },
+    "744000161383497": {
+      "title": "Multiplatform Story Producer, Telemundo San Diego",
+      "location": "San Diego, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161383497-multiplatform-story-producer-telemundo-san-diego",
+      "posted_at": "2026-11-12T21:31:57.787Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T02:27:33+00:00",
+      "last_seen_at": "2026-11-13T02:27:33+00:00"
     }
   },
   "source_updated_at_by_id": {}

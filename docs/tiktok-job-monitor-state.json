@@ -1914,6 +1914,7 @@
     "7698682976904890629",
     "7698683108061432117",
     "7698700769610565893",
+    "7698822572474583301",
     "7698873400215718197",
     "7698874461919676677",
     "7698958379771480325",
@@ -5219,6 +5220,15 @@
       "first_seen_at": "2026-11-12T20:41:26+00:00",
       "priority": "low",
       "category": "software"
+    },
+    "7698822572474583301": {
+      "title": "Machine Learning Engineer Intern (Data-Global E-Commerce-Search) - 2027 Start",
+      "location": "San Jose, California, United States of America",
+      "url": "https://lifeattiktok.com/search/7698822572474583301",
+      "posted_at": "",
+      "first_seen_at": "2026-11-13T02:27:33+00:00",
+      "priority": "high",
+      "category": "ai_ml"
     }
   },
   "rejected_catalog": {
@@ -29400,6 +29410,6 @@
       "last_seen_at": "2026-11-12T20:41:26+00:00"
     }
   },
-  "last_successful_scan_at": "2026-11-12T20:41:26+00:00",
+  "last_successful_scan_at": "2026-11-13T02:27:33+00:00",
   "source_updated_at_by_id": {}
 }

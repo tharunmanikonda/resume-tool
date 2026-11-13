@@ -405,7 +405,9 @@
     "R0077328",
     "R0077329",
     "R0077330",
+    "R0077339",
     "R0077342",
+    "R0077344",
     "R0077346",
     "R0077348",
     "R0077349",
@@ -513,7 +515,7 @@
       "category": "platform"
     }
   },
-  "last_successful_scan_at": "2026-11-12T20:41:26+00:00",
+  "last_successful_scan_at": "2026-11-13T02:27:33+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "R0077145": {
@@ -5913,6 +5915,35 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-12T20:41:26+00:00",
       "last_seen_at": "2026-11-12T20:41:26+00:00"
+    },
+    "R0077344": {
+      "title": "Sr. Manager, Risk Governance & Assurance",
+      "location": "Austin, Texas, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077344/Sr-Manager-Risk-Governance-Assurance",
+      "posted_at": "2026-11-12T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T02:27:33+00:00",
+      "last_seen_at": "2026-11-13T02:27:33+00:00"
+    },
+    "R0077339": {
+      "title": "Business Systems Analyst Finance Systems",
+      "location": "Austin, Texas, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077339/Business-Systems-Analyst-Finance-Systems",
+      "posted_at": "2026-11-13",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "systems_analysis",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T02:27:33+00:00",
+      "last_seen_at": "2026-11-13T02:27:33+00:00"
     }
   },
   "source_updated_at_by_id": {}

@@ -1467,6 +1467,7 @@
     "2029584",
     "2029655",
     "2029683",
+    "2029859",
     "2029917",
     "2030022",
     "2030081",
@@ -1480,7 +1481,7 @@
     "2031083",
     "2031175"
   ],
-  "last_successful_scan_at": "2026-11-12T20:41:26+00:00",
+  "last_successful_scan_at": "2026-11-13T02:27:33+00:00",
   "candidate_catalog": {
     "2024998": {
       "title": "AI Security Engineer",
@@ -3813,6 +3814,20 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-12T20:41:26+00:00",
       "last_seen_at": "2026-11-12T20:41:26+00:00"
+    },
+    "2029859": {
+      "title": "Pricing and Strategy Sr. Analyst",
+      "location": "18 Locations",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/Pricing-and-Strategy-Sr-Analyst_2029859",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-13T02:27:33+00:00",
+      "last_seen_at": "2026-11-13T02:27:33+00:00"
     }
   },
   "source_updated_at_by_id": {}
