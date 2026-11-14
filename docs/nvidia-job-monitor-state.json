@@ -1194,6 +1194,7 @@
     "JR2029043",
     "JR2029056",
     "JR2029074",
+    "JR2029076",
     "JR2029082",
     "JR2029093",
     "JR2029094",
@@ -1224,14 +1225,20 @@
     "JR2029426",
     "JR2029430",
     "JR2029432",
+    "JR2029438",
     "JR2029449",
     "JR2029455",
     "JR2029457",
     "JR2029460",
     "JR2029533",
+    "JR2029536",
     "JR2029570",
+    "JR2029610",
     "JR2029621",
+    "JR2029629",
+    "JR2029630",
     "JR2029678",
+    "JR2029679",
     "JR2029680",
     "JR2029683",
     "JR2029685",
@@ -1241,6 +1248,7 @@
     "JR2029786",
     "JR2029837",
     "JR2029838",
+    "JR2029897",
     "JR2029901",
     "JR2029912",
     "JR2029924"
@@ -1587,9 +1595,18 @@
       "first_seen_at": "2026-11-10T20:17:40+00:00",
       "priority": "low",
       "category": "technical_review"
+    },
+    "JR2029610": {
+      "title": "Senior System Software Engineer",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-System-Software-Engineer_JR2029610",
+      "posted_at": "2026-11-13",
+      "first_seen_at": "2026-11-14T18:40:09+00:00",
+      "priority": "medium",
+      "category": "software"
     }
   },
-  "last_successful_scan_at": "2026-11-13T02:27:33+00:00",
+  "last_successful_scan_at": "2026-11-14T18:40:09+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "JR2014880": {
@@ -17130,6 +17147,105 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-13T02:27:33+00:00",
       "last_seen_at": "2026-11-13T02:27:33+00:00"
+    },
+    "JR2029438": {
+      "title": "Hardware\u00a0Design Validation Engineer",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Hardware-Design-Validation-Engineer_JR2029438",
+      "posted_at": "Posted Yesterday",
+      "stage": "prefilter",
+      "blockers": [
+        "embedded_or_hardware"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-14T18:40:09+00:00",
+      "last_seen_at": "2026-11-14T18:40:09+00:00"
+    },
+    "JR2029630": {
+      "title": "Senior Manager, Technical Program Management \u2014 Planning",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Manager--Technical-Program-Management---Planning_JR2029630",
+      "posted_at": "Posted Yesterday",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-14T18:40:09+00:00",
+      "last_seen_at": "2026-11-14T18:40:09+00:00"
+    },
+    "JR2029897": {
+      "title": "Senior Staff Software Engineer",
+      "location": "2 Locations",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Staff-Software-Engineer_JR2029897",
+      "posted_at": "Posted Yesterday",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-14T18:40:09+00:00",
+      "last_seen_at": "2026-11-14T18:40:09+00:00"
+    },
+    "JR2029536": {
+      "title": "Senior Packaging Development Engineer",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Packaging-Development-Engineer_JR2029536",
+      "posted_at": "2026-11-13",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-14T18:40:09+00:00",
+      "last_seen_at": "2026-11-14T18:40:09+00:00"
+    },
+    "JR2029076": {
+      "title": "Senior ASIC Design Efficiency Engineer",
+      "location": "US, CA, Santa Clara; US, NC, Durham",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-ASIC-Design-Efficiency-Engineer_JR2029076",
+      "posted_at": "2026-11-13",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-14T18:40:09+00:00",
+      "last_seen_at": "2026-11-14T18:40:09+00:00"
+    },
+    "JR2029629": {
+      "title": "Senior ASIC Design Engineer, Memory Controller",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-ASIC-Design-Engineer--Memory-Controller_JR2029629",
+      "posted_at": "2026-11-13",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-14T18:40:09+00:00",
+      "last_seen_at": "2026-11-14T18:40:09+00:00"
+    },
+    "JR2029679": {
+      "title": "Senior Mixed Signal Design Engineer",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Mixed-Signal-Design-Engineer_JR2029679",
+      "posted_at": "2026-11-13",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-14T18:40:09+00:00",
+      "last_seen_at": "2026-11-14T18:40:09+00:00"
     }
   },
   "source_updated_at_by_id": {}

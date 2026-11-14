@@ -2166,6 +2166,7 @@
     "R1574254",
     "R1574255",
     "R1574257",
+    "R1574262",
     "R1574263",
     "R1574272",
     "R1574290",
@@ -3016,7 +3017,7 @@
       "category": "technical_review"
     }
   },
-  "last_successful_scan_at": "2026-11-13T20:22:31+00:00",
+  "last_successful_scan_at": "2026-11-14T18:40:09+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "R1545472": {
@@ -41462,6 +41463,20 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-13T20:22:31+00:00",
       "last_seen_at": "2026-11-13T20:22:31+00:00"
+    },
+    "R1574262": {
+      "title": "Analyste d\u2019\u00e9tudes \u2013 Donn\u00e9es probantes en vie r\u00e9elle (Real World Evidence)/Analyste d\u2019\u00e9tudes \u2013 Donn\u00e9es probantes en vie r\u00e9elle (Real World Evidence) Bilingual",
+      "location": "2 Locations",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Mississauga-Ontario-Canada/Analyste-d-tudes---Donnes-probantes-en-vie-relle--Real-World-Evidence--Analyste-d-tudes---Donnes-probantes-en-vie-relle--Real-World-Evidence--Bilingual_R1574262",
+      "posted_at": "Posted Yesterday",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-14T18:40:09+00:00",
+      "last_seen_at": "2026-11-14T18:40:09+00:00"
     }
   },
   "source_updated_at_by_id": {}
