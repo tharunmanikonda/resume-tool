@@ -243,9 +243,11 @@
     "a0Hcw00000BeTmYEAV",
     "a0Hcw00000BeZDdEAN",
     "a0Hcw00000BekNaEAJ",
-    "a0Hcw00000Bf3JlEAJ"
+    "a0Hcw00000Bf3JlEAJ",
+    "a0Hcw00000Bi48BEAR",
+    "a0Hcw00000Bi7p4EAB"
   ],
-  "last_successful_scan_at": "2026-11-13T20:22:31+00:00",
+  "last_successful_scan_at": "2026-11-14T01:59:47+00:00",
   "candidate_catalog": {
     "a0Hcw000006tdYLEAY": {
       "title": "Operational Excellence Engineer",
@@ -1543,6 +1545,34 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-12T20:41:26+00:00",
       "last_seen_at": "2026-11-12T20:41:26+00:00"
+    },
+    "a0Hcw00000Bi48BEAR": {
+      "title": "Learning & Development Partner",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000Bi48BEAR/learning--development-partner",
+      "posted_at": "Posted This Week",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-14T01:59:47+00:00",
+      "last_seen_at": "2026-11-14T01:59:47+00:00"
+    },
+    "a0Hcw00000Bi7p4EAB": {
+      "title": "Senior SailPoint Consultant",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000Bi7p4EAB/senior-sailpoint-consultant",
+      "posted_at": "Posted This Week",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-14T01:59:47+00:00",
+      "last_seen_at": "2026-11-14T01:59:47+00:00"
     }
   },
   "source_updated_at_by_id": {}

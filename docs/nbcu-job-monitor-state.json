@@ -765,7 +765,11 @@
     "744000161556149",
     "744000161563469",
     "744000161566129",
-    "744000161568499"
+    "744000161568499",
+    "744000161574069",
+    "744000161575669",
+    "744000161582329",
+    "744000161597129"
   ],
   "candidate_catalog": {
     "744000151898289": {
@@ -886,7 +890,7 @@
       "category": "technical_review"
     }
   },
-  "last_successful_scan_at": "2026-11-13T20:22:31+00:00",
+  "last_successful_scan_at": "2026-11-14T01:59:47+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "744000156079569": {
@@ -10399,6 +10403,63 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-13T20:22:31+00:00",
       "last_seen_at": "2026-11-13T20:22:31+00:00"
+    },
+    "744000161597129": {
+      "title": "Senior Financial Analyst - Telemundo Orlando, FL",
+      "location": "Orlando, Florida, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161597129-senior-financial-analyst-telemundo-orlando-fl",
+      "posted_at": "2026-11-14T00:34:36.779Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-14T01:59:47+00:00",
+      "last_seen_at": "2026-11-14T01:59:47+00:00"
+    },
+    "744000161582329": {
+      "title": "Staff DevOps Engineer",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161582329-staff-devops-engineer",
+      "posted_at": "2026-11-13T21:51:24.159Z",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior"
+      ],
+      "category": "platform",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-14T01:59:47+00:00",
+      "last_seen_at": "2026-11-14T01:59:47+00:00"
+    },
+    "744000161575669": {
+      "title": "Sr. Manager, Financial Contract Administration (Participations)",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161575669-sr-manager-financial-contract-administration-participations",
+      "posted_at": "2026-11-13T20:59:23.442Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-14T01:59:47+00:00",
+      "last_seen_at": "2026-11-14T01:59:47+00:00"
+    },
+    "744000161574069": {
+      "title": "Program Coordinator, Dateline (contract)",
+      "location": "Universal City, CA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161574069-program-coordinator-dateline-contract",
+      "posted_at": "2026-11-13T20:45:35.019Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-14T01:59:47+00:00",
+      "last_seen_at": "2026-11-14T01:59:47+00:00"
     }
   },
   "source_updated_at_by_id": {}

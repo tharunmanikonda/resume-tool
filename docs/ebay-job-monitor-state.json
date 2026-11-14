@@ -88,6 +88,7 @@
     "R0074968",
     "R0075044",
     "R0075045",
+    "R0075057",
     "R0075105",
     "R0075109",
     "R0075110",
@@ -530,7 +531,7 @@
       "category": "platform"
     }
   },
-  "last_successful_scan_at": "2026-11-13T20:22:31+00:00",
+  "last_successful_scan_at": "2026-11-14T01:59:47+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "R0077145": {
@@ -6189,6 +6190,20 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-13T20:22:31+00:00",
       "last_seen_at": "2026-11-13T20:22:31+00:00"
+    },
+    "R0075057": {
+      "title": "Marketing Data Science Analytics Lead",
+      "location": "San Jose, California, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0075057/Marketing-Data-Science-Analytics-Lead",
+      "posted_at": "2026-11-13T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-14T01:59:47+00:00",
+      "last_seen_at": "2026-11-14T01:59:47+00:00"
     }
   },
   "source_updated_at_by_id": {}

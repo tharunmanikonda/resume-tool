@@ -12,14 +12,17 @@
     "am9icG9zdDpCyK1l7ZPiGpgGYcGcXV41",
     "am9icG9zdDpFdZTUveC6g8q8G7CRDYkt",
     "am9icG9zdDpFl5QFYmMzBVmY5ILWDpHv",
+    "am9icG9zdDq5ok6OX8WDUGAweKPs4amq",
     "am9icG9zdDqJgzf2Bu_0qefQ3TIPESmw",
     "am9icG9zdDqQGU-OlSzP3NW8e82cDjgJ",
     "am9icG9zdDqRbvqAGpMQYQZdQPuS_3w3",
     "am9icG9zdDqUzWDI7nPB-1ai3jJbFdxp",
     "am9icG9zdDqfghXX1xUaQY4pt_-uA4Jn",
     "am9icG9zdDqtEWCmgMmEa7pK_vw23dgP",
+    "am9icG9zdDquuYwR4I8Rh9097-cjBu9P",
     "am9icG9zdDqvfHe7ccFQfZ2upCmgI8zM",
     "am9icG9zdDr1ivF4Z83dxwMxjYehfXDd",
+    "am9icG9zdDrWlfsujLjzR1YGlutvpkiF",
     "am9icG9zdDrbM9PPT4b0PBJLnZzIwPYm",
     "am9icG9zdDrjs1cXAvxZfz7oqTg028nU"
   ],
@@ -41,9 +44,27 @@
       "first_seen_at": "2026-11-01T21:53:41+00:00",
       "priority": "medium",
       "category": "software"
+    },
+    "am9icG9zdDrWlfsujLjzR1YGlutvpkiF": {
+      "title": "Data Center & Linux Systems Engineer",
+      "location": "Chicago, IL, Remote",
+      "url": "https://jobs.gem.com/ocient-inc-/am9icG9zdDrWlfsujLjzR1YGlutvpkiF",
+      "posted_at": "",
+      "first_seen_at": "2026-11-14T01:59:47+00:00",
+      "priority": "medium",
+      "category": "systems_engineering"
+    },
+    "am9icG9zdDquuYwR4I8Rh9097-cjBu9P": {
+      "title": "Data Engineer II",
+      "location": "Remote, USA, Remote",
+      "url": "https://jobs.gem.com/ocient-inc-/am9icG9zdDquuYwR4I8Rh9097-cjBu9P",
+      "posted_at": "",
+      "first_seen_at": "2026-11-14T01:59:47+00:00",
+      "priority": "medium",
+      "category": "data"
     }
   },
-  "last_successful_scan_at": "2026-11-13T20:22:31+00:00",
+  "last_successful_scan_at": "2026-11-14T01:59:47+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "am9icG9zdDoSZRhfRFSX4uPin3ZELp9s": {
@@ -308,6 +329,21 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-12T02:44:10+00:00",
       "last_seen_at": "2026-11-12T02:44:10+00:00"
+    },
+    "am9icG9zdDq5ok6OX8WDUGAweKPs4amq": {
+      "title": "UI/UX and Full Stack Engineering Manager",
+      "location": "Remote, India, Remote",
+      "url": "https://jobs.gem.com/ocient-inc-/am9icG9zdDq5ok6OX8WDUGAweKPs4amq",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management"
+      ],
+      "category": "full_stack",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-14T01:59:47+00:00",
+      "last_seen_at": "2026-11-14T01:59:47+00:00"
     }
   },
   "source_updated_at_by_id": {}
