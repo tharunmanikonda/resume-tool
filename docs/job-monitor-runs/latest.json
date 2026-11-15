@@ -1,6 +1,6 @@
 {
   "success": true,
-  "scanned_at": "2026-11-15T01:32:38+00:00",
+  "scanned_at": "2026-11-15T19:16:30+00:00",
   "monitor_count": 14,
   "successful_monitors": [
     "cbre",
@@ -27,7 +27,7 @@
     {
       "monitor": "cbre",
       "success": true,
-      "scanned_at": "2026-11-15T01:32:38+00:00",
+      "scanned_at": "2026-11-15T19:16:30+00:00",
       "fetched": 701,
       "unseen": 0,
       "state_updated": true,
@@ -38,9 +38,9 @@
     {
       "monitor": "cdk",
       "success": true,
-      "scanned_at": "2026-11-15T01:32:38+00:00",
+      "scanned_at": "2026-11-15T19:16:30+00:00",
       "fetched": 49,
-      "unseen": 2,
+      "unseen": 0,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -49,7 +49,7 @@
     {
       "monitor": "cisco",
       "success": true,
-      "scanned_at": "2026-11-15T01:32:38+00:00",
+      "scanned_at": "2026-11-15T19:16:30+00:00",
       "fetched": 60,
       "unseen": 0,
       "state_updated": true,
@@ -60,7 +60,7 @@
     {
       "monitor": "crunchyroll",
       "success": true,
-      "scanned_at": "2026-11-15T01:32:38+00:00",
+      "scanned_at": "2026-11-15T19:16:30+00:00",
       "fetched": 100,
       "unseen": 0,
       "state_updated": true,
@@ -71,9 +71,9 @@
     {
       "monitor": "ebay",
       "success": true,
-      "scanned_at": "2026-11-15T01:32:38+00:00",
-      "fetched": 179,
-      "unseen": 2,
+      "scanned_at": "2026-11-15T19:16:30+00:00",
+      "fetched": 175,
+      "unseen": 0,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -82,7 +82,7 @@
     {
       "monitor": "intepros",
       "success": true,
-      "scanned_at": "2026-11-15T01:32:38+00:00",
+      "scanned_at": "2026-11-15T19:16:30+00:00",
       "fetched": 20,
       "unseen": 0,
       "state_updated": true,
@@ -93,8 +93,8 @@
     {
       "monitor": "iqvia",
       "success": true,
-      "scanned_at": "2026-11-15T01:32:38+00:00",
-      "fetched": 352,
+      "scanned_at": "2026-11-15T19:16:30+00:00",
+      "fetched": 356,
       "unseen": 0,
       "state_updated": true,
       "candidates": [],
@@ -104,7 +104,7 @@
     {
       "monitor": "nbcu",
       "success": true,
-      "scanned_at": "2026-11-15T01:32:38+00:00",
+      "scanned_at": "2026-11-15T19:16:30+00:00",
       "fetched": 252,
       "unseen": 0,
       "state_updated": true,
@@ -115,9 +115,9 @@
     {
       "monitor": "nvidia",
       "success": true,
-      "scanned_at": "2026-11-15T01:32:38+00:00",
-      "fetched": 120,
-      "unseen": 2,
+      "scanned_at": "2026-11-15T19:16:30+00:00",
+      "fetched": 100,
+      "unseen": 0,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -126,7 +126,7 @@
     {
       "monitor": "occ",
       "success": true,
-      "scanned_at": "2026-11-15T01:32:38+00:00",
+      "scanned_at": "2026-11-15T19:16:30+00:00",
       "fetched": 60,
       "unseen": 0,
       "state_updated": true,
@@ -137,7 +137,7 @@
     {
       "monitor": "ocient",
       "success": true,
-      "scanned_at": "2026-11-15T01:32:38+00:00",
+      "scanned_at": "2026-11-15T19:16:30+00:00",
       "fetched": 18,
       "unseen": 0,
       "state_updated": true,
@@ -148,7 +148,7 @@
     {
       "monitor": "rivian",
       "success": true,
-      "scanned_at": "2026-11-15T01:32:38+00:00",
+      "scanned_at": "2026-11-15T19:16:30+00:00",
       "fetched": 30,
       "unseen": 0,
       "state_updated": true,
@@ -159,8 +159,8 @@
     {
       "monitor": "tiktok",
       "success": true,
-      "scanned_at": "2026-11-15T01:32:38+00:00",
-      "fetched": 1868,
+      "scanned_at": "2026-11-15T19:16:30+00:00",
+      "fetched": 1867,
       "unseen": 0,
       "state_updated": true,
       "candidates": [],
@@ -170,7 +170,7 @@
     {
       "monitor": "waymo",
       "success": true,
-      "scanned_at": "2026-11-15T01:32:38+00:00",
+      "scanned_at": "2026-11-15T19:16:30+00:00",
       "fetched": 160,
       "unseen": 0,
       "state_updated": true,
