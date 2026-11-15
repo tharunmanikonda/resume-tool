@@ -64,6 +64,8 @@ jobs:
               output.write(f"found={'true' if report['candidate_count'] else 'false'}\n")
               output.write(f"count={report['candidate_count']}\n")
               output.write(f"scanned_at={report['scanned_at']}\n")
+              output.write(f"failed={'true' if report['failed_monitors'] else 'false'}\n")
+              output.write(f"failed_count={len(report['failed_monitors'])}\n")
           PY
 
       - name: Open a GitHub issue for new matches
@@ -80,7 +82,28 @@ jobs:
           gh issue create \
             --title "New job matches: ${MATCH_COUNT} found at ${SCANNED_AT}" \
             --body-file docs/job-monitor-runs/latest.md \
-            --label job-monitor
+            --label job-monitor \
+            --assignee "${GITHUB_REPOSITORY_OWNER}"
+
+      - name: Email matches or monitor failures
+        if: steps.candidates.outputs.found == 'true' || steps.candidates.outputs.failed == 'true'
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          JOB_MONITOR_EMAIL_TO: ${{ secrets.JOB_MONITOR_EMAIL_TO }}
+          JOB_MONITOR_EMAIL_FROM: ${{ secrets.JOB_MONITOR_EMAIL_FROM }}
+          MATCH_COUNT: ${{ steps.candidates.outputs.count }}
+          FAILED_COUNT: ${{ steps.candidates.outputs.failed_count }}
+        run: |
+          if [ -z "$SMTP_USERNAME" ] || [ -z "$SMTP_PASSWORD" ] || [ -z "$JOB_MONITOR_EMAIL_TO" ]; then
+            echo "Email secrets are not configured; GitHub issue notification remains active."
+            exit 0
+          fi
+          python send_job_monitor_email.py \
+            --subject "Job monitor: ${MATCH_COUNT} matches, ${FAILED_COUNT} failures" \
+            --report docs/job-monitor-runs/latest.md
 
       - name: Commit successful state updates and report
         if: always()
