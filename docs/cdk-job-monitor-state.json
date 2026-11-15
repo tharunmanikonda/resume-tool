@@ -17,10 +17,12 @@
     "JR9148",
     "JR9158",
     "JR9177",
+    "JR9185",
     "JR9204",
     "JR9218",
     "JR9220",
     "JR9221",
+    "JR9231",
     "JR9235",
     "JR9241",
     "JR9247",
@@ -122,7 +124,7 @@
       "category": "database"
     }
   },
-  "last_successful_scan_at": "2026-11-14T18:40:09+00:00",
+  "last_successful_scan_at": "2026-11-15T01:32:38+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "JR9003": {
@@ -999,6 +1001,34 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-10T20:17:40+00:00",
       "last_seen_at": "2026-11-10T20:17:40+00:00"
+    },
+    "JR9185": {
+      "title": "Sr Software Engineer",
+      "location": "Austin, TX, USA",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Austin-TX-USA/Sr-Software-Engineer_JR9185-1",
+      "posted_at": "2026-11-14",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-15T01:32:38+00:00",
+      "last_seen_at": "2026-11-15T01:32:38+00:00"
+    },
+    "JR9231": {
+      "title": "Sr Software Engineer",
+      "location": "Austin, TX, USA; Portland, OR, USA",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Austin-TX-USA/Sr-Software-Engineer_JR9231-1",
+      "posted_at": "2026-11-14",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-15T01:32:38+00:00",
+      "last_seen_at": "2026-11-15T01:32:38+00:00"
     }
   },
   "source_updated_at_by_id": {}

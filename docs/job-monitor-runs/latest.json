@@ -1,6 +1,6 @@
 {
   "success": true,
-  "scanned_at": "2026-11-14T18:40:09+00:00",
+  "scanned_at": "2026-11-15T01:32:38+00:00",
   "monitor_count": 14,
   "successful_monitors": [
     "cbre",
@@ -19,36 +19,17 @@
     "waymo"
   ],
   "failed_monitors": [],
-  "candidate_count": 1,
+  "candidate_count": 0,
   "needs_ai_review_count": 0,
-  "candidates": [
-    {
-      "monitor": "nvidia",
-      "job_id": "JR2029610",
-      "title": "Senior System Software Engineer",
-      "location": "US, CA, Santa Clara",
-      "posted_at": "2026-11-13",
-      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-System-Software-Engineer_JR2029610",
-      "priority": "medium",
-      "matching_requirements": [
-        "target_title:software",
-        "profile_signal:java:+1",
-        "profile_signal:backend_apis:+2",
-        "profile_signal:data_streaming:+2",
-        "profile_signal:databases:+1",
-        "profile_signal:cloud_containers:+2"
-      ],
-      "material_gaps": []
-    }
-  ],
+  "candidates": [],
   "needs_ai_review": [],
   "results": [
     {
       "monitor": "cbre",
       "success": true,
-      "scanned_at": "2026-11-14T18:40:09+00:00",
-      "fetched": 764,
-      "unseen": 6,
+      "scanned_at": "2026-11-15T01:32:38+00:00",
+      "fetched": 701,
+      "unseen": 0,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -57,9 +38,9 @@
     {
       "monitor": "cdk",
       "success": true,
-      "scanned_at": "2026-11-14T18:40:09+00:00",
-      "fetched": 47,
-      "unseen": 0,
+      "scanned_at": "2026-11-15T01:32:38+00:00",
+      "fetched": 49,
+      "unseen": 2,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -68,7 +49,7 @@
     {
       "monitor": "cisco",
       "success": true,
-      "scanned_at": "2026-11-14T18:40:09+00:00",
+      "scanned_at": "2026-11-15T01:32:38+00:00",
       "fetched": 60,
       "unseen": 0,
       "state_updated": true,
@@ -79,7 +60,7 @@
     {
       "monitor": "crunchyroll",
       "success": true,
-      "scanned_at": "2026-11-14T18:40:09+00:00",
+      "scanned_at": "2026-11-15T01:32:38+00:00",
       "fetched": 100,
       "unseen": 0,
       "state_updated": true,
@@ -90,9 +71,9 @@
     {
       "monitor": "ebay",
       "success": true,
-      "scanned_at": "2026-11-14T18:40:09+00:00",
-      "fetched": 176,
-      "unseen": 0,
+      "scanned_at": "2026-11-15T01:32:38+00:00",
+      "fetched": 179,
+      "unseen": 2,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -101,7 +82,7 @@
     {
       "monitor": "intepros",
       "success": true,
-      "scanned_at": "2026-11-14T18:40:09+00:00",
+      "scanned_at": "2026-11-15T01:32:38+00:00",
       "fetched": 20,
       "unseen": 0,
       "state_updated": true,
@@ -112,9 +93,9 @@
     {
       "monitor": "iqvia",
       "success": true,
-      "scanned_at": "2026-11-14T18:40:09+00:00",
-      "fetched": 351,
-      "unseen": 1,
+      "scanned_at": "2026-11-15T01:32:38+00:00",
+      "fetched": 352,
+      "unseen": 0,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -123,7 +104,7 @@
     {
       "monitor": "nbcu",
       "success": true,
-      "scanned_at": "2026-11-14T18:40:09+00:00",
+      "scanned_at": "2026-11-15T01:32:38+00:00",
       "fetched": 252,
       "unseen": 0,
       "state_updated": true,
@@ -134,36 +115,18 @@
     {
       "monitor": "nvidia",
       "success": true,
-      "scanned_at": "2026-11-14T18:40:09+00:00",
+      "scanned_at": "2026-11-15T01:32:38+00:00",
       "fetched": 120,
-      "unseen": 8,
+      "unseen": 2,
       "state_updated": true,
-      "candidates": [
-        {
-          "job_id": "JR2029610",
-          "title": "Senior System Software Engineer",
-          "location": "US, CA, Santa Clara",
-          "posted_at": "2026-11-13",
-          "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-System-Software-Engineer_JR2029610",
-          "priority": "medium",
-          "matching_requirements": [
-            "target_title:software",
-            "profile_signal:java:+1",
-            "profile_signal:backend_apis:+2",
-            "profile_signal:data_streaming:+2",
-            "profile_signal:databases:+1",
-            "profile_signal:cloud_containers:+2"
-          ],
-          "material_gaps": []
-        }
-      ],
+      "candidates": [],
       "needs_ai_review": [],
       "errors": []
     },
     {
       "monitor": "occ",
       "success": true,
-      "scanned_at": "2026-11-14T18:40:09+00:00",
+      "scanned_at": "2026-11-15T01:32:38+00:00",
       "fetched": 60,
       "unseen": 0,
       "state_updated": true,
@@ -174,7 +137,7 @@
     {
       "monitor": "ocient",
       "success": true,
-      "scanned_at": "2026-11-14T18:40:09+00:00",
+      "scanned_at": "2026-11-15T01:32:38+00:00",
       "fetched": 18,
       "unseen": 0,
       "state_updated": true,
@@ -185,7 +148,7 @@
     {
       "monitor": "rivian",
       "success": true,
-      "scanned_at": "2026-11-14T18:40:09+00:00",
+      "scanned_at": "2026-11-15T01:32:38+00:00",
       "fetched": 30,
       "unseen": 0,
       "state_updated": true,
@@ -196,7 +159,7 @@
     {
       "monitor": "tiktok",
       "success": true,
-      "scanned_at": "2026-11-14T18:40:09+00:00",
+      "scanned_at": "2026-11-15T01:32:38+00:00",
       "fetched": 1868,
       "unseen": 0,
       "state_updated": true,
@@ -207,7 +170,7 @@
     {
       "monitor": "waymo",
       "success": true,
-      "scanned_at": "2026-11-14T18:40:09+00:00",
+      "scanned_at": "2026-11-15T01:32:38+00:00",
       "fetched": 160,
       "unseen": 0,
       "state_updated": true,

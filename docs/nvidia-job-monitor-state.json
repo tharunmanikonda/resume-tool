@@ -916,6 +916,7 @@
     "JR2026097",
     "JR2026111",
     "JR2026122",
+    "JR2026129",
     "JR2026131",
     "JR2026132",
     "JR2026138",
@@ -1246,6 +1247,7 @@
     "JR2029702",
     "JR2029706",
     "JR2029786",
+    "JR2029799",
     "JR2029837",
     "JR2029838",
     "JR2029897",
@@ -1606,7 +1608,7 @@
       "category": "software"
     }
   },
-  "last_successful_scan_at": "2026-11-14T18:40:09+00:00",
+  "last_successful_scan_at": "2026-11-15T01:32:38+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "JR2014880": {
@@ -17246,6 +17248,34 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-14T18:40:09+00:00",
       "last_seen_at": "2026-11-14T18:40:09+00:00"
+    },
+    "JR2026129": {
+      "title": "Deep Learning Framework Communications Engineer - New College Grad 2026",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Deep-Learning-Framework-Communications-Engineer---New-College-Grad-2026_JR2026129-1",
+      "posted_at": "2026-11-14",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-15T01:32:38+00:00",
+      "last_seen_at": "2026-11-15T01:32:38+00:00"
+    },
+    "JR2029799": {
+      "title": "Senior System Software Engineer, NPI Data Center",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-System-Software-Engineer--NPI-Data-Center_JR2029799",
+      "posted_at": "2026-11-14",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-15T01:32:38+00:00",
+      "last_seen_at": "2026-11-15T01:32:38+00:00"
     }
   },
   "source_updated_at_by_id": {}

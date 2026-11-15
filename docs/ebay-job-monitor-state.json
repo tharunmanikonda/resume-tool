@@ -402,6 +402,7 @@
     "R0077304",
     "R0077306",
     "R0077317",
+    "R0077321",
     "R0077324",
     "R0077328",
     "R0077329",
@@ -412,6 +413,7 @@
     "R0077346",
     "R0077348",
     "R0077349",
+    "R0077351",
     "R0077352",
     "R0077355",
     "R0077356",
@@ -531,7 +533,7 @@
       "category": "platform"
     }
   },
-  "last_successful_scan_at": "2026-11-14T18:40:09+00:00",
+  "last_successful_scan_at": "2026-11-15T01:32:38+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "R0077145": {
@@ -6204,6 +6206,38 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-14T01:59:47+00:00",
       "last_seen_at": "2026-11-14T01:59:47+00:00"
+    },
+    "R0077321": {
+      "title": "Senior Product Manager, Ad Ranking",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077321/Senior-Product-Manager-Ad-Ranking",
+      "posted_at": "2026-11-14T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-15T01:32:38+00:00",
+      "last_seen_at": "2026-11-15T01:32:38+00:00"
+    },
+    "R0077351": {
+      "title": "Senior Product Manager, Ad Relevance",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077351/Senior-Product-Manager-Ad-Relevance",
+      "posted_at": "2026-11-14T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-15T01:32:38+00:00",
+      "last_seen_at": "2026-11-15T01:32:38+00:00"
     }
   },
   "source_updated_at_by_id": {}
