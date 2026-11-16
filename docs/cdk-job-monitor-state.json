@@ -40,6 +40,7 @@
     "JR9315",
     "JR9316",
     "JR9324",
+    "JR9325",
     "JR9327",
     "JR9330",
     "JR9331",
@@ -124,7 +125,7 @@
       "category": "database"
     }
   },
-  "last_successful_scan_at": "2026-11-16T01:36:44+00:00",
+  "last_successful_scan_at": "2026-11-16T22:45:53+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "JR9003": {
@@ -1029,6 +1030,20 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-15T01:32:38+00:00",
       "last_seen_at": "2026-11-15T01:32:38+00:00"
+    },
+    "JR9325": {
+      "title": "Associate Network Security Engineer",
+      "location": "Hyderabad, TG, IND",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Hyderabad-TG-IND/Associate-Network-Security-Engineer_JR9325-1",
+      "posted_at": "2026-11-16",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "security",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
     }
   },
   "source_updated_at_by_id": {}

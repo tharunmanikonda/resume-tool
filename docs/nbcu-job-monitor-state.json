@@ -769,7 +769,26 @@
     "744000161574069",
     "744000161575669",
     "744000161582329",
-    "744000161597129"
+    "744000161597129",
+    "744000161812859",
+    "744000161818399",
+    "744000161840139",
+    "744000161844150",
+    "744000161857761",
+    "744000161874950",
+    "744000161876169",
+    "744000161876175",
+    "744000161877774",
+    "744000161878602",
+    "744000161878709",
+    "744000161879279",
+    "744000161879532",
+    "744000161879639",
+    "744000161897114",
+    "744000161898830",
+    "744000161915128",
+    "744000161923099",
+    "744000161923300"
   ],
   "candidate_catalog": {
     "744000151898289": {
@@ -890,7 +909,7 @@
       "category": "technical_review"
     }
   },
-  "last_successful_scan_at": "2026-11-16T01:36:44+00:00",
+  "last_successful_scan_at": "2026-11-16T22:45:53+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "744000156079569": {
@@ -10460,6 +10479,275 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-14T01:59:47+00:00",
       "last_seen_at": "2026-11-14T01:59:47+00:00"
+    },
+    "744000161923300": {
+      "title": "Entertainment Coordinator",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161923300-entertainment-coordinator",
+      "posted_at": "2026-11-16T22:23:01.493Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "744000161923099": {
+      "title": "DreamWorks Technology - Sr. Technical Product Owner ",
+      "location": "Glendale, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161923099-dreamworks-technology-sr-technical-product-owner",
+      "posted_at": "2026-11-16T22:16:16.007Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "744000161915128": {
+      "title": "Account Services Representative",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161915128-account-services-representative",
+      "posted_at": "2026-11-16T21:20:55.788Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "744000161898830": {
+      "title": "Coordinator, Peacock Sports Programming",
+      "location": "Stamford, Connecticut, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161898830-coordinator-peacock-sports-programming",
+      "posted_at": "2026-11-16T19:38:57.947Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "744000161897114": {
+      "title": "The Tonight Show Starring Jimmy Fallon Internships \u2013 Summer 2027",
+      "location": "New York, NY, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161897114-the-tonight-show-starring-jimmy-fallon-internships-summer-2027",
+      "posted_at": "2026-11-16T19:34:56.889Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "744000161878602": {
+      "title": "Film Production & Development Internships \u2013 Summer 2027",
+      "location": "Universal City, CA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161878602-film-production-development-internships-summer-2027",
+      "posted_at": "2026-11-16T17:47:08.572Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "744000161879532": {
+      "title": "Universal Pictures Publicty & Marketing Internships \u2013 Summer 2027",
+      "location": "Universal City, CA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161879532-universal-pictures-publicty-marketing-internships-summer-2027",
+      "posted_at": "2026-11-16T17:46:19.440Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "744000161879639": {
+      "title": "Focus Features Publicity & Marketing Internships \u2013 Summer 2027",
+      "location": "Universal City, CA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161879639-focus-features-publicity-marketing-internships-summer-2027",
+      "posted_at": "2026-11-16T17:45:17.485Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "744000161879279": {
+      "title": "Digital Transformation AR/VR Internships \u2013 Summer 2027",
+      "location": "Universal City, CA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161879279-digital-transformation-ar-vr-internships-summer-2027",
+      "posted_at": "2026-11-16T17:44:37.752Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "744000161876175": {
+      "title": "Universal Film Production IT Support Internships \u2013 Summer 2027",
+      "location": "Universal City, CA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161876175-universal-film-production-it-support-internships-summer-2027",
+      "posted_at": "2026-11-16T17:43:40.908Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "744000161878709": {
+      "title": "Universal Film Global Distribution Internships \u2013 Summer 2027",
+      "location": "New York, NY, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161878709-universal-film-global-distribution-internships-summer-2027",
+      "posted_at": "2026-11-16T17:42:35.379Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "744000161877774": {
+      "title": "Universal Film Global Distribution Internships \u2013 Summer 2027",
+      "location": "Universal City, CA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161877774-universal-film-global-distribution-internships-summer-2027",
+      "posted_at": "2026-11-16T17:42:16.035Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "744000161876169": {
+      "title": "Billing Analyst, Digital Ad Sales",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161876169-billing-analyst-digital-ad-sales",
+      "posted_at": "2026-11-16T17:32:34.954Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "744000161874950": {
+      "title": "Sr. Specialist, Copyright and Trademark",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161874950-sr-specialist-copyright-and-trademark",
+      "posted_at": "2026-11-16T17:28:01.032Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "744000161857761": {
+      "title": "Vice President, Client Partnerships",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161857761-vice-president-client-partnerships",
+      "posted_at": "2026-11-16T16:19:41.915Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "744000161844150": {
+      "title": "Workplace Services Coordinator",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161844150-workplace-services-coordinator",
+      "posted_at": "2026-11-16T15:37:35.064Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "744000161840139": {
+      "title": "Senior Director, Programmatic Strategy",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161840139-senior-director-programmatic-strategy",
+      "posted_at": "2026-11-16T15:17:21.872Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "744000161818399": {
+      "title": "Manager, Strategic Enablement",
+      "location": "New York, NY, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161818399-manager-strategic-enablement",
+      "posted_at": "2026-11-16T14:10:32.435Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "744000161812859": {
+      "title": "Senior Director - Digital Ad Sales & Partnerships",
+      "location": "Miami, Florida, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161812859-senior-director-digital-ad-sales-partnerships",
+      "posted_at": "2026-11-16T13:46:30.160Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
     }
   },
   "source_updated_at_by_id": {}

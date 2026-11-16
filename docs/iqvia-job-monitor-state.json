@@ -425,6 +425,7 @@
     "R1541090",
     "R1541183",
     "R1541282",
+    "R1541421",
     "R1541452",
     "R1541478",
     "R1541483",
@@ -931,6 +932,7 @@
     "R1560523",
     "R1560526",
     "R1560529",
+    "R1560538",
     "R1560539",
     "R1560649",
     "R1560652",
@@ -1194,6 +1196,7 @@
     "R1565157",
     "R1565158",
     "R1565172",
+    "R1565188",
     "R1565189",
     "R1565233",
     "R1565238",
@@ -1692,6 +1695,7 @@
     "R1570081",
     "R1570093",
     "R1570094",
+    "R1570115",
     "R1570138",
     "R1570141",
     "R1570183",
@@ -1821,6 +1825,7 @@
     "R1571329",
     "R1571331",
     "R1571335",
+    "R1571364",
     "R1571366",
     "R1571369",
     "R1571372",
@@ -2307,6 +2312,7 @@
     "R1575282",
     "R1575289",
     "R1575294",
+    "R1575304",
     "R1575306",
     "R1575307",
     "R1575309",
@@ -2405,6 +2411,7 @@
     "R1576112",
     "R1576115",
     "R1576119",
+    "R1576120",
     "R1576134",
     "R1576137",
     "R1576197",
@@ -2605,6 +2612,7 @@
     "R1577995",
     "R1577997",
     "R1578002",
+    "R1578013",
     "R1578015",
     "R1578047",
     "R1578064",
@@ -2824,7 +2832,13 @@
     "R1579810",
     "R1579812",
     "R1579888",
-    "R1579921"
+    "R1579921",
+    "R1579928",
+    "R1580032",
+    "R1580063",
+    "R1580069",
+    "R1580073",
+    "R1580109"
   ],
   "candidate_catalog": {
     "R1570411": {
@@ -3017,7 +3031,7 @@
       "category": "technical_review"
     }
   },
-  "last_successful_scan_at": "2026-11-16T01:36:44+00:00",
+  "last_successful_scan_at": "2026-11-16T22:45:53+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "R1545472": {
@@ -41477,6 +41491,213 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-14T18:40:09+00:00",
       "last_seen_at": "2026-11-14T18:40:09+00:00"
+    },
+    "R1570115": {
+      "title": "Analyste, conformit\u00e9 TI (t\u00e9l\u00e9travail)/ IT Compliance Analyst II (Remote)",
+      "location": "2 Locations",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Toronto-Ontario-Canada/Analyste--conformit-TI--tltravail---IT-Compliance-Analyst-II--Remote-_R1570115",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "R1560538": {
+      "title": "Senior Business Analyst (Remote)",
+      "location": "Durham, North Carolina, United States of America",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Durham-North-Carolina-United-States-of-America/Security-Program-Manager--Remote-_R1560538",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "R1575304": {
+      "title": "Principal Cloud Engineer",
+      "location": "Bangalore, India",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Bangalore-India/Principal-Cloud-Engineer_R1575304-1",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "level_too_senior"
+      ],
+      "category": "platform",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "R1571364": {
+      "title": "Application Security Automation Analyst",
+      "location": "3 Locations",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/So-Paulo-Brazil/Application-Security-Automation-Analyst_R1571364",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "R1580073": {
+      "title": "AI Automation Architect",
+      "location": "Budapest, Hungary",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Budapest-Hungary/AI-Automation-Architect_R1580073",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "R1580069": {
+      "title": "AI Automation Architect",
+      "location": "Bucuresti, Romania",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Bucuresti-Romania/AI-Automation-Architect_R1580069",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "R1580032": {
+      "title": "AI Automation Architect",
+      "location": "Barcelona, Spain",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Barcelona-Spain/AI-Automation-Architect_R1580032",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "R1580109": {
+      "title": "MedTech Project Manager- Nationwide Travel",
+      "location": "17 Locations",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Chicago-IL/MedTech-Project-Manager--Nationwide-Travel_R1580109",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "R1579928": {
+      "title": "Clin Project Mgr",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Toronto-Ontario-Canada/Clin-Project-Mgr_R1579928",
+      "posted_at": "Posted 2 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "R1580063": {
+      "title": "Research Nurse - Plasencia",
+      "location": "C\u00e1ceres, Extremadura, Spain",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Cceres-Extremadura-Spain/Research-Nurse---Plasencia_R1580063",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "R1578013": {
+      "title": "Associate Video Producer - Home Office CDMX",
+      "location": "Mexico City, Mexico",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Mexico-City-Mexico/Associate-Video-Producer---Home-Office-CDMX_R1578013-1",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "R1541421": {
+      "title": "Associate Project Financial Analyst",
+      "location": "2 Locations",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Bratislava-Slovakia/Associate-Project-Financial-Analyst_R1541421",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "R1565188": {
+      "title": "Consulting Analyst",
+      "location": "Santiago, Chile",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Santiago-Chile/Consulting-Analyst_R1565188",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "R1576120": {
+      "title": "Localisation Engineer",
+      "location": "Buenos Aires, Argentina",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Buenos-Aires-Argentina/Localisation-Engineer_R1576120",
+      "posted_at": "2026-11-16",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
     }
   },
   "source_updated_at_by_id": {}

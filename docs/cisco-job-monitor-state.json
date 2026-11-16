@@ -1462,6 +1462,7 @@
     "2029276",
     "2029288",
     "2029360",
+    "2029361",
     "2029363",
     "2029397",
     "2029455",
@@ -1484,7 +1485,7 @@
     "2031083",
     "2031175"
   ],
-  "last_successful_scan_at": "2026-11-16T01:36:44+00:00",
+  "last_successful_scan_at": "2026-11-16T22:45:53+00:00",
   "candidate_catalog": {
     "2024998": {
       "title": "AI Security Engineer",
@@ -3875,6 +3876,22 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-16T01:36:44+00:00",
       "last_seen_at": "2026-11-16T01:36:44+00:00"
+    },
+    "2029361": {
+      "title": "Hardware Engineering Design Technical Leader",
+      "location": "Milpitas, California, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Milpitas-California-US/Hardware-Engineering-Design-Technical-Leader_2029361",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "embedded_or_hardware",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
     }
   },
   "source_updated_at_by_id": {}

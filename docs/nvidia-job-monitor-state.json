@@ -31,6 +31,7 @@
     "JR1997556",
     "JR1997726",
     "JR1997852",
+    "JR1997977",
     "JR1998042",
     "JR1998405",
     "JR1998721",
@@ -920,6 +921,7 @@
     "JR2026131",
     "JR2026132",
     "JR2026138",
+    "JR2026148",
     "JR2026158",
     "JR2026198",
     "JR2026202",
@@ -1219,6 +1221,7 @@
     "JR2029366",
     "JR2029400",
     "JR2029411",
+    "JR2029413",
     "JR2029414",
     "JR2029416",
     "JR2029419",
@@ -1233,6 +1236,7 @@
     "JR2029460",
     "JR2029533",
     "JR2029536",
+    "JR2029548",
     "JR2029570",
     "JR2029610",
     "JR2029621",
@@ -1246,14 +1250,20 @@
     "JR2029701",
     "JR2029702",
     "JR2029706",
+    "JR2029711",
     "JR2029786",
     "JR2029799",
+    "JR2029813",
     "JR2029837",
     "JR2029838",
+    "JR2029873",
     "JR2029897",
     "JR2029901",
     "JR2029912",
-    "JR2029924"
+    "JR2029915",
+    "JR2029924",
+    "JR2030014",
+    "JR2030024"
   ],
   "candidate_catalog": {
     "JR2018245": {
@@ -1608,7 +1618,7 @@
       "category": "software"
     }
   },
-  "last_successful_scan_at": "2026-11-16T01:36:44+00:00",
+  "last_successful_scan_at": "2026-11-16T22:45:53+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "JR2014880": {
@@ -17276,6 +17286,148 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-15T01:32:38+00:00",
       "last_seen_at": "2026-11-15T01:32:38+00:00"
+    },
+    "JR2029413": {
+      "title": "Senior Deep Learning Scientist, AI Safety",
+      "location": "2 Locations",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Deep-Learning-Scientist--AI-Safety_JR2029413",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "JR2029711": {
+      "title": "Firmware System Integration Engineer",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Firmware-System-Integration-Engineer_JR2029711-1",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "embedded_or_hardware"
+      ],
+      "category": "integration",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "JR2029813": {
+      "title": "Business Controls Specialist",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Business-Controls-Specialist_JR2029813",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "embedded_or_hardware",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "JR2029915": {
+      "title": "Senior Software Safety Manager",
+      "location": "6 Locations",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Software-Safety-Manager_JR2029915",
+      "posted_at": "Posted Yesterday",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "JR2029873": {
+      "title": "Senior Software Workload Optimization Engineer",
+      "location": "US, WA, Seattle; US, Remote",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-WA-Seattle/Senior-Software-Workload-Optimization-Engineer_JR2029873",
+      "posted_at": "2026-11-16",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "JR2030014": {
+      "title": "Senior Machine Learning Graphics Engineer, AI for Experiences",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Machine-Learning-Graphics-Engineer--AI-for-Experiences_JR2030014-1",
+      "posted_at": "2026-11-16",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "JR1997977": {
+      "title": "Senior System Design Engineer",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-System-Design-Engineer_JR1997977",
+      "posted_at": "2026-11-16",
+      "stage": "detail",
+      "blockers": [
+        "non_software_engineering_role"
+      ],
+      "category": "systems_engineering",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "JR2030024": {
+      "title": "Senior Math Libraries Engineer \u2013 AI and HPC",
+      "location": "US, CA, Santa Clara; US, TX, Remote; US, NY, Remote; US, WA, Remote; US, CA, Remote; US, MA, Remote",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Math-Libraries-Engineer---AI-and-HPC_JR2030024",
+      "posted_at": "2026-11-16",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "JR2026148": {
+      "title": "Senior Data Application Engineer \u2013 Enterprise Data Management",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Data-Application-Engineer---Enterprise-Data-Management_JR2026148",
+      "posted_at": "2026-11-16",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "application",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "JR2029548": {
+      "title": "System Software Engineer, Video Chips",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/System-Software-Engineer--Video-Chips_JR2029548",
+      "posted_at": "2026-11-16",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
     }
   },
   "source_updated_at_by_id": {}

@@ -173,6 +173,7 @@
     "34571",
     "34573",
     "34699",
+    "34936",
     "34937",
     "34945",
     "34947",
@@ -180,14 +181,19 @@
     "34950",
     "34953",
     "34995",
+    "34996",
     "35126",
     "35211",
     "35301",
     "35302",
     "35303",
+    "35806",
+    "35810",
     "35827",
     "35829",
-    "35837"
+    "35837",
+    "36483",
+    "36494"
   ],
   "candidate_catalog": {
     "30795": {
@@ -281,7 +287,7 @@
       "category": "software"
     }
   },
-  "last_successful_scan_at": "2026-11-16T01:36:44+00:00",
+  "last_successful_scan_at": "2026-11-16T22:45:53+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "34699": {
@@ -1045,6 +1051,90 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-12T20:41:26+00:00",
       "last_seen_at": "2026-11-12T20:41:26+00:00"
+    },
+    "34936": {
+      "title": "Staff Data Engineer",
+      "location": "Atlanta, Georgia; Palo Alto, California",
+      "url": "https://careers.rivian.com/careers-home/jobs/34936",
+      "posted_at": "2026-11-16T17:23:00+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior"
+      ],
+      "category": "data",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "35806": {
+      "title": "Staff Data Platform Engineer",
+      "location": "Atlanta, Georgia; Palo Alto, California",
+      "url": "https://careers.rivian.com/careers-home/jobs/35806",
+      "posted_at": "2026-11-16T17:23:00+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior"
+      ],
+      "category": "data",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "36494": {
+      "title": "Vehicle Operator, PUMA Program",
+      "location": "Wittmann, Arizona",
+      "url": "https://careers.rivian.com/careers-home/jobs/36494",
+      "posted_at": "2026-11-16T16:37:00+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "35810": {
+      "title": "Sr. Data Platform Engineer",
+      "location": "Atlanta, Georgia; Palo Alto, California",
+      "url": "https://careers.rivian.com/careers-home/jobs/35810",
+      "posted_at": "2026-11-16T17:23:00+0000",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "data",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "34996": {
+      "title": "Sr. Data Engineer",
+      "location": "Atlanta, Georgia; Palo Alto, California",
+      "url": "https://careers.rivian.com/careers-home/jobs/34996",
+      "posted_at": "2026-11-16T17:23:00+0000",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "data",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "36483": {
+      "title": "Sr. Platform Engineer, Atlassian",
+      "location": "Atlanta, Georgia",
+      "url": "https://careers.rivian.com/careers-home/jobs/36483",
+      "posted_at": "2026-11-16T16:39:00+0000",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "platform",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
     }
   },
   "source_updated_at_by_id": {}

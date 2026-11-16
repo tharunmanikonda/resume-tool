@@ -38,6 +38,7 @@
     "R0072675",
     "R0072742",
     "R0072799",
+    "R0072821",
     "R0072836",
     "R0072843",
     "R0072844",
@@ -57,6 +58,7 @@
     "R0073767",
     "R0073812",
     "R0073827",
+    "R0073858",
     "R0073895",
     "R0073949",
     "R0073954",
@@ -95,6 +97,7 @@
     "R0075111",
     "R0075117",
     "R0075150",
+    "R0075155",
     "R0075171",
     "R0075205",
     "R0075227",
@@ -382,6 +385,7 @@
     "R0077234",
     "R0077235",
     "R0077239",
+    "R0077250",
     "R0077253",
     "R0077254",
     "R0077255",
@@ -393,6 +397,7 @@
     "R0077276",
     "R0077281",
     "R0077283",
+    "R0077284",
     "R0077292",
     "R0077293",
     "R0077294",
@@ -428,6 +433,7 @@
     "R0077401",
     "R0077411",
     "R0077415",
+    "R0077429",
     "R0077431",
     "R0077432",
     "R0077438",
@@ -435,11 +441,13 @@
     "R0077463",
     "R0077470",
     "R0077475",
+    "R0077477",
     "R0077480",
     "R0077481",
     "R0077482",
     "R0077487",
-    "R0077489"
+    "R0077489",
+    "R0077495"
   ],
   "candidate_catalog": {
     "R0076812": {
@@ -533,7 +541,7 @@
       "category": "platform"
     }
   },
-  "last_successful_scan_at": "2026-11-15T19:16:30+00:00",
+  "last_successful_scan_at": "2026-11-16T22:45:53+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "R0077145": {
@@ -6238,6 +6246,127 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-15T01:32:38+00:00",
       "last_seen_at": "2026-11-15T01:32:38+00:00"
+    },
+    "R0072821": {
+      "title": "Senior Software Architect- Shipping",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0072821/Senior-Software-Architect-Shipping",
+      "posted_at": "2026-11-16T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "R0077284": {
+      "title": "Global Rules Analyst",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077284/Global-Rules-Analyst",
+      "posted_at": "2026-11-16T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "R0077477": {
+      "title": "Operational Lead, Customer Success",
+      "location": "Oslo, Oslo, Norway",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077477/Operational-Lead-Customer-Success",
+      "posted_at": "2026-11-16T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "R0075155": {
+      "title": "Finance Business Analyst",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0075155/Finance-Business-Analyst",
+      "posted_at": "2026-11-16T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "R0077495": {
+      "title": "Senior Data Science Analyst",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077495/Senior-Data-Science-Analyst",
+      "posted_at": "2026-11-16T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "R0077250": {
+      "title": "Data Science Analyst",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077250/Data-Science-Analyst",
+      "posted_at": "2026-11-16T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "R0077429": {
+      "title": "ePN Account Manager",
+      "location": "Austin, Texas, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077429/ePN-Account-Manager",
+      "posted_at": "2026-11-16T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "R0073858": {
+      "title": "Seller Risk Policy Manager (eBay Live)",
+      "location": "Austin, Texas, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0073858/Seller-Risk-Policy-Manager-eBay-Live",
+      "posted_at": "2026-11-16T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
     }
   },
   "source_updated_at_by_id": {}

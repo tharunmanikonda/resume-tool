@@ -245,9 +245,13 @@
     "a0Hcw00000BekNaEAJ",
     "a0Hcw00000Bf3JlEAJ",
     "a0Hcw00000Bi48BEAR",
-    "a0Hcw00000Bi7p4EAB"
+    "a0Hcw00000Bi7p4EAB",
+    "a0Hcw00000Bi7vVEAR",
+    "a0Hcw00000BiNozEAF",
+    "a0Hcw00000BlIHhEAN",
+    "a0Hcw00000BlelFEAR"
   ],
-  "last_successful_scan_at": "2026-11-16T01:36:44+00:00",
+  "last_successful_scan_at": "2026-11-16T22:45:53+00:00",
   "candidate_catalog": {
     "a0Hcw000006tdYLEAY": {
       "title": "Operational Excellence Engineer",
@@ -1573,6 +1577,62 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-14T01:59:47+00:00",
       "last_seen_at": "2026-11-14T01:59:47+00:00"
+    },
+    "a0Hcw00000BlelFEAR": {
+      "title": "Sr Prin Cybersecurity Specialist - SailPoint",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000BlelFEAR/sr-prin-cybersecurity-specialist---sailpoint",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "a0Hcw00000BlIHhEAN": {
+      "title": "Clinical Writer",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000BlIHhEAN/clinical-writer",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "a0Hcw00000BiNozEAF": {
+      "title": "CNC Machinist \u2013 Second Shift",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000BiNozEAF/cnc-machinist--second-shift",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "a0Hcw00000Bi7vVEAR": {
+      "title": "Engineering - Engineer, Manufacturing Engineering - Individual Contributor",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000Bi7vVEAR/engineering---engineer-manufacturing-engineering---individual-contributor",
+      "posted_at": "",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
     }
   },
   "source_updated_at_by_id": {}

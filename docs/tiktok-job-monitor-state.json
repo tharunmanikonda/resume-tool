@@ -2026,8 +2026,16 @@
     "7707015653621893429",
     "7707055690713893125",
     "7707122792648132869",
+    "7707386264388389173",
+    "7707393013959379205",
     "7707491778085357877",
-    "7707495347161516293"
+    "7707495347161516293",
+    "7707549378097793285",
+    "7707553405426993461",
+    "7707670712549034245",
+    "7708658818541766917",
+    "7708766266986973493",
+    "7708836728478255365"
   ],
   "candidate_catalog": {
     "7680987768009754885": {
@@ -29472,8 +29480,129 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-13T20:22:31+00:00",
       "last_seen_at": "2026-11-13T20:22:31+00:00"
+    },
+    "7708658818541766917": {
+      "title": "Product Operation Manager - TikTok Shop",
+      "location": "Seattle, Washington, United States of America",
+      "url": "https://lifeattiktok.com/search/7708658818541766917",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "7708836728478255365": {
+      "title": "Client Solutions Manager - GBS",
+      "location": "Los Angeles, California, United States of America",
+      "url": "https://lifeattiktok.com/search/7708836728478255365",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "7707386264388389173": {
+      "title": "Client Solutions Manager - GBS",
+      "location": "Sao Paulo, S\u00e3o Paulo, Brazil",
+      "url": "https://lifeattiktok.com/search/7707386264388389173",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "7707393013959379205": {
+      "title": "Client Solutions Manager - GBS",
+      "location": "Mexico City, Ciudad de Mexico, Mexico",
+      "url": "https://lifeattiktok.com/search/7707393013959379205",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "7707670712549034245": {
+      "title": "Client Solutions Manager - T\u00fcrkiye & South Asia - Global Business Solutions - Dubai - GBS",
+      "location": "Dubai, United Arab Emirates",
+      "url": "https://lifeattiktok.com/search/7707670712549034245",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "7708766266986973493": {
+      "title": "Global Business Solutions Project Intern (GBS) - 2027 Start",
+      "location": "Milan, Milano, Italy",
+      "url": "https://lifeattiktok.com/search/7708766266986973493",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "7707553405426993461": {
+      "title": "TikTok Shop - Logistics Partnerships Manager, US B2B Trucking",
+      "location": "Seattle, Washington, United States of America",
+      "url": "https://lifeattiktok.com/search/7707553405426993461",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "7707549378097793285": {
+      "title": "TikTok Shop - Logistics Partnerships Manager, US B2B Trucking",
+      "location": "Seattle, Washington, United States of America",
+      "url": "https://lifeattiktok.com/search/7707549378097793285",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T22:45:53+00:00",
+      "last_seen_at": "2026-11-16T22:45:53+00:00"
     }
   },
-  "last_successful_scan_at": "2026-11-16T01:36:44+00:00",
+  "last_successful_scan_at": "2026-11-16T22:45:53+00:00",
   "source_updated_at_by_id": {}
 }
