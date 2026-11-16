@@ -1475,6 +1475,7 @@
     "2030087",
     "2030105",
     "2030301",
+    "2030331",
     "2030352",
     "2030439",
     "2030529",
@@ -1483,7 +1484,7 @@
     "2031083",
     "2031175"
   ],
-  "last_successful_scan_at": "2026-11-15T19:16:30+00:00",
+  "last_successful_scan_at": "2026-11-16T01:36:44+00:00",
   "candidate_catalog": {
     "2024998": {
       "title": "AI Security Engineer",
@@ -3858,6 +3859,22 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-13T20:22:31+00:00",
       "last_seen_at": "2026-11-13T20:22:31+00:00"
+    },
+    "2030331": {
+      "title": "Failure Analysis Technical Leader",
+      "location": "Taipei, Taiwan",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Taipei-Taiwan/Failure-Analysis-Technical-Leader_2030331-1",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-16T01:36:44+00:00",
+      "last_seen_at": "2026-11-16T01:36:44+00:00"
     }
   },
   "source_updated_at_by_id": {}

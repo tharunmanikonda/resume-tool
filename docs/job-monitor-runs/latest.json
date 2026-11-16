@@ -1,13 +1,12 @@
 {
-  "success": true,
-  "scanned_at": "2026-11-15T19:16:30+00:00",
+  "success": false,
+  "scanned_at": "2026-11-16T01:36:44+00:00",
   "monitor_count": 14,
   "successful_monitors": [
     "cbre",
     "cdk",
     "cisco",
     "crunchyroll",
-    "ebay",
     "intepros",
     "iqvia",
     "nbcu",
@@ -18,7 +17,9 @@
     "tiktok",
     "waymo"
   ],
-  "failed_monitors": [],
+  "failed_monitors": [
+    "ebay"
+  ],
   "candidate_count": 0,
   "needs_ai_review_count": 0,
   "candidates": [],
@@ -27,7 +28,7 @@
     {
       "monitor": "cbre",
       "success": true,
-      "scanned_at": "2026-11-15T19:16:30+00:00",
+      "scanned_at": "2026-11-16T01:36:44+00:00",
       "fetched": 701,
       "unseen": 0,
       "state_updated": true,
@@ -38,7 +39,7 @@
     {
       "monitor": "cdk",
       "success": true,
-      "scanned_at": "2026-11-15T19:16:30+00:00",
+      "scanned_at": "2026-11-16T01:36:44+00:00",
       "fetched": 49,
       "unseen": 0,
       "state_updated": true,
@@ -49,9 +50,9 @@
     {
       "monitor": "cisco",
       "success": true,
-      "scanned_at": "2026-11-15T19:16:30+00:00",
-      "fetched": 60,
-      "unseen": 0,
+      "scanned_at": "2026-11-16T01:36:44+00:00",
+      "fetched": 80,
+      "unseen": 1,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -60,7 +61,7 @@
     {
       "monitor": "crunchyroll",
       "success": true,
-      "scanned_at": "2026-11-15T19:16:30+00:00",
+      "scanned_at": "2026-11-16T01:36:44+00:00",
       "fetched": 100,
       "unseen": 0,
       "state_updated": true,
@@ -70,19 +71,23 @@
     },
     {
       "monitor": "ebay",
-      "success": true,
-      "scanned_at": "2026-11-15T19:16:30+00:00",
-      "fetched": 175,
+      "success": false,
+      "scanned_at": "2026-11-16T01:36:44+00:00",
+      "fetched": 0,
       "unseen": 0,
-      "state_updated": true,
+      "state_updated": false,
       "candidates": [],
       "needs_ai_review": [],
-      "errors": []
+      "errors": [
+        {
+          "error": "Command '['node', '/home/runner/work/resume-tool/resume-tool/ops/company_jobs_fetch.mjs', 'ebay', 'list']' timed out after 300 seconds"
+        }
+      ]
     },
     {
       "monitor": "intepros",
       "success": true,
-      "scanned_at": "2026-11-15T19:16:30+00:00",
+      "scanned_at": "2026-11-16T01:36:44+00:00",
       "fetched": 20,
       "unseen": 0,
       "state_updated": true,
@@ -93,8 +98,8 @@
     {
       "monitor": "iqvia",
       "success": true,
-      "scanned_at": "2026-11-15T19:16:30+00:00",
-      "fetched": 356,
+      "scanned_at": "2026-11-16T01:36:44+00:00",
+      "fetched": 358,
       "unseen": 0,
       "state_updated": true,
       "candidates": [],
@@ -104,7 +109,7 @@
     {
       "monitor": "nbcu",
       "success": true,
-      "scanned_at": "2026-11-15T19:16:30+00:00",
+      "scanned_at": "2026-11-16T01:36:44+00:00",
       "fetched": 252,
       "unseen": 0,
       "state_updated": true,
@@ -115,7 +120,7 @@
     {
       "monitor": "nvidia",
       "success": true,
-      "scanned_at": "2026-11-15T19:16:30+00:00",
+      "scanned_at": "2026-11-16T01:36:44+00:00",
       "fetched": 100,
       "unseen": 0,
       "state_updated": true,
@@ -126,7 +131,7 @@
     {
       "monitor": "occ",
       "success": true,
-      "scanned_at": "2026-11-15T19:16:30+00:00",
+      "scanned_at": "2026-11-16T01:36:44+00:00",
       "fetched": 60,
       "unseen": 0,
       "state_updated": true,
@@ -137,7 +142,7 @@
     {
       "monitor": "ocient",
       "success": true,
-      "scanned_at": "2026-11-15T19:16:30+00:00",
+      "scanned_at": "2026-11-16T01:36:44+00:00",
       "fetched": 18,
       "unseen": 0,
       "state_updated": true,
@@ -148,7 +153,7 @@
     {
       "monitor": "rivian",
       "success": true,
-      "scanned_at": "2026-11-15T19:16:30+00:00",
+      "scanned_at": "2026-11-16T01:36:44+00:00",
       "fetched": 30,
       "unseen": 0,
       "state_updated": true,
@@ -159,7 +164,7 @@
     {
       "monitor": "tiktok",
       "success": true,
-      "scanned_at": "2026-11-15T19:16:30+00:00",
+      "scanned_at": "2026-11-16T01:36:44+00:00",
       "fetched": 1867,
       "unseen": 0,
       "state_updated": true,
@@ -170,7 +175,7 @@
     {
       "monitor": "waymo",
       "success": true,
-      "scanned_at": "2026-11-15T19:16:30+00:00",
+      "scanned_at": "2026-11-16T01:36:44+00:00",
       "fetched": 160,
       "unseen": 0,
       "state_updated": true,
