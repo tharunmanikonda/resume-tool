@@ -1469,12 +1469,14 @@
     "2029584",
     "2029655",
     "2029683",
+    "2029785",
     "2029859",
     "2029917",
     "2030022",
     "2030081",
     "2030087",
     "2030105",
+    "2030198",
     "2030301",
     "2030331",
     "2030352",
@@ -1485,7 +1487,7 @@
     "2031083",
     "2031175"
   ],
-  "last_successful_scan_at": "2026-11-16T22:45:53+00:00",
+  "last_successful_scan_at": "2026-11-17T21:32:32+00:00",
   "candidate_catalog": {
     "2024998": {
       "title": "AI Security Engineer",
@@ -3892,6 +3894,34 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-16T22:45:53+00:00",
       "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "2029785": {
+      "title": "ASIC DFT DV Engineer",
+      "location": "Austin, Texas, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Austin-Texas-US/ASIC-DFT-DV-Engineer_2029785-1",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "specialized_low_level"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-17T21:32:32+00:00",
+      "last_seen_at": "2026-11-17T21:32:32+00:00"
+    },
+    "2030198": {
+      "title": "Leader, ASIC Engineering",
+      "location": "Cairo Al Qahirah, Egypt",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Cairo-Al-Qahirah-Egypt/Leader--ASIC-Engineering_2030198",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-17T21:32:32+00:00",
+      "last_seen_at": "2026-11-17T21:32:32+00:00"
     }
   },
   "source_updated_at_by_id": {}

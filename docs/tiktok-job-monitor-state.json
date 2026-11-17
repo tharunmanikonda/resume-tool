@@ -552,6 +552,7 @@
     "7607878737695066421",
     "7607882185903114549",
     "7608275680944326917",
+    "7609989285018274053",
     "7610200965827807493",
     "7610376917170653493",
     "7610836098885552437",
@@ -569,6 +570,7 @@
     "7613563421813033269",
     "7613791278648379701",
     "7614032110865615109",
+    "7614232626399922485",
     "7615005577716730117",
     "7615352357392697653",
     "7615555193869994293",
@@ -1761,6 +1763,7 @@
     "7689036770453506309",
     "7689045666946124085",
     "7689059225671010613",
+    "7689126217128265989",
     "7689167282723883317",
     "7689170788962175237",
     "7689171795446384949",
@@ -1986,6 +1989,7 @@
     "7703632666805160197",
     "7703876741467998469",
     "7703899923206867205",
+    "7703923326767483141",
     "7703925583541979445",
     "7704007084339595525",
     "7704011114551986485",
@@ -2017,6 +2021,7 @@
     "7706481808216688901",
     "7706600831827085621",
     "7706616396639127813",
+    "7706618594172881205",
     "7706649771394091317",
     "7706693387932633397",
     "7706738474833365301",
@@ -2033,9 +2038,15 @@
     "7707549378097793285",
     "7707553405426993461",
     "7707670712549034245",
+    "7708614643845859637",
     "7708658818541766917",
+    "7708750900450134325",
     "7708766266986973493",
-    "7708836728478255365"
+    "7708796553595570485",
+    "7708836728478255365",
+    "7708839921794369797",
+    "7709196752634038581",
+    "7709235030179039541"
   ],
   "candidate_catalog": {
     "7680987768009754885": {
@@ -5239,6 +5250,15 @@
       "url": "https://lifeattiktok.com/search/7698822572474583301",
       "posted_at": "",
       "first_seen_at": "2026-11-13T02:27:33+00:00",
+      "priority": "high",
+      "category": "ai_ml"
+    },
+    "7708750900450134325": {
+      "title": "Client Security & Data Foundation Machine Learning Engineer - Intern (TikTok BRIC) - 2027 Start (PhD)",
+      "location": "San Jose, California, United States of America",
+      "url": "https://lifeattiktok.com/search/7708750900450134325",
+      "posted_at": "",
+      "first_seen_at": "2026-11-17T21:32:32+00:00",
       "priority": "high",
       "category": "ai_ml"
     }
@@ -29601,8 +29621,157 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-16T22:45:53+00:00",
       "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "7709196752634038581": {
+      "title": "Client Solutions Manager - GBS",
+      "location": "Los Angeles, California, United States of America",
+      "url": "https://lifeattiktok.com/search/7709196752634038581",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-17T21:32:32+00:00",
+      "last_seen_at": "2026-11-17T21:32:32+00:00"
+    },
+    "7689126217128265989": {
+      "title": "TikTok Shop - Arbitration Strategy Program Manager",
+      "location": "San Jose, California, United States of America",
+      "url": "https://lifeattiktok.com/search/7689126217128265989",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-17T21:32:32+00:00",
+      "last_seen_at": "2026-11-17T21:32:32+00:00"
+    },
+    "7614232626399922485": {
+      "title": "TikTok Shop - Arbitration Strategy Program Manager",
+      "location": "Seattle, Washington, United States of America",
+      "url": "https://lifeattiktok.com/search/7614232626399922485",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-17T21:32:32+00:00",
+      "last_seen_at": "2026-11-17T21:32:32+00:00"
+    },
+    "7706618594172881205": {
+      "title": "Logistics Product Strategy & Operations Graduate - 2027 Start (MBA)",
+      "location": "Seattle, Washington, United States of America",
+      "url": "https://lifeattiktok.com/search/7706618594172881205",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-17T21:32:32+00:00",
+      "last_seen_at": "2026-11-17T21:32:32+00:00"
+    },
+    "7708614643845859637": {
+      "title": "TikTok Shop - Regional Seller Governance Strategy Manager",
+      "location": "Singapore",
+      "url": "https://lifeattiktok.com/search/7708614643845859637",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-17T21:32:32+00:00",
+      "last_seen_at": "2026-11-17T21:32:32+00:00"
+    },
+    "7709235030179039541": {
+      "title": "Vertical Manager, Specialty Account Management - GBS",
+      "location": "Austin, Texas, United States of America",
+      "url": "https://lifeattiktok.com/search/7709235030179039541",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-17T21:32:32+00:00",
+      "last_seen_at": "2026-11-17T21:32:32+00:00"
+    },
+    "7708796553595570485": {
+      "title": "Product Marketing Manager - Global Accounts & Agency - GBS",
+      "location": "New York, United States of America",
+      "url": "https://lifeattiktok.com/search/7708796553595570485",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-17T21:32:32+00:00",
+      "last_seen_at": "2026-11-17T21:32:32+00:00"
+    },
+    "7708839921794369797": {
+      "title": "US Agency Sales Director - New York - GBS",
+      "location": "New York, United States of America",
+      "url": "https://lifeattiktok.com/search/7708839921794369797",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-17T21:32:32+00:00",
+      "last_seen_at": "2026-11-17T21:32:32+00:00"
+    },
+    "7609989285018274053": {
+      "title": "TikTok Shop - Service Solution Program Manager",
+      "location": "Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur, Malaysia",
+      "url": "https://lifeattiktok.com/search/7609989285018274053",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-17T21:32:32+00:00",
+      "last_seen_at": "2026-11-17T21:32:32+00:00"
+    },
+    "7703923326767483141": {
+      "title": "Research Scientist Intern (TikTok-Privacy Innovation Lab) - 2027 Start (PhD)",
+      "location": "San Jose, California, United States of America",
+      "url": "https://lifeattiktok.com/search/7703923326767483141",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-17T21:32:32+00:00",
+      "last_seen_at": "2026-11-17T21:32:32+00:00"
     }
   },
-  "last_successful_scan_at": "2026-11-16T22:45:53+00:00",
+  "last_successful_scan_at": "2026-11-17T21:32:32+00:00",
   "source_updated_at_by_id": {}
 }

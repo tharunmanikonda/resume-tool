@@ -25,6 +25,7 @@
     "a0Hcw0000074RiLEAU",
     "a0Hcw0000074TNZEA2",
     "a0Hcw0000078MvNEAU",
+    "a0Hcw000007G6tREAS",
     "a0Hcw000007KpGrEAK",
     "a0Hcw000007L7yXEAS",
     "a0Hcw000007L8UnEAK",
@@ -249,9 +250,15 @@
     "a0Hcw00000Bi7vVEAR",
     "a0Hcw00000BiNozEAF",
     "a0Hcw00000BlIHhEAN",
-    "a0Hcw00000BlelFEAR"
+    "a0Hcw00000BlelFEAR",
+    "a0Hcw00000BmCerEAF",
+    "a0Hcw00000BmICPEA3",
+    "a0Hcw00000BmPiXEAV",
+    "a0Hcw00000BmaMDEAZ",
+    "a0Hcw00000Bp821EAB",
+    "a0Hcw00000BpVkzEAF"
   ],
-  "last_successful_scan_at": "2026-11-16T22:45:53+00:00",
+  "last_successful_scan_at": "2026-11-17T21:32:32+00:00",
   "candidate_catalog": {
     "a0Hcw000006tdYLEAY": {
       "title": "Operational Excellence Engineer",
@@ -1633,6 +1640,106 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-16T22:45:53+00:00",
       "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "a0Hcw00000BmaMDEAZ": {
+      "title": "Sr Regulatory Affairs Specialist",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000BmaMDEAZ/sr-regulatory-affairs-specialist",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-17T21:32:32+00:00",
+      "last_seen_at": "2026-11-17T21:32:32+00:00"
+    },
+    "a0Hcw000007G6tREAS": {
+      "title": "Sr Prin Cybersecurity Specialist ~ Chief of Staff",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw000007G6tREAS/sr-prin-cybersecurity-specialist--chief-of-staff",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-17T21:32:32+00:00",
+      "last_seen_at": "2026-11-17T21:32:32+00:00"
+    },
+    "a0Hcw00000BmCerEAF": {
+      "title": "Scientific Lab Technician (3rd Shift)",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000BmCerEAF/scientific-lab-technician-3rd-shift",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-17T21:32:32+00:00",
+      "last_seen_at": "2026-11-17T21:32:32+00:00"
+    },
+    "a0Hcw00000BmICPEA3": {
+      "title": "CNC Machinist \u2013 Second Shift",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000BmICPEA3/cnc-machinist--second-shift",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-17T21:32:32+00:00",
+      "last_seen_at": "2026-11-17T21:32:32+00:00"
+    },
+    "a0Hcw00000BmPiXEAV": {
+      "title": "Injury Prevention Specialist",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000BmPiXEAV/injury-prevention-specialist",
+      "posted_at": "Posted This Week",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-17T21:32:32+00:00",
+      "last_seen_at": "2026-11-17T21:32:32+00:00"
+    },
+    "a0Hcw00000BpVkzEAF": {
+      "title": "Sr. Data Engineer",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000BpVkzEAF/sr-data-engineer",
+      "posted_at": "",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "data",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-17T21:32:32+00:00",
+      "last_seen_at": "2026-11-17T21:32:32+00:00"
+    },
+    "a0Hcw00000Bp821EAB": {
+      "title": "Quality Engineer I",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000Bp821EAB/quality-engineer-i",
+      "posted_at": "",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-17T21:32:32+00:00",
+      "last_seen_at": "2026-11-17T21:32:32+00:00"
     }
   },
   "source_updated_at_by_id": {}

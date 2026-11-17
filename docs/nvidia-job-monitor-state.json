@@ -826,6 +826,7 @@
     "JR2024993",
     "JR2025003",
     "JR2025006",
+    "JR2025007",
     "JR2025008",
     "JR2025013",
     "JR2025018",
@@ -1261,7 +1262,9 @@
     "JR2029901",
     "JR2029912",
     "JR2029915",
+    "JR2029921",
     "JR2029924",
+    "JR2029988",
     "JR2030014",
     "JR2030024"
   ],
@@ -1618,7 +1621,7 @@
       "category": "software"
     }
   },
-  "last_successful_scan_at": "2026-11-16T22:45:53+00:00",
+  "last_successful_scan_at": "2026-11-17T21:32:32+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "JR2014880": {
@@ -17428,6 +17431,49 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-16T22:45:53+00:00",
       "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "JR2029988": {
+      "title": "Senior Software Architect, AI Security",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Software-Architect--AI-Security_JR2029988",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-17T21:32:32+00:00",
+      "last_seen_at": "2026-11-17T21:32:32+00:00"
+    },
+    "JR2029921": {
+      "title": "Senior Software Engineer, SimTech",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Software-Engineer--SimTech_JR2029921",
+      "posted_at": "2026-11-17",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-17T21:32:32+00:00",
+      "last_seen_at": "2026-11-17T21:32:32+00:00"
+    },
+    "JR2025007": {
+      "title": "Business Systems Analyst - Strategic Portfolio Management",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Business-Systems-Analyst---Strategic-Portfolio-Management_JR2025007-1",
+      "posted_at": "2026-11-16",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "systems_analysis",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-17T21:32:32+00:00",
+      "last_seen_at": "2026-11-17T21:32:32+00:00"
     }
   },
   "source_updated_at_by_id": {}

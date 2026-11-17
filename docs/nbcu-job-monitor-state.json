@@ -788,7 +788,34 @@
     "744000161898830",
     "744000161915128",
     "744000161923099",
-    "744000161923300"
+    "744000161923300",
+    "744000161989911",
+    "744000161990226",
+    "744000161990274",
+    "744000161990314",
+    "744000161991389",
+    "744000162090202",
+    "744000162090629",
+    "744000162090679",
+    "744000162098740",
+    "744000162109041",
+    "744000162110369",
+    "744000162113359",
+    "744000162120700",
+    "744000162121979",
+    "744000162128640",
+    "744000162135653",
+    "744000162151209",
+    "744000162153709",
+    "744000162157119",
+    "744000162170030",
+    "744000162170882",
+    "744000162171039",
+    "744000162172843",
+    "744000162173449",
+    "744000162173789",
+    "744000162175285",
+    "744000162175789"
   ],
   "candidate_catalog": {
     "744000151898289": {
@@ -909,7 +936,7 @@
       "category": "technical_review"
     }
   },
-  "last_successful_scan_at": "2026-11-16T22:45:53+00:00",
+  "last_successful_scan_at": "2026-11-17T21:32:32+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "744000156079569": {
@@ -10748,6 +10775,391 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-16T22:45:53+00:00",
       "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "744000162175789": {
+      "title": "Toy Designer, Design & Development (Multi- Category: Costumes, Activities and Consumer Electronics)",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162175789-toy-designer-design-development-multi-category-costumes-activities-and-consumer-electronics",
+      "posted_at": "2026-11-17T21:38:52.969Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-17T21:32:32+00:00",
+      "last_seen_at": "2026-11-17T21:32:32+00:00"
+    },
+    "744000162173789": {
+      "title": "Assignment Desk Editor - Multiplatform, Telemundo Arizona (Phoenix/Tucson)",
+      "location": "Phoenix, Arizona, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162173789-assignment-desk-editor-multiplatform-telemundo-arizona-phoenix-tucson",
+      "posted_at": "2026-11-17T21:27:03.086Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-17T21:32:32+00:00",
+      "last_seen_at": "2026-11-17T21:32:32+00:00"
+    },
+    "744000162173449": {
+      "title": "Associate Counsel, Business & Legal Affairs",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162173449-associate-counsel-business-legal-affairs",
+      "posted_at": "2026-11-17T21:25:06.255Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-17T21:32:32+00:00",
+      "last_seen_at": "2026-11-17T21:32:32+00:00"
+    },
+    "744000162172843": {
+      "title": "Freelance Reporter, NBC Boston",
+      "location": "Needham, Massachusetts, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162172843-freelance-reporter-nbc-boston",
+      "posted_at": "2026-11-17T21:22:59.667Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-17T21:32:32+00:00",
+      "last_seen_at": "2026-11-17T21:32:32+00:00"
+    },
+    "744000162170882": {
+      "title": "Specialist, Marketing Strategy",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162170882-specialist-marketing-strategy",
+      "posted_at": "2026-11-17T21:07:58.858Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-17T21:32:32+00:00",
+      "last_seen_at": "2026-11-17T21:32:32+00:00"
+    },
+    "744000162170030": {
+      "title": "Producer, Long Form Audio",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162170030-producer-long-form-audio",
+      "posted_at": "2026-11-17T21:07:56.553Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-17T21:32:32+00:00",
+      "last_seen_at": "2026-11-17T21:32:32+00:00"
+    },
+    "744000162171039": {
+      "title": "Supervising Producer, Dateline",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162171039-supervising-producer-dateline",
+      "posted_at": "2026-11-17T21:07:41.356Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-17T21:32:32+00:00",
+      "last_seen_at": "2026-11-17T21:32:32+00:00"
+    },
+    "744000162157119": {
+      "title": "Director, Franchise Creative- Multimedia",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162157119-director-franchise-creative-multimedia",
+      "posted_at": "2026-11-17T19:42:17.048Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-17T21:32:32+00:00",
+      "last_seen_at": "2026-11-17T21:32:32+00:00"
+    },
+    "744000162153709": {
+      "title": "Assignment Desk Editor, Telemundo Houston",
+      "location": "Houston, TEXAS, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162153709-assignment-desk-editor-telemundo-houston",
+      "posted_at": "2026-11-17T19:14:48.385Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-17T21:32:32+00:00",
+      "last_seen_at": "2026-11-17T21:32:32+00:00"
+    },
+    "744000162151209": {
+      "title": "Manager, Strategic Partnerships",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162151209-manager-strategic-partnerships",
+      "posted_at": "2026-11-17T18:51:47.695Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-17T21:32:32+00:00",
+      "last_seen_at": "2026-11-17T21:32:32+00:00"
+    },
+    "744000162135653": {
+      "title": "Program Coordinator, Dateline (contract)",
+      "location": "Universal City, CA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162135653-program-coordinator-dateline-contract",
+      "posted_at": "2026-11-17T17:17:51.010Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-17T21:32:32+00:00",
+      "last_seen_at": "2026-11-17T21:32:32+00:00"
+    },
+    "744000162121979": {
+      "title": "Producer",
+      "location": "Dallas, TEXAS, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162121979-producer",
+      "posted_at": "2026-11-17T16:19:03.393Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-17T21:32:32+00:00",
+      "last_seen_at": "2026-11-17T21:32:32+00:00"
+    },
+    "744000162120700": {
+      "title": "Master Control Operator",
+      "location": "Stamford, CT, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162120700-master-control-operator",
+      "posted_at": "2026-11-17T16:18:52.613Z",
+      "stage": "prefilter",
+      "blockers": [
+        "embedded_or_hardware",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-17T21:32:32+00:00",
+      "last_seen_at": "2026-11-17T21:32:32+00:00"
+    },
+    "744000162113359": {
+      "title": "Lead Data Scientist",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162113359-lead-data-scientist",
+      "posted_at": "2026-11-17T15:52:10.274Z",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-17T21:32:32+00:00",
+      "last_seen_at": "2026-11-17T21:32:32+00:00"
+    },
+    "744000162109041": {
+      "title": "Host/Producer Acceso Total, Telemundo Ft. Myers",
+      "location": "Bonita Springs, Florida, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162109041-host-producer-acceso-total-telemundo-ft-myers",
+      "posted_at": "2026-11-17T15:41:56.768Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-17T21:32:32+00:00",
+      "last_seen_at": "2026-11-17T21:32:32+00:00"
+    },
+    "744000162110369": {
+      "title": "Content Producer Telemundo Tampa, FL",
+      "location": "Tampa, Florida, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162110369-content-producer-telemundo-tampa-fl",
+      "posted_at": "2026-11-17T15:41:31.873Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-17T21:32:32+00:00",
+      "last_seen_at": "2026-11-17T21:32:32+00:00"
+    },
+    "744000162098740": {
+      "title": "Sr. Product Manager, Audience Products",
+      "location": "New York, NY, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162098740-sr-product-manager-audience-products",
+      "posted_at": "2026-11-17T15:13:36.845Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-17T21:32:32+00:00",
+      "last_seen_at": "2026-11-17T21:32:32+00:00"
+    },
+    "744000162090202": {
+      "title": "NBC News Production & Digital Editorial Internships \u2013 Summer 2027",
+      "location": "New York, NY, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162090202-nbc-news-production-digital-editorial-internships-summer-2027",
+      "posted_at": "2026-11-17T14:26:01.790Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-17T21:32:32+00:00",
+      "last_seen_at": "2026-11-17T21:32:32+00:00"
+    },
+    "744000162090679": {
+      "title": "NBC 4 New York Production & Editorial Internships \u2013 Summer 2027",
+      "location": "New York, NY, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162090679-nbc-4-new-york-production-editorial-internships-summer-2027",
+      "posted_at": "2026-11-17T14:25:31.268Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-17T21:32:32+00:00",
+      "last_seen_at": "2026-11-17T21:32:32+00:00"
+    },
+    "744000162090629": {
+      "title": "NBC News Bureau Internships \u2013 Summer 2027",
+      "location": "Universal City, CA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162090629-nbc-news-bureau-internships-summer-2027",
+      "posted_at": "2026-11-17T14:25:22.641Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-17T21:32:32+00:00",
+      "last_seen_at": "2026-11-17T21:32:32+00:00"
+    },
+    "744000161991389": {
+      "title": "Vendor Management (VMO) Procurement Specialist",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161991389-vendor-management-vmo-procurement-specialist",
+      "posted_at": "2026-11-17T03:46:27.753Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-17T21:32:32+00:00",
+      "last_seen_at": "2026-11-17T21:32:32+00:00"
+    },
+    "744000161990314": {
+      "title": "Vendor Management (VMO) Analyst",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161990314-vendor-management-vmo-analyst",
+      "posted_at": "2026-11-17T03:46:11.972Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-17T21:32:32+00:00",
+      "last_seen_at": "2026-11-17T21:32:32+00:00"
+    },
+    "744000161989911": {
+      "title": "Vendor Management (VMO) Contract Administrator",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161989911-vendor-management-vmo-contract-administrator",
+      "posted_at": "2026-11-17T03:45:57.656Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-17T21:32:32+00:00",
+      "last_seen_at": "2026-11-17T21:32:32+00:00"
+    },
+    "744000161990274": {
+      "title": "Sr Product Manager",
+      "location": "North Hollywood, CA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161990274-sr-product-manager",
+      "posted_at": "2026-11-17T03:44:49.258Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-17T21:32:32+00:00",
+      "last_seen_at": "2026-11-17T21:32:32+00:00"
+    },
+    "744000161990226": {
+      "title": "Product Manager",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161990226-product-manager",
+      "posted_at": "2026-11-17T03:40:43.760Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-17T21:32:32+00:00",
+      "last_seen_at": "2026-11-17T21:32:32+00:00"
+    },
+    "744000162175285": {
+      "title": "Senior Software Engineer (SAP SuccessFactors)",
+      "location": ", ",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162176189-senior-software-engineer-sap-successfactors-",
+      "posted_at": "2026-11-17T21:40:24.589Z",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-17T21:32:32+00:00",
+      "last_seen_at": "2026-11-17T21:32:32+00:00"
+    },
+    "744000162128640": {
+      "title": "Video Engineer",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162128640-video-engineer",
+      "posted_at": "2026-11-17T16:47:40.756Z",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-17T21:32:32+00:00",
+      "last_seen_at": "2026-11-17T21:32:32+00:00"
     }
   },
   "source_updated_at_by_id": {}

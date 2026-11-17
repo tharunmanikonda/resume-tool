@@ -100,7 +100,12 @@
     "REQ-4922",
     "REQ-4924",
     "REQ-4927",
-    "REQ-4930"
+    "REQ-4930",
+    "REQ-4931",
+    "REQ-4932",
+    "REQ-4933",
+    "REQ-4934",
+    "REQ-4935"
   ],
   "candidate_catalog": {
     "REQ-4807": {
@@ -131,7 +136,7 @@
       "category": "software"
     }
   },
-  "last_successful_scan_at": "2026-11-16T22:45:53+00:00",
+  "last_successful_scan_at": "2026-11-17T21:32:32+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "REQ-4896": {
@@ -1432,6 +1437,79 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-16T22:45:53+00:00",
       "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "REQ-4935": {
+      "title": "Lead Associate Principal, Cloud Engineering",
+      "location": "Dallas, TX",
+      "url": "https://theocc.wd5.myworkdayjobs.com/job/Dallas-TX/Lead-Associate-Principal--Cloud-Engineering_REQ-4935",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-17T21:32:32+00:00",
+      "last_seen_at": "2026-11-17T21:32:32+00:00"
+    },
+    "REQ-4934": {
+      "title": "Lead Associate Principal, Cloud Engineering",
+      "location": "Dallas, TX",
+      "url": "https://theocc.wd5.myworkdayjobs.com/job/Dallas-TX/Lead-Associate-Principal--Cloud-Engineering_REQ-4934",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-17T21:32:32+00:00",
+      "last_seen_at": "2026-11-17T21:32:32+00:00"
+    },
+    "REQ-4933": {
+      "title": "Manager, Software Engineering: Java",
+      "location": "Dallas, TX",
+      "url": "https://theocc.wd5.myworkdayjobs.com/job/Dallas-TX/Manager--Software-Engineering--Java_REQ-4933",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "management"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-17T21:32:32+00:00",
+      "last_seen_at": "2026-11-17T21:32:32+00:00"
+    },
+    "REQ-4932": {
+      "title": "Associate Principal, Business Analysis",
+      "location": "Chicago - 125 S Franklin",
+      "url": "https://theocc.wd5.myworkdayjobs.com/job/Chicago---125-S-Franklin/Associate-Principal--Business-Analysis_REQ-4932",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-17T21:32:32+00:00",
+      "last_seen_at": "2026-11-17T21:32:32+00:00"
+    },
+    "REQ-4931": {
+      "title": "Principal, Software Engineering: DevOps",
+      "location": "Chicago - 125 S Franklin",
+      "url": "https://theocc.wd5.myworkdayjobs.com/job/Chicago---125-S-Franklin/Principal--Software-Engineering--DevOps_REQ-4931",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-17T21:32:32+00:00",
+      "last_seen_at": "2026-11-17T21:32:32+00:00"
     }
   },
   "source_updated_at_by_id": {}

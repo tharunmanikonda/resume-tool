@@ -192,6 +192,7 @@
     "35827",
     "35829",
     "35837",
+    "36264",
     "36483",
     "36494"
   ],
@@ -287,7 +288,7 @@
       "category": "software"
     }
   },
-  "last_successful_scan_at": "2026-11-16T22:45:53+00:00",
+  "last_successful_scan_at": "2026-11-17T21:32:32+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "34699": {
@@ -1135,6 +1136,22 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-16T22:45:53+00:00",
       "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "36264": {
+      "title": "Sr. Staff Autonomy Product Manager",
+      "location": "Palo Alto, California",
+      "url": "https://careers.rivian.com/careers-home/jobs/36264",
+      "posted_at": "2026-11-16T23:21:00+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-17T21:32:32+00:00",
+      "last_seen_at": "2026-11-17T21:32:32+00:00"
     }
   },
   "source_updated_at_by_id": {}
