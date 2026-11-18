@@ -423,6 +423,7 @@
     "JR2019010",
     "JR2019066",
     "JR2019101",
+    "JR2019112",
     "JR2019127",
     "JR2019187",
     "JR2019190",
@@ -751,6 +752,7 @@
     "JR2023964",
     "JR2023969",
     "JR2023973",
+    "JR2023982",
     "JR2024052",
     "JR2024060",
     "JR2024063",
@@ -891,6 +893,7 @@
     "JR2025621",
     "JR2025628",
     "JR2025632",
+    "JR2025638",
     "JR2025643",
     "JR2025674",
     "JR2025689",
@@ -1264,9 +1267,13 @@
     "JR2029915",
     "JR2029921",
     "JR2029924",
+    "JR2029932",
     "JR2029988",
     "JR2030014",
-    "JR2030024"
+    "JR2030024",
+    "JR2030034",
+    "JR2030038",
+    "JR2030240"
   ],
   "candidate_catalog": {
     "JR2018245": {
@@ -1621,7 +1628,7 @@
       "category": "software"
     }
   },
-  "last_successful_scan_at": "2026-11-17T21:32:32+00:00",
+  "last_successful_scan_at": "2026-11-18T03:22:23+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "JR2014880": {
@@ -17474,6 +17481,105 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-17T21:32:32+00:00",
       "last_seen_at": "2026-11-17T21:32:32+00:00"
+    },
+    "JR2019112": {
+      "title": "Manager, System Level Test Engineering",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Manager--System-Level-Test-Engineering_JR2019112",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T03:22:23+00:00",
+      "last_seen_at": "2026-11-18T03:22:23+00:00"
+    },
+    "JR2030034": {
+      "title": "Senior Systems Software Engineer - Autonomous Vehicles",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Systems-Software-Engineer---Autonomous-Vehicles_JR2030034",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "specialized_low_level"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T03:22:23+00:00",
+      "last_seen_at": "2026-11-18T03:22:23+00:00"
+    },
+    "JR2030038": {
+      "title": "Senior Systems Safety Engineer - Autonomous Vehicles",
+      "location": "4 Locations",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Systems-Safety-Engineer---Autonomous-Vehicles_JR2030038",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "specialized_low_level"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T03:22:23+00:00",
+      "last_seen_at": "2026-11-18T03:22:23+00:00"
+    },
+    "JR2023982": {
+      "title": "Senior Software Development Engineer in Test",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Software-Development-Engineer-in-Test_JR2023982",
+      "posted_at": "2026-11-17",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "qa",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T03:22:23+00:00",
+      "last_seen_at": "2026-11-18T03:22:23+00:00"
+    },
+    "JR2025638": {
+      "title": "Senior Full-Stack Engineer - DL Automation Platform",
+      "location": "US, CA, Santa Clara; US, IL, Remote; US, WA, Remote; US, CA, Remote",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Full-Stack-Engineer---DL-Automation-Platform_JR2025638",
+      "posted_at": "2026-11-17",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "full_stack",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T03:22:23+00:00",
+      "last_seen_at": "2026-11-18T03:22:23+00:00"
+    },
+    "JR2030240": {
+      "title": "Senior Verification Engineer - Scalable Coherency Fabric",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Verification-Engineer---Scalable-Coherency-Fabric_JR2030240",
+      "posted_at": "2026-11-17",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T03:22:23+00:00",
+      "last_seen_at": "2026-11-18T03:22:23+00:00"
+    },
+    "JR2029932": {
+      "title": "Senior Deep Learning Engineer",
+      "location": "US, CA, Santa Clara; US, WA, Redmond; US, WA, Seattle",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Deep-Learning-Engineer_JR2029932",
+      "posted_at": "2026-11-17",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T03:22:23+00:00",
+      "last_seen_at": "2026-11-18T03:22:23+00:00"
     }
   },
   "source_updated_at_by_id": {}

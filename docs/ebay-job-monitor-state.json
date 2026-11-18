@@ -44,6 +44,7 @@
     "R0072844",
     "R0072996",
     "R0073001",
+    "R0073026",
     "R0073045",
     "R0073088",
     "R0073091",
@@ -73,6 +74,7 @@
     "R0074176",
     "R0074249",
     "R0074327",
+    "R0074359",
     "R0074386",
     "R0074449",
     "R0074466",
@@ -135,6 +137,7 @@
     "R0075755",
     "R0075757",
     "R0075758",
+    "R0075760",
     "R0075761",
     "R0075802",
     "R0075827",
@@ -197,6 +200,7 @@
     "R0076276",
     "R0076293",
     "R0076298",
+    "R0076311",
     "R0076320",
     "R0076321",
     "R0076323",
@@ -339,6 +343,7 @@
     "R0077041",
     "R0077049",
     "R0077050",
+    "R0077052",
     "R0077054",
     "R0077055",
     "R0077062",
@@ -377,11 +382,13 @@
     "R0077191",
     "R0077192",
     "R0077195",
+    "R0077197",
     "R0077199",
     "R0077208",
     "R0077219",
     "R0077220",
     "R0077226",
+    "R0077232",
     "R0077234",
     "R0077235",
     "R0077239",
@@ -412,6 +419,7 @@
     "R0077328",
     "R0077329",
     "R0077330",
+    "R0077334",
     "R0077339",
     "R0077342",
     "R0077344",
@@ -541,7 +549,7 @@
       "category": "platform"
     }
   },
-  "last_successful_scan_at": "2026-11-16T22:45:53+00:00",
+  "last_successful_scan_at": "2026-11-18T03:22:23+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "R0077145": {
@@ -6367,6 +6375,126 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-16T22:45:53+00:00",
       "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "R0077334": {
+      "title": "Account Manager",
+      "location": "London, Surrey, United Kingdom",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077334/Account-Manager",
+      "posted_at": "2026-11-17T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T03:22:23+00:00",
+      "last_seen_at": "2026-11-18T03:22:23+00:00"
+    },
+    "R0073026": {
+      "title": "MTS 2, Software Engineer",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0073026/MTS-2-Software-Engineer",
+      "posted_at": "2026-11-17T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T03:22:23+00:00",
+      "last_seen_at": "2026-11-18T03:22:23+00:00"
+    },
+    "R0075760": {
+      "title": "Director of Engineering, Buyer Engg",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0075760/Director-of-Engineering-Buyer-Engg",
+      "posted_at": "2026-11-17T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T03:22:23+00:00",
+      "last_seen_at": "2026-11-18T03:22:23+00:00"
+    },
+    "R0074359": {
+      "title": "Senior iOS Engineer MTS 1",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0074359/Senior-iOS-Engineer-MTS-1",
+      "posted_at": "2026-11-17T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "mobile",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T03:22:23+00:00",
+      "last_seen_at": "2026-11-18T03:22:23+00:00"
+    },
+    "R0077232": {
+      "title": "Policy Compliance Specialist",
+      "location": "Dublin, Dublin, Ireland",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077232/Policy-Compliance-Specialist",
+      "posted_at": "2026-11-17T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T03:22:23+00:00",
+      "last_seen_at": "2026-11-18T03:22:23+00:00"
+    },
+    "R0077197": {
+      "title": "Head of Low Cost Shipping Monetization",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077197/Head-of-Low-Cost-Shipping-Monetization",
+      "posted_at": "2026-11-17T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T03:22:23+00:00",
+      "last_seen_at": "2026-11-18T03:22:23+00:00"
+    },
+    "R0077052": {
+      "title": "Sr. Product Manager - Seller Payments",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077052/Sr-Product-Manager-Seller-Payments",
+      "posted_at": "2026-11-17T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T03:22:23+00:00",
+      "last_seen_at": "2026-11-18T03:22:23+00:00"
+    },
+    "R0076311": {
+      "title": "Detection & Response Engineer",
+      "location": "Austin, Texas, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076311/Security-Operations-Engineer",
+      "posted_at": "2026-09-15",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T03:22:23+00:00",
+      "last_seen_at": "2026-11-18T03:22:23+00:00"
     }
   },
   "source_updated_at_by_id": {}

@@ -193,7 +193,9 @@
     "35829",
     "35837",
     "36264",
+    "36328",
     "36483",
+    "36486",
     "36494"
   ],
   "candidate_catalog": {
@@ -288,7 +290,7 @@
       "category": "software"
     }
   },
-  "last_successful_scan_at": "2026-11-17T21:32:32+00:00",
+  "last_successful_scan_at": "2026-11-18T03:22:23+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "34699": {
@@ -1152,6 +1154,35 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-17T21:32:32+00:00",
       "last_seen_at": "2026-11-17T21:32:32+00:00"
+    },
+    "36486": {
+      "title": "Sr. Specialized Programs Vehicle Technician II",
+      "location": "Tustin, California",
+      "url": "https://careers.rivian.com/careers-home/jobs/36486",
+      "posted_at": "2026-11-17T23:39:00+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T03:22:23+00:00",
+      "last_seen_at": "2026-11-18T03:22:23+00:00"
+    },
+    "36328": {
+      "title": "Vehicle Software Quality Test Engineer",
+      "location": "Wittmann, Arizona",
+      "url": "https://careers.rivian.com/careers-home/jobs/36328",
+      "posted_at": "2026-11-17T23:39:00+0000",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T03:22:23+00:00",
+      "last_seen_at": "2026-11-18T03:22:23+00:00"
     }
   },
   "source_updated_at_by_id": {}

@@ -1,12 +1,13 @@
 {
-  "success": false,
-  "scanned_at": "2026-11-17T21:32:32+00:00",
+  "success": true,
+  "scanned_at": "2026-11-18T03:22:23+00:00",
   "monitor_count": 14,
   "successful_monitors": [
     "cbre",
     "cdk",
     "cisco",
     "crunchyroll",
+    "ebay",
     "intepros",
     "iqvia",
     "nbcu",
@@ -17,28 +18,26 @@
     "tiktok",
     "waymo"
   ],
-  "failed_monitors": [
-    "ebay"
-  ],
+  "failed_monitors": [],
   "candidate_count": 1,
   "needs_ai_review_count": 0,
   "candidates": [
     {
-      "monitor": "tiktok",
-      "job_id": "7708750900450134325",
-      "title": "Client Security & Data Foundation Machine Learning Engineer - Intern (TikTok BRIC) - 2027 Start (PhD)",
-      "location": "San Jose, California, United States of America",
-      "posted_at": "",
-      "url": "https://lifeattiktok.com/search/7708750900450134325",
+      "monitor": "nbcu",
+      "job_id": "744000162180744",
+      "title": "Associate SDET (Software Development Engineer in Test)",
+      "location": "New York, NEW YORK, United States",
+      "posted_at": "2026-11-17T22:30:26.704Z",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162180744-associate-sdet-software-development-engineer-in-test-",
       "priority": "high",
       "matching_requirements": [
-        "target_title:ai_ml",
-        "profile_signal:python:+2",
-        "profile_signal:java:+1",
+        "target_title:qa",
         "profile_signal:backend_apis:+2",
         "profile_signal:distributed_systems:+2",
-        "profile_signal:data_streaming:+2",
-        "profile_signal:agentic_tooling:+3"
+        "profile_signal:cloud_containers:+2",
+        "profile_signal:observability:+1",
+        "profile_signal:reliability_telemetry:+3",
+        "profile_signal:qa_automation:+2"
       ],
       "material_gaps": []
     }
@@ -48,9 +47,9 @@
     {
       "monitor": "cbre",
       "success": true,
-      "scanned_at": "2026-11-17T21:32:32+00:00",
-      "fetched": 973,
-      "unseen": 55,
+      "scanned_at": "2026-11-18T03:22:23+00:00",
+      "fetched": 830,
+      "unseen": 14,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -59,7 +58,7 @@
     {
       "monitor": "cdk",
       "success": true,
-      "scanned_at": "2026-11-17T21:32:32+00:00",
+      "scanned_at": "2026-11-18T03:22:23+00:00",
       "fetched": 50,
       "unseen": 0,
       "state_updated": true,
@@ -70,9 +69,9 @@
     {
       "monitor": "cisco",
       "success": true,
-      "scanned_at": "2026-11-17T21:32:32+00:00",
+      "scanned_at": "2026-11-18T03:22:23+00:00",
       "fetched": 80,
-      "unseen": 2,
+      "unseen": 1,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -81,9 +80,9 @@
     {
       "monitor": "crunchyroll",
       "success": true,
-      "scanned_at": "2026-11-17T21:32:32+00:00",
+      "scanned_at": "2026-11-18T03:22:23+00:00",
       "fetched": 99,
-      "unseen": 1,
+      "unseen": 0,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -91,25 +90,21 @@
     },
     {
       "monitor": "ebay",
-      "success": false,
-      "scanned_at": "2026-11-17T21:32:32+00:00",
-      "fetched": 0,
-      "unseen": 0,
-      "state_updated": false,
+      "success": true,
+      "scanned_at": "2026-11-18T03:22:23+00:00",
+      "fetched": 199,
+      "unseen": 8,
+      "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
-      "errors": [
-        {
-          "error": "Command '['node', '/home/runner/work/resume-tool/resume-tool/ops/company_jobs_fetch.mjs', 'ebay', 'list']' timed out after 300 seconds"
-        }
-      ]
+      "errors": []
     },
     {
       "monitor": "intepros",
       "success": true,
-      "scanned_at": "2026-11-17T21:32:32+00:00",
-      "fetched": 40,
-      "unseen": 7,
+      "scanned_at": "2026-11-18T03:22:23+00:00",
+      "fetched": 20,
+      "unseen": 0,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -118,9 +113,9 @@
     {
       "monitor": "iqvia",
       "success": true,
-      "scanned_at": "2026-11-17T21:32:32+00:00",
-      "fetched": 711,
-      "unseen": 20,
+      "scanned_at": "2026-11-18T03:22:23+00:00",
+      "fetched": 351,
+      "unseen": 0,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -129,20 +124,39 @@
     {
       "monitor": "nbcu",
       "success": true,
-      "scanned_at": "2026-11-17T21:32:32+00:00",
+      "scanned_at": "2026-11-18T03:22:23+00:00",
       "fetched": 333,
-      "unseen": 27,
+      "unseen": 8,
       "state_updated": true,
-      "candidates": [],
+      "candidates": [
+        {
+          "job_id": "744000162180744",
+          "title": "Associate SDET (Software Development Engineer in Test)",
+          "location": "New York, NEW YORK, United States",
+          "posted_at": "2026-11-17T22:30:26.704Z",
+          "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162180744-associate-sdet-software-development-engineer-in-test-",
+          "priority": "high",
+          "matching_requirements": [
+            "target_title:qa",
+            "profile_signal:backend_apis:+2",
+            "profile_signal:distributed_systems:+2",
+            "profile_signal:cloud_containers:+2",
+            "profile_signal:observability:+1",
+            "profile_signal:reliability_telemetry:+3",
+            "profile_signal:qa_automation:+2"
+          ],
+          "material_gaps": []
+        }
+      ],
       "needs_ai_review": [],
       "errors": []
     },
     {
       "monitor": "nvidia",
       "success": true,
-      "scanned_at": "2026-11-17T21:32:32+00:00",
+      "scanned_at": "2026-11-18T03:22:23+00:00",
       "fetched": 120,
-      "unseen": 3,
+      "unseen": 7,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -151,9 +165,9 @@
     {
       "monitor": "occ",
       "success": true,
-      "scanned_at": "2026-11-17T21:32:32+00:00",
-      "fetched": 64,
-      "unseen": 5,
+      "scanned_at": "2026-11-18T03:22:23+00:00",
+      "fetched": 60,
+      "unseen": 0,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -162,7 +176,7 @@
     {
       "monitor": "ocient",
       "success": true,
-      "scanned_at": "2026-11-17T21:32:32+00:00",
+      "scanned_at": "2026-11-18T03:22:23+00:00",
       "fetched": 17,
       "unseen": 0,
       "state_updated": true,
@@ -173,9 +187,9 @@
     {
       "monitor": "rivian",
       "success": true,
-      "scanned_at": "2026-11-17T21:32:32+00:00",
+      "scanned_at": "2026-11-18T03:22:23+00:00",
       "fetched": 40,
-      "unseen": 1,
+      "unseen": 2,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -184,39 +198,20 @@
     {
       "monitor": "tiktok",
       "success": true,
-      "scanned_at": "2026-11-17T21:32:32+00:00",
-      "fetched": 1823,
-      "unseen": 11,
+      "scanned_at": "2026-11-18T03:22:23+00:00",
+      "fetched": 1818,
+      "unseen": 1,
       "state_updated": true,
-      "candidates": [
-        {
-          "job_id": "7708750900450134325",
-          "title": "Client Security & Data Foundation Machine Learning Engineer - Intern (TikTok BRIC) - 2027 Start (PhD)",
-          "location": "San Jose, California, United States of America",
-          "posted_at": "",
-          "url": "https://lifeattiktok.com/search/7708750900450134325",
-          "priority": "high",
-          "matching_requirements": [
-            "target_title:ai_ml",
-            "profile_signal:python:+2",
-            "profile_signal:java:+1",
-            "profile_signal:backend_apis:+2",
-            "profile_signal:distributed_systems:+2",
-            "profile_signal:data_streaming:+2",
-            "profile_signal:agentic_tooling:+3"
-          ],
-          "material_gaps": []
-        }
-      ],
+      "candidates": [],
       "needs_ai_review": [],
       "errors": []
     },
     {
       "monitor": "waymo",
       "success": true,
-      "scanned_at": "2026-11-17T21:32:32+00:00",
+      "scanned_at": "2026-11-18T03:22:23+00:00",
       "fetched": 156,
-      "unseen": 1,
+      "unseen": 2,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],

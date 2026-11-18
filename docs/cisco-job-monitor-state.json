@@ -1485,9 +1485,10 @@
     "2030721",
     "2030760",
     "2031083",
-    "2031175"
+    "2031175",
+    "2031914"
   ],
-  "last_successful_scan_at": "2026-11-17T21:32:32+00:00",
+  "last_successful_scan_at": "2026-11-18T03:22:23+00:00",
   "candidate_catalog": {
     "2024998": {
       "title": "AI Security Engineer",
@@ -3922,6 +3923,20 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-17T21:32:32+00:00",
       "last_seen_at": "2026-11-17T21:32:32+00:00"
+    },
+    "2031914": {
+      "title": "Advanced Packaging Design Engineer (Hybrid)",
+      "location": "San Jose, California, US; Austin, Texas, US; Boise, Idaho, US; Cary, North Carolina, US; San Diego, California, US; Boston, Massachusetts, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/Advanced-Packaging-Design-Engineer--Hybrid-_2031914",
+      "posted_at": "2026-11-17",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T03:22:23+00:00",
+      "last_seen_at": "2026-11-18T03:22:23+00:00"
     }
   },
   "source_updated_at_by_id": {}

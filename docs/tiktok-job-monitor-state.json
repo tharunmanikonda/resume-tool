@@ -2045,6 +2045,7 @@
     "7708796553595570485",
     "7708836728478255365",
     "7708839921794369797",
+    "7709035464495958277",
     "7709196752634038581",
     "7709235030179039541"
   ],
@@ -29770,8 +29771,23 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-17T21:32:32+00:00",
       "last_seen_at": "2026-11-17T21:32:32+00:00"
+    },
+    "7709035464495958277": {
+      "title": "TikTok Shop - Logistics Settlement Solutions Manager, Warehousing",
+      "location": "Seattle, Washington, United States of America",
+      "url": "https://lifeattiktok.com/search/7709035464495958277",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T03:22:23+00:00",
+      "last_seen_at": "2026-11-18T03:22:23+00:00"
     }
   },
-  "last_successful_scan_at": "2026-11-17T21:32:32+00:00",
+  "last_successful_scan_at": "2026-11-18T03:22:23+00:00",
   "source_updated_at_by_id": {}
 }

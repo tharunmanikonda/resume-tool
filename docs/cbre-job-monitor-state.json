@@ -3328,6 +3328,7 @@
     "304138",
     "304141",
     "304154",
+    "304157",
     "304165",
     "304171",
     "304177",
@@ -3416,6 +3417,7 @@
     "304448",
     "304450",
     "304462",
+    "304467",
     "304475",
     "304476",
     "304479",
@@ -3499,6 +3501,7 @@
     "304759",
     "304765",
     "304766",
+    "304768",
     "304769",
     "304770",
     "304779",
@@ -3540,6 +3543,7 @@
     "305070",
     "305075",
     "305080",
+    "305081",
     "305082",
     "305083",
     "305103",
@@ -3577,7 +3581,9 @@
     "305247",
     "305249",
     "305263",
+    "305266",
     "305268",
+    "305271",
     "305318",
     "305329",
     "305333",
@@ -3585,8 +3591,10 @@
     "305384",
     "305394",
     "305395",
+    "305405",
     "305407",
     "305408",
+    "305413",
     "305423",
     "305425",
     "305428",
@@ -3628,14 +3636,20 @@
     "305764",
     "305775",
     "305778",
+    "305820",
     "305853",
+    "305856",
+    "305859",
+    "305863",
+    "305910",
+    "305927",
     "305928",
     "38196",
     "76242",
     "8655"
   ],
   "candidate_catalog": {},
-  "last_successful_scan_at": "2026-11-17T21:32:32+00:00",
+  "last_successful_scan_at": "2026-11-18T03:22:23+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "301688": {
@@ -38334,6 +38348,210 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-17T21:32:32+00:00",
       "last_seen_at": "2026-11-17T21:32:32+00:00"
+    },
+    "305863": {
+      "title": "Maintenance Planner",
+      "location": "Atlanta - Georgia - United States of America , Decatur - Georgia - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Maintenance-Planner/305863",
+      "posted_at": "17-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T03:22:23+00:00",
+      "last_seen_at": "2026-11-18T03:22:23+00:00"
+    },
+    "305856": {
+      "title": "Maintenance Manager",
+      "location": "Atlanta - Georgia - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Maintenance-Manager/305856",
+      "posted_at": "17-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T03:22:23+00:00",
+      "last_seen_at": "2026-11-18T03:22:23+00:00"
+    },
+    "305820": {
+      "title": "Maintenance Technician",
+      "location": "Jamestown - North Dakota - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Maintenance-Technician/305820",
+      "posted_at": "17-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T03:22:23+00:00",
+      "last_seen_at": "2026-11-18T03:22:23+00:00"
+    },
+    "305413": {
+      "title": "Maintenance Associate",
+      "location": "Swiftwater - Pennsylvania - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Maintenance-Associate/305413",
+      "posted_at": "17-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T03:22:23+00:00",
+      "last_seen_at": "2026-11-18T03:22:23+00:00"
+    },
+    "305405": {
+      "title": "Building Operator",
+      "location": "Toronto - Ontario - Canada",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Building-Operator/305405",
+      "posted_at": "17-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T03:22:23+00:00",
+      "last_seen_at": "2026-11-18T03:22:23+00:00"
+    },
+    "305266": {
+      "title": "Maintenance Technician",
+      "location": "Toronto - Ontario - Canada",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Maintenance-Technician/305266",
+      "posted_at": "17-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T03:22:23+00:00",
+      "last_seen_at": "2026-11-18T03:22:23+00:00"
+    },
+    "304467": {
+      "title": "Multi-Skilled Technician shift",
+      "location": "Bethune - Hauts-de-France - France",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Multi-Skilled-Technician-shift/304467",
+      "posted_at": "17-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T03:22:23+00:00",
+      "last_seen_at": "2026-11-18T03:22:23+00:00"
+    },
+    "305927": {
+      "title": "Mechatronic Apprentice",
+      "location": "Dundalk - Maryland - United States of America , Sparrows Point - Maryland - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Mechatronic-Apprentice/305927",
+      "posted_at": "17-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T03:22:23+00:00",
+      "last_seen_at": "2026-11-18T03:22:23+00:00"
+    },
+    "305271": {
+      "title": "Facilities Coordinator",
+      "location": "Tucson - Arizona - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Facilities-Coordinator/305271",
+      "posted_at": "17-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T03:22:23+00:00",
+      "last_seen_at": "2026-11-18T03:22:23+00:00"
+    },
+    "304768": {
+      "title": "Operations Administrator",
+      "location": "Taylors Lakes - Victoria - Australia",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Operations-Administrator/304768",
+      "posted_at": "18-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T03:22:23+00:00",
+      "last_seen_at": "2026-11-18T03:22:23+00:00"
+    },
+    "305859": {
+      "title": "Automation Engineer",
+      "location": "Atlanta - Georgia - United States of America , Decatur - Georgia - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Automation-Engineer/305859",
+      "posted_at": "17-Nov-2026",
+      "stage": "detail",
+      "blockers": [
+        "non_software_engineering_role"
+      ],
+      "category": "automation",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T03:22:23+00:00",
+      "last_seen_at": "2026-11-18T03:22:23+00:00"
+    },
+    "305910": {
+      "title": "Sr. Building Engineer - Tuesday to Saturday, 7am to 4pm",
+      "location": "Dallas - Texas - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Sr-Building-Engineer-Tuesday-to-Saturday-7am-to-4pm/305910",
+      "posted_at": "17-Nov-2026",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T03:22:23+00:00",
+      "last_seen_at": "2026-11-18T03:22:23+00:00"
+    },
+    "305081": {
+      "title": "Bldg Engineer",
+      "location": "New York City - New York - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Bldg-Engineer/305081",
+      "posted_at": "17-Nov-2026",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T03:22:23+00:00",
+      "last_seen_at": "2026-11-18T03:22:23+00:00"
+    },
+    "304157": {
+      "title": "Building Engineer",
+      "location": "Minneapolis - Minnesota - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Building-Engineer/304157",
+      "posted_at": "17-Nov-2026",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T03:22:23+00:00",
+      "last_seen_at": "2026-11-18T03:22:23+00:00"
     }
   },
   "source_updated_at_by_id": {}
