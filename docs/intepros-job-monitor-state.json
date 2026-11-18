@@ -256,9 +256,20 @@
     "a0Hcw00000BmPiXEAV",
     "a0Hcw00000BmaMDEAZ",
     "a0Hcw00000Bp821EAB",
-    "a0Hcw00000BpVkzEAF"
+    "a0Hcw00000BpVkzEAF",
+    "a0Hcw00000BpfsPEAR",
+    "a0Hcw00000Bpg3hEAB",
+    "a0Hcw00000Bpg3iEAB",
+    "a0Hcw00000Bpg3jEAB",
+    "a0Hcw00000Bpg3kEAB",
+    "a0Hcw00000BqslxEAB",
+    "a0Hcw00000Br2i5EAB",
+    "a0Hcw00000BrA9NEAV",
+    "a0Hcw00000BrCW9EAN",
+    "a0Hcw00000BrCsjEAF",
+    "a0Hcw00000BrHKXEA3"
   ],
-  "last_successful_scan_at": "2026-11-18T03:22:23+00:00",
+  "last_successful_scan_at": "2026-11-18T21:08:25+00:00",
   "candidate_catalog": {
     "a0Hcw000006tdYLEAY": {
       "title": "Operational Excellence Engineer",
@@ -1740,6 +1751,164 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-17T21:32:32+00:00",
       "last_seen_at": "2026-11-17T21:32:32+00:00"
+    },
+    "a0Hcw00000BrCsjEAF": {
+      "title": "Research Technician III",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000BrCsjEAF/research-technician-iii",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "a0Hcw00000BrCW9EAN": {
+      "title": "AutoCAD Electrical Design Drafter (Material Handling)",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000BrCW9EAN/autocad-electrical-design-drafter-material-handling",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "a0Hcw00000BrA9NEAV": {
+      "title": "Clinical Pharmacist",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000BrA9NEAV/clinical-pharmacist",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "a0Hcw00000Br2i5EAB": {
+      "title": "Executive Director IT Infrastructure",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000Br2i5EAB/executive-director-it-infrastructure",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "a0Hcw00000BqslxEAB": {
+      "title": "Medical Information Specialist",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000BqslxEAB/medical-information-specialist",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "a0Hcw00000Bpg3kEAB": {
+      "title": "Senior Director, Public Sector Commercial Operations",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000Bpg3kEAB/senior-director-public-sector-commercial-operations",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "a0Hcw00000Bpg3jEAB": {
+      "title": "Employer and Platform Outreach Specialist, Public Sector",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000Bpg3jEAB/employer-and-platform-outreach-specialist-public-sector",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "a0Hcw00000Bpg3iEAB": {
+      "title": "Delivery Lead, Public Sector Employer Outreach and Engagement",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000Bpg3iEAB/delivery-lead-public-sector-employer-outreach-and-engagement",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "a0Hcw00000Bpg3hEAB": {
+      "title": "Program Manager, Public Sector Employer Outreach and Engagement",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000Bpg3hEAB/program-manager-public-sector-employer-outreach-and-engagement",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "a0Hcw00000BpfsPEAR": {
+      "title": "Project Coordinator",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000BpfsPEAR/project-coordinator",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "a0Hcw00000BrHKXEA3": {
+      "title": "Kafka Developer",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000BrHKXEA3/kafka-developer",
+      "posted_at": "",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
     }
   },
   "source_updated_at_by_id": {}

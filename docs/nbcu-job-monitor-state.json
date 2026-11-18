@@ -823,7 +823,22 @@
     "744000162183559",
     "744000162186219",
     "744000162188539",
-    "744000162190879"
+    "744000162190879",
+    "744000162312217",
+    "744000162312681",
+    "744000162314763",
+    "744000162314891",
+    "744000162315360",
+    "744000162316389",
+    "744000162317315",
+    "744000162337339",
+    "744000162342099",
+    "744000162342360",
+    "744000162364801",
+    "744000162365299",
+    "744000162380629",
+    "744000162389618",
+    "744000162390248"
   ],
   "candidate_catalog": {
     "744000151898289": {
@@ -951,9 +966,27 @@
       "first_seen_at": "2026-11-18T03:22:23+00:00",
       "priority": "high",
       "category": "qa"
+    },
+    "744000162342360": {
+      "title": "Sr. CDN Engineer",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162342360-sr-cdn-engineer",
+      "posted_at": "2026-11-18T16:10:48.037Z",
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "priority": "medium",
+      "category": "technical_review"
+    },
+    "744000162342099": {
+      "title": "CDN Engineer",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162342099-cdn-engineer",
+      "posted_at": "2026-11-18T16:07:53.154Z",
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "priority": "medium",
+      "category": "technical_review"
     }
   },
-  "last_successful_scan_at": "2026-11-18T03:22:23+00:00",
+  "last_successful_scan_at": "2026-11-18T21:08:25+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "744000156079569": {
@@ -11276,6 +11309,189 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-18T03:22:23+00:00",
       "last_seen_at": "2026-11-18T03:22:23+00:00"
+    },
+    "744000162390248": {
+      "title": "Assignment Desk Editor, NBC & Telemundo Miami",
+      "location": "Miramar, Florida, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162390248-assignment-desk-editor-nbc-telemundo-miami",
+      "posted_at": "2026-11-18T20:47:39.734Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "744000162389618": {
+      "title": "Data Reporter, Polling and Campaigns",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162389618-data-reporter-polling-and-campaigns",
+      "posted_at": "2026-11-18T20:43:01.285Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "744000162380629": {
+      "title": "Sr Manager, Sourcing Post-Production & Marketing",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162380629-sr-manager-sourcing-post-production-marketing",
+      "posted_at": "2026-11-18T19:32:15.663Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "744000162364801": {
+      "title": "Multimedia Journalist, Telemundo T33 Sacramento ",
+      "location": "Sacramento, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162364801-multimedia-journalist-telemundo-t33-sacramento",
+      "posted_at": "2026-11-18T17:47:19.148Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "744000162365299": {
+      "title": "Multimedia Journalist, Telemundo T33 Sacramento (Stockton, CA - Modesto, CA)",
+      "location": "Sacramento, CA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162365299-multimedia-journalist-telemundo-t33-sacramento-stockton-ca-modesto-ca",
+      "posted_at": "2026-11-18T17:44:53.165Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "744000162337339": {
+      "title": "Legal Internships \u2013 Summer 2027",
+      "location": "New York, NY, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162337339-legal-internships-summer-2027",
+      "posted_at": "2026-11-18T15:52:26.201Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "744000162317315": {
+      "title": "NBC Connecticut, CT LIVE! Lifestyle Program Intern - Summer 2027",
+      "location": "Hartford, Connecticut, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162317315-nbc-connecticut-ct-live-lifestyle-program-intern-summer-2027",
+      "posted_at": "2026-11-18T14:53:55.698Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "744000162315360": {
+      "title": "NBC Telemundo Connecticut Sales Marketing Intern - Summer 2027",
+      "location": "Hartford, Connecticut, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162315360-nbc-telemundo-connecticut-sales-marketing-intern-summer-2027",
+      "posted_at": "2026-11-18T14:41:39.856Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "744000162316389": {
+      "title": "NBC Telemundo CT Multiplatform Creative Services Intern - Summer 2027",
+      "location": "Hartford, Connecticut, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162316389-nbc-telemundo-ct-multiplatform-creative-services-intern-summer-2027",
+      "posted_at": "2026-11-18T14:40:20.636Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "744000162312217": {
+      "title": "NBC Telemundo Connecticut Sales Intern - Summer 2027",
+      "location": "Hartford, Connecticut, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162312217-nbc-telemundo-connecticut-sales-intern-summer-2027",
+      "posted_at": "2026-11-18T14:39:13.150Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "744000162314891": {
+      "title": "Staff Data Engineer, SAP Analytics ",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162314891-staff-data-engineer-sap-analytics",
+      "posted_at": "2026-11-18T14:38:52.142Z",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior"
+      ],
+      "category": "data",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "744000162314763": {
+      "title": "NBC Connecticut Weather/Meteorology Internships - Summer 2027",
+      "location": "Hartford, Connecticut, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162314763-nbc-connecticut-weather-meteorology-internships-summer-2027",
+      "posted_at": "2026-11-18T14:37:57.939Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "744000162312681": {
+      "title": "NBC Connecticut Digital Producer Internships - Summer 2027",
+      "location": "Hartford, Connecticut, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162312681-nbc-connecticut-digital-producer-internships-summer-2027",
+      "posted_at": "2026-11-18T14:35:40.338Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
     }
   },
   "source_updated_at_by_id": {}

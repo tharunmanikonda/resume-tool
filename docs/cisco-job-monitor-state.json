@@ -1335,6 +1335,7 @@
     "2026913",
     "2026914",
     "2026915",
+    "2026916",
     "2026918",
     "2026920",
     "2026921",
@@ -1471,6 +1472,7 @@
     "2029683",
     "2029785",
     "2029859",
+    "2029882",
     "2029917",
     "2030022",
     "2030081",
@@ -1486,9 +1488,10 @@
     "2030760",
     "2031083",
     "2031175",
+    "2031200",
     "2031914"
   ],
-  "last_successful_scan_at": "2026-11-18T03:22:23+00:00",
+  "last_successful_scan_at": "2026-11-18T21:08:25+00:00",
   "candidate_catalog": {
     "2024998": {
       "title": "AI Security Engineer",
@@ -3937,6 +3940,49 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-18T03:22:23+00:00",
       "last_seen_at": "2026-11-18T03:22:23+00:00"
+    },
+    "2029882": {
+      "title": "Camera Hardware Engineering Technical Lead",
+      "location": "San Francisco, California, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Francisco-California-US/Camera-Hardware-Engineering-Technical-Lead_2029882",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "embedded_or_hardware",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "2031200": {
+      "title": "ASIC DFT Engineer",
+      "location": "2 Locations",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/ASIC-DFT-Engineer_2031200",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "specialized_low_level"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "2026916": {
+      "title": "Senior ASIC Design Verification Engineer",
+      "location": "San Jose, California, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/Senior-ASIC-Design-Verification-Engineer_2026916",
+      "posted_at": "2026-11-18",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
     }
   },
   "source_updated_at_by_id": {}

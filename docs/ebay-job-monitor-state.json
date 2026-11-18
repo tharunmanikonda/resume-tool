@@ -421,6 +421,7 @@
     "R0077330",
     "R0077334",
     "R0077339",
+    "R0077341",
     "R0077342",
     "R0077344",
     "R0077346",
@@ -435,6 +436,7 @@
     "R0077364",
     "R0077366",
     "R0077384",
+    "R0077386",
     "R0077389",
     "R0077397",
     "R0077398",
@@ -446,8 +448,11 @@
     "R0077432",
     "R0077438",
     "R0077445",
+    "R0077459",
     "R0077463",
+    "R0077468",
     "R0077470",
+    "R0077471",
     "R0077475",
     "R0077477",
     "R0077480",
@@ -455,7 +460,12 @@
     "R0077482",
     "R0077487",
     "R0077489",
-    "R0077495"
+    "R0077495",
+    "R0077498",
+    "R0077512",
+    "R0077518",
+    "R0077520",
+    "R0077532"
   ],
   "candidate_catalog": {
     "R0076812": {
@@ -549,7 +559,7 @@
       "category": "platform"
     }
   },
-  "last_successful_scan_at": "2026-11-18T03:22:23+00:00",
+  "last_successful_scan_at": "2026-11-18T21:08:25+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "R0077145": {
@@ -6495,6 +6505,150 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-18T03:22:23+00:00",
       "last_seen_at": "2026-11-18T03:22:23+00:00"
+    },
+    "R0077468": {
+      "title": "Staff AI/ML Engineer - MTS1",
+      "location": "Austin, Texas, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077468/Staff-AI-ML-Engineer-MTS1",
+      "posted_at": "2026-11-18T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior"
+      ],
+      "category": "ai_ml",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "R0077471": {
+      "title": "AI/ML Data Science, Manager 2",
+      "location": "Austin, Texas, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077471/AI-ML-Data-Science-Manager-2",
+      "posted_at": "2026-11-18T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "R0077532": {
+      "title": "Senior Software Engineer, Data Platforms",
+      "location": "Dublin, Dublin, Ireland",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077532/Senior-Software-Engineer-Data-Platforms",
+      "posted_at": "2026-11-18T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "R0077512": {
+      "title": "Public Cloud Capacity Engineer",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077512/Public-Cloud-Capacity-Engineer",
+      "posted_at": "2026-11-18T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "R0077386": {
+      "title": "Indirect Tax Compliance Sr Accountant",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077386/Indirect-Tax-Compliance-Sr-Accountant",
+      "posted_at": "2026-11-18T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "R0077498": {
+      "title": "Japan Legal Counsel",
+      "location": "Tokyo, Tokyo, Japan",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077498/Japan-Legal-Counsel",
+      "posted_at": "2026-11-18T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "R0077518": {
+      "title": "Campus Infrastructure & Ops Manager",
+      "location": "San Jose, California, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077518/Campus-Infrastructure-Ops-Manager",
+      "posted_at": "2026-11-17T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "R0077520": {
+      "title": "Warehouse Associate",
+      "location": "North Las Vegas, Nevada, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077520/Warehouse-Associate",
+      "posted_at": "2026-11-17T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "R0077341": {
+      "title": "Sr Software Engineer",
+      "location": "Austin, Texas, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077341/Sr-Software-Engineer",
+      "posted_at": "2026-11-18",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "R0077459": {
+      "title": "Full Stack AI Application Engineer",
+      "location": "Austin, Texas, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077459/Full-Stack-AI-Application-Engineer",
+      "posted_at": "2026-11-18",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "full_stack",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
     }
   },
   "source_updated_at_by_id": {}

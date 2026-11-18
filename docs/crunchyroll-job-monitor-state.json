@@ -56,6 +56,7 @@
     "8220865",
     "8221097",
     "8221252",
+    "8221313",
     "8221358",
     "8221413",
     "8221470",
@@ -132,7 +133,10 @@
     "8337627",
     "8348869",
     "8351574",
-    "8354058"
+    "8354058",
+    "8392775",
+    "8400422",
+    "8400509"
   ],
   "candidate_catalog": {
     "8221413": {
@@ -2082,9 +2086,70 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-17T21:32:32+00:00",
       "last_seen_at": "2026-11-17T21:32:32+00:00"
+    },
+    "8400509": {
+      "title": "Director of Engineering, Living Room Experience",
+      "location": "San Francisco, CA, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8400509?gh_jid=8400509",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "8400422": {
+      "title": "Principal Technical Program Manager",
+      "location": "Los Angeles, California, United States; San Francisco, CA, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8400422?gh_jid=8400422",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "8221313": {
+      "title": "Senior CX Program Manager",
+      "location": "Dallas, Texas, United States; Los Angeles, California, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8221313?gh_jid=8221313",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "8392775": {
+      "title": "Senior Technical Content Architect",
+      "location": "Los Angeles, California, United States; San Francisco, CA, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8392775?gh_jid=8392775",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
     }
   },
-  "last_successful_scan_at": "2026-11-18T03:22:23+00:00",
+  "last_successful_scan_at": "2026-11-18T21:08:25+00:00",
   "source_updated_at_by_id": {
     "6584220": "2026-11-17T16:14:31-05:00",
     "8204263": "2026-11-10T08:46:25-05:00",
@@ -2216,6 +2281,10 @@
     "8331692": "2026-11-13T10:56:56-05:00",
     "8337532": "2026-11-16T16:07:40-05:00",
     "8221470": "2026-11-16T09:58:06-05:00",
-    "8337627": "2026-11-17T12:16:20-05:00"
+    "8337627": "2026-11-18T12:11:36-05:00",
+    "8400509": "2026-11-18T15:29:17-05:00",
+    "8400422": "2026-11-18T15:26:32-05:00",
+    "8221313": "2026-11-18T15:18:01-05:00",
+    "8392775": "2026-11-18T16:08:54-05:00"
   }
 }

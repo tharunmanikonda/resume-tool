@@ -105,7 +105,9 @@
     "REQ-4932",
     "REQ-4933",
     "REQ-4934",
-    "REQ-4935"
+    "REQ-4935",
+    "REQ-4936",
+    "REQ-4938"
   ],
   "candidate_catalog": {
     "REQ-4807": {
@@ -136,7 +138,7 @@
       "category": "software"
     }
   },
-  "last_successful_scan_at": "2026-11-18T03:22:23+00:00",
+  "last_successful_scan_at": "2026-11-18T21:08:25+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "REQ-4896": {
@@ -1510,6 +1512,35 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-17T21:32:32+00:00",
       "last_seen_at": "2026-11-17T21:32:32+00:00"
+    },
+    "REQ-4938": {
+      "title": "Senior Associate, Business Systems Analysis",
+      "location": "Dallas, TX",
+      "url": "https://theocc.wd5.myworkdayjobs.com/job/Dallas-TX/Senior-Associate--Business-Systems-Analysis_REQ-4938",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "REQ-4936": {
+      "title": "Associate Principal, Cyber Defense",
+      "location": "Chicago - 125 S Franklin",
+      "url": "https://theocc.wd5.myworkdayjobs.com/job/Chicago---125-S-Franklin/Associate-Principal--Cyber-Defense_REQ-4936",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
     }
   },
   "source_updated_at_by_id": {}

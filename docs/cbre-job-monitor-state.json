@@ -696,6 +696,7 @@
     "289841",
     "289880",
     "289889",
+    "289902",
     "289921",
     "289942",
     "289962",
@@ -2479,6 +2480,7 @@
     "300682",
     "300683",
     "300684",
+    "300721",
     "300728",
     "300732",
     "300750",
@@ -3190,6 +3192,7 @@
     "303567",
     "303568",
     "303571",
+    "303574",
     "303581",
     "303583",
     "303584",
@@ -3217,6 +3220,7 @@
     "303680",
     "303699",
     "303702",
+    "303721",
     "303722",
     "303724",
     "303734",
@@ -3289,6 +3293,7 @@
     "303969",
     "303972",
     "303976",
+    "303978",
     "303981",
     "303982",
     "303983",
@@ -3316,6 +3321,7 @@
     "304103",
     "304110",
     "304115",
+    "304117",
     "304118",
     "304123",
     "304125",
@@ -3412,11 +3418,13 @@
     "304397",
     "304398",
     "304400",
+    "304420",
     "304432",
     "304436",
     "304448",
     "304450",
     "304462",
+    "304466",
     "304467",
     "304475",
     "304476",
@@ -3426,6 +3434,7 @@
     "304484",
     "304498",
     "304500",
+    "304501",
     "304502",
     "304504",
     "304507",
@@ -3467,7 +3476,10 @@
     "304622",
     "304623",
     "304630",
+    "304635",
     "304644",
+    "304645",
+    "304647",
     "304649",
     "304650",
     "304660",
@@ -3490,6 +3502,7 @@
     "304719",
     "304721",
     "304725",
+    "304727",
     "304729",
     "304732",
     "304733",
@@ -3507,10 +3520,14 @@
     "304779",
     "304842",
     "304851",
+    "304854",
     "304859",
     "304870",
     "304876",
+    "304880",
+    "304882",
     "304884",
+    "304895",
     "304905",
     "304906",
     "304918",
@@ -3521,6 +3538,7 @@
     "304929",
     "304933",
     "304937",
+    "304938",
     "304940",
     "304944",
     "304955",
@@ -3540,6 +3558,7 @@
     "305058",
     "305067",
     "305068",
+    "305069",
     "305070",
     "305075",
     "305080",
@@ -3547,6 +3566,7 @@
     "305082",
     "305083",
     "305103",
+    "305111",
     "305113",
     "305115",
     "305129",
@@ -3589,12 +3609,15 @@
     "305333",
     "305380",
     "305384",
+    "305390",
     "305394",
     "305395",
     "305405",
     "305407",
     "305408",
     "305413",
+    "305418",
+    "305420",
     "305423",
     "305425",
     "305428",
@@ -3611,6 +3634,9 @@
     "305466",
     "305467",
     "305479",
+    "305505",
+    "305522",
+    "305529",
     "305560",
     "305570",
     "305573",
@@ -3622,7 +3648,10 @@
     "305603",
     "305610",
     "305613",
+    "305617",
     "305618",
+    "305622",
+    "305623",
     "305634",
     "305639",
     "305644",
@@ -3630,10 +3659,14 @@
     "305649",
     "305651",
     "305662",
+    "305664",
     "305666",
     "305720",
     "305752",
+    "305757",
+    "305760",
     "305764",
+    "305771",
     "305775",
     "305778",
     "305820",
@@ -3641,15 +3674,23 @@
     "305856",
     "305859",
     "305863",
+    "305875",
+    "305876",
     "305910",
     "305927",
     "305928",
+    "305933",
+    "305939",
+    "305943",
+    "306019",
+    "306064",
+    "306118",
     "38196",
     "76242",
     "8655"
   ],
   "candidate_catalog": {},
-  "last_successful_scan_at": "2026-11-18T03:22:23+00:00",
+  "last_successful_scan_at": "2026-11-18T21:08:25+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "301688": {
@@ -38552,6 +38593,609 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-18T03:22:23+00:00",
       "last_seen_at": "2026-11-18T03:22:23+00:00"
+    },
+    "305760": {
+      "title": "T\u00e9cnico/a de mantenimiento polivalente/M\u00e1laga",
+      "location": "Malaga - Andalucia - Spain",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/T-cnico-a-de-mantenimiento-polivalente-M-laga/305760",
+      "posted_at": "18-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "305757": {
+      "title": "T\u00e9cnico/a de mantenimiento polivalente/Sevilla",
+      "location": "Sevilla - Andalucia - Spain",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/T-cnico-a-de-mantenimiento-polivalente-Sevilla/305757",
+      "posted_at": "18-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "306118": {
+      "title": "Talent Acquisition Partner",
+      "location": "London - England - United Kingdom of Great Britain and Northern Ireland",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Talent-Acquisition-Partner/306118",
+      "posted_at": "18-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "306019": {
+      "title": "Multi-Skilled Electrical Engineer",
+      "location": "Plymouth - England - United Kingdom of Great Britain and Northern Ireland",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Multi-Skilled-Electrical-Engineer/306019",
+      "posted_at": "18-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "305529": {
+      "title": "Site Lead",
+      "location": "Carlow - Carlow - Ireland",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Site-Lead/305529",
+      "posted_at": "18-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "303978": {
+      "title": "Building Operator (Critical Environment)",
+      "location": "Barrie - Ontario - Canada",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Building-Operator-Critical-Environment/303978",
+      "posted_at": "18-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "303721": {
+      "title": "HSE&F Admin Support",
+      "location": "Bournemouth - England - United Kingdom of Great Britain and Northern Ireland",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/HSE-F-Admin-Support/303721",
+      "posted_at": "18-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "303574": {
+      "title": "Facilities Supervisor",
+      "location": "Calgary - Alberta - Canada , Edmonton - Alberta - Canada , Fort McMurray - Alberta - Canada",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Facilities-Supervisor/303574",
+      "posted_at": "18-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "305505": {
+      "title": "LIS Supv",
+      "location": "Indianapolis - Indiana - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/LIS-Supv/305505",
+      "posted_at": "17-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "304420": {
+      "title": "Project Engineer - ICT / Structured Cabling",
+      "location": "Bangkok - Krung Thep Maha Nakhon - Thailand",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Project-Engineer-ICT-Structured-Cabling/304420",
+      "posted_at": "17-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "304647": {
+      "title": "Mobile Gas Engineer - South/West London",
+      "location": "Guildford - England - United Kingdom of Great Britain and Northern Ireland , London - England - United Kingdom of Great Britain and Northern Ireland , Oxford - England - United Kingdom of Great Britain and Northern Ireland , Reading - England - United Kingdom of Great Britain and Northern Ireland , Slough - England - United Kingdom of Great Britain and Northern Ireland",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Mobile-Gas-Engineer-South-West-London/304647",
+      "posted_at": "13-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "304635": {
+      "title": "Business Development Manager - Data Centres",
+      "location": "Dublin - Dublin - Ireland",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Business-Development-Manager-Data-Centres/304635",
+      "posted_at": "13-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "304727": {
+      "title": "Building Operator - contract",
+      "location": "Fort St John - British Columbia - Canada",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Building-Operator-contract/304727",
+      "posted_at": "18-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "304501": {
+      "title": "Building Operator",
+      "location": "Toronto - Ontario - Canada",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Building-Operator/304501",
+      "posted_at": "18-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "305943": {
+      "title": "RME Operator",
+      "location": "Brighton - New York - United States of America , Rochester - New York - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/RME-Operator/305943",
+      "posted_at": "17-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "305933": {
+      "title": "RME Operator",
+      "location": "Newport - Delaware - United States of America , Wilmington - Delaware - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/RME-Operator/305933",
+      "posted_at": "17-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "305664": {
+      "title": "Area Maintenance Manager",
+      "location": "Commerce - California - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Area-Maintenance-Manager/305664",
+      "posted_at": "16-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "306064": {
+      "title": "QHSE Manager",
+      "location": "Birmingham - England - United Kingdom of Great Britain and Northern Ireland , Leeds - England - United Kingdom of Great Britain and Northern Ireland , London - England - United Kingdom of Great Britain and Northern Ireland",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/QHSE-Manager/306064",
+      "posted_at": "18-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "305876": {
+      "title": "Area Maintenance Manager",
+      "location": "Atlanta - Georgia - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Area-Maintenance-Manager/305876",
+      "posted_at": "18-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "305771": {
+      "title": "Maintenance Technician",
+      "location": "Broussard - Louisiana - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Maintenance-Technician/305771",
+      "posted_at": "18-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "305617": {
+      "title": "Maintenance Technician",
+      "location": "Charlotte - North Carolina - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Maintenance-Technician/305617",
+      "posted_at": "18-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "305390": {
+      "title": "Maintenance Technician",
+      "location": "Atlanta - Georgia - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Maintenance-Technician/305390",
+      "posted_at": "18-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "305111": {
+      "title": "A0/A1 Chargeman (Sepang)",
+      "location": "Sepang - Selangor - Malaysia",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/A0-A1-Chargeman-Sepang/305111",
+      "posted_at": "18-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "304895": {
+      "title": "Painter / Maintenance Technician",
+      "location": "West Palm Beach - Florida - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Painter-Maintenance-Technician/304895",
+      "posted_at": "18-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "304854": {
+      "title": "Engineering Operations Manager (Hard Services Project Integration)",
+      "location": "London - England - United Kingdom of Great Britain and Northern Ireland",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Engineering-Operations-Manager-Hard-Services-Project-Integration/304854",
+      "posted_at": "18-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "305875": {
+      "title": "Sr. Maintenance Technician",
+      "location": "Atlanta - Georgia - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Sr-Maintenance-Technician/305875",
+      "posted_at": "17-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "305623": {
+      "title": "Maintenance Technician",
+      "location": "Charlotte - North Carolina - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Maintenance-Technician/305623",
+      "posted_at": "16-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "305622": {
+      "title": "Maintenance Technician",
+      "location": "Fenton - Missouri - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Maintenance-Technician/305622",
+      "posted_at": "16-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "300721": {
+      "title": "BMS Systems Engineer",
+      "location": "Dublin - Dublin - Ireland",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/BMS-Systems-Engineer/300721",
+      "posted_at": "16-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "systems_engineering",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "305420": {
+      "title": "Maintenance Technician",
+      "location": "Pontoon Beach - Illinois - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Maintenance-Technician/305420",
+      "posted_at": "13-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "304645": {
+      "title": "Sheffield Mobile Engineer",
+      "location": "Sheffield - England - United Kingdom of Great Britain and Northern Ireland",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Sheffield-Mobile-Engineer/304645",
+      "posted_at": "13-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "289902": {
+      "title": "Workplace Strategy Director",
+      "location": "London - England - United Kingdom of Great Britain and Northern Ireland",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Workplace-Strategy-Director/289902",
+      "posted_at": "17-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "305939": {
+      "title": "Mechatronic Apprentice",
+      "location": "Newport - Delaware - United States of America , Wilmington - Delaware - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Mechatronic-Apprentice/305939",
+      "posted_at": "17-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "304938": {
+      "title": "Maintenance Technician",
+      "location": "Tremont - Pennsylvania - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Maintenance-Technician/304938",
+      "posted_at": "10-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "305522": {
+      "title": "Assistant Surveyor - Estates Management",
+      "location": "Birmingham - England - United Kingdom of Great Britain and Northern Ireland",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Assistant-Surveyor-Estates-Management/305522",
+      "posted_at": "18-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "305069": {
+      "title": "Workplace Exp Supervisor",
+      "location": "Portland - Oregon - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Workplace-Exp-Supervisor/305069",
+      "posted_at": "17-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "305418": {
+      "title": "Building Automation System Engineer",
+      "location": "Los Angeles - California - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Building-Automation-System-Engineer/305418",
+      "posted_at": "18-Nov-2026",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "systems_engineering",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "304466": {
+      "title": "Reliability Engineer",
+      "location": "Cambridge - Massachusetts - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Reliability-Engineer/304466",
+      "posted_at": "18-Nov-2026",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "reliability",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "304882": {
+      "title": "Building Engineer- 2nd Shift.",
+      "location": "New Braunfels - Texas - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Building-Engineer-2nd-Shift/304882",
+      "posted_at": "18-Nov-2026",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "304880": {
+      "title": "Building Engineer",
+      "location": "San Marcos - Texas - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Building-Engineer/304880",
+      "posted_at": "18-Nov-2026",
+      "stage": "detail",
+      "blockers": [
+        "non_software_engineering_role"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "304117": {
+      "title": "Union Chief Engineer",
+      "location": "Brooklyn - New York - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Union-Chief-Engineer/304117",
+      "posted_at": "18-Nov-2026",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-18T21:08:25+00:00",
+      "last_seen_at": "2026-11-18T21:08:25+00:00"
     }
   },
   "source_updated_at_by_id": {}
