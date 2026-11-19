@@ -541,6 +541,7 @@
     "R1548202",
     "R1548450",
     "R1548472",
+    "R1548513",
     "R1548520",
     "R1548524",
     "R1548570",
@@ -636,6 +637,7 @@
     "R1552876",
     "R1552924",
     "R1553113",
+    "R1553136",
     "R1553144",
     "R1553172",
     "R1553194",
@@ -745,6 +747,7 @@
     "R1555453",
     "R1555460",
     "R1555469",
+    "R1555480",
     "R1555484",
     "R1555488",
     "R1555517",
@@ -1003,6 +1006,7 @@
     "R1561925",
     "R1561935",
     "R1561944",
+    "R1561978",
     "R1561986",
     "R1562041",
     "R1562059",
@@ -1081,6 +1085,7 @@
     "R1563087",
     "R1563090",
     "R1563092",
+    "R1563093",
     "R1563120",
     "R1563124",
     "R1563156",
@@ -1294,6 +1299,7 @@
     "R1566066",
     "R1566072",
     "R1566076",
+    "R1566127",
     "R1566140",
     "R1566142",
     "R1566150",
@@ -1929,6 +1935,7 @@
     "R1572069",
     "R1572075",
     "R1572078",
+    "R1572082",
     "R1572093",
     "R1572130",
     "R1572133",
@@ -2006,6 +2013,7 @@
     "R1572749",
     "R1572753",
     "R1572759",
+    "R1572763",
     "R1572769",
     "R1572795",
     "R1572798",
@@ -2217,6 +2225,7 @@
     "R1574420",
     "R1574425",
     "R1574428",
+    "R1574432",
     "R1574445",
     "R1574454",
     "R1574455",
@@ -2242,6 +2251,7 @@
     "R1574613",
     "R1574622",
     "R1574643",
+    "R1574650",
     "R1574655",
     "R1574658",
     "R1574662",
@@ -2258,6 +2268,7 @@
     "R1574715",
     "R1574719",
     "R1574720",
+    "R1574723",
     "R1574727",
     "R1574730",
     "R1574731",
@@ -2622,6 +2633,7 @@
     "R1577690",
     "R1577723",
     "R1577725",
+    "R1577759",
     "R1577772",
     "R1577774",
     "R1577779",
@@ -2679,11 +2691,14 @@
     "R1578290",
     "R1578292",
     "R1578310",
+    "R1578311",
     "R1578312",
     "R1578320",
     "R1578325",
     "R1578328",
     "R1578344",
+    "R1578347",
+    "R1578350",
     "R1578387",
     "R1578414",
     "R1578457",
@@ -2721,6 +2736,7 @@
     "R1578582",
     "R1578608",
     "R1578614",
+    "R1578615",
     "R1578655",
     "R1578678",
     "R1578685",
@@ -2824,6 +2840,7 @@
     "R1579306",
     "R1579318",
     "R1579340",
+    "R1579343",
     "R1579366",
     "R1579373",
     "R1579378",
@@ -2869,6 +2886,7 @@
     "R1579606",
     "R1579619",
     "R1579622",
+    "R1579626",
     "R1579627",
     "R1579638",
     "R1579644",
@@ -2885,6 +2903,10 @@
     "R1579810",
     "R1579812",
     "R1579876",
+    "R1579877",
+    "R1579883",
+    "R1579884",
+    "R1579887",
     "R1579888",
     "R1579889",
     "R1579895",
@@ -2892,11 +2914,37 @@
     "R1579921",
     "R1579928",
     "R1579938",
+    "R1580002",
+    "R1580003",
     "R1580032",
     "R1580063",
     "R1580069",
     "R1580073",
     "R1580109",
+    "R1580220",
+    "R1580222",
+    "R1580234",
+    "R1580238",
+    "R1580243",
+    "R1580246",
+    "R1580249",
+    "R1580250",
+    "R1580254",
+    "R1580255",
+    "R1580256",
+    "R1580259",
+    "R1580261",
+    "R1580265",
+    "R1580266",
+    "R1580267",
+    "R1580268",
+    "R1580269",
+    "R1580272",
+    "R1580273",
+    "R1580276",
+    "R1580278",
+    "R1580282",
+    "R1580288",
     "R1580301",
     "R1580304",
     "R1580305",
@@ -2906,8 +2954,19 @@
     "R1580504",
     "R1580515",
     "R1580516",
+    "R1580550",
+    "R1580566",
+    "R1580568",
+    "R1580593",
     "R1580618",
-    "R1580660"
+    "R1580619",
+    "R1580660",
+    "R1580661",
+    "R1580696",
+    "R1580704",
+    "R1580804",
+    "R1580829",
+    "R1580852"
   ],
   "candidate_catalog": {
     "R1570411": {
@@ -3107,9 +3166,18 @@
       "first_seen_at": "2026-11-18T21:08:25+00:00",
       "priority": "high",
       "category": "software"
+    },
+    "R1574650": {
+      "title": "Software Development Engineer 2",
+      "location": "Kathmandu, Nepal",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Kathmandu-Nepal/Software-Development-Engineer-2_R1574650",
+      "posted_at": "2026-11-19",
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "priority": "high",
+      "category": "software"
     }
   },
-  "last_successful_scan_at": "2026-11-19T02:57:30+00:00",
+  "last_successful_scan_at": "2026-11-19T21:13:54+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "R1545472": {
@@ -42773,6 +42841,865 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-19T02:57:30+00:00",
       "last_seen_at": "2026-11-19T02:57:30+00:00"
+    },
+    "R1579626": {
+      "title": "Tech/Systems Support Analyst",
+      "location": "Taguig City, Philippines",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Taguig-City-Philippines/Tech-Systems-Support-Analyst_R1579626",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "R1580002": {
+      "title": "Assoc Mgr, Software Development Engineering",
+      "location": "Kochi, India",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Kochi-India/Assoc-Mgr--Software-Development-Engineering_R1580002",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "R1580003": {
+      "title": "Power BI - Mgr, Software Development",
+      "location": "Kochi, India",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Kochi-India/Power-BI---Mgr--Software-Development_R1580003",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "R1580829": {
+      "title": "Associate Business Development Director",
+      "location": "4 Locations",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Durham-North-Carolina-United-States-of-America/Associate-Business-Development-Director_R1580829",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "R1574723": {
+      "title": "Market Access/Product Specialist",
+      "location": "Prague, Czech Republic",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Prague-Czech-Republic/Market-Access-Product-Specialist_R1574723",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "R1578615": {
+      "title": "Associate Regulatory Affairs Director",
+      "location": "Durham, North Carolina, United States of America",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Durham-North-Carolina-United-States-of-America/Associate-Regulatory-Affairs-Director_R1578615",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "R1580696": {
+      "title": "(Sr) Feasibility Specialist",
+      "location": "3 Locations",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Guangzhou-China/XMLNAME--Sr--Feasibility-Specialist_R1580696",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "R1566127": {
+      "title": "Medical Sales Rep 1 (Gulbarga Loc)",
+      "location": "Thane, Maharashtra, India",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Thane-Maharashtra-India/Medical-Sales-Rep-1--Hyderabad-Loc-_R1566127",
+      "posted_at": "Posted Yesterday",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "R1578311": {
+      "title": "Client Service Rep 2",
+      "location": "Taguig City, Philippines",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Taguig-City-Philippines/Client-Service-Rep-2_R1578311",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "R1578350": {
+      "title": "People Manager - Site Enrollment and Engagement Leads (National)",
+      "location": "Parsippany, New Jersey, United States of America",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Parsippany-New-Jersey-United-States-of-America/People-Manager---Site-Enrollment-and-Engagement-Leads--National-_R1578350",
+      "posted_at": "Posted Yesterday",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "R1578347": {
+      "title": "People Manager - Site Enrollment and Engagement Leads (National)",
+      "location": "Parsippany, New Jersey, United States of America",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Parsippany-New-Jersey-United-States-of-America/People-Manager---Site-Enrollment-and-Engagement-Leads--National-_R1578347",
+      "posted_at": "Posted Yesterday",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "R1580550": {
+      "title": "Pharmaberater m/w/d Diabetologie",
+      "location": "Dortmund, North Rhine Westphalia, Germany",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Dortmund-North-Rhine-Westphalia-Germany/Pharmaberater-m-w-d-Diabetologie_R1580550-1",
+      "posted_at": "Posted Yesterday",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "R1579877": {
+      "title": "Clinical Trial Nurse - Per Diem Chicago, IL",
+      "location": "Chicago, IL",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Chicago-IL/Clinical-Trial-Nurse---Per-Diem-Chicago--IL_R1579877",
+      "posted_at": "Posted 6 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "R1579883": {
+      "title": "Clinical Trial Nurse - Per Diem Denver, CO",
+      "location": "Denver , Colorado, United States",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Denver--Colorado-United-States/Clinical-Trial-Nurse---Per-Diem-Denver--CO_R1579883",
+      "posted_at": "Posted Yesterday",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "R1580566": {
+      "title": "Clinical Trial Nurse - Per Diem Marysville, WA",
+      "location": "Marysville, Washington, United States",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Marysville-Washington-United-States/Clinical-Trial-Nurse---Per-Diem-Marysville--WA_R1580566",
+      "posted_at": "Posted Yesterday",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "R1579887": {
+      "title": "Clinical Trial Nurse - Per Diem Sultan, WA",
+      "location": "Everett, WA",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Everett-WA/Clinical-Trial-Nurse---Per-Diem-Sultan--WA_R1579887",
+      "posted_at": "Posted Yesterday",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "R1580568": {
+      "title": "Clinical Trial Nurse - Per Diem Escondido, CA",
+      "location": "Escondido, California, United States",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Escondido-California-United-States/Clinical-Trial-Nurse---Per-Diem-Escondido--CA_R1580568",
+      "posted_at": "Posted Yesterday",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "R1579884": {
+      "title": "Clinical Trial Nurse - Per Diem Edmond, OK",
+      "location": "Edmond, OK",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Edmond-OK/Clinical-Trial-Nurse---Per-Diem-Edmond--OK_R1579884",
+      "posted_at": "Posted Yesterday",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "R1580661": {
+      "title": "Especialista de Intelig\u00eancia de Mercado e SFE",
+      "location": "S\u00e3o Paulo, Brazil",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/So-Paulo-Brazil/Especialista-de-Inteligncia-de-Mercado-e-SFE_R1580661",
+      "posted_at": "Posted Yesterday",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "R1561978": {
+      "title": "Director Business Development, Life Sciences -APAC",
+      "location": "2 Locations",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Shanghai-China/Director-Business-Development--Life-Sciences--APAC_R1561978",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "R1574432": {
+      "title": "Graduate Analyst Internship Programme (12 Months) - Life Sciences Consulting",
+      "location": "Centurion, South Africa",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Centurion-South-Africa/Graduate-Analyst-Internship-Programme--12-Months----Life-Sciences-Consulting_R1574432",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "R1553136": {
+      "title": "Expert & Lead  - Clinical Outcome Assessment (Scoring & Interpretation) - United Kingdom & European Union",
+      "location": "London, United Kingdom",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/London-United-Kingdom/Senior-COA-Scientist--Scoring---Interpretation_R1553136",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "R1577759": {
+      "title": "Project Manager-IT (Remote)",
+      "location": "Durham, North Carolina, United States of America",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Durham-North-Carolina-United-States-of-America/Project-Manager-IT--Remote-_R1577759",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "R1580704": {
+      "title": "COA Manager",
+      "location": "3 Locations",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Paris-France/COA-Manager_R1580704",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "R1579343": {
+      "title": "Senior Clinical Project Manager - Obesity/MASH",
+      "location": "Durham, North Carolina, United States of America",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Durham-North-Carolina-United-States-of-America/Senior-Clinical-Project-Manager---Obesity-MASH_R1579343",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "R1580852": {
+      "title": "Senior Pharmacovigilance Analyst \u2013 LPV Contract Hub",
+      "location": "S\u00e3o Paulo, Brazil",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/So-Paulo-Brazil/Senior-Pharmacovigilance-Analyst---LPV-Contract-Hub_R1580852",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "R1580619": {
+      "title": "Product Specialist Neurology,  Belgium",
+      "location": "Zaventem, Belgium",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Zaventem-Belgium/Product-Specialist-Neurology---Belgium_R1580619",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "R1572082": {
+      "title": "Pharma Segment Lead, IQVIA Digital",
+      "location": "New York, NY",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/New-York-NY/Pharma-Segment-Lead--IQVIA-Digital_R1572082",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "R1572763": {
+      "title": "HR Business Partner",
+      "location": "Taguig City, Philippines",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Taguig-City-Philippines/HR-Business-Partner_R1572763",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "R1580254": {
+      "title": "Pharmaberater m/w/d  Orphan Drugs, HKL, Kardiologie",
+      "location": "Leipzig, Saxony, Germany",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Leipzig-Saxony-Germany/Pharmaberater-m-w-d--Orphan-Drugs--HKL--Kardiologie_R1580254-1",
+      "posted_at": "Posted 2 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "R1580265": {
+      "title": "Pharmaberater m/w/d  Orphan Drugs, HKL, Kardiologie",
+      "location": "Zwickau, Saxony, Germany",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Zwickau-Saxony-Germany/Pharmaberater-m-w-d--Orphan-Drugs--HKL--Kardiologie_R1580265",
+      "posted_at": "Posted 2 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "R1580278": {
+      "title": "Pharmaberater m/w/d  Orphan Drugs, HKL, Kardiologie",
+      "location": "Darmstadt, Hessen, Germany",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Darmstadt-Hessen-Germany/Pharmaberater-m-w-d--Orphan-Drugs--HKL--Kardiologie_R1580278",
+      "posted_at": "Posted 2 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "R1580220": {
+      "title": "Pharmaberater m/w/d  Orphan Drugs, HKL, Kardiologie",
+      "location": "Rostock, Mecklenburg West Pomerania, Germany",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Rostock-Mecklenburg-West-Pomerania-Germany/Pharmaberater-m-w-d--Orphan-Drugs--HKL--Kardiologie_R1580220-1",
+      "posted_at": "Posted 2 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "R1580234": {
+      "title": "Pharmaberater m/w/d  Orphan Drugs, HKL, Kardiologie",
+      "location": "Bochum, North Rhine Westphalia, Germany",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Bochum-North-Rhine-Westphalia-Germany/Pharmaberater-m-w-d--Orphan-Drugs--HKL--Kardiologie_R1580234",
+      "posted_at": "Posted 2 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "R1580272": {
+      "title": "Pharmaberater m/w/d  Orphan Drugs, HKL, Kardiologie",
+      "location": "Karlsruhe, Baden-W\u00fcrttemberg, Germany",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Karlsruhe-Baden-Wrttemberg-Germany/Pharmaberater-m-w-d--Orphan-Drugs--HKL--Kardiologie_R1580272-1",
+      "posted_at": "Posted 2 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "R1580276": {
+      "title": "Pharmaberater m/w/d  Orphan Drugs, HKL, Kardiologie",
+      "location": "Stuttgart, Baden-W\u00fcrttemberg, Germany",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Stuttgart-Baden-Wrttemberg-Germany/Pharmaberater-m-w-d--Orphan-Drugs--HKL--Kardiologie_R1580276",
+      "posted_at": "Posted 2 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "R1580243": {
+      "title": "Pharmaberater m/w/d  Orphan Drugs, HKL, Kardiologie",
+      "location": "Paderborn, North Rhine Westphalia, Germany",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Paderborn-North-Rhine-Westphalia-Germany/Pharmaberater-m-w-d--Orphan-Drugs--HKL--Kardiologie_R1580243",
+      "posted_at": "Posted 2 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "R1580288": {
+      "title": "Pharmaberater m/w/d  Orphan Drugs, HKL, Kardiologie",
+      "location": "Koblenz, Rhinland-Palatinate, Germany",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Koblenz-Rhinland-Palatinate-Germany/Pharmaberater-m-w-d--Orphan-Drugs--HKL--Kardiologie_R1580288",
+      "posted_at": "Posted 2 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "R1580259": {
+      "title": "Pharmaberater m/w/d  Orphan Drugs, HKL, Kardiologie",
+      "location": "Meiningen, Thuringia, Germany",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Meiningen-Thuringia-Germany/Pharmaberater-m-w-d--Orphan-Drugs--HKL--Kardiologie_R1580259",
+      "posted_at": "Posted 2 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "R1580266": {
+      "title": "Pharmaberater m/w/d  Orphan Drugs, HKL, Kardiologie",
+      "location": "Villingen-Schwenningen, Baden-W\u00fcrttemberg, Germany",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Villingen-Schwenningen-Baden-Wrttemberg-Germany/Pharmaberater-m-w-d--Orphan-Drugs--HKL--Kardiologie_R1580266",
+      "posted_at": "Posted 2 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "R1580269": {
+      "title": "Pharmaberater m/w/d  Orphan Drugs, HKL, Kardiologie",
+      "location": "Villingen-Schwenningen, Baden-W\u00fcrttemberg, Germany",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Villingen-Schwenningen-Baden-Wrttemberg-Germany/Pharmaberater-m-w-d--Orphan-Drugs--HKL--Kardiologie_R1580269",
+      "posted_at": "Posted 2 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "R1580246": {
+      "title": "Pharmaberater m/w/d  Orphan Drugs, HKL, Kardiologie",
+      "location": "Dessau, Saxony-Anhalt, Germany",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Dessau-Saxony-Anhalt-Germany/Pharmaberater-m-w-d--Orphan-Drugs--HKL--Kardiologie_R1580246",
+      "posted_at": "Posted 2 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "R1580249": {
+      "title": "Pharmaberater m/w/d  Orphan Drugs, HKL, Kardiologie",
+      "location": "Siegen, North Rhine Westphalia, Germany",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Siegen-North-Rhine-Westphalia-Germany/Pharmaberater-m-w-d--Orphan-Drugs--HKL--Kardiologie_R1580249",
+      "posted_at": "Posted 2 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "R1580256": {
+      "title": "Pharmaberater m/w/d  Orphan Drugs, HKL, Kardiologie",
+      "location": "Munchen, Bavaria, Germany",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Munchen-Bavaria-Germany/Pharmaberater-m-w-d--Orphan-Drugs--HKL--Kardiologie_R1580256",
+      "posted_at": "Posted 2 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "R1580238": {
+      "title": "Pharmaberater m/w/d  Orphan Drugs, HKL, Kardiologie",
+      "location": "Bergisch Gladbach, Germany",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Bergisch-Gladbach-Germany/Pharmaberater-m-w-d--Orphan-Drugs--HKL--Kardiologie_R1580238",
+      "posted_at": "Posted 2 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "R1580282": {
+      "title": "Pharmaberater m/w/d  Orphan Drugs, HKL, Kardiologie",
+      "location": "Frankfurt am Main, Hesse, Germany",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Frankfurt-am-Main-Hesse-Germany/Pharmaberater-m-w-d--Orphan-Drugs--HKL--Kardiologie_R1580282",
+      "posted_at": "Posted 2 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "R1580273": {
+      "title": "Pharmaberater m/w/d  Orphan Drugs, HKL, Kardiologie",
+      "location": "Stuttgart, Baden-W\u00fcrttemberg, Germany",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Stuttgart-Baden-Wrttemberg-Germany/Pharmaberater-m-w-d--Orphan-Drugs--HKL--Kardiologie_R1580273",
+      "posted_at": "Posted 2 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "R1580804": {
+      "title": "Pharmaberater m/w/d  Orphan Drugs, HKL, Kardiologie",
+      "location": "Landshut, Bayern, Germany",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Landshut-Bayern-Germany/Pharmaberater-m-w-d--Orphan-Drugs--HKL--Kardiologie_R1580804",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "R1563093": {
+      "title": "TMF Document Specialist - Hybrid (Bulgaria)",
+      "location": "Sofia, Bulgaria",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Sofia-Bulgaria/TMF-Document-Specialist---Hybrid--Bulgaria-_R1563093",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "R1580267": {
+      "title": "Customer Partnering Manager m/w/d Onkologie",
+      "location": "Regensburg, Bayern, Germany",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Regensburg-Bayern-Germany/Customer-Partnering-Manager-m-w-d-Onkologie_R1580267",
+      "posted_at": "Posted 2 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "R1580250": {
+      "title": "Customer Partnering Manager m/w/d Onkologie",
+      "location": "Hannover, Lower Saxony, Germany",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Hannover-Lower-Saxony-Germany/Customer-Partnering-Manager-m-w-d-Onkologie_R1580250",
+      "posted_at": "Posted 2 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "R1580222": {
+      "title": "Customer Partnering Manager m/w/d Onkologie",
+      "location": "Berlin, Berlin, Germany",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Berlin-Berlin-Germany/Customer-Partnering-Manager-m-w-d-Onkologie_R1580222",
+      "posted_at": "Posted 2 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "R1580255": {
+      "title": "Customer Partnering Manager m/w/d Onkologie",
+      "location": "Dresden, Saxony, Germany",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Dresden-Saxony-Germany/Customer-Partnering-Manager-m-w-d-Onkologie_R1580255-1",
+      "posted_at": "Posted 2 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "R1580261": {
+      "title": "Customer Partnering Manager m/w/d Onkologie",
+      "location": "Mainz, Rhinland-Palatinate, Germany",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Mainz-Rhinland-Palatinate-Germany/Customer-Partnering-Manager-m-w-d-Onkologie_R1580261",
+      "posted_at": "Posted 2 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "R1580268": {
+      "title": "Customer Partnering Manager m/w/d Onkologie",
+      "location": "Augsburg, Bayern, Germany",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Augsburg-Bayern-Germany/Customer-Partnering-Manager-m-w-d-Onkologie_R1580268",
+      "posted_at": "Posted 2 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "R1580593": {
+      "title": "Delivery Lead, Global Advisory Services (Life Sciences)",
+      "location": "Centurion, South Africa",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Centurion-South-Africa/Delivery-Lead--Global-Advisory-Services--Life-Sciences-_R1580593",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "R1555480": {
+      "title": "Mitarbeiter Mitarbeiterversorgung (m/ w/ d)",
+      "location": "2 Locations",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Leipzig-Germany/Mitarbeiter-Mitarbeiterversorgung--m--w--d-_R1555480",
+      "posted_at": "Posted 2 Days Ago",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "R1548513": {
+      "title": "Operational Effectiveness Manager",
+      "location": "Bangalore, India",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Bangalore-India/Medical-Affairs-Operations---Process---Data-Analytics-Manager_R1548513-1",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
     }
   },
   "source_updated_at_by_id": {}

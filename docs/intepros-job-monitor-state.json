@@ -267,9 +267,11 @@
     "a0Hcw00000BrA9NEAV",
     "a0Hcw00000BrCW9EAN",
     "a0Hcw00000BrCsjEAF",
-    "a0Hcw00000BrHKXEA3"
+    "a0Hcw00000BrHKXEA3",
+    "a0Hcw00000BslV3EAJ",
+    "a0Hcw00000BsuS3EAJ"
   ],
-  "last_successful_scan_at": "2026-11-19T02:57:30+00:00",
+  "last_successful_scan_at": "2026-11-19T21:13:54+00:00",
   "candidate_catalog": {
     "a0Hcw000006tdYLEAY": {
       "title": "Operational Excellence Engineer",
@@ -1909,6 +1911,34 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-18T21:08:25+00:00",
       "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "a0Hcw00000BslV3EAJ": {
+      "title": "Executive Recruiter",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000BslV3EAJ/executive-recruiter",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "a0Hcw00000BsuS3EAJ": {
+      "title": "Sr. Business Systems Analyst",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000BsuS3EAJ/sr-business-systems-analyst",
+      "posted_at": "",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "systems_analysis",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
     }
   },
   "source_updated_at_by_id": {}

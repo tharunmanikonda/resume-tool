@@ -385,6 +385,7 @@
     "R0077197",
     "R0077199",
     "R0077208",
+    "R0077210",
     "R0077219",
     "R0077220",
     "R0077226",
@@ -409,6 +410,7 @@
     "R0077293",
     "R0077294",
     "R0077298",
+    "R0077299",
     "R0077301",
     "R0077302",
     "R0077304",
@@ -435,6 +437,7 @@
     "R0077360",
     "R0077364",
     "R0077366",
+    "R0077372",
     "R0077384",
     "R0077386",
     "R0077389",
@@ -559,7 +562,7 @@
       "category": "platform"
     }
   },
-  "last_successful_scan_at": "2026-11-18T21:08:25+00:00",
+  "last_successful_scan_at": "2026-11-19T21:13:54+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "R0077145": {
@@ -6649,6 +6652,48 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-18T21:08:25+00:00",
       "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "R0077210": {
+      "title": "Platform Engineer, Cloud Dev/Ops",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077210/Platform-Engineer-Cloud-Dev-Ops",
+      "posted_at": "2026-11-19T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "platform",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "R0077299": {
+      "title": "Staff Information Security Engineer",
+      "location": "Austin, Texas, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077299/Staff-Information-Security-Engineer",
+      "posted_at": "2026-11-18T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior"
+      ],
+      "category": "security",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "R0077372": {
+      "title": "Platform Engineer, Cloud Dev/Ops",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077372/Platform-Engineer-Cloud-Dev-Ops",
+      "posted_at": "2026-11-18T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "platform",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
     }
   },
   "source_updated_at_by_id": {}

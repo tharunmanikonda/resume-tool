@@ -844,7 +844,18 @@
     "744000162406279",
     "744000162407064",
     "744000162407819",
-    "744000162408928"
+    "744000162408928",
+    "744000162521714",
+    "744000162533626",
+    "744000162554415",
+    "744000162568719",
+    "744000162574569",
+    "744000162591529",
+    "744000162600374",
+    "744000162600769",
+    "744000162600861",
+    "744000162604579",
+    "744000162605809"
   ],
   "candidate_catalog": {
     "744000151898289": {
@@ -990,9 +1001,18 @@
       "first_seen_at": "2026-11-18T21:08:25+00:00",
       "priority": "medium",
       "category": "technical_review"
+    },
+    "744000162605809": {
+      "title": "Sr. Software Engineer",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162605809-sr-software-engineer",
+      "posted_at": "2026-11-19T21:15:27.333Z",
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "priority": "high",
+      "category": "software"
     }
   },
-  "last_successful_scan_at": "2026-11-19T02:57:30+00:00",
+  "last_successful_scan_at": "2026-11-19T21:13:54+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "744000156079569": {
@@ -11584,6 +11604,150 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-19T02:57:30+00:00",
       "last_seen_at": "2026-11-19T02:57:30+00:00"
+    },
+    "744000162604579": {
+      "title": "Production Assistant, Meet the Press NOW",
+      "location": "Washington, DC, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162604579-production-assistant-meet-the-press-now",
+      "posted_at": "2026-11-19T21:06:44.269Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "744000162600861": {
+      "title": "Sr Designer, Visual Design - Global UXUI Experience Design",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162600861-sr-designer-visual-design-global-uxui-experience-design",
+      "posted_at": "2026-11-19T20:37:55.756Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "744000162600769": {
+      "title": "Sr Manager, External Affairs USH",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162600769-sr-manager-external-affairs-ush",
+      "posted_at": "2026-11-19T20:36:00.182Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "744000162600374": {
+      "title": "Sr Manager Sourcing",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162600374-sr-manager-sourcing",
+      "posted_at": "2026-11-19T20:34:35.212Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "744000162591529": {
+      "title": "Associate Platforms Editor, Weekends, NBC News Digital",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162591529-associate-platforms-editor-weekends-nbc-news-digital",
+      "posted_at": "2026-11-19T19:31:36.033Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "744000162574569": {
+      "title": "Sr. Counsel, Advertising & Partnerships Legal",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162574569-sr-counsel-advertising-partnerships-legal",
+      "posted_at": "2026-11-19T17:41:51.103Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "744000162568719": {
+      "title": "MEP & Site Utilities Manager",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162568719-mep-site-utilities-manager",
+      "posted_at": "2026-11-19T17:08:44.580Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "744000162554415": {
+      "title": "Manager, Corporate Events",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162554415-manager-corporate-events",
+      "posted_at": "2026-11-19T16:10:52.347Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "744000162521714": {
+      "title": "Boston Talk Show On-Air Panelist/Contributor, NBC Boston",
+      "location": "Needham, Massachusetts, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162521714-boston-talk-show-on-air-panelist-contributor-nbc-boston",
+      "posted_at": "2026-11-19T14:06:30.355Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "744000162533626": {
+      "title": "Sr. Data Engineer",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162533626-sr-data-engineer",
+      "posted_at": "2026-11-19T15:01:53.328Z",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "data",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
     }
   },
   "source_updated_at_by_id": {}

@@ -1116,6 +1116,7 @@
     "JR2028241",
     "JR2028264",
     "JR2028267",
+    "JR2028272",
     "JR2028279",
     "JR2028311",
     "JR2028321",
@@ -1267,6 +1268,7 @@
     "JR2029837",
     "JR2029838",
     "JR2029873",
+    "JR2029878",
     "JR2029897",
     "JR2029901",
     "JR2029912",
@@ -1286,7 +1288,10 @@
     "JR2030204",
     "JR2030240",
     "JR2030246",
-    "JR2030275"
+    "JR2030254",
+    "JR2030275",
+    "JR2030289",
+    "JR2030324"
   ],
   "candidate_catalog": {
     "JR2018245": {
@@ -1659,7 +1664,7 @@
       "category": "technical_review"
     }
   },
-  "last_successful_scan_at": "2026-11-19T02:57:30+00:00",
+  "last_successful_scan_at": "2026-11-19T21:13:54+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "JR2014880": {
@@ -17766,6 +17771,76 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-19T02:57:30+00:00",
       "last_seen_at": "2026-11-19T02:57:30+00:00"
+    },
+    "JR2028272": {
+      "title": "Staff Cloud Infrastructure Engineer - IT Cloud Foundation",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Staff-Cloud-Infrastructure-Engineer---IT-Cloud-Foundation_JR2028272",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "JR2030324": {
+      "title": "MLOps Senior Lead Engineer",
+      "location": "US, CA, Santa Clara; US, WA, Seattle",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/MLOps-Senior-Lead-Engineer_JR2030324",
+      "posted_at": "2026-11-19",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "JR2030289": {
+      "title": "SRAM Layout Design Engineer",
+      "location": "US, CA, Santa Clara; US, TX, Austin; US, NC, Remote; US, NC, Durham",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/SRAM-Layout-Design-Engineer_JR2030289",
+      "posted_at": "2026-11-19",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "JR2029878": {
+      "title": "Senior Site Reliability Engineer \u2013 Distributed Storage",
+      "location": "US, CA, Santa Clara; US, TX, Austin; US, TX, Remote",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Site-Reliability-Engineer---Distributed-Storage_JR2029878",
+      "posted_at": "2026-11-19",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "reliability",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "JR2030254": {
+      "title": "Senior Software Engineer, Distributed Systems",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Software-Engineer--Distributed-Systems_JR2030254",
+      "posted_at": "2026-11-19",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
     }
   },
   "source_updated_at_by_id": {}

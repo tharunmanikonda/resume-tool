@@ -141,6 +141,7 @@
     "7288573725884008765",
     "7288604069714381113",
     "7293280567666231603",
+    "7295151844669737243",
     "7306356169622685962",
     "7311419118208993586",
     "7311546913063749914",
@@ -506,6 +507,7 @@
     "7598739638673885493",
     "7598741941334247685",
     "7598742615865346357",
+    "7599560354076969221",
     "7599799873770277125",
     "7600325902883604789",
     "7600357466399902005",
@@ -2022,6 +2024,7 @@
     "7706430001975380229",
     "7706481808216688901",
     "7706600831827085621",
+    "7706615931493239093",
     "7706616396639127813",
     "7706618594172881205",
     "7706649771394091317",
@@ -2029,6 +2032,7 @@
     "7706738474833365301",
     "7706822228583287093",
     "7706845403284801797",
+    "7706900441733695797",
     "7707015061048428805",
     "7707015653621893429",
     "7707055690713893125",
@@ -5268,6 +5272,15 @@
       "first_seen_at": "2026-11-17T21:32:32+00:00",
       "priority": "high",
       "category": "ai_ml"
+    },
+    "7706615931493239093": {
+      "title": "Site Reliability Engineer - Data Infrastructure",
+      "location": "San Jose, California, United States of America",
+      "url": "https://lifeattiktok.com/search/7706615931493239093",
+      "posted_at": "",
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "priority": "high",
+      "category": "reliability"
     }
   },
   "rejected_catalog": {
@@ -29881,8 +29894,53 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-19T02:57:30+00:00",
       "last_seen_at": "2026-11-19T02:57:30+00:00"
+    },
+    "7706900441733695797": {
+      "title": "Policy Lead, Policy Scaling, Nudity & Sexual Activity - Trust & Safety",
+      "location": "Dublin, Ireland",
+      "url": "https://lifeattiktok.com/search/7706900441733695797",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "7599560354076969221": {
+      "title": "TikTok Shop - Fraud Investigations and Risk Operations Specialist",
+      "location": "London, England, United Kingdom",
+      "url": "https://lifeattiktok.com/search/7599560354076969221",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "7295151844669737243": {
+      "title": "Client Partner, Apps & Gaming (Mandarin Speaking) - Singapore - GBS",
+      "location": "Singapore",
+      "url": "https://lifeattiktok.com/search/7295151844669737243",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T21:13:54+00:00",
+      "last_seen_at": "2026-11-19T21:13:54+00:00"
     }
   },
-  "last_successful_scan_at": "2026-11-19T02:57:30+00:00",
+  "last_successful_scan_at": "2026-11-19T21:13:54+00:00",
   "source_updated_at_by_id": {}
 }
