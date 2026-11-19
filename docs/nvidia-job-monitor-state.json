@@ -1285,6 +1285,7 @@
     "JR2030158",
     "JR2030204",
     "JR2030240",
+    "JR2030246",
     "JR2030275"
   ],
   "candidate_catalog": {
@@ -1658,7 +1659,7 @@
       "category": "technical_review"
     }
   },
-  "last_successful_scan_at": "2026-11-18T21:08:25+00:00",
+  "last_successful_scan_at": "2026-11-19T02:57:30+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "JR2014880": {
@@ -17751,6 +17752,20 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-18T21:08:25+00:00",
       "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "JR2030246": {
+      "title": "Senior Hypervisor and RTOS Engineer",
+      "location": "US, CA, Santa Clara; US, OR, Hillsboro; US, Remote",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Hypervisor-and-RTOS-Engineer_JR2030246",
+      "posted_at": "2026-11-18",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T02:57:30+00:00",
+      "last_seen_at": "2026-11-19T02:57:30+00:00"
     }
   },
   "source_updated_at_by_id": {}

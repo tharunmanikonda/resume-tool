@@ -1489,9 +1489,10 @@
     "2031083",
     "2031175",
     "2031200",
-    "2031914"
+    "2031914",
+    "2032282"
   ],
-  "last_successful_scan_at": "2026-11-18T21:08:25+00:00",
+  "last_successful_scan_at": "2026-11-19T02:57:30+00:00",
   "candidate_catalog": {
     "2024998": {
       "title": "AI Security Engineer",
@@ -3983,6 +3984,20 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-18T21:08:25+00:00",
       "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "2032282": {
+      "title": "Senior Lead AI Researcher , AISWP (Hybrid)",
+      "location": "2 Locations",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/Senior-Lead-AI-Researcher---AISWP--Hybrid-_2032282",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T02:57:30+00:00",
+      "last_seen_at": "2026-11-19T02:57:30+00:00"
     }
   },
   "source_updated_at_by_id": {}

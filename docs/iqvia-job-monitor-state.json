@@ -2906,7 +2906,8 @@
     "R1580504",
     "R1580515",
     "R1580516",
-    "R1580618"
+    "R1580618",
+    "R1580660"
   ],
   "candidate_catalog": {
     "R1570411": {
@@ -3108,7 +3109,7 @@
       "category": "software"
     }
   },
-  "last_successful_scan_at": "2026-11-18T21:08:25+00:00",
+  "last_successful_scan_at": "2026-11-19T02:57:30+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "R1545472": {
@@ -42758,6 +42759,20 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-18T21:08:25+00:00",
       "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "R1580660": {
+      "title": "Analista de SFI - Rio de Janeiro/RJ",
+      "location": "S\u00e3o Paulo, Brazil",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/So-Paulo-Brazil/Analista-de-SFI---Rio-de-Janeiro-RJ_R1580660-1",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T02:57:30+00:00",
+      "last_seen_at": "2026-11-19T02:57:30+00:00"
     }
   },
   "source_updated_at_by_id": {}

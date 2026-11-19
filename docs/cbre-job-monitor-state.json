@@ -3263,6 +3263,7 @@
     "303819",
     "303829",
     "303830",
+    "303834",
     "303838",
     "303841",
     "303861",
@@ -3282,6 +3283,7 @@
     "303942",
     "303947",
     "303951",
+    "303952",
     "303954",
     "303955",
     "303959",
@@ -3522,6 +3524,7 @@
     "304851",
     "304854",
     "304859",
+    "304869",
     "304870",
     "304876",
     "304880",
@@ -3534,6 +3537,7 @@
     "304919",
     "304920",
     "304922",
+    "304923",
     "304925",
     "304929",
     "304933",
@@ -3541,6 +3545,7 @@
     "304938",
     "304940",
     "304944",
+    "304948",
     "304955",
     "304956",
     "304963",
@@ -3578,6 +3583,7 @@
     "305157",
     "305167",
     "305171",
+    "305193",
     "305198",
     "305201",
     "305202",
@@ -3604,9 +3610,12 @@
     "305266",
     "305268",
     "305271",
+    "305286",
     "305318",
     "305329",
     "305333",
+    "305362",
+    "305364",
     "305380",
     "305384",
     "305390",
@@ -3684,13 +3693,15 @@
     "305943",
     "306019",
     "306064",
+    "306067",
+    "306095",
     "306118",
     "38196",
     "76242",
     "8655"
   ],
   "candidate_catalog": {},
-  "last_successful_scan_at": "2026-11-18T21:08:25+00:00",
+  "last_successful_scan_at": "2026-11-19T02:57:30+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "301688": {
@@ -39196,6 +39207,166 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-18T21:08:25+00:00",
       "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "304869": {
+      "title": "Construction Project Manager",
+      "location": "Austin - Texas - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Construction-Project-Manager/304869",
+      "posted_at": "17-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T02:57:30+00:00",
+      "last_seen_at": "2026-11-19T02:57:30+00:00"
+    },
+    "306095": {
+      "title": "Maintenance Technician - Night Shift",
+      "location": "Colorado City - Texas - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Maintenance-Technician-Night-Shift/306095",
+      "posted_at": "18-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T02:57:30+00:00",
+      "last_seen_at": "2026-11-19T02:57:30+00:00"
+    },
+    "303834": {
+      "title": "Sr. Maintenance Tech.  - Data Centers",
+      "location": "Santa Clara - California - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Sr-Maintenance-Tech-Data-Centers/303834",
+      "posted_at": "18-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T02:57:30+00:00",
+      "last_seen_at": "2026-11-19T02:57:30+00:00"
+    },
+    "303952": {
+      "title": "Principal Data Engineer",
+      "location": "Richardson - Texas - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Principal-Data-Engineer/303952",
+      "posted_at": "17-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior"
+      ],
+      "category": "data",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T02:57:30+00:00",
+      "last_seen_at": "2026-11-19T02:57:30+00:00"
+    },
+    "305286": {
+      "title": "Technician - Maintenance",
+      "location": "Makati City - National Capital Region - Philippines",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Technician-Maintenance/305286",
+      "posted_at": "19-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T02:57:30+00:00",
+      "last_seen_at": "2026-11-19T02:57:30+00:00"
+    },
+    "306067": {
+      "title": "Maintenance Technician - Phoenix, AZ",
+      "location": "Phoenix - Arizona - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Maintenance-Technician-Phoenix-AZ/306067",
+      "posted_at": "18-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T02:57:30+00:00",
+      "last_seen_at": "2026-11-19T02:57:30+00:00"
+    },
+    "305193": {
+      "title": "Mobile Technician",
+      "location": "Las Vegas - Nevada - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Mobile-Technician/305193",
+      "posted_at": "18-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T02:57:30+00:00",
+      "last_seen_at": "2026-11-19T02:57:30+00:00"
+    },
+    "304948": {
+      "title": "Mechanical Union Journeyperson",
+      "location": "Santa Clara - California - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Mechanical-Union-Journeyperson/304948",
+      "posted_at": "18-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T02:57:30+00:00",
+      "last_seen_at": "2026-11-19T02:57:30+00:00"
+    },
+    "304923": {
+      "title": "Maintenance Technician",
+      "location": "Port Wentworth - Georgia - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Maintenance-Technician/304923",
+      "posted_at": "10-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T02:57:30+00:00",
+      "last_seen_at": "2026-11-19T02:57:30+00:00"
+    },
+    "305364": {
+      "title": "Senior Mail Services Coordinator",
+      "location": "Indianapolis - Indiana - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Senior-Mail-Services-Coordinator/305364",
+      "posted_at": "18-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T02:57:30+00:00",
+      "last_seen_at": "2026-11-19T02:57:30+00:00"
+    },
+    "305362": {
+      "title": "Senior Mail Services Coordinator",
+      "location": "Indianapolis - Indiana - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Senior-Mail-Services-Coordinator/305362",
+      "posted_at": "18-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T02:57:30+00:00",
+      "last_seen_at": "2026-11-19T02:57:30+00:00"
     }
   },
   "source_updated_at_by_id": {}

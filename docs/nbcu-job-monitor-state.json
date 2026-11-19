@@ -838,7 +838,13 @@
     "744000162365299",
     "744000162380629",
     "744000162389618",
-    "744000162390248"
+    "744000162390248",
+    "744000162395109",
+    "744000162395579",
+    "744000162406279",
+    "744000162407064",
+    "744000162407819",
+    "744000162408928"
   ],
   "candidate_catalog": {
     "744000151898289": {
@@ -986,7 +992,7 @@
       "category": "technical_review"
     }
   },
-  "last_successful_scan_at": "2026-11-18T21:08:25+00:00",
+  "last_successful_scan_at": "2026-11-19T02:57:30+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "744000156079569": {
@@ -11492,6 +11498,92 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-18T21:08:25+00:00",
       "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "744000162408928": {
+      "title": "Account Services Representative",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162408928-account-services-representative",
+      "posted_at": "2026-11-19T00:03:57.585Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T02:57:30+00:00",
+      "last_seen_at": "2026-11-19T02:57:30+00:00"
+    },
+    "744000162407064": {
+      "title": "NBC Sports Programming Internships \u2013 Summer 2027",
+      "location": "Stamford, CT, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162407064-nbc-sports-programming-internships-summer-2027",
+      "posted_at": "2026-11-18T23:42:29.051Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T02:57:30+00:00",
+      "last_seen_at": "2026-11-19T02:57:30+00:00"
+    },
+    "744000162407819": {
+      "title": "Program Management & Operations Internships \u2013 Summer 2027",
+      "location": "Universal City, CA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162407819-program-management-operations-internships-summer-2027",
+      "posted_at": "2026-11-18T23:41:57.650Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T02:57:30+00:00",
+      "last_seen_at": "2026-11-19T02:57:30+00:00"
+    },
+    "744000162406279": {
+      "title": "Manager, Post Production - Focus Features",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162406279-manager-post-production-focus-features",
+      "posted_at": "2026-11-18T23:20:58.478Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T02:57:30+00:00",
+      "last_seen_at": "2026-11-19T02:57:30+00:00"
+    },
+    "744000162395579": {
+      "title": "Director, Content Finance Delivery & Portfolio Management",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162395579-director-content-finance-delivery-portfolio-management",
+      "posted_at": "2026-11-18T21:32:19.692Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T02:57:30+00:00",
+      "last_seen_at": "2026-11-19T02:57:30+00:00"
+    },
+    "744000162395109": {
+      "title": "Boston Talk Show On-Air Panelist/Contributor, NBC Boston",
+      "location": "Needham, Massachusetts, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162395109-boston-talk-show-on-air-panelist-contributor-nbc-boston",
+      "posted_at": "2026-11-18T21:29:45.153Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-19T02:57:30+00:00",
+      "last_seen_at": "2026-11-19T02:57:30+00:00"
     }
   },
   "source_updated_at_by_id": {}
