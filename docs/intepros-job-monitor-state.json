@@ -250,6 +250,7 @@
     "a0Hcw00000Bi7vVEAR",
     "a0Hcw00000BiNozEAF",
     "a0Hcw00000BlIHhEAN",
+    "a0Hcw00000BlIHiEAN",
     "a0Hcw00000BlelFEAR",
     "a0Hcw00000BmCerEAF",
     "a0Hcw00000BmICPEA3",
@@ -269,9 +270,11 @@
     "a0Hcw00000BrCsjEAF",
     "a0Hcw00000BrHKXEA3",
     "a0Hcw00000BslV3EAJ",
-    "a0Hcw00000BsuS3EAJ"
+    "a0Hcw00000BsuS3EAJ",
+    "a0Hcw00000BtKxREAV",
+    "a0Hcw00000BuYThEAN"
   ],
-  "last_successful_scan_at": "2026-11-20T02:53:01+00:00",
+  "last_successful_scan_at": "2026-11-20T20:57:11+00:00",
   "candidate_catalog": {
     "a0Hcw000006tdYLEAY": {
       "title": "Operational Excellence Engineer",
@@ -1939,6 +1942,49 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-19T21:13:54+00:00",
       "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "a0Hcw00000BlIHiEAN": {
+      "title": "Quality/Regulatory - Senior Specialist, Quality Management Systems - Individual",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000BlIHiEAN/qualityregulatory---senior-specialist-quality-management-systems---individual",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "a0Hcw00000BuYThEAN": {
+      "title": "Scientific Lab Technician",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000BuYThEAN/scientific-lab-technician",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "a0Hcw00000BtKxREAV": {
+      "title": "Software Development Engineer in Test (SDET)",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000BtKxREAV/software-development-engineer-in-test-sdet",
+      "posted_at": "",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "qa",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
     }
   },
   "source_updated_at_by_id": {}

@@ -178,6 +178,7 @@
     "JR2013271",
     "JR2013283",
     "JR2013287",
+    "JR2013302",
     "JR2013322",
     "JR2013337",
     "JR2013338",
@@ -1292,6 +1293,7 @@
     "JR2030240",
     "JR2030246",
     "JR2030254",
+    "JR2030272",
     "JR2030275",
     "JR2030289",
     "JR2030324"
@@ -1667,7 +1669,7 @@
       "category": "technical_review"
     }
   },
-  "last_successful_scan_at": "2026-11-20T02:53:01+00:00",
+  "last_successful_scan_at": "2026-11-20T20:57:11+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "JR2014880": {
@@ -17887,6 +17889,34 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-20T02:53:01+00:00",
       "last_seen_at": "2026-11-20T02:53:01+00:00"
+    },
+    "JR2013302": {
+      "title": "Senior System Software Engineer, GPU Performance Profiling",
+      "location": "2 Locations",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-TX-Austin/Senior-System-Software-Engineer--GPU-Performance-Profiling_JR2013302",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "specialized_low_level"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "JR2030272": {
+      "title": "Senior DevOps and Infrastructure Engineer",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-DevOps-and-Infrastructure-Engineer_JR2030272",
+      "posted_at": "2026-11-20",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
     }
   },
   "source_updated_at_by_id": {}

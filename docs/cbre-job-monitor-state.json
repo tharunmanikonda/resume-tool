@@ -199,6 +199,7 @@
     "267764",
     "267890",
     "268052",
+    "268159",
     "268219",
     "268233",
     "268352",
@@ -1560,6 +1561,7 @@
     "296922",
     "296925",
     "296930",
+    "296933",
     "296950",
     "296952",
     "296954",
@@ -2261,6 +2263,7 @@
     "299779",
     "299787",
     "299788",
+    "299805",
     "299816",
     "299821",
     "299825",
@@ -2354,6 +2357,7 @@
     "300198",
     "300202",
     "300207",
+    "300214",
     "300216",
     "300218",
     "300219",
@@ -2497,6 +2501,7 @@
     "300786",
     "300797",
     "300804",
+    "300806",
     "300807",
     "300810",
     "300813",
@@ -2819,11 +2824,13 @@
     "301954",
     "301956",
     "301960",
+    "301998",
     "301999",
     "302008",
     "302011",
     "302015",
     "302018",
+    "302019",
     "302021",
     "302023",
     "302025",
@@ -3234,6 +3241,7 @@
     "303734",
     "303739",
     "303742",
+    "303747",
     "303748",
     "303750",
     "303757",
@@ -3345,11 +3353,16 @@
     "304138",
     "304141",
     "304144",
+    "304153",
     "304154",
     "304157",
+    "304160",
+    "304161",
     "304162",
     "304165",
+    "304170",
     "304171",
+    "304175",
     "304177",
     "304178",
     "304181",
@@ -3370,6 +3383,7 @@
     "304206",
     "304210",
     "304217",
+    "304219",
     "304231",
     "304234",
     "304236",
@@ -3539,6 +3553,7 @@
     "304859",
     "304869",
     "304870",
+    "304873",
     "304876",
     "304880",
     "304882",
@@ -3548,6 +3563,7 @@
     "304905",
     "304906",
     "304910",
+    "304912",
     "304918",
     "304919",
     "304920",
@@ -3615,9 +3631,11 @@
     "305208",
     "305209",
     "305211",
+    "305221",
     "305224",
     "305225",
     "305226",
+    "305227",
     "305230",
     "305231",
     "305233",
@@ -3640,6 +3658,7 @@
     "305281",
     "305285",
     "305286",
+    "305287",
     "305318",
     "305329",
     "305333",
@@ -3683,6 +3702,7 @@
     "305559",
     "305560",
     "305564",
+    "305566",
     "305570",
     "305573",
     "305574",
@@ -3711,6 +3731,7 @@
     "305648",
     "305649",
     "305651",
+    "305654",
     "305662",
     "305664",
     "305666",
@@ -3723,12 +3744,16 @@
     "305771",
     "305775",
     "305778",
+    "305781",
     "305802",
     "305815",
     "305816",
+    "305818",
     "305820",
+    "305826",
     "305828",
     "305829",
+    "305834",
     "305853",
     "305856",
     "305859",
@@ -3739,17 +3764,22 @@
     "305910",
     "305927",
     "305928",
+    "305931",
     "305932",
     "305933",
     "305939",
+    "305942",
     "305943",
+    "305959",
     "305969",
+    "305971",
     "305974",
     "305977",
     "305978",
     "305979",
     "305982",
     "305983",
+    "306001",
     "306019",
     "306064",
     "306067",
@@ -3764,14 +3794,30 @@
     "306274",
     "306282",
     "306287",
+    "306296",
+    "306297",
+    "306298",
+    "306306",
+    "306308",
+    "306311",
     "306313",
     "306314",
+    "306335",
+    "306344",
+    "306379",
+    "306386",
+    "306389",
+    "306428",
+    "306436",
+    "306470",
+    "306475",
+    "306477",
     "38196",
     "76242",
     "8655"
   ],
   "candidate_catalog": {},
-  "last_successful_scan_at": "2026-11-20T02:53:01+00:00",
+  "last_successful_scan_at": "2026-11-20T20:57:11+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "301688": {
@@ -40471,6 +40517,689 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-20T02:53:01+00:00",
       "last_seen_at": "2026-11-20T02:53:01+00:00"
+    },
+    "300806": {
+      "title": "Software Sr Engineer",
+      "location": "Gurgaon - Haryana - India , Hyderabad - Telangana - India , Noida - Uttar Pradesh - India",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Software-Sr-Engineer/300806",
+      "posted_at": "17-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "304219": {
+      "title": "Associate Director - Finance Systems - Yardi",
+      "location": "Phoenix - Arizona - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Associate-Director-Finance-Systems-Yardi/304219",
+      "posted_at": "20-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "306477": {
+      "title": "Technical Manager - Data Center (Central Time Zone)",
+      "location": "Baton Rouge - Louisiana - United States of America , Chicago - Illinois - United States of America , Colorado City - Texas - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Technical-Manager-Data-Center-Central-Time-Zone/306477",
+      "posted_at": "20-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "306475": {
+      "title": "Technical Manager - Data Center (Eastern Time Zone)",
+      "location": "Arlington - Virginia - United States of America , Barker - New York - United States of America , Washington, D.C. - District of Columbia - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Technical-Manager-Data-Center-Eastern-Time-Zone/306475",
+      "posted_at": "20-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "306470": {
+      "title": "Multiskilled Technician",
+      "location": "Bristol - England - United Kingdom of Great Britain and Northern Ireland",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Multiskilled-Technician/306470",
+      "posted_at": "20-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "306436": {
+      "title": "Regional IT Facilities Manager (Data Center)",
+      "location": "Burlington - Texas - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Regional-IT-Facilities-Manager-Data-Center/306436",
+      "posted_at": "20-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "306428": {
+      "title": "Technical Program Manager (Data Center)",
+      "location": "Burlington - Texas - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Technical-Program-Manager-Data-Center/306428",
+      "posted_at": "20-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "306379": {
+      "title": "Property Executive (South)",
+      "location": "Singapore - Singapore",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Property-Executive-South/306379",
+      "posted_at": "20-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "306001": {
+      "title": "Site Supervisor",
+      "location": "Napa - California - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Site-Supervisor/306001",
+      "posted_at": "20-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "305566": {
+      "title": "Facilities Manager - Data Center",
+      "location": "Bowling Green - Ohio - United States of America , Findlay - Ohio - United States of America , Toledo - Ohio - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Facilities-Manager-Data-Center/305566",
+      "posted_at": "20-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "301998": {
+      "title": "Facilities Technician Semicon - Mechanical and Electrical (Batu Kawan)",
+      "location": "Batu Kawan - Pulau Pinang - Malaysia",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Facilities-Technician-Semicon-Mechanical-and-Electrical-Batu-Kawan/301998",
+      "posted_at": "20-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "300214": {
+      "title": "Data Center Technician 4",
+      "location": "Osaka - Osaka - Japan",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Data-Center-Technician-4/300214",
+      "posted_at": "20-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "296933": {
+      "title": "Project Supervisor",
+      "location": "Maidstone - England - United Kingdom of Great Britain and Northern Ireland",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Project-Supervisor/296933",
+      "posted_at": "20-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "299805": {
+      "title": "Apprentice - Electrical, Data Center",
+      "location": "Melbourne - Victoria - Australia",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Apprentice-Electrical-Data-Center/299805",
+      "posted_at": "22-Oct-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "305834": {
+      "title": "Area Maintenance Manager",
+      "location": "Sparrows Point - Maryland - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Area-Maintenance-Manager/305834",
+      "posted_at": "17-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "305221": {
+      "title": "Area Maintenance Manager",
+      "location": "Fishkill - New York - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Area-Maintenance-Manager/305221",
+      "posted_at": "12-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "306389": {
+      "title": "Helpdesk / Ops Controller (South)",
+      "location": "Singapore - Singapore",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Helpdesk-Ops-Controller-South/306389",
+      "posted_at": "20-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "306386": {
+      "title": "Facilities Engineer (South)",
+      "location": "Singapore - Singapore",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Facilities-Engineer-South/306386",
+      "posted_at": "20-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "306344": {
+      "title": "Maintenance Technician - Tucson",
+      "location": "Tucson - Arizona - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Maintenance-Technician-Tucson/306344",
+      "posted_at": "20-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "306311": {
+      "title": "Sr Maintenance Technician",
+      "location": "Waxahachie - Texas - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Sr-Maintenance-Technician/306311",
+      "posted_at": "20-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "306308": {
+      "title": "Technical Supervisor",
+      "location": "North Wales - Pennsylvania - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Technical-Supervisor/306308",
+      "posted_at": "20-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "305942": {
+      "title": "Maintenance Sr Technician",
+      "location": "Vancouver - British Columbia - Canada",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Maintenance-Sr-Technician/305942",
+      "posted_at": "20-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "305931": {
+      "title": "Sr. Maintenance Technician",
+      "location": "Charlotte - North Carolina - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Sr-Maintenance-Technician/305931",
+      "posted_at": "20-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "305818": {
+      "title": "Facilities Manager - Tempe",
+      "location": "Tempe - Arizona - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Facilities-Manager-Tempe/305818",
+      "posted_at": "20-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "305287": {
+      "title": "Technician - Maintenance",
+      "location": "Makati City - National Capital Region - Philippines",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Technician-Maintenance/305287",
+      "posted_at": "20-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "304161": {
+      "title": "Maintenance Technician - 2nd Shift",
+      "location": "Fremont - California - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Maintenance-Technician-2nd-Shift/304161",
+      "posted_at": "20-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "304160": {
+      "title": "Maintenance Technician - 1st Shift",
+      "location": "Fremont - California - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Maintenance-Technician-1st-Shift/304160",
+      "posted_at": "20-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "306335": {
+      "title": "Maintenance Technician",
+      "location": "Logan Township - New Jersey - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Maintenance-Technician/306335",
+      "posted_at": "19-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "306306": {
+      "title": "Maintenance Technician",
+      "location": "Gatineau - Quebec - Canada , Ottawa - Ontario - Canada",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Maintenance-Technician/306306",
+      "posted_at": "19-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "306298": {
+      "title": "Maintenance Technician",
+      "location": "Granite City - Illinois - United States of America , Pontoon Beach - Illinois - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Maintenance-Technician/306298",
+      "posted_at": "19-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "306297": {
+      "title": "Maintenance Technician",
+      "location": "Granite City - Illinois - United States of America , Pontoon Beach - Illinois - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Maintenance-Technician/306297",
+      "posted_at": "19-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "306296": {
+      "title": "Maintenance Technician",
+      "location": "Granite City - Illinois - United States of America , Pontoon Beach - Illinois - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Maintenance-Technician/306296",
+      "posted_at": "19-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "305654": {
+      "title": "Mechatronic Apprentice",
+      "location": "Edmond - Oklahoma - United States of America , Oklahoma City - Oklahoma - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Mechatronic-Apprentice/305654",
+      "posted_at": "16-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "304153": {
+      "title": "Maintenance Technician",
+      "location": "Olive Branch - Mississippi - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Maintenance-Technician/304153",
+      "posted_at": "04-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "303747": {
+      "title": "Maintenance Technician",
+      "location": "Fishkill - New York - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Maintenance-Technician/303747",
+      "posted_at": "02-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "305781": {
+      "title": "Construction Manager",
+      "location": "Fort Worth - Texas - United States of America , Hobbs - New Mexico - United States of America , Vernon - Texas - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Construction-Manager/305781",
+      "posted_at": "20-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "304175": {
+      "title": "Coordonnateur(trice) des installations / Facilities Coordinator",
+      "location": "Quebec City - Quebec - Canada , Sainte-Foy - Quebec - Canada",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Coordonnateur-trice-des-installations-Facilities-Coordinator/304175",
+      "posted_at": "20-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "305826": {
+      "title": "Coordinateur Technique SSI & Suret\u00e9 H/F/X",
+      "location": "Val-de-Reuil - Normandie - France",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Coordinateur-Technique-SSI-Suret-H-F-X/305826",
+      "posted_at": "13-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "305227": {
+      "title": "Business Svcs Coordinator",
+      "location": "Austin - Texas - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Business-Svcs-Coordinator/305227",
+      "posted_at": "20-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "304873": {
+      "title": "Property Administrator - Cleveland, OH",
+      "location": "Cleveland - Ohio - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Property-Administrator-Cleveland-OH/304873",
+      "posted_at": "20-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "268159": {
+      "title": "People Service Specialist",
+      "location": "Warsaw - Mazowieckie - Poland",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/People-Service-Specialist/268159",
+      "posted_at": "20-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "305971": {
+      "title": "Senior Building Engineer (Shift: Thurs-Mon Swing)",
+      "location": "San Jose - California - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Senior-Building-Engineer-Shift-Thurs-Mon-Swing/305971",
+      "posted_at": "20-Nov-2026",
+      "stage": "detail",
+      "blockers": [
+        "non_software_engineering_role"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "304912": {
+      "title": "HVAC Mobile Engineer",
+      "location": "Sacramento - California - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/HVAC-Mobile-Engineer/304912",
+      "posted_at": "20-Nov-2026",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "305959": {
+      "title": "Engineer - BMS",
+      "location": "General Trias - Cavite - Philippines",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Engineer-BMS/305959",
+      "posted_at": "20-Nov-2026",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "304170": {
+      "title": "Building Engineer",
+      "location": "Lowell - Massachusetts - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Building-Engineer/304170",
+      "posted_at": "20-Nov-2026",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "302019": {
+      "title": "Building Engineer - Life Science Client",
+      "location": "Waltham - Massachusetts - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Building-Engineer-Life-Science-Client/302019",
+      "posted_at": "20-Nov-2026",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
     }
   },
   "source_updated_at_by_id": {}

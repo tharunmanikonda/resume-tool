@@ -458,6 +458,7 @@
     "R0077468",
     "R0077470",
     "R0077471",
+    "R0077473",
     "R0077475",
     "R0077477",
     "R0077480",
@@ -472,7 +473,9 @@
     "R0077520",
     "R0077532",
     "R0077534",
-    "R0077563"
+    "R0077563",
+    "R0077577",
+    "R0077632"
   ],
   "candidate_catalog": {
     "R0076812": {
@@ -566,7 +569,7 @@
       "category": "platform"
     }
   },
-  "last_successful_scan_at": "2026-11-20T02:53:01+00:00",
+  "last_successful_scan_at": "2026-11-20T20:57:11+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "R0077145": {
@@ -6758,6 +6761,50 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-20T02:53:01+00:00",
       "last_seen_at": "2026-11-20T02:53:01+00:00"
+    },
+    "R0077473": {
+      "title": "Security Architect",
+      "location": "Austin, Texas, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077473/Security-Architect",
+      "posted_at": "2026-11-20T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "R0077577": {
+      "title": "Collectibles Strategic Programs Lead",
+      "location": "London, Surrey, United Kingdom",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077577/Collectibles-Strategic-Programs-Lead",
+      "posted_at": "2026-11-20T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "R0077632": {
+      "title": "Shipping Associate, Goldin",
+      "location": "Runnemede, New Jersey, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077632/Shipping-Associate-Goldin",
+      "posted_at": "2026-11-20T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
     }
   },
   "source_updated_at_by_id": {}

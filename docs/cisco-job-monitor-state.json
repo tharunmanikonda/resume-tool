@@ -1421,6 +1421,8 @@
     "2028164",
     "2028166",
     "2028178",
+    "2028202",
+    "2028204",
     "2028205",
     "2028208",
     "2028210",
@@ -1470,6 +1472,7 @@
     "2029455",
     "2029584",
     "2029655",
+    "2029667",
     "2029683",
     "2029785",
     "2029859",
@@ -1490,10 +1493,12 @@
     "2031083",
     "2031175",
     "2031200",
+    "2031275",
     "2031914",
-    "2032282"
+    "2032282",
+    "2032363"
   ],
-  "last_successful_scan_at": "2026-11-20T02:53:01+00:00",
+  "last_successful_scan_at": "2026-11-20T20:57:11+00:00",
   "candidate_catalog": {
     "2024998": {
       "title": "AI Security Engineer",
@@ -4013,6 +4018,79 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-20T02:53:01+00:00",
       "last_seen_at": "2026-11-20T02:53:01+00:00"
+    },
+    "2031275": {
+      "title": "ASIC Product Design Developer",
+      "location": "Vancouver, British Columbia, Canada",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Vancouver-British-Columbia-Canada/ASIC-Product-Design-Developer_2031275",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "2028202": {
+      "title": "ASIC DFT Developer",
+      "location": "Vancouver, British Columbia, Canada",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Vancouver-British-Columbia-Canada/ASIC-DFT-Developer_2028202",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "specialized_low_level"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "2028204": {
+      "title": "Senior ASIC DFT Developer",
+      "location": "Vancouver, British Columbia, Canada",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Vancouver-British-Columbia-Canada/ASIC-DFT-Developer_2028204",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "specialized_low_level"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "2032363": {
+      "title": "Senior DFT & STA Engineer",
+      "location": "Armenia",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Armenia/Senior-DFT---STA-Engineer_2032363",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "specialized_low_level"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "2029667": {
+      "title": "Financial Sales Specialist (Cisco Capital)",
+      "location": "Minato, Japan",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Minato-Japan/Financial-Sales-Specialist--Cisco-Capital-_2029667-1",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
     }
   },
   "source_updated_at_by_id": {}

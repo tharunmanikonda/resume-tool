@@ -862,7 +862,16 @@
     "744000162610014",
     "744000162611149",
     "744000162618829",
-    "744000162622819"
+    "744000162622819",
+    "744000162723779",
+    "744000162754440",
+    "744000162788814",
+    "744000162789439",
+    "744000162791299",
+    "744000162798120",
+    "744000162808859",
+    "744000162814729",
+    "744000162819360"
   ],
   "candidate_catalog": {
     "744000151898289": {
@@ -1017,9 +1026,18 @@
       "first_seen_at": "2026-11-19T21:13:54+00:00",
       "priority": "high",
       "category": "software"
+    },
+    "744000162791299": {
+      "title": "Software Engineer",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162791299-software-engineer",
+      "posted_at": "2026-11-20T17:44:23.008Z",
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "priority": "high",
+      "category": "software"
     }
   },
-  "last_successful_scan_at": "2026-11-20T02:53:01+00:00",
+  "last_successful_scan_at": "2026-11-20T20:57:11+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "744000156079569": {
@@ -11856,6 +11874,122 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-20T02:53:01+00:00",
       "last_seen_at": "2026-11-20T02:53:01+00:00"
+    },
+    "744000162819360": {
+      "title": "Engineering Manager",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162819360-engineering-manager",
+      "posted_at": "2026-11-20T21:01:12.546Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "744000162814729": {
+      "title": "Manager, Design & Development (Toys & HL -  Collectibles)",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162814729-manager-design-development-toys-hl-collectibles",
+      "posted_at": "2026-11-20T20:24:48.838Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "744000162808859": {
+      "title": "Assignment Editor, Network News Desk",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162808859-assignment-editor-network-news-desk",
+      "posted_at": "2026-11-20T19:39:26.206Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "744000162798120": {
+      "title": "Manager, Finance",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162798120-manager-finance",
+      "posted_at": "2026-11-20T18:20:39.469Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "744000162788814": {
+      "title": "Sr Cyber Event Analyst (Shift: Thursday to Monday | 1:45 PM PDT to 10 PM PDT)",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162788814-sr-cyber-event-analyst-shift-thursday-to-monday-1-45-pm-pdt-to-10-pm-pdt",
+      "posted_at": "2026-11-20T17:37:43.532Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "744000162789439": {
+      "title": "Sr Cyber Event Analyst (Shift: Thursday to Monday | 8:45 AM EST to 5 PM EST)",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162789439-sr-cyber-event-analyst-shift-thursday-to-monday-8-45-am-est-to-5-pm-est",
+      "posted_at": "2026-11-20T17:35:08.368Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "744000162754440": {
+      "title": "Cyber Incident Responder",
+      "location": "Orlando, Florida, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162754440-cyber-incident-responder",
+      "posted_at": "2026-11-20T15:00:18.293Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "744000162723779": {
+      "title": "Manager, Facilities",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162723779-manager-facilities",
+      "posted_at": "2026-11-20T12:28:53.006Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
     }
   },
   "source_updated_at_by_id": {}

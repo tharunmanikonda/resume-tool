@@ -107,8 +107,12 @@
     "REQ-4934",
     "REQ-4935",
     "REQ-4936",
+    "REQ-4937",
     "REQ-4938",
-    "REQ-4942"
+    "REQ-4942",
+    "REQ-4945",
+    "REQ-4948",
+    "REQ-4949"
   ],
   "candidate_catalog": {
     "REQ-4807": {
@@ -137,9 +141,18 @@
       "first_seen_at": "2026-11-01T21:53:41+00:00",
       "priority": "high",
       "category": "software"
+    },
+    "REQ-4949": {
+      "title": "Senior Associate, Software Engineering: Software Development Test (SDET)",
+      "location": "Chicago - 125 S Franklin",
+      "url": "https://theocc.wd5.myworkdayjobs.com/job/Chicago---125-S-Franklin/Senior-Associate--Software-Engineering--Software-Development-Test--SDET-_REQ-4949-4",
+      "posted_at": "2026-11-20",
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "priority": "medium",
+      "category": "qa"
     }
   },
-  "last_successful_scan_at": "2026-11-20T02:53:01+00:00",
+  "last_successful_scan_at": "2026-11-20T20:57:11+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "REQ-4896": {
@@ -1557,6 +1570,49 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-20T02:53:01+00:00",
       "last_seen_at": "2026-11-20T02:53:01+00:00"
+    },
+    "REQ-4937": {
+      "title": "Lead Associate Principal, Penetration & Vulnerability Testing",
+      "location": "Chicago - 125 S Franklin",
+      "url": "https://theocc.wd5.myworkdayjobs.com/job/Chicago---125-S-Franklin/Lead-Associate-Principal--Penetration---Vulnerability-Testing_REQ-4937",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "REQ-4945": {
+      "title": "Lead Associate Principal, Software Engineering: DevOps",
+      "location": "2 Locations",
+      "url": "https://theocc.wd5.myworkdayjobs.com/job/Dallas-TX/Lead-Associate-Principal--Software-Engineering--DevOps_REQ-4945-4",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "REQ-4948": {
+      "title": "Senior Associate, Service Management",
+      "location": "Chicago - 125 S Franklin",
+      "url": "https://theocc.wd5.myworkdayjobs.com/job/Chicago---125-S-Franklin/Senior-Associate--Service-Management_REQ-4948-3",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
     }
   },
   "source_updated_at_by_id": {}

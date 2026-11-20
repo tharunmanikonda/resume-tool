@@ -196,7 +196,8 @@
     "36328",
     "36483",
     "36486",
-    "36494"
+    "36494",
+    "36844"
   ],
   "candidate_catalog": {
     "30795": {
@@ -290,7 +291,7 @@
       "category": "software"
     }
   },
-  "last_successful_scan_at": "2026-11-20T02:53:01+00:00",
+  "last_successful_scan_at": "2026-11-20T20:57:11+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "34699": {
@@ -1183,6 +1184,21 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-18T03:22:23+00:00",
       "last_seen_at": "2026-11-18T03:22:23+00:00"
+    },
+    "36844": {
+      "title": "Data Annotation Specialist L1, Autonomy (1 year contract, maternity leave cover)",
+      "location": "Belgrade, Serbia",
+      "url": "https://careers.rivian.com/careers-home/jobs/36844",
+      "posted_at": "2026-11-20T08:51:00+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
     }
   },
   "source_updated_at_by_id": {}

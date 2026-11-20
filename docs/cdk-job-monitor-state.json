@@ -8,6 +8,7 @@
     "JR8930",
     "JR8932",
     "JR8974",
+    "JR8993",
     "JR9000",
     "JR9003",
     "JR9025",
@@ -22,23 +23,27 @@
     "JR9218",
     "JR9220",
     "JR9221",
+    "JR9227",
     "JR9231",
     "JR9235",
     "JR9241",
     "JR9247",
     "JR9257",
     "JR9261",
+    "JR9268",
     "JR9275",
     "JR9283",
     "JR9284",
     "JR9290",
     "JR9298",
+    "JR9304",
     "JR9307",
     "JR9308",
     "JR9310",
     "JR9312",
     "JR9315",
     "JR9316",
+    "JR9321",
     "JR9324",
     "JR9325",
     "JR9327",
@@ -67,12 +72,19 @@
     "JR9392",
     "JR9395",
     "JR9400",
+    "JR9402",
     "JR9403",
     "JR9405",
     "JR9409",
     "JR9418",
+    "JR9422",
+    "JR9431",
     "JR9433",
+    "JR9434",
+    "JR9439",
+    "JR9441",
     "JR9446",
+    "JR9457",
     "JR9459",
     "JR9460",
     "JR9465",
@@ -123,9 +135,18 @@
       "first_seen_at": "2026-11-12T20:41:26+00:00",
       "priority": "low",
       "category": "database"
+    },
+    "JR9439": {
+      "title": "Assoc Software Engineer",
+      "location": "Hyderabad, TG, IND",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Hyderabad-TG-IND/Assoc-Software-Engineer_JR9439",
+      "posted_at": "2026-11-20",
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "priority": "medium",
+      "category": "software"
     }
   },
-  "last_successful_scan_at": "2026-11-20T02:53:01+00:00",
+  "last_successful_scan_at": "2026-11-20T20:57:11+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "JR9003": {
@@ -1044,6 +1065,161 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-16T22:45:53+00:00",
       "last_seen_at": "2026-11-16T22:45:53+00:00"
+    },
+    "JR9457": {
+      "title": "Account Executive",
+      "location": "Milwaukee, WI, USA",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Milwaukee-WI-USA/Account-Executive_JR9457",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "JR9431": {
+      "title": "New Account Sales Executive - Vehicle Inventory Software",
+      "location": "8 Locations",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Detroit-MI-USA/New-Account-Sales-Executive---Vehicle-Inventory-Software_JR9431",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "JR9434": {
+      "title": "Account Service Advocate",
+      "location": "Chicago, IL, USA",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Chicago-IL-USA/Account-Service-Advocate_JR9434",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "JR9227": {
+      "title": "Associate Product Manager",
+      "location": "Hyderabad, TG, IND",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Hyderabad-TG-IND/Associate-Product-Manager_JR9227",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "JR9441": {
+      "title": "Associate Implementation Specialist",
+      "location": "3 Locations",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Hoffman-Estates-IL-USA/Associate-Implementation-Specialist_JR9441-1",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "JR9268": {
+      "title": "Associate Business Process Consultant",
+      "location": "Hyderabad, TG, IND",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Hyderabad-TG-IND/Associate-Business-Process-Consultant_JR9268",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "JR8993": {
+      "title": "Sr Cloud Operations Analyst",
+      "location": "Hyderabad, TG, IND",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Hyderabad-TG-IND/Sr-Cloud-Operations-Analyst_JR8993",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "JR9321": {
+      "title": "Associate Business Process Consultant",
+      "location": "Hyderabad, TG, IND",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Hyderabad-TG-IND/Associate-Business-Process-Consultant_JR9321",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "JR9422": {
+      "title": "Data Scientist",
+      "location": "Hyderabad, TG, IND",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Hyderabad-TG-IND/Data-Scientist_JR9422",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "JR9402": {
+      "title": "Assoc Software QA Engineer",
+      "location": "Hyderabad, TG, IND",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Hyderabad-TG-IND/Assoc-Software-QA-Engineer_JR9402",
+      "posted_at": "2026-11-20",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "qa",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "JR9304": {
+      "title": "Software Engineer",
+      "location": "Hyderabad, TG, IND",
+      "url": "https://cdk.wd1.myworkdayjobs.com/job/Hyderabad-TG-IND/Software-Engineer_JR9304",
+      "posted_at": "2026-11-20",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
     }
   },
   "source_updated_at_by_id": {}

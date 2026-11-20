@@ -1396,6 +1396,7 @@
     "7672654026594093317",
     "7672656091025066293",
     "7672671220798818613",
+    "7672700048980723973",
     "7672821148211530037",
     "7672843504557721909",
     "7672877778696407301",
@@ -2059,7 +2060,9 @@
     "7709235030179039541",
     "7709338932793919797",
     "7709409381504633093",
-    "7709907405304891653"
+    "7709729298979506437",
+    "7709907405304891653",
+    "7710080588988254517"
   ],
   "candidate_catalog": {
     "7680987768009754885": {
@@ -29970,8 +29973,52 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-20T02:53:01+00:00",
       "last_seen_at": "2026-11-20T02:53:01+00:00"
+    },
+    "7709729298979506437": {
+      "title": "IT Technical Services Site Lead - Seattle",
+      "location": "Seattle, Washington, United States of America",
+      "url": "https://lifeattiktok.com/search/7709729298979506437",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "7710080588988254517": {
+      "title": "Forward Deployed Engineer (FDE), TikTok Ads Creative AI",
+      "location": "Singapore",
+      "url": "https://lifeattiktok.com/search/7710080588988254517",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "7672700048980723973": {
+      "title": "TikTok Shop - Seller&Creator Automation Program Manager",
+      "location": "Singapore",
+      "url": "https://lifeattiktok.com/search/7672700048980723973",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T20:57:11+00:00",
+      "last_seen_at": "2026-11-20T20:57:11+00:00"
     }
   },
-  "last_successful_scan_at": "2026-11-20T02:53:01+00:00",
+  "last_successful_scan_at": "2026-11-20T20:57:11+00:00",
   "source_updated_at_by_id": {}
 }
