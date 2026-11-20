@@ -107,7 +107,8 @@
     "REQ-4934",
     "REQ-4935",
     "REQ-4936",
-    "REQ-4938"
+    "REQ-4938",
+    "REQ-4942"
   ],
   "candidate_catalog": {
     "REQ-4807": {
@@ -138,7 +139,7 @@
       "category": "software"
     }
   },
-  "last_successful_scan_at": "2026-11-19T21:13:54+00:00",
+  "last_successful_scan_at": "2026-11-20T02:53:01+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "REQ-4896": {
@@ -1541,6 +1542,21 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-18T21:08:25+00:00",
       "last_seen_at": "2026-11-18T21:08:25+00:00"
+    },
+    "REQ-4942": {
+      "title": "Associate Principal, Service Management",
+      "location": "Chicago - 125 S Franklin",
+      "url": "https://theocc.wd5.myworkdayjobs.com/job/Chicago---125-S-Franklin/Associate-Principal--Service-Management_REQ-4942",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T02:53:01+00:00",
+      "last_seen_at": "2026-11-20T02:53:01+00:00"
     }
   },
   "source_updated_at_by_id": {}

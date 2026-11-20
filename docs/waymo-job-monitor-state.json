@@ -3,8 +3,8 @@
   "source": "https://careers.withwaymo.com/jobs/search/?department=Software%20Engineering",
   "baseline_date": "2026-10-07",
   "baseline_listing_count": 176,
-  "last_successful_scan_at": "2026-11-19T21:13:54+00:00",
-  "highest_seen_job_id": 5717,
+  "last_successful_scan_at": "2026-11-20T02:53:01+00:00",
+  "highest_seen_job_id": 5721,
   "known_job_ids": [
     "3246",
     "3265",
@@ -209,7 +209,8 @@
     "5691",
     "5711",
     "5715",
-    "5717"
+    "5717",
+    "5721"
   ],
   "known_url_hashes": [
     "01ec9fd3",
@@ -263,6 +264,7 @@
     "3565a72f",
     "359f6ac1",
     "374df86c",
+    "37f91085",
     "38e416c6",
     "39ad9bbe",
     "3a56576b",

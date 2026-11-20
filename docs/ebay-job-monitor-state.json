@@ -393,6 +393,7 @@
     "R0077234",
     "R0077235",
     "R0077239",
+    "R0077247",
     "R0077250",
     "R0077253",
     "R0077254",
@@ -449,6 +450,7 @@
     "R0077429",
     "R0077431",
     "R0077432",
+    "R0077437",
     "R0077438",
     "R0077445",
     "R0077459",
@@ -468,7 +470,9 @@
     "R0077512",
     "R0077518",
     "R0077520",
-    "R0077532"
+    "R0077532",
+    "R0077534",
+    "R0077563"
   ],
   "candidate_catalog": {
     "R0076812": {
@@ -562,7 +566,7 @@
       "category": "platform"
     }
   },
-  "last_successful_scan_at": "2026-11-19T21:13:54+00:00",
+  "last_successful_scan_at": "2026-11-20T02:53:01+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "R0077145": {
@@ -6694,6 +6698,66 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-19T21:13:54+00:00",
       "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "R0077247": {
+      "title": "Sr. iOS SWE, Depop, Value Creation",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077247/Sr-iOS-SWE-Depop-Value-Creation",
+      "posted_at": "2026-11-19T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T02:53:01+00:00",
+      "last_seen_at": "2026-11-20T02:53:01+00:00"
+    },
+    "R0077534": {
+      "title": "Hands-on Sr Manager Applied Research",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077534/Hands-on-Sr-Manager-Applied-Research",
+      "posted_at": "2026-11-19T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T02:53:01+00:00",
+      "last_seen_at": "2026-11-20T02:53:01+00:00"
+    },
+    "R0077563": {
+      "title": "Program Manager, Business Operations",
+      "location": "Runnemede, New Jersey, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077563/Program-Manager-Business-Operations",
+      "posted_at": "2026-11-19T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T02:53:01+00:00",
+      "last_seen_at": "2026-11-20T02:53:01+00:00"
+    },
+    "R0077437": {
+      "title": "Security Problem Management Engineer",
+      "location": "Austin, Texas, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077437/Security-Problem-Management-Engineer",
+      "posted_at": "2026-11-19",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T02:53:01+00:00",
+      "last_seen_at": "2026-11-20T02:53:01+00:00"
     }
   },
   "source_updated_at_by_id": {}

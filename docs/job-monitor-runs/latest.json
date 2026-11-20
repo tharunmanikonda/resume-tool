@@ -1,6 +1,6 @@
 {
   "success": true,
-  "scanned_at": "2026-11-19T21:13:54+00:00",
+  "scanned_at": "2026-11-20T02:53:01+00:00",
   "monitor_count": 14,
   "successful_monitors": [
     "cbre",
@@ -19,77 +19,17 @@
     "waymo"
   ],
   "failed_monitors": [],
-  "candidate_count": 3,
+  "candidate_count": 0,
   "needs_ai_review_count": 0,
-  "candidates": [
-    {
-      "monitor": "iqvia",
-      "job_id": "R1574650",
-      "title": "Software Development Engineer 2",
-      "location": "Kathmandu, Nepal",
-      "posted_at": "2026-11-19",
-      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Kathmandu-Nepal/Software-Development-Engineer-2_R1574650",
-      "priority": "high",
-      "matching_requirements": [
-        "target_title:software",
-        "profile_signal:python:+2",
-        "profile_signal:java:+1",
-        "profile_signal:backend_apis:+2",
-        "profile_signal:databases:+1",
-        "profile_signal:cloud_containers:+2",
-        "profile_signal:observability:+1",
-        "profile_signal:qa_automation:+2"
-      ],
-      "material_gaps": []
-    },
-    {
-      "monitor": "nbcu",
-      "job_id": "744000162605809",
-      "title": "Sr. Software Engineer",
-      "location": "New York, NEW YORK, United States",
-      "posted_at": "2026-11-19T21:15:27.333Z",
-      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162605809-sr-software-engineer",
-      "priority": "high",
-      "matching_requirements": [
-        "target_title:software",
-        "profile_signal:python:+2",
-        "profile_signal:distributed_systems:+2",
-        "profile_signal:cloud_containers:+2",
-        "profile_signal:observability:+1",
-        "profile_signal:reliability_telemetry:+3",
-        "profile_signal:qa_automation:+2"
-      ],
-      "material_gaps": []
-    },
-    {
-      "monitor": "tiktok",
-      "job_id": "7706615931493239093",
-      "title": "Site Reliability Engineer - Data Infrastructure",
-      "location": "San Jose, California, United States of America",
-      "posted_at": "",
-      "url": "https://lifeattiktok.com/search/7706615931493239093",
-      "priority": "high",
-      "matching_requirements": [
-        "target_title:reliability",
-        "profile_signal:python:+2",
-        "profile_signal:java:+1",
-        "profile_signal:distributed_systems:+2",
-        "profile_signal:databases:+1",
-        "profile_signal:cloud_containers:+2",
-        "profile_signal:reliability_telemetry:+3",
-        "profile_signal:agentic_tooling:+3"
-      ],
-      "material_gaps": []
-    }
-  ],
+  "candidates": [],
   "needs_ai_review": [],
   "results": [
     {
       "monitor": "cbre",
       "success": true,
-      "scanned_at": "2026-11-19T21:13:54+00:00",
-      "fetched": 981,
-      "unseen": 57,
+      "scanned_at": "2026-11-20T02:53:01+00:00",
+      "fetched": 794,
+      "unseen": 13,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -98,7 +38,7 @@
     {
       "monitor": "cdk",
       "success": true,
-      "scanned_at": "2026-11-19T21:13:54+00:00",
+      "scanned_at": "2026-11-20T02:53:01+00:00",
       "fetched": 47,
       "unseen": 0,
       "state_updated": true,
@@ -109,9 +49,9 @@
     {
       "monitor": "cisco",
       "success": true,
-      "scanned_at": "2026-11-19T21:13:54+00:00",
-      "fetched": 60,
-      "unseen": 0,
+      "scanned_at": "2026-11-20T02:53:01+00:00",
+      "fetched": 80,
+      "unseen": 1,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -120,9 +60,9 @@
     {
       "monitor": "crunchyroll",
       "success": true,
-      "scanned_at": "2026-11-19T21:13:54+00:00",
+      "scanned_at": "2026-11-20T02:53:01+00:00",
       "fetched": 103,
-      "unseen": 2,
+      "unseen": 1,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -131,9 +71,9 @@
     {
       "monitor": "ebay",
       "success": true,
-      "scanned_at": "2026-11-19T21:13:54+00:00",
-      "fetched": 198,
-      "unseen": 3,
+      "scanned_at": "2026-11-20T02:53:01+00:00",
+      "fetched": 192,
+      "unseen": 4,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -142,9 +82,9 @@
     {
       "monitor": "intepros",
       "success": true,
-      "scanned_at": "2026-11-19T21:13:54+00:00",
-      "fetched": 30,
-      "unseen": 2,
+      "scanned_at": "2026-11-20T02:53:01+00:00",
+      "fetched": 20,
+      "unseen": 0,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -153,70 +93,31 @@
     {
       "monitor": "iqvia",
       "success": true,
-      "scanned_at": "2026-11-19T21:13:54+00:00",
-      "fetched": 873,
-      "unseen": 59,
+      "scanned_at": "2026-11-20T02:53:01+00:00",
+      "fetched": 355,
+      "unseen": 0,
       "state_updated": true,
-      "candidates": [
-        {
-          "job_id": "R1574650",
-          "title": "Software Development Engineer 2",
-          "location": "Kathmandu, Nepal",
-          "posted_at": "2026-11-19",
-          "url": "https://iqvia.wd1.myworkdayjobs.com/job/Kathmandu-Nepal/Software-Development-Engineer-2_R1574650",
-          "priority": "high",
-          "matching_requirements": [
-            "target_title:software",
-            "profile_signal:python:+2",
-            "profile_signal:java:+1",
-            "profile_signal:backend_apis:+2",
-            "profile_signal:databases:+1",
-            "profile_signal:cloud_containers:+2",
-            "profile_signal:observability:+1",
-            "profile_signal:qa_automation:+2"
-          ],
-          "material_gaps": []
-        }
-      ],
+      "candidates": [],
       "needs_ai_review": [],
       "errors": []
     },
     {
       "monitor": "nbcu",
       "success": true,
-      "scanned_at": "2026-11-19T21:13:54+00:00",
-      "fetched": 335,
-      "unseen": 11,
+      "scanned_at": "2026-11-20T02:53:01+00:00",
+      "fetched": 337,
+      "unseen": 7,
       "state_updated": true,
-      "candidates": [
-        {
-          "job_id": "744000162605809",
-          "title": "Sr. Software Engineer",
-          "location": "New York, NEW YORK, United States",
-          "posted_at": "2026-11-19T21:15:27.333Z",
-          "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162605809-sr-software-engineer",
-          "priority": "high",
-          "matching_requirements": [
-            "target_title:software",
-            "profile_signal:python:+2",
-            "profile_signal:distributed_systems:+2",
-            "profile_signal:cloud_containers:+2",
-            "profile_signal:observability:+1",
-            "profile_signal:reliability_telemetry:+3",
-            "profile_signal:qa_automation:+2"
-          ],
-          "material_gaps": []
-        }
-      ],
+      "candidates": [],
       "needs_ai_review": [],
       "errors": []
     },
     {
       "monitor": "nvidia",
       "success": true,
-      "scanned_at": "2026-11-19T21:13:54+00:00",
+      "scanned_at": "2026-11-20T02:53:01+00:00",
       "fetched": 120,
-      "unseen": 5,
+      "unseen": 3,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -225,9 +126,9 @@
     {
       "monitor": "occ",
       "success": true,
-      "scanned_at": "2026-11-19T21:13:54+00:00",
-      "fetched": 60,
-      "unseen": 0,
+      "scanned_at": "2026-11-20T02:53:01+00:00",
+      "fetched": 64,
+      "unseen": 1,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -236,7 +137,7 @@
     {
       "monitor": "ocient",
       "success": true,
-      "scanned_at": "2026-11-19T21:13:54+00:00",
+      "scanned_at": "2026-11-20T02:53:01+00:00",
       "fetched": 17,
       "unseen": 0,
       "state_updated": true,
@@ -247,7 +148,7 @@
     {
       "monitor": "rivian",
       "success": true,
-      "scanned_at": "2026-11-19T21:13:54+00:00",
+      "scanned_at": "2026-11-20T02:53:01+00:00",
       "fetched": 30,
       "unseen": 0,
       "state_updated": true,
@@ -258,38 +159,18 @@
     {
       "monitor": "tiktok",
       "success": true,
-      "scanned_at": "2026-11-19T21:13:54+00:00",
-      "fetched": 1795,
-      "unseen": 4,
+      "scanned_at": "2026-11-20T02:53:01+00:00",
+      "fetched": 1797,
+      "unseen": 2,
       "state_updated": true,
-      "candidates": [
-        {
-          "job_id": "7706615931493239093",
-          "title": "Site Reliability Engineer - Data Infrastructure",
-          "location": "San Jose, California, United States of America",
-          "posted_at": "",
-          "url": "https://lifeattiktok.com/search/7706615931493239093",
-          "priority": "high",
-          "matching_requirements": [
-            "target_title:reliability",
-            "profile_signal:python:+2",
-            "profile_signal:java:+1",
-            "profile_signal:distributed_systems:+2",
-            "profile_signal:databases:+1",
-            "profile_signal:cloud_containers:+2",
-            "profile_signal:reliability_telemetry:+3",
-            "profile_signal:agentic_tooling:+3"
-          ],
-          "material_gaps": []
-        }
-      ],
+      "candidates": [],
       "needs_ai_review": [],
       "errors": []
     },
     {
       "monitor": "waymo",
       "success": true,
-      "scanned_at": "2026-11-19T21:13:54+00:00",
+      "scanned_at": "2026-11-20T02:53:01+00:00",
       "fetched": 152,
       "unseen": 1,
       "state_updated": true,

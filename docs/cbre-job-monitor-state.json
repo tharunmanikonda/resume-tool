@@ -3547,9 +3547,11 @@
     "304895",
     "304905",
     "304906",
+    "304910",
     "304918",
     "304919",
     "304920",
+    "304921",
     "304922",
     "304923",
     "304925",
@@ -3584,11 +3586,13 @@
     "305068",
     "305069",
     "305070",
+    "305072",
     "305075",
     "305080",
     "305081",
     "305082",
     "305083",
+    "305093",
     "305103",
     "305111",
     "305113",
@@ -3643,6 +3647,7 @@
     "305364",
     "305379",
     "305380",
+    "305382",
     "305383",
     "305384",
     "305390",
@@ -3672,6 +3677,7 @@
     "305467",
     "305479",
     "305505",
+    "305507",
     "305522",
     "305529",
     "305559",
@@ -3685,6 +3691,7 @@
     "305582",
     "305583",
     "305592",
+    "305598",
     "305602",
     "305603",
     "305604",
@@ -3707,6 +3714,7 @@
     "305662",
     "305664",
     "305666",
+    "305670",
     "305720",
     "305752",
     "305757",
@@ -3716,8 +3724,11 @@
     "305775",
     "305778",
     "305802",
+    "305815",
     "305816",
     "305820",
+    "305828",
+    "305829",
     "305853",
     "305856",
     "305859",
@@ -3742,7 +3753,9 @@
     "306019",
     "306064",
     "306067",
+    "306085",
     "306095",
+    "306098",
     "306102",
     "306106",
     "306118",
@@ -3758,7 +3771,7 @@
     "8655"
   ],
   "candidate_catalog": {},
-  "last_successful_scan_at": "2026-11-19T21:13:54+00:00",
+  "last_successful_scan_at": "2026-11-20T02:53:01+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "301688": {
@@ -40268,6 +40281,196 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-19T21:13:54+00:00",
       "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "305072": {
+      "title": "LIS Coordinator",
+      "location": "Foster City - California - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/LIS-Coordinator/305072",
+      "posted_at": "19-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T02:53:01+00:00",
+      "last_seen_at": "2026-11-20T02:53:01+00:00"
+    },
+    "305507": {
+      "title": "Technician - HVAC",
+      "location": "Baguio - Benguet - Philippines",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Technician-HVAC/305507",
+      "posted_at": "20-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T02:53:01+00:00",
+      "last_seen_at": "2026-11-20T02:53:01+00:00"
+    },
+    "305815": {
+      "title": "Journeyman Electrician (Waco, Tx)",
+      "location": "Temple - Texas - United States of America , Waco - Texas - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Journeyman-Electrician-Waco-Tx/305815",
+      "posted_at": "19-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T02:53:01+00:00",
+      "last_seen_at": "2026-11-20T02:53:01+00:00"
+    },
+    "305598": {
+      "title": "Building Operator",
+      "location": "Mississauga - Ontario - Canada , Toronto - Ontario - Canada",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Building-Operator/305598",
+      "posted_at": "19-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T02:53:01+00:00",
+      "last_seen_at": "2026-11-20T02:53:01+00:00"
+    },
+    "305382": {
+      "title": "FM Engineering Operations Manager",
+      "location": "Charlottetown - Prince Edward Island - Canada",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/FM-Engineering-Operations-Manager/305382",
+      "posted_at": "19-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T02:53:01+00:00",
+      "last_seen_at": "2026-11-20T02:53:01+00:00"
+    },
+    "305093": {
+      "title": "Maintenance Technician - 3rd Shift",
+      "location": "Chester - Virginia - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Maintenance-Technician-3rd-Shift/305093",
+      "posted_at": "19-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T02:53:01+00:00",
+      "last_seen_at": "2026-11-20T02:53:01+00:00"
+    },
+    "306098": {
+      "title": "Maintenance Technician",
+      "location": "Mebane - North Carolina - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Maintenance-Technician/306098",
+      "posted_at": "18-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T02:53:01+00:00",
+      "last_seen_at": "2026-11-20T02:53:01+00:00"
+    },
+    "305670": {
+      "title": "Shift Maintenance Sr Technician (KL)",
+      "location": "Kuala Lumpur - Wilayah Persekutuan Kuala Lumpur - Malaysia",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Shift-Maintenance-Sr-Technician-KL/305670",
+      "posted_at": "17-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T02:53:01+00:00",
+      "last_seen_at": "2026-11-20T02:53:01+00:00"
+    },
+    "306085": {
+      "title": "Procurement Analyst - 6 Month Temp",
+      "location": "Atlanta - Georgia - United States of America , Charlotte - North Carolina - United States of America , Orlando - Florida - United States of America , Tampa - Florida - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Procurement-Analyst-6-Month-Temp/306085",
+      "posted_at": "19-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T02:53:01+00:00",
+      "last_seen_at": "2026-11-20T02:53:01+00:00"
+    },
+    "304910": {
+      "title": "Research Manager",
+      "location": "San Diego - California - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Research-Manager/304910",
+      "posted_at": "19-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T02:53:01+00:00",
+      "last_seen_at": "2026-11-20T02:53:01+00:00"
+    },
+    "305829": {
+      "title": "Mobile Engineer",
+      "location": "Corona - California - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Mobile-Engineer/305829",
+      "posted_at": "19-Nov-2026",
+      "stage": "detail",
+      "blockers": [
+        "non_software_engineering_role"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T02:53:01+00:00",
+      "last_seen_at": "2026-11-20T02:53:01+00:00"
+    },
+    "305828": {
+      "title": "Building Engineer",
+      "location": "Olive Branch - Mississippi - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Building-Engineer/305828",
+      "posted_at": "19-Nov-2026",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T02:53:01+00:00",
+      "last_seen_at": "2026-11-20T02:53:01+00:00"
+    },
+    "304921": {
+      "title": "Building Engineer",
+      "location": "Beachwood - Ohio - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Building-Engineer/304921",
+      "posted_at": "19-Nov-2026",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T02:53:01+00:00",
+      "last_seen_at": "2026-11-20T02:53:01+00:00"
     }
   },
   "source_updated_at_by_id": {}

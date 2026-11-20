@@ -249,6 +249,7 @@
     "JR2014991",
     "JR2014995",
     "JR2014997",
+    "JR2015003",
     "JR2015038",
     "JR2015047",
     "JR2015068",
@@ -905,6 +906,7 @@
     "JR2025776",
     "JR2025778",
     "JR2025802",
+    "JR2025805",
     "JR2025806",
     "JR2025862",
     "JR2025879",
@@ -1157,6 +1159,7 @@
     "JR2028628",
     "JR2028629",
     "JR2028636",
+    "JR2028650",
     "JR2028657",
     "JR2028664",
     "JR2028678",
@@ -1664,7 +1667,7 @@
       "category": "technical_review"
     }
   },
-  "last_successful_scan_at": "2026-11-19T21:13:54+00:00",
+  "last_successful_scan_at": "2026-11-20T02:53:01+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "JR2014880": {
@@ -17841,6 +17844,49 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-19T21:13:54+00:00",
       "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "JR2028650": {
+      "title": "GPU Firmware Engineer",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/GPU-Firmware-Engineer_JR2028650",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "embedded_or_hardware"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T02:53:01+00:00",
+      "last_seen_at": "2026-11-20T02:53:01+00:00"
+    },
+    "JR2015003": {
+      "title": "Platform Performance Architect, GeForce Now",
+      "location": "2 Locations",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Platform-Performance-Architect--GeForce-Now_JR2015003-1",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T02:53:01+00:00",
+      "last_seen_at": "2026-11-20T02:53:01+00:00"
+    },
+    "JR2025805": {
+      "title": "Senior Automation Infrastructure Engineer",
+      "location": "US, CA, Remote; US, GA, Remote; US, TX, Remote; US, AZ, Remote; US, FL, Remote; US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Remote/Senior-Automation-Infrastructure-Engineer_JR2025805",
+      "posted_at": "2026-11-19",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T02:53:01+00:00",
+      "last_seen_at": "2026-11-20T02:53:01+00:00"
     }
   },
   "source_updated_at_by_id": {}

@@ -518,6 +518,7 @@
     "7600577552370190645",
     "7600582133919189253",
     "7600970098327701765",
+    "7601028768589826357",
     "7601032646772312373",
     "7601084306654595333",
     "7602395891774802181",
@@ -2057,7 +2058,8 @@
     "7709229320339114245",
     "7709235030179039541",
     "7709338932793919797",
-    "7709409381504633093"
+    "7709409381504633093",
+    "7709907405304891653"
   ],
   "candidate_catalog": {
     "7680987768009754885": {
@@ -29939,8 +29941,37 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-19T21:13:54+00:00",
       "last_seen_at": "2026-11-19T21:13:54+00:00"
+    },
+    "7601028768589826357": {
+      "title": "Senior Data Scientist - Global E-Commerce Data Strategy",
+      "location": "Seattle, Washington, United States of America",
+      "url": "https://lifeattiktok.com/search/7601028768589826357",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T02:53:01+00:00",
+      "last_seen_at": "2026-11-20T02:53:01+00:00"
+    },
+    "7709907405304891653": {
+      "title": "AI Data Quality Enforcement Expert",
+      "location": "Ho Chi Minh City, Ho Chi Minh, Vietnam",
+      "url": "https://lifeattiktok.com/search/7709907405304891653",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-20T02:53:01+00:00",
+      "last_seen_at": "2026-11-20T02:53:01+00:00"
     }
   },
-  "last_successful_scan_at": "2026-11-19T21:13:54+00:00",
+  "last_successful_scan_at": "2026-11-20T02:53:01+00:00",
   "source_updated_at_by_id": {}
 }
