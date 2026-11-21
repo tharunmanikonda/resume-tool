@@ -1,6 +1,6 @@
 {
   "success": true,
-  "scanned_at": "2026-11-20T20:57:11+00:00",
+  "scanned_at": "2026-11-21T03:00:05+00:00",
   "monitor_count": 14,
   "successful_monitors": [
     "cbre",
@@ -19,71 +19,17 @@
     "waymo"
   ],
   "failed_monitors": [],
-  "candidate_count": 3,
+  "candidate_count": 0,
   "needs_ai_review_count": 0,
-  "candidates": [
-    {
-      "monitor": "cdk",
-      "job_id": "JR9439",
-      "title": "Assoc Software Engineer",
-      "location": "Hyderabad, TG, IND",
-      "posted_at": "2026-11-20",
-      "url": "https://cdk.wd1.myworkdayjobs.com/job/Hyderabad-TG-IND/Assoc-Software-Engineer_JR9439",
-      "priority": "medium",
-      "matching_requirements": [
-        "target_title:software",
-        "profile_signal:java:+1",
-        "profile_signal:backend_apis:+2",
-        "profile_signal:distributed_systems:+2",
-        "profile_signal:data_streaming:+2",
-        "profile_signal:databases:+1"
-      ],
-      "material_gaps": []
-    },
-    {
-      "monitor": "nbcu",
-      "job_id": "744000162791299",
-      "title": "Software Engineer",
-      "location": "New York, NEW YORK, United States",
-      "posted_at": "2026-11-20T17:44:23.008Z",
-      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162791299-software-engineer",
-      "priority": "high",
-      "matching_requirements": [
-        "target_title:software",
-        "profile_signal:python:+2",
-        "profile_signal:distributed_systems:+2",
-        "profile_signal:observability:+1",
-        "profile_signal:reliability_telemetry:+3",
-        "profile_signal:agentic_tooling:+3"
-      ],
-      "material_gaps": []
-    },
-    {
-      "monitor": "occ",
-      "job_id": "REQ-4949",
-      "title": "Senior Associate, Software Engineering: Software Development Test (SDET)",
-      "location": "Chicago - 125 S Franklin",
-      "posted_at": "2026-11-20",
-      "url": "https://theocc.wd5.myworkdayjobs.com/job/Chicago---125-S-Franklin/Senior-Associate--Software-Engineering--Software-Development-Test--SDET-_REQ-4949-4",
-      "priority": "medium",
-      "matching_requirements": [
-        "target_title:qa",
-        "profile_signal:java:+1",
-        "profile_signal:backend_apis:+2",
-        "profile_signal:data_streaming:+2",
-        "profile_signal:qa_automation:+2"
-      ],
-      "material_gaps": []
-    }
-  ],
+  "candidates": [],
   "needs_ai_review": [],
   "results": [
     {
       "monitor": "cbre",
       "success": true,
-      "scanned_at": "2026-11-20T20:57:11+00:00",
-      "fetched": 1089,
-      "unseen": 46,
+      "scanned_at": "2026-11-21T03:00:05+00:00",
+      "fetched": 944,
+      "unseen": 17,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -92,38 +38,20 @@
     {
       "monitor": "cdk",
       "success": true,
-      "scanned_at": "2026-11-20T20:57:11+00:00",
+      "scanned_at": "2026-11-21T03:00:05+00:00",
       "fetched": 57,
-      "unseen": 12,
+      "unseen": 0,
       "state_updated": true,
-      "candidates": [
-        {
-          "job_id": "JR9439",
-          "title": "Assoc Software Engineer",
-          "location": "Hyderabad, TG, IND",
-          "posted_at": "2026-11-20",
-          "url": "https://cdk.wd1.myworkdayjobs.com/job/Hyderabad-TG-IND/Assoc-Software-Engineer_JR9439",
-          "priority": "medium",
-          "matching_requirements": [
-            "target_title:software",
-            "profile_signal:java:+1",
-            "profile_signal:backend_apis:+2",
-            "profile_signal:distributed_systems:+2",
-            "profile_signal:data_streaming:+2",
-            "profile_signal:databases:+1"
-          ],
-          "material_gaps": []
-        }
-      ],
+      "candidates": [],
       "needs_ai_review": [],
       "errors": []
     },
     {
       "monitor": "cisco",
       "success": true,
-      "scanned_at": "2026-11-20T20:57:11+00:00",
+      "scanned_at": "2026-11-21T03:00:05+00:00",
       "fetched": 80,
-      "unseen": 5,
+      "unseen": 1,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -132,7 +60,7 @@
     {
       "monitor": "crunchyroll",
       "success": true,
-      "scanned_at": "2026-11-20T20:57:11+00:00",
+      "scanned_at": "2026-11-21T03:00:05+00:00",
       "fetched": 99,
       "unseen": 0,
       "state_updated": true,
@@ -143,9 +71,9 @@
     {
       "monitor": "ebay",
       "success": true,
-      "scanned_at": "2026-11-20T20:57:11+00:00",
-      "fetched": 189,
-      "unseen": 3,
+      "scanned_at": "2026-11-21T03:00:05+00:00",
+      "fetched": 170,
+      "unseen": 0,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -154,9 +82,9 @@
     {
       "monitor": "intepros",
       "success": true,
-      "scanned_at": "2026-11-20T20:57:11+00:00",
+      "scanned_at": "2026-11-21T03:00:05+00:00",
       "fetched": 30,
-      "unseen": 3,
+      "unseen": 1,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -165,9 +93,9 @@
     {
       "monitor": "iqvia",
       "success": true,
-      "scanned_at": "2026-11-20T20:57:11+00:00",
-      "fetched": 1564,
-      "unseen": 94,
+      "scanned_at": "2026-11-21T03:00:05+00:00",
+      "fetched": 382,
+      "unseen": 1,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -176,36 +104,18 @@
     {
       "monitor": "nbcu",
       "success": true,
-      "scanned_at": "2026-11-20T20:57:11+00:00",
-      "fetched": 336,
-      "unseen": 9,
+      "scanned_at": "2026-11-21T03:00:05+00:00",
+      "fetched": 338,
+      "unseen": 4,
       "state_updated": true,
-      "candidates": [
-        {
-          "job_id": "744000162791299",
-          "title": "Software Engineer",
-          "location": "New York, NEW YORK, United States",
-          "posted_at": "2026-11-20T17:44:23.008Z",
-          "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162791299-software-engineer",
-          "priority": "high",
-          "matching_requirements": [
-            "target_title:software",
-            "profile_signal:python:+2",
-            "profile_signal:distributed_systems:+2",
-            "profile_signal:observability:+1",
-            "profile_signal:reliability_telemetry:+3",
-            "profile_signal:agentic_tooling:+3"
-          ],
-          "material_gaps": []
-        }
-      ],
+      "candidates": [],
       "needs_ai_review": [],
       "errors": []
     },
     {
       "monitor": "nvidia",
       "success": true,
-      "scanned_at": "2026-11-20T20:57:11+00:00",
+      "scanned_at": "2026-11-21T03:00:05+00:00",
       "fetched": 120,
       "unseen": 2,
       "state_updated": true,
@@ -216,37 +126,20 @@
     {
       "monitor": "occ",
       "success": true,
-      "scanned_at": "2026-11-20T20:57:11+00:00",
-      "fetched": 68,
-      "unseen": 4,
+      "scanned_at": "2026-11-21T03:00:05+00:00",
+      "fetched": 60,
+      "unseen": 0,
       "state_updated": true,
-      "candidates": [
-        {
-          "job_id": "REQ-4949",
-          "title": "Senior Associate, Software Engineering: Software Development Test (SDET)",
-          "location": "Chicago - 125 S Franklin",
-          "posted_at": "2026-11-20",
-          "url": "https://theocc.wd5.myworkdayjobs.com/job/Chicago---125-S-Franklin/Senior-Associate--Software-Engineering--Software-Development-Test--SDET-_REQ-4949-4",
-          "priority": "medium",
-          "matching_requirements": [
-            "target_title:qa",
-            "profile_signal:java:+1",
-            "profile_signal:backend_apis:+2",
-            "profile_signal:data_streaming:+2",
-            "profile_signal:qa_automation:+2"
-          ],
-          "material_gaps": []
-        }
-      ],
+      "candidates": [],
       "needs_ai_review": [],
       "errors": []
     },
     {
       "monitor": "ocient",
       "success": true,
-      "scanned_at": "2026-11-20T20:57:11+00:00",
-      "fetched": 16,
-      "unseen": 0,
+      "scanned_at": "2026-11-21T03:00:05+00:00",
+      "fetched": 20,
+      "unseen": 4,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -255,7 +148,7 @@
     {
       "monitor": "rivian",
       "success": true,
-      "scanned_at": "2026-11-20T20:57:11+00:00",
+      "scanned_at": "2026-11-21T03:00:05+00:00",
       "fetched": 40,
       "unseen": 1,
       "state_updated": true,
@@ -266,9 +159,9 @@
     {
       "monitor": "tiktok",
       "success": true,
-      "scanned_at": "2026-11-20T20:57:11+00:00",
+      "scanned_at": "2026-11-21T03:00:05+00:00",
       "fetched": 1796,
-      "unseen": 3,
+      "unseen": 1,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -277,9 +170,9 @@
     {
       "monitor": "waymo",
       "success": true,
-      "scanned_at": "2026-11-20T20:57:11+00:00",
-      "fetched": 150,
-      "unseen": 0,
+      "scanned_at": "2026-11-21T03:00:05+00:00",
+      "fetched": 148,
+      "unseen": 1,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],

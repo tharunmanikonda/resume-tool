@@ -1494,11 +1494,12 @@
     "2031175",
     "2031200",
     "2031275",
+    "2031477",
     "2031914",
     "2032282",
     "2032363"
   ],
-  "last_successful_scan_at": "2026-11-20T20:57:11+00:00",
+  "last_successful_scan_at": "2026-11-21T03:00:05+00:00",
   "candidate_catalog": {
     "2024998": {
       "title": "AI Security Engineer",
@@ -4091,6 +4092,20 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-20T20:57:11+00:00",
       "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "2031477": {
+      "title": "Senior ASIC STA Engineer",
+      "location": "San Jose, California, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/Senior-ASIC-STA-Engineer_2031477",
+      "posted_at": "2026-11-20",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-21T03:00:05+00:00",
+      "last_seen_at": "2026-11-21T03:00:05+00:00"
     }
   },
   "source_updated_at_by_id": {}

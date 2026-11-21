@@ -9,15 +9,19 @@
     "am9icG9zdDofYHqc8zr7rfB1gqt1KQj9",
     "am9icG9zdDp3DadDGd_3uBwvG0EBWmo9",
     "am9icG9zdDp9BrHlqr7myFyRPR_fw9UL",
+    "am9icG9zdDp9GHF1RWxrBMEH0nwIZYNt",
     "am9icG9zdDpCyK1l7ZPiGpgGYcGcXV41",
     "am9icG9zdDpFdZTUveC6g8q8G7CRDYkt",
     "am9icG9zdDpFl5QFYmMzBVmY5ILWDpHv",
+    "am9icG9zdDq-_Yhw-YFgnkxqD4A0pq-h",
+    "am9icG9zdDq-xzmLgLNdTvn0lt0fNw6y",
     "am9icG9zdDq5ok6OX8WDUGAweKPs4amq",
     "am9icG9zdDqJgzf2Bu_0qefQ3TIPESmw",
     "am9icG9zdDqQGU-OlSzP3NW8e82cDjgJ",
     "am9icG9zdDqRbvqAGpMQYQZdQPuS_3w3",
     "am9icG9zdDqUzWDI7nPB-1ai3jJbFdxp",
     "am9icG9zdDqfghXX1xUaQY4pt_-uA4Jn",
+    "am9icG9zdDqmh32yT7Ja-R4fw2OvZJIU",
     "am9icG9zdDqtEWCmgMmEa7pK_vw23dgP",
     "am9icG9zdDquuYwR4I8Rh9097-cjBu9P",
     "am9icG9zdDqvfHe7ccFQfZ2upCmgI8zM",
@@ -64,7 +68,7 @@
       "category": "data"
     }
   },
-  "last_successful_scan_at": "2026-11-20T20:57:11+00:00",
+  "last_successful_scan_at": "2026-11-21T03:00:05+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "am9icG9zdDoSZRhfRFSX4uPin3ZELp9s": {
@@ -344,6 +348,66 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-14T01:59:47+00:00",
       "last_seen_at": "2026-11-14T01:59:47+00:00"
+    },
+    "am9icG9zdDp9GHF1RWxrBMEH0nwIZYNt": {
+      "title": "Sales Director \u2013 Commercial Enterprise (North America)",
+      "location": "Remote, USA, Chicago, IL, Remote",
+      "url": "https://jobs.gem.com/ocient-inc-/am9icG9zdDp9GHF1RWxrBMEH0nwIZYNt",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-21T03:00:05+00:00",
+      "last_seen_at": "2026-11-21T03:00:05+00:00"
+    },
+    "am9icG9zdDqmh32yT7Ja-R4fw2OvZJIU": {
+      "title": "Sales Director \u2013 Financial Services & Insurance",
+      "location": "Remote, USA, Chicago, IL, Remote",
+      "url": "https://jobs.gem.com/ocient-inc-/am9icG9zdDqmh32yT7Ja-R4fw2OvZJIU",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-21T03:00:05+00:00",
+      "last_seen_at": "2026-11-21T03:00:05+00:00"
+    },
+    "am9icG9zdDq-_Yhw-YFgnkxqD4A0pq-h": {
+      "title": "Sales Director \u2013 Government & Critical Infrastructure (North America)",
+      "location": "Remote, USA, Washington, DC, Remote",
+      "url": "https://jobs.gem.com/ocient-inc-/am9icG9zdDq-_Yhw-YFgnkxqD4A0pq-h",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-21T03:00:05+00:00",
+      "last_seen_at": "2026-11-21T03:00:05+00:00"
+    },
+    "am9icG9zdDq-xzmLgLNdTvn0lt0fNw6y": {
+      "title": "Sales Director \u2013 Healthcare (North America)",
+      "location": "Remote, USA, Chicago, IL, Remote",
+      "url": "https://jobs.gem.com/ocient-inc-/am9icG9zdDq-xzmLgLNdTvn0lt0fNw6y",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-21T03:00:05+00:00",
+      "last_seen_at": "2026-11-21T03:00:05+00:00"
     }
   },
   "source_updated_at_by_id": {}

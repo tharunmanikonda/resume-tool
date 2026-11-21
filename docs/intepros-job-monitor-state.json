@@ -272,9 +272,10 @@
     "a0Hcw00000BslV3EAJ",
     "a0Hcw00000BsuS3EAJ",
     "a0Hcw00000BtKxREAV",
+    "a0Hcw00000BuVvdEAF",
     "a0Hcw00000BuYThEAN"
   ],
-  "last_successful_scan_at": "2026-11-20T20:57:11+00:00",
+  "last_successful_scan_at": "2026-11-21T03:00:05+00:00",
   "candidate_catalog": {
     "a0Hcw000006tdYLEAY": {
       "title": "Operational Excellence Engineer",
@@ -1985,6 +1986,21 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-20T20:57:11+00:00",
       "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "a0Hcw00000BuVvdEAF": {
+      "title": "Security Project Manager (Physical Security / Data Center Construction)",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000BuVvdEAF/security-project-manager-physical-security--data-center-construction",
+      "posted_at": "Posted This Week",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-21T03:00:05+00:00",
+      "last_seen_at": "2026-11-21T03:00:05+00:00"
     }
   },
   "source_updated_at_by_id": {}

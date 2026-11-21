@@ -1694,6 +1694,7 @@
     "297542",
     "297546",
     "297548",
+    "297550",
     "297551",
     "297552",
     "297553",
@@ -3157,6 +3158,7 @@
     "303361",
     "303363",
     "303369",
+    "303371",
     "303373",
     "303380",
     "303384",
@@ -3638,6 +3640,7 @@
     "305227",
     "305230",
     "305231",
+    "305232",
     "305233",
     "305235",
     "305236",
@@ -3677,8 +3680,10 @@
     "305408",
     "305412",
     "305413",
+    "305417",
     "305418",
     "305420",
+    "305421",
     "305423",
     "305425",
     "305428",
@@ -3727,6 +3732,7 @@
     "305634",
     "305635",
     "305639",
+    "305642",
     "305644",
     "305648",
     "305649",
@@ -3754,11 +3760,14 @@
     "305828",
     "305829",
     "305834",
+    "305839",
     "305853",
     "305856",
     "305859",
+    "305861",
     "305862",
     "305863",
+    "305864",
     "305875",
     "305876",
     "305910",
@@ -3770,6 +3779,8 @@
     "305939",
     "305942",
     "305943",
+    "305944",
+    "305952",
     "305959",
     "305969",
     "305971",
@@ -3788,11 +3799,15 @@
     "306098",
     "306102",
     "306106",
+    "306117",
     "306118",
+    "306161",
     "306203",
+    "306260",
     "306269",
     "306274",
     "306282",
+    "306285",
     "306287",
     "306296",
     "306297",
@@ -3812,12 +3827,14 @@
     "306470",
     "306475",
     "306477",
+    "306480",
+    "306512",
     "38196",
     "76242",
     "8655"
   ],
   "candidate_catalog": {},
-  "last_successful_scan_at": "2026-11-20T20:57:11+00:00",
+  "last_successful_scan_at": "2026-11-21T03:00:05+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "301688": {
@@ -41200,6 +41217,251 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-20T20:57:11+00:00",
       "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "306161": {
+      "title": "Maintenance Planner",
+      "location": "Gladstone - Missouri - United States of America , Liberty - Missouri - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Maintenance-Planner/306161",
+      "posted_at": "18-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-21T03:00:05+00:00",
+      "last_seen_at": "2026-11-21T03:00:05+00:00"
+    },
+    "306285": {
+      "title": "Energy & Sustainability Manager- Healthcare in Cleveland, OH",
+      "location": "Akron - Ohio - United States of America , Cleveland - Ohio - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Energy-Sustainability-Manager-Healthcare-in-Cleveland-OH/306285",
+      "posted_at": "20-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-21T03:00:05+00:00",
+      "last_seen_at": "2026-11-21T03:00:05+00:00"
+    },
+    "305864": {
+      "title": "Facilities Supervisor",
+      "location": "Portland - Oregon - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Facilities-Supervisor/305864",
+      "posted_at": "20-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-21T03:00:05+00:00",
+      "last_seen_at": "2026-11-21T03:00:05+00:00"
+    },
+    "306512": {
+      "title": "HVAC Technician - Fort Worth, TX (Cultural District)",
+      "location": "Fort Worth - Texas - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/HVAC-Technician-Fort-Worth-TX-Cultural-District/306512",
+      "posted_at": "20-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-21T03:00:05+00:00",
+      "last_seen_at": "2026-11-21T03:00:05+00:00"
+    },
+    "306260": {
+      "title": "FM Engineering Ops Manager",
+      "location": "Owensboro - Kentucky - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/FM-Engineering-Ops-Manager/306260",
+      "posted_at": "20-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-21T03:00:05+00:00",
+      "last_seen_at": "2026-11-21T03:00:05+00:00"
+    },
+    "305952": {
+      "title": "Onsite Account Manager - Facilities Management",
+      "location": "Phoenix - Arizona - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Onsite-Account-Manager-Facilities-Management/305952",
+      "posted_at": "20-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-21T03:00:05+00:00",
+      "last_seen_at": "2026-11-21T03:00:05+00:00"
+    },
+    "305944": {
+      "title": "Maintenance Associate",
+      "location": "Memphis - Tennessee - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Maintenance-Associate/305944",
+      "posted_at": "20-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-21T03:00:05+00:00",
+      "last_seen_at": "2026-11-21T03:00:05+00:00"
+    },
+    "305232": {
+      "title": "Maintenance Technician (Entry Level) - Windsor Locks, CT",
+      "location": "Windsor - Connecticut - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Maintenance-Technician-Entry-Level-Windsor-Locks-CT/305232",
+      "posted_at": "20-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-21T03:00:05+00:00",
+      "last_seen_at": "2026-11-21T03:00:05+00:00"
+    },
+    "297550": {
+      "title": "Painter/Carpenter (Dallas)",
+      "location": "Dallas - Texas - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Painter-Carpenter-Dallas/297550",
+      "posted_at": "20-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-21T03:00:05+00:00",
+      "last_seen_at": "2026-11-21T03:00:05+00:00"
+    },
+    "306117": {
+      "title": "Maintenance Technician",
+      "location": "Union City - Georgia - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Maintenance-Technician/306117",
+      "posted_at": "19-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-21T03:00:05+00:00",
+      "last_seen_at": "2026-11-21T03:00:05+00:00"
+    },
+    "305861": {
+      "title": "Automation Engineer Manager",
+      "location": "Atlanta - Georgia - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Automation-Engineer-Manager/305861",
+      "posted_at": "17-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "management"
+      ],
+      "category": "automation",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-21T03:00:05+00:00",
+      "last_seen_at": "2026-11-21T03:00:05+00:00"
+    },
+    "306480": {
+      "title": "Quality Assurance Specialist",
+      "location": "Alajuela - Alajuela - Costa Rica , Heredia - Heredia - Costa Rica , San Jose - San Jose - Costa Rica",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Quality-Assurance-Specialist/306480",
+      "posted_at": "20-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-21T03:00:05+00:00",
+      "last_seen_at": "2026-11-21T03:00:05+00:00"
+    },
+    "305642": {
+      "title": "HVAC Mobile Engineer",
+      "location": "New Orleans - Louisiana - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/HVAC-Mobile-Engineer/305642",
+      "posted_at": "20-Nov-2026",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-21T03:00:05+00:00",
+      "last_seen_at": "2026-11-21T03:00:05+00:00"
+    },
+    "305421": {
+      "title": "Mobile Engineer",
+      "location": "Phoenix - Arizona - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Mobile-Engineer/305421",
+      "posted_at": "20-Nov-2026",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-21T03:00:05+00:00",
+      "last_seen_at": "2026-11-21T03:00:05+00:00"
+    },
+    "305417": {
+      "title": "Assistant Chief Engineer",
+      "location": "Culver City - California - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Assistant-Chief-Engineer/305417",
+      "posted_at": "18-Nov-2026",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-21T03:00:05+00:00",
+      "last_seen_at": "2026-11-21T03:00:05+00:00"
+    },
+    "305839": {
+      "title": "Building Engineer - Indianapolis, IN",
+      "location": "Indianapolis - Indiana - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Building-Engineer-Indianapolis-IN/305839",
+      "posted_at": "16-Nov-2026",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-21T03:00:05+00:00",
+      "last_seen_at": "2026-11-21T03:00:05+00:00"
+    },
+    "303371": {
+      "title": "Building Engineer",
+      "location": "Columbus - Ohio - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Building-Engineer/303371",
+      "posted_at": "20-Nov-2026",
+      "stage": "detail",
+      "blockers": [
+        "non_software_engineering_role"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-21T03:00:05+00:00",
+      "last_seen_at": "2026-11-21T03:00:05+00:00"
     }
   },
   "source_updated_at_by_id": {}

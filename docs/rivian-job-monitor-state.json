@@ -197,7 +197,8 @@
     "36483",
     "36486",
     "36494",
-    "36844"
+    "36844",
+    "37179"
   ],
   "candidate_catalog": {
     "30795": {
@@ -291,7 +292,7 @@
       "category": "software"
     }
   },
-  "last_successful_scan_at": "2026-11-20T20:57:11+00:00",
+  "last_successful_scan_at": "2026-11-21T03:00:05+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "34699": {
@@ -1199,6 +1200,21 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-20T20:57:11+00:00",
       "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "37179": {
+      "title": "Manager, Platform Engineering, Developer Experience",
+      "location": "Vancouver, Canada",
+      "url": "https://careers.rivian.com/careers-home/jobs/37179",
+      "posted_at": "2026-11-20T23:42:00+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-21T03:00:05+00:00",
+      "last_seen_at": "2026-11-21T03:00:05+00:00"
     }
   },
   "source_updated_at_by_id": {}

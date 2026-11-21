@@ -2062,7 +2062,8 @@
     "7709409381504633093",
     "7709729298979506437",
     "7709907405304891653",
-    "7710080588988254517"
+    "7710080588988254517",
+    "7710377102054525237"
   ],
   "candidate_catalog": {
     "7680987768009754885": {
@@ -30017,8 +30018,23 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-20T20:57:11+00:00",
       "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "7710377102054525237": {
+      "title": "Senior Manager, AI & Technology (Legal)",
+      "location": "San Jose, California, United States of America",
+      "url": "https://lifeattiktok.com/search/7710377102054525237",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-21T03:00:05+00:00",
+      "last_seen_at": "2026-11-21T03:00:05+00:00"
     }
   },
-  "last_successful_scan_at": "2026-11-20T20:57:11+00:00",
+  "last_successful_scan_at": "2026-11-21T03:00:05+00:00",
   "source_updated_at_by_id": {}
 }

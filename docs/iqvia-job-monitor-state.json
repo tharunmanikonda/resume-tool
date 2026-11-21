@@ -3055,6 +3055,7 @@
     "R1580858",
     "R1580867",
     "R1580882",
+    "R1580897",
     "R1580920",
     "R1580946",
     "R1580968",
@@ -3271,7 +3272,7 @@
       "category": "software"
     }
   },
-  "last_successful_scan_at": "2026-11-20T20:57:11+00:00",
+  "last_successful_scan_at": "2026-11-21T03:00:05+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "R1545472": {
@@ -45172,6 +45173,20 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-20T20:57:11+00:00",
       "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "R1580897": {
+      "title": "Associate, Advisory Services (Summer 2027 Cohort)",
+      "location": "2 Locations",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/New-York-New-York-United-States-of-America/Associate--Advisory-Services--Summer-2027-Cohort-_R1580897",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-21T03:00:05+00:00",
+      "last_seen_at": "2026-11-21T03:00:05+00:00"
     }
   },
   "source_updated_at_by_id": {}

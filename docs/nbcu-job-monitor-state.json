@@ -871,7 +871,11 @@
     "744000162798120",
     "744000162808859",
     "744000162814729",
-    "744000162819360"
+    "744000162819360",
+    "744000162828399",
+    "744000162829484",
+    "744000162831819",
+    "744000162834630"
   ],
   "candidate_catalog": {
     "744000151898289": {
@@ -1037,7 +1041,7 @@
       "category": "software"
     }
   },
-  "last_successful_scan_at": "2026-11-20T20:57:11+00:00",
+  "last_successful_scan_at": "2026-11-21T03:00:05+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "744000156079569": {
@@ -11990,6 +11994,64 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-20T20:57:11+00:00",
       "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "744000162834630": {
+      "title": "Duopoly Brand Manager, NBC and Telemundo San Diego",
+      "location": "San Diego, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162834630-duopoly-brand-manager-nbc-and-telemundo-san-diego",
+      "posted_at": "2026-11-20T23:45:34.339Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-21T03:00:05+00:00",
+      "last_seen_at": "2026-11-21T03:00:05+00:00"
+    },
+    "744000162831819": {
+      "title": "Senior Analyst, Social Marketing",
+      "location": "Miami, Florida, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162831819-senior-analyst-social-marketing",
+      "posted_at": "2026-11-20T22:42:22.619Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-21T03:00:05+00:00",
+      "last_seen_at": "2026-11-21T03:00:05+00:00"
+    },
+    "744000162829484": {
+      "title": "Social Media Community Manager",
+      "location": "Miami, Florida, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162829484-social-media-community-manager",
+      "posted_at": "2026-11-20T22:38:31.033Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-21T03:00:05+00:00",
+      "last_seen_at": "2026-11-21T03:00:05+00:00"
+    },
+    "744000162828399": {
+      "title": "Reporter/Producer, Telemundo Al Rojo Vivo",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000162828399-reporter-producer-telemundo-al-rojo-vivo",
+      "posted_at": "2026-11-20T22:10:19.830Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-21T03:00:05+00:00",
+      "last_seen_at": "2026-11-21T03:00:05+00:00"
     }
   },
   "source_updated_at_by_id": {}
