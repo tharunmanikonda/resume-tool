@@ -1146,6 +1146,7 @@
     "JR2028451",
     "JR2028454",
     "JR2028458",
+    "JR2028497",
     "JR2028501",
     "JR2028506",
     "JR2028517",
@@ -1228,6 +1229,7 @@
     "JR2029296",
     "JR2029313",
     "JR2029324",
+    "JR2029344",
     "JR2029346",
     "JR2029355",
     "JR2029364",
@@ -1252,6 +1254,7 @@
     "JR2029536",
     "JR2029548",
     "JR2029570",
+    "JR2029574",
     "JR2029610",
     "JR2029621",
     "JR2029629",
@@ -1274,11 +1277,13 @@
     "JR2029837",
     "JR2029838",
     "JR2029873",
+    "JR2029877",
     "JR2029878",
     "JR2029897",
     "JR2029901",
     "JR2029912",
     "JR2029915",
+    "JR2029917",
     "JR2029921",
     "JR2029924",
     "JR2029932",
@@ -1294,7 +1299,9 @@
     "JR2030204",
     "JR2030240",
     "JR2030246",
+    "JR2030252",
     "JR2030254",
+    "JR2030268",
     "JR2030272",
     "JR2030275",
     "JR2030289",
@@ -1671,7 +1678,7 @@
       "category": "technical_review"
     }
   },
-  "last_successful_scan_at": "2026-11-21T03:00:05+00:00",
+  "last_successful_scan_at": "2026-11-21T19:58:22+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "JR2014880": {
@@ -17948,6 +17955,104 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-21T03:00:05+00:00",
       "last_seen_at": "2026-11-21T03:00:05+00:00"
+    },
+    "JR2028497": {
+      "title": "Senior Software Engineer, DSX OS Control Plane",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Software-Engineer--DSX-OS-Control-Plane_JR2028497",
+      "posted_at": "Posted Yesterday",
+      "stage": "prefilter",
+      "blockers": [
+        "embedded_or_hardware"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-21T19:58:22+00:00",
+      "last_seen_at": "2026-11-21T19:58:22+00:00"
+    },
+    "JR2030252": {
+      "title": "Principal Software Engineer and System Architect",
+      "location": "3 Locations",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Principal-Software-Engineer-and-System-Architect_JR2030252",
+      "posted_at": "Posted Yesterday",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-21T19:58:22+00:00",
+      "last_seen_at": "2026-11-21T19:58:22+00:00"
+    },
+    "JR2030268": {
+      "title": "Senior Manager, Software Engineering",
+      "location": "3 Locations",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Manager--Software-Engineering_JR2030268",
+      "posted_at": "Posted Yesterday",
+      "stage": "prefilter",
+      "blockers": [
+        "management"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-21T19:58:22+00:00",
+      "last_seen_at": "2026-11-21T19:58:22+00:00"
+    },
+    "JR2029917": {
+      "title": "Senior System Software Engineer - AI Factory Automation",
+      "location": "US, CA, Santa Clara; US, Remote",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-System-Software-Engineer---AI-Factory-Automation_JR2029917-1",
+      "posted_at": "2026-11-20",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-21T19:58:22+00:00",
+      "last_seen_at": "2026-11-21T19:58:22+00:00"
+    },
+    "JR2029344": {
+      "title": "Senior System Test Engineer",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-System-Test-Engineer_JR2029344",
+      "posted_at": "2026-11-20",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-21T19:58:22+00:00",
+      "last_seen_at": "2026-11-21T19:58:22+00:00"
+    },
+    "JR2029877": {
+      "title": "Senior Materials Engineer",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Materials-Engineer_JR2029877",
+      "posted_at": "2026-11-20",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-21T19:58:22+00:00",
+      "last_seen_at": "2026-11-21T19:58:22+00:00"
+    },
+    "JR2029574": {
+      "title": "Thermal Design Engineer",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Thermal-Design-Engineer_JR2029574",
+      "posted_at": "2026-11-20",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-21T19:58:22+00:00",
+      "last_seen_at": "2026-11-21T19:58:22+00:00"
     }
   },
   "source_updated_at_by_id": {}
