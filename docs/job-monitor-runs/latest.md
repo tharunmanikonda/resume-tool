@@ -1,7 +1,7 @@
 # Daily job monitor report
 
 - Status: **Successful**
-- Scanned at: `2026-11-22T01:56:38+00:00`
+- Scanned at: `2026-11-22T20:11:33+00:00`
 - Monitors: 14
 - New candidates: 0
 - Needs review: 0
@@ -14,9 +14,9 @@
 | cdk | ok | 56 | 0 | 0 | 0 | yes |
 | cisco | ok | 60 | 0 | 0 | 0 | yes |
 | crunchyroll | ok | 99 | 0 | 0 | 0 | yes |
-| ebay | ok | 185 | 0 | 0 | 0 | yes |
+| ebay | ok | 169 | 0 | 0 | 0 | yes |
 | intepros | ok | 20 | 0 | 0 | 0 | yes |
-| iqvia | ok | 356 | 0 | 0 | 0 | yes |
+| iqvia | ok | 354 | 0 | 0 | 0 | yes |
 | nbcu | ok | 259 | 0 | 0 | 0 | yes |
 | nvidia | ok | 100 | 0 | 0 | 0 | yes |
 | occ | ok | 60 | 0 | 0 | 0 | yes |
