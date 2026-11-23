@@ -3093,6 +3093,8 @@
     "303059",
     "303091",
     "303096",
+    "303101",
+    "303107",
     "303111",
     "303115",
     "303120",
@@ -3798,6 +3800,7 @@
     "306095",
     "306098",
     "306102",
+    "306103",
     "306106",
     "306117",
     "306118",
@@ -3834,7 +3837,7 @@
     "8655"
   ],
   "candidate_catalog": {},
-  "last_successful_scan_at": "2026-11-22T20:11:33+00:00",
+  "last_successful_scan_at": "2026-11-23T02:20:48+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "301688": {
@@ -41462,6 +41465,49 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-21T03:00:05+00:00",
       "last_seen_at": "2026-11-21T03:00:05+00:00"
+    },
+    "303107": {
+      "title": "Senior Analyst - Record to Report (RTR)",
+      "location": "Kuala Lumpur - Wilayah Persekutuan Kuala Lumpur - Malaysia",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Senior-Analyst-Record-to-Report-RTR/303107",
+      "posted_at": "23-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-23T02:20:48+00:00",
+      "last_seen_at": "2026-11-23T02:20:48+00:00"
+    },
+    "303101": {
+      "title": "Finance Analyst - Record to Report (EMEA)",
+      "location": "Kuala Lumpur - Wilayah Persekutuan Kuala Lumpur - Malaysia",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Finance-Analyst-Record-to-Report-EMEA/303101",
+      "posted_at": "23-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-23T02:20:48+00:00",
+      "last_seen_at": "2026-11-23T02:20:48+00:00"
+    },
+    "306103": {
+      "title": "Maintenance Technician",
+      "location": "Markham - Illinois - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Maintenance-Technician/306103",
+      "posted_at": "18-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-23T02:20:48+00:00",
+      "last_seen_at": "2026-11-23T02:20:48+00:00"
     }
   },
   "source_updated_at_by_id": {}
