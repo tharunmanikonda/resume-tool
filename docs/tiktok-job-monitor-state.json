@@ -2063,8 +2063,10 @@
     "7709409381504633093",
     "7709729298979506437",
     "7709907405304891653",
+    "7709919543988865333",
     "7710080588988254517",
-    "7710377102054525237"
+    "7710377102054525237",
+    "7711366131996657925"
   ],
   "candidate_catalog": {
     "7680987768009754885": {
@@ -30043,8 +30045,36 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-21T03:00:05+00:00",
       "last_seen_at": "2026-11-21T03:00:05+00:00"
+    },
+    "7709919543988865333": {
+      "title": "AI Data Quality Enforcement Expert - Spanish Speaking",
+      "location": "Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur, Malaysia",
+      "url": "https://lifeattiktok.com/search/7709919543988865333",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T00:37:54+00:00",
+      "last_seen_at": "2026-11-24T00:37:54+00:00"
+    },
+    "7711366131996657925": {
+      "title": "Security Specialist, Infrastructure - Global Security Organization",
+      "location": "New York, United States of America",
+      "url": "https://lifeattiktok.com/search/7711366131996657925",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T00:37:54+00:00",
+      "last_seen_at": "2026-11-24T00:37:54+00:00"
     }
   },
-  "last_successful_scan_at": "2026-11-23T02:20:48+00:00",
+  "last_successful_scan_at": "2026-11-24T00:37:54+00:00",
   "source_updated_at_by_id": {}
 }

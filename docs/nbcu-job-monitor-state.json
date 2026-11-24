@@ -875,7 +875,27 @@
     "744000162828399",
     "744000162829484",
     "744000162831819",
-    "744000162834630"
+    "744000162834630",
+    "744000163245260",
+    "744000163258300",
+    "744000163264534",
+    "744000163267829",
+    "744000163269479",
+    "744000163274209",
+    "744000163277709",
+    "744000163291790",
+    "744000163291799",
+    "744000163292089",
+    "744000163298409",
+    "744000163300040",
+    "744000163301390",
+    "744000163307309",
+    "744000163309049",
+    "744000163309760",
+    "744000163312930",
+    "744000163314981",
+    "744000163340477",
+    "744000163340879"
   ],
   "candidate_catalog": {
     "744000151898289": {
@@ -1039,9 +1059,27 @@
       "first_seen_at": "2026-11-20T20:57:11+00:00",
       "priority": "high",
       "category": "software"
+    },
+    "744000163269479": {
+      "title": "CDN Engineer",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163269479-cdn-engineer",
+      "posted_at": "2026-11-23T16:19:33.683Z",
+      "first_seen_at": "2026-11-24T00:37:54+00:00",
+      "priority": "medium",
+      "category": "technical_review"
+    },
+    "744000163267829": {
+      "title": "Sr. CDN Engineer",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163267829-sr-cdn-engineer",
+      "posted_at": "2026-11-23T16:14:42.869Z",
+      "first_seen_at": "2026-11-24T00:37:54+00:00",
+      "priority": "medium",
+      "category": "technical_review"
     }
   },
-  "last_successful_scan_at": "2026-11-23T02:20:48+00:00",
+  "last_successful_scan_at": "2026-11-24T00:37:54+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "744000156079569": {
@@ -12052,6 +12090,266 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-21T03:00:05+00:00",
       "last_seen_at": "2026-11-21T03:00:05+00:00"
+    },
+    "744000163340879": {
+      "title": "Sr Financial Analyst",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163340879-sr-financial-analyst",
+      "posted_at": "2026-11-23T23:39:45.761Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T00:37:54+00:00",
+      "last_seen_at": "2026-11-24T00:37:54+00:00"
+    },
+    "744000163340477": {
+      "title": "Manager, Finance Reporting Product Owner",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163340477-manager-finance-reporting-product-owner",
+      "posted_at": "2026-11-23T23:32:02.249Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T00:37:54+00:00",
+      "last_seen_at": "2026-11-24T00:37:54+00:00"
+    },
+    "744000163314981": {
+      "title": "Coordinator, Human Resources",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163314981-coordinator-human-resources",
+      "posted_at": "2026-11-23T20:21:06.580Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T00:37:54+00:00",
+      "last_seen_at": "2026-11-24T00:37:54+00:00"
+    },
+    "744000163312930": {
+      "title": "Manager, Corporate FP&A",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163312930-manager-corporate-fp-a",
+      "posted_at": "2026-11-23T20:18:16.579Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T00:37:54+00:00",
+      "last_seen_at": "2026-11-24T00:37:54+00:00"
+    },
+    "744000163309760": {
+      "title": "Analyst, Tech Compliance & Assurance",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163309760-analyst-tech-compliance-assurance",
+      "posted_at": "2026-11-23T20:02:40.650Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T00:37:54+00:00",
+      "last_seen_at": "2026-11-24T00:37:54+00:00"
+    },
+    "744000163309049": {
+      "title": "Director, Incident Management & Prevention",
+      "location": "Orlando, Florida, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163309049-director-incident-management-prevention",
+      "posted_at": "2026-11-23T19:45:08.951Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T00:37:54+00:00",
+      "last_seen_at": "2026-11-24T00:37:54+00:00"
+    },
+    "744000163307309": {
+      "title": " Content Producer, Telemundo T62 Filadelfia",
+      "location": "Philadelphia, PENNSYLVANIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163307309-content-producer-telemundo-t62-filadelfia",
+      "posted_at": "2026-11-23T19:33:28.486Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T00:37:54+00:00",
+      "last_seen_at": "2026-11-24T00:37:54+00:00"
+    },
+    "744000163301390": {
+      "title": "Manager, Corporate Governance",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163301390-manager-corporate-governance",
+      "posted_at": "2026-11-23T19:01:09.465Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T00:37:54+00:00",
+      "last_seen_at": "2026-11-24T00:37:54+00:00"
+    },
+    "744000163300040": {
+      "title": "Billing Analyst, Digital Ad Sales and FP&P",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163300040-billing-analyst-digital-ad-sales-and-fp-p",
+      "posted_at": "2026-11-23T18:51:16.996Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T00:37:54+00:00",
+      "last_seen_at": "2026-11-24T00:37:54+00:00"
+    },
+    "744000163292089": {
+      "title": "Assistant Manager, Global Platform TV Servicing",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163292089-assistant-manager-global-platform-tv-servicing",
+      "posted_at": "2026-11-23T18:01:57.697Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T00:37:54+00:00",
+      "last_seen_at": "2026-11-24T00:37:54+00:00"
+    },
+    "744000163291790": {
+      "title": "Assistant Manager, WW New Media Metadata Servicing",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163291790-assistant-manager-ww-new-media-metadata-servicing",
+      "posted_at": "2026-11-23T18:01:38.128Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T00:37:54+00:00",
+      "last_seen_at": "2026-11-24T00:37:54+00:00"
+    },
+    "744000163291799": {
+      "title": "Product Manager (AI Solutions)",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163291799-product-manager-ai-solutions",
+      "posted_at": "2026-11-23T17:58:56.777Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T00:37:54+00:00",
+      "last_seen_at": "2026-11-24T00:37:54+00:00"
+    },
+    "744000163277709": {
+      "title": "Sr. Manager, Internal Communications & Team Member Experiences",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163277709-sr-manager-internal-communications-team-member-experiences",
+      "posted_at": "2026-11-23T16:51:52.585Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T00:37:54+00:00",
+      "last_seen_at": "2026-11-24T00:37:54+00:00"
+    },
+    "744000163274209": {
+      "title": "Vice President, Programmatic Agency Partnerships",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163274209-vice-president-programmatic-agency-partnerships",
+      "posted_at": "2026-11-23T16:38:43.125Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T00:37:54+00:00",
+      "last_seen_at": "2026-11-24T00:37:54+00:00"
+    },
+    "744000163264534": {
+      "title": "Content Producer, NBC4 Washington ",
+      "location": "Washington, District of Columbia, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163264534-content-producer-nbc4-washington",
+      "posted_at": "2026-11-23T16:04:40.606Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T00:37:54+00:00",
+      "last_seen_at": "2026-11-24T00:37:54+00:00"
+    },
+    "744000163258300": {
+      "title": "Executive Assistant",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163258300-executive-assistant",
+      "posted_at": "2026-11-23T15:55:42.804Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T00:37:54+00:00",
+      "last_seen_at": "2026-11-24T00:37:54+00:00"
+    },
+    "744000163245260": {
+      "title": "VP, News Standards",
+      "location": "Washington, District of Columbia, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163245260-vp-news-standards",
+      "posted_at": "2026-11-23T15:11:35.610Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T00:37:54+00:00",
+      "last_seen_at": "2026-11-24T00:37:54+00:00"
+    },
+    "744000163298409": {
+      "title": "Senior Data Engineer, Data Management & BI",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163298409-senior-data-engineer-data-management-bi",
+      "posted_at": "2026-11-23T18:40:18.155Z",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "data",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T00:37:54+00:00",
+      "last_seen_at": "2026-11-24T00:37:54+00:00"
     }
   },
   "source_updated_at_by_id": {}

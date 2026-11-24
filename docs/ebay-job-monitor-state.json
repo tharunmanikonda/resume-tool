@@ -33,6 +33,7 @@
     "R0072055",
     "R0072057",
     "R0072265",
+    "R0072644",
     "R0072652",
     "R0072671",
     "R0072675",
@@ -217,6 +218,7 @@
     "R0076363",
     "R0076364",
     "R0076376",
+    "R0076386",
     "R0076387",
     "R0076393",
     "R0076405",
@@ -438,6 +440,7 @@
     "R0077360",
     "R0077364",
     "R0077366",
+    "R0077368",
     "R0077372",
     "R0077384",
     "R0077386",
@@ -447,6 +450,8 @@
     "R0077401",
     "R0077411",
     "R0077415",
+    "R0077416",
+    "R0077423",
     "R0077429",
     "R0077431",
     "R0077432",
@@ -473,6 +478,8 @@
     "R0077520",
     "R0077532",
     "R0077534",
+    "R0077539",
+    "R0077546",
     "R0077563",
     "R0077577",
     "R0077632"
@@ -569,7 +576,7 @@
       "category": "platform"
     }
   },
-  "last_successful_scan_at": "2026-11-23T02:20:48+00:00",
+  "last_successful_scan_at": "2026-11-24T00:37:54+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "R0077145": {
@@ -6805,6 +6812,109 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-20T20:57:11+00:00",
       "last_seen_at": "2026-11-20T20:57:11+00:00"
+    },
+    "R0072644": {
+      "title": "Software Engineer 3",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0072644/Software-Engineer-3",
+      "posted_at": "2026-11-23T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T00:37:54+00:00",
+      "last_seen_at": "2026-11-24T00:37:54+00:00"
+    },
+    "R0077368": {
+      "title": "MacOS Client Platform Engineer",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077368/MacOS-Client-Platform-Engineer",
+      "posted_at": "2026-11-23T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "platform",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T00:37:54+00:00",
+      "last_seen_at": "2026-11-24T00:37:54+00:00"
+    },
+    "R0077416": {
+      "title": "P2P Associate",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077416/P2P-Associate",
+      "posted_at": "2026-11-23T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T00:37:54+00:00",
+      "last_seen_at": "2026-11-24T00:37:54+00:00"
+    },
+    "R0077423": {
+      "title": "P2P Analyst",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077423/P2P-Analyst",
+      "posted_at": "2026-11-23T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T00:37:54+00:00",
+      "last_seen_at": "2026-11-24T00:37:54+00:00"
+    },
+    "R0077539": {
+      "title": "Junior AML Analyst",
+      "location": "Luxembourg, Luxembourg, Luxembourg",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077539/Junior-AML-Analyst",
+      "posted_at": "2026-11-23T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T00:37:54+00:00",
+      "last_seen_at": "2026-11-24T00:37:54+00:00"
+    },
+    "R0077546": {
+      "title": "Product Marketing Manager",
+      "location": "Austin, Texas, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077546/Product-Marketing-Manager",
+      "posted_at": "2026-11-23T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T00:37:54+00:00",
+      "last_seen_at": "2026-11-24T00:37:54+00:00"
+    },
+    "R0076386": {
+      "title": "Data science Lead/Manager",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076386/Data-science-Lead-Manager",
+      "posted_at": "2026-11-23T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T00:37:54+00:00",
+      "last_seen_at": "2026-11-24T00:37:54+00:00"
     }
   },
   "source_updated_at_by_id": {}

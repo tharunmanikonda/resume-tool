@@ -1,6 +1,6 @@
 {
   "success": true,
-  "scanned_at": "2026-11-23T02:20:48+00:00",
+  "scanned_at": "2026-11-24T00:37:54+00:00",
   "monitor_count": 14,
   "successful_monitors": [
     "cbre",
@@ -19,23 +19,40 @@
     "waymo"
   ],
   "failed_monitors": [],
-  "candidate_count": 1,
+  "candidate_count": 2,
   "needs_ai_review_count": 0,
   "candidates": [
     {
-      "monitor": "tiktok",
-      "job_id": "7705023349533346101",
-      "title": "Client Security & Data Foundation Software Engineer - Intern (TikTok BRIC) - 2027 Start",
-      "location": "San Jose, California, United States of America",
-      "posted_at": "",
-      "url": "https://lifeattiktok.com/search/7705023349533346101",
+      "monitor": "nbcu",
+      "job_id": "744000163269479",
+      "title": "CDN Engineer",
+      "location": "New York, NEW YORK, United States",
+      "posted_at": "2026-11-23T16:19:33.683Z",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163269479-cdn-engineer",
       "priority": "medium",
       "matching_requirements": [
-        "target_title:software",
-        "profile_signal:python:+2",
-        "profile_signal:java:+1",
-        "profile_signal:javascript_react:+1",
-        "profile_signal:backend_apis:+2"
+        "target_title:technical_review",
+        "profile_signal:cloud_containers:+2",
+        "profile_signal:observability:+1",
+        "profile_signal:reliability_telemetry:+3",
+        "profile_signal:qa_automation:+2"
+      ],
+      "material_gaps": []
+    },
+    {
+      "monitor": "nbcu",
+      "job_id": "744000163267829",
+      "title": "Sr. CDN Engineer",
+      "location": "New York, NEW YORK, United States",
+      "posted_at": "2026-11-23T16:14:42.869Z",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163267829-sr-cdn-engineer",
+      "priority": "medium",
+      "matching_requirements": [
+        "target_title:technical_review",
+        "profile_signal:cloud_containers:+2",
+        "profile_signal:observability:+1",
+        "profile_signal:reliability_telemetry:+3",
+        "profile_signal:qa_automation:+2"
       ],
       "material_gaps": []
     }
@@ -45,9 +62,9 @@
     {
       "monitor": "cbre",
       "success": true,
-      "scanned_at": "2026-11-23T02:20:48+00:00",
-      "fetched": 734,
-      "unseen": 3,
+      "scanned_at": "2026-11-24T00:37:54+00:00",
+      "fetched": 1018,
+      "unseen": 56,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -56,8 +73,8 @@
     {
       "monitor": "cdk",
       "success": true,
-      "scanned_at": "2026-11-23T02:20:48+00:00",
-      "fetched": 56,
+      "scanned_at": "2026-11-24T00:37:54+00:00",
+      "fetched": 54,
       "unseen": 0,
       "state_updated": true,
       "candidates": [],
@@ -67,9 +84,9 @@
     {
       "monitor": "cisco",
       "success": true,
-      "scanned_at": "2026-11-23T02:20:48+00:00",
-      "fetched": 60,
-      "unseen": 0,
+      "scanned_at": "2026-11-24T00:37:54+00:00",
+      "fetched": 80,
+      "unseen": 4,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -78,9 +95,9 @@
     {
       "monitor": "crunchyroll",
       "success": true,
-      "scanned_at": "2026-11-23T02:20:48+00:00",
+      "scanned_at": "2026-11-24T00:37:54+00:00",
       "fetched": 99,
-      "unseen": 0,
+      "unseen": 1,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -89,9 +106,9 @@
     {
       "monitor": "ebay",
       "success": true,
-      "scanned_at": "2026-11-23T02:20:48+00:00",
-      "fetched": 186,
-      "unseen": 0,
+      "scanned_at": "2026-11-24T00:37:54+00:00",
+      "fetched": 197,
+      "unseen": 7,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -100,9 +117,9 @@
     {
       "monitor": "intepros",
       "success": true,
-      "scanned_at": "2026-11-23T02:20:48+00:00",
-      "fetched": 20,
-      "unseen": 0,
+      "scanned_at": "2026-11-24T00:37:54+00:00",
+      "fetched": 30,
+      "unseen": 5,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -111,9 +128,9 @@
     {
       "monitor": "iqvia",
       "success": true,
-      "scanned_at": "2026-11-23T02:20:48+00:00",
-      "fetched": 355,
-      "unseen": 0,
+      "scanned_at": "2026-11-24T00:37:54+00:00",
+      "fetched": 1003,
+      "unseen": 28,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -122,18 +139,51 @@
     {
       "monitor": "nbcu",
       "success": true,
-      "scanned_at": "2026-11-23T02:20:48+00:00",
-      "fetched": 259,
-      "unseen": 0,
+      "scanned_at": "2026-11-24T00:37:54+00:00",
+      "fetched": 340,
+      "unseen": 20,
       "state_updated": true,
-      "candidates": [],
+      "candidates": [
+        {
+          "job_id": "744000163269479",
+          "title": "CDN Engineer",
+          "location": "New York, NEW YORK, United States",
+          "posted_at": "2026-11-23T16:19:33.683Z",
+          "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163269479-cdn-engineer",
+          "priority": "medium",
+          "matching_requirements": [
+            "target_title:technical_review",
+            "profile_signal:cloud_containers:+2",
+            "profile_signal:observability:+1",
+            "profile_signal:reliability_telemetry:+3",
+            "profile_signal:qa_automation:+2"
+          ],
+          "material_gaps": []
+        },
+        {
+          "job_id": "744000163267829",
+          "title": "Sr. CDN Engineer",
+          "location": "New York, NEW YORK, United States",
+          "posted_at": "2026-11-23T16:14:42.869Z",
+          "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163267829-sr-cdn-engineer",
+          "priority": "medium",
+          "matching_requirements": [
+            "target_title:technical_review",
+            "profile_signal:cloud_containers:+2",
+            "profile_signal:observability:+1",
+            "profile_signal:reliability_telemetry:+3",
+            "profile_signal:qa_automation:+2"
+          ],
+          "material_gaps": []
+        }
+      ],
       "needs_ai_review": [],
       "errors": []
     },
     {
       "monitor": "nvidia",
       "success": true,
-      "scanned_at": "2026-11-23T02:20:48+00:00",
+      "scanned_at": "2026-11-24T00:37:54+00:00",
       "fetched": 100,
       "unseen": 0,
       "state_updated": true,
@@ -144,9 +194,9 @@
     {
       "monitor": "occ",
       "success": true,
-      "scanned_at": "2026-11-23T02:20:48+00:00",
-      "fetched": 60,
-      "unseen": 0,
+      "scanned_at": "2026-11-24T00:37:54+00:00",
+      "fetched": 63,
+      "unseen": 1,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -155,8 +205,8 @@
     {
       "monitor": "ocient",
       "success": true,
-      "scanned_at": "2026-11-23T02:20:48+00:00",
-      "fetched": 20,
+      "scanned_at": "2026-11-24T00:37:54+00:00",
+      "fetched": 19,
       "unseen": 0,
       "state_updated": true,
       "candidates": [],
@@ -166,7 +216,7 @@
     {
       "monitor": "rivian",
       "success": true,
-      "scanned_at": "2026-11-23T02:20:48+00:00",
+      "scanned_at": "2026-11-24T00:37:54+00:00",
       "fetched": 30,
       "unseen": 0,
       "state_updated": true,
@@ -177,36 +227,19 @@
     {
       "monitor": "tiktok",
       "success": true,
-      "scanned_at": "2026-11-23T02:20:48+00:00",
-      "fetched": 1796,
-      "unseen": 1,
+      "scanned_at": "2026-11-24T00:37:54+00:00",
+      "fetched": 1792,
+      "unseen": 2,
       "state_updated": true,
-      "candidates": [
-        {
-          "job_id": "7705023349533346101",
-          "title": "Client Security & Data Foundation Software Engineer - Intern (TikTok BRIC) - 2027 Start",
-          "location": "San Jose, California, United States of America",
-          "posted_at": "",
-          "url": "https://lifeattiktok.com/search/7705023349533346101",
-          "priority": "medium",
-          "matching_requirements": [
-            "target_title:software",
-            "profile_signal:python:+2",
-            "profile_signal:java:+1",
-            "profile_signal:javascript_react:+1",
-            "profile_signal:backend_apis:+2"
-          ],
-          "material_gaps": []
-        }
-      ],
+      "candidates": [],
       "needs_ai_review": [],
       "errors": []
     },
     {
       "monitor": "waymo",
       "success": true,
-      "scanned_at": "2026-11-23T02:20:48+00:00",
-      "fetched": 148,
+      "scanned_at": "2026-11-24T00:37:54+00:00",
+      "fetched": 146,
       "unseen": 0,
       "state_updated": true,
       "candidates": [],

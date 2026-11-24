@@ -253,6 +253,8 @@
     "a0Hcw00000BlIHiEAN",
     "a0Hcw00000BlelFEAR",
     "a0Hcw00000BmCerEAF",
+    "a0Hcw00000BmCyDEAV",
+    "a0Hcw00000BmCyEEAV",
     "a0Hcw00000BmICPEA3",
     "a0Hcw00000BmPiXEAV",
     "a0Hcw00000BmaMDEAZ",
@@ -273,9 +275,12 @@
     "a0Hcw00000BsuS3EAJ",
     "a0Hcw00000BtKxREAV",
     "a0Hcw00000BuVvdEAF",
-    "a0Hcw00000BuYThEAN"
+    "a0Hcw00000BuYThEAN",
+    "a0Hcw00000BudzdEAB",
+    "a0Hcw00000BwpDVEAZ",
+    "a0Hcw00000Bwtk9EAB"
   ],
-  "last_successful_scan_at": "2026-11-23T02:20:48+00:00",
+  "last_successful_scan_at": "2026-11-24T00:37:54+00:00",
   "candidate_catalog": {
     "a0Hcw000006tdYLEAY": {
       "title": "Operational Excellence Engineer",
@@ -2001,6 +2006,78 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-21T03:00:05+00:00",
       "last_seen_at": "2026-11-21T03:00:05+00:00"
+    },
+    "a0Hcw00000BwpDVEAZ": {
+      "title": "Senior Accounting Manager, Entertainment & Media",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000BwpDVEAZ/senior-accounting-manager-entertainment--media",
+      "posted_at": "Posted This Week",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T00:37:54+00:00",
+      "last_seen_at": "2026-11-24T00:37:54+00:00"
+    },
+    "a0Hcw00000BmCyEEAV": {
+      "title": "Lead Analyst, Sales Operations",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000BmCyEEAV/lead-analyst-sales-operations",
+      "posted_at": "Posted This Week",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T00:37:54+00:00",
+      "last_seen_at": "2026-11-24T00:37:54+00:00"
+    },
+    "a0Hcw00000BmCyDEAV": {
+      "title": "Lead Analyst, Sales Operations",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000BmCyDEAV/lead-analyst-sales-operations",
+      "posted_at": "Posted This Week",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T00:37:54+00:00",
+      "last_seen_at": "2026-11-24T00:37:54+00:00"
+    },
+    "a0Hcw00000BudzdEAB": {
+      "title": "Staff Quality Systems Specialist",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000BudzdEAB/staff-quality-systems-specialist",
+      "posted_at": "Posted This Week",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T00:37:54+00:00",
+      "last_seen_at": "2026-11-24T00:37:54+00:00"
+    },
+    "a0Hcw00000Bwtk9EAB": {
+      "title": "Remote: DevOps Engineer",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000Bwtk9EAB/remote-devops-engineer",
+      "posted_at": "Posted This Week",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "platform",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T00:37:54+00:00",
+      "last_seen_at": "2026-11-24T00:37:54+00:00"
     }
   },
   "source_updated_at_by_id": {}

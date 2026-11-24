@@ -1490,16 +1490,20 @@
     "2030529",
     "2030721",
     "2030760",
+    "2030954",
     "2031083",
     "2031175",
     "2031200",
     "2031275",
     "2031477",
+    "2031481",
+    "2031565",
+    "2031885",
     "2031914",
     "2032282",
     "2032363"
   ],
-  "last_successful_scan_at": "2026-11-23T02:20:48+00:00",
+  "last_successful_scan_at": "2026-11-24T00:37:54+00:00",
   "candidate_catalog": {
     "2024998": {
       "title": "AI Security Engineer",
@@ -4106,6 +4110,62 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-21T03:00:05+00:00",
       "last_seen_at": "2026-11-21T03:00:05+00:00"
+    },
+    "2031481": {
+      "title": "Lead Product Designer - AI and Platform Experience",
+      "location": "51 Locations",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/Lead-Product-Designer---AI-and-Platform-Experience_2031481",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T00:37:54+00:00",
+      "last_seen_at": "2026-11-24T00:37:54+00:00"
+    },
+    "2030954": {
+      "title": "Sr. ASIC Product Design Developer",
+      "location": "Vancouver, British Columbia, Canada",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Vancouver-British-Columbia-Canada/Sr-ASIC-Product-Design-Developer_2030954",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T00:37:54+00:00",
+      "last_seen_at": "2026-11-24T00:37:54+00:00"
+    },
+    "2031565": {
+      "title": "Hardware Design Engineer",
+      "location": "Milpitas, California, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Milpitas-California-US/Hardware-Design-Engineer_2031565",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "embedded_or_hardware"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T00:37:54+00:00",
+      "last_seen_at": "2026-11-24T00:37:54+00:00"
+    },
+    "2031885": {
+      "title": "Software Engineer (SRE + AI)",
+      "location": "Galway, Ireland",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Galway-Ireland/Software-Engineer--SRE---AI-_2031885",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "reliability",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T00:37:54+00:00",
+      "last_seen_at": "2026-11-24T00:37:54+00:00"
     }
   },
   "source_updated_at_by_id": {}

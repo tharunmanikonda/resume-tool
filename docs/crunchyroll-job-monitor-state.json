@@ -140,7 +140,8 @@
     "8392775",
     "8400422",
     "8400470",
-    "8400509"
+    "8400509",
+    "8400564"
   ],
   "candidate_catalog": {
     "8221413": {
@@ -2209,9 +2210,23 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-20T02:53:01+00:00",
       "last_seen_at": "2026-11-20T02:53:01+00:00"
+    },
+    "8400564": {
+      "title": "Senior Executive Assistant",
+      "location": "Los Angeles, California, United States",
+      "url": "https://boards.greenhouse.io/crunchyroll/jobs/8400564?gh_jid=8400564",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T00:37:54+00:00",
+      "last_seen_at": "2026-11-24T00:37:54+00:00"
     }
   },
-  "last_successful_scan_at": "2026-11-23T02:20:48+00:00",
+  "last_successful_scan_at": "2026-11-24T00:37:54+00:00",
   "source_updated_at_by_id": {
     "6584220": "2026-11-17T16:14:31-05:00",
     "8204263": "2026-11-10T08:46:25-05:00",
@@ -2351,6 +2366,7 @@
     "8168309": "2026-11-18T21:02:36-05:00",
     "8379387": "2026-11-19T10:18:13-05:00",
     "8400470": "2026-11-19T10:57:22-05:00",
-    "7303205": "2026-11-19T19:28:24-05:00"
+    "7303205": "2026-11-19T19:28:24-05:00",
+    "8400564": "2026-11-23T14:58:06-05:00"
   }
 }
