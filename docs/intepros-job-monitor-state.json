@@ -278,9 +278,13 @@
     "a0Hcw00000BuYThEAN",
     "a0Hcw00000BudzdEAB",
     "a0Hcw00000BwpDVEAZ",
-    "a0Hcw00000Bwtk9EAB"
+    "a0Hcw00000Bwtk9EAB",
+    "a0Hcw00000Bxnw1EAB",
+    "a0Hcw00000Byym9EAB",
+    "a0Hcw00000Bz9xhEAB",
+    "a0Hcw00000BzK57EAF"
   ],
-  "last_successful_scan_at": "2026-11-24T00:37:54+00:00",
+  "last_successful_scan_at": "2026-11-24T22:56:17+00:00",
   "candidate_catalog": {
     "a0Hcw000006tdYLEAY": {
       "title": "Operational Excellence Engineer",
@@ -2078,6 +2082,63 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-24T00:37:54+00:00",
       "last_seen_at": "2026-11-24T00:37:54+00:00"
+    },
+    "a0Hcw00000BzK57EAF": {
+      "title": "IT Internal Auditor - SOX",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000BzK57EAF/it-internal-auditor---sox",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T22:56:17+00:00",
+      "last_seen_at": "2026-11-24T22:56:17+00:00"
+    },
+    "a0Hcw00000Byym9EAB": {
+      "title": "Ontologist / Information Architect",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000Byym9EAB/ontologist--information-architect",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T22:56:17+00:00",
+      "last_seen_at": "2026-11-24T22:56:17+00:00"
+    },
+    "a0Hcw00000Bz9xhEAB": {
+      "title": "IT Internal Auditor",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000Bz9xhEAB/it-internal-auditor",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T22:56:17+00:00",
+      "last_seen_at": "2026-11-24T22:56:17+00:00"
+    },
+    "a0Hcw00000Bxnw1EAB": {
+      "title": "Financial Project Administrator",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000Bxnw1EAB/financial-project-administrator",
+      "posted_at": "Posted This Week",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T22:56:17+00:00",
+      "last_seen_at": "2026-11-24T22:56:17+00:00"
     }
   },
   "source_updated_at_by_id": {}

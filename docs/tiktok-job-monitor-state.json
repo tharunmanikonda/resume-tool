@@ -588,6 +588,7 @@
     "7618896961391692085",
     "7619147902202267909",
     "7619157841027598597",
+    "7619279699006605573",
     "7620368637762128181",
     "7620521322171664645",
     "7620752339915311365",
@@ -2061,12 +2062,20 @@
     "7709235030179039541",
     "7709338932793919797",
     "7709409381504633093",
+    "7709455552816138549",
     "7709729298979506437",
     "7709907405304891653",
     "7709919543988865333",
     "7710080588988254517",
     "7710377102054525237",
-    "7711366131996657925"
+    "7710378565141006597",
+    "7711183092871235893",
+    "7711366131996657925",
+    "7711449529142003973",
+    "7711530648122820869",
+    "7711639550464051509",
+    "7711761054139418885",
+    "7711761062527338757"
   ],
   "candidate_catalog": {
     "7680987768009754885": {
@@ -30073,8 +30082,145 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-24T00:37:54+00:00",
       "last_seen_at": "2026-11-24T00:37:54+00:00"
+    },
+    "7710378565141006597": {
+      "title": "Program Manager, AI Transformation",
+      "location": "San Jose, California, United States of America",
+      "url": "https://lifeattiktok.com/search/7710378565141006597",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T22:56:17+00:00",
+      "last_seen_at": "2026-11-24T22:56:17+00:00"
+    },
+    "7711449529142003973": {
+      "title": "Global Payments Technology Audit Lead",
+      "location": "San Jose, California, United States of America",
+      "url": "https://lifeattiktok.com/search/7711449529142003973",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T22:56:17+00:00",
+      "last_seen_at": "2026-11-24T22:56:17+00:00"
+    },
+    "7711639550464051509": {
+      "title": "Marketplace Project Intern (GBS) - 2027 Start",
+      "location": "Singapore",
+      "url": "https://lifeattiktok.com/search/7711639550464051509",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T22:56:17+00:00",
+      "last_seen_at": "2026-11-24T22:56:17+00:00"
+    },
+    "7619279699006605573": {
+      "title": "TikTok Shop-Senior Seller Experience Strategy & Operations Analyst\uff0cEMEA",
+      "location": "London, England, United Kingdom",
+      "url": "https://lifeattiktok.com/search/7619279699006605573",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T22:56:17+00:00",
+      "last_seen_at": "2026-11-24T22:56:17+00:00"
+    },
+    "7711530648122820869": {
+      "title": "TikTok Shop - After Sales Program Manager",
+      "location": "Sao Paulo, S\u00e3o Paulo, Brazil",
+      "url": "https://lifeattiktok.com/search/7711530648122820869",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T22:56:17+00:00",
+      "last_seen_at": "2026-11-24T22:56:17+00:00"
+    },
+    "7711183092871235893": {
+      "title": "TikTok Shop - Governance Strategy Product Manager",
+      "location": "Singapore",
+      "url": "https://lifeattiktok.com/search/7711183092871235893",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T22:56:17+00:00",
+      "last_seen_at": "2026-11-24T22:56:17+00:00"
+    },
+    "7711761062527338757": {
+      "title": "TikTok Shop - EU Linehaul Network Solutions Manager, Intra-EU Logistics (Chinese Speaker)",
+      "location": "D\u00fcsseldorf, North Rhine-Westphalia, Germany",
+      "url": "https://lifeattiktok.com/search/7711761062527338757",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T22:56:17+00:00",
+      "last_seen_at": "2026-11-24T22:56:17+00:00"
+    },
+    "7711761054139418885": {
+      "title": "TikTok Shop - EU Linehaul Network Solutions Manager, Intra-EU Logistics (Chinese Speaker)",
+      "location": "Madrid, Spain",
+      "url": "https://lifeattiktok.com/search/7711761054139418885",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T22:56:17+00:00",
+      "last_seen_at": "2026-11-24T22:56:17+00:00"
+    },
+    "7709455552816138549": {
+      "title": "TikTok Shop - Logistics Operations Project Intern, Intra-EU - 2027 Start",
+      "location": "Madrid, Spain",
+      "url": "https://lifeattiktok.com/search/7709455552816138549",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T22:56:17+00:00",
+      "last_seen_at": "2026-11-24T22:56:17+00:00"
     }
   },
-  "last_successful_scan_at": "2026-11-24T00:37:54+00:00",
+  "last_successful_scan_at": "2026-11-24T22:56:17+00:00",
   "source_updated_at_by_id": {}
 }

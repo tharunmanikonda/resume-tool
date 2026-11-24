@@ -53,6 +53,7 @@
     "31778",
     "31808",
     "31820",
+    "31821",
     "31842",
     "31947",
     "31991",
@@ -196,9 +197,14 @@
     "36328",
     "36483",
     "36486",
+    "36487",
     "36494",
     "36844",
-    "37179"
+    "37121",
+    "37122",
+    "37125",
+    "37179",
+    "38305"
   ],
   "candidate_catalog": {
     "30795": {
@@ -292,7 +298,7 @@
       "category": "software"
     }
   },
-  "last_successful_scan_at": "2026-11-24T00:37:54+00:00",
+  "last_successful_scan_at": "2026-11-24T22:56:17+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "34699": {
@@ -1215,6 +1221,92 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-21T03:00:05+00:00",
       "last_seen_at": "2026-11-21T03:00:05+00:00"
+    },
+    "37125": {
+      "title": "Sr. Project Manager, Asset Management",
+      "location": "Tustin, California",
+      "url": "https://careers.rivian.com/careers-home/jobs/37125",
+      "posted_at": "2026-11-24T21:11:00+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T22:56:17+00:00",
+      "last_seen_at": "2026-11-24T22:56:17+00:00"
+    },
+    "36487": {
+      "title": "Sr. Project Manager, SPEQ",
+      "location": "Tustin, California",
+      "url": "https://careers.rivian.com/careers-home/jobs/36487",
+      "posted_at": "2026-11-24T21:09:00+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T22:56:17+00:00",
+      "last_seen_at": "2026-11-24T22:56:17+00:00"
+    },
+    "38305": {
+      "title": "Test Operations Coordinator",
+      "location": "Plymouth, Michigan",
+      "url": "https://careers.rivian.com/careers-home/jobs/38305",
+      "posted_at": "2026-11-24T21:08:00+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T22:56:17+00:00",
+      "last_seen_at": "2026-11-24T22:56:17+00:00"
+    },
+    "37122": {
+      "title": "SPEQ Build Coordinator",
+      "location": "Tustin, California",
+      "url": "https://careers.rivian.com/careers-home/jobs/37122",
+      "posted_at": "2026-11-24T21:07:00+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T22:56:17+00:00",
+      "last_seen_at": "2026-11-24T22:56:17+00:00"
+    },
+    "37121": {
+      "title": "CNC Machinist III",
+      "location": "Plymouth, Michigan",
+      "url": "https://careers.rivian.com/careers-home/jobs/37121",
+      "posted_at": "2026-11-24T13:13:00+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T22:56:17+00:00",
+      "last_seen_at": "2026-11-24T22:56:17+00:00"
+    },
+    "31821": {
+      "title": "Early Career - Mechanical Engineer, Special Projects",
+      "location": "Irvine, California",
+      "url": "https://careers.rivian.com/careers-home/jobs/31821",
+      "posted_at": "2026-11-24T16:33:00+0000",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T22:56:17+00:00",
+      "last_seen_at": "2026-11-24T22:56:17+00:00"
     }
   },
   "source_updated_at_by_id": {}

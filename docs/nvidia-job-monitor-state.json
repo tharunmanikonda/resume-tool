@@ -334,6 +334,7 @@
     "JR2017026",
     "JR2017036",
     "JR2017169",
+    "JR2017175",
     "JR2017184",
     "JR2017185",
     "JR2017200",
@@ -1298,14 +1299,23 @@
     "JR2030158",
     "JR2030204",
     "JR2030240",
+    "JR2030242",
     "JR2030246",
     "JR2030252",
     "JR2030254",
     "JR2030268",
+    "JR2030271",
     "JR2030272",
     "JR2030275",
     "JR2030289",
-    "JR2030324"
+    "JR2030324",
+    "JR2030444",
+    "JR2030465",
+    "JR2030470",
+    "JR2030471",
+    "JR2030580",
+    "JR2030610",
+    "JR2030628"
   ],
   "candidate_catalog": {
     "JR2018245": {
@@ -1676,9 +1686,18 @@
       "first_seen_at": "2026-11-18T21:08:25+00:00",
       "priority": "low",
       "category": "technical_review"
+    },
+    "JR2030580": {
+      "title": "Senior RTL Analysis Methodology Engineer",
+      "location": "US, CA, Santa Clara; US, CA, Remote",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-RTL-Analysis-Methodology-Engineer_JR2030580",
+      "posted_at": "2026-11-24",
+      "first_seen_at": "2026-11-24T22:56:17+00:00",
+      "priority": "low",
+      "category": "technical_review"
     }
   },
-  "last_successful_scan_at": "2026-11-24T00:37:54+00:00",
+  "last_successful_scan_at": "2026-11-24T22:56:17+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "JR2014880": {
@@ -18053,6 +18072,134 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-21T19:58:22+00:00",
       "last_seen_at": "2026-11-21T19:58:22+00:00"
+    },
+    "JR2030444": {
+      "title": "Senior Staff FinOps Engineer",
+      "location": "3 Locations",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Staff-FinOps-Engineer_JR2030444",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T22:56:17+00:00",
+      "last_seen_at": "2026-11-24T22:56:17+00:00"
+    },
+    "JR2030465": {
+      "title": "Senior HPC Architect, Identity and Security at Scale",
+      "location": "6 Locations",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-HPC-Architect--Identity-and-Security-at-Scale_JR2030465",
+      "posted_at": "Posted Yesterday",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T22:56:17+00:00",
+      "last_seen_at": "2026-11-24T22:56:17+00:00"
+    },
+    "JR2030470": {
+      "title": "Senior HPC Architect, Storage Management at Scale",
+      "location": "6 Locations",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-HPC-Architect--Storage-Management-at-Scale_JR2030470",
+      "posted_at": "Posted Yesterday",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T22:56:17+00:00",
+      "last_seen_at": "2026-11-24T22:56:17+00:00"
+    },
+    "JR2030610": {
+      "title": "Senior Packaging Engineer - Advanced Technology Group",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Packaging-Engineer---Advanced-Technology-Group_JR2030610",
+      "posted_at": "2026-11-24",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T22:56:17+00:00",
+      "last_seen_at": "2026-11-24T22:56:17+00:00"
+    },
+    "JR2030628": {
+      "title": "Senior Packaging Engineer",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Packaging-Engineer_JR2030628",
+      "posted_at": "2026-11-24",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T22:56:17+00:00",
+      "last_seen_at": "2026-11-24T22:56:17+00:00"
+    },
+    "JR2017175": {
+      "title": "Senior ASIC Verification Engineer, Coherent High Speed Interconnect",
+      "location": "US, CA, Santa Clara; US, MA, Westford; US, TX, Austin; US, OR, Hillsboro",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-ASIC-Verification-Engineer--Coherent-High-Speed-Interconnect_JR2017175-1",
+      "posted_at": "2026-11-24",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T22:56:17+00:00",
+      "last_seen_at": "2026-11-24T22:56:17+00:00"
+    },
+    "JR2030242": {
+      "title": "Senior Software Safety Engineer - Halos Solutions",
+      "location": "US, CA, Santa Clara; US, TX, Remote; US, MI, Remote",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Software-Safety-Engineer---Halos-Solutions_JR2030242",
+      "posted_at": "2026-11-23",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T22:56:17+00:00",
+      "last_seen_at": "2026-11-24T22:56:17+00:00"
+    },
+    "JR2030271": {
+      "title": "Senior Systems Software Engineer - Chromium Engineering For GeForce Now",
+      "location": "US, CA, Santa Clara; US, CA, Remote",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Systems-Software-Engineer---Chromium-Engineering-For-GeForce-Now_JR2030271",
+      "posted_at": "2026-11-23",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T22:56:17+00:00",
+      "last_seen_at": "2026-11-24T22:56:17+00:00"
+    },
+    "JR2030471": {
+      "title": "Senior System Software Engineer, Telemetry at Scale",
+      "location": "US, CA, Santa Clara; US, NY, Remote; US, OR, Remote; US, WA, Remote; US, CA, Remote; US, MA, Remote",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-System-Software-Engineer--Telemetry-at-Scale_JR2030471",
+      "posted_at": "2026-11-23",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T22:56:17+00:00",
+      "last_seen_at": "2026-11-24T22:56:17+00:00"
     }
   },
   "source_updated_at_by_id": {}

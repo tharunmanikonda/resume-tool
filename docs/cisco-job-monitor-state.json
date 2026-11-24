@@ -1418,7 +1418,9 @@
     "2028080",
     "2028084",
     "2028145",
+    "2028162",
     "2028164",
+    "2028165",
     "2028166",
     "2028178",
     "2028202",
@@ -1477,6 +1479,7 @@
     "2029785",
     "2029859",
     "2029882",
+    "2029895",
     "2029917",
     "2030022",
     "2030081",
@@ -1487,6 +1490,7 @@
     "2030331",
     "2030352",
     "2030439",
+    "2030440",
     "2030529",
     "2030721",
     "2030760",
@@ -1495,6 +1499,7 @@
     "2031175",
     "2031200",
     "2031275",
+    "2031352",
     "2031477",
     "2031481",
     "2031565",
@@ -1503,7 +1508,7 @@
     "2032282",
     "2032363"
   ],
-  "last_successful_scan_at": "2026-11-24T00:37:54+00:00",
+  "last_successful_scan_at": "2026-11-24T22:56:17+00:00",
   "candidate_catalog": {
     "2024998": {
       "title": "AI Security Engineer",
@@ -4166,6 +4171,78 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-24T00:37:54+00:00",
       "last_seen_at": "2026-11-24T00:37:54+00:00"
+    },
+    "2031352": {
+      "title": "Hardware Engineer, System and Board Failure Analysis",
+      "location": "2 Locations",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Milpitas-California-US/Hardware-Engineer--System-and-Board-Failure-Analysis_2031352",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "embedded_or_hardware"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T22:56:17+00:00",
+      "last_seen_at": "2026-11-24T22:56:17+00:00"
+    },
+    "2030440": {
+      "title": "ASIC Engineering Technical Leader",
+      "location": "San Jose, California, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/ASIC-Engineering-Technical-Leader_2030440",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T22:56:17+00:00",
+      "last_seen_at": "2026-11-24T22:56:17+00:00"
+    },
+    "2028162": {
+      "title": "Sr. Software Test Engineer, Hardware Diagnostics",
+      "location": "San Jose, California, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/Sr-Software-Test-Engineer--Hardware-Diagnostics_2028162",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "embedded_or_hardware"
+      ],
+      "category": "qa",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T22:56:17+00:00",
+      "last_seen_at": "2026-11-24T22:56:17+00:00"
+    },
+    "2028165": {
+      "title": "Software Test Engineering Technical Lead \u2013 Hardware Diagnostics",
+      "location": "San Jose, California, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/San-Jose-California-US/Software-Test-Engineering-Technical-Lead---Hardware-Diagnostics_2028165",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "embedded_or_hardware",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T22:56:17+00:00",
+      "last_seen_at": "2026-11-24T22:56:17+00:00"
+    },
+    "2029895": {
+      "title": "Backend Software Engineer",
+      "location": "RTP, North Carolina, US",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/RTP-North-Carolina-US/Backend-Software-Engineer_2029895",
+      "posted_at": "2026-11-24",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "backend",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T22:56:17+00:00",
+      "last_seen_at": "2026-11-24T22:56:17+00:00"
     }
   },
   "source_updated_at_by_id": {}

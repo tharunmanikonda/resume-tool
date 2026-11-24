@@ -38,6 +38,7 @@
     "R0072671",
     "R0072675",
     "R0072742",
+    "R0072746",
     "R0072799",
     "R0072821",
     "R0072836",
@@ -368,10 +369,12 @@
     "R0077135",
     "R0077136",
     "R0077137",
+    "R0077138",
     "R0077144",
     "R0077145",
     "R0077150",
     "R0077151",
+    "R0077153",
     "R0077155",
     "R0077156",
     "R0077160",
@@ -395,6 +398,9 @@
     "R0077234",
     "R0077235",
     "R0077239",
+    "R0077242",
+    "R0077243",
+    "R0077245",
     "R0077247",
     "R0077250",
     "R0077253",
@@ -444,6 +450,7 @@
     "R0077372",
     "R0077384",
     "R0077386",
+    "R0077388",
     "R0077389",
     "R0077397",
     "R0077398",
@@ -451,10 +458,12 @@
     "R0077411",
     "R0077415",
     "R0077416",
+    "R0077418",
     "R0077423",
     "R0077429",
     "R0077431",
     "R0077432",
+    "R0077434",
     "R0077437",
     "R0077438",
     "R0077445",
@@ -479,10 +488,14 @@
     "R0077532",
     "R0077534",
     "R0077539",
+    "R0077540",
     "R0077546",
+    "R0077558",
     "R0077563",
     "R0077577",
-    "R0077632"
+    "R0077580",
+    "R0077632",
+    "R0077679"
   ],
   "candidate_catalog": {
     "R0076812": {
@@ -576,7 +589,7 @@
       "category": "platform"
     }
   },
-  "last_successful_scan_at": "2026-11-24T00:37:54+00:00",
+  "last_successful_scan_at": "2026-11-24T22:56:17+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "R0077145": {
@@ -6915,6 +6928,196 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-24T00:37:54+00:00",
       "last_seen_at": "2026-11-24T00:37:54+00:00"
+    },
+    "R0072746": {
+      "title": "Sr Traffic Security Engineer",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0072746/Sr-Traffic-Security-Engineer",
+      "posted_at": "2026-11-24T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "security",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T22:56:17+00:00",
+      "last_seen_at": "2026-11-24T22:56:17+00:00"
+    },
+    "R0077580": {
+      "title": "Applied Researcher",
+      "location": "Kleinmachnow, Brandenburg, Germany",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077580/Applied-Researcher",
+      "posted_at": "2026-11-24T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T22:56:17+00:00",
+      "last_seen_at": "2026-11-24T22:56:17+00:00"
+    },
+    "R0077242": {
+      "title": "Eng Manager - Depop Value Creation",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077242/Eng-Manager-Depop-Value-Creation",
+      "posted_at": "2026-11-24T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T22:56:17+00:00",
+      "last_seen_at": "2026-11-24T22:56:17+00:00"
+    },
+    "R0077243": {
+      "title": "Sr Backend Eng - Depop Value Creation",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077243/Sr-Backend-Eng-Depop-Value-Creation",
+      "posted_at": "2026-11-24T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "backend",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T22:56:17+00:00",
+      "last_seen_at": "2026-11-24T22:56:17+00:00"
+    },
+    "R0077245": {
+      "title": "Backend Engineer - Depop Value Creation",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077245/Backend-Engineer-Depop-Value-Creation",
+      "posted_at": "2026-11-24T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "backend",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T22:56:17+00:00",
+      "last_seen_at": "2026-11-24T22:56:17+00:00"
+    },
+    "R0077434": {
+      "title": "Accounting Supervisor",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077434/Accounting-Supervisor",
+      "posted_at": "2026-11-24T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T22:56:17+00:00",
+      "last_seen_at": "2026-11-24T22:56:17+00:00"
+    },
+    "R0077153": {
+      "title": "Claims Risk Management Teammate",
+      "location": "Draper, Utah, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077153/Claims-Risk-Management-Teammate",
+      "posted_at": "2026-11-24T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T22:56:17+00:00",
+      "last_seen_at": "2026-11-24T22:56:17+00:00"
+    },
+    "R0077388": {
+      "title": "Sr. Manager, Regulatory Marketing",
+      "location": "Portland, Oregon, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077388/Sr-Manager-Regulatory-Marketing",
+      "posted_at": "2026-11-24T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T22:56:17+00:00",
+      "last_seen_at": "2026-11-24T22:56:17+00:00"
+    },
+    "R0077418": {
+      "title": "P2P Analyst",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077418/P2P-Analyst",
+      "posted_at": "2026-11-24T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T22:56:17+00:00",
+      "last_seen_at": "2026-11-24T22:56:17+00:00"
+    },
+    "R0077540": {
+      "title": "EDD Analyst",
+      "location": "Luxembourg, Luxembourg, Luxembourg",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077540/EDD-Analyst",
+      "posted_at": "2026-11-24T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T22:56:17+00:00",
+      "last_seen_at": "2026-11-24T22:56:17+00:00"
+    },
+    "R0077558": {
+      "title": "Accounting Associate \u2013 Goldin",
+      "location": "Runnemede, New Jersey, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077558/Accounting-Associate-Goldin",
+      "posted_at": "2026-11-24T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T22:56:17+00:00",
+      "last_seen_at": "2026-11-24T22:56:17+00:00"
+    },
+    "R0077679": {
+      "title": "Onsite Frontline HR Generalist",
+      "location": "Louisville, Kentucky, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077679/Onsite-Frontline-HR-Generalist",
+      "posted_at": "2026-11-24T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T22:56:17+00:00",
+      "last_seen_at": "2026-11-24T22:56:17+00:00"
+    },
+    "R0077138": {
+      "title": "Sr Category Manager, US P&A",
+      "location": "Toronto, Ontario, Canada",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077138/Sr-Category-Manager-US-P-A",
+      "posted_at": "2026-11-24T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T22:56:17+00:00",
+      "last_seen_at": "2026-11-24T22:56:17+00:00"
     }
   },
   "source_updated_at_by_id": {}

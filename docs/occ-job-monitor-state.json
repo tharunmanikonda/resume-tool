@@ -109,11 +109,13 @@
     "REQ-4936",
     "REQ-4937",
     "REQ-4938",
+    "REQ-4939",
     "REQ-4942",
     "REQ-4945",
     "REQ-4948",
     "REQ-4949",
-    "REQ-4950"
+    "REQ-4950",
+    "REQ-4952"
   ],
   "candidate_catalog": {
     "REQ-4807": {
@@ -153,7 +155,7 @@
       "category": "qa"
     }
   },
-  "last_successful_scan_at": "2026-11-24T00:37:54+00:00",
+  "last_successful_scan_at": "2026-11-24T22:56:17+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "REQ-4896": {
@@ -1628,6 +1630,35 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-24T00:37:54+00:00",
       "last_seen_at": "2026-11-24T00:37:54+00:00"
+    },
+    "REQ-4952": {
+      "title": "Principal, Investor Education",
+      "location": "Chicago - 125 S Franklin",
+      "url": "https://theocc.wd5.myworkdayjobs.com/job/Chicago---125-S-Franklin/Principal--Investor-Education_REQ-4952",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T22:56:17+00:00",
+      "last_seen_at": "2026-11-24T22:56:17+00:00"
+    },
+    "REQ-4939": {
+      "title": "Senior Associate, Business Analysis",
+      "location": "2 Locations",
+      "url": "https://theocc.wd5.myworkdayjobs.com/job/Chicago---125-S-Franklin/Senior-Associate--Business-Analysis_REQ-4939",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T22:56:17+00:00",
+      "last_seen_at": "2026-11-24T22:56:17+00:00"
     }
   },
   "source_updated_at_by_id": {}

@@ -895,7 +895,14 @@
     "744000163312930",
     "744000163314981",
     "744000163340477",
-    "744000163340879"
+    "744000163340879",
+    "744000163375769",
+    "744000163472049",
+    "744000163516169",
+    "744000163529839",
+    "744000163549988",
+    "744000163550639",
+    "744000163551149"
   ],
   "candidate_catalog": {
     "744000151898289": {
@@ -1079,7 +1086,7 @@
       "category": "technical_review"
     }
   },
-  "last_successful_scan_at": "2026-11-24T00:37:54+00:00",
+  "last_successful_scan_at": "2026-11-24T22:56:17+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "744000156079569": {
@@ -12350,6 +12357,107 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-24T00:37:54+00:00",
       "last_seen_at": "2026-11-24T00:37:54+00:00"
+    },
+    "744000163551149": {
+      "title": "Consumer Hotline Producer, NBC & Telemundo Dallas/Fort Worth",
+      "location": "Fort Worth, TX, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163551149-consumer-hotline-producer-nbc-telemundo-dallas-fort-worth",
+      "posted_at": "2026-11-24T21:32:12.734Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T22:56:17+00:00",
+      "last_seen_at": "2026-11-24T22:56:17+00:00"
+    },
+    "744000163550639": {
+      "title": "Senior Financial Analyst, Production & Operations",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163550639-senior-financial-analyst-production-operations",
+      "posted_at": "2026-11-24T21:25:29.556Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T22:56:17+00:00",
+      "last_seen_at": "2026-11-24T22:56:17+00:00"
+    },
+    "744000163549988": {
+      "title": "Senior Financial Analyst",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163549988-senior-financial-analyst",
+      "posted_at": "2026-11-24T21:20:59.593Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T22:56:17+00:00",
+      "last_seen_at": "2026-11-24T22:56:17+00:00"
+    },
+    "744000163529839": {
+      "title": "Warehouse Worker",
+      "location": "Long Island City, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163529839-warehouse-worker",
+      "posted_at": "2026-11-24T18:46:33.598Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T22:56:17+00:00",
+      "last_seen_at": "2026-11-24T22:56:17+00:00"
+    },
+    "744000163516169": {
+      "title": "Director, Internal & Executive Communications - Advertising Sales & Partnerships ",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163516169-director-internal-executive-communications-advertising-sales-partnerships",
+      "posted_at": "2026-11-24T17:09:33.983Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T22:56:17+00:00",
+      "last_seen_at": "2026-11-24T22:56:17+00:00"
+    },
+    "744000163472049": {
+      "title": "Senior Director, Platform Distribution and Partnerships",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163472049-senior-director-platform-distribution-and-partnerships",
+      "posted_at": "2026-11-24T14:28:41.641Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T22:56:17+00:00",
+      "last_seen_at": "2026-11-24T22:56:17+00:00"
+    },
+    "744000163375769": {
+      "title": "Director, Comms Strategy & Performance",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163375769-director-comms-strategy-performance",
+      "posted_at": "2026-11-24T02:12:25.296Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-24T22:56:17+00:00",
+      "last_seen_at": "2026-11-24T22:56:17+00:00"
     }
   },
   "source_updated_at_by_id": {}
