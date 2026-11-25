@@ -891,6 +891,7 @@
     "JR2025548",
     "JR2025580",
     "JR2025588",
+    "JR2025592",
     "JR2025602",
     "JR2025616",
     "JR2025619",
@@ -1190,6 +1191,7 @@
     "JR2028871",
     "JR2028878",
     "JR2028887",
+    "JR2028901",
     "JR2028905",
     "JR2028908",
     "JR2028913",
@@ -1293,11 +1295,15 @@
     "JR2030024",
     "JR2030034",
     "JR2030038",
+    "JR2030068",
     "JR2030090",
     "JR2030091",
     "JR2030133",
     "JR2030158",
+    "JR2030180",
+    "JR2030181",
     "JR2030204",
+    "JR2030205",
     "JR2030240",
     "JR2030242",
     "JR2030246",
@@ -1309,13 +1315,25 @@
     "JR2030275",
     "JR2030289",
     "JR2030324",
+    "JR2030350",
+    "JR2030353",
+    "JR2030429",
     "JR2030444",
     "JR2030465",
     "JR2030470",
     "JR2030471",
+    "JR2030512",
+    "JR2030532",
+    "JR2030535",
+    "JR2030543",
     "JR2030580",
     "JR2030610",
-    "JR2030628"
+    "JR2030628",
+    "JR2030632",
+    "JR2030644",
+    "JR2030675",
+    "JR2030679",
+    "JR2030685"
   ],
   "candidate_catalog": {
     "JR2018245": {
@@ -1697,7 +1715,7 @@
       "category": "technical_review"
     }
   },
-  "last_successful_scan_at": "2026-11-24T22:56:17+00:00",
+  "last_successful_scan_at": "2026-11-25T22:10:55+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "JR2014880": {
@@ -18200,6 +18218,268 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-24T22:56:17+00:00",
       "last_seen_at": "2026-11-24T22:56:17+00:00"
+    },
+    "JR2030685": {
+      "title": "Senior Manager, Silicon Bring-Up and Productization",
+      "location": "2 Locations",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Manager--Silicon-Bring-Up-and-Productization_JR2030685",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "embedded_or_hardware",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "JR2030180": {
+      "title": "Senior Manager, GPU Compute System Software",
+      "location": "2 Locations",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Manager--GPU-Compute-System-Software_JR2030180",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "JR2030353": {
+      "title": "Senior Software Developer - Autonomous Vehicles",
+      "location": "2 Locations",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Software-Developer---Autonomous-Vehicles_JR2030353",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "specialized_low_level"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "JR2028901": {
+      "title": "System Software Engineer - Autonomous Vehicles",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/System-Software-Engineer---Autonomous-Vehicles_JR2028901",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "specialized_low_level"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "JR2030429": {
+      "title": "Senior System Software Engineer, Embedded Formal Methods",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-System-Software-Engineer--Embedded-Formal-Methods_JR2030429",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "embedded_or_hardware"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "JR2030068": {
+      "title": "Senior Controls Systems Engineer - Autonomous Vehicles",
+      "location": "3 Locations",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Controls-Systems-Engineer---Autonomous-Vehicles_JR2030068",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "embedded_or_hardware",
+        "specialized_low_level"
+      ],
+      "category": "systems_engineering",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "JR2030205": {
+      "title": "Senior System Software Architect - Automotive Applications",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-System-Software-Architect---Automotive-Applications_JR2030205",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "JR2030181": {
+      "title": "Principal Graphics Hardware Architect",
+      "location": "3 Locations",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Principal-Graphics-Hardware-Architect_JR2030181",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "embedded_or_hardware",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "JR2030512": {
+      "title": "Principal Software Engineer",
+      "location": "3 Locations",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Principal-Software-Engineer_JR2030512",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "JR2025592": {
+      "title": "Principal Validation Analyst - Autonomous Vehicles",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Principal-Validation-Analyst---Autonomous-Vehicles_JR2025592",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "specialized_low_level",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "JR2030350": {
+      "title": "Senior Engineering Manager - Alpamayo Agentic Factory",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Engineering-Manager---Alpamayo-Agentic-Factory_JR2030350",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "JR2030543": {
+      "title": "Senior Perception Engineer, Obstacle Foundation Models - Autonomous Vehicles",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Perception-Engineer--Obstacle-Foundation-Models---Autonomous-Vehicles_JR2030543-1",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "specialized_low_level"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "JR2030679": {
+      "title": "Senior System Software Engineer - AV Platform",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-System-Software-Engineer---AV-Platform_JR2030679",
+      "posted_at": "2026-11-25",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "JR2030675": {
+      "title": "Senior Software Developer Test and Automation",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Software-Developer-Test-and-Automation_JR2030675",
+      "posted_at": "2026-11-25",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "JR2030632": {
+      "title": "Senior Software Development Engineer in Test, Confidential Computing - SDET",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Software-Development-Engineer-in-Test--Confidential-Computing---SDET_JR2030632",
+      "posted_at": "2026-11-25",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "qa",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "JR2030644": {
+      "title": "Senior Software Development Engineer in Test - SDET",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Software-Development-Engineer-in-Test---SDET_JR2030644",
+      "posted_at": "2026-11-25",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "qa",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "JR2030532": {
+      "title": "Senior Content Engineer, AI and Automation",
+      "location": "US, CA, Remote",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Remote/Senior-Content-Engineer--AI-and-Automation_JR2030532",
+      "posted_at": "2026-11-25",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "JR2030535": {
+      "title": "Senior System Software Engineer",
+      "location": "US, CA, Santa Clara",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-System-Software-Engineer_JR2030535",
+      "posted_at": "2026-11-25",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
     }
   },
   "source_updated_at_by_id": {}

@@ -204,6 +204,8 @@
     "37122",
     "37125",
     "37179",
+    "37516",
+    "37542",
     "38305"
   ],
   "candidate_catalog": {
@@ -298,7 +300,7 @@
       "category": "software"
     }
   },
-  "last_successful_scan_at": "2026-11-24T22:56:17+00:00",
+  "last_successful_scan_at": "2026-11-25T22:10:55+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "34699": {
@@ -1307,6 +1309,37 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-24T22:56:17+00:00",
       "last_seen_at": "2026-11-24T22:56:17+00:00"
+    },
+    "37542": {
+      "title": "IT Infrastructure Program Manager",
+      "location": "Palo Alto, California",
+      "url": "https://careers.rivian.com/careers-home/jobs/37542",
+      "posted_at": "2026-11-25T19:09:00+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "37516": {
+      "title": "Staff Program Manager, ET PMO",
+      "location": "Atlanta, Georgia",
+      "url": "https://careers.rivian.com/careers-home/jobs/37516",
+      "posted_at": "2026-11-25T16:29:00+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
     }
   },
   "source_updated_at_by_id": {}

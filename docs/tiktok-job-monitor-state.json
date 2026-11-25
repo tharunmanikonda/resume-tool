@@ -410,6 +410,7 @@
     "7551574702218627335",
     "7552911160912169223",
     "7553187214310656274",
+    "7553192259203778824",
     "7553329183243143432",
     "7553768729650743560",
     "7553813426717313287",
@@ -1987,6 +1988,7 @@
     "7702224456596736309",
     "7702243883850697013",
     "7702286307201861893",
+    "7702295302274844981",
     "7702352946390501685",
     "7702417446982142213",
     "7702517151362976053",
@@ -2066,16 +2068,30 @@
     "7709729298979506437",
     "7709907405304891653",
     "7709919543988865333",
+    "7710030288165996805",
     "7710080588988254517",
     "7710377102054525237",
     "7710378565141006597",
     "7711183092871235893",
     "7711366131996657925",
+    "7711367074397309237",
+    "7711445618377918725",
+    "7711446603378313525",
     "7711449529142003973",
+    "7711452837029595397",
     "7711530648122820869",
     "7711639550464051509",
     "7711761054139418885",
-    "7711761062527338757"
+    "7711761062527338757",
+    "7711823713306478901",
+    "7711857759115888901",
+    "7711857759287216389",
+    "7711951182625507637",
+    "7712026677320829189",
+    "7712045856585877813",
+    "7712095516906670341",
+    "7712097473955957045",
+    "7712097759408916741"
   ],
   "candidate_catalog": {
     "7680987768009754885": {
@@ -5308,6 +5324,15 @@
       "first_seen_at": "2026-11-23T02:20:48+00:00",
       "priority": "medium",
       "category": "software"
+    },
+    "7710030288165996805": {
+      "title": "Backend Software Engineer - Data Lifecycle Management",
+      "location": "San Jose, California, United States of America",
+      "url": "https://lifeattiktok.com/search/7710030288165996805",
+      "posted_at": "",
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "priority": "high",
+      "category": "backend"
     }
   },
   "rejected_catalog": {
@@ -30219,8 +30244,228 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-24T22:56:17+00:00",
       "last_seen_at": "2026-11-24T22:56:17+00:00"
+    },
+    "7702295302274844981": {
+      "title": "Product Manager - GPCP Platform",
+      "location": "San Jose, California, United States of America",
+      "url": "https://lifeattiktok.com/search/7702295302274844981",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "7553192259203778824": {
+      "title": "Backend Engineer Project Intern (TikTok Search & Recommendation Architecture) - 2026 Start (BS/MS\uff09",
+      "location": "Singapore",
+      "url": "https://lifeattiktok.com/search/7553192259203778824",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "backend",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "7711857759287216389": {
+      "title": "Client Solutions Vertical Manager - GBS",
+      "location": "Los Angeles, California, United States of America",
+      "url": "https://lifeattiktok.com/search/7711857759287216389",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "7711857759115888901": {
+      "title": "Client Solutions Vertical Manager - GBS",
+      "location": "New York, United States of America",
+      "url": "https://lifeattiktok.com/search/7711857759115888901",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "7711823713306478901": {
+      "title": "Client Solutions Manager - GBS",
+      "location": "Los Angeles, California, United States of America",
+      "url": "https://lifeattiktok.com/search/7711823713306478901",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "7712045856585877813": {
+      "title": "Time Series Foundation Model Algorithm Engineer Graduate (Global E-Commerce, Supply Chain And Logistics) - 2027 Start (PhD)",
+      "location": "Singapore",
+      "url": "https://lifeattiktok.com/search/7712045856585877813",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "7712097473955957045": {
+      "title": "AI Reinforcement Training Finnish Speaking Project Intern (TikTok Platform Responsibility) - 2027 Start",
+      "location": "Dublin, Ireland",
+      "url": "https://lifeattiktok.com/search/7712097473955957045",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "7712097759408916741": {
+      "title": "AI Reinforcement Training, Dutch Speaking Project Intern (TikTok Platform Responsibility) - 2027 Start",
+      "location": "Dublin, Ireland",
+      "url": "https://lifeattiktok.com/search/7712097759408916741",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "7712095516906670341": {
+      "title": "AI Reinforcement Training Mandarin Speaking Project Intern (TikTok Platform Responsibility) - 2027 Start",
+      "location": "Dublin, Ireland",
+      "url": "https://lifeattiktok.com/search/7712095516906670341",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "7711951182625507637": {
+      "title": "Client Solutions Lead - GBS",
+      "location": "Buenos Aires, Capital Federal, Argentina",
+      "url": "https://lifeattiktok.com/search/7711951182625507637",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "7711452837029595397": {
+      "title": "Global Payments Technology Audit Lead",
+      "location": "London, England, United Kingdom",
+      "url": "https://lifeattiktok.com/search/7711452837029595397",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "7711367074397309237": {
+      "title": "Senior Security Specialist, Infrastructure - Global Security Organization",
+      "location": "New York, United States of America",
+      "url": "https://lifeattiktok.com/search/7711367074397309237",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "7712026677320829189": {
+      "title": "Lifestyle Category Strategist Project Intern (TikTok Shop by Tokopedia) - 2027 Start",
+      "location": "Jakarta, Jakarta Raya, Indonesia",
+      "url": "https://lifeattiktok.com/search/7712026677320829189",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "7711446603378313525": {
+      "title": "Accounting Manager (Mandarin Speaker)",
+      "location": "San Jose, California, United States of America",
+      "url": "https://lifeattiktok.com/search/7711446603378313525",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "7711445618377918725": {
+      "title": "Accounting Manager (Mandarin Speaker)",
+      "location": "Los Angeles, California, United States of America",
+      "url": "https://lifeattiktok.com/search/7711445618377918725",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
     }
   },
-  "last_successful_scan_at": "2026-11-24T22:56:17+00:00",
+  "last_successful_scan_at": "2026-11-25T22:10:55+00:00",
   "source_updated_at_by_id": {}
 }

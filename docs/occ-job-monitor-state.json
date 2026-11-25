@@ -115,7 +115,9 @@
     "REQ-4948",
     "REQ-4949",
     "REQ-4950",
-    "REQ-4952"
+    "REQ-4952",
+    "REQ-4953",
+    "REQ-4954"
   ],
   "candidate_catalog": {
     "REQ-4807": {
@@ -155,7 +157,7 @@
       "category": "qa"
     }
   },
-  "last_successful_scan_at": "2026-11-24T22:56:17+00:00",
+  "last_successful_scan_at": "2026-11-25T22:10:55+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "REQ-4896": {
@@ -1659,6 +1661,36 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-24T22:56:17+00:00",
       "last_seen_at": "2026-11-24T22:56:17+00:00"
+    },
+    "REQ-4954": {
+      "title": "Manager, Security Engineering",
+      "location": "Chicago - 125 S Franklin",
+      "url": "https://theocc.wd5.myworkdayjobs.com/job/Chicago---125-S-Franklin/Manager--Security-Engineering_REQ-4954-5",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "REQ-4953": {
+      "title": "Director - Security Engineering",
+      "location": "Chicago - 125 S Franklin",
+      "url": "https://theocc.wd5.myworkdayjobs.com/job/Chicago---125-S-Franklin/Director---Security-Engineering_REQ-4953-4",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
     }
   },
   "source_updated_at_by_id": {}

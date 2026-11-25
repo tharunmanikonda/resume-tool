@@ -902,7 +902,49 @@
     "744000163529839",
     "744000163549988",
     "744000163550639",
-    "744000163551149"
+    "744000163551149",
+    "744000163563069",
+    "744000163583264",
+    "744000163600599",
+    "744000163601600",
+    "744000163602429",
+    "744000163603019",
+    "744000163604049",
+    "744000163604659",
+    "744000163604904",
+    "744000163605409",
+    "744000163681359",
+    "744000163693922",
+    "744000163695334",
+    "744000163711129",
+    "744000163723049",
+    "744000163731809",
+    "744000163742661",
+    "744000163743261",
+    "744000163746026",
+    "744000163747399",
+    "744000163749844",
+    "744000163754319",
+    "744000163756299",
+    "744000163758550",
+    "744000163758569",
+    "744000163764277",
+    "744000163765359",
+    "744000163765627",
+    "744000163765889",
+    "744000163765957",
+    "744000163766049",
+    "744000163766249",
+    "744000163766485",
+    "744000163766579",
+    "744000163767019",
+    "744000163767340",
+    "744000163767850",
+    "744000163768159",
+    "744000163768309",
+    "744000163768389",
+    "744000163768719",
+    "744000163768839"
   ],
   "candidate_catalog": {
     "744000151898289": {
@@ -1086,7 +1128,7 @@
       "category": "technical_review"
     }
   },
-  "last_successful_scan_at": "2026-11-24T22:56:17+00:00",
+  "last_successful_scan_at": "2026-11-25T22:10:55+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "744000156079569": {
@@ -12458,6 +12500,618 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-24T22:56:17+00:00",
       "last_seen_at": "2026-11-24T22:56:17+00:00"
+    },
+    "744000163768839": {
+      "title": "Director, Global Benefits - Platform & Experience, Product Experience",
+      "location": "Atlanta, GA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163768839-director-global-benefits-platform-experience-product-experience",
+      "posted_at": "2026-11-25T22:13:53.015Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "744000163768719": {
+      "title": "Director, Global Benefits - Platform & Experience, Product Experience",
+      "location": "Philadelphia, PA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163768719-director-global-benefits-platform-experience-product-experience",
+      "posted_at": "2026-11-25T22:12:27.901Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "744000163768389": {
+      "title": "Coordinator, Docketing",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163768389-coordinator-docketing",
+      "posted_at": "2026-11-25T22:09:11.697Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "744000163767850": {
+      "title": "Director, Global Benefits - Platform & Experience, Leave & Disability Delivery",
+      "location": "Atlanta, GA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163767850-director-global-benefits-platform-experience-leave-disability-delivery",
+      "posted_at": "2026-11-25T22:08:41.402Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "744000163768309": {
+      "title": "Sr. Counsel, Intellectual Property",
+      "location": "Universal City, CA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163768309-sr-counsel-intellectual-property",
+      "posted_at": "2026-11-25T22:08:12.402Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "744000163768159": {
+      "title": "Director, Global Benefits - Platform & Experience, Leave & Disability Delivery",
+      "location": "Philadelphia, PA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163768159-director-global-benefits-platform-experience-leave-disability-delivery",
+      "posted_at": "2026-11-25T22:06:59.262Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "744000163767340": {
+      "title": "Director, Global Benefits \u2013 Healthcare, Medical Program Products",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163767340-director-global-benefits-healthcare-medical-program-products",
+      "posted_at": "2026-11-25T21:54:01.035Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "744000163766485": {
+      "title": "Director, Global Benefits \u2013 Healthcare, Behavioral Health Program Product",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163766485-director-global-benefits-healthcare-behavioral-health-program-product",
+      "posted_at": "2026-11-25T21:53:36.506Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "744000163765957": {
+      "title": "Director, Global Benefits \u2013 Healthcare, Leave & Disability Management Product",
+      "location": "Atlanta, GA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163765957-director-global-benefits-healthcare-leave-disability-management-product",
+      "posted_at": "2026-11-25T21:51:57.237Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "744000163767019": {
+      "title": "Director, Global Benefits \u2013 Healthcare, Leave & Disability Management Product",
+      "location": "Philadelphia, PA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163767019-director-global-benefits-healthcare-leave-disability-management-product",
+      "posted_at": "2026-11-25T21:50:21.178Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "744000163766579": {
+      "title": "Director, Global Benefits \u2013 Healthcare, Leave & Disability Management Product",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163766579-director-global-benefits-healthcare-leave-disability-management-product",
+      "posted_at": "2026-11-25T21:48:37.647Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "744000163765627": {
+      "title": "Director, Global Benefits \u2013 Healthcare, Medical Program Products",
+      "location": "Atlanta, GA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163765627-director-global-benefits-healthcare-medical-program-products",
+      "posted_at": "2026-11-25T21:47:07.179Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "744000163766249": {
+      "title": "Director, Global Benefits \u2013 Healthcare, Medical Program Products",
+      "location": "Philadelphia, PA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163766249-director-global-benefits-healthcare-medical-program-products",
+      "posted_at": "2026-11-25T21:46:37.621Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "744000163766049": {
+      "title": "Director, Global Benefits \u2013 Healthcare, Behavioral Health Program Product",
+      "location": "Atlanta, GA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163766049-director-global-benefits-healthcare-behavioral-health-program-product",
+      "posted_at": "2026-11-25T21:44:12.971Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "744000163765889": {
+      "title": "Director, Global Benefits \u2013 Healthcare, Behavioral Health Program Product",
+      "location": "Philadelphia, PA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163765889-director-global-benefits-healthcare-behavioral-health-program-product",
+      "posted_at": "2026-11-25T21:42:22.457Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "744000163764277": {
+      "title": "Director, Global Benefits \u2013 Healthcare, Pharmacy Program Product",
+      "location": "Atlanta, GA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163764277-director-global-benefits-healthcare-pharmacy-program-product",
+      "posted_at": "2026-11-25T21:39:07.486Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "744000163765359": {
+      "title": "Director, Global Benefits \u2013 Healthcare, Pharmacy Program Product",
+      "location": "Philadelphia, PA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163765359-director-global-benefits-healthcare-pharmacy-program-product",
+      "posted_at": "2026-11-25T21:36:47.703Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "744000163758550": {
+      "title": "Sr. Manager, Internal Communications",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163758550-sr-manager-internal-communications",
+      "posted_at": "2026-11-25T20:28:31.160Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "744000163758569": {
+      "title": "Freelance DGA Director, NBC4 & Telemundo 52 Los Angeles",
+      "location": "Central LA, CA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163758569-freelance-dga-director-nbc4-telemundo-52-los-angeles",
+      "posted_at": "2026-11-25T20:07:43.140Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "744000163756299": {
+      "title": "Director, Global Benefits - Platform & Experience, Leave & Disability Delivery",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163756299-director-global-benefits-platform-experience-leave-disability-delivery",
+      "posted_at": "2026-11-25T19:46:25.846Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "744000163754319": {
+      "title": "Director, Global Benefits - Platform & Experience, Product Experience",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163754319-director-global-benefits-platform-experience-product-experience",
+      "posted_at": "2026-11-25T19:26:48.625Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "744000163749844": {
+      "title": "Director, Global Benefits \u2013 Healthcare, Pharmacy Program Product",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163749844-director-global-benefits-healthcare-pharmacy-program-product",
+      "posted_at": "2026-11-25T18:56:09.422Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "744000163746026": {
+      "title": "Director, Global Benefits - Platform & Experience",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163746026-director-global-benefits-platform-experience",
+      "posted_at": "2026-11-25T18:44:12.805Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "744000163747399": {
+      "title": "Social Media Producer, NBC Nightly News",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163747399-social-media-producer-nbc-nightly-news",
+      "posted_at": "2026-11-25T18:40:12.469Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "744000163742661": {
+      "title": "Content Supply Chain Specialist, Media Workflow & Enhancement",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163742661-content-supply-chain-specialist-media-workflow-enhancement",
+      "posted_at": "2026-11-25T18:11:45.094Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "744000163731809": {
+      "title": "Coordinator, Corporate Communications",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163731809-coordinator-corporate-communications",
+      "posted_at": "2026-11-25T16:44:59.775Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "744000163723049": {
+      "title": "Director, Brand Partnerships",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163723049-director-brand-partnerships",
+      "posted_at": "2026-11-25T16:08:08.822Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "744000163711129": {
+      "title": "APC Operator, NBC & Telemundo Miami",
+      "location": "Miramar, Florida, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163711129-apc-operator-nbc-telemundo-miami",
+      "posted_at": "2026-11-25T15:13:36.674Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "744000163681359": {
+      "title": "Sr. Manager, Internal Communications & Team Member Experiences",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163681359-sr-manager-internal-communications-team-member-experiences",
+      "posted_at": "2026-11-25T13:04:41.903Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "744000163605409": {
+      "title": "Universal Studios Hollywood, Entertainment Creative Development, Audio & Video Design Internship \u2013 Summer 2027",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163605409-universal-studios-hollywood-entertainment-creative-development-audio-video-design-internship-summer-2027",
+      "posted_at": "2026-11-25T04:01:29.661Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "744000163604904": {
+      "title": "Universal Studios Hollywood, Entertainment Creative Development, Production Design Internship \u2013 Summer 2027",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163604904-universal-studios-hollywood-entertainment-creative-development-production-design-internship-summer-2027",
+      "posted_at": "2026-11-25T03:50:50.908Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "744000163604659": {
+      "title": "Universal Studios Hollywood, Operations, Environmental Health & Safety Internship \u2013 Summer 2027",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163604659-universal-studios-hollywood-operations-environmental-health-safety-internship-summer-2027",
+      "posted_at": "2026-11-25T03:43:57.141Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "744000163604049": {
+      "title": "Universal Studios Hollywood, Global Brand and Commercial, Owned Channels & Commerce Internship \u2013 Summer 2027",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163604049-universal-studios-hollywood-global-brand-and-commercial-owned-channels-commerce-internship-summer-2027",
+      "posted_at": "2026-11-25T03:37:04.683Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "744000163603019": {
+      "title": "Universal Studios Hollywood, Finance & Strategy Internship \u2013 Summer 2027",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163603019-universal-studios-hollywood-finance-strategy-internship-summer-2027",
+      "posted_at": "2026-11-25T03:18:44.015Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "744000163602429": {
+      "title": "Universal Studios Hollywood, Finance & Strategy, Business Analytics & Industrial Engineering Internship \u2013 Summer 2027",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163602429-universal-studios-hollywood-finance-strategy-business-analytics-industrial-engineering-internship-summer-2027",
+      "posted_at": "2026-11-25T03:09:48.183Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "744000163601600": {
+      "title": "Universal Studios Hollywood, Food & Beverage, Food Quality & Safety Internship \u2013 Summer 2027",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163601600-universal-studios-hollywood-food-beverage-food-quality-safety-internship-summer-2027",
+      "posted_at": "2026-11-25T02:55:52.159Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "744000163600599": {
+      "title": "Universal Studios Hollywood, Food & Beverage, Food Distribution Center Internship \u2013 Summer 2027",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163600599-universal-studios-hollywood-food-beverage-food-distribution-center-internship-summer-2027",
+      "posted_at": "2026-11-25T02:41:30.651Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "744000163583264": {
+      "title": "Universal Studios Hollywood, Technical Services, Mechanical Engineering Internship \u2013 Summer 2027",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163583264-universal-studios-hollywood-technical-services-mechanical-engineering-internship-summer-2027",
+      "posted_at": "2026-11-25T01:34:18.252Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "744000163563069": {
+      "title": "Assistant Manager CityWalk Tech Services",
+      "location": "Universal City, CALIFORNIA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163563069-assistant-manager-citywalk-tech-services",
+      "posted_at": "2026-11-25T00:40:39.385Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "744000163743261": {
+      "title": "Software Engineer (Atlassian Platform Support)",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163743261-software-engineer-atlassian-platform-support-",
+      "posted_at": "2026-11-25T18:22:43.207Z",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "744000163693922": {
+      "title": "Senior Cyber Incident Response Engineer",
+      "location": "Orlando, FL, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163693922-senior-cyber-incident-response-engineer",
+      "posted_at": "2026-11-25T14:16:41.305Z",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "744000163695334": {
+      "title": "Senior Cyber Incident Response Engineer",
+      "location": "New York, NEW YORK, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163695334-senior-cyber-incident-response-engineer",
+      "posted_at": "2026-11-25T14:14:38.019Z",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
     }
   },
   "source_updated_at_by_id": {}

@@ -275,6 +275,7 @@
     "a0Hcw00000BsuS3EAJ",
     "a0Hcw00000BtKxREAV",
     "a0Hcw00000BuVvdEAF",
+    "a0Hcw00000BuXJ7EAN",
     "a0Hcw00000BuYThEAN",
     "a0Hcw00000BudzdEAB",
     "a0Hcw00000BwpDVEAZ",
@@ -282,9 +283,11 @@
     "a0Hcw00000Bxnw1EAB",
     "a0Hcw00000Byym9EAB",
     "a0Hcw00000Bz9xhEAB",
-    "a0Hcw00000BzK57EAF"
+    "a0Hcw00000BzK57EAF",
+    "a0Hcw00000C0BXdEAN",
+    "a0Hcw00000C0dthEAB"
   ],
-  "last_successful_scan_at": "2026-11-24T22:56:17+00:00",
+  "last_successful_scan_at": "2026-11-25T22:10:55+00:00",
   "candidate_catalog": {
     "a0Hcw000006tdYLEAY": {
       "title": "Operational Excellence Engineer",
@@ -2139,6 +2142,49 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-24T22:56:17+00:00",
       "last_seen_at": "2026-11-24T22:56:17+00:00"
+    },
+    "a0Hcw00000BuXJ7EAN": {
+      "title": "Sr. Director of Finance",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000BuXJ7EAN/sr-director-of-finance",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "a0Hcw00000C0BXdEAN": {
+      "title": "Quality Supervisor",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000C0BXdEAN/quality-supervisor",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "a0Hcw00000C0dthEAB": {
+      "title": "Mainframe Security Engineer",
+      "location": "",
+      "url": "https://inteprosrecruiting.my.site.com/careers/s?jobId=a0Hcw00000C0dthEAB/mainframe-security-engineer",
+      "posted_at": "",
+      "stage": "detail",
+      "blockers": [
+        "insufficient_profile_overlap"
+      ],
+      "category": "security",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
     }
   },
   "source_updated_at_by_id": {}

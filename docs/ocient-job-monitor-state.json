@@ -6,7 +6,9 @@
     "am9icG9zdDoOaLMvocrUd1cuTZMf4Xbe",
     "am9icG9zdDoSZRhfRFSX4uPin3ZELp9s",
     "am9icG9zdDo_3FuX91jmFcxX6zy1Weqt",
+    "am9icG9zdDoc8tgrGGT8MzOdCP3TGEWF",
     "am9icG9zdDofYHqc8zr7rfB1gqt1KQj9",
+    "am9icG9zdDolt3wVYDxRrUzO9WDnNKwN",
     "am9icG9zdDp3DadDGd_3uBwvG0EBWmo9",
     "am9icG9zdDp9BrHlqr7myFyRPR_fw9UL",
     "am9icG9zdDp9GHF1RWxrBMEH0nwIZYNt",
@@ -68,7 +70,7 @@
       "category": "data"
     }
   },
-  "last_successful_scan_at": "2026-11-24T22:56:17+00:00",
+  "last_successful_scan_at": "2026-11-25T22:10:55+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "am9icG9zdDoSZRhfRFSX4uPin3ZELp9s": {
@@ -408,6 +410,36 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-21T03:00:05+00:00",
       "last_seen_at": "2026-11-21T03:00:05+00:00"
+    },
+    "am9icG9zdDoc8tgrGGT8MzOdCP3TGEWF": {
+      "title": "Senior Solutions Architect (Engineering)",
+      "location": "Remote, USA, Remote",
+      "url": "https://jobs.gem.com/ocient-inc-/am9icG9zdDoc8tgrGGT8MzOdCP3TGEWF",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "am9icG9zdDolt3wVYDxRrUzO9WDnNKwN": {
+      "title": "Senior Solutions Architect: For Engineers Who Want to Solve the Problem in Front of the Customer",
+      "location": "Remote, USA, Remote",
+      "url": "https://jobs.gem.com/ocient-inc-/am9icG9zdDolt3wVYDxRrUzO9WDnNKwN",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
     }
   },
   "source_updated_at_by_id": {}

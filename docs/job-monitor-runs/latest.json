@@ -1,6 +1,6 @@
 {
   "success": true,
-  "scanned_at": "2026-11-24T22:56:17+00:00",
+  "scanned_at": "2026-11-25T22:10:55+00:00",
   "monitor_count": 14,
   "successful_monitors": [
     "cbre",
@@ -19,34 +19,36 @@
     "waymo"
   ],
   "failed_monitors": [],
-  "candidate_count": 0,
-  "needs_ai_review_count": 1,
-  "candidates": [],
-  "needs_ai_review": [
+  "candidate_count": 1,
+  "needs_ai_review_count": 0,
+  "candidates": [
     {
-      "monitor": "nvidia",
-      "job_id": "JR2030580",
-      "title": "Senior RTL Analysis Methodology Engineer",
-      "location": "US, CA, Santa Clara; US, CA, Remote",
-      "posted_at": "2026-11-24",
-      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-RTL-Analysis-Methodology-Engineer_JR2030580",
-      "priority": "low",
+      "monitor": "tiktok",
+      "job_id": "7710030288165996805",
+      "title": "Backend Software Engineer - Data Lifecycle Management",
+      "location": "San Jose, California, United States of America",
+      "posted_at": "",
+      "url": "https://lifeattiktok.com/search/7710030288165996805",
+      "priority": "high",
       "matching_requirements": [
-        "target_title:technical_review",
+        "target_title:backend",
         "profile_signal:python:+2",
-        "profile_signal:databases:+1",
-        "profile_signal:cloud_containers:+2"
+        "profile_signal:java:+1",
+        "profile_signal:backend_apis:+2",
+        "profile_signal:distributed_systems:+2",
+        "profile_signal:agentic_tooling:+3"
       ],
       "material_gaps": []
     }
   ],
+  "needs_ai_review": [],
   "results": [
     {
       "monitor": "cbre",
       "success": true,
-      "scanned_at": "2026-11-24T22:56:17+00:00",
-      "fetched": 1103,
-      "unseen": 49,
+      "scanned_at": "2026-11-25T22:10:55+00:00",
+      "fetched": 861,
+      "unseen": 36,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -55,8 +57,8 @@
     {
       "monitor": "cdk",
       "success": true,
-      "scanned_at": "2026-11-24T22:56:17+00:00",
-      "fetched": 53,
+      "scanned_at": "2026-11-25T22:10:55+00:00",
+      "fetched": 52,
       "unseen": 0,
       "state_updated": true,
       "candidates": [],
@@ -66,9 +68,9 @@
     {
       "monitor": "cisco",
       "success": true,
-      "scanned_at": "2026-11-24T22:56:17+00:00",
+      "scanned_at": "2026-11-25T22:10:55+00:00",
       "fetched": 80,
-      "unseen": 5,
+      "unseen": 1,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -77,9 +79,9 @@
     {
       "monitor": "crunchyroll",
       "success": true,
-      "scanned_at": "2026-11-24T22:56:17+00:00",
-      "fetched": 96,
-      "unseen": 1,
+      "scanned_at": "2026-11-25T22:10:55+00:00",
+      "fetched": 95,
+      "unseen": 0,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -88,9 +90,9 @@
     {
       "monitor": "ebay",
       "success": true,
-      "scanned_at": "2026-11-24T22:56:17+00:00",
-      "fetched": 203,
-      "unseen": 13,
+      "scanned_at": "2026-11-25T22:10:55+00:00",
+      "fetched": 201,
+      "unseen": 15,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -99,9 +101,9 @@
     {
       "monitor": "intepros",
       "success": true,
-      "scanned_at": "2026-11-24T22:56:17+00:00",
-      "fetched": 40,
-      "unseen": 4,
+      "scanned_at": "2026-11-25T22:10:55+00:00",
+      "fetched": 30,
+      "unseen": 3,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -110,9 +112,9 @@
     {
       "monitor": "iqvia",
       "success": true,
-      "scanned_at": "2026-11-24T22:56:17+00:00",
-      "fetched": 1119,
-      "unseen": 41,
+      "scanned_at": "2026-11-25T22:10:55+00:00",
+      "fetched": 971,
+      "unseen": 39,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -121,9 +123,9 @@
     {
       "monitor": "nbcu",
       "success": true,
-      "scanned_at": "2026-11-24T22:56:17+00:00",
-      "fetched": 342,
-      "unseen": 7,
+      "scanned_at": "2026-11-25T22:10:55+00:00",
+      "fetched": 350,
+      "unseen": 42,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -132,35 +134,19 @@
     {
       "monitor": "nvidia",
       "success": true,
-      "scanned_at": "2026-11-24T22:56:17+00:00",
-      "fetched": 120,
-      "unseen": 10,
+      "scanned_at": "2026-11-25T22:10:55+00:00",
+      "fetched": 340,
+      "unseen": 18,
       "state_updated": true,
       "candidates": [],
-      "needs_ai_review": [
-        {
-          "job_id": "JR2030580",
-          "title": "Senior RTL Analysis Methodology Engineer",
-          "location": "US, CA, Santa Clara; US, CA, Remote",
-          "posted_at": "2026-11-24",
-          "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-RTL-Analysis-Methodology-Engineer_JR2030580",
-          "priority": "low",
-          "matching_requirements": [
-            "target_title:technical_review",
-            "profile_signal:python:+2",
-            "profile_signal:databases:+1",
-            "profile_signal:cloud_containers:+2"
-          ],
-          "material_gaps": []
-        }
-      ],
+      "needs_ai_review": [],
       "errors": []
     },
     {
       "monitor": "occ",
       "success": true,
-      "scanned_at": "2026-11-24T22:56:17+00:00",
-      "fetched": 63,
+      "scanned_at": "2026-11-25T22:10:55+00:00",
+      "fetched": 66,
       "unseen": 2,
       "state_updated": true,
       "candidates": [],
@@ -170,9 +156,9 @@
     {
       "monitor": "ocient",
       "success": true,
-      "scanned_at": "2026-11-24T22:56:17+00:00",
-      "fetched": 18,
-      "unseen": 0,
+      "scanned_at": "2026-11-25T22:10:55+00:00",
+      "fetched": 20,
+      "unseen": 2,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -181,9 +167,9 @@
     {
       "monitor": "rivian",
       "success": true,
-      "scanned_at": "2026-11-24T22:56:17+00:00",
+      "scanned_at": "2026-11-25T22:10:55+00:00",
       "fetched": 40,
-      "unseen": 6,
+      "unseen": 2,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -192,20 +178,38 @@
     {
       "monitor": "tiktok",
       "success": true,
-      "scanned_at": "2026-11-24T22:56:17+00:00",
-      "fetched": 1789,
-      "unseen": 9,
+      "scanned_at": "2026-11-25T22:10:55+00:00",
+      "fetched": 1791,
+      "unseen": 16,
       "state_updated": true,
-      "candidates": [],
+      "candidates": [
+        {
+          "job_id": "7710030288165996805",
+          "title": "Backend Software Engineer - Data Lifecycle Management",
+          "location": "San Jose, California, United States of America",
+          "posted_at": "",
+          "url": "https://lifeattiktok.com/search/7710030288165996805",
+          "priority": "high",
+          "matching_requirements": [
+            "target_title:backend",
+            "profile_signal:python:+2",
+            "profile_signal:java:+1",
+            "profile_signal:backend_apis:+2",
+            "profile_signal:distributed_systems:+2",
+            "profile_signal:agentic_tooling:+3"
+          ],
+          "material_gaps": []
+        }
+      ],
       "needs_ai_review": [],
       "errors": []
     },
     {
       "monitor": "waymo",
       "success": true,
-      "scanned_at": "2026-11-24T22:56:17+00:00",
+      "scanned_at": "2026-11-25T22:10:55+00:00",
       "fetched": 146,
-      "unseen": 2,
+      "unseen": 1,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],

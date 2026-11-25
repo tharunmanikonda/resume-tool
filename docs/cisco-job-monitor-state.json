@@ -1503,12 +1503,13 @@
     "2031477",
     "2031481",
     "2031565",
+    "2031883",
     "2031885",
     "2031914",
     "2032282",
     "2032363"
   ],
-  "last_successful_scan_at": "2026-11-24T22:56:17+00:00",
+  "last_successful_scan_at": "2026-11-25T22:10:55+00:00",
   "candidate_catalog": {
     "2024998": {
       "title": "AI Security Engineer",
@@ -4243,6 +4244,20 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-24T22:56:17+00:00",
       "last_seen_at": "2026-11-24T22:56:17+00:00"
+    },
+    "2031883": {
+      "title": "Senior Software Engineer (Shared Components Library)",
+      "location": "Galway, Ireland",
+      "url": "https://cisco.wd5.myworkdayjobs.com/job/Galway-Ireland/Senior-Software-Engineer--Shared-Components-Library-_2031883",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-25T22:10:55+00:00",
+      "last_seen_at": "2026-11-25T22:10:55+00:00"
     }
   },
   "source_updated_at_by_id": {}
