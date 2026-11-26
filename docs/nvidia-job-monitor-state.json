@@ -1322,6 +1322,7 @@
     "JR2030465",
     "JR2030470",
     "JR2030471",
+    "JR2030505",
     "JR2030512",
     "JR2030532",
     "JR2030535",
@@ -1715,7 +1716,7 @@
       "category": "technical_review"
     }
   },
-  "last_successful_scan_at": "2026-11-25T22:10:55+00:00",
+  "last_successful_scan_at": "2026-11-26T22:09:34+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "JR2014880": {
@@ -18480,6 +18481,20 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-25T22:10:55+00:00",
       "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "JR2030505": {
+      "title": "Senior Machine Learning Engineer, User Simulation and Advanced Synthetic Data Generation",
+      "location": "US, CA, Santa Clara; US, TX, Remote; US, PA, Remote; US, WA, Remote; US, CA, Remote; US, MA, Remote",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/job/US-CA-Santa-Clara/Senior-Machine-Learning-Engineer--User-Simulation-and-Advanced-Synthetic-Data-Generation_JR2030505",
+      "posted_at": "2026-11-25",
+      "stage": "detail",
+      "blockers": [
+        "minimum_experience_at_least_5_years"
+      ],
+      "category": "ai_ml",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-26T22:09:34+00:00",
+      "last_seen_at": "2026-11-26T22:09:34+00:00"
     }
   },
   "source_updated_at_by_id": {}

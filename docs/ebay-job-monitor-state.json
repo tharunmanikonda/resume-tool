@@ -111,6 +111,7 @@
     "R0075263",
     "R0075281",
     "R0075287",
+    "R0075288",
     "R0075289",
     "R0075291",
     "R0075292",
@@ -227,6 +228,7 @@
     "R0076405",
     "R0076406",
     "R0076411",
+    "R0076435",
     "R0076436",
     "R0076441",
     "R0076442",
@@ -234,6 +236,7 @@
     "R0076447",
     "R0076448",
     "R0076449",
+    "R0076451",
     "R0076460",
     "R0076463",
     "R0076468",
@@ -476,6 +479,7 @@
     "R0077452",
     "R0077459",
     "R0077463",
+    "R0077467",
     "R0077468",
     "R0077470",
     "R0077471",
@@ -491,6 +495,7 @@
     "R0077495",
     "R0077498",
     "R0077512",
+    "R0077517",
     "R0077518",
     "R0077520",
     "R0077522",
@@ -506,8 +511,10 @@
     "R0077577",
     "R0077580",
     "R0077590",
+    "R0077604",
     "R0077610",
     "R0077612",
+    "R0077630",
     "R0077632",
     "R0077651",
     "R0077679"
@@ -604,7 +611,7 @@
       "category": "platform"
     }
   },
-  "last_successful_scan_at": "2026-11-25T22:10:55+00:00",
+  "last_successful_scan_at": "2026-11-26T22:09:34+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "R0077145": {
@@ -7355,6 +7362,108 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-25T22:10:55+00:00",
       "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "R0077467": {
+      "title": "Cloud Analytics Engineer",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077467/Cloud-Analytics-Engineer",
+      "posted_at": "2026-11-26T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-26T22:09:34+00:00",
+      "last_seen_at": "2026-11-26T22:09:34+00:00"
+    },
+    "R0076435": {
+      "title": "Senior Data Scheduling Infra Developer",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076435/Senior-Data-Scheduling-Infra-Developer",
+      "posted_at": "2026-11-26T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-26T22:09:34+00:00",
+      "last_seen_at": "2026-11-26T22:09:34+00:00"
+    },
+    "R0077630": {
+      "title": "Sr.Software Engineer Streaming",
+      "location": "Dublin, Dublin, Ireland",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077630/Sr-Software-Engineer-Streaming",
+      "posted_at": "2026-11-26T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-26T22:09:34+00:00",
+      "last_seen_at": "2026-11-26T22:09:34+00:00"
+    },
+    "R0076451": {
+      "title": "Director, Ads & MarTech Engineering",
+      "location": "Bengaluru, Karn\u0101taka, India",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076451/Director-Ads-MarTech-Engineering",
+      "posted_at": "2026-11-26T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-26T22:09:34+00:00",
+      "last_seen_at": "2026-11-26T22:09:34+00:00"
+    },
+    "R0075288": {
+      "title": "Principal, Design Engineer",
+      "location": "Portland, Oregon, United States of America",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0075288/Principal-Design-Engineer",
+      "posted_at": "2026-11-25T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "level_too_senior"
+      ],
+      "category": "technical_review",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-26T22:09:34+00:00",
+      "last_seen_at": "2026-11-26T22:09:34+00:00"
+    },
+    "R0077604": {
+      "title": "Indirect Tax Compliance Acctg Supervisor",
+      "location": "Dublin, Dublin, Ireland",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077604/Indirect-Tax-Compliance-Acctg-Supervisor",
+      "posted_at": "2026-11-26T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-26T22:09:34+00:00",
+      "last_seen_at": "2026-11-26T22:09:34+00:00"
+    },
+    "R0077517": {
+      "title": "Global Senior Handbag Trainer",
+      "location": "London, Surrey, United Kingdom",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077517/Global-Senior-Handbag-Trainer",
+      "posted_at": "2026-11-26T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-26T22:09:34+00:00",
+      "last_seen_at": "2026-11-26T22:09:34+00:00"
     }
   },
   "source_updated_at_by_id": {}

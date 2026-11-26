@@ -1,6 +1,6 @@
 {
   "success": true,
-  "scanned_at": "2026-11-25T22:10:55+00:00",
+  "scanned_at": "2026-11-26T22:09:34+00:00",
   "monitor_count": 14,
   "successful_monitors": [
     "cbre",
@@ -19,24 +19,44 @@
     "waymo"
   ],
   "failed_monitors": [],
-  "candidate_count": 1,
+  "candidate_count": 2,
   "needs_ai_review_count": 0,
   "candidates": [
     {
-      "monitor": "tiktok",
-      "job_id": "7710030288165996805",
-      "title": "Backend Software Engineer - Data Lifecycle Management",
-      "location": "San Jose, California, United States of America",
-      "posted_at": "",
-      "url": "https://lifeattiktok.com/search/7710030288165996805",
+      "monitor": "iqvia",
+      "job_id": "R1574194",
+      "title": "Software Development Engineer 2",
+      "location": "Kathmandu, Nepal",
+      "posted_at": "2026-11-26",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Kathmandu-Nepal/Software-Development-Engineer-2_R1574194",
       "priority": "high",
       "matching_requirements": [
-        "target_title:backend",
+        "target_title:software",
         "profile_signal:python:+2",
         "profile_signal:java:+1",
+        "profile_signal:data_streaming:+2",
+        "profile_signal:databases:+1",
+        "profile_signal:cloud_containers:+2",
+        "profile_signal:qa_automation:+2"
+      ],
+      "material_gaps": []
+    },
+    {
+      "monitor": "tiktok",
+      "job_id": "7712192759532357893",
+      "title": "Machine Learning Engineer Intern (Data-Global E-Commerce-Search) - 2027 Start (PhD)",
+      "location": "Seattle, Washington, United States of America",
+      "posted_at": "",
+      "url": "https://lifeattiktok.com/search/7712192759532357893",
+      "priority": "high",
+      "matching_requirements": [
+        "target_title:ai_ml",
+        "profile_signal:python:+2",
+        "profile_signal:java:+1",
+        "profile_signal:javascript_react:+1",
         "profile_signal:backend_apis:+2",
         "profile_signal:distributed_systems:+2",
-        "profile_signal:agentic_tooling:+3"
+        "profile_signal:data_streaming:+2"
       ],
       "material_gaps": []
     }
@@ -46,9 +66,9 @@
     {
       "monitor": "cbre",
       "success": true,
-      "scanned_at": "2026-11-25T22:10:55+00:00",
-      "fetched": 861,
-      "unseen": 36,
+      "scanned_at": "2026-11-26T22:09:34+00:00",
+      "fetched": 927,
+      "unseen": 61,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -57,8 +77,8 @@
     {
       "monitor": "cdk",
       "success": true,
-      "scanned_at": "2026-11-25T22:10:55+00:00",
-      "fetched": 52,
+      "scanned_at": "2026-11-26T22:09:34+00:00",
+      "fetched": 45,
       "unseen": 0,
       "state_updated": true,
       "candidates": [],
@@ -68,9 +88,9 @@
     {
       "monitor": "cisco",
       "success": true,
-      "scanned_at": "2026-11-25T22:10:55+00:00",
-      "fetched": 80,
-      "unseen": 1,
+      "scanned_at": "2026-11-26T22:09:34+00:00",
+      "fetched": 60,
+      "unseen": 0,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -79,7 +99,7 @@
     {
       "monitor": "crunchyroll",
       "success": true,
-      "scanned_at": "2026-11-25T22:10:55+00:00",
+      "scanned_at": "2026-11-26T22:09:34+00:00",
       "fetched": 95,
       "unseen": 0,
       "state_updated": true,
@@ -90,9 +110,9 @@
     {
       "monitor": "ebay",
       "success": true,
-      "scanned_at": "2026-11-25T22:10:55+00:00",
-      "fetched": 201,
-      "unseen": 15,
+      "scanned_at": "2026-11-26T22:09:34+00:00",
+      "fetched": 200,
+      "unseen": 7,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -101,9 +121,9 @@
     {
       "monitor": "intepros",
       "success": true,
-      "scanned_at": "2026-11-25T22:10:55+00:00",
-      "fetched": 30,
-      "unseen": 3,
+      "scanned_at": "2026-11-26T22:09:34+00:00",
+      "fetched": 20,
+      "unseen": 0,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -112,20 +132,39 @@
     {
       "monitor": "iqvia",
       "success": true,
-      "scanned_at": "2026-11-25T22:10:55+00:00",
-      "fetched": 971,
-      "unseen": 39,
+      "scanned_at": "2026-11-26T22:09:34+00:00",
+      "fetched": 642,
+      "unseen": 17,
       "state_updated": true,
-      "candidates": [],
+      "candidates": [
+        {
+          "job_id": "R1574194",
+          "title": "Software Development Engineer 2",
+          "location": "Kathmandu, Nepal",
+          "posted_at": "2026-11-26",
+          "url": "https://iqvia.wd1.myworkdayjobs.com/job/Kathmandu-Nepal/Software-Development-Engineer-2_R1574194",
+          "priority": "high",
+          "matching_requirements": [
+            "target_title:software",
+            "profile_signal:python:+2",
+            "profile_signal:java:+1",
+            "profile_signal:data_streaming:+2",
+            "profile_signal:databases:+1",
+            "profile_signal:cloud_containers:+2",
+            "profile_signal:qa_automation:+2"
+          ],
+          "material_gaps": []
+        }
+      ],
       "needs_ai_review": [],
       "errors": []
     },
     {
       "monitor": "nbcu",
       "success": true,
-      "scanned_at": "2026-11-25T22:10:55+00:00",
-      "fetched": 350,
-      "unseen": 42,
+      "scanned_at": "2026-11-26T22:09:34+00:00",
+      "fetched": 351,
+      "unseen": 3,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -134,9 +173,9 @@
     {
       "monitor": "nvidia",
       "success": true,
-      "scanned_at": "2026-11-25T22:10:55+00:00",
-      "fetched": 340,
-      "unseen": 18,
+      "scanned_at": "2026-11-26T22:09:34+00:00",
+      "fetched": 120,
+      "unseen": 1,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -145,9 +184,9 @@
     {
       "monitor": "occ",
       "success": true,
-      "scanned_at": "2026-11-25T22:10:55+00:00",
-      "fetched": 66,
-      "unseen": 2,
+      "scanned_at": "2026-11-26T22:09:34+00:00",
+      "fetched": 60,
+      "unseen": 0,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -156,9 +195,9 @@
     {
       "monitor": "ocient",
       "success": true,
-      "scanned_at": "2026-11-25T22:10:55+00:00",
+      "scanned_at": "2026-11-26T22:09:34+00:00",
       "fetched": 20,
-      "unseen": 2,
+      "unseen": 0,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -167,9 +206,9 @@
     {
       "monitor": "rivian",
       "success": true,
-      "scanned_at": "2026-11-25T22:10:55+00:00",
-      "fetched": 40,
-      "unseen": 2,
+      "scanned_at": "2026-11-26T22:09:34+00:00",
+      "fetched": 30,
+      "unseen": 0,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -178,25 +217,26 @@
     {
       "monitor": "tiktok",
       "success": true,
-      "scanned_at": "2026-11-25T22:10:55+00:00",
-      "fetched": 1791,
-      "unseen": 16,
+      "scanned_at": "2026-11-26T22:09:34+00:00",
+      "fetched": 1795,
+      "unseen": 6,
       "state_updated": true,
       "candidates": [
         {
-          "job_id": "7710030288165996805",
-          "title": "Backend Software Engineer - Data Lifecycle Management",
-          "location": "San Jose, California, United States of America",
+          "job_id": "7712192759532357893",
+          "title": "Machine Learning Engineer Intern (Data-Global E-Commerce-Search) - 2027 Start (PhD)",
+          "location": "Seattle, Washington, United States of America",
           "posted_at": "",
-          "url": "https://lifeattiktok.com/search/7710030288165996805",
+          "url": "https://lifeattiktok.com/search/7712192759532357893",
           "priority": "high",
           "matching_requirements": [
-            "target_title:backend",
+            "target_title:ai_ml",
             "profile_signal:python:+2",
             "profile_signal:java:+1",
+            "profile_signal:javascript_react:+1",
             "profile_signal:backend_apis:+2",
             "profile_signal:distributed_systems:+2",
-            "profile_signal:agentic_tooling:+3"
+            "profile_signal:data_streaming:+2"
           ],
           "material_gaps": []
         }
@@ -207,9 +247,9 @@
     {
       "monitor": "waymo",
       "success": true,
-      "scanned_at": "2026-11-25T22:10:55+00:00",
-      "fetched": 146,
-      "unseen": 1,
+      "scanned_at": "2026-11-26T22:09:34+00:00",
+      "fetched": 145,
+      "unseen": 0,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],

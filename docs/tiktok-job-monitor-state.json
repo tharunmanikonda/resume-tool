@@ -489,6 +489,7 @@
     "7594626946647492917",
     "7594673408735349045",
     "7594678245917428021",
+    "7594759045071554821",
     "7594767288634755381",
     "7594906381292488965",
     "7594911490849753349",
@@ -2073,6 +2074,7 @@
     "7710377102054525237",
     "7710378565141006597",
     "7711183092871235893",
+    "7711360520230930693",
     "7711366131996657925",
     "7711367074397309237",
     "7711445618377918725",
@@ -2080,6 +2082,7 @@
     "7711449529142003973",
     "7711452837029595397",
     "7711530648122820869",
+    "7711598958485408053",
     "7711639550464051509",
     "7711761054139418885",
     "7711761062527338757",
@@ -2091,7 +2094,10 @@
     "7712045856585877813",
     "7712095516906670341",
     "7712097473955957045",
-    "7712097759408916741"
+    "7712097759408916741",
+    "7712192759532357893",
+    "7712240468222200069",
+    "7712360286937843973"
   ],
   "candidate_catalog": {
     "7680987768009754885": {
@@ -5333,6 +5339,15 @@
       "first_seen_at": "2026-11-25T22:10:55+00:00",
       "priority": "high",
       "category": "backend"
+    },
+    "7712192759532357893": {
+      "title": "Machine Learning Engineer Intern (Data-Global E-Commerce-Search) - 2027 Start (PhD)",
+      "location": "Seattle, Washington, United States of America",
+      "url": "https://lifeattiktok.com/search/7712192759532357893",
+      "posted_at": "",
+      "first_seen_at": "2026-11-26T22:09:34+00:00",
+      "priority": "high",
+      "category": "ai_ml"
     }
   },
   "rejected_catalog": {
@@ -30464,8 +30479,80 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-25T22:10:55+00:00",
       "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "7711598958485408053": {
+      "title": "Backend Software Engineer - Intern (TikTok Privacy and Security) - 2027 Start",
+      "location": "Singapore",
+      "url": "https://lifeattiktok.com/search/7711598958485408053",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "backend",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-26T22:09:34+00:00",
+      "last_seen_at": "2026-11-26T22:09:34+00:00"
+    },
+    "7712240468222200069": {
+      "title": "AI Data Strategist - TikTok",
+      "location": "San Jose, California, United States of America",
+      "url": "https://lifeattiktok.com/search/7712240468222200069",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-26T22:09:34+00:00",
+      "last_seen_at": "2026-11-26T22:09:34+00:00"
+    },
+    "7712360286937843973": {
+      "title": "Data Infra & Automation, Risk Analyst - Trust and Safety",
+      "location": "Singapore",
+      "url": "https://lifeattiktok.com/search/7712360286937843973",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-26T22:09:34+00:00",
+      "last_seen_at": "2026-11-26T22:09:34+00:00"
+    },
+    "7711360520230930693": {
+      "title": "Business Analytics Lead (Dine-In) - TikTok Local Services",
+      "location": "Los Angeles, California, United States of America",
+      "url": "https://lifeattiktok.com/search/7711360520230930693",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-26T22:09:34+00:00",
+      "last_seen_at": "2026-11-26T22:09:34+00:00"
+    },
+    "7594759045071554821": {
+      "title": "Product Lead, Red Team, Platform Responsibility",
+      "location": "Singapore",
+      "url": "https://lifeattiktok.com/search/7594759045071554821",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-26T22:09:34+00:00",
+      "last_seen_at": "2026-11-26T22:09:34+00:00"
     }
   },
-  "last_successful_scan_at": "2026-11-25T22:10:55+00:00",
+  "last_successful_scan_at": "2026-11-26T22:09:34+00:00",
   "source_updated_at_by_id": {}
 }

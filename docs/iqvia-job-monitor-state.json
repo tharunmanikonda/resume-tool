@@ -1922,6 +1922,7 @@
     "R1571575",
     "R1571587",
     "R1571594",
+    "R1571596",
     "R1571598",
     "R1571600",
     "R1571601",
@@ -2245,6 +2246,7 @@
     "R1574183",
     "R1574185",
     "R1574189",
+    "R1574194",
     "R1574197",
     "R1574198",
     "R1574219",
@@ -2331,6 +2333,7 @@
     "R1574760",
     "R1574765",
     "R1574766",
+    "R1574768",
     "R1574772",
     "R1574776",
     "R1574781",
@@ -2340,8 +2343,13 @@
     "R1574792",
     "R1574795",
     "R1574796",
+    "R1574799",
     "R1574801",
+    "R1574802",
+    "R1574804",
     "R1574805",
+    "R1574806",
+    "R1574808",
     "R1574810",
     "R1574811",
     "R1574813",
@@ -2384,6 +2392,7 @@
     "R1575112",
     "R1575114",
     "R1575136",
+    "R1575149",
     "R1575150",
     "R1575153",
     "R1575157",
@@ -2758,6 +2767,7 @@
     "R1578073",
     "R1578075",
     "R1578132",
+    "R1578139",
     "R1578141",
     "R1578155",
     "R1578170",
@@ -2837,6 +2847,7 @@
     "R1578678",
     "R1578685",
     "R1578696",
+    "R1578727",
     "R1578730",
     "R1578731",
     "R1578748",
@@ -3056,6 +3067,7 @@
     "R1580108",
     "R1580109",
     "R1580148",
+    "R1580181",
     "R1580182",
     "R1580220",
     "R1580221",
@@ -3150,6 +3162,7 @@
     "R1581850",
     "R1581852",
     "R1581883",
+    "R1581905",
     "R1581909",
     "R1581911",
     "R1581912",
@@ -3159,6 +3172,7 @@
     "R1581931",
     "R1581934",
     "R1581937",
+    "R1582001",
     "R1582064",
     "R1582079",
     "R1582081",
@@ -3169,7 +3183,10 @@
     "R1582165",
     "R1582197",
     "R1582205",
-    "R1582259"
+    "R1582259",
+    "R1582261",
+    "R1582263",
+    "R1582313"
   ],
   "candidate_catalog": {
     "R1570411": {
@@ -3378,9 +3395,18 @@
       "first_seen_at": "2026-11-19T21:13:54+00:00",
       "priority": "high",
       "category": "software"
+    },
+    "R1574194": {
+      "title": "Software Development Engineer 2",
+      "location": "Kathmandu, Nepal",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Kathmandu-Nepal/Software-Development-Engineer-2_R1574194",
+      "posted_at": "2026-11-26",
+      "first_seen_at": "2026-11-26T22:09:34+00:00",
+      "priority": "high",
+      "category": "software"
     }
   },
-  "last_successful_scan_at": "2026-11-25T22:10:55+00:00",
+  "last_successful_scan_at": "2026-11-26T22:09:34+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "R1545472": {
@@ -46868,6 +46894,241 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-25T22:10:55+00:00",
       "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "R1574799": {
+      "title": "Sr Business Systems Analyst",
+      "location": "Warsaw, Poland",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Warsaw-Poland/Sr-Business-Systems-Analyst_R1574799",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "systems_analysis",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-26T22:09:34+00:00",
+      "last_seen_at": "2026-11-26T22:09:34+00:00"
+    },
+    "R1571596": {
+      "title": "Engagement Manager",
+      "location": "Bangalore, India",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Bangalore-India/Engagement-Manager_R1571596",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-26T22:09:34+00:00",
+      "last_seen_at": "2026-11-26T22:09:34+00:00"
+    },
+    "R1574804": {
+      "title": "Sr Software Development Engineer",
+      "location": "Warsaw, Poland",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Warsaw-Poland/Sr-Software-Development-Engineer_R1574804",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-26T22:09:34+00:00",
+      "last_seen_at": "2026-11-26T22:09:34+00:00"
+    },
+    "R1574806": {
+      "title": "Sr Software Development Engineer",
+      "location": "Warsaw, Poland",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Warsaw-Poland/Sr-Software-Development-Engineer_R1574806",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-26T22:09:34+00:00",
+      "last_seen_at": "2026-11-26T22:09:34+00:00"
+    },
+    "R1574802": {
+      "title": "Sr Software Development Engineer",
+      "location": "Warsaw, Poland",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Warsaw-Poland/Sr-Software-Development-Engineer_R1574802",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location"
+      ],
+      "category": "software",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-26T22:09:34+00:00",
+      "last_seen_at": "2026-11-26T22:09:34+00:00"
+    },
+    "R1574768": {
+      "title": "Associate Director Software Development Engineering",
+      "location": "Warsaw, Poland",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Warsaw-Poland/Associate-Director-Software-Development-Engineering_R1574768",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-26T22:09:34+00:00",
+      "last_seen_at": "2026-11-26T22:09:34+00:00"
+    },
+    "R1578139": {
+      "title": "DX/AX Consultant",
+      "location": "2 Locations",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Tokyo-Japan/DX-AX-Consultant_R1578139-6",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-26T22:09:34+00:00",
+      "last_seen_at": "2026-11-26T22:09:34+00:00"
+    },
+    "R1574808": {
+      "title": "Program Mgr",
+      "location": "Warsaw, Poland",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Warsaw-Poland/Program-Mgr_R1574808",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-26T22:09:34+00:00",
+      "last_seen_at": "2026-11-26T22:09:34+00:00"
+    },
+    "R1578727": {
+      "title": "System Support Analyst",
+      "location": "Taguig City, Philippines",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Taguig-City-Philippines/System-Support-Analyst_R1578727",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-26T22:09:34+00:00",
+      "last_seen_at": "2026-11-26T22:09:34+00:00"
+    },
+    "R1580181": {
+      "title": "Analyst",
+      "location": "Bangalore, India",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Bangalore-India/Analyst_R1580181",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-26T22:09:34+00:00",
+      "last_seen_at": "2026-11-26T22:09:34+00:00"
+    },
+    "R1582001": {
+      "title": "Especialista Home Delivery (Patient Support Programs)",
+      "location": "Mexico City, Mexico",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Mexico-City-Mexico/Home-Delivery-Especialista_R1582001",
+      "posted_at": "Posted Yesterday",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-26T22:09:34+00:00",
+      "last_seen_at": "2026-11-26T22:09:34+00:00"
+    },
+    "R1582263": {
+      "title": "Project Management Analyst, Real World Evidence",
+      "location": "3 Locations",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Mexico-City-Mexico/Project-Management-Analyst--Real-World-Evidence_R1582263",
+      "posted_at": "Posted Yesterday",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-26T22:09:34+00:00",
+      "last_seen_at": "2026-11-26T22:09:34+00:00"
+    },
+    "R1575149": {
+      "title": "SR CTA",
+      "location": "Netanya, Israel",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Netanya-Israel/SR-CTA_R1575149",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-26T22:09:34+00:00",
+      "last_seen_at": "2026-11-26T22:09:34+00:00"
+    },
+    "R1581905": {
+      "title": "CDx Study Coordinator",
+      "location": "Valencia, CA, United States of America",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Valencia-CA-United-States-of-America/CDx-Study-Coordinator_R1581905",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-26T22:09:34+00:00",
+      "last_seen_at": "2026-11-26T22:09:34+00:00"
+    },
+    "R1582313": {
+      "title": "Associate Clinical Project Manager",
+      "location": "Thane, Maharashtra, India",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Thane-Maharashtra-India/Associate-Clinical-Project-Manager_R1582313",
+      "posted_at": "Posted Today",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-26T22:09:34+00:00",
+      "last_seen_at": "2026-11-26T22:09:34+00:00"
+    },
+    "R1582261": {
+      "title": "Associate Clinical Project Manager, RWE",
+      "location": "3 Locations",
+      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Mexico-City-Mexico/Associate-Clinical-Project-Manger--RWE_R1582261",
+      "posted_at": "Posted Yesterday",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-26T22:09:34+00:00",
+      "last_seen_at": "2026-11-26T22:09:34+00:00"
     }
   },
   "source_updated_at_by_id": {}

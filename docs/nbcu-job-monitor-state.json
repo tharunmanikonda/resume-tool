@@ -944,7 +944,10 @@
     "744000163768309",
     "744000163768389",
     "744000163768719",
-    "744000163768839"
+    "744000163768839",
+    "744000163768999",
+    "744000163769039",
+    "744000163801169"
   ],
   "candidate_catalog": {
     "744000151898289": {
@@ -1128,7 +1131,7 @@
       "category": "technical_review"
     }
   },
-  "last_successful_scan_at": "2026-11-25T22:10:55+00:00",
+  "last_successful_scan_at": "2026-11-26T22:09:34+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "744000156079569": {
@@ -13112,6 +13115,50 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-25T22:10:55+00:00",
       "last_seen_at": "2026-11-25T22:10:55+00:00"
+    },
+    "744000163801169": {
+      "title": "Content Supply Chain Specialist, Media Workflow & Enhancement",
+      "location": "Universal City, CA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163801169-content-supply-chain-specialist-media-workflow-enhancement",
+      "posted_at": "2026-11-26T02:36:33.383Z",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-26T22:09:34+00:00",
+      "last_seen_at": "2026-11-26T22:09:34+00:00"
+    },
+    "744000163769039": {
+      "title": "Director, Global Benefits - Platform & Experience",
+      "location": "Atlanta, GA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163769039-director-global-benefits-platform-experience",
+      "posted_at": "2026-11-25T22:18:37.687Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-26T22:09:34+00:00",
+      "last_seen_at": "2026-11-26T22:09:34+00:00"
+    },
+    "744000163768999": {
+      "title": "Director, Global Benefits - Platform & Experience",
+      "location": "Philadelphia, PA, United States",
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000163768999-director-global-benefits-platform-experience",
+      "posted_at": "2026-11-25T22:17:20.231Z",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-26T22:09:34+00:00",
+      "last_seen_at": "2026-11-26T22:09:34+00:00"
     }
   },
   "source_updated_at_by_id": {}
