@@ -871,6 +871,7 @@
     "7660367427276261685",
     "7660367431023102213",
     "7660367862386673925",
+    "7660386947844917509",
     "7660392013409503541",
     "7660537488745924869",
     "7660767102572398901",
@@ -2086,6 +2087,7 @@
     "7711639550464051509",
     "7711761054139418885",
     "7711761062527338757",
+    "7711762485648754997",
     "7711823713306478901",
     "7711857759115888901",
     "7711857759287216389",
@@ -2097,7 +2099,8 @@
     "7712097759408916741",
     "7712192759532357893",
     "7712240468222200069",
-    "7712360286937843973"
+    "7712360286937843973",
+    "7712456696455629109"
   ],
   "candidate_catalog": {
     "7680987768009754885": {
@@ -30551,8 +30554,52 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-26T22:09:34+00:00",
       "last_seen_at": "2026-11-26T22:09:34+00:00"
+    },
+    "7711762485648754997": {
+      "title": "AI Data Quality Enforcement Expert",
+      "location": "Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur, Malaysia",
+      "url": "https://lifeattiktok.com/search/7711762485648754997",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-27T21:50:28+00:00",
+      "last_seen_at": "2026-11-27T21:50:28+00:00"
+    },
+    "7712456696455629109": {
+      "title": "Client Solutions Manager (Commerce) - Denmark - GBS",
+      "location": "Copenhagen, Capital, Denmark",
+      "url": "https://lifeattiktok.com/search/7712456696455629109",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-27T21:50:28+00:00",
+      "last_seen_at": "2026-11-27T21:50:28+00:00"
+    },
+    "7660386947844917509": {
+      "title": "Brand Partnership Manager, Indonesia - GBS",
+      "location": "Jakarta Selatan, Jakarta Raya, Indonesia",
+      "url": "https://lifeattiktok.com/search/7660386947844917509",
+      "posted_at": "",
+      "stage": "prefilter",
+      "blockers": [
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-27T21:50:28+00:00",
+      "last_seen_at": "2026-11-27T21:50:28+00:00"
     }
   },
-  "last_successful_scan_at": "2026-11-26T22:09:34+00:00",
+  "last_successful_scan_at": "2026-11-27T21:50:28+00:00",
   "source_updated_at_by_id": {}
 }

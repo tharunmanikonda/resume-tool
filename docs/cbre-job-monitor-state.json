@@ -3258,6 +3258,7 @@
     "303724",
     "303734",
     "303739",
+    "303740",
     "303742",
     "303747",
     "303748",
@@ -3620,6 +3621,7 @@
     "304948",
     "304955",
     "304956",
+    "304959",
     "304963",
     "304966",
     "304975",
@@ -3627,6 +3629,7 @@
     "304978",
     "304979",
     "304981",
+    "304983",
     "304984",
     "305003",
     "305018",
@@ -3803,13 +3806,18 @@
     "305723",
     "305724",
     "305726",
+    "305728",
+    "305738",
     "305752",
     "305757",
     "305760",
+    "305761",
+    "305762",
     "305763",
     "305764",
     "305765",
     "305766",
+    "305770",
     "305771",
     "305775",
     "305778",
@@ -3914,6 +3922,7 @@
     "306012",
     "306019",
     "306028",
+    "306030",
     "306053",
     "306057",
     "306064",
@@ -3945,6 +3954,7 @@
     "306203",
     "306236",
     "306246",
+    "306247",
     "306250",
     "306252",
     "306260",
@@ -3982,6 +3992,7 @@
     "306436",
     "306442",
     "306444",
+    "306450",
     "306457",
     "306458",
     "306462",
@@ -4007,16 +4018,20 @@
     "306662",
     "306674",
     "306677",
+    "306685",
     "306697",
     "306702",
     "306715",
     "306732",
+    "306744",
     "306767",
     "306768",
     "306784",
+    "306795",
     "306798",
     "306802",
     "306847",
+    "306848",
     "306860",
     "306865",
     "306880",
@@ -4034,12 +4049,14 @@
     "307028",
     "307049",
     "307134",
+    "307239",
+    "307310",
     "38196",
     "76242",
     "8655"
   ],
   "candidate_catalog": {},
-  "last_successful_scan_at": "2026-11-26T22:09:34+00:00",
+  "last_successful_scan_at": "2026-11-27T21:50:28+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "301688": {
@@ -44746,6 +44763,266 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-26T22:09:34+00:00",
       "last_seen_at": "2026-11-26T22:09:34+00:00"
+    },
+    "305770": {
+      "title": "D&T Sr. Director, Platform Engineering, CIS",
+      "location": "London - England - United Kingdom of Great Britain and Northern Ireland",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/D-T-Sr-Director-Platform-Engineering-CIS/305770",
+      "posted_at": "27-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-27T21:50:28+00:00",
+      "last_seen_at": "2026-11-27T21:50:28+00:00"
+    },
+    "305761": {
+      "title": "Principle, AI Product Engineering, CIS",
+      "location": "London - England - United Kingdom of Great Britain and Northern Ireland",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Principle-AI-Product-Engineering-CIS/305761",
+      "posted_at": "27-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-27T21:50:28+00:00",
+      "last_seen_at": "2026-11-27T21:50:28+00:00"
+    },
+    "305738": {
+      "title": "D&T Director, CIS Solutions & Accounts",
+      "location": "London - England - United Kingdom of Great Britain and Northern Ireland",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/D-T-Director-CIS-Solutions-Accounts/305738",
+      "posted_at": "27-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-27T21:50:28+00:00",
+      "last_seen_at": "2026-11-27T21:50:28+00:00"
+    },
+    "303740": {
+      "title": "Account Manager",
+      "location": "Exeter - England - United Kingdom of Great Britain and Northern Ireland",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Account-Manager/303740",
+      "posted_at": "27-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-27T21:50:28+00:00",
+      "last_seen_at": "2026-11-27T21:50:28+00:00"
+    },
+    "305762": {
+      "title": "D&T Director, Data & Analytics, CIS",
+      "location": "London - England - United Kingdom of Great Britain and Northern Ireland",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/D-T-Director-Data-Analytics-CIS/305762",
+      "posted_at": "27-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-27T21:50:28+00:00",
+      "last_seen_at": "2026-11-27T21:50:28+00:00"
+    },
+    "306030": {
+      "title": "Maintenance Technician (Part Time 20hrs/week) - Singapore",
+      "location": "Singapore - Singapore",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Maintenance-Technician-Part-Time-20hrs-week-Singapore/306030",
+      "posted_at": "27-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-27T21:50:28+00:00",
+      "last_seen_at": "2026-11-27T21:50:28+00:00"
+    },
+    "304959": {
+      "title": "Business Development Manager (ICT / Structured Cabling)",
+      "location": "Singapore - Singapore",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Business-Development-Manager-ICT-Structured-Cabling/304959",
+      "posted_at": "24-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-27T21:50:28+00:00",
+      "last_seen_at": "2026-11-27T21:50:28+00:00"
+    },
+    "306744": {
+      "title": "RME Operator",
+      "location": "Charlotte - North Carolina - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/RME-Operator/306744",
+      "posted_at": "23-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-27T21:50:28+00:00",
+      "last_seen_at": "2026-11-27T21:50:28+00:00"
+    },
+    "307310": {
+      "title": "Technical Supervisor",
+      "location": "Glasgow - Scotland - United Kingdom of Great Britain and Northern Ireland",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Technical-Supervisor/307310",
+      "posted_at": "27-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-27T21:50:28+00:00",
+      "last_seen_at": "2026-11-27T21:50:28+00:00"
+    },
+    "307239": {
+      "title": "Electrical Technician",
+      "location": "Istanbul - Istanbul - Turkey",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Electrical-Technician/307239",
+      "posted_at": "27-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-27T21:50:28+00:00",
+      "last_seen_at": "2026-11-27T21:50:28+00:00"
+    },
+    "306848": {
+      "title": "Multi-Skilled Technician",
+      "location": "Villepinte - Ile-de-France - France",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Multi-Skilled-Technician/306848",
+      "posted_at": "27-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-27T21:50:28+00:00",
+      "last_seen_at": "2026-11-27T21:50:28+00:00"
+    },
+    "306795": {
+      "title": "Technician - Maintenance",
+      "location": "Angeles City - Pampanga - Philippines",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Technician-Maintenance/306795",
+      "posted_at": "27-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-27T21:50:28+00:00",
+      "last_seen_at": "2026-11-27T21:50:28+00:00"
+    },
+    "306247": {
+      "title": "Technik Mobilny - ma\u0142opolskie (m/k)",
+      "location": "Krakow - Malopolskie - Poland",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Technik-Mobilny-ma-opolskie-m-k/306247",
+      "posted_at": "27-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-27T21:50:28+00:00",
+      "last_seen_at": "2026-11-27T21:50:28+00:00"
+    },
+    "304983": {
+      "title": "Maintenance Technician",
+      "location": "Seoul - Seoul-teukbyeolsi - Korea (Republic of)",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Maintenance-Technician/304983",
+      "posted_at": "27-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-27T21:50:28+00:00",
+      "last_seen_at": "2026-11-27T21:50:28+00:00"
+    },
+    "306450": {
+      "title": "Mobile Technician",
+      "location": "Ottawa - Ontario - Canada",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Mobile-Technician/306450",
+      "posted_at": "26-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "support",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-27T21:50:28+00:00",
+      "last_seen_at": "2026-11-27T21:50:28+00:00"
+    },
+    "305728": {
+      "title": "EOI: HRIS (recruitment system)",
+      "location": "Kuala Lumpur - Wilayah Persekutuan Kuala Lumpur - Malaysia",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/EOI-HRIS-recruitment-system/305728",
+      "posted_at": "17-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-27T21:50:28+00:00",
+      "last_seen_at": "2026-11-27T21:50:28+00:00"
+    },
+    "306685": {
+      "title": "Mechatronic Apprentice",
+      "location": "Wilmington - Delaware - United States of America",
+      "url": "https://careers.cbre.com/en_US/careers/JobDetail/Mechatronic-Apprentice/306685",
+      "posted_at": "23-Nov-2026",
+      "stage": "prefilter",
+      "blockers": [
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-27T21:50:28+00:00",
+      "last_seen_at": "2026-11-27T21:50:28+00:00"
     }
   },
   "source_updated_at_by_id": {}

@@ -514,6 +514,7 @@
     "R0077604",
     "R0077610",
     "R0077612",
+    "R0077623",
     "R0077630",
     "R0077632",
     "R0077651",
@@ -611,7 +612,7 @@
       "category": "platform"
     }
   },
-  "last_successful_scan_at": "2026-11-26T22:09:34+00:00",
+  "last_successful_scan_at": "2026-11-27T21:50:28+00:00",
   "filter_version": 3,
   "rejected_catalog": {
     "R0077145": {
@@ -7464,6 +7465,22 @@
       "filter_version": 3,
       "first_seen_at": "2026-11-26T22:09:34+00:00",
       "last_seen_at": "2026-11-26T22:09:34+00:00"
+    },
+    "R0077623": {
+      "title": "Manager, Indirect Tax",
+      "location": "Amsterdam, North Holland, Netherlands",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0077623/Manager-Indirect-Tax",
+      "posted_at": "2026-11-27T00:00:00.000+0000",
+      "stage": "prefilter",
+      "blockers": [
+        "non_us_location",
+        "management",
+        "title_not_targeted"
+      ],
+      "category": "other",
+      "filter_version": 3,
+      "first_seen_at": "2026-11-27T21:50:28+00:00",
+      "last_seen_at": "2026-11-27T21:50:28+00:00"
     }
   },
   "source_updated_at_by_id": {}
