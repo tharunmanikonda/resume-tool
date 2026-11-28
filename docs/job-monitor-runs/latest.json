@@ -1,9 +1,8 @@
 {
-  "success": true,
-  "scanned_at": "2026-11-27T21:50:28+00:00",
+  "success": false,
+  "scanned_at": "2026-11-28T03:45:10+00:00",
   "monitor_count": 14,
   "successful_monitors": [
-    "cbre",
     "cdk",
     "cisco",
     "crunchyroll",
@@ -18,46 +17,33 @@
     "tiktok",
     "waymo"
   ],
-  "failed_monitors": [],
-  "candidate_count": 1,
-  "needs_ai_review_count": 0,
-  "candidates": [
-    {
-      "monitor": "iqvia",
-      "job_id": "R1578016",
-      "title": "Senior Software Development Engineer",
-      "location": "Kathmandu, Nepal",
-      "posted_at": "2026-11-27",
-      "url": "https://iqvia.wd1.myworkdayjobs.com/job/Kathmandu-Nepal/Senior-Software-Development-Engineer_R1578016",
-      "priority": "medium",
-      "matching_requirements": [
-        "target_title:software",
-        "profile_signal:python:+2",
-        "profile_signal:java:+1",
-        "profile_signal:backend_apis:+2",
-        "profile_signal:cloud_containers:+2",
-        "profile_signal:qa_automation:+2"
-      ],
-      "material_gaps": []
-    }
+  "failed_monitors": [
+    "cbre"
   ],
+  "candidate_count": 0,
+  "needs_ai_review_count": 0,
+  "candidates": [],
   "needs_ai_review": [],
   "results": [
     {
       "monitor": "cbre",
-      "success": true,
-      "scanned_at": "2026-11-27T21:50:28+00:00",
-      "fetched": 860,
-      "unseen": 17,
-      "state_updated": true,
+      "success": false,
+      "scanned_at": "2026-11-28T03:45:10+00:00",
+      "fetched": 0,
+      "unseen": 0,
+      "state_updated": false,
       "candidates": [],
       "needs_ai_review": [],
-      "errors": []
+      "errors": [
+        {
+          "error": "locator.evaluateAll: Execution context was destroyed, most likely because of a navigation\n    at cbreSearchListings (/home/runner/work/resume-tool/resume-tool/ops/company_jobs_fetch.mjs:813:68)\n    at async file:///home/runner/work/resume-tool/resume-tool/ops/company_jobs_fetch.mjs:846:14\n    at async worker (/home/runner/work/resume-tool/resume-tool/ops/company_jobs_fetch.mjs:217:24)\n    at async mapWithConcurrency (/home/runner/work/resume-tool/resume-tool/ops/company_jobs_fetch.mjs:220:3)\n    at async cbreListings (/home/runner/work/resume-tool/resume-tool/ops/company_jobs_fetch.mjs:851:15)\n    at async main (/home/runner/work/resume-tool/resume-tool/ops/company_jobs_fetch.mjs:973:13)"
+        }
+      ]
     },
     {
       "monitor": "cdk",
       "success": true,
-      "scanned_at": "2026-11-27T21:50:28+00:00",
+      "scanned_at": "2026-11-28T03:45:10+00:00",
       "fetched": 44,
       "unseen": 0,
       "state_updated": true,
@@ -68,7 +54,7 @@
     {
       "monitor": "cisco",
       "success": true,
-      "scanned_at": "2026-11-27T21:50:28+00:00",
+      "scanned_at": "2026-11-28T03:45:10+00:00",
       "fetched": 60,
       "unseen": 0,
       "state_updated": true,
@@ -79,7 +65,7 @@
     {
       "monitor": "crunchyroll",
       "success": true,
-      "scanned_at": "2026-11-27T21:50:28+00:00",
+      "scanned_at": "2026-11-28T03:45:10+00:00",
       "fetched": 95,
       "unseen": 0,
       "state_updated": true,
@@ -90,9 +76,9 @@
     {
       "monitor": "ebay",
       "success": true,
-      "scanned_at": "2026-11-27T21:50:28+00:00",
-      "fetched": 167,
-      "unseen": 1,
+      "scanned_at": "2026-11-28T03:45:10+00:00",
+      "fetched": 155,
+      "unseen": 0,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -101,7 +87,7 @@
     {
       "monitor": "intepros",
       "success": true,
-      "scanned_at": "2026-11-27T21:50:28+00:00",
+      "scanned_at": "2026-11-28T03:45:10+00:00",
       "fetched": 20,
       "unseen": 0,
       "state_updated": true,
@@ -112,36 +98,18 @@
     {
       "monitor": "iqvia",
       "success": true,
-      "scanned_at": "2026-11-27T21:50:28+00:00",
-      "fetched": 1508,
-      "unseen": 91,
+      "scanned_at": "2026-11-28T03:45:10+00:00",
+      "fetched": 359,
+      "unseen": 0,
       "state_updated": true,
-      "candidates": [
-        {
-          "job_id": "R1578016",
-          "title": "Senior Software Development Engineer",
-          "location": "Kathmandu, Nepal",
-          "posted_at": "2026-11-27",
-          "url": "https://iqvia.wd1.myworkdayjobs.com/job/Kathmandu-Nepal/Senior-Software-Development-Engineer_R1578016",
-          "priority": "medium",
-          "matching_requirements": [
-            "target_title:software",
-            "profile_signal:python:+2",
-            "profile_signal:java:+1",
-            "profile_signal:backend_apis:+2",
-            "profile_signal:cloud_containers:+2",
-            "profile_signal:qa_automation:+2"
-          ],
-          "material_gaps": []
-        }
-      ],
+      "candidates": [],
       "needs_ai_review": [],
       "errors": []
     },
     {
       "monitor": "nbcu",
       "success": true,
-      "scanned_at": "2026-11-27T21:50:28+00:00",
+      "scanned_at": "2026-11-28T03:45:10+00:00",
       "fetched": 270,
       "unseen": 0,
       "state_updated": true,
@@ -152,7 +120,7 @@
     {
       "monitor": "nvidia",
       "success": true,
-      "scanned_at": "2026-11-27T21:50:28+00:00",
+      "scanned_at": "2026-11-28T03:45:10+00:00",
       "fetched": 100,
       "unseen": 0,
       "state_updated": true,
@@ -163,7 +131,7 @@
     {
       "monitor": "occ",
       "success": true,
-      "scanned_at": "2026-11-27T21:50:28+00:00",
+      "scanned_at": "2026-11-28T03:45:10+00:00",
       "fetched": 60,
       "unseen": 0,
       "state_updated": true,
@@ -174,7 +142,7 @@
     {
       "monitor": "ocient",
       "success": true,
-      "scanned_at": "2026-11-27T21:50:28+00:00",
+      "scanned_at": "2026-11-28T03:45:10+00:00",
       "fetched": 20,
       "unseen": 0,
       "state_updated": true,
@@ -185,7 +153,7 @@
     {
       "monitor": "rivian",
       "success": true,
-      "scanned_at": "2026-11-27T21:50:28+00:00",
+      "scanned_at": "2026-11-28T03:45:10+00:00",
       "fetched": 30,
       "unseen": 0,
       "state_updated": true,
@@ -196,9 +164,9 @@
     {
       "monitor": "tiktok",
       "success": true,
-      "scanned_at": "2026-11-27T21:50:28+00:00",
+      "scanned_at": "2026-11-28T03:45:10+00:00",
       "fetched": 1770,
-      "unseen": 3,
+      "unseen": 0,
       "state_updated": true,
       "candidates": [],
       "needs_ai_review": [],
@@ -207,8 +175,8 @@
     {
       "monitor": "waymo",
       "success": true,
-      "scanned_at": "2026-11-27T21:50:28+00:00",
-      "fetched": 145,
+      "scanned_at": "2026-11-28T03:45:10+00:00",
+      "fetched": 143,
       "unseen": 0,
       "state_updated": true,
       "candidates": [],
